@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.num.PolyFit1D &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="num" href="num.html" />
+    <link rel="next" title="pwtools.num.PolyFit1D.__call__" href="pwtools.num.PolyFit1D.__call__.html" />
+    <link rel="prev" title="pwtools.num.PolyFit.get_min" href="pwtools.num.PolyFit.get_min.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.PolyFit1D.__call__.html" title="pwtools.num.PolyFit1D.__call__"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.PolyFit.get_min.html" title="pwtools.num.PolyFit.get_min"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="num.html" accesskey="U">num</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.num.PolyFit.get_min.html"
+                        title="previous chapter">pwtools.num.PolyFit.get_min</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.num.PolyFit1D.__call__.html"
+                        title="next chapter">pwtools.num.PolyFit1D.__call__</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.num.PolyFit1D.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-num-polyfit1d">
+<h1>pwtools.num.PolyFit1D<a class="headerlink" href="#pwtools-num-polyfit1d" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.num.PolyFit1D">
+<em class="property">class </em><code class="descclassname">pwtools.num.</code><code class="descname">PolyFit1D</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#PolyFit1D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.PolyFit1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pwtools.num.Fit1D.html#pwtools.num.Fit1D" title="pwtools.num.Fit1D"><code class="xref py py-class docutils literal"><span class="pre">pwtools.num.Fit1D</span></code></a>, <a class="reference internal" href="pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal"><span class="pre">pwtools.num.PolyFit</span></code></a></p>
+<p>1D special case version of <a class="reference internal" href="pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal"><span class="pre">PolyFit</span></code></a> which handles 1d and scalar
+<cite>points</cite> Also <a class="reference internal" href="pwtools.num.PolyFit1D.get_min.html#pwtools.num.PolyFit1D.get_min" title="pwtools.num.PolyFit1D.get_min"><code class="xref py py-meth docutils literal"><span class="pre">get_min()</span></code></a> uses the root of the poly&#8217;s 1st derivative
+instead of <code class="docutils literal"><span class="pre">fmin()</span></code>.</p>
+<div class="line-block">
+<div class="line">__init__: points (npoints,1) or (npoints,)</div>
+<div class="line">__call__: points (npoints,1) or (npoints,) or scalar</div>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">=</span><span class="n">num</span><span class="o">.</span><span class="n">PolyFit1D</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">2.0000000000000009</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">get_min</span><span class="p">()</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xx</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="mi">50</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;data&#39;</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">xx</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;poly&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">der</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;d(poly)/dx&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.PolyFit1D.__call__.html#pwtools.num.PolyFit1D.__call__" title="pwtools.num.PolyFit1D.__call__"><code class="xref py py-obj docutils literal"><span class="pre">__call__</span></code></a>(points,&nbsp;**kwds)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.num.PolyFit1D.get_max.html#pwtools.num.PolyFit1D.get_max" title="pwtools.num.PolyFit1D.get_max"><code class="xref py py-obj docutils literal"><span class="pre">get_max</span></code></a>([x0,&nbsp;xab])</td>
+<td>Convenience method.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.PolyFit1D.get_min.html#pwtools.num.PolyFit1D.get_min" title="pwtools.num.PolyFit1D.get_min"><code class="xref py py-obj docutils literal"><span class="pre">get_min</span></code></a>([x0,&nbsp;xab])</td>
+<td>Return x where y(x) = min(y) by calculating the root of the fit&#8217;s 1st derivative (by calling <code class="docutils literal"><span class="pre">self(x,</span> <span class="pre">der=1)</span></code>).</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.num.PolyFit1D.get_root.html#pwtools.num.PolyFit1D.get_root" title="pwtools.num.PolyFit1D.get_root"><code class="xref py py-obj docutils literal"><span class="pre">get_root</span></code></a>([x0,&nbsp;xab])</td>
+<td>Return x where y(x) = 0 by calculating the root of the fit function.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.PolyFit1D.is_mono.html#pwtools.num.PolyFit1D.is_mono" title="pwtools.num.PolyFit1D.is_mono"><code class="xref py py-obj docutils literal"><span class="pre">is_mono</span></code></a>()</td>
+<td>Return True if the curve described by the fit function f(x) is monotonic.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pwtools.num.PolyFit1D.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#PolyFit1D.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.PolyFit1D.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>See PolyFit</strong></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.PolyFit1D.__call__.html" title="pwtools.num.PolyFit1D.__call__"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.PolyFit.get_min.html" title="pwtools.num.PolyFit.get_min"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="num.html" >num</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

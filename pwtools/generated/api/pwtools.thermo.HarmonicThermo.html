@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.thermo.HarmonicThermo &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="thermo" href="thermo.html" />
+    <link rel="next" title="pwtools.thermo.HarmonicThermo.cv" href="pwtools.thermo.HarmonicThermo.cv.html" />
+    <link rel="prev" title="pwtools.thermo.Gibbs.set_fitfunc" href="pwtools.thermo.Gibbs.set_fitfunc.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.thermo.HarmonicThermo.cv.html" title="pwtools.thermo.HarmonicThermo.cv"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.thermo.Gibbs.set_fitfunc.html" title="pwtools.thermo.Gibbs.set_fitfunc"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="thermo.html" accesskey="U">thermo</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.thermo.Gibbs.set_fitfunc.html"
+                        title="previous chapter">pwtools.thermo.Gibbs.set_fitfunc</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.thermo.HarmonicThermo.cv.html"
+                        title="next chapter">pwtools.thermo.HarmonicThermo.cv</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.thermo.HarmonicThermo.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-thermo-harmonicthermo">
+<h1>pwtools.thermo.HarmonicThermo<a class="headerlink" href="#pwtools-thermo-harmonicthermo" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.thermo.HarmonicThermo">
+<em class="property">class </em><code class="descclassname">pwtools.thermo.</code><code class="descname">HarmonicThermo</code><span class="sig-paren">(</span><em>freq</em>, <em>dos</em>, <em>temp=None</em>, <em>skipfreq=False</em>, <em>eps=3.3306690738754696e-16</em>, <em>fixnan=False</em>, <em>nanfill=0.0</em>, <em>dosarea=None</em>, <em>integrator=&lt;function trapz&gt;</em>, <em>verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Calculate vibrational internal energy (Evib [eV]), free energy (Fvib
+[eV]), entropy (Svib [R,kb]) and isochoric heat capacity (Cv [R,kb]) in the
+harmonic approximation from a phonon density of states.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.thermo.HarmonicThermo.cv.html#pwtools.thermo.HarmonicThermo.cv" title="pwtools.thermo.HarmonicThermo.cv"><code class="xref py py-obj docutils literal"><span class="pre">cv</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>Same as isochoric_heat_capacity().</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.thermo.HarmonicThermo.evib.html#pwtools.thermo.HarmonicThermo.evib" title="pwtools.thermo.HarmonicThermo.evib"><code class="xref py py-obj docutils literal"><span class="pre">evib</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>Same as vibrational_internal_energy().</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.thermo.HarmonicThermo.fvib.html#pwtools.thermo.HarmonicThermo.fvib" title="pwtools.thermo.HarmonicThermo.fvib"><code class="xref py py-obj docutils literal"><span class="pre">fvib</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>Same as vibrational_free_energy().</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.thermo.HarmonicThermo.isochoric_heat_capacity.html#pwtools.thermo.HarmonicThermo.isochoric_heat_capacity" title="pwtools.thermo.HarmonicThermo.isochoric_heat_capacity"><code class="xref py py-obj docutils literal"><span class="pre">isochoric_heat_capacity</span></code></a>([temp])</td>
+<td>Cv [R, kb]</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.thermo.HarmonicThermo.svib.html#pwtools.thermo.HarmonicThermo.svib" title="pwtools.thermo.HarmonicThermo.svib"><code class="xref py py-obj docutils literal"><span class="pre">svib</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>Same as vibrational_entropy().</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.thermo.HarmonicThermo.vibrational_entropy.html#pwtools.thermo.HarmonicThermo.vibrational_entropy" title="pwtools.thermo.HarmonicThermo.vibrational_entropy"><code class="xref py py-obj docutils literal"><span class="pre">vibrational_entropy</span></code></a>([temp])</td>
+<td>Svib [R, kb]</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.thermo.HarmonicThermo.vibrational_free_energy.html#pwtools.thermo.HarmonicThermo.vibrational_free_energy" title="pwtools.thermo.HarmonicThermo.vibrational_free_energy"><code class="xref py py-obj docutils literal"><span class="pre">vibrational_free_energy</span></code></a>([temp])</td>
+<td>Fvib [eV]</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.thermo.HarmonicThermo.vibrational_internal_energy.html#pwtools.thermo.HarmonicThermo.vibrational_internal_energy" title="pwtools.thermo.HarmonicThermo.vibrational_internal_energy"><code class="xref py py-obj docutils literal"><span class="pre">vibrational_internal_energy</span></code></a>([temp])</td>
+<td>Evib [eV]</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pwtools.thermo.HarmonicThermo.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>freq</em>, <em>dos</em>, <em>temp=None</em>, <em>skipfreq=False</em>, <em>eps=3.3306690738754696e-16</em>, <em>fixnan=False</em>, <em>nanfill=0.0</em>, <em>dosarea=None</em>, <em>integrator=&lt;function trapz&gt;</em>, <em>verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>freq</strong> : 1d array</p>
+<blockquote>
+<div><p>frequency f (NOT 2*pi*f) [cm^-1]</p>
+</div></blockquote>
+<p><strong>dos</strong> : 1d array</p>
+<blockquote>
+<div><p>phonon dos such that int(freq) dos = 3*natom</p>
+</div></blockquote>
+<p><strong>temp</strong> : 1d array, optional</p>
+<blockquote>
+<div><p>temperature range [K], if not given in the constructor then use
+<cite>temp</cite> in the calculation methods</p>
+</div></blockquote>
+<p><strong>skipfreq</strong> : bool, optional</p>
+<blockquote>
+<div><p>Ignore frequencies and DOS values where the frequencies are
+negative or close to zero, i.e. all DOS curve values where <cite>freq</cite> &lt;
+<cite>eps</cite>. The number and rms of the skipped values is printed if
+<cite>verbose=True</cite>.</p>
+</div></blockquote>
+<p><strong>eps</strong> : float, optional</p>
+<blockquote>
+<div><p>Threshold for <cite>skipfreq</cite>. Default is ~1.5*2.2e-16 .</p>
+</div></blockquote>
+<p><strong>fixnan</strong> : bool, optional</p>
+<blockquote>
+<div><p>Use if YKWYAD, test before using! Currently, set all NaNs occuring
+during integration to <cite>nanfill</cite>. This is a HACK b/c we must assume
+that these numbers should be <cite>nanfill</cite>.</p>
+</div></blockquote>
+<p><strong>nanfill</strong> : float, optional</p>
+<blockquote>
+<div><p>During integration over temperature, set NaNs to this value.</p>
+</div></blockquote>
+<p><strong>dosarea</strong> : float or None</p>
+<blockquote>
+<div><p>If not None, then re-normalize the area int(freq) dos to <cite>dosarea</cite>,
+after <cite>skipfreq</cite> was applied if used.</p>
+</div></blockquote>
+<p><strong>integrator</strong> : callable</p>
+<blockquote>
+<div><p>Function which integrates x-y data. Called as <code class="docutils literal"><span class="pre">integrator(y,x)</span></code>,
+like <code class="docutils literal"><span class="pre">scipy.integrate.{trapz,simps}</span></code>. Usually, <cite>trapz</cite> is
+numerically more stable for weird DOS data and accurate enough if
+the freqeuency axis resolution is good.</p>
+</div></blockquote>
+<p><strong>verbose</strong> : bool, optional</p>
+<blockquote class="last">
+<div><p>Print warnings. Recommended for testing.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p><cite>skipfreq</cite> and <cite>fixnan</cite>: Sometimes, a few frequencies (ususally the 1st
+few values only) are close to zero and negative, and the DOS is very
+small there. <cite>skipfreq</cite> can be used to ignore this region. The default
+is False b/c it may hide large negative frequencies (i.e. unstable
+structure), which is a perfectly valid result (but you shouldn&#8217;t do
+thermodynamics with that :) Even if there are no negative frequencies,
+you can have frequencies (usually the first) beeing exactly zero or
+close to that (order 1e-17). That can cause numerical problems (NaNs)
+in some calculations so we may skip them and their DOS values, which
+must be assumed to be small. If you still encounter NaNs during
+integration, you may use <cite>fixnan</cite> to set them to <cite>nanfill</cite>. But that is a
+hack. If you cannot get rid of NaNs by <cite>skipfreq</cite>, then your freq-dos
+data is probably fishy!</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pwtools.thermo.HarmonicThermo.__weakref__">
+<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.thermo.HarmonicThermo.cv">
+<code class="descname">cv</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.cv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.cv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as isochoric_heat_capacity().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.thermo.HarmonicThermo.evib">
+<code class="descname">evib</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.evib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.evib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as vibrational_internal_energy().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.thermo.HarmonicThermo.fvib">
+<code class="descname">fvib</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.fvib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.fvib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as vibrational_free_energy().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.thermo.HarmonicThermo.isochoric_heat_capacity">
+<code class="descname">isochoric_heat_capacity</code><span class="sig-paren">(</span><em>temp=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.isochoric_heat_capacity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.isochoric_heat_capacity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cv [R, kb]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.thermo.HarmonicThermo.svib">
+<code class="descname">svib</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.svib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.svib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as vibrational_entropy().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.thermo.HarmonicThermo.vibrational_entropy">
+<code class="descname">vibrational_entropy</code><span class="sig-paren">(</span><em>temp=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.vibrational_entropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.vibrational_entropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Svib [R, kb]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.thermo.HarmonicThermo.vibrational_free_energy">
+<code class="descname">vibrational_free_energy</code><span class="sig-paren">(</span><em>temp=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.vibrational_free_energy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.vibrational_free_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fvib [eV]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.thermo.HarmonicThermo.vibrational_internal_energy">
+<code class="descname">vibrational_internal_energy</code><span class="sig-paren">(</span><em>temp=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.vibrational_internal_energy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.vibrational_internal_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evib [eV]</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.thermo.HarmonicThermo.cv.html" title="pwtools.thermo.HarmonicThermo.cv"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.thermo.Gibbs.set_fitfunc.html" title="pwtools.thermo.Gibbs.set_fitfunc"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="thermo.html" >thermo</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

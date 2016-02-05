@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.kpath.plot_dis &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="kpath" href="kpath.html" />
+    <link rel="next" title="lammps" href="lammps.html" />
+    <link rel="prev" title="pwtools.kpath.kpath" href="pwtools.kpath.kpath.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="lammps.html" title="lammps"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.kpath.kpath.html" title="pwtools.kpath.kpath"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="kpath.html" accesskey="U">kpath</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.kpath.kpath.html"
+                        title="previous chapter">pwtools.kpath.kpath</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lammps.html"
+                        title="next chapter">lammps</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.kpath.plot_dis.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-kpath-plot-dis">
+<h1>pwtools.kpath.plot_dis<a class="headerlink" href="#pwtools-kpath-plot-dis" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.kpath.plot_dis">
+<code class="descclassname">pwtools.kpath.</code><code class="descname">plot_dis</code><span class="sig-paren">(</span><em>path_norm</em>, <em>freqs</em>, <em>special_points_path=None</em>, <em>show_coords=None</em>, <em>dos=None</em>, <em>ax=None</em>, <em>ylim=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/kpath.html#plot_dis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.kpath.plot_dis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot dispersion.</p>
+<p>See <code class="docutils literal"><span class="pre">bin/plot_dispersion.py</span></code> for a usage example. This lives here (and not in
+<a class="reference internal" href="pwscf.html#module-pwtools.pwscf" title="pwtools.pwscf"><code class="xref py py-mod docutils literal"><span class="pre">pwscf</span></code></a>) b/c it is not PWscf-specific. It can be used for any
+dispersion data (band structure).</p>
+<p>See <a class="reference internal" href="pwtools.pwscf.read_matdyn_freq.html#pwtools.pwscf.read_matdyn_freq" title="pwtools.pwscf.read_matdyn_freq"><code class="xref py py-func docutils literal"><span class="pre">read_matdyn_freq()</span></code></a> for how to get <cite>freqs</cite> in the
+case of phonon dispersions.</p>
+<p>This function is a convenience function, which can even plot the DOS as
+well. We do not expose many matplotlib parameters here. If you want to tweak
+your plot much, then operate on the returned <cite>fig</cite>, <cite>ax</cite> (dispersion) and
+<cite>axdos</cite> (dos), or copy and hack the function, which might be actually the easiest
+way.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>path_norm</strong> : array (nks,)</p>
+<blockquote>
+<div><p>x-axis with cumulative norms of points along the k-path, see
+<a class="reference internal" href="pwtools.kpath.get_path_norm.html#pwtools.kpath.get_path_norm" title="pwtools.kpath.get_path_norm"><code class="xref py py-func docutils literal"><span class="pre">get_path_norm()</span></code></a></p>
+</div></blockquote>
+<p><strong>freqs</strong> : array (nks, nbnd)</p>
+<blockquote>
+<div><p><cite>nbnd</cite> frequencies for each band at each k-point</p>
+</div></blockquote>
+<p><strong>special_points_path</strong> : optional, <a class="reference internal" href="pwtools.kpath.SpecialPointsPath.html#pwtools.kpath.SpecialPointsPath" title="pwtools.kpath.SpecialPointsPath"><code class="xref py py-class docutils literal"><span class="pre">SpecialPointsPath</span></code></a> instance</p>
+<blockquote>
+<div><p>used for pretty-printing the x-axis (set special point labels)</p>
+</div></blockquote>
+<p><strong>show_coords</strong> : &#8216;cart&#8217;, &#8216;frac&#8217;, None</p>
+<blockquote>
+<div><p>Show the cartesian or fractional coordinates of special points in the
+x-axis label, on neither if None.</p>
+</div></blockquote>
+<p><strong>dos</strong> : array (N,2) or None</p>
+<blockquote>
+<div><p>array with phonon dos to plot: <code class="docutils literal"><span class="pre">dos[:,0]=freq</span></code>, <code class="docutils literal"><span class="pre">dos[:,1]=phdos</span></code></p>
+</div></blockquote>
+<p><strong>ax</strong> : matplotlib AxesSubplot (e.g. from <code class="docutils literal"><span class="pre">fig,ax=pwtools.mpl.fig_ax()</span></code>)</p>
+<blockquote>
+<div><p>automatically created if None</p>
+</div></blockquote>
+<p><strong>ylim</strong> : tuple (2,)</p>
+<blockquote>
+<div><p>frequency axis limits</p>
+</div></blockquote>
+<p><strong>**kwargs</strong> : keywords</p>
+<blockquote>
+<div><p>passed to plot()</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">fig, ax, axdos</p>
+<p><strong>fig</strong> : matplotlib Figure to ax</p>
+<p><strong>ax</strong> : matplotlib AxesSubplot with dispersion</p>
+<p class="last"><strong>axdos</strong> : matplotlib AxesSubplot with dos, or None if <cite>dos=None</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="pwtools.kpath.get_path_norm.html#pwtools.kpath.get_path_norm" title="pwtools.kpath.get_path_norm"><code class="xref py py-func docutils literal"><span class="pre">get_path_norm()</span></code></a>, <a class="reference internal" href="pwtools.pwscf.read_matdyn_freq.html#pwtools.pwscf.read_matdyn_freq" title="pwtools.pwscf.read_matdyn_freq"><code class="xref py py-func docutils literal"><span class="pre">pwtools.pwscf.read_matdyn_freq()</span></code></a>, <a class="reference internal" href="../../written/dispersion_example.html#dispersion-example"><span>Phonon dispersion calculation and plotting</span></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">spp</span> <span class="o">=</span> <span class="n">kpath</span><span class="o">.</span><span class="n">SpecialPointsPath</span><span class="p">(</span><span class="n">ks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]]),</span>
+<span class="go">                                  symbols=[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">path_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">freqs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="mi">500</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># create fig,ax inside, returned axdos=None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="p">,</span><span class="n">axdos</span> <span class="o">=</span> <span class="n">kpath</span><span class="o">.</span><span class="n">plot_dis</span><span class="p">(</span><span class="n">path_norm</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">spp</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># pass ax from outside, returns fig,ax but we don&#39;t use that b/c ax</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># is in-place modified</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">fig_ax</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kpath</span><span class="o">.</span><span class="n">plot_dis</span><span class="p">(</span><span class="n">path_norm</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">spp</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># plot also DOS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">30</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span> <span class="n">dos</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">30</span><span class="p">);</span> <span class="n">dos</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="p">,</span><span class="n">axdos</span> <span class="o">=</span> <span class="n">kpath</span><span class="o">.</span><span class="n">plot_dis</span><span class="p">(</span><span class="n">path_norm</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">spp</span><span class="p">,</span> <span class="n">dos</span><span class="o">=</span><span class="n">dos</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="lammps.html" title="lammps"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.kpath.kpath.html" title="pwtools.kpath.kpath"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="kpath.html" >kpath</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.crys.nearest_neighbors_from_dists &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="crys" href="crys.html" />
+    <link rel="next" title="pwtools.crys.nearest_neighbors_struct" href="pwtools.crys.nearest_neighbors_struct.html" />
+    <link rel="prev" title="pwtools.crys.nearest_neighbors" href="pwtools.crys.nearest_neighbors.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.nearest_neighbors_struct.html" title="pwtools.crys.nearest_neighbors_struct"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.nearest_neighbors.html" title="pwtools.crys.nearest_neighbors"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="crys.html" accesskey="U">crys</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.crys.nearest_neighbors.html"
+                        title="previous chapter">pwtools.crys.nearest_neighbors</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.crys.nearest_neighbors_struct.html"
+                        title="next chapter">pwtools.crys.nearest_neighbors_struct</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.crys.nearest_neighbors_from_dists.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-crys-nearest-neighbors-from-dists">
+<h1>pwtools.crys.nearest_neighbors_from_dists<a class="headerlink" href="#pwtools-crys-nearest-neighbors-from-dists" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.crys.nearest_neighbors_from_dists">
+<code class="descclassname">pwtools.crys.</code><code class="descname">nearest_neighbors_from_dists</code><span class="sig-paren">(</span><em>dists</em>, <em>symbols</em>, <em>idx=None</em>, <em>skip=None</em>, <em>cutoff=None</em>, <em>num=None</em>, <em>pbc=True</em>, <em>sort=True</em>, <em>fullout=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#nearest_neighbors_from_dists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.nearest_neighbors_from_dists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Core part of nearest_neighbors(), which accepts pre-calculated
+distances.</p>
+<p>Can be more efficient in loops where many different
+nearest neighbors should be calculated from the same distances.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dists</strong> : 2d array (natoms,natoms)</p>
+<blockquote>
+<div><p>Cartesian distances (see distances()).</p>
+</div></blockquote>
+<p><strong>symbols</strong> : sequence of strings (natoms,)</p>
+<blockquote>
+<div><p>Atom symbols, i.e. struct.symbols</p>
+</div></blockquote>
+<p class="last"><strong>Rest see nearest_neighbors().</strong></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.nearest_neighbors_struct.html" title="pwtools.crys.nearest_neighbors_struct"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.nearest_neighbors.html" title="pwtools.crys.nearest_neighbors"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="crys.html" >crys</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

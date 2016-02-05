@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.num.order_similar &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="num" href="num.html" />
+    <link rel="next" title="pwtools.num.pi" href="pwtools.num.pi.html" />
+    <link rel="prev" title="pwtools.num.normalize" href="pwtools.num.normalize.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.pi.html" title="pwtools.num.pi"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.normalize.html" title="pwtools.num.normalize"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="num.html" accesskey="U">num</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.num.normalize.html"
+                        title="previous chapter">pwtools.num.normalize</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.num.pi.html"
+                        title="next chapter">pwtools.num.pi</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.num.order_similar.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-num-order-similar">
+<h1>pwtools.num.order_similar<a class="headerlink" href="#pwtools-num-order-similar" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.num.order_similar">
+<code class="descclassname">pwtools.num.</code><code class="descname">order_similar</code><span class="sig-paren">(</span><em>arr</em>, <em>repeat=1</em>, <em>order=2</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#order_similar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.order_similar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Band ordering algorithm. Uses up to quadradic extrapolation. Handles
+crossing points.</p>
+<p>This can be used to order dispersion plots, for instance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>arr</strong> : 2d array (npoints, ndim)</p>
+<blockquote>
+<div><p><cite>ndim</cite> 1d data streams with <cite>npoints</cite> each.</p>
+</div></blockquote>
+<p><strong>repeat</strong> : int</p>
+<blockquote>
+<div><p>1: run 1 time, N: run recursively N times</p>
+</div></blockquote>
+<p><strong>order</strong> : int</p>
+<blockquote>
+<div><p>Order of extrapolation: 0 = next similar point, 1 = linear using the
+two last points, 2 = quadratic using the 3 last points</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>arr2</strong> : like <cite>arr</cite></p>
+<blockquote class="last">
+<div><p>Array with ordered data series.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>The more points, the better. The first 1-2 steps should start smoothly or
+the algo will get confused. If you don&#8217;t get all crossing points resolved,
+try <code class="docutils literal"><span class="pre">repeat</span> <span class="pre">&gt;</span> <span class="pre">1</span></code>. But if the algo placed points from different data
+streams into one, you are lost. Then you can only use more points to make
+the extrapolation more precise.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="kn">import</span> <span class="n">mpl</span><span class="p">,</span> <span class="n">num</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> 
+<span class="gp">... </span>              <span class="mf">1.2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> 
+<span class="gp">... </span>              <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">2.5</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">1.5</span><span class="p">)),</span>
+<span class="gp">... </span>              <span class="mf">0.2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">1.1</span><span class="p">),</span>
+<span class="gp">... </span>              <span class="mf">0.3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">1.1</span><span class="p">),</span>
+<span class="gp">... </span>              <span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">ai</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">ai</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;raw data&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aa</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">order_similar</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">aa</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;sorted, repeat=1, order=2&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aa</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">order_similar</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">aa</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;sorted, repeat=2, order=1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>    
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.pi.html" title="pwtools.num.pi"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.normalize.html" title="pwtools.num.normalize"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="num.html" >num</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

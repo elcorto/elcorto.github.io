@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.parse.Cp2kSCFOutputFile &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="parse" href="parse.html" />
+    <link rel="prev" title="pwtools.parse.Cp2kRelaxOutputFile.update_units" href="pwtools.parse.Cp2kRelaxOutputFile.update_units.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.parse.Cp2kRelaxOutputFile.update_units.html" title="pwtools.parse.Cp2kRelaxOutputFile.update_units"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="parse.html" accesskey="U">parse</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.parse.Cp2kRelaxOutputFile.update_units.html"
+                        title="previous chapter">pwtools.parse.Cp2kRelaxOutputFile.update_units</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.parse.Cp2kSCFOutputFile.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-parse-cp2kscfoutputfile">
+<h1>pwtools.parse.Cp2kSCFOutputFile<a class="headerlink" href="#pwtools-parse-cp2kscfoutputfile" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.parse.Cp2kSCFOutputFile">
+<em class="property">class </em><code class="descclassname">pwtools.parse.</code><code class="descname">Cp2kSCFOutputFile</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#Cp2kSCFOutputFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.Cp2kSCFOutputFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pwtools.parse.StructureFileParser.html#pwtools.parse.StructureFileParser" title="pwtools.parse.StructureFileParser"><code class="xref py py-class docutils literal"><span class="pre">pwtools.parse.StructureFileParser</span></code></a></p>
+<p>CP2K SCF output parser (&#8220;global/run_type energy_force,print_level low&#8221;).</p>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li>Since we mainly use &#8220;global/print_level low&#8221;, we don&#8217;t bother to
+special-case for &#8220;global/print_level medium&#8221;. Therefore, we don&#8217;t extract
+cell and coords. SCF runs are only done for convergence tests, so forces,
+etot and stress are important.</li>
+<li>It seems that with default &amp;print settings, SCF runs write the stress
+tensor in GPa, while for MD, the default is bar. Thank you very much!</li>
+</ul>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">Container</span></code></td>
+<td>alias of <code class="xref py py-class docutils literal"><span class="pre">Structure</span></code></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.apply_units.html#pwtools.parse.Cp2kSCFOutputFile.apply_units" title="pwtools.parse.Cp2kSCFOutputFile.apply_units"><code class="xref py py-obj docutils literal"><span class="pre">apply_units</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.assert_attr.html#pwtools.parse.Cp2kSCFOutputFile.assert_attr" title="pwtools.parse.Cp2kSCFOutputFile.assert_attr"><code class="xref py py-obj docutils literal"><span class="pre">assert_attr</span></code></a>(attr)</td>
+<td>Raise AssertionError if self.&lt;attr&gt; is not set (is_set_attr() returns False.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.assert_attr_lst.html#pwtools.parse.Cp2kSCFOutputFile.assert_attr_lst" title="pwtools.parse.Cp2kSCFOutputFile.assert_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">assert_attr_lst</span></code></a>(attr_lst)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.assert_set_attr.html#pwtools.parse.Cp2kSCFOutputFile.assert_set_attr" title="pwtools.parse.Cp2kSCFOutputFile.assert_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">assert_set_attr</span></code></a>(attr)</td>
+<td>Same as assert_attr(), but run try_set_attr() first.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.assert_set_attr_lst.html#pwtools.parse.Cp2kSCFOutputFile.assert_set_attr_lst" title="pwtools.parse.Cp2kSCFOutputFile.assert_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">assert_set_attr_lst</span></code></a>(attr_lst)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.check_set_attr.html#pwtools.parse.Cp2kSCFOutputFile.check_set_attr" title="pwtools.parse.Cp2kSCFOutputFile.check_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">check_set_attr</span></code></a>(attr)</td>
+<td>Run try_set_attr() and return the result of is_set_attr(), i.e.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.check_set_attr_lst.html#pwtools.parse.Cp2kSCFOutputFile.check_set_attr_lst" title="pwtools.parse.Cp2kSCFOutputFile.check_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">check_set_attr_lst</span></code></a>(attr_lst)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.dump.html#pwtools.parse.Cp2kSCFOutputFile.dump" title="pwtools.parse.Cp2kSCFOutputFile.dump"><code class="xref py py-obj docutils literal"><span class="pre">dump</span></code></a>(dump_filename[,&nbsp;mkdir])</td>
+<td>Write object to binary file using cPickle.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.get_cont.html#pwtools.parse.Cp2kSCFOutputFile.get_cont" title="pwtools.parse.Cp2kSCFOutputFile.get_cont"><code class="xref py py-obj docutils literal"><span class="pre">get_cont</span></code></a>([auto_calc])</td>
+<td>Populate and return a Container object.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.get_etot.html#pwtools.parse.Cp2kSCFOutputFile.get_etot" title="pwtools.parse.Cp2kSCFOutputFile.get_etot"><code class="xref py py-obj docutils literal"><span class="pre">get_etot</span></code></a>()</td>
+<td>[Ha]</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.get_forces.html#pwtools.parse.Cp2kSCFOutputFile.get_forces" title="pwtools.parse.Cp2kSCFOutputFile.get_forces"><code class="xref py py-obj docutils literal"><span class="pre">get_forces</span></code></a>()</td>
+<td>[Ha/Bohr]</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.get_natoms.html#pwtools.parse.Cp2kSCFOutputFile.get_natoms" title="pwtools.parse.Cp2kSCFOutputFile.get_natoms"><code class="xref py py-obj docutils literal"><span class="pre">get_natoms</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.get_return_attr.html#pwtools.parse.Cp2kSCFOutputFile.get_return_attr" title="pwtools.parse.Cp2kSCFOutputFile.get_return_attr"><code class="xref py py-obj docutils literal"><span class="pre">get_return_attr</span></code></a>(attr_name)</td>
+<td>Call try_set_attr() are return self.&lt;attr_name&gt; if set.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.get_stress.html#pwtools.parse.Cp2kSCFOutputFile.get_stress" title="pwtools.parse.Cp2kSCFOutputFile.get_stress"><code class="xref py py-obj docutils literal"><span class="pre">get_stress</span></code></a>()</td>
+<td>[GPa]</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.get_struct.html#pwtools.parse.Cp2kSCFOutputFile.get_struct" title="pwtools.parse.Cp2kSCFOutputFile.get_struct"><code class="xref py py-obj docutils literal"><span class="pre">get_struct</span></code></a>(**kwds)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.get_symbols.html#pwtools.parse.Cp2kSCFOutputFile.get_symbols" title="pwtools.parse.Cp2kSCFOutputFile.get_symbols"><code class="xref py py-obj docutils literal"><span class="pre">get_symbols</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.init_attr_lst.html#pwtools.parse.Cp2kSCFOutputFile.init_attr_lst" title="pwtools.parse.Cp2kSCFOutputFile.init_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">init_attr_lst</span></code></a>([attr_lst])</td>
+<td>Set each self.&lt;attr&gt; in <cite>attr_lst</cite> to None.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.is_set_attr.html#pwtools.parse.Cp2kSCFOutputFile.is_set_attr" title="pwtools.parse.Cp2kSCFOutputFile.is_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">is_set_attr</span></code></a>(attr)</td>
+<td>Check if self has the attribute self.&lt;attr&gt; and if it is _not_ None.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.is_set_attr_lst.html#pwtools.parse.Cp2kSCFOutputFile.is_set_attr_lst" title="pwtools.parse.Cp2kSCFOutputFile.is_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">is_set_attr_lst</span></code></a>(attr_lst)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.load.html#pwtools.parse.Cp2kSCFOutputFile.load" title="pwtools.parse.Cp2kSCFOutputFile.load"><code class="xref py py-obj docutils literal"><span class="pre">load</span></code></a>(dump_filename)</td>
+<td>Load pickled object.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.parse.html#pwtools.parse.Cp2kSCFOutputFile.parse" title="pwtools.parse.Cp2kSCFOutputFile.parse"><code class="xref py py-obj docutils literal"><span class="pre">parse</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.raw_return.html#pwtools.parse.Cp2kSCFOutputFile.raw_return" title="pwtools.parse.Cp2kSCFOutputFile.raw_return"><code class="xref py py-obj docutils literal"><span class="pre">raw_return</span></code></a>(attr_name)</td>
+<td>Call <code class="docutils literal"><span class="pre">try_set_attr(_&lt;attr_name&gt;_raw)</span></code> and return it if set, else None.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.raw_slice_get.html#pwtools.parse.Cp2kSCFOutputFile.raw_slice_get" title="pwtools.parse.Cp2kSCFOutputFile.raw_slice_get"><code class="xref py py-obj docutils literal"><span class="pre">raw_slice_get</span></code></a>(attr_name,&nbsp;sl,&nbsp;axis)</td>
+<td>Shortcut method:</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.set_all.html#pwtools.parse.Cp2kSCFOutputFile.set_all" title="pwtools.parse.Cp2kSCFOutputFile.set_all"><code class="xref py py-obj docutils literal"><span class="pre">set_all</span></code></a>([attr_lst])</td>
+<td>Call getter for each attr name in <cite>attr_lst</cite>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.set_attr_lst.html#pwtools.parse.Cp2kSCFOutputFile.set_attr_lst" title="pwtools.parse.Cp2kSCFOutputFile.set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">set_attr_lst</span></code></a>(attr_lst)</td>
+<td>Set self.attr_lst and init each attr to None.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.try_set_attr.html#pwtools.parse.Cp2kSCFOutputFile.try_set_attr" title="pwtools.parse.Cp2kSCFOutputFile.try_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">try_set_attr</span></code></a>(attr)</td>
+<td>If self.&lt;attr&gt; does not exist or is None, then invoke an</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.try_set_attr_lst.html#pwtools.parse.Cp2kSCFOutputFile.try_set_attr_lst" title="pwtools.parse.Cp2kSCFOutputFile.try_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">try_set_attr_lst</span></code></a>(attr_lst)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.update_units.html#pwtools.parse.Cp2kSCFOutputFile.update_units" title="pwtools.parse.Cp2kSCFOutputFile.update_units"><code class="xref py py-obj docutils literal"><span class="pre">update_units</span></code></a>(units)</td>
+<td>Update self.units dict from <cite>units</cite>.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pwtools.parse.Cp2kSCFOutputFile.get_etot">
+<code class="descname">get_etot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#Cp2kSCFOutputFile.get_etot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.Cp2kSCFOutputFile.get_etot" title="Permalink to this definition">¶</a></dt>
+<dd><p>[Ha]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.parse.Cp2kSCFOutputFile.get_forces">
+<code class="descname">get_forces</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#Cp2kSCFOutputFile.get_forces"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.Cp2kSCFOutputFile.get_forces" title="Permalink to this definition">¶</a></dt>
+<dd><p>[Ha/Bohr]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.parse.Cp2kSCFOutputFile.get_stress">
+<code class="descname">get_stress</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#Cp2kSCFOutputFile.get_stress"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.Cp2kSCFOutputFile.get_stress" title="Permalink to this definition">¶</a></dt>
+<dd><p>[GPa]</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.parse.Cp2kRelaxOutputFile.update_units.html" title="pwtools.parse.Cp2kRelaxOutputFile.update_units"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="parse.html" >parse</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

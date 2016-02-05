@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.crys.align_cart &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="crys" href="crys.html" />
+    <link rel="next" title="pwtools.crys.angle" href="pwtools.crys.angle.html" />
+    <link rel="prev" title="pwtools.crys._trans" href="pwtools.crys._trans.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.angle.html" title="pwtools.crys.angle"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys._trans.html" title="pwtools.crys._trans"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="crys.html" accesskey="U">crys</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.crys._trans.html"
+                        title="previous chapter">pwtools.crys._trans</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.crys.angle.html"
+                        title="next chapter">pwtools.crys.angle</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.crys.align_cart.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-crys-align-cart">
+<h1>pwtools.crys.align_cart<a class="headerlink" href="#pwtools-crys-align-cart" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.crys.align_cart">
+<code class="descclassname">pwtools.crys.</code><code class="descname">align_cart</code><span class="sig-paren">(</span><em>obj</em>, <em>x=None</em>, <em>y=None</em>, <em>vecs=None</em>, <em>indices=None</em>, <em>cart=None</em>, <em>eps=1e-05</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#align_cart"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.align_cart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Align obj w.r.t. a new cartesian coord sys defined by x,y and
+z=cross(x,y).</p>
+<p>The new coord sys can be defined either by <cite>x</cite> + <cite>y</cite> or <cite>vecs</cite> or
+<cite>indices</cite> or <cite>cart</cite>. Vectors need not be normalized.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>obj</strong> : Structure or Trajectory</p>
+<p><strong>x, y</strong> : (3,)</p>
+<blockquote>
+<div><p>The two vectors spanning the x-y plane.</p>
+</div></blockquote>
+<p><strong>vecs</strong> : (3,3)</p>
+<blockquote>
+<div><p>Array with 3 vectors as rows <cite>[v0, v1, v2]</cite> and <code class="docutils literal"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">v1</span> <span class="pre">-</span> <span class="pre">v0</span></code>, 
+<code class="docutils literal"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">v2</span> <span class="pre">-</span> <span class="pre">v0</span></code></p>
+</div></blockquote>
+<p><strong>indices</strong> : sequence (4,) or (3,)</p>
+<blockquote>
+<div><p>Indices of atoms in <cite>obj</cite> with positions <cite>v0,v1,v2</cite>. Length 4 for
+obj=Trajectory: <code class="docutils literal"><span class="pre">indices=[time_step,</span> <span class="pre">idx0,</span> <span class="pre">idx1,</span> <span class="pre">idx2]</span></code> and length 3
+for obj=Structure: <code class="docutils literal"><span class="pre">[idx0,</span> <span class="pre">idx1,</span> <span class="pre">idx2]</span></code> with</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">v0</span> <span class="pre">=</span> <span class="pre">obj.coords[time_step,</span> <span class="pre">idx0,</span> <span class="pre">...]</span></code> (Trajectory)</div>
+<div class="line"><code class="docutils literal"><span class="pre">v1</span> <span class="pre">=</span> <span class="pre">obj.coords[time_step,</span> <span class="pre">idx1,</span> <span class="pre">...]</span></code> </div>
+<div class="line"><code class="docutils literal"><span class="pre">v2</span> <span class="pre">=</span> <span class="pre">obj.coords[time_step,</span> <span class="pre">idx2,</span> <span class="pre">...]</span></code> </div>
+</div>
+</div></blockquote>
+<dl class="docutils">
+<dt>or</dt>
+<dd><div class="first last line-block">
+<div class="line"><code class="docutils literal"><span class="pre">v0</span> <span class="pre">=</span> <span class="pre">obj.coords[idx0,</span> <span class="pre">...]</span></code> (Structure)</div>
+<div class="line"><code class="docutils literal"><span class="pre">v1</span> <span class="pre">=</span> <span class="pre">obj.coords[idx1,</span> <span class="pre">...]</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">v2</span> <span class="pre">=</span> <span class="pre">obj.coords[idx2,</span> <span class="pre">...]</span></code></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>cart</strong> : (3,3)</p>
+<blockquote>
+<div><p>new cartesian coord sys <code class="docutils literal"><span class="pre">[x,y,z]</span></code>, matrix must be orthogonal</p>
+</div></blockquote>
+<p><strong>eps</strong> : float</p>
+<blockquote>
+<div><p>Threshold for orthogonality check. Use <cite>eps &lt;= 0</cite> to disable the check.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>out</strong> : Structure or Trajectory</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>In case of a <a class="reference internal" href="pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></a>, the same rotation is applied to all
+structs, so the <em>relative</em> orientation within the Trajectory is not
+changed. That is OK if each struct shall be rotated in the same way.
+If however each struct has a different orientation, then you need
+to loop over the Trajectory like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.crys</span> <span class="kn">import</span> <span class="n">align_cart</span><span class="p">,</span> <span class="n">concatenate</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trnew</span> <span class="o">=</span> <span class="n">concatenate</span><span class="p">([</span><span class="n">align_cart</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">cart</span><span class="o">=...</span><span class="p">)</span> <span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="n">tr</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.angle.html" title="pwtools.crys.angle"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys._trans.html" title="pwtools.crys._trans"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="crys.html" >crys</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

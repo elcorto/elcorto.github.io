@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.crys.rpdf &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="crys" href="crys.html" />
+    <link rel="next" title="pwtools.crys.scell" href="pwtools.crys.scell.html" />
+    <link rel="prev" title="pwtools.crys.rmsd" href="pwtools.crys.rmsd.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.scell.html" title="pwtools.crys.scell"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.rmsd.html" title="pwtools.crys.rmsd"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="crys.html" accesskey="U">crys</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.crys.rmsd.html"
+                        title="previous chapter">pwtools.crys.rmsd</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.crys.scell.html"
+                        title="next chapter">pwtools.crys.scell</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.crys.rpdf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-crys-rpdf">
+<h1>pwtools.crys.rpdf<a class="headerlink" href="#pwtools-crys-rpdf" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.crys.rpdf">
+<code class="descclassname">pwtools.crys.</code><code class="descname">rpdf</code><span class="sig-paren">(</span><em>trajs</em>, <em>dr=0.05</em>, <em>rmax='auto'</em>, <em>amask=None</em>, <em>tmask=None</em>, <em>dmask=None</em>, <em>pbc=True</em>, <em>norm_vmd=False</em>, <em>maxmem=2.0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#rpdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.rpdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Radial pair distribution (pair correlation) function for Structures and
+Trajectories. In case of trajectories, the time-averaged RPDF is returned.
+Can also handle non-orthorhombic unit cells (simulation boxes). 
+Only fixed-cell MD at the moment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>trajs</strong> : Structure or Trajectory or list of one or two such objects</p>
+<blockquote>
+<div><p>The case <code class="docutils literal"><span class="pre">len(trajs)==1</span></code> is the same as providing the object directly
+(most common case). Internally we expand the input to <code class="docutils literal"><span class="pre">[trajs,</span>
+<span class="pre">trajs]</span></code>, i.e. the RPDF of the 2nd coord set w.r.t. to the first is
+calculated &#8211; the order matters! This is like selection 1 and 2 in VMD,
+but nornmally you would use <cite>amask</cite> instead. The option to provide a
+list of two Trajectory objects exists for cases where you don&#8217;t want to
+use <cite>amask</cite>, but create two different Trajectory objects outside.</p>
+</div></blockquote>
+<p><strong>dr</strong> : float, optional</p>
+<blockquote>
+<div><p>Radius spacing. Must have the same unit as <cite>cell</cite>, e.g. Angstrom.</p>
+</div></blockquote>
+<p><strong>rmax</strong> : {&#8216;auto&#8217;, float}, optional</p>
+<blockquote>
+<div><p>Max. radius up to which minimum image nearest neighbors are counted.
+For cubic boxes of side length L, this is L/2 [AT,MD].</p>
+<div class="line-block">
+<div class="line">&#8216;auto&#8217; : the method of [Smith] is used to calculate the max. sphere</div>
+<div class="line-block">
+<div class="line">raduis for any cell shape</div>
+</div>
+<div class="line">float : set value yourself</div>
+</div>
+</div></blockquote>
+<p><strong>amask</strong> : None, list of one or two bool 1d arrays, list of one or two strings</p>
+<blockquote>
+<div><p>Optional atom mask. This is the complementary functionality to
+<cite>sel</cite> in <a class="reference internal" href="pwtools.crys.vmd_measure_gofr.html#pwtools.crys.vmd_measure_gofr" title="pwtools.crys.vmd_measure_gofr"><code class="xref py py-func docutils literal"><span class="pre">vmd_measure_gofr()</span></code></a>. If <code class="docutils literal"><span class="pre">len(amask)==1</span></code>, then we expand
+to <code class="docutils literal"><span class="pre">[amask,</span> <span class="pre">amask]</span></code> internally, which would calculate the RPDF
+between the same atom selection. If two masks are given, then the first
+is applied to <code class="docutils literal"><span class="pre">trajs[0]</span></code> and the second to <code class="docutils literal"><span class="pre">trajs[1]</span></code>. Use this to
+select only certain atoms in each Trajectory. The default is to provide
+bool arrays. If you provide strings, they are assumed to be atom names
+and we create a bool array <code class="docutils literal"><span class="pre">np.array(symbols)</span> <span class="pre">==</span> <span class="pre">amask[i]</span></code>.</p>
+</div></blockquote>
+<p><strong>tmask</strong> : None or slice object, optional</p>
+<blockquote>
+<div><p>Time mask. Slice for the time axis, e.g. to use only every 100th step,
+starting from step 2000 to the end, use <code class="docutils literal"><span class="pre">tmask=slice(2000,None,100)</span></code>,
+which is the same as <code class="docutils literal"><span class="pre">np.s_[2000::100]</span></code>.</p>
+</div></blockquote>
+<p><strong>dmask</strong> : None or string, optional</p>
+<blockquote>
+<div><p>Distance mask. Restrict to certain distances using numpy syntax for
+creating bool arrays:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;&gt;=1.0&#39;</span>
+<span class="s">&#39;{d} &gt;=1.0&#39;</span> <span class="c"># the same</span>
+<span class="s">&#39;({d} &gt; 1.0) &amp; ({d} &lt; 3.0)&#39;</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal"><span class="pre">{d}</span></code> is a placeholder for the distance array (you really have to
+use <code class="docutils literal"><span class="pre">{d}</span></code>). The placeholder is optional in some pattern. This is similar
+to VMD&#8217;s &#8220;within&#8221; (<code class="docutils literal"><span class="pre">pbc=False</span></code>) or &#8220;pbwithin&#8221; (<code class="docutils literal"><span class="pre">pbc=True</span></code>) syntax.</p>
+</div></blockquote>
+<p><strong>pbc</strong> : bool, optional</p>
+<blockquote>
+<div><p>apply minimum image convention to distances</p>
+</div></blockquote>
+<p><strong>norm_vmd</strong> : bool, optional</p>
+<blockquote>
+<div><p>Normalize <cite>g(r)</cite> like in VMD by counting duplicate atoms and normalize to
+<code class="docutils literal"><span class="pre">natoms0</span> <span class="pre">*</span> <span class="pre">natoms1</span> <span class="pre">-</span> <span class="pre">duplicates</span></code> instead of <code class="docutils literal"><span class="pre">natoms0*natoms1</span></code>. Affects
+all-all correlations only. <cite>num_int</cite> is not affected. Use this only for
+testing.</p>
+</div></blockquote>
+<p><strong>maxmem</strong> : float, optional</p>
+<blockquote>
+<div><p>Maximal allowed memory to use, in GB.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">array (len(rad), 3), the columns are</p>
+<p><strong>rad</strong> : 1d array</p>
+<blockquote>
+<div><p>radius (x-axis) with spacing <cite>dr</cite>, each value r[i] is the middle of a
+histogram bin</p>
+</div></blockquote>
+<p><strong>hist</strong> : 1d array, (len(rad),)</p>
+<blockquote>
+<div><p>the function values <cite>g(r)</cite></p>
+</div></blockquote>
+<p><strong>num_int</strong> : 1d array, (len(rad),)</p>
+<blockquote class="last">
+<div><p>the (averaged) number integral <code class="docutils literal"><span class="pre">number_density*hist*4*pi*r**2.0*dr</span></code></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p><cite>rmax</cite> : The maximal <cite>rmax</cite> for which g(r) is correctly normalized is the
+result of <a class="reference internal" href="pwtools.crys.rmax_smith.html#pwtools.crys.rmax_smith" title="pwtools.crys.rmax_smith"><code class="xref py py-func docutils literal"><span class="pre">rmax_smith()</span></code></a>, i.e. the radius if the biggest sphere which
+fits entirely into the cell. This is simply L/2 for cubic boxes of side
+length L and volume L**3, for instance. We do explicitely allow <cite>rmax</cite> &gt;
+<cite>rmax_smith</cite> for testing, but be aware that <cite>g(r)</cite> and the number integral
+are <em>wrong</em> for <cite>rmax</cite> &gt; <cite>rmax_smith</cite>.</p>
+<p>Even though the number integral will always converge to the number of all
+neighbors for r -&gt; infinity, the integral value (the number of neigbors) is
+correct only up to <cite>rmax_smith</cite>.</p>
+<p>See <code class="docutils literal"><span class="pre">examples/rpdf/</span></code> for educational evidence. For notes on how VMD does
+this, see comments in the code below.</p>
+<p>selection : The selection mechanism with <cite>amask</cite> is in principle as capable
+as VMD&#8217;s, but relies completely on the user&#8217;s ability to create bool arrays
+to filter the atoms. In practice, anything more complicated than
+<code class="docutils literal"><span class="pre">array(symbols)=='O'</span></code> (&#8220;name O&#8221; in VMD) is much more difficult than VMD&#8217;s
+powerful selection syntax.</p>
+<p>Curently, the atom distances are calculated by using numpy fancy indexing.
+That creates (big) arrays in memory. For data from long MDs, you may run
+into trouble here. For a 20000 step MD, start by using every 200th step or
+so (use <code class="docutils literal"><span class="pre">tmask=slice(None,None,200)</span></code>) and look at the histogram, as you
+take more and more points into account (every 100th, 50th step, ...).
+Especially for Car Parrinello, where time steps are small and the structure
+doesn&#8217;t change much, there is no need to use every step. See also <cite>maxmem</cite>.</p>
+<p class="rubric">References</p>
+<dl class="docutils">
+<dt>[AT] M. P. Allen, D. J. Tildesley, Computer Simulation of Liquids,</dt>
+<dd>Clarendon Press, 1989</dd>
+<dt>[MD] R. Haberlandt, S. Fritzsche, G. Peinel, K. Heinzinger,</dt>
+<dd>Molekulardynamik - Grundlagen und Anwendungen,
+Friedrich Vieweg &amp; Sohn Verlagsgesellschaft 1995</dd>
+<dt>[Smith] W. Smith, The Minimum Image Convention in Non-Cubic MD Cells,</dt>
+<dd><a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.57.1696">http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.57.1696</a>
+1989</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># simple all-all RPDF, time-averaged over all MD steps</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">rpdf</span><span class="p">(</span><span class="n">traj</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># the same as rpdf(traj,...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">rpdf</span><span class="p">([</span><span class="n">traj</span><span class="p">],</span> <span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">rpdf</span><span class="p">([</span><span class="n">traj</span><span class="p">,</span> <span class="n">traj</span><span class="p">],</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># 2 selections: RPDF of all H&#39;s around all O&#39;s, average time step 3000 to</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># end, take every 50th step</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">traj</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_cp2k_md</span><span class="p">(</span><span class="s">&#39;cp2k.out&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">rpdf</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">dr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">amask</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;O&#39;</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">],</span><span class="n">tmask</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[</span><span class="mi">3000</span><span class="p">::</span><span class="mi">50</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;g(r)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">twinx</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;number integral&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># use bool arrays for `amask`, need this for more complicated pattern</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">symbols</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># VMD: sel1=&#39;name O&#39;, sel2=&#39;name H&#39;, same as amask=[&#39;O&#39;, &#39;H&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">rpdf</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">dr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">amask</span><span class="o">=</span><span class="p">[</span><span class="n">sy</span><span class="o">==</span><span class="s">&#39;O&#39;</span><span class="p">,</span> <span class="n">sy</span><span class="o">==</span><span class="s">&#39;H&#39;</span><span class="p">],</span><span class="n">tmask</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[</span><span class="mi">3000</span><span class="p">::</span><span class="mi">50</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># VMD: sel1=&#39;name O&#39;, sel2=&#39;name H Cl&#39;, note that the bool arrays must</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># be logically OR&#39;ed (| operator) to get the ffect of &quot;H and Cl&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">rpdf</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">dr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">amask</span><span class="o">=</span><span class="p">[</span><span class="n">sy</span><span class="o">==</span><span class="s">&#39;O&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">sy</span><span class="o">==</span><span class="s">&#39;H&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">sy</span><span class="o">==</span><span class="s">&#39;Cl&#39;</span><span class="p">)],</span><span class="n">tmask</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[</span><span class="mi">3000</span><span class="p">::</span><span class="mi">50</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># skip distances &gt;1 Ang</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">rpdf</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">dr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">amask</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;O&#39;</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">],</span><span class="n">tmask</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[</span><span class="mi">3000</span><span class="p">::</span><span class="mi">50</span><span class="p">]</span>
+<span class="gp">... </span>         <span class="n">dmask</span><span class="o">=</span><span class="s">&#39;{d}&gt;1.0&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.scell.html" title="pwtools.crys.scell"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.rmsd.html" title="pwtools.crys.rmsd"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="crys.html" >crys</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

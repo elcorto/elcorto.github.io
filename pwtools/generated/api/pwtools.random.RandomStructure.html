@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.random.RandomStructure &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="random" href="random.html" />
+    <link rel="next" title="pwtools.random.RandomStructure.get_random_cryst_const" href="pwtools.random.RandomStructure.get_random_cryst_const.html" />
+    <link rel="prev" title="random" href="random.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.random.RandomStructure.get_random_cryst_const.html" title="pwtools.random.RandomStructure.get_random_cryst_const"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="random.html" title="random"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="random.html" accesskey="U">random</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="random.html"
+                        title="previous chapter">random</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.random.RandomStructure.get_random_cryst_const.html"
+                        title="next chapter">pwtools.random.RandomStructure.get_random_cryst_const</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.random.RandomStructure.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-random-randomstructure">
+<h1>pwtools.random.RandomStructure<a class="headerlink" href="#pwtools-random-randomstructure" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.random.RandomStructure">
+<em class="property">class </em><code class="descclassname">pwtools.random.</code><code class="descname">RandomStructure</code><span class="sig-paren">(</span><em>symbols, vol_scale=4, angle_range=[60.0, 120.0], vol_range_scale=[0.7, 1.3], length_range_scale=[0.7, 1.3], close_scale=1, cell_maxtry=100, atom_maxtry=1000, verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/random.html#RandomStructure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.random.RandomStructure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Create a random structure, based on atom number and composition alone
+(<cite>symbols</cite>).</p>
+<p>The mean target cell volume and cell side lengths are determined from covalent
+radii of all atoms (see pwtools.atomic_data.covalent_radii).</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rs</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">RandomStructure</span><span class="p">([</span><span class="s">&#39;Si&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">get_random_struct</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For many atoms (~ 200), the creation takes a while b/c as more and more
+atoms are already present, we need many more tries to get another random
+atom into the struct. Then, _atoms_too_close() is called a lot, which is the
+bottleneck. Hint: <code class="docutils literal"><span class="pre">plot(rs.counters['coords'])</span></code>.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.random.RandomStructure.get_random_cryst_const.html#pwtools.random.RandomStructure.get_random_cryst_const" title="pwtools.random.RandomStructure.get_random_cryst_const"><code class="xref py py-obj docutils literal"><span class="pre">get_random_cryst_const</span></code></a>()</td>
+<td>Create random cryst_const.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.random.RandomStructure.get_random_struct.html#pwtools.random.RandomStructure.get_random_struct" title="pwtools.random.RandomStructure.get_random_struct"><code class="xref py py-obj docutils literal"><span class="pre">get_random_struct</span></code></a>([fail])</td>
+<td>Generate random cryst_const and atom coords.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pwtools.random.RandomStructure.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>symbols, vol_scale=4, angle_range=[60.0, 120.0], vol_range_scale=[0.7, 1.3], length_range_scale=[0.7, 1.3], close_scale=1, cell_maxtry=100, atom_maxtry=1000, verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/random.html#RandomStructure.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.random.RandomStructure.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>symbols</strong> : list of strings</p>
+<blockquote>
+<div><p>Atom symbols. Defines number of atoms and composition.</p>
+</div></blockquote>
+<p><strong>vol_scale</strong> : float</p>
+<blockquote>
+<div><p>Scale volume estimated from sum of covalent spheres (lower bound
+for volume). Only values &gt; 1 make sense. This is used
+to get the mean target volume (increase &#8220;the holes&#8221; between spheres).
+Large values will create large cells with much space between atoms.</p>
+</div></blockquote>
+<p><strong>angle_range</strong> : sequence of 2 floats [min, max]</p>
+<blockquote>
+<div><p>Range of allowed random cell angles.</p>
+</div></blockquote>
+<p><strong>vol_range_scale</strong> : sequence of 2 floats [min, max]</p>
+<blockquote>
+<div><p>Scale estimated mean volume by <cite>min</cite> and <cite>max</cite> to get allowed
+volume range.</p>
+</div></blockquote>
+<p><strong>length_range_scale</strong> : sequence of 2 floats [min, max]</p>
+<blockquote>
+<div><p>Scale estimated mean cell side length (3rd root of mean volume) 
+by <cite>min</cite> and <cite>max</cite> to get allowed cell side range.</p>
+</div></blockquote>
+<p><strong>close_scale</strong> : float</p>
+<blockquote>
+<div><p>Scale allowed distance between atoms (from sum of covalent radii).
+Use &lt; 1.0 to make tightly packed structures, i.e. small values will
+allow close atoms, large values make big spaces but will also
+make the structure generation more likely to fail.</p>
+</div></blockquote>
+<p><strong>cell_maxtry / atom_maxtry</strong> : integer, optional</p>
+<blockquote>
+<div><p>Maximal attempts to create a random cell / insert random atom into
+cell before RandomStructureFail is raised.</p>
+</div></blockquote>
+<p><strong>verbose</strong> : bool, optional</p>
+<blockquote class="last">
+<div><p>Print stuff while trying to generate structs.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pwtools.random.RandomStructure.__weakref__">
+<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.random.RandomStructure.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.random.RandomStructure.get_random_cryst_const">
+<code class="descname">get_random_cryst_const</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/random.html#RandomStructure.get_random_cryst_const"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.random.RandomStructure.get_random_cryst_const" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create random cryst_const.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>cryst_const</strong> : 1d array (6,)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><strong>RandomStructureFail</strong></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.random.RandomStructure.get_random_struct">
+<code class="descname">get_random_struct</code><span class="sig-paren">(</span><em>fail=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/random.html#RandomStructure.get_random_struct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.random.RandomStructure.get_random_struct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate random cryst_const and atom coords.</p>
+<p>If <cite>fail=True</cite>, then RandomStructureFail may be raised if structure
+generation fails (<cite>cell_maxtry</cite> or  <cite>atom_maxtry</cite> exceeded).</p>
+<p>If <cite>fail=False</cite>, then the process is repeated over and over (may run
+forever). Use this if you know that your settings (all <cite>*_scale</cite>
+inputs) are sensible + struct generation fails &#8220;sometimes&#8221; and you
+absolutely want to create a struct.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fail</strong> : bool, optional</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Structure</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><strong>RandomStructureFail (if `fail=True`).</strong></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.random.RandomStructure.get_random_cryst_const.html" title="pwtools.random.RandomStructure.get_random_cryst_const"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="random.html" title="random"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="random.html" >random</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

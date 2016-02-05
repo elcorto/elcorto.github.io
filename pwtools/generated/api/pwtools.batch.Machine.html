@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.batch.Machine &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="batch" href="batch.html" />
+    <link rel="next" title="pwtools.batch.Machine.get_jobfile_basename" href="pwtools.batch.Machine.get_jobfile_basename.html" />
+    <link rel="prev" title="pwtools.batch.FileTemplate.writesql" href="pwtools.batch.FileTemplate.writesql.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.batch.Machine.get_jobfile_basename.html" title="pwtools.batch.Machine.get_jobfile_basename"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.batch.FileTemplate.writesql.html" title="pwtools.batch.FileTemplate.writesql"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="batch.html" accesskey="U">batch</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.batch.FileTemplate.writesql.html"
+                        title="previous chapter">pwtools.batch.FileTemplate.writesql</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.batch.Machine.get_jobfile_basename.html"
+                        title="next chapter">pwtools.batch.Machine.get_jobfile_basename</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.batch.Machine.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-batch-machine">
+<h1>pwtools.batch.Machine<a class="headerlink" href="#pwtools-batch-machine" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.batch.Machine">
+<em class="property">class </em><code class="descclassname">pwtools.batch.</code><code class="descname">Machine</code><span class="sig-paren">(</span><em>hostname=None</em>, <em>subcmd=None</em>, <em>scratch=None</em>, <em>home=None</em>, <em>template=None</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Machine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>This is a container for machine-specific stuff. Most of the
+machine-specific settings can (and should) be placed in the corresponding
+job template file. But some settings need to be in sync between files like
+the scratch dir, the $HOME etc.</p>
+<p>Useful to predefine commonly used machines.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.batch.Machine.get_jobfile_basename.html#pwtools.batch.Machine.get_jobfile_basename" title="pwtools.batch.Machine.get_jobfile_basename"><code class="xref py py-obj docutils literal"><span class="pre">get_jobfile_basename</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.batch.Machine.get_sql_record.html#pwtools.batch.Machine.get_sql_record" title="pwtools.batch.Machine.get_sql_record"><code class="xref py py-obj docutils literal"><span class="pre">get_sql_record</span></code></a>()</td>
+<td>Return a dict of SQLEntry instances.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pwtools.batch.Machine.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>hostname=None</em>, <em>subcmd=None</em>, <em>scratch=None</em>, <em>home=None</em>, <em>template=None</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Machine.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Machine.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>hostname</strong> : st</p>
+<blockquote>
+<div><p>machine name (&#8216;mars&#8217;, &#8216;local&#8217;, ...)</p>
+</div></blockquote>
+<p><strong>subcmd</strong> : str</p>
+<blockquote>
+<div><p>shell command to submit jobfiles (e.g. &#8216;bsub &lt;&#8217;, &#8216;qsub&#8217;)</p>
+</div></blockquote>
+<p><strong>scratch</strong> : str</p>
+<blockquote>
+<div><p>scratch dir (like &#8216;/scratch&#8217;)</p>
+</div></blockquote>
+<p><strong>home</strong> : str</p>
+<blockquote>
+<div><p>$HOME</p>
+</div></blockquote>
+<p><strong>template</strong> : FileTemplate</p>
+<p><strong>filename</strong> : str</p>
+<blockquote class="last">
+<div><p>full jobfile name for FileTemplate (e.g.
+&#8216;calc.templ/job.local&#8217;), use either this or <cite>template</cite></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pwtools.batch.Machine.__weakref__">
+<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.batch.Machine.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.batch.Machine.get_sql_record">
+<code class="descname">get_sql_record</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Machine.get_sql_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Machine.get_sql_record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dict of SQLEntry instances. Each key is a attr name from
+self.attr_lst.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.batch.Machine.get_jobfile_basename.html" title="pwtools.batch.Machine.get_jobfile_basename"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.batch.FileTemplate.writesql.html" title="pwtools.batch.FileTemplate.writesql"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="batch.html" >batch</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

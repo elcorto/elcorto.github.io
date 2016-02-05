@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.num.deriv_spl &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="num" href="num.html" />
+    <link rel="next" title="pwtools.num.distsq" href="pwtools.num.distsq.html" />
+    <link rel="prev" title="pwtools.num.avgpolyval" href="pwtools.num.avgpolyval.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.distsq.html" title="pwtools.num.distsq"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.avgpolyval.html" title="pwtools.num.avgpolyval"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="num.html" accesskey="U">num</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.num.avgpolyval.html"
+                        title="previous chapter">pwtools.num.avgpolyval</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.num.distsq.html"
+                        title="next chapter">pwtools.num.distsq</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.num.deriv_spl.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-num-deriv-spl">
+<h1>pwtools.num.deriv_spl<a class="headerlink" href="#pwtools-num-deriv-spl" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.num.deriv_spl">
+<code class="descclassname">pwtools.num.</code><code class="descname">deriv_spl</code><span class="sig-paren">(</span><em>y</em>, <em>x=None</em>, <em>xnew=None</em>, <em>n=1</em>, <em>fullout=False</em>, <em>**splrep_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#deriv_spl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.deriv_spl" title="Permalink to this definition">¶</a></dt>
+<dd><p>n-th derivative for 1d arrays of possibly nonuniformly sampled data.
+Returns matching x-axis for plotting. Splines are used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x,y</strong> : 1d arrays of same length</p>
+<blockquote>
+<div><p>if x=None, then x=arange(len(y)) is used</p>
+</div></blockquote>
+<p><strong>xnew</strong> : {None, 1d array)</p>
+<blockquote>
+<div><p>x-axis to evaluate the derivative, if None then xnew=x</p>
+</div></blockquote>
+<p><strong>n</strong> : int</p>
+<blockquote>
+<div><p>order of the derivative, can only be &lt;= k</p>
+</div></blockquote>
+<p><strong>fullout</strong> : bool</p>
+<blockquote>
+<div><p>return xd, yd or just yd</p>
+</div></blockquote>
+<p><strong>splrep_kwargs</strong> : keyword args to scipy.interpolate.splrep, default: k=3, s=0</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">if fullout:</p>
+<blockquote>
+<div><p>xd, yd</p>
+</div></blockquote>
+<p>else:</p>
+<blockquote>
+<div><p>yd</p>
+</div></blockquote>
+<p><strong>xd</strong> : 1d array, (len(x) or len(xnew),)</p>
+<p><strong>yd</strong> : 1d array, (len(x) or len(xnew),)</p>
+<blockquote class="last">
+<div><p>n-th derivative of y at points xd</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>xd is actually == x or xnew (if x is not None). xd can be returned to match
+the function signature of deriv_fd.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.distsq.html" title="pwtools.num.distsq"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.avgpolyval.html" title="pwtools.num.avgpolyval"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="num.html" >num</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.thermo.Gibbs &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="thermo" href="thermo.html" />
+    <link rel="next" title="pwtools.thermo.Gibbs.calc_F" href="pwtools.thermo.Gibbs.calc_F.html" />
+    <link rel="prev" title="thermo" href="thermo.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.thermo.Gibbs.calc_F.html" title="pwtools.thermo.Gibbs.calc_F"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="thermo.html" title="thermo"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="thermo.html" accesskey="U">thermo</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="thermo.html"
+                        title="previous chapter">thermo</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.thermo.Gibbs.calc_F.html"
+                        title="next chapter">pwtools.thermo.Gibbs.calc_F</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.thermo.Gibbs.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-thermo-gibbs">
+<h1>pwtools.thermo.Gibbs<a class="headerlink" href="#pwtools-thermo-gibbs" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.thermo.Gibbs">
+<em class="property">class </em><code class="descclassname">pwtools.thermo.</code><code class="descname">Gibbs</code><span class="sig-paren">(</span><em>T=None</em>, <em>P=None</em>, <em>etot=None</em>, <em>phdos=None</em>, <em>axes_flat=None</em>, <em>volfunc_ax=None</em>, <em>case=None</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#Gibbs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.Gibbs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Calculate thermodynamic properties on a T-P grid in the quasiharmonic
+approximation, given some variation grid of unit cell axes (<cite>axes_flat</cite>) and
+corresponding phonon DOS data for each grid point.</p>
+<p>We have 3 cases for how unit cell axis can be be varied.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="22%" />
+<col width="35%" />
+<col width="20%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">case</th>
+<th class="head">axes_flat.shape</th>
+<th class="head">cell parameter grid</th>
+<th class="head">fitfunc</th>
+<th class="head">bulk modulus</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1d</td>
+<td>(N,) or (N,1)</td>
+<td>ax0 = a (-&gt; V)
+(cubic)</td>
+<td>G(V), thus any
+EOS will do</td>
+<td>V*d^2G/dV^2</td>
+</tr>
+<tr class="row-odd"><td>2d</td>
+<td>(N,2)</td>
+<td>(ax0,ax1) = (a,b), (a,c)
+or (b,c)
+(e.g. hexaonal: (a,c))</td>
+<td>G(ax0, ax1)</td>
+<td>not
+implemented</td>
+</tr>
+<tr class="row-even"><td>3d</td>
+<td>not implemented</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>Internally, we only deal with <cite>ax0</cite> (1d), <cite>ax0</cite> + <cite>ax1</cite> (2d) and
+<cite>ax0</cite> + <cite>ax1</cite> + <cite>ax2</cite> (3d), thus for 2d and 3d it doesn&#8217;t matter which cell
+axes is which, you just have to remember :)</p>
+<p class="rubric">Notes</p>
+<p>Functions for fitting G(V), V(T) etc are defined in a dictionary attribute
+<code class="docutils literal"><span class="pre">fitfunc</span></code>. This is a dict with functions, which have the signature
+<code class="docutils literal"><span class="pre">func(x,y)</span></code>. The functions get x-y type data and return a class instance.
+The instances must be a <a class="reference internal" href="pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-class docutils literal"><span class="pre">Spline</span></code></a>-like object with a
+<code class="docutils literal"><span class="pre">get_min()</span></code> method. The <code class="docutils literal"><span class="pre">__call__()</span></code> method must accept a keyword <cite>der</cite>
+for calculating derivatives in some cases. See <cite>self._default_fit_*</cite> to get
+an idea: for 1d <a class="reference internal" href="pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-class docutils literal"><span class="pre">Spline</span></code></a> or
+<a class="reference internal" href="pwtools.num.PolyFit1D.html#pwtools.num.PolyFit1D" title="pwtools.num.PolyFit1D"><code class="xref py py-class docutils literal"><span class="pre">PolyFit1D</span></code></a>, for 2d: <a class="reference internal" href="pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal"><span class="pre">PolyFit</span></code></a> or
+<a class="reference internal" href="pwtools.num.Interpol2D.html#pwtools.num.Interpol2D" title="pwtools.num.Interpol2D"><code class="xref py py-class docutils literal"><span class="pre">Interpol2D</span></code></a>. See also <code class="docutils literal"><span class="pre">scipy.interpolate</span></code>. Use
+<a class="reference internal" href="pwtools.thermo.Gibbs.set_fitfunc.html#pwtools.thermo.Gibbs.set_fitfunc" title="pwtools.thermo.Gibbs.set_fitfunc"><code class="xref py py-meth docutils literal"><span class="pre">set_fitfunc()</span></code></a> to change. This can (and should!)
+be used to tune fitting methods. See examples below for how to change fit 
+functions.</p>
+<p>Here is a list of all valid <cite>fitfunc</cite> keys and what they do:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">key</th>
+<th class="head">value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&#8216;1d-G&#8217;</td>
+<td>fit G(V), <code class="docutils literal"><span class="pre">__call__(V,der=2)</span></code> for B(V) =
+V*d^2G/dV^2</td>
+</tr>
+<tr class="row-odd"><td>&#8216;2d-G&#8217;</td>
+<td>fit G(ax0,ax1)</td>
+</tr>
+<tr class="row-even"><td>&#8216;1d-ax&#8217;</td>
+<td>fit V(ax0)</td>
+</tr>
+<tr class="row-odd"><td>&#8216;alpha&#8217;</td>
+<td>fit x_opt(T), x=ax0,ax1,ax2,V,
+<code class="docutils literal"><span class="pre">__call__(T,der=1)</span></code> for alpha_x = 1/x * dx/dT</td>
+</tr>
+<tr class="row-even"><td>&#8216;C&#8217;</td>
+<td>fit G_opt(T), <code class="docutils literal"><span class="pre">__call__(T,der=2)</span></code> for
+Cp = -T * d^G_opt(T,P)/dT^2</td>
+</tr>
+</tbody>
+</table>
+<p>Hints for which fitfuncs to choose: The defaults are pretty good, but
+nevertheless tessting is mandatory! Good choices are
+<a class="reference internal" href="pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal"><span class="pre">PolyFit</span></code></a> / <a class="reference internal" href="pwtools.num.PolyFit1D.html#pwtools.num.PolyFit1D" title="pwtools.num.PolyFit1D"><code class="xref py py-class docutils literal"><span class="pre">PolyFit1D</span></code></a> for all
+axes-related grids (1d-G, 2d-G, 1d-ax) since you won&#8217;t have too many
+points here. Then a fit is better than a <a class="reference internal" href="pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-class docutils literal"><span class="pre">Spline</span></code></a>.
+Always use <code class="docutils literal"><span class="pre">PolyFit(...,</span> <span class="pre">scale=True)</span></code> or scale the x-y data manually
+before fitting to the same order of magnitude! For T grids, choose a very
+fine T-axis (e.g. <code class="docutils literal"><span class="pre">T=linspace(..,</span> <span class="pre">num=300)</span></code> and use a
+<a class="reference internal" href="pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-class docutils literal"><span class="pre">Spline</span></code></a>. Needed to resolve details of alpha(T) and
+C(T).</p>
+<p>The methods <a class="reference internal" href="pwtools.thermo.Gibbs.calc_F.html#pwtools.thermo.Gibbs.calc_F" title="pwtools.thermo.Gibbs.calc_F"><code class="xref py py-meth docutils literal"><span class="pre">calc_F()</span></code></a>, <a class="reference internal" href="pwtools.thermo.Gibbs.calc_H.html#pwtools.thermo.Gibbs.calc_H" title="pwtools.thermo.Gibbs.calc_H"><code class="xref py py-meth docutils literal"><span class="pre">calc_H()</span></code></a> and <a class="reference internal" href="pwtools.thermo.Gibbs.calc_G.html#pwtools.thermo.Gibbs.calc_G" title="pwtools.thermo.Gibbs.calc_G"><code class="xref py py-meth docutils literal"><span class="pre">calc_G()</span></code></a> return dicts
+with nd-arrays holding calculated thermodynamic properites. Naming
+convention for dict keys returned by methods: The keys (strings) mimic HDF5
+path names, e.g. <code class="docutils literal"><span class="pre">/group0/group1/array</span></code>, thus the last name in the path
+is the name of the array (<cite>z</cite> in the examples below). All previous names
+define the grid and thus the dimension of the array. A group name starting
+with &#8220;#&#8221; is just a prefix. Below, <cite>na=len(a)</cite>, etc.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="6%" />
+<col width="24%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">key</th>
+<th class="head">ndim</th>
+<th class="head">shape</th>
+<th class="head">description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">/a/z</span></code></td>
+<td>1d</td>
+<td>(na,)</td>
+<td>z on 1d a-grid</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">/a/b/z</span></code></td>
+<td>2d</td>
+<td>(na,nb)</td>
+<td>z on 2d a-b grid</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">/a/b/c/z</span></code></td>
+<td>3d</td>
+<td>(na,nb,nc)</td>
+<td>z on 3d a-b-c grid</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">/a-b/z</span></code></td>
+<td>1d</td>
+<td>(na*nb,)</td>
+<td>z on flattened a-b grid</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">/a-b-c/z</span></code></td>
+<td>1d</td>
+<td>(na*nb*nc,)</td>
+<td>z on flattened a-b-c grid</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">/#opt/a/z</span></code></td>
+<td>1d</td>
+<td>(na,)</td>
+<td>optimized z on a-grid</td>
+</tr>
+</tbody>
+</table>
+<p><cite>axes_flat</cite> : Usually, flat grids like &#8220;ax0-ax1&#8221; or &#8220;ax0-ax1-ax2&#8221; are
+created by nested loops <code class="docutils literal"><span class="pre">[(ax0_i,ax1_i)</span> <span class="pre">for</span> <span class="pre">ax0_i</span> <span class="pre">in</span> <span class="pre">ax0</span> <span class="pre">for</span> <span class="pre">ax1_i</span> <span class="pre">in</span>
+<span class="pre">ax1]</span></code> and therefore have shape (nax0*nax1,2) or (nax0*nax1*nax2,3) . But
+that is not required. They can be completely unctructured (e.g. if points
+have been added later to the grid manually) &#8211; only <cite>fitfunc</cite> must be able
+to handle that.</p>
+<p>Units</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="53%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>B,P</td>
+<td>GPa</td>
+</tr>
+<tr class="row-even"><td>T</td>
+<td>K</td>
+</tr>
+<tr class="row-odd"><td>F,G</td>
+<td>eV</td>
+</tr>
+<tr class="row-even"><td>ax{0,1,2}</td>
+<td>Ang</td>
+</tr>
+<tr class="row-odd"><td>Cv,Cp</td>
+<td>R (8.4314 J/(mol*K))</td>
+</tr>
+<tr class="row-even"><td>alpha_{V,ax{0,1,2}}</td>
+<td>1/K</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>See also <code class="docutils literal"><span class="pre">test/test_gibbs.py</span></code> for worked examples using fake data.
+Really, go there and have a look. Now!</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="kn">import</span> <span class="n">mpl</span><span class="p">,</span> <span class="n">crys</span><span class="p">,</span> <span class="n">eos</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># isotropic cell</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">volfunc_ax</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">crys</span><span class="o">.</span><span class="n">volume_cc</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">*</span><span class="mi">3</span> <span class="o">+</span> <span class="p">[</span><span class="mi">90</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gibbs</span><span class="o">=</span><span class="n">Gibbs</span><span class="p">(</span><span class="n">axes_flat</span><span class="o">=...</span><span class="p">,</span> <span class="n">etot</span><span class="o">=...</span><span class="p">,</span> <span class="n">phdos</span><span class="o">=...</span><span class="p">,</span>
+<span class="gp">... </span>            <span class="n">T</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2500</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> <span class="n">P</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> 
+<span class="gp">... </span>            <span class="n">volfunc_ax</span><span class="o">=</span><span class="n">volfunc_ax</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># EOS fit for G(V), polynomial for heat capacity (default is Spline)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gibbs</span><span class="o">.</span><span class="n">set_fitfunc</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">num</span><span class="o">.</span><span class="n">PolyFit1D</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">deg</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gibbs</span><span class="o">.</span><span class="n">set_fitfunc</span><span class="p">(</span><span class="s">&#39;1d-G&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">eos</span><span class="o">.</span><span class="n">EosFit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">gibbs</span><span class="o">.</span><span class="n">calc_G</span><span class="p">(</span><span class="n">calc_all</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># 1d case</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">V</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s">&#39;/ax0/V&#39;</span><span class="p">];</span> <span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="s">&#39;/T/P/ax0/G&#39;</span><span class="p">];</span> <span class="n">T</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="s">&#39;/T/T&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># plot G(V) for all T and P=20 GPa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">G</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># Cp(T) for all P</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">g</span><span class="p">[</span><span class="s">&#39;/#opt/T/P/Cp&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># 2d case plot G(ax0,ax1) for T=2500 K, P=0 GPa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="s">&#39;/T/P/ax0-ax1/G&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">=</span><span class="n">mpl</span><span class="o">.</span><span class="n">Data2D</span><span class="p">(</span><span class="n">XY</span><span class="o">=</span><span class="n">axes_flat</span><span class="p">,</span> <span class="n">zz</span><span class="o">=</span><span class="n">G</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,:])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">mpl</span><span class="o">.</span><span class="n">fig_ax3d</span><span class="p">();</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">xx</span><span class="p">,</span><span class="n">d</span><span class="o">.</span><span class="n">yy</span><span class="p">,</span><span class="n">d</span><span class="o">.</span><span class="n">zz</span><span class="p">);</span> <span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.thermo.Gibbs.calc_F.html#pwtools.thermo.Gibbs.calc_F" title="pwtools.thermo.Gibbs.calc_F"><code class="xref py py-obj docutils literal"><span class="pre">calc_F</span></code></a>([calc_all])</td>
+<td>Free energy properties along T axis for each axes grid point (ax0,ax1,ax2) in <cite>self.axes_flat</cite>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.thermo.Gibbs.calc_G.html#pwtools.thermo.Gibbs.calc_G" title="pwtools.thermo.Gibbs.calc_G"><code class="xref py py-obj docutils literal"><span class="pre">calc_G</span></code></a>([ret,&nbsp;calc_all])</td>
+<td>Gibbs free energy and related properties on T-P grid.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.thermo.Gibbs.calc_H.html#pwtools.thermo.Gibbs.calc_H" title="pwtools.thermo.Gibbs.calc_H"><code class="xref py py-obj docutils literal"><span class="pre">calc_H</span></code></a>([calc_all])</td>
+<td>Enthalpy H=E+P*V, B and related properties on P grid without zero-point contributions.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.thermo.Gibbs.set_fitfunc.html#pwtools.thermo.Gibbs.set_fitfunc" title="pwtools.thermo.Gibbs.set_fitfunc"><code class="xref py py-obj docutils literal"><span class="pre">set_fitfunc</span></code></a>(what,&nbsp;func)</td>
+<td>Update dict with fitting fucntions: <code class="docutils literal"><span class="pre">self.fitfunc[what]</span> <span class="pre">=</span> <span class="pre">func</span></code>.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pwtools.thermo.Gibbs.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>T=None</em>, <em>P=None</em>, <em>etot=None</em>, <em>phdos=None</em>, <em>axes_flat=None</em>, <em>volfunc_ax=None</em>, <em>case=None</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#Gibbs.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.Gibbs.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>T</strong> : 1d array</p>
+<blockquote>
+<div><p>temperature [K]</p>
+</div></blockquote>
+<p><strong>P</strong> : 1d array</p>
+<blockquote>
+<div><p>pressure [GPa]</p>
+</div></blockquote>
+<p><strong>etot</strong> : 1d array, (axes_flat.shape[0],)</p>
+<blockquote>
+<div><p>Total energy [eV] for each axes_flat[i,...]</p>
+</div></blockquote>
+<p><strong>phdos</strong> : sequence (axes_flat.shape[0],)</p>
+<blockquote>
+<div><p>Phonon dos arrays for each axes grid point.
+axes_flat[i,...] -&gt; phdos[i] = &lt;2d array (nfreq,2)&gt;, units see
+<a class="reference internal" href="pwtools.thermo.HarmonicThermo.html#pwtools.thermo.HarmonicThermo" title="pwtools.thermo.HarmonicThermo"><code class="xref py py-class docutils literal"><span class="pre">HarmonicThermo</span></code></a>.</p>
+</div></blockquote>
+<p><strong>axes_flat</strong> : 1d or 2d array</p>
+<blockquote>
+<div><p>Flattened cell axes variation grid (for example result of nested
+loop over axes to vary). Will be cast to shape (N,1) if 1d with
+shape (N,) .</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">1d: (N,) or (N,1) -&gt; vary one cell axis, i.e. cubic cell</div>
+<div class="line">2d: (N,2) -&gt; vary 2 (e.g. a and c for hexagonal)</div>
+<div class="line-block">
+<div class="line">example: <code class="docutils literal"><span class="pre">itertools.product(ax0,</span> <span class="pre">ax1)</span></code></div>
+</div>
+<div class="line">3d: (N,3) -&gt; vary a,b,c (general triclinic)</div>
+<div class="line-block">
+<div class="line">example: <code class="docutils literal"><span class="pre">itertools.product(ax0,</span> <span class="pre">ax1,</span> <span class="pre">ax2)</span></code></div>
+</div>
+</div>
+</div></blockquote>
+</div></blockquote>
+<p><strong>volfunc_ax</strong> : callable</p>
+<blockquote>
+<div><p>calculate cell volume based on cell axes, 
+V[i] = volfunc_ax(axes_flat[i,...]) where axes_flat[i,...]:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">1d: [a0]</div>
+<div class="line">2d: [a0, a1]</div>
+<div class="line">3d: [a0, a1, a2]</div>
+</div>
+</div></blockquote>
+<p>with a0,a1,a2 the length of the unit cell axes.</p>
+</div></blockquote>
+<p><strong>case</strong> : str, optional</p>
+<blockquote>
+<div><p>&#8216;1d&#8217;, &#8216;2d&#8217;, &#8216;3d&#8217; or None. If None then it will be determined from
+axes_flat.shape[1]. Can be used to evaluate &#8220;fake&#8221; 1d data: set
+case=&#8216;1d&#8217; but let <cite>axes_flat</cite> be (N,2) or (N,3)</p>
+</div></blockquote>
+<p><strong>**kwds: keywords</strong></p>
+<blockquote class="last">
+<div><p>passed to HarmonicThermo and added here as <cite>self.&lt;key&gt;=&lt;value&gt;</cite></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pwtools.thermo.Gibbs.__weakref__">
+<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.thermo.Gibbs.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.thermo.Gibbs.calc_F">
+<code class="descname">calc_F</code><span class="sig-paren">(</span><em>calc_all=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#Gibbs.calc_F"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.Gibbs.calc_F" title="Permalink to this definition">¶</a></dt>
+<dd><p>Free energy properties along T axis for each axes grid point
+(ax0,ax1,ax2) in <cite>self.axes_flat</cite>. Also used by <a class="reference internal" href="pwtools.thermo.Gibbs.calc_G.html#pwtools.thermo.Gibbs.calc_G" title="pwtools.thermo.Gibbs.calc_G"><code class="xref py py-meth docutils literal"><span class="pre">calc_G()</span></code></a>. Uses
+<a class="reference internal" href="pwtools.thermo.HarmonicThermo.html#pwtools.thermo.HarmonicThermo" title="pwtools.thermo.HarmonicThermo"><code class="xref py py-class docutils literal"><span class="pre">HarmonicThermo</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>calc_all</strong> : bool</p>
+<blockquote>
+<div><p>Calculate only F, Fvib or all (F, Fvib, Evib, Svib, Cv)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ret</strong> : dict</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>Keys for 1d: </dt>
+<dd><div class="first line-block">
+<div class="line">&#8216;/ax0/T/F&#8217;</div>
+<div class="line">&#8216;/ax0/T/Fvib&#8217;</div>
+</div>
+<p class="last">...</p>
+</dd>
+<dt>Keys for 2d: </dt>
+<dd><div class="first last line-block">
+<div class="line">&#8216;/ax0-ax1/T/F&#8217;</div>
+<div class="line">&#8216;/ax0-ax1/T/Fvib&#8217;</div>
+<div class="line">...</div>
+</div>
+</dd>
+<dt>Keys for 3d: </dt>
+<dd><div class="first last line-block">
+<div class="line">&#8216;/ax0-ax1-ax2/T/F&#8217;</div>
+<div class="line">&#8216;/ax0-ax1-ax2/T/Fvib&#8217;</div>
+<div class="line">...</div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.thermo.Gibbs.calc_G">
+<code class="descname">calc_G</code><span class="sig-paren">(</span><em>ret=None</em>, <em>calc_all=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#Gibbs.calc_G"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.Gibbs.calc_G" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gibbs free energy and related properties on T-P grid. 
+Uses self.fitfunc.</p>
+<p>Needs <a class="reference internal" href="pwtools.thermo.Gibbs.calc_F.html#pwtools.thermo.Gibbs.calc_F" title="pwtools.thermo.Gibbs.calc_F"><code class="xref py py-meth docutils literal"><span class="pre">calc_F()</span></code></a> results. Called here if not provided.
+Also calls <a class="reference internal" href="pwtools.thermo.Gibbs.calc_H.html#pwtools.thermo.Gibbs.calc_H" title="pwtools.thermo.Gibbs.calc_H"><code class="xref py py-meth docutils literal"><span class="pre">calc_H()</span></code></a> if <cite>calc_all</cite> is <code class="docutils literal"><span class="pre">True</span></code>, i.e. this is the
+you-get-it-all method and the only one you sould really use.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ret</strong> : dict, optional</p>
+<blockquote>
+<div><p>Result from calc_F(). If None then calc_F() is called here. Can be
+used to add additional contributions to F, such as electronic
+entropy.</p>
+</div></blockquote>
+<p><strong>calc_all</strong> : bool</p>
+<blockquote>
+<div><p>Calcluate thermal properties from G(ax0,ax1,ax2,T,P): Cp,
+alpha_x, B. If False, then calculate and store only G.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ret</strong> : dict</p>
+<blockquote class="last">
+<div><p>All keys starting with the <code class="docutils literal"><span class="pre">/#opt</span></code> prefix are values obtained
+from minimizing G(ax0,ax1,ax2,T,P) w.r.t. (ax0,ax1,ax2).</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.thermo.Gibbs.calc_H">
+<code class="descname">calc_H</code><span class="sig-paren">(</span><em>calc_all=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#Gibbs.calc_H"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.Gibbs.calc_H" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enthalpy H=E+P*V, B and related properties on P grid
+without zero-point contributions. Doesn&#8217;t need any other method&#8217;s
+results.</p>
+<p>The results of <a class="reference internal" href="pwtools.thermo.Gibbs.calc_G.html#pwtools.thermo.Gibbs.calc_G" title="pwtools.thermo.Gibbs.calc_G"><code class="xref py py-meth docutils literal"><span class="pre">calc_G()</span></code></a> will in general be _different_ from those
+calculated here in the limit T-&gt;0 (typical use case: T=5K) because of
+zero-point contributions. Check the bulk modulus, for example.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.thermo.Gibbs.set_fitfunc">
+<code class="descname">set_fitfunc</code><span class="sig-paren">(</span><em>what</em>, <em>func</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#Gibbs.set_fitfunc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.Gibbs.set_fitfunc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update dict with fitting fucntions: <code class="docutils literal"><span class="pre">self.fitfunc[what]</span> <span class="pre">=</span> <span class="pre">func</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>what</strong> : str</p>
+<blockquote>
+<div><p>One of <code class="docutils literal"><span class="pre">self.fitfunc.keys()</span></code></p>
+</div></blockquote>
+<p><strong>func</strong> : callable</p>
+<blockquote class="last">
+<div><p>function with signature <code class="docutils literal"><span class="pre">func(x,y)</span></code> which returns a
+<a class="reference internal" href="pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-class docutils literal"><span class="pre">Spline</span></code></a>-like object, e.g. <code class="docutils literal"><span class="pre">Spline(x,y,k=5)</span></code></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.thermo.Gibbs.calc_F.html" title="pwtools.thermo.Gibbs.calc_F"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="thermo.html" title="thermo"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="thermo.html" >thermo</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

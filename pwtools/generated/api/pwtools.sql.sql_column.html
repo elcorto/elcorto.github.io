@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.sql.sql_column &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="sql" href="sql.html" />
+    <link rel="next" title="pwtools.sql.sql_column_old" href="pwtools.sql.sql_column_old.html" />
+    <link rel="prev" title="pwtools.sql.makedb" href="pwtools.sql.makedb.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.sql.sql_column_old.html" title="pwtools.sql.sql_column_old"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.sql.makedb.html" title="pwtools.sql.makedb"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="sql.html" accesskey="U">sql</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.sql.makedb.html"
+                        title="previous chapter">pwtools.sql.makedb</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.sql.sql_column_old.html"
+                        title="next chapter">pwtools.sql.sql_column_old</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.sql.sql_column.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-sql-sql-column">
+<h1>pwtools.sql.sql_column<a class="headerlink" href="#pwtools-sql-sql-column" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.sql.sql_column">
+<code class="descclassname">pwtools.sql.</code><code class="descname">sql_column</code><span class="sig-paren">(</span><em>key</em>, <em>lst</em>, <em>sqltype=None</em>, <em>sqlval_func=&lt;function &lt;lambda&gt;&gt;</em>, <em>fileval_func=&lt;function &lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#sql_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.sql_column" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a list <cite>lst</cite> of values of the same type (i.e. all floats) to a
+list of SQLEntry instances of the same column name <cite>key</cite> and <cite>sqltype</cite>
+(e.g. &#8216;float&#8217;).</p>
+<p>See ParameterStudy for applications.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>key</strong> : str</p>
+<blockquote>
+<div><p>sql column name</p>
+</div></blockquote>
+<p><strong>lst</strong> : sequence of arbitrary values, these will be SQLEntry.sqlval</p>
+<p><strong>sqltype</strong> : str, optional</p>
+<blockquote>
+<div><p>sqlite type, if None then it is determined from the first entry in
+<cite>lst</cite> (possibly modified by sqlval_func)</p>
+</div></blockquote>
+<p><strong>sqlval_func</strong> : callable, optional</p>
+<blockquote>
+<div><p>Function to transform each entry lst[i] to SQLEntry.sqlval
+Default is sqlval = lst[i].</p>
+</div></blockquote>
+<p><strong>fileval_func</strong> : callable, optional</p>
+<blockquote class="last">
+<div><p>Function to transform each entry lst[i] to SQLEntry.fileval
+Default is fileval = lst[i].
+example:</p>
+<blockquote>
+<div><p>lst[i] = &#8216;23&#8217;
+fileval = &#8216;value = 23&#8217;
+fileval_func = lambda x: &#8220;value = %s&#8221; %str(x)</p>
+</div></blockquote>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">vals</span> <span class="o">=</span> <span class="n">sql_column</span><span class="p">(</span><span class="s">&#39;ecutfwc&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">25.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mf">75.0</span><span class="p">],</span> 
+<span class="gp">... </span>                  <span class="n">fileval_func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s">&#39;ecutfwc=</span><span class="si">%s</span><span class="s">&#39;</span><span class="o">%</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">print</span> <span class="n">v</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">sqltype</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">sqlval</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">fileval</span>
+<span class="go">ecutfwc REAL 25.0 ecutfwc=25.0 </span>
+<span class="go">ecutfwc REAL 50.0 ecutfwc=50.0</span>
+<span class="go">ecutfwc REAL 75.0 ecutfwc=75.0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.sql.sql_column_old.html" title="pwtools.sql.sql_column_old"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.sql.makedb.html" title="pwtools.sql.makedb"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="sql.html" >sql</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

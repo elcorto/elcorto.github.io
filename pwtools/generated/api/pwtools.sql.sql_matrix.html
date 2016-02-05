@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.sql.sql_matrix &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="sql" href="sql.html" />
+    <link rel="next" title="symmetry" href="symmetry.html" />
+    <link rel="prev" title="pwtools.sql.sql_column_old" href="pwtools.sql.sql_column_old.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="symmetry.html" title="symmetry"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.sql.sql_column_old.html" title="pwtools.sql.sql_column_old"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="sql.html" accesskey="U">sql</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.sql.sql_column_old.html"
+                        title="previous chapter">pwtools.sql.sql_column_old</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="symmetry.html"
+                        title="next chapter">symmetry</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.sql.sql_matrix.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-sql-sql-matrix">
+<h1>pwtools.sql.sql_matrix<a class="headerlink" href="#pwtools-sql-sql-matrix" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.sql.sql_matrix">
+<code class="descclassname">pwtools.sql.</code><code class="descname">sql_matrix</code><span class="sig-paren">(</span><em>lists</em>, <em>header=None</em>, <em>colnames=None</em>, <em>sqlval_funcs=None</em>, <em>fileval_funcs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#sql_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.sql_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert each entry in a list of lists (&#8220;matrix&#8221; = sql table) to an
+SQLEntry based on <cite>header</cite>. This can be used to quickly convert the result
+of comb.nested_loops() (nested lists) to input <cite>params_lst</cite> for
+ParameterStudy.</p>
+<p>The entries in the lists can have arbitrary values, but each &#8220;column&#8221;
+should have the same type. Each sublist (= row) can be viewed as a record in
+an sql database, each column as input for sql_column().</p>
+<p>If you provide <cite>header</cite>, then tyes for each column are taken from that. If
+<cite>colnames</cite> are used, then types are fetched (by find_sqltype()) from the
+first row. May not work for &#8220;incomplete&#8221; datasets, where some entries in
+the first row are None (NULL in sqlite).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>lists</strong> : list of lists</p>
+<p><strong>header</strong> : sequence, optional</p>
+<blockquote>
+<div><p>[(&#8216;foo&#8217;, &#8216;integer&#8217;), (&#8216;bar&#8217;, &#8216;float&#8217;), ...], see
+sql.SQLiteDB</p>
+</div></blockquote>
+<p><strong>colnames</strong> : sequence os strings, optional</p>
+<blockquote>
+<div><p>Use either <cite>colnames</cite> or <cite>header</cite>.</p>
+</div></blockquote>
+<p><strong>sqlval_funcs, fileval_funcs: {None, dict}</strong></p>
+<blockquote>
+<div><p>For certain (or all) columns, you can specify a sqlval_func /
+fileval_func. They have the same meaning as in sql_column().
+E.g. sql_matrix(..., fileval_funcs={&#8216;foo&#8217;: lambda x: str(x)+&#8217;-value&#8217;})
+would set fileval_func for the whole column &#8216;foo&#8217;.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">list of lists</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lists</span><span class="o">=</span><span class="n">comb</span><span class="o">.</span><span class="n">nested_loops</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">],</span> <span class="nb">zip</span><span class="p">([</span><span class="s">&#39;a&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">777</span><span class="p">,</span><span class="mi">888</span><span class="p">])],</span><span class="n">flatten</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lists</span>
+<span class="go">[[1.0, &#39;a&#39;, 777], </span>
+<span class="go"> [1.0, &#39;a&#39;, 888], </span>
+<span class="go"> [2.0, &#39;a&#39;, 777], </span>
+<span class="go"> [2.0, &#39;a&#39;, 888]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># use explicit header </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">header</span><span class="o">=</span><span class="p">[(</span><span class="s">&#39;col0&#39;</span><span class="p">,</span> <span class="s">&#39;float&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;col1&#39;</span><span class="p">,</span> <span class="s">&#39;text&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;col2&#39;</span><span class="p">,</span> <span class="s">&#39;integer&#39;</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">=</span><span class="n">sql</span><span class="o">.</span><span class="n">sql_matrix</span><span class="p">(</span><span class="n">lists</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">m</span><span class="p">:</span> <span class="k">print</span> <span class="p">[(</span><span class="n">xx</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">xx</span><span class="o">.</span><span class="n">fileval</span><span class="p">,</span> <span class="n">xx</span><span class="o">.</span><span class="n">sqltype</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
+<span class="go">[(&#39;col0&#39;, 1.0, &#39;REAL&#39;), (&#39;col1&#39;, &#39;a&#39;, &#39;TEXT&#39;), (&#39;col2&#39;, 777, &#39;INTEGER&#39;)]</span>
+<span class="go">[(&#39;col0&#39;, 1.0, &#39;REAL&#39;), (&#39;col1&#39;, &#39;a&#39;, &#39;TEXT&#39;), (&#39;col2&#39;, 888, &#39;INTEGER&#39;)]</span>
+<span class="go">[(&#39;col0&#39;, 2.0, &#39;REAL&#39;), (&#39;col1&#39;, &#39;a&#39;, &#39;TEXT&#39;), (&#39;col2&#39;, 777, &#39;INTEGER&#39;)]</span>
+<span class="go">[(&#39;col0&#39;, 2.0, &#39;REAL&#39;), (&#39;col1&#39;, &#39;a&#39;, &#39;TEXT&#39;), (&#39;col2&#39;, 888, &#39;INTEGER&#39;)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># use colnames -&gt; automatic sqltype detected, also use fileval_funcs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">=</span><span class="n">sql</span><span class="o">.</span><span class="n">sql_matrix</span><span class="p">(</span><span class="n">lists</span><span class="p">,</span> <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;col0&#39;</span><span class="p">,</span><span class="s">&#39;col1&#39;</span><span class="p">,</span><span class="s">&#39;col2&#39;</span><span class="p">],</span> <span class="n">fileval_funcs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;col0&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="mi">100</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">m</span><span class="p">:</span> <span class="k">print</span> <span class="p">[(</span><span class="n">xx</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">xx</span><span class="o">.</span><span class="n">fileval</span><span class="p">,</span> <span class="n">xx</span><span class="o">.</span><span class="n">sqltype</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
+<span class="go">[(&#39;col0&#39;, 100.0, &#39;REAL&#39;), (&#39;col1&#39;, &#39;a&#39;, &#39;TEXT&#39;), (&#39;col2&#39;, 777, &#39;INTEGER&#39;)]</span>
+<span class="go">[(&#39;col0&#39;, 100.0, &#39;REAL&#39;), (&#39;col1&#39;, &#39;a&#39;, &#39;TEXT&#39;), (&#39;col2&#39;, 888, &#39;INTEGER&#39;)]</span>
+<span class="go">[(&#39;col0&#39;, 200.0, &#39;REAL&#39;), (&#39;col1&#39;, &#39;a&#39;, &#39;TEXT&#39;), (&#39;col2&#39;, 777, &#39;INTEGER&#39;)]</span>
+<span class="go">[(&#39;col0&#39;, 200.0, &#39;REAL&#39;), (&#39;col1&#39;, &#39;a&#39;, &#39;TEXT&#39;), (&#39;col2&#39;, 888, &#39;INTEGER&#39;)]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="symmetry.html" title="symmetry"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.sql.sql_column_old.html" title="pwtools.sql.sql_column_old"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="sql.html" >sql</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

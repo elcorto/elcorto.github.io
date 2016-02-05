@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.decorators &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for pwtools.decorators</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;Commonly used decorators.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">types</span>
+<span class="kn">import</span> <span class="nn">gzip</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+
+<div class="viewcode-block" id="open_and_close"><a class="viewcode-back" href="../../generated/api/pwtools.decorators.open_and_close.html#pwtools.decorators.open_and_close">[docs]</a><span class="k">def</span> <span class="nf">open_and_close</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Decorator for all parsing functions that originally got a file name and</span>
+<span class="sd">    went thru the whole file b/c the things that they search can occur in</span>
+<span class="sd">    arbitrary order.</span>
+<span class="sd">    These functions did</span>
+
+<span class="sd">        * open the file</span>
+<span class="sd">        * go thru</span>
+<span class="sd">        * close file</span>
+<span class="sd">    </span>
+<span class="sd">    Now, they all expect file objects, as first argument. This decorator</span>
+<span class="sd">    assures that the first arg to `func` is a file object. </span>
+<span class="sd">    </span>
+<span class="sd">    Cases:</span>
+<span class="sd">    </span>
+<span class="sd">    * 1st arg is a fileobject: do nothig, just call function</span>
+<span class="sd">    * 1st arg is a file name:</span>
+<span class="sd">        * open file</span>
+<span class="sd">        * call func</span>
+<span class="sd">        * close file</span>
+<span class="sd">    </span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; @open_and_close</span>
+<span class="sd">    &gt;&gt;&gt; def file_txt_content(fh):</span>
+<span class="sd">    ...     # fh is a file object</span>
+<span class="sd">    ...     return fh.read()</span>
+<span class="sd">    &gt;&gt;&gt; fh = open(&#39;my_file.txt&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; print file_txt_content(fh)</span>
+<span class="sd">    &gt;&gt;&gt; fh.close()</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; print file_txt_content(&#39;my_file.txt&#39;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">largs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">largs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">types</span><span class="o">.</span><span class="n">StringType</span><span class="p">):</span>
+            <span class="c"># Filename case.</span>
+            <span class="n">fn</span> <span class="o">=</span> <span class="n">largs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">fn</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;.gz&#39;</span><span class="p">):</span>
+                <span class="n">_open</span> <span class="o">=</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">_open</span> <span class="o">=</span> <span class="nb">open</span>
+            <span class="n">fd</span> <span class="o">=</span> <span class="n">_open</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+            <span class="c"># Files opened with gzip don&#39;t have a &#39;name&#39; attr.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">):</span>
+                <span class="n">fd</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">fn</span><span class="p">))</span>
+            <span class="n">largs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">fd</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="nb">tuple</span><span class="p">(</span><span class="n">largs</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">largs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">ret</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># File object case. Don&#39;t explicitly test for types.FileType b/c</span>
+            <span class="c"># that does not if largs[0] is actually a [c]StringIO.StringIO </span>
+            <span class="c"># instances. </span>
+            <span class="c">#</span>
+            <span class="c"># Also, the &#39;name&#39; attribute can be set (largs[0].name = ...) for</span>
+            <span class="c"># StringIO.StringIO, but NOT for cStringIO.StringIO. We don&#39;t even</span>
+            <span class="c"># try fiddling with try-except here. There just won&#39;t be any</span>
+            <span class="c"># filename.</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapper</span>        </div>
+
+
+<div class="viewcode-block" id="crys_add_doc"><a class="viewcode-back" href="../../generated/api/pwtools.decorators.crys_add_doc.html#pwtools.decorators.crys_add_doc">[docs]</a><span class="k">def</span> <span class="nf">crys_add_doc</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Decorator to add common docstrings to functions with crystal/unit cell</span>
+<span class="sd">    related functionallity.&quot;&quot;&quot;</span>
+    <span class="n">dct</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">dct</span><span class="p">[</span><span class="s">&#39;cell_doc&#39;</span><span class="p">]</span> <span class="o">=</span> \
+    <span class="sd">&quot;&quot;&quot;cell : array, shape (3,3)</span>
+<span class="sd">        Matrix with basis vectors as rows.&quot;&quot;&quot;</span>
+    <span class="n">dct</span><span class="p">[</span><span class="s">&#39;cryst_const_doc&#39;</span><span class="p">]</span> <span class="o">=</span> \
+    <span class="sd">&quot;&quot;&quot;cryst_const : array_like, shape (6,)</span>
+<span class="sd">        [a, b, c, alpha, beta, gamma], where alpha=angle(b,c), beta=angle(a,c),</span>
+<span class="sd">        gamma=angle(a,b)&quot;&quot;&quot;</span>
+    <span class="n">dct</span><span class="p">[</span><span class="s">&#39;celldm&#39;</span><span class="p">]</span> <span class="o">=</span> \
+    <span class="sd">&quot;&quot;&quot;celldm : array_like, shape (6,)</span>
+<span class="sd">        [a, b/a, c/a, cos(alpha), cos(beta), cos(gamma)]</span>
+<span class="sd">        `a` is supposed to be in Bohr&quot;&quot;&quot;</span>
+    <span class="n">dct</span><span class="p">[</span><span class="s">&#39;notes_cell_crys_const&#39;</span><span class="p">]</span> <span class="o">=</span> \
+    <span class="sd">&quot;&quot;&quot;We use PWscf notation. CELL_PARAMETERS == (matrix of) primitime basis</span>
+<span class="sd">    vectors elsewhere crystallographic constants a,b,c,alpha,beta,gamma == cell</span>
+<span class="sd">    parameters elsewhere&quot;&quot;&quot;</span>
+    <span class="c"># Use dictionary string replacement:</span>
+    <span class="c"># &gt;&gt;&gt; &#39;%(lala)i %(xxx)s&#39; %{&#39;lala&#39;: 3, &#39;xxx&#39;: &#39;grrr&#39;}</span>
+    <span class="c"># &#39;3 grrr&#39;</span>
+    <span class="n">func</span><span class="o">.</span><span class="n">__doc__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">__doc__</span> <span class="o">%</span> <span class="n">dct</span> 
+    <span class="k">return</span> <span class="n">func</span></div>
+
+
+<div class="viewcode-block" id="lazyprop"><a class="viewcode-back" href="../../generated/api/pwtools.decorators.lazyprop.html#pwtools.decorators.lazyprop">[docs]</a><span class="k">class</span> <span class="nc">lazyprop</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Decorator for creating lazy evaluated properties.</span>
+<span class="sd">    The property should represent non-mutable data, as it replaces itself.</span>
+<span class="sd">    </span>
+<span class="sd">    kudos: Cyclone over at stackoverflow!</span>
+<span class="sd">    http://stackoverflow.com/questions/3012421/python-lazy-property-decorator</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">fget</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fget</span> <span class="o">=</span> <span class="n">fget</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">func_name</span> <span class="o">=</span> <span class="n">fget</span><span class="o">.</span><span class="n">__name__</span>
+
+    <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">obj</span><span class="p">,</span><span class="n">cls</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fget</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">,</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span></div>
+
+<span class="c"># http://stackoverflow.com/questions/3012421/python-lazy-property-decorator</span>
+<span class="c">##def lazyprop(fn):</span>
+<span class="c">##    attr_name = &#39;_lazy_&#39; + fn.__name__</span>
+<span class="c">##    @property</span>
+<span class="c">##    def _lazyprop(self):</span>
+<span class="c">##        if not hasattr(self, attr_name):</span>
+<span class="c">##            setattr(self, attr_name, fn(self))</span>
+<span class="c">##        return getattr(self, attr_name)</span>
+<span class="c">##    return _lazyprop</span>
+
+
+
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.num.Spline &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="num" href="num.html" />
+    <link rel="next" title="pwtools.num.Spline.__call__" href="pwtools.num.Spline.__call__.html" />
+    <link rel="prev" title="pwtools.num.PolyFit1D.is_mono" href="pwtools.num.PolyFit1D.is_mono.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.Spline.__call__.html" title="pwtools.num.Spline.__call__"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.PolyFit1D.is_mono.html" title="pwtools.num.PolyFit1D.is_mono"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="num.html" accesskey="U">num</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.num.PolyFit1D.is_mono.html"
+                        title="previous chapter">pwtools.num.PolyFit1D.is_mono</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.num.Spline.__call__.html"
+                        title="next chapter">pwtools.num.Spline.__call__</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.num.Spline.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-num-spline">
+<h1>pwtools.num.Spline<a class="headerlink" href="#pwtools-num-spline" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.num.Spline">
+<em class="property">class </em><code class="descclassname">pwtools.num.</code><code class="descname">Spline</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>eps=1e-10</em>, <em>checkeps=True</em>, <em>**splrep_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Spline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Spline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pwtools.num.Fit1D.html#pwtools.num.Fit1D" title="pwtools.num.Fit1D"><code class="xref py py-class docutils literal"><span class="pre">pwtools.num.Fit1D</span></code></a></p>
+<p>Like scipy.interpolate.UnivariateSpline, this is a wrapper around
+scipy.interpolate.splrep/splev with some nice features like y-&gt;x lookup and
+interpolation accuracy check etc. It basically simplifies setting up a
+spline interpolation and holds x-y data plus the spline knots (self.tck)
+together in one place. You can work with the methods here, but you can also
+use the normal tck (self.tck) in scipy.interpolate.splev() etc.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">splev</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span> <span class="o">=</span> <span class="n">Spline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sp</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">splev</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">tck</span><span class="p">))</span> <span class="c"># the same</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;1st derivative&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xx</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">invsplev</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">xab</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="s">&quot;at </span><span class="si">%f</span><span class="s"> degrees, sin(x) = 0.5&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">xx</span><span class="o">/</span><span class="n">pi</span><span class="o">*</span><span class="mi">180</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span> <span class="o">=</span> <span class="n">Spline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="s">&quot;the root is at x=</span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span><span class="n">sp</span><span class="o">.</span><span class="n">invsplev</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span>
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.Spline.__call__.html#pwtools.num.Spline.__call__" title="pwtools.num.Spline.__call__"><code class="xref py py-obj docutils literal"><span class="pre">__call__</span></code></a>(x,&nbsp;*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.num.Spline.get_max.html#pwtools.num.Spline.get_max" title="pwtools.num.Spline.get_max"><code class="xref py py-obj docutils literal"><span class="pre">get_max</span></code></a>([x0,&nbsp;xab])</td>
+<td>Convenience method.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.Spline.get_min.html#pwtools.num.Spline.get_min" title="pwtools.num.Spline.get_min"><code class="xref py py-obj docutils literal"><span class="pre">get_min</span></code></a>([x0,&nbsp;xab])</td>
+<td>Return x where y(x) = min(y) by calculating the root of the fit&#8217;s 1st derivative (by calling <code class="docutils literal"><span class="pre">self(x,</span> <span class="pre">der=1)</span></code>).</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.num.Spline.get_root.html#pwtools.num.Spline.get_root" title="pwtools.num.Spline.get_root"><code class="xref py py-obj docutils literal"><span class="pre">get_root</span></code></a>([x0,&nbsp;xab])</td>
+<td>Return x where y(x) = 0 by calculating the root of the fit function.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.Spline.invsplev.html#pwtools.num.Spline.invsplev" title="pwtools.num.Spline.invsplev"><code class="xref py py-obj docutils literal"><span class="pre">invsplev</span></code></a>(y0[,&nbsp;x0,&nbsp;xab])</td>
+<td>Lookup x for a given y, i.e.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.num.Spline.is_mono.html#pwtools.num.Spline.is_mono" title="pwtools.num.Spline.is_mono"><code class="xref py py-obj docutils literal"><span class="pre">is_mono</span></code></a>()</td>
+<td>Return True if the curve described by the fit function f(x) is monotonic.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.Spline.splev.html#pwtools.num.Spline.splev" title="pwtools.num.Spline.splev"><code class="xref py py-obj docutils literal"><span class="pre">splev</span></code></a>(x,&nbsp;*args,&nbsp;**kwds)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pwtools.num.Spline.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>eps=1e-10</em>, <em>checkeps=True</em>, <em>**splrep_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Spline.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Spline.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x, y</strong> : numpy 1d arrays</p>
+<p><strong>eps</strong> : float</p>
+<blockquote>
+<div><p>Accuracy threshold. Spline must interpolate points with an error
+less then eps. Useless if you use splrep(...,s=..) with &#8220;s&#8221; (the
+smoothing factor) much bigger than 0. See <cite>ckeckeps</cite>.</p>
+</div></blockquote>
+<p><strong>checkeps</strong> : bool</p>
+<blockquote>
+<div><p>Whether to use <cite>eps</cite> to ckeck interpolation accuracy.</p>
+</div></blockquote>
+<p class="last"><strong>**splrep_kwargs</strong> : keywords args to splrep(), default: k=3, s=0</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.num.Spline.invsplev">
+<code class="descname">invsplev</code><span class="sig-paren">(</span><em>y0</em>, <em>x0=None</em>, <em>xab=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Spline.invsplev"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Spline.invsplev" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lookup x for a given y, i.e. &#8220;inverse spline evaluation&#8221;, hence
+the name. Find x where y(x) == y0 by calculating the root of y(x) -
+y0. We can use Newton&#8217;s (x0) or Brent&#8217;s (xab) methods. Use only one of
+them. If neither is given, we use xab=[x[0], x[-1]] and Brent.</p>
+<p>There are a few caveats. The result depends the nature of the
+underlying x-y curve (is it strictly monotinic -&gt; hopefully one root or
+oscillating -&gt; possibly several roots) and on how good x0 or xab are.
+For instance, a bad x0 will cause the Newton method to converge to a
+different root (if there is one) or to converge not at all. Or an
+interval xab which contains no (or several) root(s) will cause the
+Brent method to error out or give wrong/unexpected results. Always plot
+you data before using.</p>
+<p>Works only for scalar input (one point lookup). For many points, try to
+construct an inverse spline: Spline(y,x).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x0</strong> : float</p>
+<blockquote>
+<div><p>start guess for Newton&#8217;s secant method</p>
+</div></blockquote>
+<p><strong>xab</strong> : sequence of length 2</p>
+<blockquote>
+<div><p>start bracket for Brent&#8217;s method, root must lie in between</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>xx</strong> : scalar</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.Spline.__call__.html" title="pwtools.num.Spline.__call__"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.PolyFit1D.is_mono.html" title="pwtools.num.PolyFit1D.is_mono"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="num.html" >num</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

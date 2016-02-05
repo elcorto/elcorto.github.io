@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.num.poly_powers &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="num" href="num.html" />
+    <link rel="next" title="pwtools.num.poly_str" href="pwtools.num.poly_str.html" />
+    <link rel="prev" title="pwtools.num.pi" href="pwtools.num.pi.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.poly_str.html" title="pwtools.num.poly_str"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.pi.html" title="pwtools.num.pi"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="num.html" accesskey="U">num</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.num.pi.html"
+                        title="previous chapter">pwtools.num.pi</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.num.poly_str.html"
+                        title="next chapter">pwtools.num.poly_str</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.num.poly_powers.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-num-poly-powers">
+<h1>pwtools.num.poly_powers<a class="headerlink" href="#pwtools-num-poly-powers" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.num.poly_powers">
+<code class="descclassname">pwtools.num.</code><code class="descname">poly_powers</code><span class="sig-paren">(</span><em>ndim</em>, <em>deg</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#poly_powers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.poly_powers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Powers for building a n-dim polynomial and columns of the n-dim
+Vandermonde matrix.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ndim</strong> : number of dimensions of the poly (e.g. 2 for f(x1,x2))</p>
+<p><strong>deg</strong> : degree of the poly</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>powers</strong> : 2d array <code class="docutils literal"><span class="pre">((deg+1)**ndim,</span> <span class="pre">ndim)</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>For one dim, we have data points (x_i,y_i) and the to-be-fitted poly of order
+k is:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">a0</span><span class="o">*</span><span class="n">x</span><span class="o">^</span><span class="mi">0</span> <span class="o">+</span> <span class="n">a1</span><span class="o">*</span><span class="n">x</span><span class="o">^</span><span class="mi">1</span> <span class="o">+</span> <span class="n">a2</span><span class="o">*</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="o">...</span> <span class="o">+</span> <span class="n">ak</span><span class="o">*</span><span class="n">x</span><span class="o">^</span><span class="n">k</span>
+</pre></div>
+</div>
+<p>The Vandermonde matrix A consists of all powers of x (cols) for all data
+points (rows) and each row has the form of the poly:</p>
+<div class="highlight-python"><div class="highlight"><pre>[[x_0^0 x_0^1 ... x_0^k],
+ [x_1^0 x_1^1 ... x_1^k],   
+ ...
+ [x_n^0 x_n^1 ... x_n^k]]
+</pre></div>
+</div>
+<p>To fit, we solve A . a = y, where a = [a0,...,ak].</p>
+<p>The returned array <cite>powers</cite> has k rows, where each row holds the powers for
+one term in the poly. For ndim=1 and poly order k, we have:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[[</span><span class="mi">0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+ <span class="o">...</span>
+ <span class="p">[</span><span class="n">k</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>and:</p>
+<div class="highlight-python"><div class="highlight"><pre>[0] -&gt; x^0
+[1] -&gt; x^1
+...
+[k] -&gt; x^k
+</pre></div>
+</div>
+<p>Now, suppose we have 2 dims, thus data points (x0_i,x1_i,y_i) and a poly
+of order 2:</p>
+<div class="highlight-python"><div class="highlight"><pre>f(x0,x1) = a0*x0^0*x1^0 + a1*x0^0*x1^1 + a2*x0^0*x1^2 + a3*x0^1*x1^0 +
+           a4*x0^1*x1^1 + a5*x0^1*x1^2 + a6*x0^2*x1^0 + a7*x0^2*x1^1 +
+           a8*x0^2*x1^2
+</pre></div>
+</div>
+<p>with 9 coeffs a = [a0,...,a8]. Therefore, <code class="docutils literal"><span class="pre">powers.shape</span> <span class="pre">=</span> <span class="pre">(9,2)</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>and:</p>
+<div class="highlight-python"><div class="highlight"><pre>[0,0] -&gt; x0^0*x1^0
+[1,2] -&gt; x0^1*x1^2
+...
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.poly_str.html" title="pwtools.num.poly_str"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.pi.html" title="pwtools.num.pi"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="num.html" >num</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

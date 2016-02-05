@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.mpl.Plot &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="mpl" href="mpl.html" />
+    <link rel="next" title="pwtools.mpl.Plot.collect_legends" href="pwtools.mpl.Plot.collect_legends.html" />
+    <link rel="prev" title="pwtools.mpl.Data3D" href="pwtools.mpl.Data3D.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.mpl.Plot.collect_legends.html" title="pwtools.mpl.Plot.collect_legends"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.mpl.Data3D.html" title="pwtools.mpl.Data3D"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="mpl.html" accesskey="U">mpl</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.mpl.Data3D.html"
+                        title="previous chapter">pwtools.mpl.Data3D</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.mpl.Plot.collect_legends.html"
+                        title="next chapter">pwtools.mpl.Plot.collect_legends</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.mpl.Plot.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-mpl-plot">
+<h1>pwtools.mpl.Plot<a class="headerlink" href="#pwtools-mpl-plot" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.mpl.Plot">
+<em class="property">class </em><code class="descclassname">pwtools.mpl.</code><code class="descname">Plot</code><span class="sig-paren">(</span><em>fig=None</em>, <em>ax=None</em>, <em>projection='2d'</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#Plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.Plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Container for a plot figure with (by default one) axis <cite>ax</cite>.</p>
+<p>You can add more axes with twinx() etc and operate on them.</p>
+<p class="rubric">Examples</p>
+<p># same as Plot(<a href="#id1"><span class="problematic" id="id2">*</span></a>mpl.fig_ax()), i.e. default is 2d plot
+&gt;&gt;&gt; pp = mpl.Plot() 
+&gt;&gt;&gt; pp.ax.plot([1,2,3], label=&#8217;ax&#8217;)
+&gt;&gt;&gt; pp.ax2 = pp.ax.twinx()
+&gt;&gt;&gt; pp.ax2.plot([2,2,1], &#8216;r&#8217;, label=&#8217;ax2&#8217;)
+&gt;&gt;&gt; # legend on <cite>ax</cite> (default legaxname=&#8217;ax&#8217;) with all lines from <cite>ax</cite> and
+&gt;&gt;&gt; # <cite>ax2</cite>
+&gt;&gt;&gt; pp.legend([&#8216;ax&#8217;, &#8216;ax2&#8217;], loc=&#8217;lower left&#8217;)
+&gt;&gt;&gt; pp.fig.savefig(&#8216;lala.png&#8217;)
+&gt;&gt;&gt; pp.fig.savefig(&#8216;lala.pdf&#8217;)
+&gt;&gt;&gt; # or
+&gt;&gt;&gt; pp.savefig(&#8216;lala&#8217;, ext=[&#8216;png&#8217;, &#8216;pdf&#8217;])</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.mpl.Plot.collect_legends.html#pwtools.mpl.Plot.collect_legends" title="pwtools.mpl.Plot.collect_legends"><code class="xref py py-obj docutils literal"><span class="pre">collect_legends</span></code></a>([axnames])</td>
+<td>If self has more then one axis object attached, then collect legends from all axes specified in axnames.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.mpl.Plot.legend.html#pwtools.mpl.Plot.legend" title="pwtools.mpl.Plot.legend"><code class="xref py py-obj docutils literal"><span class="pre">legend</span></code></a>([axnames,&nbsp;legaxname])</td>
+<td>Collect legend entries from all axes in <cite>axnames</cite> and place legend on the axis named with <cite>legaxname</cite>.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.mpl.Plot.savefig.html#pwtools.mpl.Plot.savefig" title="pwtools.mpl.Plot.savefig"><code class="xref py py-obj docutils literal"><span class="pre">savefig</span></code></a>(base[,&nbsp;ext])</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pwtools.mpl.Plot.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>fig=None</em>, <em>ax=None</em>, <em>projection='2d'</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#Plot.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.Plot.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>fig, ax</strong> : Figure + Axis instance (e.g. from fig_ax())</p>
+<p><strong>projection</strong> : str, optional</p>
+<blockquote>
+<div><p>If fig+ax not given, use this to call fig_ax() or fig_ax3d(), else
+ignored.</p>
+</div></blockquote>
+<p><strong>kwds</strong> : keywords passed to fig_ax() or fig_ax3d() if <cite>fig=None</cite> and</p>
+<blockquote class="last">
+<div><p><cite>ax=None</cite></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pwtools.mpl.Plot.__weakref__">
+<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.mpl.Plot.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.mpl.Plot.collect_legends">
+<code class="descname">collect_legends</code><span class="sig-paren">(</span><em>axnames=['ax']</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#Plot.collect_legends"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.Plot.collect_legends" title="Permalink to this definition">¶</a></dt>
+<dd><p>If self has more then one axis object attached, then collect legends
+from all axes specified in axnames. Useful for handling legend entries
+of lines on differend axes (in case of twinx, for instance).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>axnames</strong> : sequence of strings</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">tuple of lines and labels</p>
+<blockquote>
+<div><p>([line1, line2, ...], [&#8216;foo&#8217;, &#8216;bar&#8217;, ...])</p>
+</div></blockquote>
+<p>where lines and labels are taken from all axes. Use this as input for</p>
+<p class="last">any axis&#8217;s legend() method.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.mpl.Plot.legend">
+<code class="descname">legend</code><span class="sig-paren">(</span><em>axnames=None</em>, <em>legaxname='ax'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#Plot.legend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.Plot.legend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect legend entries from all axes in <cite>axnames</cite> and place legend on
+the axis named with <cite>legaxname</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>axnames</strong> : None or list of axes names, optional</p>
+<blockquote>
+<div><p>e.g. [&#8216;ax&#8217;] or [&#8216;ax&#8217;, &#8216;ax2&#8217;]. If None (default) then ax.legend() is
+called directly (if legaxname=&#8217;ax&#8217;).</p>
+</div></blockquote>
+<p><strong>legaxname</strong> : string, optional</p>
+<blockquote class="last">
+<div><p>The name of the axis where the legend is placed on. If you use
+things like twinx(), then you may want to choose top most the axis,
+i.e. the one in the foreground. For example:
+&gt;&gt;&gt; pp = Plot(...)
+&gt;&gt;&gt; pp.ax.plot(...)
+&gt;&gt;&gt; pp.ax2 = pp.ax.twinx()
+&gt;&gt;&gt; pp.ax2.plot(...)
+&gt;&gt;&gt; pp.legend(axnames=[&#8216;ax&#8217;, &#8216;ax2&#8217;], legaxname=&#8217;ax2&#8217;)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<dl class="docutils">
+<dt>This is not completly transparent. This:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span> <span class="o">=</span> <span class="n">Plot</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>does only behave as ax.legend() if only kwargs are used. For anything
+else, use</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span> 
+</pre></div>
+</div>
+<p>directly.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.mpl.Plot.collect_legends.html" title="pwtools.mpl.Plot.collect_legends"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.mpl.Data3D.html" title="pwtools.mpl.Data3D"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="mpl.html" >mpl</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

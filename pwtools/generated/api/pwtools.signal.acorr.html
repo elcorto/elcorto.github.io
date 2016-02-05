@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.signal.acorr &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="signal" href="signal.html" />
+    <link rel="next" title="pwtools.signal.cauchy" href="pwtools.signal.cauchy.html" />
+    <link rel="prev" title="pwtools.signal.FIRFilter.__call__" href="pwtools.signal.FIRFilter.__call__.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.signal.cauchy.html" title="pwtools.signal.cauchy"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.signal.FIRFilter.__call__.html" title="pwtools.signal.FIRFilter.__call__"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="signal.html" accesskey="U">signal</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.signal.FIRFilter.__call__.html"
+                        title="previous chapter">pwtools.signal.FIRFilter.__call__</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.signal.cauchy.html"
+                        title="next chapter">pwtools.signal.cauchy</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.signal.acorr.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-signal-acorr">
+<h1>pwtools.signal.acorr<a class="headerlink" href="#pwtools-signal-acorr" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.signal.acorr">
+<code class="descclassname">pwtools.signal.</code><code class="descname">acorr</code><span class="sig-paren">(</span><em>v</em>, <em>method=7</em>, <em>norm=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#acorr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.acorr" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Normalized) autocorrelation function (ACF) for 1d arrays:
+Without normalization</p>
+<blockquote>
+<div>c(t) = &lt;v(0) v(t)&gt;</div></blockquote>
+<dl class="docutils">
+<dt>and with</dt>
+<dd>c(t) = &lt;v(0) v(t)&gt; / &lt;v(0)**2&gt;</dd>
+</dl>
+<p>The x-axis is the offset &#8220;t&#8221; (or &#8220;lag&#8221; in Digital Signal Processing lit.).
+Since the ACF is symmetric around t=0, we return only t=0...len(v)-1 .</p>
+<p>Several Python and Fortran implememtations. The Python versions are mostly
+for reference and are slow, except for fft-based, which is by far the
+fastet.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>v</strong> : 1d array</p>
+<p><strong>method</strong> : int</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">1: Python loops</div>
+<div class="line">2: Python loops, zero-padded</div>
+<div class="line">3: method 1, numpy vectorized</div>
+<div class="line">4: uses numpy.correlate()</div>
+<div class="line">5: Fortran version of 1</div>
+<div class="line">6: Fortran version of 3</div>
+<div class="line">7: fft, Wiener-Khinchin Theorem</div>
+</div>
+</div></blockquote>
+<p><strong>norm</strong> : bool</p>
+<blockquote>
+<div><p>normalize or not</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>c</strong> : numpy 1d array</p>
+<blockquote class="last">
+<div><div class="line-block">
+<div class="line">c[0]  &lt;=&gt; lag = 0</div>
+<div class="line">c[-1] &lt;=&gt; lag = len(v)</div>
+</div>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<dl class="docutils">
+<dt>speed:</dt>
+<dd>methods 1 ...  are loosely ordered slow ... fast</dd>
+<dt>methods:</dt>
+<dd>All methods, besides the FFT, are &#8220;exact&#8221;, they use variations of loops
+in the time domain, i.e. norm(acorr(v,1) - acorr(v,6)) = 0.0. 
+The FFT method introduces small numerical noise, norm(acorr(v,1) -
+acorr(v,4)) = O(1e-16) or so.</dd>
+</dl>
+<p>signature of the Fortran extension _flib.acorr:</p>
+<div class="highlight-python"><div class="highlight"><pre>acorr - Function signature:
+  c = acorr(v,c,method,[nstep])
+Required arguments:
+  v : input rank-1 array(&#39;d&#39;) with bounds (nstep)
+  c : input rank-1 array(&#39;d&#39;) with bounds (nstep)
+  method : input int
+Optional arguments:
+  nstep := len(v) input int
+Return objects:
+  c : rank-1 array(&#39;d&#39;) with bounds (nstep)
+</pre></div>
+</div>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r20" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[R20]</a></td><td>Numerical Recipes in Fortran, 2nd ed., ch. 13.2</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="r21" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[R21]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/FourierTransform.html">http://mathworld.wolfram.com/FourierTransform.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="r22" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[R22]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/Cross-CorrelationTheorem.html">http://mathworld.wolfram.com/Cross-CorrelationTheorem.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="r23" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[R23]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/Wiener-KhinchinTheorem.html">http://mathworld.wolfram.com/Wiener-KhinchinTheorem.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="r24" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[R24]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/Autocorrelation.html">http://mathworld.wolfram.com/Autocorrelation.html</a></td></tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.signal.cauchy.html" title="pwtools.signal.cauchy"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.signal.FIRFilter.__call__.html" title="pwtools.signal.FIRFilter.__call__"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="signal.html" >signal</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

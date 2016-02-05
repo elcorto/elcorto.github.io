@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.thermo.expansion &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="thermo" href="thermo.html" />
+    <link rel="next" title="pwtools.thermo.hplanck" href="pwtools.thermo.hplanck.html" />
+    <link rel="prev" title="pwtools.thermo.einstein_func" href="pwtools.thermo.einstein_func.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.thermo.hplanck.html" title="pwtools.thermo.hplanck"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.thermo.einstein_func.html" title="pwtools.thermo.einstein_func"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="thermo.html" accesskey="U">thermo</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.thermo.einstein_func.html"
+                        title="previous chapter">pwtools.thermo.einstein_func</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.thermo.hplanck.html"
+                        title="next chapter">pwtools.thermo.hplanck</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.thermo.expansion.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-thermo-expansion">
+<h1>pwtools.thermo.expansion<a class="headerlink" href="#pwtools-thermo-expansion" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.thermo.expansion">
+<code class="descclassname">pwtools.thermo.</code><code class="descname">expansion</code><span class="sig-paren">(</span><em>temp</em>, <em>alpha</em>, <em>theta</em>, <em>x0=1.0</em>, <em>func=&lt;function debye_func&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#expansion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.expansion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate thermal expansion according to the model in <cite>func</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>temp</strong> : array_like</p>
+<blockquote>
+<div><p>temperature</p>
+</div></blockquote>
+<p><strong>alpha</strong> : float</p>
+<blockquote>
+<div><p>high-T limit expansion coeff</p>
+</div></blockquote>
+<p><strong>theta</strong></p>
+<blockquote>
+<div><p>Debye or Einstein temperature</p>
+</div></blockquote>
+<p><strong>x0</strong> : float</p>
+<blockquote>
+<div><p>axis length at T=0</p>
+</div></blockquote>
+<p><strong>func</strong> : callable</p>
+<blockquote class="last">
+<div><p>Usually <a class="reference internal" href="pwtools.thermo.debye_func.html#pwtools.thermo.debye_func" title="pwtools.thermo.debye_func"><code class="xref py py-func docutils literal"><span class="pre">debye_func()</span></code></a> or <a class="reference internal" href="pwtools.thermo.einstein_func.html#pwtools.thermo.einstein_func" title="pwtools.thermo.einstein_func"><code class="xref py py-func docutils literal"><span class="pre">einstein_func()</span></code></a></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<p>[1] Figge et al., Appl. Phys. Lett. 94, 101915 (2009)</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># thermal expansion coeff alpha_x = 1/x(T) * dx/dT</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.thermo</span> <span class="kn">import</span> <span class="n">expansion</span><span class="p">,</span> <span class="n">debye_func</span><span class="p">,</span> <span class="n">einstein_func</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="kn">import</span> <span class="n">num</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2500</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">zero</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-8</span><span class="p">]:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">x</span> <span class="o">=</span> <span class="n">expansion</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="mf">5e-6</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">debye_func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">zero</span><span class="o">=</span><span class="n">zero</span><span class="p">))</span> 
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">deriv_spl</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">expansion</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="mf">5e-6</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">einstein_func</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">deriv_spl</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.thermo.hplanck.html" title="pwtools.thermo.hplanck"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.thermo.einstein_func.html" title="pwtools.thermo.einstein_func"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="thermo.html" >thermo</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

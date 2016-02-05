@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.signal.smooth &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="signal" href="signal.html" />
+    <link rel="next" title="pwtools.signal.welch" href="pwtools.signal.welch.html" />
+    <link rel="prev" title="pwtools.signal.scale" href="pwtools.signal.scale.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.signal.welch.html" title="pwtools.signal.welch"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.signal.scale.html" title="pwtools.signal.scale"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="signal.html" accesskey="U">signal</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.signal.scale.html"
+                        title="previous chapter">pwtools.signal.scale</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.signal.welch.html"
+                        title="next chapter">pwtools.signal.welch</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.signal.smooth.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-signal-smooth">
+<h1>pwtools.signal.smooth<a class="headerlink" href="#pwtools-signal-smooth" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.signal.smooth">
+<code class="descclassname">pwtools.signal.</code><code class="descname">smooth</code><span class="sig-paren">(</span><em>data</em>, <em>kern</em>, <em>axis=0</em>, <em>edge='m'</em>, <em>norm=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#smooth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.smooth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Smooth <cite>data</cite> by convolution with a kernel <cite>kern</cite>.</p>
+<p>Uses scipy.signal.fftconvolve().</p>
+<p>Note that due to edge effect handling (padding) and kernal normalization,
+the convolution identity convolve(data,kern) == convolve(kern,data) doesn&#8217;t
+apply here. We always return an array of <code class="docutils literal"><span class="pre">data.shape</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : nd array</p>
+<blockquote>
+<div><p>The data to smooth. Example: 1d (N,) or (N,natoms,3)
+for trajectory</p>
+</div></blockquote>
+<p><strong>kern</strong> : nd array</p>
+<blockquote>
+<div><p>Convolution kernel. Example: 1d (M,) or (M,1,1)
+for trajectory</p>
+</div></blockquote>
+<p><strong>axis</strong> : int</p>
+<blockquote>
+<div><p>Axis along which to do the smoothing. That is actually not needed for
+the convolution <code class="docutils literal"><span class="pre">fftconvolve(data,</span> <span class="pre">kern)</span></code> but is used for padding the
+data along <cite>axis</cite> to handle edge effects before convolution.</p>
+</div></blockquote>
+<p><strong>edge</strong> : str</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Method for edge effect handling.</dt>
+<dd><div class="first last line-block">
+<div class="line">&#8216;m&#8217; : pad with mirror signal</div>
+<div class="line">&#8216;c&#8217; : pad with constant values (i.e. <code class="docutils literal"><span class="pre">data[0]</span></code> and</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">data[-1]</span></code> in the 1d case)</div>
+</div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>norm</strong> : bool</p>
+<blockquote>
+<div><p>Normalize kernel. Default is True. This assures that the smoothed
+signal lies within the data. Note that this is not True for kernels
+with very big spread (i.e. <code class="docutils literal"><span class="pre">hann(N*10)</span></code> or <code class="docutils literal"><span class="pre">gaussian(N/2,</span>
+<span class="pre">std=N*10)</span></code>. Then the kernel is effectively a constant.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ret</strong> : data.shape</p>
+<blockquote class="last">
+<div><p>Convolved signal.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="pwtools.signal.welch.html#pwtools.signal.welch" title="pwtools.signal.welch"><code class="xref py py-func docutils literal"><span class="pre">welch()</span></code></a>, <a class="reference internal" href="pwtools.signal.lorentz.html#pwtools.signal.lorentz" title="pwtools.signal.lorentz"><code class="xref py py-func docutils literal"><span class="pre">lorentz()</span></code></a></p>
+</div>
+<p class="rubric">Notes</p>
+<p>Kernels:</p>
+<p>Even kernels result in shifted signals, odd kernels are better.
+However, for N &gt;&gt; M, it doesn&#8217;t make a difference really.</p>
+<p>Usual kernels (window functions) are created by e.g.
+<code class="docutils literal"><span class="pre">scipy.signal.hann(M)</span></code>. For <code class="docutils literal"><span class="pre">kern=scipy.signal.gaussian(M,</span>
+<span class="pre">std)</span></code>, two values are needed, namely <cite>M</cite> and <cite>std</cite>, where  <cite>M</cite>
+determines the number of points calculated for the convolution kernel, as
+in the other cases. But what is actually important is <cite>std</cite>, which
+determines the &#8220;used width&#8221; of the gaussian. Say we use N=100
+and M=50. That would be a massively wide window and we would
+smooth away all details. OTOH, using <code class="docutils literal"><span class="pre">gaussian(50,3)</span></code> would generate a
+kernel with the same number <cite>M</cite> of data points, but the gauss peak which is
+effectively used for convolution is much smaller. For <code class="docutils literal"><span class="pre">gaussian()</span></code>,
+<cite>M</cite> should be bigger then <cite>std</cite>. The convolved signal will converge
+with increasing <cite>M</cite>. Good values are <cite>M=6*std</cite> and bigger. For
+<a class="reference internal" href="pwtools.signal.lorentz.html#pwtools.signal.lorentz" title="pwtools.signal.lorentz"><code class="xref py py-func docutils literal"><span class="pre">lorentz()</span></code></a>, much wider kernels are needed such as <cite>M=100*std</cite> b/c
+of the long tails of the Lorentz function. Testing is mandatory!</p>
+<p>Edge effects:</p>
+<p>We use padding of the signal with <code class="docutils literal"><span class="pre">M=len(kern)</span></code> values at both ends such
+that the convolution with <cite>kern</cite> doesn&#8217;t zero the <cite>data</cite> at the signal
+edges. We have two methods. <cite>edge=&#8217;m&#8217;</cite>: padd with the signal mirrored at 0
+and -1 or <cite>edge=&#8217;c&#8217;</cite>: use the constant values <code class="docutils literal"><span class="pre">data[0]</span></code> and <code class="docutils literal"><span class="pre">data[-1]</span></code>.
+Many more of these variants may be thought of. The choice of how to extend
+the data essentially involves an assumption about how the signal <em>would</em>
+continue, which is signal-dependent. In practice, we usually have <code class="docutils literal"><span class="pre">M</span> <span class="pre">&lt;&lt;</span>
+<span class="pre">N</span></code> (e.g. <code class="docutils literal"><span class="pre">scipy.signal.hann(M)</span></code>) or <code class="docutils literal"><span class="pre">std</span> <span class="pre">&lt;&lt;</span> <span class="pre">N</span></code>
+(<code class="docutils literal"><span class="pre">scipy.signal.gaussian(M,</span> <span class="pre">std</span></code>). Then, both methods are identical in the
+middle and show only very small differences at the edges. Essentially, edge
+effect handling shall only ensure that the smoothed signal doesn&#8217;t go to
+zero and that must be independent of the method, which is the case.</p>
+<p>Memory:</p>
+<p>For big data, fftconvolve() can easily eat up all your memory, for
+example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># assume axis=0 is the axis along which to convolve</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mf">1e5</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kern</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ret</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">fftconvolve</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">kern</span><span class="p">[:,</span><span class="bp">None</span><span class="p">,</span><span class="bp">None</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Then it is better to loop over some or all of the remaing dimensions:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ret</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">jj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">ret</span><span class="p">[:,</span><span class="n">jj</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">smooth</span><span class="p">(</span><span class="n">arr</span><span class="p">[:,</span><span class="n">jj</span><span class="p">,:],</span> <span class="n">kern</span><span class="p">[:,</span><span class="bp">None</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">jj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">ret</span><span class="p">[:,</span><span class="n">jj</span><span class="p">,</span><span class="n">kk</span><span class="p">]</span> <span class="o">=</span> <span class="n">smooth</span><span class="p">(</span><span class="n">arr</span><span class="p">[:,</span><span class="n">jj</span><span class="p">,</span><span class="n">kk</span><span class="p">],</span> <span class="n">kern</span><span class="p">)</span> 
+</pre></div>
+</div>
+<p>The size of the chunk over which you explicitely loop depends on the data
+of course.</p>
+<p class="rubric">References</p>
+<p>[1] <a class="reference external" href="http://wiki.scipy.org/Cookbook/SignalSmooth">http://wiki.scipy.org/Cookbook/SignalSmooth</a></p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.signal</span> <span class="kn">import</span> <span class="n">welch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">rand</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">,</span><span class="mi">500</span><span class="p">);</span> <span class="n">a</span><span class="o">=</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">rand</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;0.7&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span><span class="o">=</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">k</span><span class="p">),</span> <span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;hann&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span><span class="o">=</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">gaussian</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">k</span><span class="p">),</span> <span class="s">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;gauss&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span><span class="o">=</span><span class="n">welch</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">k</span><span class="p">),</span> <span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;welch&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">legend</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># odd kernel [0,1,0] reproduces data exactly, i.e. convolution with</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># delta peak</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">figure</span><span class="p">();</span> <span class="n">title</span><span class="p">(</span><span class="s">&#39;smooth with delta [0,1,0]&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">,</span><span class="mi">15</span><span class="p">);</span> <span class="n">k</span><span class="o">=</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">k</span><span class="p">),</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">legend</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># edge effects with normal convolution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">figure</span><span class="p">();</span> <span class="n">title</span><span class="p">(</span><span class="s">&#39;edge effects&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="o">+</span><span class="mi">10</span><span class="p">;</span> <span class="n">k</span><span class="o">=</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="n">plot</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">k</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s">&quot;smooth&quot;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">k</span><span class="o">/</span><span class="n">k</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span><span class="s">&#39;same&#39;</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;convolve&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">legend</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># edge effect methods</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">figure</span><span class="p">();</span> <span class="n">title</span><span class="p">(</span><span class="s">&#39;edge effect methods&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="o">+</span><span class="mi">10</span><span class="p">;</span> <span class="n">k</span><span class="o">=</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="n">plot</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">edge</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s">&quot;edge=&#39;m&#39;&quot;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">edge</span><span class="o">=</span><span class="s">&#39;c&#39;</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s">&quot;edge=&#39;c&#39;&quot;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">legend</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># smooth a trajectory of atomic coordinates</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">figure</span><span class="p">();</span> <span class="n">title</span><span class="p">(</span><span class="s">&#39;trajectory&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c"># (nstep, natoms, 3)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">+=</span> <span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)[:,</span><span class="bp">None</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[:,</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">+=</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)[:,</span><span class="bp">None</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span><span class="o">=</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="mi">21</span><span class="p">)[:,</span><span class="bp">None</span><span class="p">,</span><span class="bp">None</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">k</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">a</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;0.7&#39;</span><span class="p">);</span> <span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s">&#39;b&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                                  <span class="n">label</span><span class="o">=</span><span class="s">&#39;atom1 x&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">a</span><span class="p">[:,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;0.7&#39;</span><span class="p">);</span> <span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">[:,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s">&#39;r&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                                  <span class="n">label</span><span class="o">=</span><span class="s">&#39;atom2 x&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.signal.welch.html" title="pwtools.signal.welch"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.signal.scale.html" title="pwtools.signal.scale"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="signal.html" >signal</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

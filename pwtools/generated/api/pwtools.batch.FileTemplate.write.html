@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.batch.FileTemplate.write &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="pwtools.batch.FileTemplate" href="pwtools.batch.FileTemplate.html" />
+    <link rel="next" title="pwtools.batch.FileTemplate.writesql" href="pwtools.batch.FileTemplate.writesql.html" />
+    <link rel="prev" title="pwtools.batch.FileTemplate" href="pwtools.batch.FileTemplate.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.batch.FileTemplate.writesql.html" title="pwtools.batch.FileTemplate.writesql"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.batch.FileTemplate.html" title="pwtools.batch.FileTemplate"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="batch.html" >batch</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="pwtools.batch.FileTemplate.html" accesskey="U">pwtools.batch.FileTemplate</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.batch.FileTemplate.html"
+                        title="previous chapter">pwtools.batch.FileTemplate</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.batch.FileTemplate.writesql.html"
+                        title="next chapter">pwtools.batch.FileTemplate.writesql</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.batch.FileTemplate.write.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-batch-filetemplate-write">
+<h1>pwtools.batch.FileTemplate.write<a class="headerlink" href="#pwtools-batch-filetemplate-write" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.batch.FileTemplate.write">
+<code class="descclassname">FileTemplate.</code><code class="descname">write</code><span class="sig-paren">(</span><em>dct</em>, <em>calc_dir='calc'</em>, <em>mode='dct'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#FileTemplate.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.FileTemplate.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write file self.filename (e.g. calc/0/pw.in) by replacing 
+placeholders in the template (e.g. calc.templ/pw.in).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dct</strong> : dict</p>
+<blockquote>
+<div><p>key-value pairs, dct.keys() are converted to placeholders with
+self.func()</p>
+</div></blockquote>
+<p><strong>calc_dir</strong> : str</p>
+<blockquote>
+<div><p>the dir where to write the target file to</p>
+</div></blockquote>
+<p><strong>mode</strong> : str, {&#8216;dct&#8217;, &#8216;sql&#8217;}</p>
+<blockquote class="last">
+<div><div class="line-block">
+<div class="line">mode=&#8217;dct&#8217;: replacement values are dct[&lt;key&gt;]</div>
+<div class="line">mode=&#8217;sql&#8217;: replacement values are dct[&lt;key&gt;].fileval and every</div>
+<div class="line-block">
+<div class="line">dct[&lt;key&gt;] is an SQLEntry instance</div>
+</div>
+</div>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.batch.FileTemplate.writesql.html" title="pwtools.batch.FileTemplate.writesql"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.batch.FileTemplate.html" title="pwtools.batch.FileTemplate"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="batch.html" >batch</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="pwtools.batch.FileTemplate.html" >pwtools.batch.FileTemplate</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

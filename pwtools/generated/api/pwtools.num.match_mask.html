@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.num.match_mask &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="num" href="num.html" />
+    <link rel="next" title="pwtools.num.meshgridt" href="pwtools.num.meshgridt.html" />
+    <link rel="prev" title="pwtools.num.inner_points_mask" href="pwtools.num.inner_points_mask.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.meshgridt.html" title="pwtools.num.meshgridt"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.inner_points_mask.html" title="pwtools.num.inner_points_mask"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="num.html" accesskey="U">num</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.num.inner_points_mask.html"
+                        title="previous chapter">pwtools.num.inner_points_mask</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.num.meshgridt.html"
+                        title="next chapter">pwtools.num.meshgridt</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.num.match_mask.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-num-match-mask">
+<h1>pwtools.num.match_mask<a class="headerlink" href="#pwtools-num-match-mask" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.num.match_mask">
+<code class="descclassname">pwtools.num.</code><code class="descname">match_mask</code><span class="sig-paren">(</span><em>arr</em>, <em>values</em>, <em>fullout=False</em>, <em>eps=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#match_mask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.match_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bool array of <code class="docutils literal"><span class="pre">len(arr)</span></code> which is True if <code class="docutils literal"><span class="pre">arr[i]</span> <span class="pre">==</span> <span class="pre">values[j],</span>
+<span class="pre">j=0..len(values)</span></code>.</p>
+<p>This is the same as creating bool arrays like <code class="docutils literal"><span class="pre">arr</span> <span class="pre">==</span> <span class="pre">some_value</span></code> just
+that <cite>some_value</cite> can be an array (numpy can only do <cite>some_value</cite> =
+scalar). By default we assume integer arrays, unless <cite>eps</cite> is used.</p>
+<p>With <cite>eps=None</cite> and <cite>fullout=False</cite>, it behaves like <code class="docutils literal"><span class="pre">numpy.in1d</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>arr</strong> : 1d array</p>
+<p><strong>values</strong> : 1d array</p>
+<blockquote>
+<div><p>Values to be found in <cite>arr</cite>.</p>
+</div></blockquote>
+<p><strong>fullout</strong> : bool</p>
+<p><strong>eps</strong> : float</p>
+<blockquote>
+<div><p>Use this threshold to compare array values.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ret</strong> : fullout = False</p>
+<p><strong>ret, idx_lst</strong> : fullout = True</p>
+<p><strong>ret</strong> : 1d array, bool, len(arr)</p>
+<blockquote>
+<div><p>Bool mask array for indexing <cite>arr</cite>. <code class="docutils literal"><span class="pre">arr[ret]</span></code> pulls out all values
+which are also in <cite>values</cite>.</p>
+</div></blockquote>
+<p><strong>idx_lst</strong> : 1d array</p>
+<blockquote class="last">
+<div><p>Indices for which <code class="docutils literal"><span class="pre">arr[idx_lst[i]]</span></code> equals some value in <cite>values</cite>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-obj docutils literal"><span class="pre">numpy.in1d</span></code></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span><span class="o">=</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]);</span> <span class="n">values</span><span class="o">=</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">num</span><span class="o">.</span><span class="n">match_mask</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+<span class="go">array([ True, False,  True, False, False], dtype=bool)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">num</span><span class="o">.</span><span class="n">match_mask</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">fullout</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">(array([ True, False,  True, False, False], dtype=bool), array([0, 2]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span><span class="p">[</span><span class="n">num</span><span class="o">.</span><span class="n">match_mask</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">values</span><span class="p">)]</span>
+<span class="go">array([1, 3])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># handle cases where len(values) &gt; len(arr) and values not contained in arr</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span><span class="o">=</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]);</span> <span class="n">values</span><span class="o">=</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">num</span><span class="o">.</span><span class="n">match_mask</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">fullout</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">(array([ True, False,  True, False, False], dtype=bool), array([0, 2]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># float values: use eps</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">num</span><span class="o">.</span><span class="n">match_mask</span><span class="p">(</span><span class="n">arr</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">fullout</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="go">(array([ True, False,  True, False, False], dtype=bool), array([0, 2]))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.meshgridt.html" title="pwtools.num.meshgridt"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.inner_points_mask.html" title="pwtools.num.inner_points_mask"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="num.html" >num</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

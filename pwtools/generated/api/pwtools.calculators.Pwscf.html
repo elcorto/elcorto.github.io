@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.calculators.Pwscf &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="calculators" href="calculators.html" />
+    <link rel="next" title="pwtools.calculators.Pwscf.calculate" href="pwtools.calculators.Pwscf.calculate.html" />
+    <link rel="prev" title="pwtools.calculators.Lammps.write_input" href="pwtools.calculators.Lammps.write_input.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.calculators.Pwscf.calculate.html" title="pwtools.calculators.Pwscf.calculate"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.calculators.Lammps.write_input.html" title="pwtools.calculators.Lammps.write_input"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="calculators.html" accesskey="U">calculators</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.calculators.Lammps.write_input.html"
+                        title="previous chapter">pwtools.calculators.Lammps.write_input</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.calculators.Pwscf.calculate.html"
+                        title="next chapter">pwtools.calculators.Pwscf.calculate</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.calculators.Pwscf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-calculators-pwscf">
+<h1>pwtools.calculators.Pwscf<a class="headerlink" href="#pwtools-calculators-pwscf" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.calculators.Pwscf">
+<em class="property">class </em><code class="descclassname">pwtools.calculators.</code><code class="descname">Pwscf</code><span class="sig-paren">(</span><em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/calculators.html#Pwscf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.calculators.Pwscf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">ase.calculators.calculator.FileIOCalculator</span></code>, <a class="reference internal" href="pwtools.calculators.CalculatorBase.html#pwtools.calculators.CalculatorBase" title="pwtools.calculators.CalculatorBase"><code class="xref py py-class docutils literal"><span class="pre">pwtools.calculators.CalculatorBase</span></code></a></p>
+<p>Pwscf (pw.x) calculator.</p>
+<p>ATM, we don&#8217;t write a <code class="docutils literal"><span class="pre">ase.calculators.calculator.Parameters</span></code> class
+(dict) and have no read() method so I guess that restarts don&#8217;t work. Only
+simple SCF runs for now.</p>
+<p class="rubric">Examples</p>
+<p>Define a calculator object:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">calc</span><span class="o">=</span><span class="n">Pwscf</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;/path/to/calculation/dir/pw&#39;</span><span class="p">,</span>
+<span class="gp">... </span>           <span class="n">kpts</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mf">0.35</span><span class="p">,</span> 
+<span class="gp">... </span>           <span class="n">ecutwfc</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
+<span class="gp">... </span>           <span class="n">conv_thr</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span>
+<span class="gp">... </span>           <span class="n">pp</span><span class="o">=</span><span class="s">&#39;pbe-n-kjpaw_psl.0.1.UPF&#39;</span><span class="p">,</span>
+<span class="gp">... </span>           <span class="n">pseudo_dir</span><span class="o">=</span><span class="s">&#39;/home/schmerler/soft/share/espresso/pseudo/espresso/&#39;</span><span class="p">,</span>
+<span class="gp">... </span>           <span class="n">calc_name</span><span class="o">=</span><span class="s">&#39;my_calc&#39;</span><span class="p">,</span> 
+<span class="gp">... </span>           <span class="n">outdir</span><span class="o">=</span><span class="s">&#39;/scratch/schmerler/&#39;</span><span class="p">,</span> 
+<span class="gp">... </span>           <span class="n">command</span><span class="o">=</span><span class="s">&#39;mpirun -np 16 pw.x &lt; pw.in &gt; pw.out&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">at</span><span class="o">=</span><span class="n">crys</span><span class="o">.</span><span class="n">Structure</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">get_ase_atoms</span><span class="p">(</span><span class="n">pbc</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">at</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">calc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">at</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Relation to ASE k-grid tools:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>    
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ase.calculators.calculator</span> <span class="kn">import</span> <span class="n">kpts2mp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.crys</span> <span class="kn">import</span> <span class="n">kgrid</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">=</span><span class="n">crys</span><span class="o">.</span><span class="n">Structure</span><span class="p">(</span><span class="n">cell</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span> 
+<span class="gp">... </span>                  <span class="n">coords</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>
+<span class="gp">... </span>                  <span class="n">symbols</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;H&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">at</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">get_ase_atoms</span><span class="p">(</span><span class="n">pbc</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">crys</span><span class="o">.</span><span class="n">kgrid</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">cell</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
+<span class="go">array([4, 6, 6])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kpts2mp</span><span class="p">(</span><span class="n">at</span><span class="p">,</span> <span class="n">kpts</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mf">0.35</span><span class="p">)</span>
+<span class="go">array([4, 6, 6])</span>
+</pre></div>
+</div>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="41%" />
+<col width="59%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>command</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Pwscf.calculate.html#pwtools.calculators.Pwscf.calculate" title="pwtools.calculators.Pwscf.calculate"><code class="xref py py-obj docutils literal"><span class="pre">calculate</span></code></a>([atoms,&nbsp;properties,&nbsp;system_changes])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Pwscf.calculate_numerical_forces.html#pwtools.calculators.Pwscf.calculate_numerical_forces" title="pwtools.calculators.Pwscf.calculate_numerical_forces"><code class="xref py py-obj docutils literal"><span class="pre">calculate_numerical_forces</span></code></a>(atoms[,&nbsp;d])</td>
+<td>Calculate numerical forces using finite difference.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Pwscf.calculation_required.html#pwtools.calculators.Pwscf.calculation_required" title="pwtools.calculators.Pwscf.calculation_required"><code class="xref py py-obj docutils literal"><span class="pre">calculation_required</span></code></a>(atoms,&nbsp;properties)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Pwscf.check_state.html#pwtools.calculators.Pwscf.check_state" title="pwtools.calculators.Pwscf.check_state"><code class="xref py py-obj docutils literal"><span class="pre">check_state</span></code></a>(atoms[,&nbsp;tol])</td>
+<td>Check for system changes since last calculation.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Pwscf.fill_infile_templ.html#pwtools.calculators.Pwscf.fill_infile_templ" title="pwtools.calculators.Pwscf.fill_infile_templ"><code class="xref py py-obj docutils literal"><span class="pre">fill_infile_templ</span></code></a>()</td>
+<td>Replace all placeholders in <code class="docutils literal"><span class="pre">self.infile_templ</span></code>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Pwscf.get_atoms.html#pwtools.calculators.Pwscf.get_atoms" title="pwtools.calculators.Pwscf.get_atoms"><code class="xref py py-obj docutils literal"><span class="pre">get_atoms</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Pwscf.get_charges.html#pwtools.calculators.Pwscf.get_charges" title="pwtools.calculators.Pwscf.get_charges"><code class="xref py py-obj docutils literal"><span class="pre">get_charges</span></code></a>([atoms])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Pwscf.get_default_parameters.html#pwtools.calculators.Pwscf.get_default_parameters" title="pwtools.calculators.Pwscf.get_default_parameters"><code class="xref py py-obj docutils literal"><span class="pre">get_default_parameters</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Pwscf.get_dipole_moment.html#pwtools.calculators.Pwscf.get_dipole_moment" title="pwtools.calculators.Pwscf.get_dipole_moment"><code class="xref py py-obj docutils literal"><span class="pre">get_dipole_moment</span></code></a>([atoms])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Pwscf.get_forces.html#pwtools.calculators.Pwscf.get_forces" title="pwtools.calculators.Pwscf.get_forces"><code class="xref py py-obj docutils literal"><span class="pre">get_forces</span></code></a>([atoms])</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Pwscf.get_magnetic_moment.html#pwtools.calculators.Pwscf.get_magnetic_moment" title="pwtools.calculators.Pwscf.get_magnetic_moment"><code class="xref py py-obj docutils literal"><span class="pre">get_magnetic_moment</span></code></a>([atoms])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Pwscf.get_magnetic_moments.html#pwtools.calculators.Pwscf.get_magnetic_moments" title="pwtools.calculators.Pwscf.get_magnetic_moments"><code class="xref py py-obj docutils literal"><span class="pre">get_magnetic_moments</span></code></a>([atoms])</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Pwscf.get_potential_energy.html#pwtools.calculators.Pwscf.get_potential_energy" title="pwtools.calculators.Pwscf.get_potential_energy"><code class="xref py py-obj docutils literal"><span class="pre">get_potential_energy</span></code></a>([atoms,&nbsp;force_consistent])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Pwscf.get_property.html#pwtools.calculators.Pwscf.get_property" title="pwtools.calculators.Pwscf.get_property"><code class="xref py py-obj docutils literal"><span class="pre">get_property</span></code></a>(name[,&nbsp;atoms,&nbsp;allow_calculation])</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Pwscf.get_spin_polarized.html#pwtools.calculators.Pwscf.get_spin_polarized" title="pwtools.calculators.Pwscf.get_spin_polarized"><code class="xref py py-obj docutils literal"><span class="pre">get_spin_polarized</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Pwscf.get_stress.html#pwtools.calculators.Pwscf.get_stress" title="pwtools.calculators.Pwscf.get_stress"><code class="xref py py-obj docutils literal"><span class="pre">get_stress</span></code></a>([atoms])</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Pwscf.init_params_from_input.html#pwtools.calculators.Pwscf.init_params_from_input" title="pwtools.calculators.Pwscf.init_params_from_input"><code class="xref py py-obj docutils literal"><span class="pre">init_params_from_input</span></code></a>(kwds)</td>
+<td>Set <code class="docutils literal"><span class="pre">self.parameters</span> <span class="pre">=</span> <span class="pre">self.default_parameters</span></code> and update with input keyword arguments <cite>kwds</cite>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Pwscf.read.html#pwtools.calculators.Pwscf.read" title="pwtools.calculators.Pwscf.read"><code class="xref py py-obj docutils literal"><span class="pre">read</span></code></a>(label)</td>
+<td>Read atoms, parameters and calculated properties from output file.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Pwscf.read_atoms.html#pwtools.calculators.Pwscf.read_atoms" title="pwtools.calculators.Pwscf.read_atoms"><code class="xref py py-obj docutils literal"><span class="pre">read_atoms</span></code></a>(restart,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Pwscf.read_results.html#pwtools.calculators.Pwscf.read_results" title="pwtools.calculators.Pwscf.read_results"><code class="xref py py-obj docutils literal"><span class="pre">read_results</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Pwscf.reset.html#pwtools.calculators.Pwscf.reset" title="pwtools.calculators.Pwscf.reset"><code class="xref py py-obj docutils literal"><span class="pre">reset</span></code></a>()</td>
+<td>Clear all information from old calculation.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Pwscf.set.html#pwtools.calculators.Pwscf.set" title="pwtools.calculators.Pwscf.set"><code class="xref py py-obj docutils literal"><span class="pre">set</span></code></a>(**kwargs)</td>
+<td>Set parameters like set(key1=value1, key2=value2, ...).</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Pwscf.set_label.html#pwtools.calculators.Pwscf.set_label" title="pwtools.calculators.Pwscf.set_label"><code class="xref py py-obj docutils literal"><span class="pre">set_label</span></code></a>(label)</td>
+<td>Set label and convert label to directory and prefix.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Pwscf.todict.html#pwtools.calculators.Pwscf.todict" title="pwtools.calculators.Pwscf.todict"><code class="xref py py-obj docutils literal"><span class="pre">todict</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Pwscf.write_input.html#pwtools.calculators.Pwscf.write_input" title="pwtools.calculators.Pwscf.write_input"><code class="xref py py-obj docutils literal"><span class="pre">write_input</span></code></a>(atoms[,&nbsp;properties,&nbsp;system_changes])</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pwtools.calculators.Pwscf.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/calculators.html#Pwscf.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.calculators.Pwscf.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>All parameters: ``self.parameters.keys()``</strong></p>
+<p><strong>label</strong> : str</p>
+<blockquote>
+<div><p>Basename of input and output files (e.g. &#8216;pw&#8217;) or a path to the
+calculation dir <em>including</em> the basename (&#8216;/path/to/pw&#8217;, where
+directory=&#8217;/path/to&#8217; and prefix=&#8217;pw&#8217;). In <code class="docutils literal"><span class="pre">self.command</span></code>,
+&#8216;&lt;prefix&gt;.in&#8217; and &#8216;&lt;prefix&gt;.out&#8217; are used.</p>
+</div></blockquote>
+<p><strong>kpts</strong> : ASE k-points description</p>
+<blockquote>
+<div><p>Examples: <code class="docutils literal"><span class="pre">3.5</span></code>, <code class="docutils literal"><span class="pre">[6,6,4]</span></code>.
+If a float <code class="docutils literal"><span class="pre">x</span></code> is used, then it is the inverse of the
+k-grid spacing <cite>h</cite> per reciprocal axis 
+as in <code class="docutils literal"><span class="pre">kpts=pwtools.crys.kgrid(struct.cell,</span> <span class="pre">h=1/x)</span></code></p>
+</div></blockquote>
+<p><strong>calc_name</strong> : str</p>
+<blockquote>
+<div><p>&#8216;prefix&#8217; in PWscf</p>
+</div></blockquote>
+<p><strong>pp</strong> : str or sequence</p>
+<blockquote>
+<div><p>Definition of the pseudopotential file and thus <cite>xc</cite>. If <cite>pp</cite> is a
+string (e.g. &#8216;pbe-n-kjpaw_psl.0.1.UPF&#8217;), then the atom symbols are
+used to build the PP file name
+<code class="docutils literal"><span class="pre">'&lt;atom_symbol&gt;.pbe-n-kjpaw_psl.0.1.UPF'</span></code> for each atom type. Needs
+a file of that name in <cite>pseudo_dir</cite>. If <cite>pp</cite> is a list, e.g.
+<code class="docutils literal"><span class="pre">['Al.pbe-n-kjpaw_psl.0.1.UPF',</span> <span class="pre">'N.pbe-n-kjpaw_psl.0.1.UPF']</span></code>,
+then this is used for each atom type.</p>
+</div></blockquote>
+<p><strong>outdir, pseudo_dir, ecutwfc, ecutrho, diagonalization, mixing_mode,</strong></p>
+<p><strong>mixing_beta, electron_maxstep, conv_thr</strong> : as in PWscf, see</p>
+<blockquote>
+<div><p><a class="reference external" href="http://www.quantum-espresso.org/wp-content/uploads/Doc/INPUT_PW.html">http://www.quantum-espresso.org/wp-content/uploads/Doc/INPUT_PW.html</a></p>
+</div></blockquote>
+<p><strong>backup</strong> : bool</p>
+<blockquote class="last">
+<div><p>make backup of old pw.in and pw.out if found, uses
+<a class="reference internal" href="pwtools.common.backup.html#pwtools.common.backup" title="pwtools.common.backup"><code class="xref py py-func docutils literal"><span class="pre">backup()</span></code></a></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.calculators.Pwscf.calculate.html" title="pwtools.calculators.Pwscf.calculate"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.calculators.Lammps.write_input.html" title="pwtools.calculators.Lammps.write_input"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="calculators.html" >calculators</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

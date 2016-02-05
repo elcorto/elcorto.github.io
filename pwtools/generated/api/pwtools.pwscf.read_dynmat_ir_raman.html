@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.pwscf.read_dynmat_ir_raman &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="pwscf" href="pwscf.html" />
+    <link rel="next" title="pwtools.pwscf.read_dynmat_out" href="pwtools.pwscf.read_dynmat_out.html" />
+    <link rel="prev" title="pwtools.pwscf.read_dynmat" href="pwtools.pwscf.read_dynmat.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.pwscf.read_dynmat_out.html" title="pwtools.pwscf.read_dynmat_out"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.pwscf.read_dynmat.html" title="pwtools.pwscf.read_dynmat"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="pwscf.html" accesskey="U">pwscf</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.pwscf.read_dynmat.html"
+                        title="previous chapter">pwtools.pwscf.read_dynmat</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.pwscf.read_dynmat_out.html"
+                        title="next chapter">pwtools.pwscf.read_dynmat_out</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.pwscf.read_dynmat_ir_raman.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-pwscf-read-dynmat-ir-raman">
+<h1>pwtools.pwscf.read_dynmat_ir_raman<a class="headerlink" href="#pwtools-pwscf-read-dynmat-ir-raman" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.pwscf.read_dynmat_ir_raman">
+<code class="descclassname">pwtools.pwscf.</code><code class="descname">read_dynmat_ir_raman</code><span class="sig-paren">(</span><em>filename='dynmat.out'</em>, <em>natoms=None</em>, <em>cols={1: 'freqs'</em>, <em>3: 'ir'</em>, <em>4: 'raman'</em>, <em>5: 'depol'}</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#read_dynmat_ir_raman"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.read_dynmat_ir_raman" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read <code class="docutils literal"><span class="pre">dynmat.x</span></code> text output file and extract IR and Raman
+intensities.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>filename</strong> : str</p>
+<blockquote>
+<div><p>dynmat.x text output file (e.g. from <code class="docutils literal"><span class="pre">dynmat.x</span> <span class="pre">&lt;</span> <span class="pre">dynmat.in</span> <span class="pre">&gt;</span>
+<span class="pre">dynmat.out</span></code>)</p>
+</div></blockquote>
+<p><strong>natoms</strong> : int</p>
+<blockquote>
+<div><p>number of atoms in the cell</p>
+</div></blockquote>
+<p><strong>cols</strong> : dict</p>
+<blockquote>
+<div><p>column numbers of the text block</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">cols = None</p>
+<blockquote>
+<div><p>Return the parsed array as found in the file</p>
+</div></blockquote>
+<p>cols = dict</p>
+<blockquote class="last">
+<div><p>Return dict with keys from <cite>cols</cite> and 1d arrays <code class="docutils literal"><span class="pre">{'freqs':</span> <span class="pre">&lt;array&gt;,</span>
+<span class="pre">'ir':</span> <span class="pre">&lt;array&gt;,</span> <span class="pre">'raman':</span> <span class="pre">&lt;array&gt;,</span> <span class="pre">'depol':</span> <span class="pre">&lt;array&gt;}</span></code>. If a column is
+not present, the array is None.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>The parsed textblock looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre># mode   [cm-1]    [THz]      IR          Raman   depol.fact
+    1      0.00    0.0000    0.0000         0.0005    0.7414
+    2      0.00    0.0000    0.0000         0.0005    0.7465
+    3      0.00    0.0000    0.0000         0.0018    0.2647
+    4    252.27    7.5627    0.0000         0.0073    0.7500
+    5    252.27    7.5627    0.0000         0.0073    0.7500
+    6    548.44   16.4419    0.0000         0.0000    0.7434
+    7    603.32   18.0872   35.9045        18.9075    0.7366
+    8    656.82   19.6910    0.0000         7.9317    0.7500
+    9    656.82   19.6910    0.0000         7.9317    0.7500
+   10    669.67   20.0762   31.5712         5.0265    0.7500
+   11    738.22   22.1311    0.0000         0.0000    0.7306
+   12    922.64   27.6600   31.5712         5.0265    0.7500
+</pre></div>
+</div>
+<p>Some columns (e.g. IR, Raman) may be missing.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.pwscf.read_dynmat_out.html" title="pwtools.pwscf.read_dynmat_out"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.pwscf.read_dynmat.html" title="pwtools.pwscf.read_dynmat"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="pwscf.html" >pwscf</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

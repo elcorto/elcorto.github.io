@@ -1,0 +1,661 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.eos &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for pwtools.eos</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">EOS fitting. Use :class:`EosFit` (only Vinet EOS for now).</span>
+
+<span class="sd">Also: Old interface class :class:`ElkEOSFit` and the base class</span>
+<span class="sd">:class:`ExternEOS` for calling extern EOS fitting applications. Compile the app</span>
+<span class="sd">to produce an executable, e.g. ``eos.x``. Then use ``app=&#39;/path/to/eos.x&#39;`` in</span>
+<span class="sd">the constructor. Has another API than :class:`EosFit`, e.g. the</span>
+<span class="sd">:meth:`EosFit.get_min` method is different from :meth:`ElkEOSFit.get_min`.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span><span class="o">,</span> <span class="nn">types</span><span class="o">,</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pwtools</span> <span class="kn">import</span> <span class="n">common</span><span class="p">,</span> <span class="n">constants</span><span class="p">,</span> <span class="n">num</span>
+<span class="kn">from</span> <span class="nn">pwtools.constants</span> <span class="kn">import</span> <span class="n">Ry</span><span class="p">,</span> <span class="n">Ha</span><span class="p">,</span> <span class="n">Bohr</span><span class="p">,</span> <span class="n">Ang</span><span class="p">,</span> <span class="n">eV</span><span class="p">,</span> <span class="n">eV_by_Ang3_to_GPa</span>
+<span class="kn">from</span> <span class="nn">pwtools.base</span> <span class="kn">import</span> <span class="n">FlexibleGetters</span>
+<span class="kn">from</span> <span class="nn">pwtools.decorators</span> <span class="kn">import</span> <span class="n">lazyprop</span>
+<span class="kn">from</span> <span class="nn">pwtools.num</span> <span class="kn">import</span> <span class="n">Fit1D</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">leastsq</span>
+
+
+<div class="viewcode-block" id="_vinet"><a class="viewcode-back" href="../../generated/api/pwtools.eos._vinet.html#pwtools.eos._vinet">[docs]</a><span class="k">def</span> <span class="nf">_vinet</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Vinet equation from PRB 70, 224107, from pymatgen.&quot;&quot;&quot;</span>
+    <span class="n">E0</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">B1</span><span class="p">,</span> <span class="n">V0</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s">&#39;e0&#39;</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="s">&#39;b0&#39;</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="s">&#39;b1&#39;</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="s">&#39;v0&#39;</span><span class="p">]</span>
+    <span class="n">eta</span> <span class="o">=</span> <span class="p">(</span><span class="n">V</span><span class="o">/</span><span class="n">V0</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">E0</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">B0</span><span class="o">*</span><span class="n">V0</span><span class="o">/</span><span class="p">(</span><span class="n">B1</span><span class="o">-</span><span class="mf">1.</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> \
+           <span class="o">*</span> <span class="p">(</span><span class="mf">2.</span> <span class="o">-</span> <span class="p">(</span><span class="mf">5.</span> <span class="o">+</span><span class="mf">3.</span><span class="o">*</span><span class="n">B1</span><span class="o">*</span><span class="p">(</span><span class="n">eta</span><span class="o">-</span><span class="mf">1.</span><span class="p">)</span><span class="o">-</span><span class="mf">3.</span><span class="o">*</span><span class="n">eta</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">3.</span><span class="o">*</span><span class="p">(</span><span class="n">B1</span><span class="o">-</span><span class="mf">1.</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">eta</span><span class="o">-</span><span class="mf">1.</span><span class="p">)</span><span class="o">/</span><span class="mf">2.</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="_vinet_deriv1"><a class="viewcode-back" href="../../generated/api/pwtools.eos._vinet_deriv1.html#pwtools.eos._vinet_deriv1">[docs]</a><span class="k">def</span> <span class="nf">_vinet_deriv1</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Vinet first derivative dE/dV.&quot;&quot;&quot;</span>
+    <span class="c"># Thank you, Maxima!</span>
+    <span class="n">E0</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">B1</span><span class="p">,</span> <span class="n">V0</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s">&#39;e0&#39;</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="s">&#39;b0&#39;</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="s">&#39;b1&#39;</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="s">&#39;v0&#39;</span><span class="p">]</span>
+    <span class="n">eta</span> <span class="o">=</span> <span class="p">(</span><span class="n">V</span><span class="o">/</span><span class="n">V0</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span>
+    <span class="n">ex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.5</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">eta</span><span class="o">*</span><span class="n">B1</span> <span class="o">+</span> <span class="n">B1</span> <span class="o">+</span> <span class="n">eta</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">eta</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="n">eta</span><span class="o">**</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">B0</span> <span class="o">*</span> <span class="n">ex</span></div>
+
+
+<div class="viewcode-block" id="_vinet_deriv2"><a class="viewcode-back" href="../../generated/api/pwtools.eos._vinet_deriv2.html#pwtools.eos._vinet_deriv2">[docs]</a><span class="k">def</span> <span class="nf">_vinet_deriv2</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Vinet second derivative d^2E/dV^2.&quot;&quot;&quot;</span>
+    <span class="c"># Thank you, Maxima!</span>
+    <span class="n">E0</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">B1</span><span class="p">,</span> <span class="n">V0</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s">&#39;e0&#39;</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="s">&#39;b0&#39;</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="s">&#39;b1&#39;</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="s">&#39;v0&#39;</span><span class="p">]</span>
+    <span class="n">eta</span> <span class="o">=</span> <span class="p">(</span><span class="n">V</span><span class="o">/</span><span class="n">V0</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span>
+    <span class="n">ex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.5</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">eta</span><span class="o">*</span><span class="n">B1</span> <span class="o">+</span> <span class="n">B1</span> <span class="o">+</span> <span class="n">eta</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">B0</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">eta</span><span class="o">**</span><span class="mf">2.0</span><span class="o">*</span><span class="n">B1</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">eta</span><span class="o">*</span><span class="n">B1</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">eta</span><span class="o">**</span><span class="mf">2.0</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">eta</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span> <span class="o">/</span> \
+            <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">eta</span><span class="o">**</span><span class="mi">5</span> <span class="o">*</span> <span class="n">V0</span><span class="p">)</span> <span class="o">*</span> <span class="n">ex</span></div>
+
+
+<div class="viewcode-block" id="MaxDerivException"><a class="viewcode-back" href="../../generated/api/pwtools.eos.MaxDerivException.html#pwtools.eos.MaxDerivException">[docs]</a><span class="k">class</span> <span class="nc">MaxDerivException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">msg</span></div>
+
+
+<div class="viewcode-block" id="EVFunction"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EVFunction.html#pwtools.eos.EVFunction">[docs]</a><span class="k">class</span> <span class="nc">EVFunction</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param_order</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;e0&#39;</span><span class="p">,</span> <span class="s">&#39;b0&#39;</span><span class="p">,</span> <span class="s">&#39;b1&#39;</span><span class="p">,</span> <span class="s">&#39;v0&#39;</span><span class="p">]</span>
+    
+<div class="viewcode-block" id="EVFunction.evaluate"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EVFunction.evaluate.html#pwtools.eos.EVFunction.evaluate">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Evaluate function for x-axis `volume`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        volume : scalar, 1d array</span>
+<span class="sd">            volume per atom [Ang^3]</span>
+<span class="sd">        params : dict</span>
+<span class="sd">            {&#39;e0&#39;, &#39;b0&#39;, &#39;b1&#39;, &#39;v0&#39;} in eV, eV/Ang^3, 1, Ang^3</span>
+<span class="sd">        &quot;&quot;&quot;</span>    
+        <span class="k">pass</span></div>
+    
+<div class="viewcode-block" id="EVFunction.deriv"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EVFunction.deriv.html#pwtools.eos.EVFunction.deriv">[docs]</a>    <span class="k">def</span> <span class="nf">deriv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate derivative of E(V) of order `der`. ``der=1`` is the first</span>
+<span class="sd">        deriv etc.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        volume : scalar, 1d array</span>
+<span class="sd">            volume per atom [Ang^3]</span>
+<span class="sd">        params : dict</span>
+<span class="sd">            {&#39;e0&#39;, &#39;b0&#39;, &#39;b1&#39;, &#39;v0&#39;} in eV, eV/Ang^3, 1, Ang^3</span>
+<span class="sd">        der : int</span>
+<span class="sd">            derivative order</span>
+<span class="sd">        &quot;&quot;&quot;</span>    
+        <span class="k">pass</span></div>
+    
+<div class="viewcode-block" id="EVFunction.get_min"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EVFunction.get_min.html#pwtools.eos.EVFunction.get_min">[docs]</a>    <span class="k">def</span> <span class="nf">get_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="EVFunction.__call__"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EVFunction.__call__.html#pwtools.eos.EVFunction.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">der</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">deriv</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">der</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="EVFunction.lst2dct"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EVFunction.lst2dct.html#pwtools.eos.EVFunction.lst2dct">[docs]</a>    <span class="k">def</span> <span class="nf">lst2dct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lst</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">k</span><span class="p">,</span> <span class="n">lst</span><span class="p">[</span><span class="n">ii</span><span class="p">])</span> <span class="k">for</span> <span class="n">ii</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param_order</span><span class="p">)])</span></div>
+
+<div class="viewcode-block" id="EVFunction.dct2lst"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EVFunction.dct2lst.html#pwtools.eos.EVFunction.dct2lst">[docs]</a>    <span class="k">def</span> <span class="nf">dct2lst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">dct</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_order</span><span class="p">]</span></div></div>
+    
+
+<div class="viewcode-block" id="Vinet"><a class="viewcode-back" href="../../generated/api/pwtools.eos.Vinet.html#pwtools.eos.Vinet">[docs]</a><span class="k">class</span> <span class="nc">Vinet</span><span class="p">(</span><span class="n">EVFunction</span><span class="p">):</span>
+<div class="viewcode-block" id="Vinet.evaluate"><a class="viewcode-back" href="../../generated/api/pwtools.eos.Vinet.evaluate.html#pwtools.eos.Vinet.evaluate">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_vinet</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Vinet.deriv"><a class="viewcode-back" href="../../generated/api/pwtools.eos.Vinet.deriv.html#pwtools.eos.Vinet.deriv">[docs]</a>    <span class="k">def</span> <span class="nf">deriv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">der</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_vinet_deriv1</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">der</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_vinet_deriv2</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">MaxDerivException</span><span class="p">(</span><span class="s">&quot;der </span><span class="si">%i</span><span class="s"> not supported&quot;</span> <span class="o">%</span><span class="n">der</span><span class="p">)</span></div></div>
+    
+
+<span class="c"># Before using this a fitfunc in thermo.Gibbs, test it! You may need to</span>
+<span class="c"># implement data scaling, as we do in num.PolyFit.</span>
+<div class="viewcode-block" id="EosFit"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EosFit.html#pwtools.eos.EosFit">[docs]</a><span class="k">class</span> <span class="nc">EosFit</span><span class="p">(</span><span class="n">Fit1D</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;E(V) fit class.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from pwtools.eos import EosFit</span>
+<span class="sd">    &gt;&gt;&gt; from pwtools.constants import eV_by_Ang3_to_GPa</span>
+<span class="sd">    &gt;&gt;&gt; V = linspace(30, 50, 20)</span>
+<span class="sd">    &gt;&gt;&gt; E = (V-40)**2.0 / 50.0 + 30 + rand(len(V)) / 5.0</span>
+<span class="sd">    &gt;&gt;&gt; plot(V, E, &#39;o&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; f = EosFit(V, E)</span>
+<span class="sd">    &gt;&gt;&gt; vv = linspace(V.min(), V.max(), 200)</span>
+<span class="sd">    &gt;&gt;&gt; plot(vv, f(vv), &#39;r-&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; v0 = f.params[&#39;v0&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; print &quot;compare fit params and values obtained from methods:&quot;</span>
+<span class="sd">    &gt;&gt;&gt; print &quot;V0: %f Ang^3 (%f)&quot; %(v0, f.get_min())</span>
+<span class="sd">    &gt;&gt;&gt; print &quot;B0: %f GPa   (%f)&quot; %(f.params[&#39;b0&#39;]*eV_by_Ang3_to_GPa, f.bulkmod(v0))</span>
+<span class="sd">    &gt;&gt;&gt; print &quot;B1: %f           &quot; %f.params[&#39;b1&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; print &quot;E0: %f  eV   (%f)&quot; %(f.params[&#39;e0&#39;], f(v0))</span>
+<span class="sd">    &gt;&gt;&gt; print &quot;P0: %f GPa       &quot; %f.pressure(v0)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="EosFit.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EosFit.html#pwtools.eos.EosFit.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">Vinet</span><span class="p">(),</span> <span class="n">splpoints</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        volume : 1d array</span>
+<span class="sd">            volume per atom [Ang^3]</span>
+<span class="sd">        energy : 1d array</span>
+<span class="sd">            total energy per atom [eV]</span>
+<span class="sd">        func : EVFunction instance</span>
+<span class="sd">        splpoints : int</span>
+<span class="sd">            number of spline points for fallback derivative calculation</span>
+<span class="sd">        &quot;&quot;&quot;</span>    
+        <span class="n">Fit1D</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">volume</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">energy</span> <span class="o">=</span> <span class="n">energy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">volume</span> <span class="o">=</span> <span class="n">volume</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">splpoints</span> <span class="o">=</span> <span class="n">splpoints</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span></div>
+    
+    <span class="nd">@lazyprop</span>
+    <span class="k">def</span> <span class="nf">spl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Spline thru the fitted E(V) b/c we are too lazy to calculate the</span>
+<span class="sd">        analytic derivative. Fallback.&quot;&quot;&quot;</span>
+        <span class="c"># use many points for accurate deriv</span>
+        <span class="n">vv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">volume</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">splpoints</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">num</span><span class="o">.</span><span class="n">Spline</span><span class="p">(</span><span class="n">vv</span><span class="p">,</span> <span class="bp">self</span><span class="p">(</span><span class="n">vv</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="EosFit.fit"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EosFit.fit.html#pwtools.eos.EosFit.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># Quadratic fit to get an initial guess for the parameters. </span>
+        <span class="c"># Thanks: https://github.com/materialsproject/pymatgen</span>
+        <span class="c"># -&gt; pymatgen/io/abinitio/eos.py </span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">volume</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">v0</span> <span class="o">=</span> <span class="o">-</span><span class="n">b</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">e0</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">v0</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">v0</span> <span class="o">+</span> <span class="n">c</span>
+        <span class="n">b0</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">v0</span>
+        <span class="n">b1</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c"># b1 is usually a small number like 4</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">v0</span> <span class="ow">and</span> <span class="n">v0</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span><span class="o">.</span><span class="n">max</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">StandardError</span><span class="p">(</span><span class="s">&#39;The minimum volume of a fitted parabola is not in the input volumes&#39;</span><span class="p">)</span>
+        
+        <span class="c"># need to use lst2dct and dct2lst here to keep the order of parameters </span>
+        <span class="n">pp0_dct</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">e0</span><span class="o">=</span><span class="n">e0</span><span class="p">,</span> <span class="n">b0</span><span class="o">=</span><span class="n">b0</span><span class="p">,</span> <span class="n">b1</span><span class="o">=</span><span class="n">b1</span><span class="p">,</span> <span class="n">v0</span><span class="o">=</span><span class="n">v0</span><span class="p">)</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">pp</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">lst2dct</span><span class="p">(</span><span class="n">pp</span><span class="p">))</span>
+        <span class="n">pp_opt</span><span class="p">,</span> <span class="n">ierr</span> <span class="o">=</span> <span class="n">leastsq</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> 
+                               <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">dct2lst</span><span class="p">(</span><span class="n">pp0_dct</span><span class="p">),</span> 
+                               <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">volume</span><span class="p">,))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">lst2dct</span><span class="p">(</span><span class="n">pp_opt</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EosFit.__call__"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EosFit.__call__.html#pwtools.eos.EosFit.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        volume : scalar, 1d array</span>
+<span class="sd">            volume per atom [Ang^3]</span>
+<span class="sd">        der : int</span>
+<span class="sd">            derivative order</span>
+<span class="sd">        &quot;&quot;&quot;</span>     
+        <span class="k">try</span><span class="p">:</span>    
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="n">der</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">MaxDerivException</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">spl</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="n">der</span><span class="p">)</span></div>
+    
+    <span class="c"># Fit1D compat</span>
+<div class="viewcode-block" id="EosFit.get_min"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EosFit.get_min.html#pwtools.eos.EosFit.get_min">[docs]</a>    <span class="k">def</span> <span class="nf">get_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;V0 [Ang^3]&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s">&#39;v0&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s">&#39;v0&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>    
+            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">EosFit</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_min</span><span class="p">()</span></div>
+    
+<div class="viewcode-block" id="EosFit.pressure"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EosFit.pressure.html#pwtools.eos.EosFit.pressure">[docs]</a>    <span class="k">def</span> <span class="nf">pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">volume</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;P(V) [GPa]</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        volume : scalar, 1d array</span>
+<span class="sd">            volume per atom [Ang^3]</span>
+<span class="sd">        &quot;&quot;&quot;</span>     
+        <span class="k">return</span> <span class="o">-</span><span class="bp">self</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">eV_by_Ang3_to_GPa</span></div>
+    
+<div class="viewcode-block" id="EosFit.bulkmod"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EosFit.bulkmod.html#pwtools.eos.EosFit.bulkmod">[docs]</a>    <span class="k">def</span> <span class="nf">bulkmod</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">volume</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;B(V) [GPa]</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        volume : scalar, 1d array</span>
+<span class="sd">            volume per atom [Ang^3]</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s">&#39;b0&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s">&#39;b0&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">eV_by_Ang3_to_GPa</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">volume</span> <span class="o">*</span> <span class="bp">self</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">eV_by_Ang3_to_GPa</span></div></div>
+
+
+<div class="viewcode-block" id="ExternEOS"><a class="viewcode-back" href="../../generated/api/pwtools.eos.ExternEOS.html#pwtools.eos.ExternEOS">[docs]</a><span class="k">class</span> <span class="nc">ExternEOS</span><span class="p">(</span><span class="n">FlexibleGetters</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for calling extern EOS-fitting executables. The class</span>
+<span class="sd">    writes an input file, calls the app, loads E(V) fitted data and loads or</span>
+<span class="sd">    calcutates P(V), B(V).</span>
+
+<span class="sd">    The number N of data points for the returned arrays (fitted curves) are</span>
+<span class="sd">    handled by derived classes.</span>
+
+<span class="sd">    We have three &quot;representations&quot; of the data:</span>
+
+<span class="sd">    (a) input data E(V) : self.volume [Ang^3], self.energy [eV]</span>
+<span class="sd">    (b) fitted or calculated points : self.{ev,pv,bv} -- 2d arrays (N,2)</span>
+<span class="sd">        where N is the number of returned fitted points from the fitting app. N</span>
+<span class="sd">        depends on the fitting app. For instance, in ElkEOSFit, you can use</span>
+<span class="sd">        `npoints` to set N.</span>
+<span class="sd">    (c) Splines thru fitted or calculated (N,2) data ev,pv,bv :</span>
+<span class="sd">        self.spl_{ev,pv,bv}.        </span>
+<span class="sd">    </span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ev, pv, bv, spl_ev, spl_pv, spl_bv, see fit() doc string.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from pwtools import eos</span>
+<span class="sd">    &gt;&gt;&gt; efit = eos.ElkEOSFit(app=&#39;eos.x&#39;, energy=ee, volume=vv)</span>
+<span class="sd">    &gt;&gt;&gt; efit.fit()</span>
+<span class="sd">    &gt;&gt;&gt; plot(vv, ee, &#39;o-&#39;, label=&#39;E(V) data&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; plot(efit.ev[:,0], efit.ev[:,1], label=&#39;E(V) fit&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; plot(efit.pv[:,0], efit.pv[:,1], label=&#39;P=-dE/dV&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; plot(efit.ev[:,0], efit.spl_ev(efit.ev[:,0]), label=&#39;spline E(V)&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; plot(efit.pv[:,0], efit.spl_pv(efit.pv[:,0]), label=&#39;spline P(V)&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; print &quot;V0={v0} E0={e0} B0={b0} P0={p0}&quot;.format(**efit.get_min())</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    For derived classes:</span>
+<span class="sd">    Implement _fit(), which sets self.{ev,pv}. `bv` and `spl_bv` are always</span>
+<span class="sd">    calculated from `ev` or `pv` when :meth:`fit` is called, see also</span>
+<span class="sd">    :meth:`calc_bv` and :meth:`set_bv_method`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># Notes</span>
+    <span class="c"># -----</span>
+    <span class="c"># We distinguish between the volume axis for energy ev[:,0], pressure</span>
+    <span class="c"># pv[:,0] and bulk modulus bv[:,0] b/c, depending on how P=-dE/dV or B(V)</span>
+    <span class="c"># is calculated, these may have different length. For instance, if the</span>
+    <span class="c"># pressure is calculated by finite differences, then ev.shape[0] == N,</span>
+    <span class="c"># pv.shape[0] == N-1 . This is mostly for historic reasons but also b/c</span>
+    <span class="c"># it&#39;s nice to have an array with x-y data right there.</span>
+<div class="viewcode-block" id="ExternEOS.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.eos.ExternEOS.html#pwtools.eos.ExternEOS.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">volume</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">bv_method</span><span class="o">=</span><span class="s">&#39;ev&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        app : str </span>
+<span class="sd">            name of the executable ([/path/to/]eos.x), make sure that it is on</span>
+<span class="sd">            your PATH or use an absolute path</span>
+<span class="sd">        energy : 1d array [eV]</span>
+<span class="sd">        volume : 1d array [Ang^3]</span>
+<span class="sd">        dir : str</span>
+<span class="sd">            dir where in- and outfiles are written, default is the basename of</span>
+<span class="sd">            &quot;app&quot; (e.g. &quot;eos.x&quot; for app=&#39;/path/to/eos.x&#39;)</span>
+<span class="sd">        bv_method : str, {&#39;pv&#39;, &#39;ev&#39;}</span>
+<span class="sd">            Based on which quantity should B(V) and minimum properties be</span>
+<span class="sd">            calculated.</span>
+<span class="sd">            pv: based on P(V) </span>
+<span class="sd">            ev: based on E(V) </span>
+<span class="sd">        verbose : bool</span>
+<span class="sd">            print stdout and stderr of fitting tool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s">&quot;ExternEOS is deprecated, use EosFit instead&quot;</span><span class="p">,</span>
+                      <span class="ne">DeprecationWarning</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">energy</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">volume</span><span class="p">),</span> <span class="p">(</span><span class="s">&quot;volume and energy arrays have &quot;</span>
+                                            <span class="s">&quot;not the same length&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(),</span> <span class="p">(</span><span class="s">&quot;volume seems to be wrongly &quot;</span>
+            <span class="s">&quot;sorted&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">app</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">energy</span> <span class="o">=</span> <span class="n">energy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">volume</span> <span class="o">=</span> <span class="n">volume</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app_basename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_bv_method</span><span class="p">(</span><span class="n">bv_method</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="k">if</span> <span class="nb">dir</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app_basename</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dir</span> <span class="o">=</span> <span class="nb">dir</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>            
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;After calling the fit() method, find data from &#39;</span><span class="si">%s</span><span class="s">&#39; &quot;</span>
+                  <span class="s">&quot;in </span><span class="si">%s</span><span class="s">/&quot;</span> <span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">infn</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="p">,</span> <span class="s">&#39;eos.in&#39;</span><span class="p">)</span></div>
+    
+    <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit E-V data (self.energy, self.volume) and set self.ev, self.pv .</span>
+
+<span class="sd">        This is the interface which derived classes must implement. If pv is</span>
+<span class="sd">        not calculated by the fitting tool, use smth like num.deriv_spl() to</span>
+<span class="sd">        calculate the pressure P=-dE/dV.            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ev</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pv</span> <span class="o">=</span> <span class="bp">None</span>
+    
+    <span class="c"># user-callable method</span>
+<div class="viewcode-block" id="ExternEOS.fit"><a class="viewcode-back" href="../../generated/api/pwtools.eos.ExternEOS.fit.html#pwtools.eos.ExternEOS.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit E-V data (self.energy, self.volume).</span>
+
+<span class="sd">        After calling fit(), these attrs are available:</span>
+<span class="sd">            | self.ev : 2d array (N,2) [volume [Ang^3], energy        E(V) [eV] ]</span>
+<span class="sd">            | self.pv : 2d array (N,2) [volume [Ang^3], pressure      P(V) [GPa]]</span>
+<span class="sd">            | self.bv : 2d array (N,2) [volume [Ang^3], bulk modulus  B(V) [GPa]]</span>
+<span class="sd">            | self.spl_ev : Spline thru E(V)</span>
+<span class="sd">            | self.spl_pv : Spline thru P(V)</span>
+<span class="sd">            | self.spl_bv : Spline thru B(V)</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>            
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_bv</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">try_set_attr</span><span class="p">(</span><span class="s">&#39;spl_ev&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">try_set_attr</span><span class="p">(</span><span class="s">&#39;spl_pv&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">try_set_attr</span><span class="p">(</span><span class="s">&#39;spl_bv&#39;</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_spl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">):</span>
+        <span class="c"># attr_name : &#39;ev&#39;, &#39;pv&#39;, &#39;bv&#39;</span>
+        <span class="c"># spl_attr_name : &#39;self.spl_{ev,pv,bv}&#39;</span>
+        <span class="n">spl_attr_name</span> <span class="o">=</span> <span class="s">&quot;spl_</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span><span class="n">attr_name</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_set_attr</span><span class="p">(</span><span class="n">spl_attr_name</span><span class="p">):</span>
+             <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spl_attr_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">arr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">num</span><span class="o">.</span><span class="n">Spline</span><span class="p">(</span><span class="n">arr</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">arr</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+    
+<div class="viewcode-block" id="ExternEOS.get_spl_ev"><a class="viewcode-back" href="../../generated/api/pwtools.eos.ExternEOS.get_spl_ev.html#pwtools.eos.ExternEOS.get_spl_ev">[docs]</a>    <span class="k">def</span> <span class="nf">get_spl_ev</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_spl</span><span class="p">(</span><span class="s">&#39;ev&#39;</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="ExternEOS.get_spl_pv"><a class="viewcode-back" href="../../generated/api/pwtools.eos.ExternEOS.get_spl_pv.html#pwtools.eos.ExternEOS.get_spl_pv">[docs]</a>    <span class="k">def</span> <span class="nf">get_spl_pv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_spl</span><span class="p">(</span><span class="s">&#39;pv&#39;</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="ExternEOS.get_spl_bv"><a class="viewcode-back" href="../../generated/api/pwtools.eos.ExternEOS.get_spl_bv.html#pwtools.eos.ExternEOS.get_spl_bv">[docs]</a>    <span class="k">def</span> <span class="nf">get_spl_bv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_spl</span><span class="p">(</span><span class="s">&#39;bv&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExternEOS.set_bv_method"><a class="viewcode-back" href="../../generated/api/pwtools.eos.ExternEOS.set_bv_method.html#pwtools.eos.ExternEOS.set_bv_method">[docs]</a>    <span class="k">def</span> <span class="nf">set_bv_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bv_method</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set self.bv_method, a.k.a. switch to another bv_method.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        bv_method : str</span>
+<span class="sd">            &#39;ev&#39;, &#39;pv&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bv_method</span> <span class="o">=</span> <span class="n">bv_method</span></div>
+
+<div class="viewcode-block" id="ExternEOS.calc_bv"><a class="viewcode-back" href="../../generated/api/pwtools.eos.ExternEOS.calc_bv.html#pwtools.eos.ExternEOS.calc_bv">[docs]</a>    <span class="k">def</span> <span class="nf">calc_bv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># B = -V*dP/dV</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bv_method</span> <span class="o">==</span> <span class="s">&#39;pv&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">try_set_attr</span><span class="p">(</span><span class="s">&#39;spl_pv&#39;</span><span class="p">)</span>
+            <span class="n">vv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pv</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">vv</span><span class="p">,</span> <span class="o">-</span><span class="n">vv</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">spl_pv</span><span class="p">(</span><span class="n">vv</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">1</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
+        <span class="c"># B = V*d^2E/dV^2 </span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">bv_method</span> <span class="o">==</span> <span class="s">&#39;ev&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">try_set_attr</span><span class="p">(</span><span class="s">&#39;spl_ev&#39;</span><span class="p">)</span>
+            <span class="c"># eV / Ang^3 -&gt; GPa</span>
+            <span class="n">fac</span> <span class="o">=</span> <span class="n">eV</span> <span class="o">*</span> <span class="mf">1e21</span> <span class="c"># 160.2176487</span>
+            <span class="n">vv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ev</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">vv</span><span class="p">,</span> <span class="n">vv</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">spl_ev</span><span class="p">(</span><span class="n">vv</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">fac</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StandardError</span><span class="p">(</span><span class="s">&quot;unknown bv_method: &#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span><span class="n">bv_method</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="ExternEOS.get_min"><a class="viewcode-back" href="../../generated/api/pwtools.eos.ExternEOS.get_min.html#pwtools.eos.ExternEOS.get_min">[docs]</a>    <span class="k">def</span> <span class="nf">get_min</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">behave</span><span class="o">=</span><span class="s">&#39;new&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate properites at energy minimum of E(V).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        behave : str, optional, {&#39;new&#39;, &#39;old&#39;}</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        behave = &#39;new&#39; : return a dict {v0, e0, p0, b0}</span>
+<span class="sd">            volume, energy, pressure, bulk modulus at energy min</span>
+<span class="sd">        behave = &#39;old&#39; : array of length 4 [v0, e0, b0, p0]</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        We have two sources for pressure: (a) The code which calculated E(V),</span>
+<span class="sd">        i.e. usually some ab initio code (PWscf, ...). (b) Calculated pressure</span>
+<span class="sd">        P=-dE/dV from the EOS fit to E(V). If the (a) pressure at the E(V)</span>
+<span class="sd">        minimum is not very close to zero (say ~ 1e-10), then your E-V data is</span>
+<span class="sd">        incorrect. Usually, this is because of poorly converged calculations</span>
+<span class="sd">        (low cufoff / bad basis set, too few k-points).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">try_set_attr</span><span class="p">(</span><span class="s">&#39;spl_pv&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">try_set_attr</span><span class="p">(</span><span class="s">&#39;spl_ev&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">try_set_attr</span><span class="p">(</span><span class="s">&#39;spl_bv&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bv_method</span> <span class="o">==</span> <span class="s">&#39;pv&#39;</span><span class="p">:</span>
+            <span class="n">v0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spl_pv</span><span class="o">.</span><span class="n">get_root</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">bv_method</span> <span class="o">==</span> <span class="s">&#39;ev&#39;</span><span class="p">:</span>
+            <span class="n">v0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spl_ev</span><span class="o">.</span><span class="n">get_min</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StandardError</span><span class="p">(</span><span class="s">&quot;unknown bv_method: &#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span><span class="n">bv_method</span><span class="p">)</span>
+        <span class="n">p0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spl_pv</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span>
+        <span class="n">e0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spl_ev</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span>
+        <span class="n">b0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spl_bv</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">behave</span> <span class="o">==</span> <span class="s">&#39;old&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">v0</span><span class="p">,</span> <span class="n">e0</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">b0</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">behave</span> <span class="o">==</span> <span class="s">&#39;new&#39;</span><span class="p">:</span>            
+            <span class="n">dct</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">dct</span><span class="p">[</span><span class="s">&#39;v0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">v0</span>
+            <span class="n">dct</span><span class="p">[</span><span class="s">&#39;e0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">e0</span>
+            <span class="n">dct</span><span class="p">[</span><span class="s">&#39;p0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">p0</span>
+            <span class="n">dct</span><span class="p">[</span><span class="s">&#39;b0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">b0</span>
+            <span class="k">return</span> <span class="n">dct</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StandardError</span><span class="p">(</span><span class="s">&quot;unknown value for `behave`: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span><span class="nb">str</span><span class="p">(</span><span class="n">behave</span><span class="p">))</span></div>
+    
+    <span class="k">def</span> <span class="nf">_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Call shell command &#39;cmd&#39; and merge stdout and stderr.</span>
+
+<span class="sd">        Use this instead of common.backtick() if fitting tool insists on beeing</span>
+<span class="sd">        very chatty on stderr.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pp</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> 
+                              <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                              <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> 
+                              <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">STDOUT</span><span class="p">)</span>
+        <span class="n">out</span><span class="p">,</span><span class="n">err</span> <span class="o">=</span> <span class="n">pp</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">err</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">,</span> <span class="s">&quot;stderr output is not None&quot;</span>                              
+        <span class="k">return</span> <span class="n">out</span></div>
+
+
+<div class="viewcode-block" id="ElkEOSFit"><a class="viewcode-back" href="../../generated/api/pwtools.eos.ElkEOSFit.html#pwtools.eos.ElkEOSFit">[docs]</a><span class="k">class</span> <span class="nc">ElkEOSFit</span><span class="p">(</span><span class="n">ExternEOS</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;eos.x from the Elk [1] and Exciting [2] codes.</span>
+<span class="sd">    [1] http://elk.sourceforge.net/</span>
+<span class="sd">    [2] http://exciting-code.org/</span>
+
+<span class="sd">    Note that the data produced by eos.x is divided by natoms and that energy</span>
+<span class="sd">    is in Hartree. We remove the normalization and convert Ha -&gt; eV.</span>
+<span class="sd">    </span>
+<span class="sd">    self.{ev,bv,pv} all have the same shape[0] b/c we do not use finite</span>
+<span class="sd">    differences for derivatives.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ElkEOSFit.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.eos.ElkEOSFit.html#pwtools.eos.ElkEOSFit.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="s">&#39;eos.x&#39;</span><span class="p">,</span> <span class="n">natoms</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;foo&#39;</span><span class="p">,</span> <span class="n">etype</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+                 <span class="n">npoints</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        see ExternEOS.__init__()</span>
+
+<span class="sd">        natoms : number of atoms in the unit cell, this is (I think) only used</span>
+<span class="sd">            for normalization and can be set to 1 if not needed</span>
+<span class="sd">        name : str</span>
+<span class="sd">            some dummy name for the input file</span>
+<span class="sd">        etype : int</span>
+<span class="sd">            type of EOS to fit (see below)</span>
+<span class="sd">        npoints : integer, optional</span>
+<span class="sd">            number of E-V and P-V points of the fitted curves (`nvplt` in</span>
+<span class="sd">            eos.x)</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        From the README:</span>
+<span class="sd">        The equations of state currently implemented are:</span>
+<span class="sd">         1. Universal EOS (Vinet P et al., J. Phys.: Condens. Matter 1, p1941 (1989))</span>
+<span class="sd">         2. Murnaghan EOS (Murnaghan F D, Am. J. Math. 49, p235 (1937))</span>
+<span class="sd">         3. Birch-Murnaghan 3rd-order EOS (Birch F, Phys. Rev. 71, p809 (1947))</span>
+<span class="sd">         4. Birch-Murnaghan 4th-order EOS</span>
+<span class="sd">         5. Natural strain 3rd-order EOS (Poirier J-P and Tarantola A, Phys. Earth</span>
+<span class="sd">            Planet Int. 109, p1 (1998))</span>
+<span class="sd">         6. Natural strain 4th-order EOS</span>
+<span class="sd">         7. Cubic polynomial in (V-V0)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ExternEOS</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">natoms</span> <span class="o">=</span> <span class="n">natoms</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">etype</span> <span class="o">=</span> <span class="n">etype</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">npoints</span> <span class="o">=</span> <span class="n">npoints</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">npoints</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">volume</span><span class="p">),</span> <span class="p">(</span><span class="s">&quot;npoints is &lt; number of E-V &quot;</span>
+            <span class="s">&quot;input points&quot;</span><span class="p">)</span></div>
+        <span class="c"># From the README:</span>
+        <span class="c"># ----------------</span>
+        <span class="c"># input file:</span>
+        <span class="c">#</span>
+        <span class="c"># cname               : name of crystal up to 256 characters</span>
+        <span class="c"># natoms              : number of atoms in unit cell</span>
+        <span class="c"># etype               : equation of state type (see below)</span>
+        <span class="c"># vplt1, vplt2, nvplt : volume interval over which to plot energy, pressure etc.</span>
+        <span class="c">#                       as well as the number of points in the plot</span>
+        <span class="c"># nevpt               : number of energy-volume points to be inputted</span>
+        <span class="c"># vpt(i) ept(i)       : energy-volume points (atomic units)</span>
+        <span class="c">#</span>
+        <span class="c"># Note that the input units are atomic - Bohr and Hartree (NOT Rydbergs).</span>
+        <span class="c">#</span>
+        <span class="c"># output files:</span>
+        <span class="c">#</span>
+        <span class="c"># All units are atomic unless otherwise stated</span>
+        <span class="c"># EOS parameters written to PARAM.OUT</span>
+        <span class="c"># Energy-volume per atom at data points written to EVPAP.OUT</span>
+        <span class="c"># Energy-volume per atom over interval written to EVPAI.OUT</span>
+        <span class="c"># Pressure(GPa)-volume per atom at data points written to PVPAP.OUT</span>
+        <span class="c"># Pressure(GPa)-volume per atom over interval written to PVPAI.OUT</span>
+        <span class="c"># Enthalpy-pressure(GPa) per atom over interval written to HPPAI.OUT</span>
+
+    <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># volume[Bohr^3] etot[Ha] for eos.x</span>
+        <span class="n">volume</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span><span class="o">*</span><span class="p">(</span><span class="n">Ang</span><span class="o">**</span><span class="mf">3.0</span> <span class="o">/</span> <span class="n">Bohr</span><span class="o">**</span><span class="mf">3.0</span><span class="p">)</span>
+        <span class="n">energy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="o">*</span><span class="p">(</span><span class="n">eV</span> <span class="o">/</span> <span class="n">Ha</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">volume</span><span class="p">,</span> <span class="n">energy</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">infn_txt</span> <span class="o">=</span>\
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">%s</span>
+<span class="sd">%i</span>
+<span class="sd">%i</span>
+<span class="sd">%f,  %f,  %i</span>
+<span class="sd">%i</span>
+<span class="sd">%s</span>
+<span class="sd">        &quot;&quot;&quot;</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> 
+             <span class="bp">self</span><span class="o">.</span><span class="n">natoms</span><span class="p">,</span> 
+             <span class="bp">self</span><span class="o">.</span><span class="n">etype</span><span class="p">,</span> 
+             <span class="n">volume</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">volume</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">npoints</span><span class="p">,</span>
+             <span class="nb">len</span><span class="p">(</span><span class="n">volume</span><span class="p">),</span> 
+             <span class="n">common</span><span class="o">.</span><span class="n">str_arr</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+        <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">infn</span><span class="p">,</span> <span class="n">infn_txt</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="s">&#39;cd </span><span class="si">%s</span><span class="s"> &amp;&amp; </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">app_basename</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="k">print</span> <span class="n">out</span>
+            <span class="k">print</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="p">,</span><span class="s">&#39;PARAM.OUT&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="c"># Remove normalization on natoms. See .../eos/output.f90:</span>
+        <span class="c"># fitev: [volume [Bohr^3] / natoms, energy [Ha] / natoms]</span>
+        <span class="c"># fitpv: [volume [Bohr^3] / natoms, pressure [GPa]]</span>
+        <span class="n">fitev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="p">,</span><span class="s">&#39;EVPAI.OUT&#39;</span><span class="p">))</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">natoms</span>
+        <span class="c"># convert energy back to [Ang^3, eV]</span>
+        <span class="n">fitev</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">*=</span> <span class="p">(</span><span class="n">Bohr</span><span class="o">**</span><span class="mi">3</span> <span class="o">/</span> <span class="n">Ang</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">fitev</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="p">(</span><span class="n">Ha</span> <span class="o">/</span> <span class="n">eV</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ev</span> <span class="o">=</span> <span class="n">fitev</span>
+        <span class="n">fitpv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="p">,</span><span class="s">&#39;PVPAI.OUT&#39;</span><span class="p">))</span>
+        <span class="n">fitpv</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">*=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">natoms</span> <span class="o">*</span> <span class="n">Bohr</span><span class="o">**</span><span class="mi">3</span> <span class="o">/</span> <span class="n">Ang</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pv</span> <span class="o">=</span> <span class="n">fitpv</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

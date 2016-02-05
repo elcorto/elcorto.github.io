@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.crys.vmd_measure_gofr &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="crys" href="crys.html" />
+    <link rel="next" title="pwtools.crys.voigt2tensor" href="pwtools.crys.voigt2tensor.html" />
+    <link rel="prev" title="pwtools.crys.velocity_traj" href="pwtools.crys.velocity_traj.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.voigt2tensor.html" title="pwtools.crys.voigt2tensor"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.velocity_traj.html" title="pwtools.crys.velocity_traj"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="crys.html" accesskey="U">crys</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.crys.velocity_traj.html"
+                        title="previous chapter">pwtools.crys.velocity_traj</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.crys.voigt2tensor.html"
+                        title="next chapter">pwtools.crys.voigt2tensor</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.crys.vmd_measure_gofr.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-crys-vmd-measure-gofr">
+<h1>pwtools.crys.vmd_measure_gofr<a class="headerlink" href="#pwtools-crys-vmd-measure-gofr" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.crys.vmd_measure_gofr">
+<code class="descclassname">pwtools.crys.</code><code class="descname">vmd_measure_gofr</code><span class="sig-paren">(</span><em>traj, dr=0.05, rmax='auto', sel=['all', 'all'], first=0, last=-1, step=1, usepbc=1, slicefirst=True, verbose=False, tmpdir=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#vmd_measure_gofr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.vmd_measure_gofr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call call_vmd_measure_gofr(), accept Structure / Trajectory as input.
+This is intended as a complementary function to rpdf() and should, of
+course, produce the &#8220;same&#8221; results.</p>
+<p>Only orthogonal boxes are allowed (like in VMD).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>traj</strong> : Structure or Trajectory</p>
+<p><strong>dr</strong> : float</p>
+<blockquote>
+<div><p>dr in Angstrom</p>
+</div></blockquote>
+<p><strong>rmax</strong> : {&#8216;auto&#8217;, float}, optional</p>
+<blockquote>
+<div><p>Max. radius up to which minimum image nearest neighbors are counted.
+For cubic boxes of side length L, this is L/2 [AT,MD].</p>
+<div class="line-block">
+<div class="line">&#8216;auto&#8217; : the method of [Smith] is used to calculate the max. sphere</div>
+<div class="line-block">
+<div class="line">raduis for any cell shape</div>
+</div>
+<div class="line">float : set value yourself</div>
+</div>
+</div></blockquote>
+<p><strong>sel</strong> : list of two strings, optional</p>
+<blockquote>
+<div><p>string to select atoms, [&#8220;name Ca&#8221;, &#8220;name O&#8221;], [&#8220;all&#8221;, &#8220;all&#8221;], ...,
+where sel[0] is selection 1, sel[1] is selection 2 in VMD</p>
+</div></blockquote>
+<p><strong>first,last,step</strong> : int, optional</p>
+<blockquote>
+<div><p>Select which MD steps are averaged. Like Python, VMD starts counting at
+zero. Last is -1, like in Python.</p>
+</div></blockquote>
+<p><strong>usepbc</strong> : int {1,0}, optional</p>
+<blockquote>
+<div><p>Whether to use the minimum image convention.</p>
+</div></blockquote>
+<p><strong>slicefirst</strong> : bool, optional</p>
+<blockquote>
+<div><p>Whether to slice coords here in the wrapper based on first,last,step.
+This will write a smaller XSF file, which can save time. In the VMD
+script, we always use first=0,last=-1,step=1 in that case.</p>
+</div></blockquote>
+<p><strong>verbose</strong> : bool, optional</p>
+<blockquote>
+<div><p>display VMD output</p>
+</div></blockquote>
+<p><strong>tmpdir</strong> : str, optional</p>
+<blockquote>
+<div><p>dir where auto-generated tmp files are written</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">array (len(rad), 3), colums 0,1,2:</p>
+<p><strong>rad</strong> : 1d array</p>
+<blockquote>
+<div><p>radius (x-axis) with spacing <cite>dr</cite>, each value r[i] is the middle of a
+histogram bin</p>
+</div></blockquote>
+<p><strong>hist</strong> : 1d array, (len(rad),)</p>
+<blockquote>
+<div><p>the function values g(r)</p>
+</div></blockquote>
+<p><strong>num_int</strong> : 1d array, (len(rad),)</p>
+<blockquote class="last">
+<div><p>the (averaged) number integral <code class="docutils literal"><span class="pre">number_density*hist*4*pi*r**2.0*dr</span></code></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.voigt2tensor.html" title="pwtools.crys.voigt2tensor"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.velocity_traj.html" title="pwtools.crys.velocity_traj"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="crys.html" >crys</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

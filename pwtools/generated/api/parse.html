@@ -1,0 +1,364 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>parse &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="API Reference" href="index.html" />
+    <link rel="next" title="pwtools.parse.AWK" href="pwtools.parse.AWK.html" />
+    <link rel="prev" title="pwtools.num.vlinspace" href="pwtools.num.vlinspace.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.parse.AWK.html" title="pwtools.parse.AWK"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.vlinspace.html" title="pwtools.num.vlinspace"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">parse</a><ul>
+<li><a class="reference internal" href="#parser-classes-for-different-file-formats-input-and-output-files">Parser classes for different file formats. Input- and output files.</a><ul>
+<li><a class="reference internal" href="#using-parsing-classes">Using Parsing classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.num.vlinspace.html"
+                        title="previous chapter">pwtools.num.vlinspace</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.parse.AWK.html"
+                        title="next chapter">pwtools.parse.AWK</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/parse.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="parse">
+<h1>parse<a class="headerlink" href="#parse" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-pwtools.parse"></span><div class="section" id="parser-classes-for-different-file-formats-input-and-output-files">
+<h2>Parser classes for different file formats. Input- and output files.<a class="headerlink" href="#parser-classes-for-different-file-formats-input-and-output-files" title="Permalink to this headline">¶</a></h2>
+<p>We need the following basic Unix tools installed:</p>
+<div class="line-block">
+<div class="line">grep/egrep</div>
+<div class="line">sed</div>
+<div class="line">awk (better mawk)</div>
+<div class="line">tail</div>
+<div class="line">wc </div>
+<div class="line">...</div>
+</div>
+<p>The tested egrep versions don&#8217;t know the <code class="docutils literal"><span class="pre">\s</span></code> character class for
+whitespace as sed, Perl, Python or any other sane regex implementation
+does. Use <code class="docutils literal"><span class="pre">[</span> <span class="pre">]</span></code> instead.</p>
+<div class="section" id="using-parsing-classes">
+<h3>Using Parsing classes<a class="headerlink" href="#using-parsing-classes" title="Permalink to this headline">¶</a></h3>
+<p>All parsing classes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Pw</span><span class="o">*</span><span class="n">OutputFile</span>
+<span class="n">Cpmd</span><span class="o">*</span><span class="n">OutputFile</span>
+<span class="n">Cp2k</span><span class="o">*</span><span class="n">OutputFile</span>
+<span class="n">Lammps</span><span class="o">*</span><span class="n">OutputFile</span>
+</pre></div>
+</div>
+<p>are derived from FlexibleGetters -&gt; UnitsHandler -&gt;  {Structure,Trajectory}FileParser</p>
+<p>As a general rule: If a getter (self.get_&lt;attr&gt;() or self._get_&lt;attr&gt;_raw()
+cannot find anything in the file, it returns None. All getters which depend
+on it will also return None.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>After initialization</dt>
+<dd><p class="first last">pp = SomeParsingClass(&lt;filename&gt;)</p>
+</dd>
+</dl>
+<p>all attrs whoose name is in pp.attr_lst will be set to None.</p>
+</li>
+<li><dl class="first docutils">
+<dt>parse() will invoke self.try_set_attr(&lt;attr&gt;), which does </dt>
+<dd><p class="first last">self.&lt;attr&gt; = self.get_&lt;attr&gt;()</p>
+</dd>
+</dl>
+<p>for each &lt;attr&gt; in self.attr_lst, thus setting self.&lt;attr&gt; to a defined
+value: None if nothing was found in the file or not None else</p>
+</li>
+<li><p class="first">All getters get_&lt;attr&gt;() will do their parsing action, possibly
+looking for a file self.filename, regardless of the fact that the attribute
+self.&lt;attr&gt; may already be defined (e.g. if parse() has been called before).</p>
+</li>
+<li><p class="first">For interactive use (you need &lt;attr&gt; only once), prefer get_&lt;attr&gt;() over
+parse().</p>
+</li>
+<li><p class="first">Use dump(&#8216;foo.pk&#8217;) only for temporary storage and fast re-reading. Use
+pwtool.common.cpickle_load(foo.pk). See also the <a href="#id1"><span class="problematic" id="id2">*</span></a>FileParser.load() docstring.</p>
+</li>
+<li><p class="first">Keep the original parsed output file around (self.filename), avoid
+get_txt().</p>
+</li>
+<li><p class="first">Use relative paths in &lt;filename&gt;.</p>
+</li>
+<li><dl class="first docutils">
+<dt>If loading a dump()&#8217;ed pickle file from disk,</dt>
+<dd><p class="first last">pp=common.cpickle_load(...)</p>
+</dd>
+<dt>then use direct attr access</dt>
+<dd><p class="first last">pp.&lt;attr&gt;</p>
+</dd>
+<dt>instead of </dt>
+<dd><p class="first last">pp.get_&lt;attr&gt;()</p>
+</dd>
+</dl>
+<p>b/c latter would simply parse self.filname again.</p>
+</li>
+</ul>
+<p>For debugging, we still have many getters which produce redundant
+information, e.g.</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">cell + cryst_const</div>
+<div class="line">_&lt;attr&gt;_raw + &lt;attr&gt; (where &lt;attr&gt; = cell, forces, ...)</div>
+<div class="line">...</div>
+</div>
+</div></blockquote>
+<p>especially in MD parsers, not so much in StructureFileParser drived
+classes. If parse() is used, all this information retrieved and stored.</p>
+<ul class="simple">
+<li>All parsers try to return the default units of the program output, e.g. Ry,
+Bohr, tryd for PWscf; Ha, Bohr, thart for Abinit and CPMD.</li>
+<li>Use get_struct() / get_traj() to get a Structure / Trajectory object with
+pwtools standard units (eV, Ang, fs).</li>
+</ul>
+<p>Using parse():</p>
+<p>Pro:</p>
+<ul class="simple">
+<li>Simplicity. <em>All</em> getters are called when parse() is
+invoked. You get it all.</li>
+<li>In theory, you can delete the file pointed to by self.filename, assuming
+all getters have extracted all information that you need.</li>
+</ul>
+<p>Con:</p>
+<ul class="simple">
+<li>The object is full of (potentially big) arrays holding redundant
+information. Thus, the dump()&#8217;ed file may be large.</li>
+<li>Parsing may be slow if each getter (of possibly many) is called.</li>
+</ul>
+<p>Using get_&lt;attr&gt;():</p>
+<p>Pro:</p>
+<ul class="simple">
+<li>You only parse what you really need.</li>
+</ul>
+<p>Con:</p>
+<ul class="simple">
+<li>self.&lt;attr&gt; will NOT be set, since get_&lt;attr&gt;() only returns &lt;attr&gt; but
+doesn&#8217;t set self.&lt;attr&gt; = self.get_&lt;attr&gt;(), so dump() would save an
+&#8220;empty&#8221; file.</li>
+</ul>
+<p>Note on get_txt():</p>
+<p>If a file parser calls get_txt(), then this has these effects: (1) It can
+slow down parsing for big files and (2) the saved binary file (by using
+dump()) will have at least the size of the text file. While the original file
+could then be deleted in theory, the dump()&#8217;ed file becomes unwieldly to work
+with.</p>
+</div>
+</div>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.AWK.html#pwtools.parse.AWK" title="pwtools.parse.AWK"><code class="xref py py-obj docutils literal"><span class="pre">AWK</span></code></a></td>
+<td>str(object=&#8217;&#8216;) -&gt; string</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Ang.html#pwtools.parse.Ang" title="pwtools.parse.Ang"><code class="xref py py-obj docutils literal"><span class="pre">Ang</span></code></a></td>
+<td>float(x) -&gt; floating point number</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Angstrom.html#pwtools.parse.Angstrom" title="pwtools.parse.Angstrom"><code class="xref py py-obj docutils literal"><span class="pre">Angstrom</span></code></a></td>
+<td>float(x) -&gt; floating point number</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Bohr.html#pwtools.parse.Bohr" title="pwtools.parse.Bohr"><code class="xref py py-obj docutils literal"><span class="pre">Bohr</span></code></a></td>
+<td>float(x) -&gt; floating point number</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CifFile.html#pwtools.parse.CifFile" title="pwtools.parse.CifFile"><code class="xref py py-obj docutils literal"><span class="pre">CifFile</span></code></a>([filename,&nbsp;block])</td>
+<td>Parse Cif file.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Cp2kDcdMDOutputFile.html#pwtools.parse.Cp2kDcdMDOutputFile" title="pwtools.parse.Cp2kDcdMDOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">Cp2kDcdMDOutputFile</span></code></a>(*args,&nbsp;**kwds)</td>
+<td>Same as <a class="reference internal" href="pwtools.parse.Cp2kMDOutputFile.html#pwtools.parse.Cp2kMDOutputFile" title="pwtools.parse.Cp2kMDOutputFile"><code class="xref py py-class docutils literal"><span class="pre">Cp2kMDOutputFile</span></code></a> (all <code class="docutils literal"><span class="pre">PROJECT*</span></code> files are text), only that the coordinates file is a dcd format binary file <code class="docutils literal"><span class="pre">PROJECT-pos-1.dcd</span></code>.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Cp2kMDOutputFile.html#pwtools.parse.Cp2kMDOutputFile" title="pwtools.parse.Cp2kMDOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">Cp2kMDOutputFile</span></code></a>(*args,&nbsp;**kwds)</td>
+<td>CP2K MD output parser.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Cp2kRelaxOutputFile.html#pwtools.parse.Cp2kRelaxOutputFile" title="pwtools.parse.Cp2kRelaxOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">Cp2kRelaxOutputFile</span></code></a>(*args,&nbsp;**kwds)</td>
+<td>Parse cp2k global/run_type cell_opt.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.html#pwtools.parse.Cp2kSCFOutputFile" title="pwtools.parse.Cp2kSCFOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">Cp2kSCFOutputFile</span></code></a>(*args,&nbsp;**kwds)</td>
+<td>CP2K SCF output parser (&#8220;global/run_type energy_force,print_level low&#8221;).</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.html#pwtools.parse.CpmdMDOutputFile" title="pwtools.parse.CpmdMDOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">CpmdMDOutputFile</span></code></a>(*args,&nbsp;**kwds)</td>
+<td>Parse CPMD MD output.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdSCFOutputFile.html#pwtools.parse.CpmdSCFOutputFile" title="pwtools.parse.CpmdSCFOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">CpmdSCFOutputFile</span></code></a>(*args,&nbsp;**kwds)</td>
+<td>Parse output from a CPMD &#8220;single point calculation&#8221; (wave function optimization).</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.DcdOutputFile.html#pwtools.parse.DcdOutputFile" title="pwtools.parse.DcdOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">DcdOutputFile</span></code></a></td>
+<td>Base class which implements dcd file reading.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Ha.html#pwtools.parse.Ha" title="pwtools.parse.Ha"><code class="xref py py-obj docutils literal"><span class="pre">Ha</span></code></a></td>
+<td>float(x) -&gt; floating point number</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsDcdMDOutputFile.html#pwtools.parse.LammpsDcdMDOutputFile" title="pwtools.parse.LammpsDcdMDOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">LammpsDcdMDOutputFile</span></code></a>(*args,&nbsp;**kwds)</td>
+<td>Parse Lammps DCD binary output + <code class="docutils literal"><span class="pre">log.lammps</span></code> text output.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.html#pwtools.parse.LammpsTextMDOutputFile" title="pwtools.parse.LammpsTextMDOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">LammpsTextMDOutputFile</span></code></a>([filename,&nbsp;order])</td>
+<td>Parse LAMMPS text output.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.PDBFile.html#pwtools.parse.PDBFile" title="pwtools.parse.PDBFile"><code class="xref py py-obj docutils literal"><span class="pre">PDBFile</span></code></a>([filename])</td>
+<td>Very very simple pdb file parser.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.PwMDOutputFile.html#pwtools.parse.PwMDOutputFile" title="pwtools.parse.PwMDOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">PwMDOutputFile</span></code></a>([filename,&nbsp;use_alat])</td>
+<td>Parse pw.x MD-like output.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.PwSCFOutputFile.html#pwtools.parse.PwSCFOutputFile" title="pwtools.parse.PwSCFOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">PwSCFOutputFile</span></code></a>([filename,&nbsp;use_alat])</td>
+<td>Parse a pw.x SCF output file (calculation=&#8217;scf&#8217;).</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.PwVCMDOutputFile.html#pwtools.parse.PwVCMDOutputFile" title="pwtools.parse.PwVCMDOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">PwVCMDOutputFile</span></code></a>(*args,&nbsp;**kwds)</td>
+<td>Parse only calculation=&#8217;vc-md&#8217;.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Ry.html#pwtools.parse.Ry" title="pwtools.parse.Ry"><code class="xref py py-obj docutils literal"><span class="pre">Ry</span></code></a></td>
+<td>float(x) -&gt; floating point number</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.StructureFileParser.html#pwtools.parse.StructureFileParser" title="pwtools.parse.StructureFileParser"><code class="xref py py-obj docutils literal"><span class="pre">StructureFileParser</span></code></a>([filename,&nbsp;units])</td>
+<td>Base class for single-structure parsers.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.TrajectoryFileParser.html#pwtools.parse.TrajectoryFileParser" title="pwtools.parse.TrajectoryFileParser"><code class="xref py py-obj docutils literal"><span class="pre">TrajectoryFileParser</span></code></a>([filename,&nbsp;units])</td>
+<td>Base class for MD-like parsers.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.arr1d_from_txt.html#pwtools.parse.arr1d_from_txt" title="pwtools.parse.arr1d_from_txt"><code class="xref py py-obj docutils literal"><span class="pre">arr1d_from_txt</span></code></a>(txt[,&nbsp;dtype])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.arr2d_from_txt.html#pwtools.parse.arr2d_from_txt" title="pwtools.parse.arr2d_from_txt"><code class="xref py py-obj docutils literal"><span class="pre">arr2d_from_txt</span></code></a>(txt[,&nbsp;dtype])</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.axis_lens.html#pwtools.parse.axis_lens" title="pwtools.parse.axis_lens"><code class="xref py py-obj docutils literal"><span class="pre">axis_lens</span></code></a>(seq[,&nbsp;axis])</td>
+<td>Return length of <cite>axis</cite> of all arrays in <cite>seq</cite>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.eV.html#pwtools.parse.eV" title="pwtools.parse.eV"><code class="xref py py-obj docutils literal"><span class="pre">eV</span></code></a></td>
+<td>float(x) -&gt; floating point number</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.float_from_txt.html#pwtools.parse.float_from_txt" title="pwtools.parse.float_from_txt"><code class="xref py py-obj docutils literal"><span class="pre">float_from_txt</span></code></a>(txt)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.fs.html#pwtools.parse.fs" title="pwtools.parse.fs"><code class="xref py py-obj docutils literal"><span class="pre">fs</span></code></a></td>
+<td>float(x) -&gt; floating point number</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.int_from_txt.html#pwtools.parse.int_from_txt" title="pwtools.parse.int_from_txt"><code class="xref py py-obj docutils literal"><span class="pre">int_from_txt</span></code></a>(txt)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.nstep_from_txt.html#pwtools.parse.nstep_from_txt" title="pwtools.parse.nstep_from_txt"><code class="xref py py-obj docutils literal"><span class="pre">nstep_from_txt</span></code></a>(txt)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.pi.html#pwtools.parse.pi" title="pwtools.parse.pi"><code class="xref py py-obj docutils literal"><span class="pre">pi</span></code></a></td>
+<td>float(x) -&gt; floating point number</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.ps.html#pwtools.parse.ps" title="pwtools.parse.ps"><code class="xref py py-obj docutils literal"><span class="pre">ps</span></code></a></td>
+<td>float(x) -&gt; floating point number</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.thart.html#pwtools.parse.thart" title="pwtools.parse.thart"><code class="xref py py-obj docutils literal"><span class="pre">thart</span></code></a></td>
+<td>float(x) -&gt; floating point number</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.traj_from_txt.html#pwtools.parse.traj_from_txt" title="pwtools.parse.traj_from_txt"><code class="xref py py-obj docutils literal"><span class="pre">traj_from_txt</span></code></a>(txt,&nbsp;shape[,&nbsp;axis,&nbsp;dtype,&nbsp;sep])</td>
+<td>Used for 3d trajectories where the exact shape of the array as written by the MD code must be known, e.g.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.parse.AWK.html" title="pwtools.parse.AWK"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.vlinspace.html" title="pwtools.num.vlinspace"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

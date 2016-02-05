@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.signal.fftsample &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="signal" href="signal.html" />
+    <link rel="next" title="pwtools.signal.find_peaks" href="pwtools.signal.find_peaks.html" />
+    <link rel="prev" title="pwtools.signal.fft_1d_loop" href="pwtools.signal.fft_1d_loop.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.signal.find_peaks.html" title="pwtools.signal.find_peaks"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.signal.fft_1d_loop.html" title="pwtools.signal.fft_1d_loop"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="signal.html" accesskey="U">signal</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.signal.fft_1d_loop.html"
+                        title="previous chapter">pwtools.signal.fft_1d_loop</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.signal.find_peaks.html"
+                        title="next chapter">pwtools.signal.find_peaks</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.signal.fftsample.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-signal-fftsample">
+<h1>pwtools.signal.fftsample<a class="headerlink" href="#pwtools-signal-fftsample" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.signal.fftsample">
+<code class="descclassname">pwtools.signal.</code><code class="descname">fftsample</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>mode='f'</em>, <em>mirr=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#fftsample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.fftsample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert size and resolution between frequency and time domain.</p>
+<p>Convert between maximal frequency to sample (fmax) + desired frequency
+resolution (df) and the needed number of sample points (N) + time
+step (dt).</p>
+<p>The maximal frequency is also called the Nyquist frequency and is
+1/2*samplerate.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a, b: float</strong></p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">mode=&#8217;f&#8217;: a=fmax  b=df</div>
+<div class="line">mode=&#8217;t&#8217;: a=dt    b=N</div>
+</div>
+</div></blockquote>
+<p><strong>mode</strong> : string, {&#8216;f&#8217;, &#8216;t&#8217;}</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">f : frequency mode</div>
+<div class="line">t : time mode</div>
+</div>
+</div></blockquote>
+<p><strong>mirr: bool</strong></p>
+<blockquote>
+<div><p>consider mirroring of the signal at t=0 before Fourier transform</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">mode=&#8217;f&#8217;: array([dt,   N])</p>
+<p class="last">mode=&#8217;t&#8217;: array([fmax, df])</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>These relations hold:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">size</th>
+<th class="head">resolution</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>N [t] up</td>
+<td>df [f] down</td>
+</tr>
+<tr class="row-odd"><td>fmax [f] up</td>
+<td>dt [t] down</td>
+</tr>
+</tbody>
+</table>
+<p>If you know that the signal in the time domain will be mirrored before FFT
+(N -&gt; 2*N), you will get 1/2*df (double fine resolution), so 1/2*N is
+sufficient to get the desired df.</p>
+<p>Units:
+In general frequency_unit = 1/time_unit, need not be Hz and s.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># fmax = 100 Hz, df = 1 Hz -&gt; you need 200 steps with dt=0.005 sec</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fftsample</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;f&#39;</span><span class="p">)</span> 
+<span class="go">array([  5.00000000e-03,   2.00000000e+03])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fftsample</span><span class="p">(</span><span class="mf">5e-3</span><span class="p">,</span> <span class="mf">2e3</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;t&#39;</span><span class="p">)</span>
+<span class="go">array([ 100. ,    1.])</span>
+<span class="go"># If you mirror, you only need 100 steps</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fftsample</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="n">mirr</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">array([  5.00000000e-03,   1.00000000e+02])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.signal.find_peaks.html" title="pwtools.signal.find_peaks"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.signal.fft_1d_loop.html" title="pwtools.signal.fft_1d_loop"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="signal.html" >signal</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

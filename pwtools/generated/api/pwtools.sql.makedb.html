@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.sql.makedb &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="sql" href="sql.html" />
+    <link rel="next" title="pwtools.sql.sql_column" href="pwtools.sql.sql_column.html" />
+    <link rel="prev" title="pwtools.sql.get_test_db" href="pwtools.sql.get_test_db.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.sql.sql_column.html" title="pwtools.sql.sql_column"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.sql.get_test_db.html" title="pwtools.sql.get_test_db"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="sql.html" accesskey="U">sql</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.sql.get_test_db.html"
+                        title="previous chapter">pwtools.sql.get_test_db</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.sql.sql_column.html"
+                        title="next chapter">pwtools.sql.sql_column</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.sql.makedb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-sql-makedb">
+<h1>pwtools.sql.makedb<a class="headerlink" href="#pwtools-sql-makedb" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.sql.makedb">
+<code class="descclassname">pwtools.sql.</code><code class="descname">makedb</code><span class="sig-paren">(</span><em>filename</em>, <em>lists</em>, <em>colnames</em>, <em>table=None</em>, <em>mode='a'</em>, <em>close=True</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#makedb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.makedb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create sqlite db <cite>filename</cite> (mode=&#8217;w&#8217;) or append to existing db
+(mode=&#8217;a&#8217;). The database is build up from <cite>lists</cite> and <cite>colnames</cite>, see 
+sql_matrix().</p>
+<p>In append mode, rows are simply added to the bottom of the table and only
+column names (<cite>colnames</cite>) which are already in the table are allowed.
+<cite>colnames</cite> can contain a subset of the original header, in which case the
+other entries are NULL by default.</p>
+<p>If the datsbase file doesn&#8217;t exist, then mode=&#8217;a&#8217; is the same as mode=&#8217;w&#8217;.</p>
+<p>By default <cite>close=True</cite>, i.e. a db with a closed connection is returned.
+For interactive use, <cite>close=False</cite> is what you want. That gives you a db
+which can be used right away.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>lists</strong> : list of lists, see sql_matrix()</p>
+<p><strong>colnames</strong> : list of column names, see sql_matrix()</p>
+<p><strong>table</strong> : str, optional</p>
+<blockquote>
+<div><p>String with table name. If None then we try to set a default name based
+on <cite>filename</cite>.</p>
+</div></blockquote>
+<p><strong>mode</strong> : str</p>
+<blockquote>
+<div><p>&#8216;w&#8217;: write new db, &#8216;a&#8217;: append</p>
+</div></blockquote>
+<p><strong>close</strong> : bool, optional</p>
+<blockquote>
+<div><p>Close cursor after db has been filled with values.</p>
+</div></blockquote>
+<p><strong>**kwds</strong> : passed to sql_matrix()</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>db</strong> : SQLiteDB instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lists</span><span class="o">=</span><span class="nb">zip</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="s">&#39;a&#39;</span><span class="p">,</span><span class="s">&#39;b&#39;</span><span class="p">,</span><span class="s">&#39;c&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">=</span><span class="n">sql</span><span class="o">.</span><span class="n">makedb</span><span class="p">(</span><span class="s">&#39;/tmp/foo.db&#39;</span><span class="p">,</span> <span class="n">lists</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;col0&#39;</span><span class="p">,</span> <span class="s">&#39;col1&#39;</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;w&#39;</span><span class="p">,</span>
+<span class="gp">... </span>              <span class="n">table</span><span class="o">=</span><span class="s">&#39;calc&#39;</span><span class="p">,</span> <span class="n">close</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_dict</span><span class="p">(</span><span class="s">&#39;select * from calc&#39;</span><span class="p">)</span>
+<span class="go">{&#39;col0&#39;: [1, 2, 3], &#39;col1&#39;: [u&#39;a&#39;, u&#39;b&#39;, u&#39;c&#39;]}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.sql.sql_column.html" title="pwtools.sql.sql_column"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.sql.get_test_db.html" title="pwtools.sql.get_test_db"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="sql.html" >sql</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

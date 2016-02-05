@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.crys.nearest_neighbors &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="crys" href="crys.html" />
+    <link rel="next" title="pwtools.crys.nearest_neighbors_from_dists" href="pwtools.crys.nearest_neighbors_from_dists.html" />
+    <link rel="prev" title="pwtools.crys.mix" href="pwtools.crys.mix.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.nearest_neighbors_from_dists.html" title="pwtools.crys.nearest_neighbors_from_dists"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.mix.html" title="pwtools.crys.mix"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="crys.html" accesskey="U">crys</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.crys.mix.html"
+                        title="previous chapter">pwtools.crys.mix</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.crys.nearest_neighbors_from_dists.html"
+                        title="next chapter">pwtools.crys.nearest_neighbors_from_dists</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.crys.nearest_neighbors.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-crys-nearest-neighbors">
+<h1>pwtools.crys.nearest_neighbors<a class="headerlink" href="#pwtools-crys-nearest-neighbors" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.crys.nearest_neighbors">
+<code class="descclassname">pwtools.crys.</code><code class="descname">nearest_neighbors</code><span class="sig-paren">(</span><em>struct</em>, <em>idx=None</em>, <em>skip=None</em>, <em>cutoff=None</em>, <em>num=None</em>, <em>pbc=True</em>, <em>sort=True</em>, <em>fullout=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#nearest_neighbors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.nearest_neighbors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indices of the nearest neighbor atoms to atom <cite>idx</cite>, skipping atoms
+whose symbols are <cite>skip</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>struct</strong> : Structure</p>
+<p><strong>idx</strong> : int</p>
+<blockquote>
+<div><p>Atom index of the central atom.</p>
+</div></blockquote>
+<p><strong>skip</strong> : str or sequence of strings</p>
+<blockquote>
+<div><p>Symbol(s) of the atoms to skip.</p>
+</div></blockquote>
+<p><strong>num</strong> : int</p>
+<blockquote>
+<div><p>number of requested nearest neighbors</p>
+</div></blockquote>
+<p><strong>cutoff</strong> : float</p>
+<blockquote>
+<div><p>Cutoff radius in unit defined in <cite>struct</cite>, e.g. Angstrom. Return all
+neighbors within that radius. Use either <cite>num</cite> of <cite>cutoff</cite>.</p>
+</div></blockquote>
+<p><strong>pbc</strong> : bool</p>
+<blockquote>
+<div><p>Apply PBC to distances.</p>
+</div></blockquote>
+<p><strong>sort</strong> : bool</p>
+<blockquote>
+<div><p>Sort <cite>nn_idx</cite> and <cite>nn_dist</cite> by distance.</p>
+</div></blockquote>
+<p><strong>fullout</strong> : bool</p>
+<blockquote>
+<div><p>See below.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>nn_idx</strong> : fullout=False</p>
+<p><strong>nn_idx,nn_dist</strong> : fullout=True</p>
+<p><strong>nn_idx</strong> : 1d array</p>
+<blockquote>
+<div><p>Indices into struct.symbols / coords.</p>
+</div></blockquote>
+<p><strong>nn_dist</strong> : 1d array</p>
+<blockquote class="last">
+<div><p>Distances ordered as in <cite>nn_idx</cite>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-obj docutils literal"><span class="pre">num.match_mask</span></code></p>
+</div>
+<p class="rubric">Notes</p>
+<p><cite>num</cite> : Depending on <cite>struct</cite>, there may not be <cite>num</cite> nearest neighbors,
+especially if you use <cite>skip</cite> to leave certain species out. Then the
+number of returned indices may be less then <cite>num</cite>.</p>
+<p>Ordering : If <code class="docutils literal"><span class="pre">sort=True</span></code>, then returnd indices <cite>nn_idx</cite> and distances
+<cite>nn_dist</cite> are sorted small -&gt; high. If <code class="docutils literal"><span class="pre">sort=False</span></code>, then they are in the
+same order as the symbols in <code class="docutils literal"><span class="pre">struct.symbols</span></code>.
+For structs with high symmetry (i.e. bulk crystals) where many
+nearest neighbors have the same distance from the central atom, the
+ordering of depends on how <code class="docutils literal"><span class="pre">numpy.argsort</span></code> sorts equal values in an
+array.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ni</span><span class="o">=</span><span class="n">nearest_neighbors</span><span class="p">(</span><span class="n">struct</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;Ca&#39;</span><span class="p">),</span> <span class="n">num</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="s">&#39;H&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ni</span><span class="o">=</span><span class="n">nearest_neighbors</span><span class="p">(</span><span class="n">struct</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="mi">23</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">5.3</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;H&#39;</span><span class="p">,</span><span class="s">&#39;Cl&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># simple rock salt example (used ASE to build dummy struct)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ase</span> <span class="kn">import</span> <span class="n">lattice</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">at</span><span class="o">=</span><span class="n">lattice</span><span class="o">.</span><span class="n">bulk</span><span class="p">(</span><span class="s">&#39;AlN&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">crystalstructure</span><span class="o">=</span><span class="s">&#39;rocksalt&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">=</span><span class="n">crys</span><span class="o">.</span><span class="n">atoms2struct</span><span class="p">(</span><span class="n">at</span><span class="p">);</span> <span class="n">st</span><span class="o">=</span><span class="n">crys</span><span class="o">.</span><span class="n">scell</span><span class="p">(</span><span class="n">st</span><span class="p">,(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ni</span><span class="p">,</span><span class="n">nd</span><span class="o">=</span><span class="n">crys</span><span class="o">.</span><span class="n">nearest_neighbors</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">fullout</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ni</span>
+<span class="go">array([ 9, 10, 11, 12, 13, 14,  1,  2])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span>
+<span class="go">[ 2. 2. 2. 2. 2. 2. 2.82842712 2.82842712]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># Use `ni` or bool array created from that for indexing</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">symbols</span><span class="p">)[</span><span class="n">ni</span><span class="p">]</span>
+<span class="go">array([&#39;Al&#39;, &#39;Al&#39;, &#39;N&#39;, &#39;N&#39;, &#39;N&#39;, &#39;N&#39;, &#39;N&#39;, &#39;N&#39;], dtype=&#39;|S2&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">msk</span><span class="o">=</span><span class="n">num</span><span class="o">.</span><span class="n">match_mask</span><span class="p">(</span><span class="n">arange</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">natoms</span><span class="p">),</span> <span class="n">ni</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">symbols</span><span class="p">)[</span><span class="n">msk</span><span class="p">]</span>
+<span class="go">array([&#39;Al&#39;, &#39;Al&#39;, &#39;N&#39;, &#39;N&#39;, &#39;N&#39;, &#39;N&#39;, &#39;N&#39;, &#39;N&#39;], dtype=&#39;|S2&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># If you have many different symbols to skip and you don&#39;t want to type</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># a longish `skip` list, then use smth like this to include only &#39;O&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># for example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">symbols</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Ca&#39;</span><span class="p">,</span> <span class="s">&#39;Cl&#39;</span><span class="p">,</span> <span class="s">&#39;Cl&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s">&#39;O&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span> <span class="o">+</span> <span class="p">[</span><span class="s">&#39;H&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">20</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">skip</span><span class="o">=</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">!=</span><span class="s">&#39;O&#39;</span><span class="p">,</span> <span class="nb">set</span><span class="p">(</span><span class="n">symbols</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="s">&#39;H&#39;</span><span class="p">,</span> <span class="s">&#39;Ca&#39;</span><span class="p">,</span> <span class="s">&#39;Cl&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.nearest_neighbors_from_dists.html" title="pwtools.crys.nearest_neighbors_from_dists"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.mix.html" title="pwtools.crys.mix"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="crys.html" >crys</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

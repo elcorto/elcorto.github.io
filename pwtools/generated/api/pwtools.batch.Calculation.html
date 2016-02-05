@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.batch.Calculation &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="batch" href="batch.html" />
+    <link rel="next" title="pwtools.batch.Calculation.get_sql_record" href="pwtools.batch.Calculation.get_sql_record.html" />
+    <link rel="prev" title="batch" href="batch.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.batch.Calculation.get_sql_record.html" title="pwtools.batch.Calculation.get_sql_record"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="batch.html" title="batch"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="batch.html" accesskey="U">batch</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="batch.html"
+                        title="previous chapter">batch</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.batch.Calculation.get_sql_record.html"
+                        title="next chapter">pwtools.batch.Calculation.get_sql_record</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.batch.Calculation.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-batch-calculation">
+<h1>pwtools.batch.Calculation<a class="headerlink" href="#pwtools-batch-calculation" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.batch.Calculation">
+<em class="property">class </em><code class="descclassname">pwtools.batch.</code><code class="descname">Calculation</code><span class="sig-paren">(</span><em>machine=None</em>, <em>templates=[]</em>, <em>params=[]</em>, <em>calc_dir='calc_dir'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Calculation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A single calculation, e.g. in dir calc_foo/0/. A Calculation is bound to
+one Machine.</p>
+<p>This class is usually not used on it&#8217;s own, but only by ParameterStudy.</p>
+<p>The dir where file templates live is defined in the FileTemplates (usually
+&#8216;calc.templ&#8217;).</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.batch.Calculation.get_sql_record.html#pwtools.batch.Calculation.get_sql_record" title="pwtools.batch.Calculation.get_sql_record"><code class="xref py py-obj docutils literal"><span class="pre">get_sql_record</span></code></a>()</td>
+<td>Return a dict of SQLEntry instances.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.batch.Calculation.write_input.html#pwtools.batch.Calculation.write_input" title="pwtools.batch.Calculation.write_input"><code class="xref py py-obj docutils literal"><span class="pre">write_input</span></code></a>()</td>
+<td>For each template in <code class="docutils literal"><span class="pre">self.templates</span></code>, write an input file to <code class="docutils literal"><span class="pre">self.calc_dir</span></code>.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pwtools.batch.Calculation.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>machine=None</em>, <em>templates=[]</em>, <em>params=[]</em>, <em>calc_dir='calc_dir'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Calculation.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Calculation.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>machine</strong> : Machine, optional</p>
+<blockquote>
+<div><p>Used to add machine specific attributes. Pulled from
+Machine.get_sql_record(). Used for FileTemplate replacement.</p>
+</div></blockquote>
+<p><strong>templates</strong> : sequence</p>
+<blockquote>
+<div><p>Sequence of FileTemplate instances.</p>
+</div></blockquote>
+<p><strong>params</strong> : sequence of SQLEntry instances</p>
+<blockquote>
+<div><p>A single &#8220;parameter set&#8221;. The <cite>key</cite> attribute (=sql column name) of
+each SQLEntry will be converted to a placeholder in each
+FileTemplate and an attempt to replacement in the template files is
+made.</p>
+</div></blockquote>
+<p><strong>calc_dir</strong> : str, optional</p>
+<blockquote class="last">
+<div><p>Calculation directory to which input files are written (e.g.
+&#8216;calc_foo/0/&#8217;)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pwtools.batch.Calculation.__weakref__">
+<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.batch.Calculation.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.batch.Calculation.get_sql_record">
+<code class="descname">get_sql_record</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Calculation.get_sql_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Calculation.get_sql_record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dict of SQLEntry instances. Each key is a candidate
+placeholder for the FileTemplates.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.batch.Calculation.write_input">
+<code class="descname">write_input</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Calculation.write_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Calculation.write_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>For each template in <code class="docutils literal"><span class="pre">self.templates</span></code>, write an input file to
+<code class="docutils literal"><span class="pre">self.calc_dir</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.batch.Calculation.get_sql_record.html" title="pwtools.batch.Calculation.get_sql_record"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="batch.html" title="batch"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="batch.html" >batch</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

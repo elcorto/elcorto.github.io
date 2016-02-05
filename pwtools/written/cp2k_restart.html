@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How to do a restart in cp2k &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">pwtools  documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">How to do a restart in cp2k</a><ul>
+<li><a class="reference internal" href="#some-comments">Some comments</a></li>
+<li><a class="reference internal" href="#restart">Restart</a></li>
+<li><a class="reference internal" href="#analysis-of-runs-with-pwtools">Analysis of runs with pwtools</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/written/cp2k_restart.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-do-a-restart-in-cp2k">
+<span id="cp2k-restart"></span><h1>How to do a restart in cp2k<a class="headerlink" href="#how-to-do-a-restart-in-cp2k" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="some-comments">
+<h2>Some comments<a class="headerlink" href="#some-comments" title="Permalink to this headline">¶</a></h2>
+<p>Suggested naming convention for runs:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">calc</span><span class="o">/</span><span class="mf">0.0</span> <span class="c"># equilibration run</span>
+<span class="n">calc</span><span class="o">/</span><span class="mf">0.1</span> <span class="c"># production, restart of 0.0</span>
+<span class="n">calc</span><span class="o">/</span><span class="mf">0.2</span> <span class="c"># production, restart of 0.1</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>After the equi run with a strong thermostat such as:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">motion</span><span class="o">/</span><span class="n">md</span><span class="o">/</span><span class="n">thermostat</span><span class="o">/</span><span class="n">csvr</span><span class="o">/</span><span class="n">timecon</span><span class="o">=</span><span class="mf">0.1</span>
+</pre></div>
+</div>
+<p>do the production run in NVE or NVT with a weakly coupled thermostat like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">motion</span><span class="o">/</span><span class="n">md</span><span class="o">/</span><span class="n">thermostat</span><span class="o">/</span><span class="n">csvr</span><span class="o">/</span><span class="n">timecon</span><span class="o">=</span><span class="mi">1000</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="restart">
+<h2>Restart<a class="headerlink" href="#restart" title="Permalink to this headline">¶</a></h2>
+<p>Each run <code class="docutils literal"><span class="pre">calc/0.0</span></code>, <code class="docutils literal"><span class="pre">calc/0.1</span></code> etc will by default write files like:</p>
+<div class="highlight-python"><div class="highlight"><pre>cp2k.in
+cp2k.out
+job.script
+PROJECT-1.cell
+PROJECT-1.ener
+PROJECT-1.restart
+PROJECT-1.stress
+PROJECT-frc-1.xyz
+PROJECT-pos-1.xyz
+PROJECT-vel-1.xyz
+</pre></div>
+</div>
+<p>To restart for the first time, copy only <code class="docutils literal"><span class="pre">cp2k.in</span></code> and the restart file
+<code class="docutils literal"><span class="pre">PROJECT-1.restart</span></code> to a new location:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ mkdir 0.1
+$ cp 0.0/{cp2k.in,job*,PROJECT-1.restart} 0.1/
+</pre></div>
+</div>
+<p>Now, add the restart section to the input file. Also change the ensemble (e.g.
+<code class="docutils literal"><span class="pre">nvt</span></code> -&gt; <code class="docutils literal"><span class="pre">nve</span></code>) or thermostat settings if needed:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ cd 0.1
+$ vim cp2k.in
+    &amp;ext_restart
+        restart_file_name PROJECT-1.restart
+    &amp;end ext_restart
+    ...
+    &amp;motion
+        &amp;md
+            ensemble nvt
+            steps 100000
+            ...
+            &amp;thermostat
+                type csvr
+                &amp;csvr
+                    timecon 1000
+                &amp;end csvr
+            &amp;end thermostat
+            ...
+        &amp;end md
+    &amp;end motion
+$ qsub job.script
+</pre></div>
+</div>
+<p>For all subsequent restarts, <code class="docutils literal"><span class="pre">0.2</span></code>, <code class="docutils literal"><span class="pre">0.3</span></code>, ... you only copy the last
+restart file and the input with unchanged settings:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ mkdir 0.2
+$ cp 0.1/{cp2k.in,job*,PROJECT-1.restart} 0.2/
+$ cd 0.2
+$ qsub job.script
+</pre></div>
+</div>
+</div>
+<div class="section" id="analysis-of-runs-with-pwtools">
+<h2>Analysis of runs with pwtools<a class="headerlink" href="#analysis-of-runs-with-pwtools" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">*.xyz</span></code> files and the <code class="docutils literal"><span class="pre">*{cell,ener,stress}</span></code> files are written at each
+step. However, for efficiency, the restart file <code class="docutils literal"><span class="pre">PROJECT-1.restart</span></code> is
+typically written only every 5, 10, or 50 steps. So, one needs to truncate the
+files before parsing by using the script <code class="docutils literal"><span class="pre">cut-cp2k.sh</span></code> from <a class="reference external" href="pwtools/bin/cut-cp2k.sh">pwtools</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ for d in calc/0.1 calc/0.2; do cut-cp2k.sh $d; done
+</pre></div>
+</div>
+<p>Now, one can parse each run <code class="docutils literal"><span class="pre">0.1</span></code>, <code class="docutils literal"><span class="pre">0.2</span></code>, ... separately:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ python
+&gt;&gt;&gt; from pwtools import io,crys
+&gt;&gt;&gt; tr1=io.read_cp2k_md(&#39;calc/0.1/cp2k.out&#39;)
+&gt;&gt;&gt; tr2=io.read_cp2k_md(&#39;calc/0.2/cp2k.out&#39;)
+...
+</pre></div>
+</div>
+<p>and then concatenate the trajectories:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">=</span><span class="n">crys</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">tr1</span><span class="p">,</span><span class="n">tr2</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>or more compact:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">=</span><span class="n">crys</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">io</span><span class="o">.</span><span class="n">read_cp2k_md</span><span class="p">(</span><span class="s">&#39;calc/</span><span class="si">%s</span><span class="s">/cp2k.out&#39;</span> <span class="o">%</span><span class="n">x</span><span class="p">)</span> \
+<span class="gp">... </span>                     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;0.1&#39;</span><span class="p">,</span> <span class="s">&#39;0.2&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Now, do fun stuff:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">temperature</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">etot</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">etot</span><span class="o">+</span><span class="n">ekin</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">pressure</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="s">&#39;b&#39;</span><span class="p">)</span> <span class="c"># all x-coords of all atoms</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">=</span><span class="n">crys</span><span class="o">.</span><span class="n">rpdf</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">amask</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;O&#39;</span><span class="p">,</span><span class="s">&#39;H&#39;</span><span class="p">]);</span> <span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">pwtools  documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

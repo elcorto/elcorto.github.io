@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.batch.FileTemplate &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="batch" href="batch.html" />
+    <link rel="next" title="pwtools.batch.FileTemplate.write" href="pwtools.batch.FileTemplate.write.html" />
+    <link rel="prev" title="pwtools.batch.Case" href="pwtools.batch.Case.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.batch.FileTemplate.write.html" title="pwtools.batch.FileTemplate.write"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.batch.Case.html" title="pwtools.batch.Case"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="batch.html" accesskey="U">batch</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.batch.Case.html"
+                        title="previous chapter">pwtools.batch.Case</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.batch.FileTemplate.write.html"
+                        title="next chapter">pwtools.batch.FileTemplate.write</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.batch.FileTemplate.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-batch-filetemplate">
+<h1>pwtools.batch.FileTemplate<a class="headerlink" href="#pwtools-batch-filetemplate" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.batch.FileTemplate">
+<em class="property">class </em><code class="descclassname">pwtools.batch.</code><code class="descname">FileTemplate</code><span class="sig-paren">(</span><em>basename=None</em>, <em>txt=None</em>, <em>keys=None</em>, <em>templ_dir='calc.templ'</em>, <em>filename=None</em>, <em>func=&lt;function &lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#FileTemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.FileTemplate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Class to represent a template file in parameter studies.</p>
+<p>Each template file is supposed to contain a number of placeholder strings
+(e.g. XXXFOO or &#64;foo&#64; or whatever other form). The <cite>dct</cite> passed to
+self.write() is a dict which contains key-value pairs for replacement (e.g.
+{&#8216;foo&#8217;: 1.0, &#8216;bar&#8217;: &#8216;say-what&#8217;}, keys=dct.keys()). Each key is converted to
+a placeholder by <cite>func</cite>.</p>
+<p>We use common.template_replace(..., mode=&#8217;txt&#8217;). dict-style placeholders
+like &#8220;%(foo)s %(bar)i&#8221; will not work.</p>
+<p class="rubric">Examples</p>
+<p>This will take a template file calc.templ/pw.in, replace the placeholders
+&#8220;&#64;prefix&#64;&#8221; and &#8220;&#64;ecutwfc&#64;&#8221; with some values and write the file to
+calc/0/pw.in .</p>
+<p>Fist, set up a dictionary which maps placeholder to values. Remember,
+that the placeholders in the files will be obtained by processing the
+dictionary keys with <cite>func</cite>. In the example, this will be:</p>
+<div class="highlight-python"><div class="highlight"><pre>&#39;prefix&#39; -&gt; &#39;@prefix@&#39;
+&#39;ecutwfc&#39; -&gt; &#39;@ecutwfc@&#39;
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dct</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dct</span><span class="p">[</span><span class="s">&#39;prefix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;foo_run_1&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dct</span><span class="p">[</span><span class="s">&#39;ecutwfc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">23.0</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># Not specifying the `keys` agrument to FileTemplate will instruct the</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># write() method to replace all placeholders in the template file which</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># match the placeholders defined by dct.keys(). This is the most simple</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># case.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c">#</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">templ</span> <span class="o">=</span> <span class="n">FileTemplate</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&#39;calc.templ/pw.in&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                     <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s">&quot;@</span><span class="si">%s</span><span class="s">@&quot;</span> <span class="o">%</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">templ</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">dct</span><span class="p">,</span> <span class="s">&#39;calc/0&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># Now with `keys` explicitely.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">templ</span> <span class="o">=</span> <span class="n">FileTemplate</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&#39;calc.templ/pw.in&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                     <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;prefix&#39;</span><span class="p">,</span> <span class="s">&#39;ecutwfc&#39;</span><span class="p">],</span>
+<span class="gp">... </span>                     <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s">&quot;@</span><span class="si">%s</span><span class="s">@&quot;</span> <span class="o">%</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">templ</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">dct</span><span class="p">,</span> <span class="s">&#39;calc/0&#39;</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># or with SQL foo in a parameter study</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sql</span> <span class="kn">import</span> <span class="n">SQLEntry</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dct</span> <span class="o">=</span> <span class="p">{}</span>                     
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dct</span><span class="p">[</span><span class="s">&#39;prefix&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">SQLEntry</span><span class="p">(</span><span class="n">sqlval</span><span class="o">=</span><span class="s">&#39;foo_run_1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sct</span><span class="p">[</span><span class="s">&#39;ecutwfc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SQLEntry</span><span class="p">(</span><span class="n">sqlval</span><span class="o">=</span><span class="mf">23.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">templ</span><span class="o">.</span><span class="n">writesql</span><span class="p">(</span><span class="n">dct</span><span class="p">,</span> <span class="s">&#39;calc/0&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.batch.FileTemplate.write.html#pwtools.batch.FileTemplate.write" title="pwtools.batch.FileTemplate.write"><code class="xref py py-obj docutils literal"><span class="pre">write</span></code></a>(dct[,&nbsp;calc_dir,&nbsp;mode])</td>
+<td>Write file self.filename (e.g.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.batch.FileTemplate.writesql.html#pwtools.batch.FileTemplate.writesql" title="pwtools.batch.FileTemplate.writesql"><code class="xref py py-obj docutils literal"><span class="pre">writesql</span></code></a>(sql_record[,&nbsp;calc_dir])</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pwtools.batch.FileTemplate.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>basename=None</em>, <em>txt=None</em>, <em>keys=None</em>, <em>templ_dir='calc.templ'</em>, <em>filename=None</em>, <em>func=&lt;function &lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#FileTemplate.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.FileTemplate.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>basename</strong> : string</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">The name of the template file and target file.</div>
+<div class="line">example: basename = pw.in</div>
+<div class="line-block">
+<div class="line">template = calc.templ/pw.in</div>
+<div class="line">target   = calc/0/pw.in</div>
+</div>
+</div>
+</div></blockquote>
+<p><strong>txt</strong> : string, optional</p>
+<blockquote>
+<div><p>Text of the template file. If None, then we assume a file
+<code class="docutils literal"><span class="pre">templ_dir/basename</span></code> and read that.</p>
+</div></blockquote>
+<p><strong>keys</strong> : {None, list of strings, []}</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">keys=None: All keys dct.keys() in self.write() are used. This is</div>
+<div class="line-block">
+<div class="line">useful if you have a dict holding many keys, whose placeholders</div>
+<div class="line">are spread across files. Then this will just replace every</div>
+<div class="line">match in each file. This is what most people want.</div>
+</div>
+<div class="line">keys=[&lt;key1&gt;, &lt;key2&gt;, ...] : Each string is a key. Each key is</div>
+<div class="line-block">
+<div class="line">connected to a placeholder in the template. See func. This is</div>
+<div class="line">for binding keys to template files, i.e. replace only these</div>
+<div class="line">keys.</div>
+</div>
+<div class="line">keys=[]: The template file is simply copied to <cite>calc_dir</cite> (see</div>
+<div class="line-block">
+<div class="line">self.write()).</div>
+</div>
+</div>
+</div></blockquote>
+<p><strong>templ_dir</strong> : dir where the template lives (e.g. &#8216;calc.templ&#8217;)</p>
+<p><strong>filename</strong> : str</p>
+<blockquote>
+<div><p>full file name of the template, then templ_dir=os.path.dirname(filename)
+and basename=os.path.basename(filename)</p>
+</div></blockquote>
+<p><strong>func</strong> : callable</p>
+<blockquote class="last">
+<div><div class="line-block">
+<div class="line">A function which takes a string (key) and returns a string, which</div>
+<div class="line">is the placeholder corresponding to that key.</div>
+<div class="line">example: (this is actually default)</div>
+<div class="line-block">
+<div class="line">key = &#8220;lala&#8221;</div>
+<div class="line">placeholder = &#8220;XXXLALA&#8221;</div>
+<div class="line">func = lambda x: &#8220;XXX&#8221; + x.upper()</div>
+</div>
+</div>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pwtools.batch.FileTemplate.__weakref__">
+<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.batch.FileTemplate.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.batch.FileTemplate.write">
+<code class="descname">write</code><span class="sig-paren">(</span><em>dct</em>, <em>calc_dir='calc'</em>, <em>mode='dct'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#FileTemplate.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.FileTemplate.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write file self.filename (e.g. calc/0/pw.in) by replacing 
+placeholders in the template (e.g. calc.templ/pw.in).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dct</strong> : dict</p>
+<blockquote>
+<div><p>key-value pairs, dct.keys() are converted to placeholders with
+self.func()</p>
+</div></blockquote>
+<p><strong>calc_dir</strong> : str</p>
+<blockquote>
+<div><p>the dir where to write the target file to</p>
+</div></blockquote>
+<p><strong>mode</strong> : str, {&#8216;dct&#8217;, &#8216;sql&#8217;}</p>
+<blockquote class="last">
+<div><div class="line-block">
+<div class="line">mode=&#8217;dct&#8217;: replacement values are dct[&lt;key&gt;]</div>
+<div class="line">mode=&#8217;sql&#8217;: replacement values are dct[&lt;key&gt;].fileval and every</div>
+<div class="line-block">
+<div class="line">dct[&lt;key&gt;] is an SQLEntry instance</div>
+</div>
+</div>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.batch.FileTemplate.write.html" title="pwtools.batch.FileTemplate.write"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.batch.Case.html" title="pwtools.batch.Case"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="batch.html" >batch</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

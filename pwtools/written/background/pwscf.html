@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Pwscf &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="Background" href="index.html" />
+    <link rel="prev" title="Coordinate transformation" href="coord_trans.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="coord_trans.html" title="Coordinate transformation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Background</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Pwscf</a><ul>
+<li><a class="reference internal" href="#units">Units</a></li>
+<li><a class="reference internal" href="#atomic-coordinates">Atomic coordinates</a></li>
+<li><a class="reference internal" href="#total-force-on-atoms">Total force on atoms</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="coord_trans.html"
+                        title="previous chapter">Coordinate transformation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/written/background/pwscf.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwscf">
+<h1>Pwscf<a class="headerlink" href="#pwscf" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="units">
+<h2>Units<a class="headerlink" href="#units" title="Permalink to this headline">¶</a></h2>
+<p>From <a class="reference external" href="http://www.quantum-espresso.org/input-syntax/INPUT_PW.html">http://www.quantum-espresso.org/input-syntax/INPUT_PW.html</a>:
+&#8220;All quantities whose dimensions are not explicitly specified are in
+RYDBERG ATOMIC UNITS&#8221;. See also <code class="docutils literal"><span class="pre">constants.py</span></code>.</p>
+<dl class="docutils">
+<dt>matdyn.x and phonon dos:</dt>
+<dd>With dos=.true., matdyn.x calculates the phonon density of states. The
+frequency axis in the output file is f in cm^-1. Note that THIS IS NOT THE
+ANGULAR FREQUENCY omega = 2*pi*f!!! Therefore, if you calculate with this
+frequency as in &#8220;hbar*omega&#8221;, then use f*2*pi!</dd>
+</dl>
+</div>
+<div class="section" id="atomic-coordinates">
+<h2>Atomic coordinates<a class="headerlink" href="#atomic-coordinates" title="Permalink to this headline">¶</a></h2>
+<p>In PWscf terms, alat = celldm(1) = lattice constant &#8220;a&#8221; in a.u. . A length in
+a.u. means a unit or Bohr = a0 = 0.52917720859 Angstrom.</p>
+<p>To calculate the PDOS, atomic coordinates from MD trajectories have to be in
+cartesian coordinates. You may have to transform them <em>before</em> using them to
+calculate the PDOS. See</p>
+<p><code class="docutils literal"><span class="pre">test/test_pdos.py</span></code>
+<code class="docutils literal"><span class="pre">test/test_pdos_coord_trans.py</span></code></p>
+<p>This is necessary if you have &#8220;ATOMIC_POSITIONS crystal&#8221;.</p>
+<p>The scale (or unit: Bohr, Angstrom, ..., defined by celldm(1) or
+CELL_PARAMETERS) does not matter, b/c currently the integral area under the
+PDOS curve is normalized in pydos.*_pdos(). But coords MUST be cartesian!</p>
+<p>For your convenience, here is a list of all possible formats (from the Pwscf
+help):</p>
+<div class="highlight-python"><div class="highlight"><pre>allowed ATOMIC_POSITIONS units:
+   alat    : atomic positions are in cartesian coordinates,
+             in units of the lattice parameter &quot;a&quot; (default)
+
+   bohr    : atomic positions are in cartesian coordinate,
+             in atomic units (i.e. Bohr)
+
+   angstrom: atomic positions are in cartesian coordinates,
+             in Angstrom
+
+   crystal : atomic positions are in crystal coordinates, i.e.
+             in relative coordinates of the primitive lattice vectors
+</pre></div>
+</div>
+<p>Note: crystal coords are also called fractional coordinates (e.g. in Cif
+files).</p>
+<p>summary:</p>
+<div class="highlight-python"><div class="highlight"><pre>ATOMIC_POSITIONS angstrom  -&gt; cartesian angstrom
+ATOMIC_POSITIONS bohr      -&gt; cartesian a.u.
+ATOMIC_POSITIONS           -&gt; cartesian alat
+ATOMIC_POSITIONS alat      -&gt; cartesian alat
+ATOMIC_POSITIONS crystal   -&gt; crystal alat or crystal a.u. (see below)
+</pre></div>
+</div>
+<p>The unit of CELL_PARAMETERS is only important for ATOMIC_POSITIONS crystal:</p>
+<div class="highlight-python"><div class="highlight"><pre>if celldm(1) present  -&gt; CELL_PARAMETERS in alat -&gt; crystal alat
+    =&gt; CELL_PARAMETERS = real cell parameter divided by alat
+if not                -&gt; CELL_PARAMETERS in a.u. -&gt; crystal a.u.
+    =&gt; CELL_PARAMETERS are in Rydberg atomic units, i.e. in Bohr.
+</pre></div>
+</div>
+</div>
+<div class="section" id="total-force-on-atoms">
+<h2>Total force on atoms<a class="headerlink" href="#total-force-on-atoms" title="Permalink to this headline">¶</a></h2>
+<p>Pwscf writes a &#8220;Total Force&#8221; after the &#8220;Forces acting on atoms&#8221; section . This
+value is kind of an RMS of the force matrix (f_ij, i=1,natoms j=1,2,3) printed.
+According to .../PW/forces.f90, variable &#8220;sumfor&#8221;, the &#8220;Total Force&#8221; is:</p>
+<div class="highlight-python"><div class="highlight"><pre>sqrt(sum_ij f_ij^2)
+</pre></div>
+</div>
+<p>But this is not normalized to the number of atoms. Use crys.rms() or
+crys.rms3d() for MD runs where the RMS of each (f_ij) is:</p>
+<div class="highlight-python"><div class="highlight"><pre>sqrt( (sum_ij f_ij^2) / N )
+</pre></div>
+</div>
+<p>with N = 3*natoms or N=natoms.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="coord_trans.html" title="Coordinate transformation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Background</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

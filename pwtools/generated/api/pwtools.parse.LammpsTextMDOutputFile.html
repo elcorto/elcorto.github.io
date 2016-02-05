@@ -1,0 +1,355 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.parse.LammpsTextMDOutputFile &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="parse" href="parse.html" />
+    <link rel="prev" title="pwtools.parse.LammpsDcdMDOutputFile.update_units" href="pwtools.parse.LammpsDcdMDOutputFile.update_units.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.parse.LammpsDcdMDOutputFile.update_units.html" title="pwtools.parse.LammpsDcdMDOutputFile.update_units"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="parse.html" accesskey="U">parse</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.parse.LammpsDcdMDOutputFile.update_units.html"
+                        title="previous chapter">pwtools.parse.LammpsDcdMDOutputFile.update_units</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.parse.LammpsTextMDOutputFile.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-parse-lammpstextmdoutputfile">
+<h1>pwtools.parse.LammpsTextMDOutputFile<a class="headerlink" href="#pwtools-parse-lammpstextmdoutputfile" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.parse.LammpsTextMDOutputFile">
+<em class="property">class </em><code class="descclassname">pwtools.parse.</code><code class="descname">LammpsTextMDOutputFile</code><span class="sig-paren">(</span><em>filename='log.lammps'</em>, <em>order=None</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#LammpsTextMDOutputFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.LammpsTextMDOutputFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pwtools.parse.TrajectoryFileParser.html#pwtools.parse.TrajectoryFileParser" title="pwtools.parse.TrajectoryFileParser"><code class="xref py py-class docutils literal"><span class="pre">pwtools.parse.TrajectoryFileParser</span></code></a></p>
+<p>Parse LAMMPS text output.</p>
+<p>We parse the default <code class="docutils literal"><span class="pre">log.lammps</span></code> file (<cite>filename</cite>) with <code class="docutils literal"><span class="pre">thermo</span></code>
+output and, if present, a custom dump file <code class="docutils literal"><span class="pre">lmp.out.dump</span></code> created by
+something like <code class="docutils literal"><span class="pre">dump</span> <span class="pre">2</span> <span class="pre">all</span> <span class="pre">custom</span> <span class="pre">1</span> <span class="pre">lmp.out.dump</span> <span class="pre">...</span></code> Tested with MD and
+structure optimization (<code class="docutils literal"><span class="pre">minimize</span></code>).</p>
+<dl class="docutils">
+<dt>Currently hardcoded file names:</dt>
+<dd><div class="first last line-block">
+<div class="line"><cite>dumpfilename</cite> = <code class="docutils literal"><span class="pre">basedir/lmp.out.dump</span></code> </div>
+<div class="line"><cite>symbolsfilename</cite> = <code class="docutils literal"><span class="pre">basedir/lmp.struct.symbols</span></code></div>
+</div>
+</dd>
+</dl>
+<p>where <cite>basedir</cite> is the dir where <cite>filename</cite> (i.e. <code class="docutils literal"><span class="pre">log.lammps</span></code>) lives.</p>
+<p>default_units are for lammps metal units.</p>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li>columns in <cite>filename</cite> and <cite>dumpfilename</cite>: We automagically extract
+the &#8220;header&#8221; (e.g. &#8220;Step Temp Volume Cella ...&#8221; in <cite>filename</cite> or
+&#8220;ITEM: ATOMS id type xsu ysu zsu fx fy fz vx vy vz&#8221; in
+<cite>dumpfilename</cite>) and map data to these symbols. See <cite>_thermo_dct</cite> and
+<cite>_dump_dct</cite>. Currently, &#8220;xsu ysu zsu&#8221; is parsed to get
+coords_frac. &#8220;xu yu zu&#8221; is parsed to get coords. Wrapped coordinates
+(e.g. &#8220;xs ys zs&#8221; and &#8220;x y z&#8221;) are ignored.</li>
+<li>multiple runs from one input script (i.e. 2 or more <code class="docutils literal"><span class="pre">run</span></code>
+commands): it seems that the last step of the preceeding run is
+printed again by the new run by <code class="docutils literal"><span class="pre">thermo_style</span></code>, which results in
+more <cite>nstep</cite> in <cite>filename</cite> as there really are in <cite>dumpfilename</cite>. We
+parse all important stuff (coords, cell, velocity) from
+<cite>dumpfilename</cite>, but <cite>temperature</cite> and <cite>stress</cite> etc. is from
+<cite>filename</cite>. Watch out when plotting.</li>
+<li>cell: We parse cell from &#8220;ITEM: BOX BOUNDS&#8221; in <cite>dumpfilename</cite> and the
+cell is always [[x,0,0],[xy,y,0],[xz,yz,z]], i.e. it is aligned in the
+same way in each timestep.</li>
+<li>atom symbols: First we try to read <cite>symbolsfilename</cite>, which may have been
+written by <a class="reference internal" href="pwtools.io.write_lammps.html#pwtools.io.write_lammps" title="pwtools.io.write_lammps"><code class="xref py py-func docutils literal"><span class="pre">pwtools.io.write_lammps()</span></code></a>. If that is not found, we try
+to use the <code class="docutils literal"><span class="pre">type</span></code> column in <cite>dumpfilename</cite> together with a type number
+-&gt; atom symbol mapping either from the <cite>order</cite> input keyword or a
+<code class="docutils literal"><span class="pre">dump_modify</span> <span class="pre">...</span> <span class="pre">element</span></code> line in <cite>filename</cite> if found.</li>
+</ul>
+<p class="rubric">Examples</p>
+<p>Example lammps input:</p>
+<div class="highlight-python"><div class="highlight"><pre>clear
+units metal 
+boundary p p p 
+atom_style atomic
+
+read_data lmp.struct
+
+### interactions 
+pair_style tersoff 
+pair_coeff * * AlN.tersoff Al N
+
+### IO
+dump dump_txt all custom 1 lmp.out.dump id type xsu ysu zsu xu yu zu fx fy fz vx vy vz
+dump dump_dcd all dcd 1 lmp.out.dcd
+##dump dump_xyz all xyz 1 lmp.out.xyz
+##dump_modify dump_xyz element Al N 
+dump_modify dump_txt sort id 
+dump_modify dump_dcd sort id unwrap yes
+thermo_style custom step temp vol cella cellb cellc cellalpha cellbeta cellgamma &amp;
+                    ke pe etotal &amp;
+                    press pxx pyy pzz pxy pxz pyz cpu
+thermo_modify flush yes
+thermo 1
+
+### init
+velocity all create 300.0 123 rot yes dist gaussian
+
+### run
+fix fix_npt all npt temp 1000 1000 0.01 tri 0 0 0.3 tchain 4 pchain 4 &amp;
+    mtk yes scaleyz no scalexz no scalexy no flip no
+timestep 2.5e-3
+run 1000
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">Container</span></code></td>
+<td>alias of <code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.apply_units.html#pwtools.parse.LammpsTextMDOutputFile.apply_units" title="pwtools.parse.LammpsTextMDOutputFile.apply_units"><code class="xref py py-obj docutils literal"><span class="pre">apply_units</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.assert_attr.html#pwtools.parse.LammpsTextMDOutputFile.assert_attr" title="pwtools.parse.LammpsTextMDOutputFile.assert_attr"><code class="xref py py-obj docutils literal"><span class="pre">assert_attr</span></code></a>(attr)</td>
+<td>Raise AssertionError if self.&lt;attr&gt; is not set (is_set_attr() returns False.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.assert_attr_lst.html#pwtools.parse.LammpsTextMDOutputFile.assert_attr_lst" title="pwtools.parse.LammpsTextMDOutputFile.assert_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">assert_attr_lst</span></code></a>(attr_lst)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.assert_set_attr.html#pwtools.parse.LammpsTextMDOutputFile.assert_set_attr" title="pwtools.parse.LammpsTextMDOutputFile.assert_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">assert_set_attr</span></code></a>(attr)</td>
+<td>Same as assert_attr(), but run try_set_attr() first.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.assert_set_attr_lst.html#pwtools.parse.LammpsTextMDOutputFile.assert_set_attr_lst" title="pwtools.parse.LammpsTextMDOutputFile.assert_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">assert_set_attr_lst</span></code></a>(attr_lst)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.check_set_attr.html#pwtools.parse.LammpsTextMDOutputFile.check_set_attr" title="pwtools.parse.LammpsTextMDOutputFile.check_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">check_set_attr</span></code></a>(attr)</td>
+<td>Run try_set_attr() and return the result of is_set_attr(), i.e.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.check_set_attr_lst.html#pwtools.parse.LammpsTextMDOutputFile.check_set_attr_lst" title="pwtools.parse.LammpsTextMDOutputFile.check_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">check_set_attr_lst</span></code></a>(attr_lst)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.dump.html#pwtools.parse.LammpsTextMDOutputFile.dump" title="pwtools.parse.LammpsTextMDOutputFile.dump"><code class="xref py py-obj docutils literal"><span class="pre">dump</span></code></a>(dump_filename[,&nbsp;mkdir])</td>
+<td>Write object to binary file using cPickle.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_cell.html#pwtools.parse.LammpsTextMDOutputFile.get_cell" title="pwtools.parse.LammpsTextMDOutputFile.get_cell"><code class="xref py py-obj docutils literal"><span class="pre">get_cell</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_cont.html#pwtools.parse.LammpsTextMDOutputFile.get_cont" title="pwtools.parse.LammpsTextMDOutputFile.get_cont"><code class="xref py py-obj docutils literal"><span class="pre">get_cont</span></code></a>([auto_calc])</td>
+<td>Populate and return a Container object.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_coords.html#pwtools.parse.LammpsTextMDOutputFile.get_coords" title="pwtools.parse.LammpsTextMDOutputFile.get_coords"><code class="xref py py-obj docutils literal"><span class="pre">get_coords</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_coords_frac.html#pwtools.parse.LammpsTextMDOutputFile.get_coords_frac" title="pwtools.parse.LammpsTextMDOutputFile.get_coords_frac"><code class="xref py py-obj docutils literal"><span class="pre">get_coords_frac</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_cryst_const.html#pwtools.parse.LammpsTextMDOutputFile.get_cryst_const" title="pwtools.parse.LammpsTextMDOutputFile.get_cryst_const"><code class="xref py py-obj docutils literal"><span class="pre">get_cryst_const</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_ekin.html#pwtools.parse.LammpsTextMDOutputFile.get_ekin" title="pwtools.parse.LammpsTextMDOutputFile.get_ekin"><code class="xref py py-obj docutils literal"><span class="pre">get_ekin</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_etot.html#pwtools.parse.LammpsTextMDOutputFile.get_etot" title="pwtools.parse.LammpsTextMDOutputFile.get_etot"><code class="xref py py-obj docutils literal"><span class="pre">get_etot</span></code></a>()</td>
+<td>Potetntial energy PotEng [eV].</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_forces.html#pwtools.parse.LammpsTextMDOutputFile.get_forces" title="pwtools.parse.LammpsTextMDOutputFile.get_forces"><code class="xref py py-obj docutils literal"><span class="pre">get_forces</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_natoms.html#pwtools.parse.LammpsTextMDOutputFile.get_natoms" title="pwtools.parse.LammpsTextMDOutputFile.get_natoms"><code class="xref py py-obj docutils literal"><span class="pre">get_natoms</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_return_attr.html#pwtools.parse.LammpsTextMDOutputFile.get_return_attr" title="pwtools.parse.LammpsTextMDOutputFile.get_return_attr"><code class="xref py py-obj docutils literal"><span class="pre">get_return_attr</span></code></a>(attr_name)</td>
+<td>Call try_set_attr() are return self.&lt;attr_name&gt; if set.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_stress.html#pwtools.parse.LammpsTextMDOutputFile.get_stress" title="pwtools.parse.LammpsTextMDOutputFile.get_stress"><code class="xref py py-obj docutils literal"><span class="pre">get_stress</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_struct.html#pwtools.parse.LammpsTextMDOutputFile.get_struct" title="pwtools.parse.LammpsTextMDOutputFile.get_struct"><code class="xref py py-obj docutils literal"><span class="pre">get_struct</span></code></a>(**kwds)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_symbols.html#pwtools.parse.LammpsTextMDOutputFile.get_symbols" title="pwtools.parse.LammpsTextMDOutputFile.get_symbols"><code class="xref py py-obj docutils literal"><span class="pre">get_symbols</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_temperature.html#pwtools.parse.LammpsTextMDOutputFile.get_temperature" title="pwtools.parse.LammpsTextMDOutputFile.get_temperature"><code class="xref py py-obj docutils literal"><span class="pre">get_temperature</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_timestep.html#pwtools.parse.LammpsTextMDOutputFile.get_timestep" title="pwtools.parse.LammpsTextMDOutputFile.get_timestep"><code class="xref py py-obj docutils literal"><span class="pre">get_timestep</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_traj.html#pwtools.parse.LammpsTextMDOutputFile.get_traj" title="pwtools.parse.LammpsTextMDOutputFile.get_traj"><code class="xref py py-obj docutils literal"><span class="pre">get_traj</span></code></a>(**kwds)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_velocity.html#pwtools.parse.LammpsTextMDOutputFile.get_velocity" title="pwtools.parse.LammpsTextMDOutputFile.get_velocity"><code class="xref py py-obj docutils literal"><span class="pre">get_velocity</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_volume.html#pwtools.parse.LammpsTextMDOutputFile.get_volume" title="pwtools.parse.LammpsTextMDOutputFile.get_volume"><code class="xref py py-obj docutils literal"><span class="pre">get_volume</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.init_attr_lst.html#pwtools.parse.LammpsTextMDOutputFile.init_attr_lst" title="pwtools.parse.LammpsTextMDOutputFile.init_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">init_attr_lst</span></code></a>([attr_lst])</td>
+<td>Set each self.&lt;attr&gt; in <cite>attr_lst</cite> to None.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.is_set_attr.html#pwtools.parse.LammpsTextMDOutputFile.is_set_attr" title="pwtools.parse.LammpsTextMDOutputFile.is_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">is_set_attr</span></code></a>(attr)</td>
+<td>Check if self has the attribute self.&lt;attr&gt; and if it is _not_ None.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.is_set_attr_lst.html#pwtools.parse.LammpsTextMDOutputFile.is_set_attr_lst" title="pwtools.parse.LammpsTextMDOutputFile.is_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">is_set_attr_lst</span></code></a>(attr_lst)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.load.html#pwtools.parse.LammpsTextMDOutputFile.load" title="pwtools.parse.LammpsTextMDOutputFile.load"><code class="xref py py-obj docutils literal"><span class="pre">load</span></code></a>(dump_filename)</td>
+<td>Load pickled object.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.parse.html#pwtools.parse.LammpsTextMDOutputFile.parse" title="pwtools.parse.LammpsTextMDOutputFile.parse"><code class="xref py py-obj docutils literal"><span class="pre">parse</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.raw_return.html#pwtools.parse.LammpsTextMDOutputFile.raw_return" title="pwtools.parse.LammpsTextMDOutputFile.raw_return"><code class="xref py py-obj docutils literal"><span class="pre">raw_return</span></code></a>(attr_name)</td>
+<td>Call <code class="docutils literal"><span class="pre">try_set_attr(_&lt;attr_name&gt;_raw)</span></code> and return it if set, else None.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.raw_slice_get.html#pwtools.parse.LammpsTextMDOutputFile.raw_slice_get" title="pwtools.parse.LammpsTextMDOutputFile.raw_slice_get"><code class="xref py py-obj docutils literal"><span class="pre">raw_slice_get</span></code></a>(attr_name,&nbsp;sl,&nbsp;axis)</td>
+<td>Shortcut method:</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.set_all.html#pwtools.parse.LammpsTextMDOutputFile.set_all" title="pwtools.parse.LammpsTextMDOutputFile.set_all"><code class="xref py py-obj docutils literal"><span class="pre">set_all</span></code></a>([attr_lst])</td>
+<td>Call getter for each attr name in <cite>attr_lst</cite>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.set_attr_lst.html#pwtools.parse.LammpsTextMDOutputFile.set_attr_lst" title="pwtools.parse.LammpsTextMDOutputFile.set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">set_attr_lst</span></code></a>(attr_lst)</td>
+<td>Set self.attr_lst and init each attr to None.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.try_set_attr.html#pwtools.parse.LammpsTextMDOutputFile.try_set_attr" title="pwtools.parse.LammpsTextMDOutputFile.try_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">try_set_attr</span></code></a>(attr)</td>
+<td>If self.&lt;attr&gt; does not exist or is None, then invoke an</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.try_set_attr_lst.html#pwtools.parse.LammpsTextMDOutputFile.try_set_attr_lst" title="pwtools.parse.LammpsTextMDOutputFile.try_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">try_set_attr_lst</span></code></a>(attr_lst)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.update_units.html#pwtools.parse.LammpsTextMDOutputFile.update_units" title="pwtools.parse.LammpsTextMDOutputFile.update_units"><code class="xref py py-obj docutils literal"><span class="pre">update_units</span></code></a>(units)</td>
+<td>Update self.units dict from <cite>units</cite>.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pwtools.parse.LammpsTextMDOutputFile.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>filename='log.lammps'</em>, <em>order=None</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#LammpsTextMDOutputFile.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.LammpsTextMDOutputFile.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>filename</strong> : str</p>
+<blockquote>
+<div><p>Text output file, where <code class="docutils literal"><span class="pre">thermo_style</span> <span class="pre">[custom]</span></code>
+output is written to. The lammps default is <code class="docutils literal"><span class="pre">log.lammps</span></code>.</p>
+</div></blockquote>
+<p><strong>order</strong> : dict, optional</p>
+<blockquote class="last">
+<div><p>See <a class="reference internal" href="pwtools.crys.Structure.get_order.html#pwtools.crys.Structure.get_order" title="pwtools.crys.Structure.get_order"><code class="xref py py-meth docutils literal"><span class="pre">pwtools.crys.Structure.get_order()</span></code></a>. Mapping of atom
+symbols to <code class="docutils literal"><span class="pre">type</span></code> in lammps, i.e. {&#8216;Al&#8217;: 1, &#8216;N&#8217;: 2}. If None then
+we try to use <code class="docutils literal"><span class="pre">dump_modify</span> <span class="pre">...</span> <span class="pre">element</span></code> if present in <cite>filename</cite>,
+where lammps echos the input script. <cite>symbols</cite> is build from the
+<code class="docutils literal"><span class="pre">type</span></code> column in <cite>dumpfilename</cite>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.parse.LammpsTextMDOutputFile.get_etot">
+<code class="descname">get_etot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#LammpsTextMDOutputFile.get_etot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.LammpsTextMDOutputFile.get_etot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Potetntial energy PotEng [eV]. etot+ekin here is
+TotEng=PotEng+KinEng in lammps. In DFT, the potential energy is usually
+called &#8220;total energy&#8221;.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.parse.LammpsDcdMDOutputFile.update_units.html" title="pwtools.parse.LammpsDcdMDOutputFile.update_units"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="parse.html" >parse</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

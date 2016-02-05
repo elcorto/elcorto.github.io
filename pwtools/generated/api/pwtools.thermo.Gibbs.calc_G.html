@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.thermo.Gibbs.calc_G &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="pwtools.thermo.Gibbs" href="pwtools.thermo.Gibbs.html" />
+    <link rel="next" title="pwtools.thermo.Gibbs.calc_H" href="pwtools.thermo.Gibbs.calc_H.html" />
+    <link rel="prev" title="pwtools.thermo.Gibbs.calc_F" href="pwtools.thermo.Gibbs.calc_F.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.thermo.Gibbs.calc_H.html" title="pwtools.thermo.Gibbs.calc_H"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.thermo.Gibbs.calc_F.html" title="pwtools.thermo.Gibbs.calc_F"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="thermo.html" >thermo</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="pwtools.thermo.Gibbs.html" accesskey="U">pwtools.thermo.Gibbs</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.thermo.Gibbs.calc_F.html"
+                        title="previous chapter">pwtools.thermo.Gibbs.calc_F</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.thermo.Gibbs.calc_H.html"
+                        title="next chapter">pwtools.thermo.Gibbs.calc_H</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.thermo.Gibbs.calc_G.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-thermo-gibbs-calc-g">
+<h1>pwtools.thermo.Gibbs.calc_G<a class="headerlink" href="#pwtools-thermo-gibbs-calc-g" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.thermo.Gibbs.calc_G">
+<code class="descclassname">Gibbs.</code><code class="descname">calc_G</code><span class="sig-paren">(</span><em>ret=None</em>, <em>calc_all=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#Gibbs.calc_G"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.Gibbs.calc_G" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gibbs free energy and related properties on T-P grid. 
+Uses self.fitfunc.</p>
+<p>Needs <a class="reference internal" href="pwtools.thermo.Gibbs.calc_F.html#pwtools.thermo.Gibbs.calc_F" title="pwtools.thermo.Gibbs.calc_F"><code class="xref py py-meth docutils literal"><span class="pre">calc_F()</span></code></a> results. Called here if not provided.
+Also calls <a class="reference internal" href="pwtools.thermo.Gibbs.calc_H.html#pwtools.thermo.Gibbs.calc_H" title="pwtools.thermo.Gibbs.calc_H"><code class="xref py py-meth docutils literal"><span class="pre">calc_H()</span></code></a> if <cite>calc_all</cite> is <code class="docutils literal"><span class="pre">True</span></code>, i.e. this is the
+you-get-it-all method and the only one you sould really use.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ret</strong> : dict, optional</p>
+<blockquote>
+<div><p>Result from calc_F(). If None then calc_F() is called here. Can be
+used to add additional contributions to F, such as electronic
+entropy.</p>
+</div></blockquote>
+<p><strong>calc_all</strong> : bool</p>
+<blockquote>
+<div><p>Calcluate thermal properties from G(ax0,ax1,ax2,T,P): Cp,
+alpha_x, B. If False, then calculate and store only G.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ret</strong> : dict</p>
+<blockquote class="last">
+<div><p>All keys starting with the <code class="docutils literal"><span class="pre">/#opt</span></code> prefix are values obtained
+from minimizing G(ax0,ax1,ax2,T,P) w.r.t. (ax0,ax1,ax2).</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.thermo.Gibbs.calc_H.html" title="pwtools.thermo.Gibbs.calc_H"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.thermo.Gibbs.calc_F.html" title="pwtools.thermo.Gibbs.calc_F"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="thermo.html" >thermo</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="pwtools.thermo.Gibbs.html" >pwtools.thermo.Gibbs</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

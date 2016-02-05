@@ -1,0 +1,432 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.rbf.RBFInt &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="rbf" href="rbf.html" />
+    <link rel="next" title="pwtools.rbf.RBFInt.__call__" href="pwtools.rbf.RBFInt.__call__.html" />
+    <link rel="prev" title="pwtools.rbf.RBFGauss.__call__" href="pwtools.rbf.RBFGauss.__call__.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.rbf.RBFInt.__call__.html" title="pwtools.rbf.RBFInt.__call__"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.rbf.RBFGauss.__call__.html" title="pwtools.rbf.RBFGauss.__call__"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="rbf.html" accesskey="U">rbf</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.rbf.RBFGauss.__call__.html"
+                        title="previous chapter">pwtools.rbf.RBFGauss.__call__</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.rbf.RBFInt.__call__.html"
+                        title="next chapter">pwtools.rbf.RBFInt.__call__</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.rbf.RBFInt.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-rbf-rbfint">
+<h1>pwtools.rbf.RBFInt<a class="headerlink" href="#pwtools-rbf-rbfint" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.rbf.RBFInt">
+<em class="property">class </em><code class="descclassname">pwtools.rbf.</code><code class="descname">RBFInt</code><span class="sig-paren">(</span><em>X</em>, <em>Y=None</em>, <em>C=None</em>, <em>rbf=&lt;pwtools.rbf.RBFMultiquadric object&gt;</em>, <em>verbose=False</em>, <em>distmethod='fortran'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Radial basis function neural network interpolator.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.RBFInt.__call__.html#pwtools.rbf.RBFInt.__call__" title="pwtools.rbf.RBFInt.__call__"><code class="xref py py-obj docutils literal"><span class="pre">__call__</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>Call self.interpolate() or self.deriv().</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.RBFInt.calc_dist_mat.html#pwtools.rbf.RBFInt.calc_dist_mat" title="pwtools.rbf.RBFInt.calc_dist_mat"><code class="xref py py-obj docutils literal"><span class="pre">calc_dist_mat</span></code></a>()</td>
+<td>Calculate self.Rsq for the training set.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.RBFInt.deriv.html#pwtools.rbf.RBFInt.deriv" title="pwtools.rbf.RBFInt.deriv"><code class="xref py py-obj docutils literal"><span class="pre">deriv</span></code></a>(X)</td>
+<td>Matrix of partial first derivatives.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.RBFInt.get_dist_mat.html#pwtools.rbf.RBFInt.get_dist_mat" title="pwtools.rbf.RBFInt.get_dist_mat"><code class="xref py py-obj docutils literal"><span class="pre">get_dist_mat</span></code></a>([X,&nbsp;C])</td>
+<td>Matrix of distance values r_ij = ||x_i - c_j|| with:</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.RBFInt.get_param.html#pwtools.rbf.RBFInt.get_param" title="pwtools.rbf.RBFInt.get_param"><code class="xref py py-obj docutils literal"><span class="pre">get_param</span></code></a>(param)</td>
+<td>Return <cite>param</cite> for RBF (to set self.rbf.param).</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.RBFInt.get_rbf_mat.html#pwtools.rbf.RBFInt.get_rbf_mat" title="pwtools.rbf.RBFInt.get_rbf_mat"><code class="xref py py-obj docutils literal"><span class="pre">get_rbf_mat</span></code></a>([Rsq])</td>
+<td>Matrix of RBF values g_ij = rbf(||x_i - c_j||).</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.RBFInt.interpolate.html#pwtools.rbf.RBFInt.interpolate" title="pwtools.rbf.RBFInt.interpolate"><code class="xref py py-obj docutils literal"><span class="pre">interpolate</span></code></a>(X)</td>
+<td>Actually do interpolation.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.RBFInt.msg.html#pwtools.rbf.RBFInt.msg" title="pwtools.rbf.RBFInt.msg"><code class="xref py py-obj docutils literal"><span class="pre">msg</span></code></a>(msg)</td>
+<td>Print a message.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.RBFInt.set_Y.html#pwtools.rbf.RBFInt.set_Y" title="pwtools.rbf.RBFInt.set_Y"><code class="xref py py-obj docutils literal"><span class="pre">set_Y</span></code></a>(Y)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.RBFInt.train.html#pwtools.rbf.RBFInt.train" title="pwtools.rbf.RBFInt.train"><code class="xref py py-obj docutils literal"><span class="pre">train</span></code></a>([mode])</td>
+<td>Call one of the training methods self._train_&lt;mode&gt;().</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pwtools.rbf.RBFInt.__call__">
+<code class="descname">__call__</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self.interpolate() or self.deriv().</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>X</strong> : 2d array (L,N) or 1d array (N,) or None</p>
+<blockquote>
+<div><p>L data points in N-dim space. If None, then X = self.X, i.e. just
+evaluate the training set. If 1d, then this is just 1 point, which
+will be converted to shape (1,N) internally.</p>
+</div></blockquote>
+<p><strong>der</strong> : int</p>
+<blockquote>
+<div><p>If == 1 return matrix of partial derivatives (see self.deriv()), else
+interpolated Y values (default).</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>YI</strong> : 1d array (L,)</p>
+<blockquote>
+<div><p>Interpolated values.</p>
+</div></blockquote>
+<p>or</p>
+<p><strong>D</strong> : 2d array (L,N)</p>
+<blockquote class="last">
+<div><p>1st partial derivatives.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.rbf.RBFInt.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>X</em>, <em>Y=None</em>, <em>C=None</em>, <em>rbf=&lt;pwtools.rbf.RBFMultiquadric object&gt;</em>, <em>verbose=False</em>, <em>distmethod='fortran'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>X</strong> : 2d array, (M,N)</p>
+<blockquote>
+<div><p>data points : M points in N-dim space, training set points</p>
+</div></blockquote>
+<p><strong>Y: 1d array, (M,)</strong></p>
+<blockquote>
+<div><p>function values at training points</p>
+</div></blockquote>
+<p><strong>C</strong> : 2d array (K,N)</p>
+<blockquote>
+<div><p>K N-dim center vectors, for usual interpolation training X == C
+(default)</p>
+</div></blockquote>
+<p><strong>rbf</strong> : RBFFunction instance, optional</p>
+<p><strong>verbose</strong> : bool, optional</p>
+<blockquote>
+<div><p>print some messages</p>
+</div></blockquote>
+<p><strong>distmethod</strong> : str, optional</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>Choose method for distance matrix calculation.</dt>
+<dd><p class="first last">fortran : Fortran implementation (OpenMP, fastest)
+spatial : scipy.spatial.distance.cdist
+numpy : pure numpy (memory hungry, slowest)</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># 1D example w/ derivatives. For 1d, we need to use X[:,None] b/c the</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># input array containing training (X) and interpolation (XI) points must</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># be 2d.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>     <span class="c"># shape (M,), M=20 points</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span><span class="o">=</span><span class="n">sin</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>                <span class="c"># shape (M,)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rbfi</span><span class="o">=</span><span class="n">rbf</span><span class="o">.</span><span class="n">RBFInt</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="bp">None</span><span class="p">],</span><span class="n">Y</span><span class="p">)</span>    
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rbfi</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">XI</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>   <span class="c"># shape (M,), M=100 points</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;data&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">XI</span><span class="p">,</span> <span class="n">sin</span><span class="p">(</span><span class="n">XI</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;sin(x)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">XI</span><span class="p">,</span> <span class="n">rbfi</span><span class="p">(</span><span class="n">XI</span><span class="p">[:,</span><span class="bp">None</span><span class="p">]),</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;rbf&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">XI</span><span class="p">,</span> <span class="n">cos</span><span class="p">(</span><span class="n">XI</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;cos(x)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">XI</span><span class="p">,</span> <span class="n">rbfi</span><span class="p">(</span><span class="n">XI</span><span class="p">[:,</span><span class="bp">None</span><span class="p">],</span><span class="n">der</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;d(rbf)/dx&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">legend</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># 2D example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="kn">import</span> <span class="n">mpl</span><span class="p">,</span> <span class="n">rbf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x1</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span> <span class="n">x2</span><span class="o">=</span><span class="n">x1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X1</span><span class="p">,</span><span class="n">X2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">);</span> <span class="n">X1</span><span class="p">,</span><span class="n">X2</span> <span class="o">=</span> <span class="n">X1</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">X2</span><span class="o">.</span><span class="n">T</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">X1</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">X2</span><span class="o">.</span><span class="n">flatten</span><span class="p">()])</span><span class="o">.</span><span class="n">T</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">X1</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">X2</span><span class="p">))</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x1i</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">50</span><span class="p">);</span> <span class="n">x2i</span><span class="o">=</span><span class="n">x1i</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X1I</span><span class="p">,</span><span class="n">X2I</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x1i</span><span class="p">,</span><span class="n">x2i</span><span class="p">);</span> <span class="n">X1I</span><span class="p">,</span><span class="n">X2I</span> <span class="o">=</span> <span class="n">X1I</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">X2I</span><span class="o">.</span><span class="n">T</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">XI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">X1I</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">X2I</span><span class="o">.</span><span class="n">flatten</span><span class="p">()])</span><span class="o">.</span><span class="n">T</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rbfi</span><span class="o">=</span><span class="n">rbf</span><span class="o">.</span><span class="n">RBFInt</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rbfi</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig1</span><span class="p">,</span><span class="n">ax1</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">fig_ax3d</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">Y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax1</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">X1I</span><span class="p">,</span> <span class="n">X2I</span><span class="p">,</span> <span class="n">rbfi</span><span class="p">(</span><span class="n">XI</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig2</span><span class="p">,</span><span class="n">ax2</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">fig_ax3d</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">X1I</span><span class="p">,</span> <span class="n">X2I</span><span class="p">,</span> <span class="n">rbfi</span><span class="p">(</span><span class="n">XI</span><span class="p">,</span><span class="n">der</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span>
+<span class="gp">... </span>                   <span class="n">color</span><span class="o">=</span><span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;d/dx&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">X1I</span><span class="p">,</span> <span class="n">X2I</span><span class="p">,</span> <span class="n">rbfi</span><span class="p">(</span><span class="n">XI</span><span class="p">,</span><span class="n">der</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span>
+<span class="gp">... </span>                   <span class="n">color</span><span class="o">=</span><span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;d/dy&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pwtools.rbf.RBFInt.__weakref__">
+<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.rbf.RBFInt.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.rbf.RBFInt.calc_dist_mat">
+<code class="descname">calc_dist_mat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.calc_dist_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.calc_dist_mat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate self.Rsq for the training set.</p>
+<p>Can be used in conjunction w/ set_Y() to construct a network which
+calculates Rsq only once. Then it can be trained for different Y many
+times, using the same X grid w/o re-calculating Rsq over and over
+again.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rbfi</span> <span class="o">=</span> <span class="n">rbf</span><span class="o">.</span><span class="n">RBFInt</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rbfi</span><span class="o">.</span><span class="n">calc_dist_mat</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">Y</span> <span class="ow">in</span> <span class="o">...</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span> <span class="n">rbfi</span><span class="o">.</span><span class="n">set_Y</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span> <span class="n">rbfi</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span> <span class="n">YI</span><span class="o">=</span><span class="n">rbfi</span><span class="p">(</span><span class="n">XI</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.rbf.RBFInt.deriv">
+<code class="descname">deriv</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.deriv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.deriv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix of partial first derivatives.</p>
+<dl class="docutils">
+<dt>Implemented for </dt>
+<dd>RBFMultiquadric
+RBFGauss</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>X</strong> : see interpolate()</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">2d array (L,N)</p>
+<blockquote class="last">
+<div><p>Each row holds the partial derivatives of one input point <code class="docutils literal"><span class="pre">X[i,:]</span> <span class="pre">=</span>
+<span class="pre">[x_0,</span> <span class="pre">...,</span> <span class="pre">x_N]</span></code>. For all points X: (L,N), we get the matrix:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[[</span><span class="n">dy</span><span class="o">/</span><span class="n">dx0_0</span><span class="p">,</span> <span class="n">dy</span><span class="o">/</span><span class="n">dx0_1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">dy</span><span class="o">/</span><span class="n">dx0_N</span><span class="p">],</span>
+ <span class="p">[</span><span class="o">...</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">dy</span><span class="o">/</span><span class="n">dxL_0</span><span class="p">,</span> <span class="n">dy</span><span class="o">/</span><span class="n">dxL_1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">dy</span><span class="o">/</span><span class="n">dxL_N</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.rbf.RBFInt.get_dist_mat">
+<code class="descname">get_dist_mat</code><span class="sig-paren">(</span><em>X=None</em>, <em>C=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.get_dist_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.get_dist_mat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix of distance values r_ij = ||x_i - c_j|| with:</p>
+<div class="highlight-python"><div class="highlight"><pre>x_i : X[i,:]
+c_i : C[i,:]
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>X</strong> : None or array (M,N) with N-dim points</p>
+<blockquote>
+<div><p>Training data or interpolation points. If None then self.Rsq is
+returned.</p>
+</div></blockquote>
+<p><strong>C</strong> : 2d array (K,N), optional</p>
+<blockquote>
+<div><p>If None then self.C is used.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>Rsq</strong> : (M,K), where K = M usually for training</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.rbf.RBFInt.get_param">
+<code class="descname">get_param</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.get_param"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.get_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <cite>param</cite> for RBF (to set self.rbf.param).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>param</strong> : string &#8216;est&#8217; or float</p>
+<blockquote class="last">
+<div><p>If &#8216;est&#8217;, then return the mean distance of all points.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.rbf.RBFInt.get_rbf_mat">
+<code class="descname">get_rbf_mat</code><span class="sig-paren">(</span><em>Rsq=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.get_rbf_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.get_rbf_mat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix of RBF values g_ij = rbf(||x_i - c_j||).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.rbf.RBFInt.interpolate">
+<code class="descname">interpolate</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.interpolate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.interpolate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actually do interpolation. Return interpolated Y values at each
+point in X.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> : see interpolate()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>YI</strong> : 1d array (L,)</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<dl class="docutils">
+<dt>Calculates </dt>
+<dd>Rsq = (X - C)**2      # squared distance matrix
+G = rbf(Rsq)          # RBF values
+YI = dot(G, w)        # interpolation y_i = Sum_j g_ij w_j</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.rbf.RBFInt.msg">
+<code class="descname">msg</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.msg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.msg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print a message.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.rbf.RBFInt.train">
+<code class="descname">train</code><span class="sig-paren">(</span><em>mode='linalg'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call one of the training methods self._train_&lt;mode&gt;().</p>
+<p>Always use this, not the methods directly, as they don&#8217;t set
+self.weights after training!</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.rbf.RBFInt.__call__.html" title="pwtools.rbf.RBFInt.__call__"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.rbf.RBFGauss.__call__.html" title="pwtools.rbf.RBFGauss.__call__"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="rbf.html" >rbf</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

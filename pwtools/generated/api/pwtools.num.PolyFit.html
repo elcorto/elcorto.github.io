@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.num.PolyFit &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="num" href="num.html" />
+    <link rel="next" title="pwtools.num.PolyFit.__call__" href="pwtools.num.PolyFit.__call__.html" />
+    <link rel="prev" title="pwtools.num.Interpol2D.get_min" href="pwtools.num.Interpol2D.get_min.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.PolyFit.__call__.html" title="pwtools.num.PolyFit.__call__"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.Interpol2D.get_min.html" title="pwtools.num.Interpol2D.get_min"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="num.html" accesskey="U">num</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.num.Interpol2D.get_min.html"
+                        title="previous chapter">pwtools.num.Interpol2D.get_min</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.num.PolyFit.__call__.html"
+                        title="next chapter">pwtools.num.PolyFit.__call__</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.num.PolyFit.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-num-polyfit">
+<h1>pwtools.num.PolyFit<a class="headerlink" href="#pwtools-num-polyfit" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.num.PolyFit">
+<em class="property">class </em><code class="descclassname">pwtools.num.</code><code class="descname">PolyFit</code><span class="sig-paren">(</span><em>points</em>, <em>values</em>, <em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#PolyFit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.PolyFit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>High level interface to [avg]poly{fit,val}, similar to <a class="reference internal" href="pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-class docutils literal"><span class="pre">Spline</span></code></a>
+and <a class="reference internal" href="pwtools.num.Interpol2D.html#pwtools.num.Interpol2D" title="pwtools.num.Interpol2D"><code class="xref py py-meth docutils literal"><span class="pre">Interpol2D()</span></code></a>.</p>
+<p>Arguments and keywords to <a class="reference internal" href="#pwtools.num.PolyFit.__init__" title="pwtools.num.PolyFit.__init__"><code class="xref py py-meth docutils literal"><span class="pre">__init__()</span></code></a> are the same as for
+<a class="reference internal" href="pwtools.num.polyfit.html#pwtools.num.polyfit" title="pwtools.num.polyfit"><code class="xref py py-func docutils literal"><span class="pre">polyfit()</span></code></a> or <a class="reference internal" href="pwtools.num.avgpolyfit.html#pwtools.num.avgpolyfit" title="pwtools.num.avgpolyfit"><code class="xref py py-func docutils literal"><span class="pre">avgpolyfit()</span></code></a>. Keywords to <a class="reference internal" href="pwtools.num.PolyFit.__call__.html#pwtools.num.PolyFit.__call__" title="pwtools.num.PolyFit.__call__"><code class="xref py py-meth docutils literal"><span class="pre">__call__()</span></code></a> are
+same as for  <a class="reference internal" href="pwtools.num.polyval.html#pwtools.num.polyval" title="pwtools.num.polyval"><code class="xref py py-func docutils literal"><span class="pre">polyval()</span></code></a> or <a class="reference internal" href="pwtools.num.avgpolyval.html#pwtools.num.avgpolyval" title="pwtools.num.avgpolyval"><code class="xref py py-func docutils literal"><span class="pre">avgpolyval()</span></code></a>.</p>
+<p>If one of &#8216;degrange&#8217;, &#8216;degmin&#8217;, &#8216;degmax&#8217;, &#8216;levels&#8217; is given, then
+<a class="reference internal" href="pwtools.num.avgpolyfit.html#pwtools.num.avgpolyfit" title="pwtools.num.avgpolyfit"><code class="xref py py-func docutils literal"><span class="pre">avgpolyfit()</span></code></a> is used. If <cite>deg</cite> is used, then <a class="reference internal" href="pwtools.num.polyfit.html#pwtools.num.polyfit" title="pwtools.num.polyfit"><code class="xref py py-func docutils literal"><span class="pre">polyfit()</span></code></a> is used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>points</strong> : nd array (npoints,ndim)</p>
+<blockquote>
+<div><p><cite>npoints</cite> points in <cite>ndim</cite>-space, to be fitted by a <cite>ndim</cite> polynomial
+f(x0,x1,...,x{ndim-1}).</p>
+</div></blockquote>
+<p><strong>values</strong> : 1d array</p>
+<p><strong>deg</strong> : int</p>
+<blockquote>
+<div><p>Degree of the poly (e.g. 3 for cubic).</p>
+</div></blockquote>
+<p><strong>levels</strong> : int</p>
+<blockquote>
+<div><p>Fit this many polys and remove endpoints from <cite>points</cite> for levels &gt;= 1.</p>
+</div></blockquote>
+<p><strong>degmin, degmax</strong> : int</p>
+<blockquote>
+<div><p>min and max degree</p>
+</div></blockquote>
+<p><strong>degrange</strong> : sequence</p>
+<blockquote>
+<div><p>range of poly degrees, use either this or <cite>degmin</cite> + <cite>degmax</cite></p>
+</div></blockquote>
+<p><strong>scale: bool, optional</strong></p>
+<blockquote class="last">
+<div><p>Scale <cite>points</cite> and <cite>values</cite> to unity internally before fitting.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<div class="line-block">
+<div class="line">__init__: <cite>points</cite> must be (npoints,ndim) even if ndim=1.</div>
+<div class="line">__call__: <cite>points</cite> can be (ndim,) instead of (1,ndim), need this if called in
+fmin()</div>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fit1</span><span class="o">=</span><span class="n">polyfit</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">3</span><span class="p">);</span> <span class="n">polyval</span><span class="p">(</span><span class="n">fit1</span><span class="p">,</span> <span class="n">new_points</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fit2</span><span class="o">=</span><span class="n">avgpolyfit</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">degrange</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">levels</span><span class="o">=</span><span class="mi">2</span><span class="p">);</span> <span class="n">avgpolyval</span><span class="p">(</span><span class="n">fit2</span><span class="p">,</span> <span class="n">new_points</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># the same</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f1</span><span class="o">=</span><span class="n">PolyFit</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="n">f1</span><span class="p">(</span><span class="n">new_points</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f2</span><span class="o">=</span><span class="n">PolyFit</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">degrange</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">levels</span><span class="o">=</span><span class="mi">2</span><span class="p">);</span> <span class="n">f2</span><span class="p">(</span><span class="n">new_points</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.PolyFit.__call__.html#pwtools.num.PolyFit.__call__" title="pwtools.num.PolyFit.__call__"><code class="xref py py-obj docutils literal"><span class="pre">__call__</span></code></a>(points,&nbsp;**kwds)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.num.PolyFit.get_min.html#pwtools.num.PolyFit.get_min" title="pwtools.num.PolyFit.get_min"><code class="xref py py-obj docutils literal"><span class="pre">get_min</span></code></a>([x0])</td>
+<td>Minimize fit function by <cite>scipy.optimize.fmin()</cite>.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pwtools.num.PolyFit.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>points</em>, <em>values</em>, <em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#PolyFit.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.PolyFit.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>points</strong> : nd array (npoints, ndim)</p>
+<p><strong>values</strong> : 1d array (npoints,)</p>
+<p class="last"><strong>**kwds</strong> : keywords to [avg]polyfit()</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pwtools.num.PolyFit.__weakref__">
+<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.num.PolyFit.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.num.PolyFit.get_min">
+<code class="descname">get_min</code><span class="sig-paren">(</span><em>x0=None</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#PolyFit.get_min"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.PolyFit.get_min" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimize fit function by <cite>scipy.optimize.fmin()</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x0</strong> : 1d array, optional</p>
+<blockquote>
+<div><p>Initial guess. If not given then <cite>points[i,...]</cite> at the min of
+<cite>values</cite> is used.</p>
+</div></blockquote>
+<p><strong>**kwds</strong> : keywords to fmin()</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">1d array (ndim,)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.PolyFit.__call__.html" title="pwtools.num.PolyFit.__call__"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.num.Interpol2D.get_min.html" title="pwtools.num.Interpol2D.get_min"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="num.html" >num</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

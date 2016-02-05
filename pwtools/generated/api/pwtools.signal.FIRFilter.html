@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.signal.FIRFilter &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="signal" href="signal.html" />
+    <link rel="next" title="pwtools.signal.FIRFilter.__call__" href="pwtools.signal.FIRFilter.__call__.html" />
+    <link rel="prev" title="signal" href="signal.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.signal.FIRFilter.__call__.html" title="pwtools.signal.FIRFilter.__call__"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="signal.html" title="signal"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="signal.html" accesskey="U">signal</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="signal.html"
+                        title="previous chapter">signal</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.signal.FIRFilter.__call__.html"
+                        title="next chapter">pwtools.signal.FIRFilter.__call__</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.signal.FIRFilter.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-signal-firfilter">
+<h1>pwtools.signal.FIRFilter<a class="headerlink" href="#pwtools-signal-firfilter" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.signal.FIRFilter">
+<em class="property">class </em><code class="descclassname">pwtools.signal.</code><code class="descname">FIRFilter</code><span class="sig-paren">(</span><em>cutoff</em>, <em>nyq</em>, <em>ntaps=None</em>, <em>ripple=None</em>, <em>width=None</em>, <em>window='hamming'</em>, <em>mode='lowpass'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#FIRFilter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.FIRFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Build and apply a digital FIR filter (low-, high-, band-pass,
+band-stop). Uses firwin() and in some cases kaiserord().</p>
+<p>Doc strings stolen from scipy.signal.</p>
+<p class="rubric">Notes</p>
+<p>To plot the frequency response (the frequency bands), use::
+&gt;&gt;&gt; f = Filter(...)
+&gt;&gt;&gt; plot(f.w, abs(f.h))</p>
+<p class="rubric">References</p>
+<p class="rubric">Examples</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.signal.FIRFilter.__call__.html#pwtools.signal.FIRFilter.__call__" title="pwtools.signal.FIRFilter.__call__"><code class="xref py py-obj docutils literal"><span class="pre">__call__</span></code></a>(x[,&nbsp;axis])</td>
+<td>Apply filter to signal.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pwtools.signal.FIRFilter.__call__">
+<code class="descname">__call__</code><span class="sig-paren">(</span><em>x</em>, <em>axis=-1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#FIRFilter.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.FIRFilter.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply filter to signal.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x</strong> : 1d array</p>
+<p class="last"><strong>axis</strong> : int</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.signal.FIRFilter.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>cutoff</em>, <em>nyq</em>, <em>ntaps=None</em>, <em>ripple=None</em>, <em>width=None</em>, <em>window='hamming'</em>, <em>mode='lowpass'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#FIRFilter.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.FIRFilter.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>cutoff</strong> : float or 1D array_like</p>
+<blockquote>
+<div><p>Cutoff frequency of filter (expressed in the same units as <cite>nyq</cite>)
+OR an array of cutoff frequencies (that is, band edges). In the
+latter case, the frequencies in <cite>cutoff</cite> should be positive and
+monotonically increasing between 0 and <cite>nyq</cite>.  The values 0 and
+<cite>nyq</cite> must not be included in <cite>cutoff</cite>.</p>
+</div></blockquote>
+<p><strong>nyq</strong> : float</p>
+<blockquote>
+<div><p>Nyquist frequency [Hz].  Each frequency in <cite>cutoff</cite> must be between 0
+and <cite>nyq</cite>.</p>
+</div></blockquote>
+<p><strong>ntaps</strong> : int</p>
+<blockquote>
+<div><p>Length of the filter (number of coefficients, i.e. the filter
+order + 1).  <cite>ntaps</cite> must be even if a passband includes the
+Nyquist frequency. Use either <cite>ntaps</cite> or <cite>ripple</cite> + <cite>width</cite> for a
+Kaiser window.</p>
+</div></blockquote>
+<p><strong>ripple</strong> : float</p>
+<blockquote>
+<div><p>Positive number specifying maximum ripple in passband (dB) and
+minimum ripple in stopband. Large values (like 1000) remove the
+&#8220;rippling&#8221; in the pass band almost completely and make frequency
+response almost &#8220;square&#8221; (if <cite>width</cite> is small) but also
+lead to a large number of filter coeffs (ntaps).</p>
+</div></blockquote>
+<p><strong>width</strong> : float</p>
+<blockquote>
+<div><p>Width of transition region (same unit as <cite>nyq</cite>, e.g. Hz).</p>
+</div></blockquote>
+<p><strong>window</strong> : string or tuple of string and parameter values</p>
+<blockquote>
+<div><p>Desired window to use. See <cite>scipy.signal.get_window</cite> for a list
+of windows and required parameters. Default is &#8220;hamming&#8221;. Ignored
+if <cite>width</cite> and <cite>ripple</cite> givem b/c then <code class="docutils literal"><span class="pre">kaiserord</span></code> is used to
+build a Kaiser window.</p>
+</div></blockquote>
+<p><strong>mode</strong> : str</p>
+<blockquote class="last">
+<div><p>&#8216;lowpass&#8217;, &#8216;highpass&#8217;, &#8216;bandpass&#8217;, &#8216;bandstop&#8217;</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pwtools.signal.FIRFilter.__weakref__">
+<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.signal.FIRFilter.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.signal.FIRFilter.__call__.html" title="pwtools.signal.FIRFilter.__call__"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="signal.html" title="signal"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="signal.html" >signal</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

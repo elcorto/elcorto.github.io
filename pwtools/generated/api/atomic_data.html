@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>atomic_data &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="API Reference" href="index.html" />
+    <link rel="next" title="pwtools.atomic_data.covalent_radii" href="pwtools.atomic_data.covalent_radii.html" />
+    <link rel="prev" title="pwtools.arrayio.writetxt" href="pwtools.arrayio.writetxt.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.atomic_data.covalent_radii.html" title="pwtools.atomic_data.covalent_radii"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.arrayio.writetxt.html" title="pwtools.arrayio.writetxt"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">atomic_data</a><ul>
+<li><a class="reference internal" href="#the-periodic-table">The periodic table</a></li>
+<li><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.arrayio.writetxt.html"
+                        title="previous chapter">pwtools.arrayio.writetxt</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.atomic_data.covalent_radii.html"
+                        title="next chapter">pwtools.atomic_data.covalent_radii</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/atomic_data.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="atomic-data">
+<h1>atomic_data<a class="headerlink" href="#atomic-data" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-pwtools.atomic_data"></span><div class="section" id="the-periodic-table">
+<h2>The periodic table<a class="headerlink" href="#the-periodic-table" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>symbols <span class="classifier-delimiter">:</span> <span class="classifier">list of chemical symbols</span></dt>
+<dd>The list index is also the atomic number in the periodic table. index=0 is
+set but not used. <code class="docutils literal"><span class="pre">symbols[1]</span> <span class="pre">==</span> <span class="pre">'H'</span></code>, ...</dd>
+<dt>masses <span class="classifier-delimiter">:</span> <span class="classifier">1d array (len(symbols,))</span></dt>
+<dd>Atomic masses in amu.</dd>
+<dt>covalent_radii <span class="classifier-delimiter">:</span> <span class="classifier">1d array (len(symbols,))</span></dt>
+<dd>Covalent radii in Angsttom.</dd>
+<dt>numbers <span class="classifier-delimiter">:</span> <span class="classifier">dict </span></dt>
+<dd>Mapping of symbols to numbers: <code class="docutils literal"><span class="pre">numbers['H']</span> <span class="pre">=</span> <span class="pre">1</span></code>.</dd>
+<dt>pt <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
+<dd><p class="first">The periodic table. Maping of symbol to a dict of other quantities:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">atomic_data</span><span class="o">.</span><span class="n">pt</span><span class="p">[</span><span class="s">&#39;H&#39;</span><span class="p">]</span>
+<span class="go">{&#39;cov_rad&#39;: 0.31, &#39;mass&#39;: 1.0079400000000001, &#39;number&#39;: 1}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<p>Got that from <a class="reference external" href="http://chemistry.about.com/od/elementfacts/a/atomicweights.htm">here</a>. Finding such a list on the net is not as easy as you might
+think. Search for &#8220;list of chemical elements&#8221;.</p>
+<p>Replaced masses like</p>
+<div class="line-block">
+<div class="line">9.012182(3) -&gt; 9.012182</div>
+<div class="line">[227]       -&gt; 227</div>
+</div>
+<p>Covalent radii shamelessly stolen from <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/data.html#module-data">ase</a>.</p>
+</div>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.atomic_data.covalent_radii.html#pwtools.atomic_data.covalent_radii" title="pwtools.atomic_data.covalent_radii"><code class="xref py py-obj docutils literal"><span class="pre">covalent_radii</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.atomic_data.masses.html#pwtools.atomic_data.masses" title="pwtools.atomic_data.masses"><code class="xref py py-obj docutils literal"><span class="pre">masses</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.atomic_data.missing.html#pwtools.atomic_data.missing" title="pwtools.atomic_data.missing"><code class="xref py py-obj docutils literal"><span class="pre">missing</span></code></a></td>
+<td>int(x=0) -&gt; int or long</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.atomic_data.numbers.html#pwtools.atomic_data.numbers" title="pwtools.atomic_data.numbers"><code class="xref py py-obj docutils literal"><span class="pre">numbers</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.atomic_data.pt.html#pwtools.atomic_data.pt" title="pwtools.atomic_data.pt"><code class="xref py py-obj docutils literal"><span class="pre">pt</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.atomic_data.symbols.html#pwtools.atomic_data.symbols" title="pwtools.atomic_data.symbols"><code class="xref py py-obj docutils literal"><span class="pre">symbols</span></code></a></td>
+<td>list() -&gt; new empty list</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.atomic_data.covalent_radii.html" title="pwtools.atomic_data.covalent_radii"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.arrayio.writetxt.html" title="pwtools.arrayio.writetxt"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.decorators.open_and_close &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="decorators" href="decorators.html" />
+    <link rel="next" title="eos" href="eos.html" />
+    <link rel="prev" title="pwtools.decorators.lazyprop" href="pwtools.decorators.lazyprop.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="eos.html" title="eos"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.decorators.lazyprop.html" title="pwtools.decorators.lazyprop"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="decorators.html" accesskey="U">decorators</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.decorators.lazyprop.html"
+                        title="previous chapter">pwtools.decorators.lazyprop</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="eos.html"
+                        title="next chapter">eos</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.decorators.open_and_close.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-decorators-open-and-close">
+<h1>pwtools.decorators.open_and_close<a class="headerlink" href="#pwtools-decorators-open-and-close" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.decorators.open_and_close">
+<code class="descclassname">pwtools.decorators.</code><code class="descname">open_and_close</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/decorators.html#open_and_close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.decorators.open_and_close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator for all parsing functions that originally got a file name and
+went thru the whole file b/c the things that they search can occur in
+arbitrary order.
+These functions did</p>
+<blockquote>
+<div><ul class="simple">
+<li>open the file</li>
+<li>go thru</li>
+<li>close file</li>
+</ul>
+</div></blockquote>
+<p>Now, they all expect file objects, as first argument. This decorator
+assures that the first arg to <cite>func</cite> is a file object.</p>
+<p>Cases:</p>
+<ul>
+<li><p class="first">1st arg is a fileobject: do nothig, just call function</p>
+</li>
+<li><dl class="first docutils">
+<dt>1st arg is a file name:</dt>
+<dd><ul class="first last simple">
+<li>open file</li>
+<li>call func</li>
+<li>close file</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nd">@open_and_close</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">file_txt_content</span><span class="p">(</span><span class="n">fh</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="c"># fh is a file object</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fh</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;my_file.txt&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">file_txt_content</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">file_txt_content</span><span class="p">(</span><span class="s">&#39;my_file.txt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="eos.html" title="eos"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.decorators.lazyprop.html" title="pwtools.decorators.lazyprop"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="decorators.html" >decorators</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

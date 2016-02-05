@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.rbf.train_param &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="rbf" href="rbf.html" />
+    <link rel="next" title="regex" href="regex.html" />
+    <link rel="prev" title="pwtools.rbf.RBFMultiquadric.__call__" href="pwtools.rbf.RBFMultiquadric.__call__.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="regex.html" title="regex"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.rbf.RBFMultiquadric.__call__.html" title="pwtools.rbf.RBFMultiquadric.__call__"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="rbf.html" accesskey="U">rbf</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.rbf.RBFMultiquadric.__call__.html"
+                        title="previous chapter">pwtools.rbf.RBFMultiquadric.__call__</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="regex.html"
+                        title="next chapter">regex</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.rbf.train_param.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-rbf-train-param">
+<h1>pwtools.rbf.train_param<a class="headerlink" href="#pwtools-rbf-train-param" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.rbf.train_param">
+<code class="descclassname">pwtools.rbf.</code><code class="descname">train_param</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em>, <em>param0='est'</em>, <em>pattern='rand'</em>, <em>regstep=2</em>, <em>randskip=0.2</em>, <em>shuffle=False</em>, <em>rbf=&lt;pwtools.rbf.RBFMultiquadric object&gt;</em>, <em>**fmin_kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#train_param"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.train_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>This could be also implemented as another training method inside RBFInt.
+Here, define a function which optimizes <cite>param</cite> by fmin using only a subset
+of the training set, evaluating the full training set and measuring the
+interpolation error at the missing points.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>X, Y: See RBFInt.</strong></p>
+<p><strong>param0</strong> : float or str &#8216;est&#8217;</p>
+<blockquote>
+<div><p>Start RBF parameter. &#8216;est&#8217; for using the mean point distance in the
+training point set.</p>
+</div></blockquote>
+<p><strong>pattern</strong> : str</p>
+<blockquote>
+<div><p>Pattern for picking out training points from X.
+&#8216;reg&#8217;: Use a &#8220;regular&#8221; pattern, i.e. use only every <a href="#id1"><span class="problematic" id="id2">`</span></a>regstep`th point.</p>
+<blockquote>
+<div><p>Note that of course this depends on how points in X are sorted.</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>&#8216;rand&#8217;: Pick points at random, leaving out a fraction of <cite>randskip</cite></dt>
+<dd><p class="first last">points. Example: randskip=0.2 means use ramdomly 80% of all points.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>regstep</strong> : int</p>
+<p><strong>randskip</strong> : float in [0,1]</p>
+<p><strong>shuffle</strong> : randomize sort order of points in X <em>before</em> using <cite>pattern</cite>.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Note that is for testing and in fact somewhat redundant, for instance</dt>
+<dd><p class="first last">shuffle=True  + pattern=&#8217;regular&#8217; + regstep=2</p>
+</dd>
+<dt>is the same as</dt>
+<dd><p class="first last">shuffle=False + pattern=&#8217;random&#8217; + randskip=0.5</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>rbf</strong> : RBFFunction instance</p>
+<p><strong>**fmin_kwds</strong> : passed to fmin()</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">RBFInt instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="regex.html" title="regex"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.rbf.RBFMultiquadric.__call__.html" title="pwtools.rbf.RBFMultiquadric.__call__"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="rbf.html" >rbf</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

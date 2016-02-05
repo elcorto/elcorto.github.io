@@ -1,0 +1,686 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pwtools.crys.Structure &mdash; pwtools  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pwtools  documentation" href="../../index.html" />
+    <link rel="up" title="crys" href="crys.html" />
+    <link rel="next" title="pwtools.crys.Structure.apply_units" href="pwtools.crys.Structure.apply_units.html" />
+    <link rel="prev" title="pwtools.crys.FakeASEAtoms.update_units" href="pwtools.crys.FakeASEAtoms.update_units.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.Structure.apply_units.html" title="pwtools.crys.Structure.apply_units"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.FakeASEAtoms.update_units.html" title="pwtools.crys.FakeASEAtoms.update_units"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="crys.html" accesskey="U">crys</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pwtools.crys.FakeASEAtoms.update_units.html"
+                        title="previous chapter">pwtools.crys.FakeASEAtoms.update_units</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pwtools.crys.Structure.apply_units.html"
+                        title="next chapter">pwtools.crys.Structure.apply_units</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/generated/api/pwtools.crys.Structure.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-crys-structure">
+<h1>pwtools.crys.Structure<a class="headerlink" href="#pwtools-crys-structure" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.crys.Structure">
+<em class="property">class </em><code class="descclassname">pwtools.crys.</code><code class="descname">Structure</code><span class="sig-paren">(</span><em>set_all_auto=True</em>, <em>units=None</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pwtools.crys.UnitsHandler.html#pwtools.crys.UnitsHandler" title="pwtools.crys.UnitsHandler"><code class="xref py py-class docutils literal"><span class="pre">pwtools.crys.UnitsHandler</span></code></a></p>
+<p>Container class for representing a single crystal structure (unit
+cell + atoms).</p>
+<p>Derived classes may add attributes and getters but the idea is that this
+class is the minimal API for how to pass an atomic structure around.</p>
+<p>Units are supposed to be similar to ASE:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="25%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">what</th>
+<th class="head">unit</th>
+<th class="head">SI</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>length</td>
+<td>Angstrom</td>
+<td>(1e-10 m)</td>
+</tr>
+<tr class="row-odd"><td>energy</td>
+<td>eV</td>
+<td>(1.602176487e-19 J)</td>
+</tr>
+<tr class="row-even"><td>forces</td>
+<td>eV / Angstrom</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>stress</td>
+<td>GPa</td>
+<td>(not eV/Angstrom**3)</td>
+</tr>
+<tr class="row-even"><td>temperature</td>
+<td>K</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>velocity</td>
+<td>Angstrom / fs</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>time</td>
+<td>fs</td>
+<td>(1e-15 s)</td>
+</tr>
+<tr class="row-odd"><td>mass</td>
+<td>amu</td>
+<td>(1.6605387820000001e-27 kg)</td>
+</tr>
+</tbody>
+</table>
+<p>Unit conversion factors, which are applied to input arguments for
+conversion to the above units can be given by the <cite>units</cite> input keyword.</p>
+<p>Note that we cannot verify the unit of input args to the constructor, but
+all functions in this package, which use Structure / Trajectory as
+container classes, assume these units.</p>
+<p>This class is very much like ase.Atoms, but without the &#8220;calculators&#8221;.
+You can use <a class="reference internal" href="pwtools.crys.Structure.get_ase_atoms.html#pwtools.crys.Structure.get_ase_atoms" title="pwtools.crys.Structure.get_ase_atoms"><code class="xref py py-meth docutils literal"><span class="pre">get_ase_atoms()</span></code></a> to get an Atoms object or
+<a class="reference internal" href="pwtools.crys.Structure.get_fake_ase_atoms.html#pwtools.crys.Structure.get_fake_ase_atoms" title="pwtools.crys.Structure.get_fake_ase_atoms"><code class="xref py py-meth docutils literal"><span class="pre">get_fake_ase_atoms()</span></code></a> for a minimal Atoms-like object.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">symbols</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;N&#39;</span><span class="p">,</span> <span class="s">&#39;Al&#39;</span><span class="p">,</span> <span class="s">&#39;Al&#39;</span><span class="p">,</span> <span class="s">&#39;Al&#39;</span><span class="p">,</span> <span class="s">&#39;N&#39;</span><span class="p">,</span> <span class="s">&#39;N&#39;</span><span class="p">,</span> <span class="s">&#39;Al&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords_frac</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cryst_const</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mf">90.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">=</span><span class="n">Structure</span><span class="p">(</span><span class="n">coords_frac</span><span class="o">=</span><span class="n">coords_frac</span><span class="p">,</span> 
+<span class="gp">... </span>             <span class="n">cryst_const</span><span class="o">=</span><span class="n">cryst_const</span><span class="p">,</span> 
+<span class="gp">... </span>             <span class="n">symbols</span><span class="o">=</span><span class="n">symbols</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">symbols</span>
+<span class="go">[&#39;N&#39;, &#39;Al&#39;, &#39;Al&#39;, &#39;Al&#39;, &#39;N&#39;, &#39;N&#39;, &#39;Al&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">symbols_unique</span>
+<span class="go">[&#39;Al&#39;, &#39;N&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">order</span>
+<span class="go">{&#39;Al&#39;: 1, &#39;N&#39;: 2}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">typat</span>
+<span class="go">[2, 1, 1, 1, 2, 2, 1]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">znucl_unique</span>
+<span class="go">[13, 7]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">nspecies</span>
+<span class="go">{&#39;Al&#39;: 4, &#39;N&#39;: 3}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">coords</span>
+<span class="go">array([[ 1.1016541 ,  4.52833103,  0.57668453],</span>
+<span class="go">       [ 0.18088339,  3.41219704,  4.93127985],</span>
+<span class="go">       [ 2.98639824,  2.87207221,  2.36208784],</span>
+<span class="go">       [ 2.89717342,  4.21088541,  3.13154023],</span>
+<span class="go">       [ 2.28147351,  2.39398397,  1.49245281],</span>
+<span class="go">       [ 3.16196033,  3.72534409,  3.24555934],</span>
+<span class="go">       [ 4.90318748,  2.02974457,  2.49846847]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">coords_frac</span>
+<span class="go">array([[ 0.22033082,  0.90566621,  0.11533691],</span>
+<span class="go">       [ 0.03617668,  0.68243941,  0.98625597],</span>
+<span class="go">       [ 0.59727965,  0.57441444,  0.47241757],</span>
+<span class="go">       [ 0.57943468,  0.84217708,  0.62630805],</span>
+<span class="go">       [ 0.4562947 ,  0.47879679,  0.29849056],</span>
+<span class="go">       [ 0.63239207,  0.74506882,  0.64911187],</span>
+<span class="go">       [ 0.9806375 ,  0.40594891,  0.49969369]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">cryst_const</span>
+<span class="go">array([  5.,   5.,   5.,  90.,  90.,  90.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">cell</span>
+<span class="go">array([[  5.00000000e+00,   0.00000000e+00,   0.00000000e+00],</span>
+<span class="go">       [  3.06161700e-16,   5.00000000e+00,   0.00000000e+00],</span>
+<span class="go">       [  3.06161700e-16,   3.06161700e-16,   5.00000000e+00]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">get_ase_atoms</span><span class="p">(</span><span class="n">pbc</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">Atoms(symbols=&#39;NAl3N2Al&#39;, positions=..., cell=[[2.64588604295, 0.0, 0.0],</span>
+<span class="go">[1.6201379367036871e-16, 2.64588604295, 0.0], [1.6201379367036871e-16,</span>
+<span class="go">1.6201379367036871e-16, 2.64588604295]], pbc=[True, True, True])</span>
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.apply_units.html#pwtools.crys.Structure.apply_units" title="pwtools.crys.Structure.apply_units"><code class="xref py py-obj docutils literal"><span class="pre">apply_units</span></code></a>()</td>
+<td>Like _apply_units_raw(), make sure that units are only applied once.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.assert_attr.html#pwtools.crys.Structure.assert_attr" title="pwtools.crys.Structure.assert_attr"><code class="xref py py-obj docutils literal"><span class="pre">assert_attr</span></code></a>(attr)</td>
+<td>Raise AssertionError if self.&lt;attr&gt; is not set (is_set_attr() returns False.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.assert_attr_lst.html#pwtools.crys.Structure.assert_attr_lst" title="pwtools.crys.Structure.assert_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">assert_attr_lst</span></code></a>(attr_lst)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.assert_set_attr.html#pwtools.crys.Structure.assert_set_attr" title="pwtools.crys.Structure.assert_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">assert_set_attr</span></code></a>(attr)</td>
+<td>Same as assert_attr(), but run try_set_attr() first.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.assert_set_attr_lst.html#pwtools.crys.Structure.assert_set_attr_lst" title="pwtools.crys.Structure.assert_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">assert_set_attr_lst</span></code></a>(attr_lst)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.check_set_attr.html#pwtools.crys.Structure.check_set_attr" title="pwtools.crys.Structure.check_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">check_set_attr</span></code></a>(attr)</td>
+<td>Run try_set_attr() and return the result of is_set_attr(), i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.check_set_attr_lst.html#pwtools.crys.Structure.check_set_attr_lst" title="pwtools.crys.Structure.check_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">check_set_attr_lst</span></code></a>(attr_lst)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.compress.html#pwtools.crys.Structure.compress" title="pwtools.crys.Structure.compress"><code class="xref py py-obj docutils literal"><span class="pre">compress</span></code></a>([forget,&nbsp;dtype])</td>
+<td>Compress Trajectory by deleting unused or redundant attrs (see <cite>forget</cite>).</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.copy.html#pwtools.crys.Structure.copy" title="pwtools.crys.Structure.copy"><code class="xref py py-obj docutils literal"><span class="pre">copy</span></code></a>()</td>
+<td>Return a copy of the inctance.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.dump.html#pwtools.crys.Structure.dump" title="pwtools.crys.Structure.dump"><code class="xref py py-obj docutils literal"><span class="pre">dump</span></code></a>(dump_filename[,&nbsp;mkdir])</td>
+<td>Write object to binary file using cPickle.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.get_ase_atoms.html#pwtools.crys.Structure.get_ase_atoms" title="pwtools.crys.Structure.get_ase_atoms"><code class="xref py py-obj docutils literal"><span class="pre">get_ase_atoms</span></code></a>(**kwds)</td>
+<td>Return ASE Atoms object.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.get_cell.html#pwtools.crys.Structure.get_cell" title="pwtools.crys.Structure.get_cell"><code class="xref py py-obj docutils literal"><span class="pre">get_cell</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.get_coords.html#pwtools.crys.Structure.get_coords" title="pwtools.crys.Structure.get_coords"><code class="xref py py-obj docutils literal"><span class="pre">get_coords</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.get_coords_frac.html#pwtools.crys.Structure.get_coords_frac" title="pwtools.crys.Structure.get_coords_frac"><code class="xref py py-obj docutils literal"><span class="pre">get_coords_frac</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.get_cryst_const.html#pwtools.crys.Structure.get_cryst_const" title="pwtools.crys.Structure.get_cryst_const"><code class="xref py py-obj docutils literal"><span class="pre">get_cryst_const</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.get_ekin.html#pwtools.crys.Structure.get_ekin" title="pwtools.crys.Structure.get_ekin"><code class="xref py py-obj docutils literal"><span class="pre">get_ekin</span></code></a>()</td>
+<td>ekin [eV]</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.get_etot.html#pwtools.crys.Structure.get_etot" title="pwtools.crys.Structure.get_etot"><code class="xref py py-obj docutils literal"><span class="pre">get_etot</span></code></a>()</td>
+<td>Total anergy.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.get_fake_ase_atoms.html#pwtools.crys.Structure.get_fake_ase_atoms" title="pwtools.crys.Structure.get_fake_ase_atoms"><code class="xref py py-obj docutils literal"><span class="pre">get_fake_ase_atoms</span></code></a>()</td>
+<td><a class="reference internal" href="pwtools.crys.FakeASEAtoms.html#pwtools.crys.FakeASEAtoms" title="pwtools.crys.FakeASEAtoms"><code class="xref py py-class docutils literal"><span class="pre">FakeASEAtoms</span></code></a> instance representing this Structure.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.get_forces.html#pwtools.crys.Structure.get_forces" title="pwtools.crys.Structure.get_forces"><code class="xref py py-obj docutils literal"><span class="pre">get_forces</span></code></a>()</td>
+<td>Forces.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.get_mass.html#pwtools.crys.Structure.get_mass" title="pwtools.crys.Structure.get_mass"><code class="xref py py-obj docutils literal"><span class="pre">get_mass</span></code></a>()</td>
+<td>1D array of atomic masses in amu (atomic mass unit 1.660538782e-27</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.get_mass_unique.html#pwtools.crys.Structure.get_mass_unique" title="pwtools.crys.Structure.get_mass_unique"><code class="xref py py-obj docutils literal"><span class="pre">get_mass_unique</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.get_natoms.html#pwtools.crys.Structure.get_natoms" title="pwtools.crys.Structure.get_natoms"><code class="xref py py-obj docutils literal"><span class="pre">get_natoms</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.get_nspecies.html#pwtools.crys.Structure.get_nspecies" title="pwtools.crys.Structure.get_nspecies"><code class="xref py py-obj docutils literal"><span class="pre">get_nspecies</span></code></a>()</td>
+<td>Dict with number of atoms per species.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.get_nstep.html#pwtools.crys.Structure.get_nstep" title="pwtools.crys.Structure.get_nstep"><code class="xref py py-obj docutils literal"><span class="pre">get_nstep</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.get_ntypat.html#pwtools.crys.Structure.get_ntypat" title="pwtools.crys.Structure.get_ntypat"><code class="xref py py-obj docutils literal"><span class="pre">get_ntypat</span></code></a>()</td>
+<td>Number of atomic species.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.get_order.html#pwtools.crys.Structure.get_order" title="pwtools.crys.Structure.get_order"><code class="xref py py-obj docutils literal"><span class="pre">get_order</span></code></a>()</td>
+<td>Dict which maps <code class="docutils literal"><span class="pre">symbols_unique</span></code> to numbers, starting at 1.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.get_pressure.html#pwtools.crys.Structure.get_pressure" title="pwtools.crys.Structure.get_pressure"><code class="xref py py-obj docutils literal"><span class="pre">get_pressure</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.get_return_attr.html#pwtools.crys.Structure.get_return_attr" title="pwtools.crys.Structure.get_return_attr"><code class="xref py py-obj docutils literal"><span class="pre">get_return_attr</span></code></a>(attr_name)</td>
+<td>Call try_set_attr() are return self.&lt;attr_name&gt; if set.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.get_stress.html#pwtools.crys.Structure.get_stress" title="pwtools.crys.Structure.get_stress"><code class="xref py py-obj docutils literal"><span class="pre">get_stress</span></code></a>()</td>
+<td>Stress tensor</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.get_symbols.html#pwtools.crys.Structure.get_symbols" title="pwtools.crys.Structure.get_symbols"><code class="xref py py-obj docutils literal"><span class="pre">get_symbols</span></code></a>()</td>
+<td>List of atomic symbols.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.get_symbols_unique.html#pwtools.crys.Structure.get_symbols_unique" title="pwtools.crys.Structure.get_symbols_unique"><code class="xref py py-obj docutils literal"><span class="pre">get_symbols_unique</span></code></a>()</td>
+<td>List of unique atom symbols.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.get_temperature.html#pwtools.crys.Structure.get_temperature" title="pwtools.crys.Structure.get_temperature"><code class="xref py py-obj docutils literal"><span class="pre">get_temperature</span></code></a>()</td>
+<td>[K]</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.get_time.html#pwtools.crys.Structure.get_time" title="pwtools.crys.Structure.get_time"><code class="xref py py-obj docutils literal"><span class="pre">get_time</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.get_timestep.html#pwtools.crys.Structure.get_timestep" title="pwtools.crys.Structure.get_timestep"><code class="xref py py-obj docutils literal"><span class="pre">get_timestep</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.get_traj.html#pwtools.crys.Structure.get_traj" title="pwtools.crys.Structure.get_traj"><code class="xref py py-obj docutils literal"><span class="pre">get_traj</span></code></a>(nstep)</td>
+<td>Return a Trajectory object, where this Structure is copied <cite>nstep</cite> times.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.get_typat.html#pwtools.crys.Structure.get_typat" title="pwtools.crys.Structure.get_typat"><code class="xref py py-obj docutils literal"><span class="pre">get_typat</span></code></a>()</td>
+<td>List of atom type integers in <code class="docutils literal"><span class="pre">self.order</span></code>, same length as <cite>symbols</cite>.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.get_velocity.html#pwtools.crys.Structure.get_velocity" title="pwtools.crys.Structure.get_velocity"><code class="xref py py-obj docutils literal"><span class="pre">get_velocity</span></code></a>()</td>
+<td>Calculate <cite>velocity</cite> from <cite>coords</cite> and <cite>timestep</cite> if <cite>velocity=None</cite>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.get_volume.html#pwtools.crys.Structure.get_volume" title="pwtools.crys.Structure.get_volume"><code class="xref py py-obj docutils literal"><span class="pre">get_volume</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.get_znucl.html#pwtools.crys.Structure.get_znucl" title="pwtools.crys.Structure.get_znucl"><code class="xref py py-obj docutils literal"><span class="pre">get_znucl</span></code></a>()</td>
+<td>All atomic numbers.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.get_znucl_unique.html#pwtools.crys.Structure.get_znucl_unique" title="pwtools.crys.Structure.get_znucl_unique"><code class="xref py py-obj docutils literal"><span class="pre">get_znucl_unique</span></code></a>()</td>
+<td>Unique atomic numbers.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.init_attr_lst.html#pwtools.crys.Structure.init_attr_lst" title="pwtools.crys.Structure.init_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">init_attr_lst</span></code></a>([attr_lst])</td>
+<td>Set each self.&lt;attr&gt; in <cite>attr_lst</cite> to None.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.is_set_attr.html#pwtools.crys.Structure.is_set_attr" title="pwtools.crys.Structure.is_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">is_set_attr</span></code></a>(attr)</td>
+<td>Check if self has the attribute self.&lt;attr&gt; and if it is _not_ None.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.is_set_attr_lst.html#pwtools.crys.Structure.is_set_attr_lst" title="pwtools.crys.Structure.is_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">is_set_attr_lst</span></code></a>(attr_lst)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.load.html#pwtools.crys.Structure.load" title="pwtools.crys.Structure.load"><code class="xref py py-obj docutils literal"><span class="pre">load</span></code></a>(dump_filename)</td>
+<td>Load pickled object.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.raw_return.html#pwtools.crys.Structure.raw_return" title="pwtools.crys.Structure.raw_return"><code class="xref py py-obj docutils literal"><span class="pre">raw_return</span></code></a>(attr_name)</td>
+<td>Call <code class="docutils literal"><span class="pre">try_set_attr(_&lt;attr_name&gt;_raw)</span></code> and return it if set, else None.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.raw_slice_get.html#pwtools.crys.Structure.raw_slice_get" title="pwtools.crys.Structure.raw_slice_get"><code class="xref py py-obj docutils literal"><span class="pre">raw_slice_get</span></code></a>(attr_name,&nbsp;sl,&nbsp;axis)</td>
+<td>Shortcut method:</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.set_all.html#pwtools.crys.Structure.set_all" title="pwtools.crys.Structure.set_all"><code class="xref py py-obj docutils literal"><span class="pre">set_all</span></code></a>()</td>
+<td>Extend arrays, apply units, call all getters.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.set_attr_lst.html#pwtools.crys.Structure.set_attr_lst" title="pwtools.crys.Structure.set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">set_attr_lst</span></code></a>(attr_lst)</td>
+<td>Set self.attr_lst and init each attr to None.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.try_set_attr.html#pwtools.crys.Structure.try_set_attr" title="pwtools.crys.Structure.try_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">try_set_attr</span></code></a>(attr)</td>
+<td>If self.&lt;attr&gt; does not exist or is None, then invoke an</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.crys.Structure.try_set_attr_lst.html#pwtools.crys.Structure.try_set_attr_lst" title="pwtools.crys.Structure.try_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">try_set_attr_lst</span></code></a>(attr_lst)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.crys.Structure.update_units.html#pwtools.crys.Structure.update_units" title="pwtools.crys.Structure.update_units"><code class="xref py py-obj docutils literal"><span class="pre">update_units</span></code></a>(units)</td>
+<td>Update self.units dict from <cite>units</cite>.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pwtools.crys.Structure.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>set_all_auto=True</em>, <em>units=None</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>coords</strong> : (natoms, 3) [Ang]</p>
+<blockquote>
+<div><p>Cartesian coords.
+Optional if <cite>coords_frac</cite> given.</p>
+</div></blockquote>
+<p><strong>coords_frac</strong> : (natoms, 3)</p>
+<blockquote>
+<div><p>Fractional coords w.r.t. <cite>cell</cite>.
+Optional if <cite>coords</cite> given.</p>
+</div></blockquote>
+<p><strong>symbols</strong> : sequence of strings (natoms,)</p>
+<blockquote>
+<div><p>atom symbols</p>
+</div></blockquote>
+<p><strong>cell</strong> : (3,3)</p>
+<blockquote>
+<div><p>Unit cell vectors as rows. [Ang]
+Optional if <cite>cryst_const</cite> given.</p>
+</div></blockquote>
+<p><strong>cryst_const</strong> : (6,)</p>
+<blockquote>
+<div><p>[a,b,c,alpha,beta,gamma]; a,b,c in [Ang]
+Optional if <cite>cell</cite> given.</p>
+</div></blockquote>
+<p><strong>forces</strong> : (natoms, 3), optional</p>
+<blockquote>
+<div><p>[eV/Ang]</p>
+</div></blockquote>
+<p><strong>stress</strong> : (3,3), optional</p>
+<blockquote>
+<div><p>stress tensor [GPa]</p>
+</div></blockquote>
+<p><strong>etot</strong> : float, optional</p>
+<blockquote>
+<div><p>total energy [eV]</p>
+</div></blockquote>
+<p><strong>units</strong> : optional, dict,</p>
+<blockquote>
+<div><p>see <a class="reference internal" href="pwtools.crys.UnitsHandler.html#pwtools.crys.UnitsHandler" title="pwtools.crys.UnitsHandler"><code class="xref py py-class docutils literal"><span class="pre">UnitsHandler</span></code></a></p>
+</div></blockquote>
+<p><strong>set_all_auto</strong> : optional, bool</p>
+<blockquote>
+<div><p>Call <a class="reference internal" href="pwtools.crys.Structure.set_all.html#pwtools.crys.Structure.set_all" title="pwtools.crys.Structure.set_all"><code class="xref py py-meth docutils literal"><span class="pre">set_all()</span></code></a> in <a class="reference internal" href="#pwtools.crys.Structure.__init__" title="pwtools.crys.Structure.__init__"><code class="xref py py-meth docutils literal"><span class="pre">__init__()</span></code></a>.</p>
+</div></blockquote>
+<p><strong>Only Trajectory</strong></p>
+<p><strong>ekin</strong> : (nstep,)</p>
+<blockquote>
+<div><p>[eV]</p>
+</div></blockquote>
+<p><strong>forces</strong> : (nstep,natoms,3)</p>
+<blockquote>
+<div><p>[eV/Ang]</p>
+</div></blockquote>
+<p><strong>pressure</strong> : (nstep,)</p>
+<blockquote>
+<div><p>[GPa]</p>
+</div></blockquote>
+<p><strong>stress</strong> : (nstep,3,3)</p>
+<blockquote>
+<div><p>[GPa]</p>
+</div></blockquote>
+<p><strong>temperature</strong> : (nstep,)</p>
+<blockquote>
+<div><p>[K]</p>
+</div></blockquote>
+<p><strong>timestep</strong> : float</p>
+<blockquote>
+<div><p>[fs]</p>
+</div></blockquote>
+<p><strong>velocity</strong> : (nstep, natoms, 3)</p>
+<blockquote>
+<div><p>[Ang/fs]</p>
+</div></blockquote>
+<p><strong>volume</strong> : (nstep,)</p>
+<blockquote class="last">
+<div><p>[Ang^3]</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<dl class="docutils">
+<dt>cell, cryst_const <span class="classifier-delimiter">:</span> <span class="classifier">Provide either <cite>cell</cite> or <cite>cryst_const</cite>, or both</span></dt>
+<dd>(which is redundant). If only one is given, the other is calculated
+from it. See {cell2cc,cc2cell}.</dd>
+<dt>coords, coords_frac <span class="classifier-delimiter">:</span> <span class="classifier">Provide either <cite>coords</cite> or <cite>coords_frac</cite>, or both</span></dt>
+<dd>(which is redundant). If only one is given, the other is calculated
+from it. See coord_trans().</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.compress">
+<code class="descname">compress</code><span class="sig-paren">(</span><em>forget=['forces', 'stress', 'coords', 'cryst_const'], dtype=&lt;type 'numpy.float32'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.compress"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.compress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compress Trajectory by deleting unused or redundant attrs (see
+<cite>forget</cite>). Cast float arrays to <cite>dtype</cite>. float32 is usually quite OK
+for MD data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>forget</strong> : list</p>
+<blockquote>
+<div><p>Names of attributes to delete. They will be set to None.</p>
+</div></blockquote>
+<p class="last"><strong>dtype</strong> : numpy dtype</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of the inctance.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_ase_atoms">
+<code class="descname">get_ase_atoms</code><span class="sig-paren">(</span><em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_ase_atoms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_ase_atoms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return ASE Atoms object.</p>
+<p>Obviously, you must have ASE installed. We use
+<code class="docutils literal"><span class="pre">scaled_positions=self.coords_frac</span></code>, so only <code class="docutils literal"><span class="pre">self.cell</span></code> must be in
+[Ang].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>**kwds :</strong></p>
+<blockquote class="last">
+<div><p>additional keywords passed to the Atoms() constructor.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="pwtools.crys.Structure.get_fake_ase_atoms.html#pwtools.crys.Structure.get_fake_ase_atoms" title="pwtools.crys.Structure.get_fake_ase_atoms"><code class="xref py py-meth docutils literal"><span class="pre">get_fake_ase_atoms()</span></code></a></p>
+</div>
+<p class="rubric">Notes</p>
+<p>By default, we use <code class="docutils literal"><span class="pre">Atoms(...,pbc=False)</span></code> to avoid pbc-wrapping
+<code class="docutils literal"><span class="pre">atoms.scaled_positions</span></code> (we don&#8217;t want that for MD structures, for
+instance). If you need the pbc flag in your Atoms object, then use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># Note that the `pbc` flag is passed to ase.Atoms, so you can use</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># whatever that accepts, like pbc=[1,1,1] etc. </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">atoms</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">get_ase_atoms</span><span class="p">(</span><span class="n">pbc</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># or </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">atoms</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">get_ase_atoms</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">atoms</span><span class="o">.</span><span class="n">set_pbc</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span> 
+</pre></div>
+</div>
+<p>but then, <code class="docutils literal"><span class="pre">scaled_positions</span></code> will be wrapped by ASE and I&#8217;m not sure
+if <code class="docutils literal"><span class="pre">atoms.positions</span></code> is updated in that case. Please test that &#8211; I
+don&#8217;t use ASE much.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_ekin">
+<code class="descname">get_ekin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_ekin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_ekin" title="Permalink to this definition">¶</a></dt>
+<dd><p>ekin [eV]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_etot">
+<code class="descname">get_etot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_etot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_etot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total anergy.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_fake_ase_atoms">
+<code class="descname">get_fake_ase_atoms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_fake_ase_atoms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_fake_ase_atoms" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.html#pwtools.crys.FakeASEAtoms" title="pwtools.crys.FakeASEAtoms"><code class="xref py py-class docutils literal"><span class="pre">FakeASEAtoms</span></code></a> instance representing this Structure.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_forces">
+<code class="descname">get_forces</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_forces"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_forces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forces.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_mass">
+<code class="descname">get_mass</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_mass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>1D array of atomic masses in amu (atomic mass unit 1.660538782e-27
+kg as in periodic table). The order is the one from self.symbols.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_nspecies">
+<code class="descname">get_nspecies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_nspecies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_nspecies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dict with number of atoms per species.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_ntypat">
+<code class="descname">get_ntypat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_ntypat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_ntypat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of atomic species.</p>
+<p>2 for <code class="docutils literal"><span class="pre">symbols=['Al','Al','N',N']</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_order">
+<code class="descname">get_order</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_order"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_order" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dict which maps <code class="docutils literal"><span class="pre">symbols_unique</span></code> to numbers, starting at 1.</p>
+<p><code class="docutils literal"><span class="pre">{'Al':</span> <span class="pre">1,</span> <span class="pre">'N':2,</span> <span class="pre">'O':</span> <span class="pre">3,</span> <span class="pre">'Si':</span> <span class="pre">4}</span></code> for <code class="docutils literal"><span class="pre">symbols=['Al']*5</span> <span class="pre">+</span> <span class="pre">['N']*5</span>
+<span class="pre">+</span> <span class="pre">['O']*10</span> <span class="pre">+</span> <span class="pre">['Si']*20</span></code>.
+Can be used in mapping a atom &#8220;type&#8221; number to a symbol (e.g. in
+LAMMPS).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_stress">
+<code class="descname">get_stress</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_stress"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_stress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stress tensor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_symbols">
+<code class="descname">get_symbols</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_symbols"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_symbols" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of atomic symbols.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_symbols_unique">
+<code class="descname">get_symbols_unique</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_symbols_unique"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_symbols_unique" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of unique atom symbols.</p>
+<p><code class="docutils literal"><span class="pre">[Al,N]</span></code> if <code class="docutils literal"><span class="pre">symbols=['Al']*10</span> <span class="pre">+</span> <span class="pre">['N']*10</span></code>.
+<code class="docutils literal"><span class="pre">len(self.symbols_unique)</span></code> = number of atomic species</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_temperature">
+<code class="descname">get_temperature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_temperature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>[K]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_traj">
+<code class="descname">get_traj</code><span class="sig-paren">(</span><em>nstep</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_traj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_traj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a Trajectory object, where this Structure is copied <cite>nstep</cite>
+times.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_typat">
+<code class="descname">get_typat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_typat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_typat" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of atom type integers in <code class="docutils literal"><span class="pre">self.order</span></code>, same length as
+<cite>symbols</cite>.</p>
+<p><code class="docutils literal"><span class="pre">[1]*10</span> <span class="pre">+</span> <span class="pre">[2]*10</span></code> for <code class="docutils literal"><span class="pre">``symbols=['Al']*10</span> <span class="pre">+</span> <span class="pre">['N']*10</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_velocity">
+<code class="descname">get_velocity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_velocity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_velocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate <cite>velocity</cite> from <cite>coords</cite> and <cite>timestep</cite> if
+<cite>velocity=None</cite>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_znucl">
+<code class="descname">get_znucl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_znucl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_znucl" title="Permalink to this definition">¶</a></dt>
+<dd><p>All atomic numbers.</p>
+<p><code class="docutils literal"><span class="pre">[13,13,7,7]</span></code> for <code class="docutils literal"><span class="pre">symbols</span> <span class="pre">=</span> <span class="pre">['Al','Al','N',N']</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_znucl_unique">
+<code class="descname">get_znucl_unique</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_znucl_unique"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_znucl_unique" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unique atomic numbers.</p>
+<p><code class="docutils literal"><span class="pre">[13,7]</span></code> for <code class="docutils literal"><span class="pre">symbols</span> <span class="pre">=</span> <span class="pre">['Al','Al','N',N']</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.crys.Structure.set_all">
+<code class="descname">set_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.set_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.set_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend arrays, apply units, call all getters.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.Structure.apply_units.html" title="pwtools.crys.Structure.apply_units"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pwtools.crys.FakeASEAtoms.update_units.html" title="pwtools.crys.FakeASEAtoms.update_units"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="crys.html" >crys</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>
