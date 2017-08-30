@@ -124,9 +124,8 @@ as rows. This is optimal for direct translation to numpy code, where we can use
 broadcasting.</p>
 <p>All formulas here translate by <span class="math">\((A x)^\top = x^\top A^\top\)</span> and <span class="math">\((A^{-1})^\top
 = (A^\top)^{-1}\)</span>.</p>
-<p>Tools like <code class="docutils literal"><span class="pre">linalg.solve</span></code> and Lapack solvers assume the column oriented form
-<span class="math">\(A x = b\)</span> rather than our row oriented form <span class="math">\(x A = b\)</span>, so you need
-to use <code class="docutils literal"><span class="pre">linalg.solve(A.T,</span> <span class="pre">b.T)</span></code>.</p>
+<p>Tools like <code class="docutils literal"><span class="pre">linalg.solve</span></code> and Lapack solvers assume the column oriented form,
+so you need to use <code class="docutils literal"><span class="pre">linalg.solve(A.T,</span> <span class="pre">b.T)</span></code>.</p>
 </div>
 <div class="section" id="theory">
 <h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h2>
@@ -173,10 +172,8 @@ dimensions of <code class="docutils literal"><span class="pre">C</span></code>, 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y1</span><span class="o">=</span><span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y2</span><span class="o">=</span><span class="n">dot</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">,</span> <span class="n">X</span><span class="p">),</span> <span class="n">inv</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y3</span><span class="o">=</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">R_Y1</span><span class="o">-</span><span class="n">R_Y2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">R_Y1</span><span class="o">-</span><span class="n">R_Y3</span>
-<span class="go">array([ 0.,  0.,  0.])</span>
-<span class="go">array([ 0.,  0.,  0.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">allclose</span><span class="p">(</span><span class="n">R_Y1</span><span class="p">,</span> <span class="n">R_Y2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">allclose</span><span class="p">(</span><span class="n">R_Y1</span><span class="p">,</span> <span class="n">R_Y3</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>2d: <code class="docutils literal"><span class="pre">R_X.shape</span> <span class="pre">=</span> <span class="pre">(N,3)</span></code>:</p>
@@ -197,13 +194,8 @@ dimensions of <code class="docutils literal"><span class="pre">C</span></code>, 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y1</span><span class="o">=</span><span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y2</span><span class="o">=</span><span class="n">dot</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">,</span> <span class="n">X</span><span class="p">),</span> <span class="n">inv</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y3</span><span class="o">=</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">R_Y1</span><span class="o">-</span><span class="n">R_Y2</span><span class="p">,</span> <span class="n">R_Y1</span><span class="o">-</span><span class="n">R_Y3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">R_Y1</span><span class="o">-</span><span class="n">R_Y3</span>
-<span class="go">[[  1.33226763e-15  -8.88178420e-16  -2.77555756e-16]</span>
-<span class="go"> [  2.22044605e-15  -3.41393580e-15  -3.88578059e-16]</span>
-<span class="go"> [  1.77635684e-15  -8.88178420e-16  -3.33066907e-16]</span>
-<span class="go"> [  6.66133815e-16  -2.22044605e-16  -7.58941521e-17]</span>
-<span class="go"> [  6.66133815e-16  -5.55111512e-16   0.00000000e+00]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">allclose</span><span class="p">(</span><span class="n">R_Y1</span><span class="p">,</span> <span class="n">R_Y2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">allclose</span><span class="p">(</span><span class="n">R_Y1</span><span class="p">,</span> <span class="n">R_Y3</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Here we used the fact that <code class="docutils literal"><span class="pre">linalg.solve</span></code> can solve for many rhs&#8217;s at the
@@ -216,12 +208,23 @@ transpose.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># time step `istep`.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># R_X[istep,...] is a (nstep,3) array for this time step. Then we can use</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># the methods for the 2d array above.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">istep</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">R_X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">R_Y</span><span class="p">[</span><span class="n">istep</span><span class="p">,</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">[</span><span class="n">istep</span><span class="p">,</span><span class="o">...</span><span class="p">],</span> <span class="n">X</span><span class="p">),</span> <span class="n">inv</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">R_X</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">Y</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">C</span><span class="o">=</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">inv</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y1</span><span class="o">=</span><span class="n">empty_like</span><span class="p">(</span><span class="n">R_X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y2</span><span class="o">=</span><span class="n">empty_like</span><span class="p">(</span><span class="n">R_X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y3</span><span class="o">=</span><span class="n">empty_like</span><span class="p">(</span><span class="n">R_X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">istep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">R_X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">R_Y1</span><span class="p">[</span><span class="n">istep</span><span class="p">,</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">[</span><span class="n">istep</span><span class="p">,</span><span class="o">...</span><span class="p">],</span> <span class="n">C</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">R_Y2</span><span class="p">[</span><span class="n">istep</span><span class="p">,</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">[</span><span class="n">istep</span><span class="p">,</span><span class="o">...</span><span class="p">],</span> <span class="n">X</span><span class="p">),</span> <span class="n">inv</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">R_Y3</span><span class="p">[</span><span class="n">istep</span><span class="p">,</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">[</span><span class="n">istep</span><span class="p">,</span><span class="o">...</span><span class="p">],</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">allclose</span><span class="p">(</span><span class="n">R_Y1</span><span class="p">,</span> <span class="n">R_Y2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">allclose</span><span class="p">(</span><span class="n">R_Y1</span><span class="p">,</span> <span class="n">R_Y3</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Here, <code class="docutils literal"><span class="pre">linalg.solve</span></code> cannot be used b/c <code class="docutils literal"><span class="pre">R_X</span></code> is 3d and <code class="docutils literal"><span class="pre">C</span></code> has to be
-calculated using the inverse, which is mildly unpleasent.</p>
+<p>Here, <code class="docutils literal"><span class="pre">linalg.solve</span></code> cannot be used b/c <code class="docutils literal"><span class="pre">R_X</span></code> is a 3d array and not a
+matrix. Direct dot products (<code class="docutils literal"><span class="pre">R_Y1</span></code> and <code class="docutils literal"><span class="pre">R_Y2</span></code>) involve calculating the
+inverse, which is unpleasant. Hence, the numerically most stable method is to
+loop over <code class="docutils literal"><span class="pre">nstep</span></code> and use the 2d array method using <code class="docutils literal"><span class="pre">linalg.solve</span></code>
+(<code class="docutils literal"><span class="pre">R_Y3</span></code>).</p>
 <p>The above loops are implemented in <code class="docutils literal"><span class="pre">flib.f90</span></code> for the special case fractional
 &lt;-&gt; cartesian, using only dot products and linear system solvers from Lapack
 in each loop.</p>
