@@ -56,10 +56,13 @@
   <h3><a href="../../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Coordinate transformation</a><ul>
-<li><a class="reference internal" href="#notation">notation</a></li>
+<li><a class="reference internal" href="#notation">Notation</a></li>
 <li><a class="reference internal" href="#row-vs-column-form">Row vs. column form</a></li>
-<li><a class="reference internal" href="#implementation-of-coordinate-transformations">Implementation of coordinate transformations</a></li>
+<li><a class="reference internal" href="#theory">Theory</a><ul>
 <li><a class="reference internal" href="#notes-for-the-special-case-fractional-cartesian">Notes for the special case fractional &lt;-&gt; cartesian</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implementation">Implementation</a></li>
 </ul>
 </li>
 </ul>
@@ -98,10 +101,10 @@
   <div class="section" id="coordinate-transformation">
 <h1>Coordinate transformation<a class="headerlink" href="#coordinate-transformation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="notation">
-<h2>notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h2>
+<h2>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h2>
 <p><span class="math">\(X\)</span>, <span class="math">\(Y\)</span> are square matrices with basis vectors as <em>rows</em></p>
 <div class="line-block">
-<div class="line"><span class="math">\(X\)</span> ... old, shape: (3,3) .. or (M,M) in gerenal</div>
+<div class="line"><span class="math">\(X\)</span> ... old, shape: (3,3) .. or (M,M) in general</div>
 <div class="line"><span class="math">\(Y\)</span> ... new, shape: (3,3)</div>
 <div class="line"><span class="math">\(I\)</span> ... identity matrix, basis vecs of cartesian system, shape: (3,3)</div>
 <div class="line"><span class="math">\(C\)</span> ... transformation matrix, shape(3,3)</div>
@@ -112,19 +115,21 @@
 </div>
 <div class="section" id="row-vs-column-form">
 <h2>Row vs. column form<a class="headerlink" href="#row-vs-column-form" title="Permalink to this headline">¶</a></h2>
-<p>We use a row oriented form of all relations, where <span class="math">\(v_X\)</span> are row vectors
-(1,M) and <span class="math">\(X\)</span> has basis vectors as rows. This is optimal for direct
-translation to numpy code, where we can use broadcasting.</p>
-<p>In the math literature you find the column oriented form, where <span class="math">\(X\)</span>
-has the basis vectors as columns and <span class="math">\(v_X\)</span> is a column vector
-(M,1). Then we write <span class="math">\(X v_X = Y v_Y\)</span> and all formulas here translate by
-<span class="math">\((A x)^T = x^T A^T\)</span> and <span class="math">\((A^{-1})^T = (A^T)^{-1}\)</span>.</p>
+<p>In the math literature you find a column oriented form, where matrix <span class="math">\(A\)</span>
+has the basis vectors as columns and <span class="math">\(x\)</span>, <span class="math">\(b\)</span> are column vectors
+(M,1), such that a linear system is written as <span class="math">\(A x = b\)</span>.</p>
+<p>We use a row oriented form of all relations such that <span class="math">\(x A = b\)</span>, where
+<span class="math">\(x\)</span> are <span class="math">\(b\)</span> are row vectors (1,M) and <span class="math">\(A\)</span> has basis vectors
+as rows. This is optimal for direct translation to numpy code, where we can use
+broadcasting.</p>
+<p>All formulas here translate by <span class="math">\((A x)^\top = x^\top A^\top\)</span> and <span class="math">\((A^{-1})^\top
+= (A^\top)^{-1}\)</span>.</p>
 <p>Tools like <code class="docutils literal"><span class="pre">linalg.solve</span></code> and Lapack solvers assume the column oriented form
 <span class="math">\(A x = b\)</span> rather than our row oriented form <span class="math">\(x A = b\)</span>, so you need
 to use <code class="docutils literal"><span class="pre">linalg.solve(A.T,</span> <span class="pre">b.T)</span></code>.</p>
 </div>
-<div class="section" id="implementation-of-coordinate-transformations">
-<h2>Implementation of coordinate transformations<a class="headerlink" href="#implementation-of-coordinate-transformations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="theory">
+<h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h2>
 <p>We have</p>
 <div class="math">
 \[ \begin{align}\begin{aligned}v_Y Y = v_X X = v_I I = v_I\\v_Y = v_X X Y^{-1} = v_X C\end{aligned}\end{align} \]</div>
@@ -132,6 +137,21 @@ to use <code class="docutils literal"><span class="pre">linalg.solve(A.T,</span>
 <p>Every product <span class="math">\(v_X X; v_Y Y; v_I I\)</span> is actually an expansion of
 <span class="math">\(v_{X,Y,...}\)</span> in the basis vectors contained in <span class="math">\(X,Y,...\)</span> . If the
 dot product is computed, we always get <span class="math">\(v\)</span> in cartesian coords.</p>
+<div class="section" id="notes-for-the-special-case-fractional-cartesian">
+<h3>Notes for the special case fractional &lt;-&gt; cartesian<a class="headerlink" href="#notes-for-the-special-case-fractional-cartesian" title="Permalink to this headline">¶</a></h3>
+<p>With <span class="math">\(v_I\)</span> cartesian and <span class="math">\(v_Y\)</span> fractional
+coordinates, the transform fractional -&gt; cartesian is the dot product</p>
+<div class="math">
+\[v_Y Y = v_I\]</div>
+<p>from above. Cartesian -&gt; fractional is</p>
+<div class="math">
+\[v_Y = v_X Y^{-1}\]</div>
+<p>which is the solution of the linear system <span class="math">\(v_Y Y = v_I\)</span>. It cannot get
+more simple.</p>
+</div>
+</div>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
 <p>We now switch to code examples, where <span class="math">\(v_X\)</span> == <code class="docutils literal"><span class="pre">v_X</span></code>.</p>
 <p>In general, we don&#8217;t have one vector <code class="docutils literal"><span class="pre">v_X</span></code> but an array <code class="docutils literal"><span class="pre">R_X</span></code> of shape
 (N,M) of row vectors:</p>
@@ -205,21 +225,6 @@ calculated using the inverse, which is mildly unpleasent.</p>
 <p>The above loops are implemented in <code class="docutils literal"><span class="pre">flib.f90</span></code> for the special case fractional
 &lt;-&gt; cartesian, using only dot products and linear system solvers from Lapack
 in each loop.</p>
-</div>
-<div class="section" id="notes-for-the-special-case-fractional-cartesian">
-<h2>Notes for the special case fractional &lt;-&gt; cartesian<a class="headerlink" href="#notes-for-the-special-case-fractional-cartesian" title="Permalink to this headline">¶</a></h2>
-<p>We have again</p>
-<div class="math">
-\[ \begin{align}\begin{aligned}v_Y Y = v_X X\\v_Y = v_X X Y^{-1} = v_X C\end{aligned}\end{align} \]</div>
-<p>With <span class="math">\(X=I\)</span>, we define <span class="math">\(v_X\)</span> cartesian and <span class="math">\(v_Y\)</span> fractional
-coordinates. Then the transform fractional -&gt; cartesian is the dot product</p>
-<div class="math">
-\[v_Y Y = v_X\]</div>
-<p>as already stated above and cartesian -&gt; fractional is</p>
-<div class="math">
-\[v_Y = v_X Y^{-1}\]</div>
-<p>which is the solution of the linear system <span class="math">\(v_Y Y = v_X\)</span>. It cannot get
-more simple.</p>
 </div>
 </div>
 

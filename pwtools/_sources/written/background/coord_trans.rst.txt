@@ -1,12 +1,12 @@
 Coordinate transformation
 =========================
 
-notation
+Notation
 --------
 
 :math:`X`, :math:`Y` are square matrices with basis vectors as *rows*
 
-| :math:`X` ... old, shape: (3,3) .. or (M,M) in gerenal
+| :math:`X` ... old, shape: (3,3) .. or (M,M) in general
 | :math:`Y` ... new, shape: (3,3)
 | :math:`I` ... identity matrix, basis vecs of cartesian system, shape: (3,3)
 | :math:`C` ... transformation matrix, shape(3,3)
@@ -17,21 +17,24 @@ notation
 
 Row vs. column form
 -------------------
-We use a row oriented form of all relations, where :math:`v_X` are row vectors
-(1,M) and :math:`X` has basis vectors as rows. This is optimal for direct
-translation to numpy code, where we can use broadcasting.
+In the math literature you find a column oriented form, where matrix :math:`A`
+has the basis vectors as columns and :math:`x`, :math:`b` are column vectors
+(M,1), such that a linear system is written as :math:`A x = b`. 
 
-In the math literature you find the column oriented form, where :math:`X`
-has the basis vectors as columns and :math:`v_X` is a column vector
-(M,1). Then we write :math:`X v_X = Y v_Y` and all formulas here translate by
-:math:`(A x)^T = x^T A^T` and :math:`(A^{-1})^T = (A^T)^{-1}`.
+We use a row oriented form of all relations such that :math:`x A = b`, where
+:math:`x` are :math:`b` are row vectors (1,M) and :math:`A` has basis vectors
+as rows. This is optimal for direct translation to numpy code, where we can use
+broadcasting.
+
+All formulas here translate by :math:`(A x)^\top = x^\top A^\top` and :math:`(A^{-1})^\top
+= (A^\top)^{-1}`.
 
 Tools like ``linalg.solve`` and Lapack solvers assume the column oriented form
 :math:`A x = b` rather than our row oriented form :math:`x A = b`, so you need
 to use ``linalg.solve(A.T, b.T)``.
 
-Implementation of coordinate transformations
---------------------------------------------
+Theory
+------
 
 We have
 
@@ -45,6 +48,26 @@ where we call :math:`C = X Y^{-1}` the transformation matrix.
 Every product :math:`v_X X; v_Y Y; v_I I` is actually an expansion of
 :math:`v_{X,Y,...}` in the basis vectors contained in :math:`X,Y,...` . If the
 dot product is computed, we always get :math:`v` in cartesian coords. 
+
+Notes for the special case fractional <-> cartesian
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+With :math:`v_I` cartesian and :math:`v_Y` fractional
+coordinates, the transform fractional -> cartesian is the dot product
+
+.. math::
+    v_Y Y = v_I
+
+from above. Cartesian -> fractional is
+
+.. math::
+    v_Y = v_X Y^{-1}
+
+which is the solution of the linear system :math:`v_Y Y = v_I`. It cannot get
+more simple.
+
+Implementation
+--------------
 
 We now switch to code examples, where :math:`v_X` == ``v_X``.
 
@@ -125,28 +148,3 @@ calculated using the inverse, which is mildly unpleasent.
 The above loops are implemented in ``flib.f90`` for the special case fractional
 <-> cartesian, using only dot products and linear system solvers from Lapack 
 in each loop.
-
-Notes for the special case fractional <-> cartesian
----------------------------------------------------
-
-We have again
-
-.. math::
-    v_Y Y = v_X X
-
-    v_Y = v_X X Y^{-1} = v_X C
-
-With :math:`X=I`, we define :math:`v_X` cartesian and :math:`v_Y` fractional
-coordinates. Then the transform fractional -> cartesian is the dot product
-
-.. math::
-    v_Y Y = v_X
-
-as already stated above and cartesian -> fractional is
-
-.. math::
-    v_Y = v_X Y^{-1}
-
-which is the solution of the linear system :math:`v_Y Y = v_X`. It cannot get
-more simple.
-
