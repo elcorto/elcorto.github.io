@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pwtools.kpath &mdash; pwtools  documentation</title>
+    <title>pwtools.kpath &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="Module code" href="../index.html" /> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -37,8 +38,8 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -46,14 +47,11 @@
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -65,8 +63,8 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.kpath</h1><div class="highlight"><pre>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">pwtools</span> <span class="kn">import</span> <span class="n">num</span><span class="p">,</span> <span class="n">pwscf</span><span class="p">,</span> <span class="n">common</span><span class="p">,</span> <span class="n">mpl</span>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">num</span><span class="p">,</span> <span class="n">pwscf</span><span class="p">,</span> <span class="n">common</span><span class="p">,</span> <span class="n">mpl</span>
 
 <div class="viewcode-block" id="kpath"><a class="viewcode-back" href="../../generated/api/pwtools.kpath.kpath.html#pwtools.kpath.kpath">[docs]</a><span class="k">def</span> <span class="nf">kpath</span><span class="p">(</span><span class="n">vecs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>    
     <span class="sd">&quot;&quot;&quot;Simple k-path. Given a set of K vectors (special points in the BZ),</span>
@@ -98,7 +96,7 @@
     <span class="n">new_vecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(((</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">vecs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
         <span class="n">new_vecs</span><span class="p">[(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">N</span><span class="p">:</span><span class="n">i</span><span class="o">*</span><span class="n">N</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">vlinspace</span><span class="p">(</span><span class="n">vecs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">vecs</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">N</span><span class="p">,</span>
-                                                 <span class="n">endpoint</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                                                 <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="n">new_vecs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">vecs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span>            
     <span class="k">return</span> <span class="n">new_vecs</span></div>
@@ -116,17 +114,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">dnorms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">ks</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">dnorms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">ks</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span>
-    <span class="c"># diff(...): array with difference vecs, norm of each of them</span>
+    <span class="c1"># diff(...): array with difference vecs, norm of each of them</span>
     <span class="n">dnorms</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">ks</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-    <span class="c"># cumulative sum</span>
+    <span class="c1"># cumulative sum</span>
     <span class="n">path_norm</span> <span class="o">=</span> <span class="n">dnorms</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">path_norm</span></div>
 
 
 <div class="viewcode-block" id="SpecialPointsPath"><a class="viewcode-back" href="../../generated/api/pwtools.kpath.SpecialPointsPath.html#pwtools.kpath.SpecialPointsPath">[docs]</a><span class="k">class</span> <span class="nc">SpecialPointsPath</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;Sequence of special points. Calculate their path norm and store symbols</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sequence of special points. Calculate their path norm and store symbols</span>
 <span class="sd">    such as &quot;K&quot; or &quot;$\\Gamma$&quot;.&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="SpecialPointsPath.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.kpath.SpecialPointsPath.html#pwtools.kpath.SpecialPointsPath.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ks</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ks_frac</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">symbols</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="SpecialPointsPath.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.kpath.SpecialPointsPath.html#pwtools.kpath.SpecialPointsPath.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ks_frac</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -138,16 +136,16 @@
 <span class="sd">        symbols : sequence of strings (nks,), optional    </span>
 <span class="sd">            special point symbol each point in `ks`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="p">[</span><span class="n">ks</span><span class="p">,</span> <span class="n">ks_frac</span><span class="p">]</span> <span class="o">!=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;use either ks or ks_frac&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">ks</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">ks_frac</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;use either ks or ks_frac&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ks</span> <span class="o">=</span> <span class="n">ks</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ks_frac</span> <span class="o">=</span> <span class="n">ks_frac</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span> <span class="o">=</span> <span class="n">symbols</span>
-        <span class="c"># 1d array (nks,) of cumulative norms</span>
+        <span class="c1"># 1d array (nks,) of cumulative norms</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">path_norm</span> <span class="o">=</span> <span class="n">get_path_norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ks</span><span class="p">)</span> </div></div>
 
 
-<div class="viewcode-block" id="plot_dis"><a class="viewcode-back" href="../../generated/api/pwtools.kpath.plot_dis.html#pwtools.kpath.plot_dis">[docs]</a><span class="k">def</span> <span class="nf">plot_dis</span><span class="p">(</span><span class="n">path_norm</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">special_points_path</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-             <span class="n">show_coords</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">dos</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="plot_dis"><a class="viewcode-back" href="../../generated/api/pwtools.kpath.plot_dis.html#pwtools.kpath.plot_dis">[docs]</a><span class="k">def</span> <span class="nf">plot_dis</span><span class="p">(</span><span class="n">path_norm</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">special_points_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="n">show_coords</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dos</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Plot dispersion. </span>
 <span class="sd">    </span>
 <span class="sd">    See ``bin/plot_dispersion.py`` for a usage example. This lives here (and not in</span>
@@ -213,48 +211,48 @@
 <span class="sd">    :func:`pwtools.pwscf.read_matdyn_freq`</span>
 <span class="sd">    :ref:`dispersion_example`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">fig_ax</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
-    <span class="c"># Plot columns of `freq` against q points (path_norm)</span>
+    <span class="c1"># Plot columns of `freq` against q points (path_norm)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">path_norm</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">special_points_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">ylim</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span> <span class="k">if</span> <span class="n">ylim</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">ylim</span>
+    <span class="k">if</span> <span class="n">special_points_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ylim</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span> <span class="k">if</span> <span class="n">ylim</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">ylim</span>
         <span class="n">ks</span><span class="p">,</span> <span class="n">ks_frac</span><span class="p">,</span> <span class="n">nrm</span><span class="p">,</span> <span class="n">symbols</span> <span class="o">=</span> \
             <span class="n">special_points_path</span><span class="o">.</span><span class="n">ks</span><span class="p">,</span> \
             <span class="n">special_points_path</span><span class="o">.</span><span class="n">ks_frac</span><span class="p">,</span> \
             <span class="n">special_points_path</span><span class="o">.</span><span class="n">path_norm</span><span class="p">,</span> \
             <span class="n">special_points_path</span><span class="o">.</span><span class="n">symbols</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">nrm</span><span class="p">,</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">fmtfunc</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s">&quot;</span><span class="si">%.2g</span><span class="s">&quot;</span> <span class="o">%</span><span class="n">x</span>
-        <span class="k">if</span> <span class="n">show_coords</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">fmtfunc</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%.2g</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">x</span>
+        <span class="k">if</span> <span class="n">show_coords</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">labels</span> <span class="o">=</span> <span class="n">symbols</span>
         <span class="k">else</span><span class="p">:</span>            
-            <span class="k">if</span> <span class="n">show_coords</span> <span class="o">==</span> <span class="s">&#39;cart&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">show_coords</span> <span class="o">==</span> <span class="s1">&#39;cart&#39;</span><span class="p">:</span>
                 <span class="n">ks_plot</span> <span class="o">=</span> <span class="n">ks</span> 
-            <span class="k">elif</span> <span class="n">show_coords</span> <span class="o">==</span> <span class="s">&#39;frac&#39;</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="n">show_coords</span> <span class="o">==</span> <span class="s1">&#39;frac&#39;</span><span class="p">:</span>
                 <span class="n">ks_plot</span> <span class="o">=</span> <span class="n">ks_frac</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">StandardError</span><span class="p">(</span><span class="s">&quot;show_coords = &#39;cart&#39;, &#39;frac&#39; or &quot;</span>
-                                    <span class="s">&quot;None needed&quot;</span><span class="p">)</span>
-            <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s">[</span><span class="si">%s</span><span class="s">]&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="n">common</span><span class="o">.</span><span class="n">seq2str</span><span class="p">(</span><span class="n">kk</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">fmtfunc</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&#39;,&#39;</span><span class="p">))</span>\
+                <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;show_coords = &#39;cart&#39;, &#39;frac&#39; or &quot;</span>
+                                    <span class="s2">&quot;None needed&quot;</span><span class="p">)</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s1">[</span><span class="si">%s</span><span class="s1">]&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="n">common</span><span class="o">.</span><span class="n">seq2str</span><span class="p">(</span><span class="n">kk</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">fmtfunc</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">))</span>\
                       <span class="k">for</span> <span class="n">sym</span><span class="p">,</span><span class="n">kk</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">ks_plot</span><span class="p">)]</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">nrm</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">path_norm</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">path_norm</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&quot;frequency (cm$^{-1}$)&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">dos</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="c"># http://matplotlib.org/examples/axes_grid/scatter_hist.html</span>
-            <span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="kn">import</span> <span class="n">make_axes_locatable</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;frequency (cm$^{-1}$)&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dos</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># http://matplotlib.org/examples/axes_grid/scatter_hist.html</span>
+            <span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="k">import</span> <span class="n">make_axes_locatable</span>
             <span class="n">divider</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
-            <span class="n">axdos</span> <span class="o">=</span> <span class="n">divider</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s">&quot;right&quot;</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-            <span class="n">axdos</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dos</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">dos</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="s">&#39;b&#39;</span><span class="p">)</span>
-            <span class="n">mpl</span><span class="o">.</span><span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axdos</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-            <span class="n">mpl</span><span class="o">.</span><span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axdos</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+            <span class="n">axdos</span> <span class="o">=</span> <span class="n">divider</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+            <span class="n">axdos</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dos</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">dos</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+            <span class="n">mpl</span><span class="o">.</span><span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axdos</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">mpl</span><span class="o">.</span><span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axdos</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
             <span class="n">axdos</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_tick_params</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">axdos</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">axdos</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">axdos</span>        </div>
 </pre></div>
 
@@ -272,13 +270,13 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

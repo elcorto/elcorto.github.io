@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pwtools.pwscf &mdash; pwtools  documentation</title>
+    <title>pwtools.pwscf &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="Module code" href="../index.html" /> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -37,8 +38,8 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -46,14 +47,11 @@
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -65,19 +63,19 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.pwscf</h1><div class="highlight"><pre>
-<span class="c"># pwscf.py</span>
-<span class="c">#</span>
-<span class="c"># Some handy tools to construct strings for building pwscf input files.</span>
-<span class="c"># Readers for QE postprocessing tool output (matdyn.x, dynmat.x).</span>
+<span></span><span class="c1"># pwscf.py</span>
+<span class="c1">#</span>
+<span class="c1"># Some handy tools to construct strings for building pwscf input files.</span>
+<span class="c1"># Readers for QE postprocessing tool output (matdyn.x, dynmat.x).</span>
 
 <span class="kn">import</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">warnings</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">pwtools.common</span> <span class="kn">import</span> <span class="n">fix_eps</span><span class="p">,</span> <span class="n">str_arr</span><span class="p">,</span> <span class="n">file_readlines</span><span class="p">,</span> <span class="n">pj</span>
-<span class="kn">from</span> <span class="nn">pwtools</span> <span class="kn">import</span> <span class="n">parse</span><span class="p">,</span> <span class="n">crys</span><span class="p">,</span> <span class="n">common</span>
-<span class="kn">from</span> <span class="nn">pwtools.num</span> <span class="kn">import</span> <span class="n">EPS</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">acos</span><span class="p">,</span> <span class="n">sqrt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pwtools.common</span> <span class="k">import</span> <span class="n">fix_eps</span><span class="p">,</span> <span class="n">str_arr</span><span class="p">,</span> <span class="n">file_readlines</span><span class="p">,</span> <span class="n">pj</span>
+<span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">parse</span><span class="p">,</span> <span class="n">crys</span><span class="p">,</span> <span class="n">common</span>
+<span class="kn">from</span> <span class="nn">pwtools.num</span> <span class="k">import</span> <span class="n">EPS</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">acos</span><span class="p">,</span> <span class="n">sqrt</span>
 
-<div class="viewcode-block" id="atpos_str"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.atpos_str.html#pwtools.pwscf.atpos_str">[docs]</a><span class="k">def</span> <span class="nf">atpos_str</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s">&quot;</span><span class="si">%.16e</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">zero_eps</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">EPS</span><span class="p">,</span> <span class="n">delim</span><span class="o">=</span><span class="mi">4</span><span class="o">*</span><span class="s">&#39; &#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="atpos_str"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.atpos_str.html#pwtools.pwscf.atpos_str">[docs]</a><span class="k">def</span> <span class="nf">atpos_str</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%.16e</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">zero_eps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">EPS</span><span class="p">,</span> <span class="n">delim</span><span class="o">=</span><span class="mi">4</span><span class="o">*</span><span class="s1">&#39; &#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convenience function to make a string for the ATOMIC_POSITIONS section</span>
 <span class="sd">    of a pw.x input file.</span>
 <span class="sd">    </span>
@@ -105,18 +103,18 @@
 <span class="sd">    Al      0.0000000000    0.0000000000    0.0000000000</span>
 <span class="sd">    N       0.0000000000    0.0000000000    1.0000000000</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">zero_eps</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s">&quot;`zero_eps` is deprecated, use `eps` &gt; 0 instead&quot;</span><span class="p">,</span>
+    <span class="k">if</span> <span class="n">zero_eps</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;`zero_eps` is deprecated, use `eps` &gt; 0 instead&quot;</span><span class="p">,</span>
                       <span class="ne">DeprecationWarning</span><span class="p">)</span>
     <span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span> <span class="o">==</span> <span class="n">coords</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s">&quot;len(symbols) != coords.shape[0]&quot;</span>
-    <span class="n">txt</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s%s%s</span><span class="s">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">symbols</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">delim</span><span class="p">,</span> <span class="n">str_arr</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="n">fmt</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span> <span class="o">==</span> <span class="n">coords</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;len(symbols) != coords.shape[0]&quot;</span>
+    <span class="n">txt</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s%s%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">symbols</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">delim</span><span class="p">,</span> <span class="n">str_arr</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="n">fmt</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span>
                                                           <span class="n">delim</span><span class="o">=</span><span class="n">delim</span><span class="p">))</span> \
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">coords</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">txt</span>        </div>
 
 
-<div class="viewcode-block" id="atpos_str_fast"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.atpos_str_fast.html#pwtools.pwscf.atpos_str_fast">[docs]</a><span class="k">def</span> <span class="nf">atpos_str_fast</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">work</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="atpos_str_fast"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.atpos_str_fast.html#pwtools.pwscf.atpos_str_fast">[docs]</a><span class="k">def</span> <span class="nf">atpos_str_fast</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">work</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Fast version of atpos_str() for usage in loops. We use a fixed string</span>
 <span class="sd">    dtype ``|S20`` to convert the array `coords` to string form. We also avoid</span>
 <span class="sd">    all assert&#39;s etc for speed.</span>
@@ -135,20 +133,20 @@
 <span class="sd">    -------</span>
 <span class="sd">    string</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c"># The string dtype + flatten trick is the fastest way to convert a numpy</span>
-    <span class="c"># array to string. However the number of digits is limited to 11 (at least</span>
-    <span class="c"># on my 64 bit machine). Formatting like &#39;%e&#39; cannot be used. It is like a</span>
-    <span class="c"># fixed digit form of &#39;%f&#39;. Needs about 2/3 of the time of atpos_str(), so</span>
-    <span class="c"># the speedup is OK, but not very high. String operations are slow. The</span>
-    <span class="c"># next thing would be Cython or so.</span>
-    <span class="c"># work: Even allocations in a loop are fast, so using `work` brings next to</span>
-    <span class="c"># nothing.</span>
+    <span class="c1"># The string dtype + flatten trick is the fastest way to convert a numpy</span>
+    <span class="c1"># array to string. However the number of digits is limited to 11 (at least</span>
+    <span class="c1"># on my 64 bit machine). Formatting like &#39;%e&#39; cannot be used. It is like a</span>
+    <span class="c1"># fixed digit form of &#39;%f&#39;. Needs about 2/3 of the time of atpos_str(), so</span>
+    <span class="c1"># the speedup is OK, but not very high. String operations are slow. The</span>
+    <span class="c1"># next thing would be Cython or so.</span>
+    <span class="c1"># work: Even allocations in a loop are fast, so using `work` brings next to</span>
+    <span class="c1"># nothing.</span>
     <span class="n">nrows</span> <span class="o">=</span> <span class="n">coords</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">ncols</span> <span class="o">=</span> <span class="n">coords</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s">&#39;|S20&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">work</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">work</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;|S20&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">work</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">work</span>
     <span class="n">arr</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">symbols</span>
     <span class="n">arr</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">coords</span>
-    <span class="n">txt</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;  &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">ncols</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span><span class="o">*</span><span class="n">nrows</span> <span class="o">%</span><span class="nb">tuple</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+    <span class="n">txt</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;  &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">ncols</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">*</span><span class="n">nrows</span> <span class="o">%</span><span class="nb">tuple</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
     <span class="k">return</span> <span class="n">txt</span>        </div>
 
 
@@ -173,18 +171,18 @@
 <span class="sd">    N       2.34    N.UPF</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">masses</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">pseudos</span><span class="p">),</span> \
-        <span class="s">&quot;len(symbols) != len(masses) != len(pseudos)&quot;</span>
-    <span class="n">txt</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&quot;</span><span class="si">%s</span><span class="se">\t</span><span class="si">%s</span><span class="se">\t</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">mass</span><span class="p">),</span> <span class="n">pp</span><span class="p">)</span> <span class="k">for</span> <span class="n">sym</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">pp</span> <span class="ow">in</span>
+        <span class="s2">&quot;len(symbols) != len(masses) != len(pseudos)&quot;</span>
+    <span class="n">txt</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">%s</span><span class="se">\t</span><span class="si">%s</span><span class="se">\t</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">mass</span><span class="p">),</span> <span class="n">pp</span><span class="p">)</span> <span class="k">for</span> <span class="n">sym</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">pp</span> <span class="ow">in</span>
     <span class="nb">zip</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">pseudos</span><span class="p">)])</span>        
     <span class="k">return</span> <span class="n">txt</span>      </div>
 
 
-<div class="viewcode-block" id="kpoints_str"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.kpoints_str.html#pwtools.pwscf.kpoints_str">[docs]</a><span class="k">def</span> <span class="nf">kpoints_str</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="s">&#39;nk&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="kpoints_str"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.kpoints_str.html#pwtools.pwscf.kpoints_str">[docs]</a><span class="k">def</span> <span class="nf">kpoints_str</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="s1">&#39;nk&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;[3,3,3] -&gt; &quot;nk1=3,nk2=3,nk3=3&quot; </span>
 <span class="sd">    </span>
 <span class="sd">    Useful for QE&#39;s phonon toolchain ph.x, q2r.x, matdyn.x</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;</span><span class="si">%s%i</span><span class="s">=</span><span class="si">%i</span><span class="s">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lst</span><span class="p">)])</span></div>
+    <span class="k">return</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;</span><span class="si">%s%i</span><span class="s1">=</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lst</span><span class="p">)])</span></div>
 <span class="n">kpointstr</span> <span class="o">=</span> <span class="n">kpoints_str</span>
 
 
@@ -197,11 +195,11 @@
 <span class="sd">    lst : sequence (3,)</span>
 <span class="sd">    shift : sequence (3,), optional</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">lst</span><span class="o">+</span><span class="n">shift</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">lst</span><span class="o">+</span><span class="n">shift</span><span class="p">))</span></div>
 <span class="n">kpointstr_pwin</span> <span class="o">=</span> <span class="n">kpoints_str_pwin</span>
 
 
-<div class="viewcode-block" id="kpoints_str_pwin_full"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.kpoints_str_pwin_full.html#pwtools.pwscf.kpoints_str_pwin_full">[docs]</a><span class="k">def</span> <span class="nf">kpoints_str_pwin_full</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">gamma</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="kpoints_str_pwin_full"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.kpoints_str_pwin_full.html#pwtools.pwscf.kpoints_str_pwin_full">[docs]</a><span class="k">def</span> <span class="nf">kpoints_str_pwin_full</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">gamma</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Full k-points string for pw.x input files, card K_POINTS.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
@@ -212,20 +210,20 @@
 <span class="sd">        If lst == [1,1,1] then return &quot;K_POINTS gamma&quot;, else</span>
 <span class="sd">        &quot;K_POINTS automatic &lt;newline&gt; 1 1 1 &lt;`shift`&gt;&quot;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">lst</span> <span class="o">=</span> <span class="n">lst</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;s&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> 
-    <span class="k">if</span> <span class="p">(</span><span class="n">lst</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="n">gamma</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">lst</span> <span class="o">==</span> <span class="s">&#39;gamma&#39;</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s">&quot;K_POINTS gamma&quot;</span>
+    <span class="n">lst</span> <span class="o">=</span> <span class="n">lst</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> 
+    <span class="k">if</span> <span class="p">(</span><span class="n">lst</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="n">gamma</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">lst</span> <span class="o">==</span> <span class="s1">&#39;gamma&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;K_POINTS gamma&quot;</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">&quot;K_POINTS automatic</span><span class="se">\n</span><span class="si">%s</span><span class="s">&quot;</span>  <span class="o">%</span><span class="n">kpointstr_pwin</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="s2">&quot;K_POINTS automatic</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span>  <span class="o">%</span><span class="n">kpointstr_pwin</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">)</span></div>
 <span class="n">kpointstr_pwin2</span> <span class="o">=</span> <span class="n">kpoints_str_pwin_full</span>
 
 
 <div class="viewcode-block" id="bool2str"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.bool2str.html#pwtools.pwscf.bool2str">[docs]</a><span class="k">def</span> <span class="nf">bool2str</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Return Fortran bool string for bool input.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="s">&#39;.true.&#39;</span> <span class="k">if</span> <span class="n">x</span> <span class="k">else</span> <span class="s">&#39;.false.&#39;</span></div>
+    <span class="k">return</span> <span class="s1">&#39;.true.&#39;</span> <span class="k">if</span> <span class="n">x</span> <span class="k">else</span> <span class="s1">&#39;.false.&#39;</span></div>
 
 
-<div class="viewcode-block" id="read_matdyn_modes"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.read_matdyn_modes.html#pwtools.pwscf.read_matdyn_modes">[docs]</a><span class="k">def</span> <span class="nf">read_matdyn_modes</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">natoms</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="read_matdyn_modes"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.read_matdyn_modes.html#pwtools.pwscf.read_matdyn_modes">[docs]</a><span class="k">def</span> <span class="nf">read_matdyn_modes</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">natoms</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parse modes file produced by QE&#39;s matdyn.x.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
@@ -289,27 +287,27 @@
 <span class="sd">      [...]</span>
 <span class="sd">       **************************************************************************</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">assert</span> <span class="n">natoms</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span>
-    <span class="n">cmd</span> <span class="o">=</span> <span class="s">r&quot;grep &#39;q.*=&#39; </span><span class="si">%s</span><span class="s"> | sed -re &#39;s/.*q\s*=(.*)/\1/&#39;&quot;</span> <span class="o">%</span><span class="n">filename</span>
+    <span class="k">assert</span> <span class="n">natoms</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;grep &#39;q.*=&#39; </span><span class="si">%s</span><span class="s2"> | sed -re &#39;s/.*q\s*=(.*)/\1/&#39;&quot;</span> <span class="o">%</span><span class="n">filename</span>
     <span class="n">qpoints</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">arr2d_from_txt</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="n">cmd</span><span class="p">))</span>
     <span class="n">nqpoints</span> <span class="o">=</span> <span class="n">qpoints</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">nmodes</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">natoms</span>
-    <span class="n">cmd</span> <span class="o">=</span> <span class="s">r&quot;grep &#39;^[ ]*(&#39; </span><span class="si">%s</span><span class="s"> | sed -re &#39;s/^\s*\((.*)\)/\1/g&#39;&quot;</span> <span class="o">%</span><span class="n">filename</span>
-    <span class="c"># vecs_file_flat: (nqpoints * nmodes * natoms, 6)</span>
-    <span class="c"># this line is the bottleneck</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;grep &#39;^[ ]*(&#39; </span><span class="si">%s</span><span class="s2"> | sed -re &#39;s/^\s*\((.*)\)/\1/g&#39;&quot;</span> <span class="o">%</span><span class="n">filename</span>
+    <span class="c1"># vecs_file_flat: (nqpoints * nmodes * natoms, 6)</span>
+    <span class="c1"># this line is the bottleneck</span>
     <span class="n">vecs_file_flat</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">arr2d_from_txt</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="n">cmd</span><span class="p">))</span>
     <span class="n">vecs_flat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">vecs_file_flat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
-    <span class="n">vecs_flat</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1j</span><span class="o">*</span><span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">vecs_flat</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1j</span><span class="o">*</span><span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span>
-    <span class="n">vecs_flat</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1j</span><span class="o">*</span><span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">5</span><span class="p">]</span>
+    <span class="n">vecs_flat</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">vecs_flat</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">vecs_flat</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">5</span><span class="p">]</span>
     <span class="n">vecs</span> <span class="o">=</span> <span class="n">vecs_flat</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">nqpoints</span><span class="p">,</span> <span class="n">nmodes</span><span class="p">,</span> <span class="n">natoms</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-    <span class="n">cmd</span> <span class="o">=</span> <span class="s">r&quot;grep omega </span><span class="si">%s</span><span class="s"> | sed -re </span><span class="se">\</span>
-<span class="s">            &#39;s/.*omega.*=.*\[.*=(.*)\s*\[.*/\1/g&#39;&quot;</span> <span class="o">%</span><span class="n">filename</span>
-    <span class="n">freqs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="n">cmd</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nqpoints</span><span class="p">,</span> <span class="n">nmodes</span><span class="p">))</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;grep omega </span><span class="si">%s</span><span class="s2"> | sed -re </span><span class="se">\</span>
+<span class="s2">            &#39;s/.*omega.*=.*\[.*=(.*)\s*\[.*/\1/g&#39;&quot;</span> <span class="o">%</span><span class="n">filename</span>
+    <span class="n">freqs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="n">cmd</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nqpoints</span><span class="p">,</span> <span class="n">nmodes</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">qpoints</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">vecs</span></div>
 
 
-<div class="viewcode-block" id="read_dyn"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.read_dyn.html#pwtools.pwscf.read_dyn">[docs]</a><span class="k">def</span> <span class="nf">read_dyn</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">natoms</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="read_dyn"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.read_dyn.html#pwtools.pwscf.read_dyn">[docs]</a><span class="k">def</span> <span class="nf">read_dyn</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">natoms</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Read one dynamical matrix file (for 1 qpoint) produced by ``ph.x`` and</span>
 <span class="sd">    extract the same as :func:`read_matdyn_modes` for this qpoint only. </span>
 <span class="sd">    </span>
@@ -332,27 +330,27 @@
 <span class="sd">    vecs : 3d complex array (nmodes, natoms, 3)</span>
 <span class="sd">        Complex eigenvectors of the dynamical matrix for the q-point.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">assert</span> <span class="n">natoms</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span>
-    <span class="n">cmd</span> <span class="o">=</span> <span class="s">r&quot;egrep &#39;q.*=.*\(&#39; </span><span class="si">%s</span><span class="s"> | tail -n1 | sed -re &#39;s/.*q\s*=.*\((.*)\)/\1/&#39;&quot;</span> <span class="o">%</span><span class="n">filename</span>
-    <span class="n">qpoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="n">cmd</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39; &#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">natoms</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;egrep &#39;q.*=.*\(&#39; </span><span class="si">%s</span><span class="s2"> | tail -n1 | sed -re &#39;s/.*q\s*=.*\((.*)\)/\1/&#39;&quot;</span> <span class="o">%</span><span class="n">filename</span>
+    <span class="n">qpoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="n">cmd</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
     <span class="k">assert</span> <span class="n">qpoints</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span>
     <span class="n">nmodes</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">natoms</span>
-    <span class="n">cmd</span> <span class="o">=</span> <span class="s">r&quot;grep -v &#39;q.*=&#39; </span><span class="si">%s</span><span class="s"> | grep &#39;^[ ]*(&#39; | sed -re &#39;s/^\s*\((.*)\)/\1/g&#39;&quot;</span> <span class="o">%</span><span class="n">filename</span>
-    <span class="c"># vecs_file_flat: (nmodes * natoms, 6)</span>
-    <span class="c"># this line is the bottleneck</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;grep -v &#39;q.*=&#39; </span><span class="si">%s</span><span class="s2"> | grep &#39;^[ ]*(&#39; | sed -re &#39;s/^\s*\((.*)\)/\1/g&#39;&quot;</span> <span class="o">%</span><span class="n">filename</span>
+    <span class="c1"># vecs_file_flat: (nmodes * natoms, 6)</span>
+    <span class="c1"># this line is the bottleneck</span>
     <span class="n">vecs_file_flat</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">arr2d_from_txt</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="n">cmd</span><span class="p">))</span>
     <span class="n">vecs_flat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">vecs_file_flat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
-    <span class="n">vecs_flat</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1j</span><span class="o">*</span><span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">vecs_flat</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1j</span><span class="o">*</span><span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span>
-    <span class="n">vecs_flat</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1j</span><span class="o">*</span><span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">5</span><span class="p">]</span>
+    <span class="n">vecs_flat</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">vecs_flat</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">vecs_flat</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">vecs_file_flat</span><span class="p">[:,</span><span class="mi">5</span><span class="p">]</span>
     <span class="n">vecs</span> <span class="o">=</span> <span class="n">vecs_flat</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">nmodes</span><span class="p">,</span> <span class="n">natoms</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-    <span class="n">cmd</span> <span class="o">=</span> <span class="s">r&quot;grep omega </span><span class="si">%s</span><span class="s"> | sed -re </span><span class="se">\</span>
-<span class="s">            &#39;s/.*omega.*=.*\[.*=(.*)\s*\[.*/\1/g&#39;&quot;</span> <span class="o">%</span><span class="n">filename</span>
-    <span class="n">freqs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="n">cmd</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39; &#39;</span><span class="p">)</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;grep omega </span><span class="si">%s</span><span class="s2"> | sed -re </span><span class="se">\</span>
+<span class="s2">            &#39;s/.*omega.*=.*\[.*=(.*)\s*\[.*/\1/g&#39;&quot;</span> <span class="o">%</span><span class="n">filename</span>
+    <span class="n">freqs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="n">cmd</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">qpoints</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">vecs</span></div>
 
 
-<div class="viewcode-block" id="read_all_dyn"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.read_all_dyn.html#pwtools.pwscf.read_all_dyn">[docs]</a><span class="k">def</span> <span class="nf">read_all_dyn</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">nqpoints</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">natoms</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="s">&#39;ph.dyn&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="read_all_dyn"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.read_all_dyn.html#pwtools.pwscf.read_all_dyn">[docs]</a><span class="k">def</span> <span class="nf">read_all_dyn</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">nqpoints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">natoms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="s1">&#39;ph.dyn&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Same as :func:`read_matdyn_modes()`, but instead of the file</span>
 <span class="sd">    ``matdyn.modes`` which contains freqs,vecs for all qpoints, we read all</span>
 <span class="sd">    dynamical matrix files in `path`, one per qpoint.</span>
@@ -378,7 +376,7 @@
     <span class="n">freqs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nqpoints</span><span class="p">,</span> <span class="n">nmodes</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">vecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nqpoints</span><span class="p">,</span> <span class="n">nmodes</span><span class="p">,</span> <span class="n">natoms</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">iq</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqpoints</span><span class="p">):</span>
-        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s%i</span><span class="s">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">iq</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s%i</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">iq</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
         <span class="n">qq</span><span class="p">,</span> <span class="n">ff</span><span class="p">,</span> <span class="n">vv</span> <span class="o">=</span> <span class="n">read_dyn</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">natoms</span><span class="o">=</span><span class="n">natoms</span><span class="p">)</span>
         <span class="n">qpoints</span><span class="p">[</span><span class="n">iq</span><span class="p">,</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">qq</span>
         <span class="n">freqs</span><span class="p">[</span><span class="n">iq</span><span class="p">,</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">ff</span>
@@ -386,7 +384,7 @@
     <span class="k">return</span> <span class="n">qpoints</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">vecs</span></div>
 
 
-<div class="viewcode-block" id="read_dynmat"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.read_dynmat.html#pwtools.pwscf.read_dynmat">[docs]</a><span class="k">def</span> <span class="nf">read_dynmat</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">natoms</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s">&#39;dynmat.out&#39;</span><span class="p">,</span> <span class="n">axsf</span><span class="o">=</span><span class="s">&#39;dynmat.axsf&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="read_dynmat"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.read_dynmat.html#pwtools.pwscf.read_dynmat">[docs]</a><span class="k">def</span> <span class="nf">read_dynmat</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">natoms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;dynmat.out&#39;</span><span class="p">,</span> <span class="n">axsf</span><span class="o">=</span><span class="s1">&#39;dynmat.axsf&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Read ``dynmat.x`` output.</span>
 
 <span class="sd">    `freqs` are parsed from `filename` and `vecs` from `axsf`. `qpoints` is</span>
@@ -421,22 +419,22 @@
 <span class="sd">    We assume the output to be generated with ``dynmat.x &lt; dynmat.in &gt;</span>
 <span class="sd">    dynmat.out``. </span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">assert</span> <span class="n">natoms</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;natoms is None&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">natoms</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;natoms is None&quot;</span><span class="p">)</span>
     <span class="n">nmodes</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">natoms</span>
     <span class="n">out_fn</span> <span class="o">=</span> <span class="n">pj</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
     <span class="n">axsf_fn</span> <span class="o">=</span> <span class="n">pj</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">axsf</span><span class="p">)</span>
-    <span class="n">cmd</span> <span class="o">=</span> <span class="s">&quot;grep -A{0} PRIMCO {1} | sed -re &#39;/PRIMCO.*/{{N;d;}}&#39; | </span><span class="se">\</span>
-<span class="s">            awk &#39;{{print $5</span><span class="se">\&quot;</span><span class="s"> </span><span class="se">\&quot;</span><span class="s">$6</span><span class="se">\&quot;</span><span class="s"> </span><span class="se">\&quot;</span><span class="s">$7}}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">natoms</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">axsf_fn</span><span class="p">)</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;grep -A</span><span class="si">{0}</span><span class="s2"> PRIMCO </span><span class="si">{1}</span><span class="s2"> | sed -re &#39;/PRIMCO.*/{{N;d;}}&#39; | </span><span class="se">\</span>
+<span class="s2">            awk &#39;{{print $5</span><span class="se">\&quot;</span><span class="s2"> </span><span class="se">\&quot;</span><span class="s2">$6</span><span class="se">\&quot;</span><span class="s2"> </span><span class="se">\&quot;</span><span class="s2">$7}}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">natoms</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">axsf_fn</span><span class="p">)</span>
     <span class="n">qpoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,))</span>
-    <span class="n">vecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="n">cmd</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">nmodes</span><span class="p">,</span><span class="n">natoms</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">cmd</span> <span class="o">=</span> <span class="s">&quot;grep -A{0} &#39;mode.*cm-1&#39; {1} | grep -v mode | </span><span class="se">\</span>
-<span class="s">           awk &#39;{{print $2}}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nmodes</span><span class="p">,</span> <span class="n">out_fn</span><span class="p">)</span>
-    <span class="n">freqs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="n">cmd</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39; &#39;</span><span class="p">)</span>
+    <span class="n">vecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="n">cmd</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">nmodes</span><span class="p">,</span><span class="n">natoms</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;grep -A</span><span class="si">{0}</span><span class="s2"> &#39;mode.*cm-1&#39; </span><span class="si">{1}</span><span class="s2"> | grep -v mode | </span><span class="se">\</span>
+<span class="s2">           awk &#39;{{print $2}}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nmodes</span><span class="p">,</span> <span class="n">out_fn</span><span class="p">)</span>
+    <span class="n">freqs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="n">cmd</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">qpoints</span><span class="p">,</span><span class="n">freqs</span><span class="p">,</span><span class="n">vecs</span></div>
 
 
-<div class="viewcode-block" id="read_dynmat_ir_raman"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.read_dynmat_ir_raman.html#pwtools.pwscf.read_dynmat_ir_raman">[docs]</a><span class="k">def</span> <span class="nf">read_dynmat_ir_raman</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&#39;dynmat.out&#39;</span><span class="p">,</span> <span class="n">natoms</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
-                         <span class="n">cols</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s">&#39;freqs&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="s">&#39;ir&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s">&#39;raman&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s">&#39;depol&#39;</span><span class="p">}):</span>
+<div class="viewcode-block" id="read_dynmat_ir_raman"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.read_dynmat_ir_raman.html#pwtools.pwscf.read_dynmat_ir_raman">[docs]</a><span class="k">def</span> <span class="nf">read_dynmat_ir_raman</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;dynmat.out&#39;</span><span class="p">,</span> <span class="n">natoms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                         <span class="n">cols</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;freqs&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="s1">&#39;ir&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;raman&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;depol&#39;</span><span class="p">}):</span>
     <span class="sd">&quot;&quot;&quot;Read ``dynmat.x`` text output file and extract IR and Raman</span>
 <span class="sd">    intensities.</span>
 <span class="sd">    </span>
@@ -479,10 +477,10 @@
 <span class="sd">    </span>
 <span class="sd">    Some columns (e.g. IR, Raman) may be missing.</span>
 <span class="sd">    &quot;&quot;&quot;</span>                    
-    <span class="k">assert</span> <span class="n">natoms</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;natoms is None&quot;</span><span class="p">)</span>
-    <span class="n">cmd</span> <span class="o">=</span> <span class="s">&quot;grep -A{0} &#39;mode.*cm-1&#39; {1} | grep -v mode&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">natoms</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">natoms</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;natoms is None&quot;</span><span class="p">)</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;grep -A</span><span class="si">{0}</span><span class="s2"> &#39;mode.*cm-1&#39; </span><span class="si">{1}</span><span class="s2"> | grep -v mode&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">natoms</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
     <span class="n">arr</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">arr2d_from_txt</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="n">cmd</span><span class="p">))</span>
-    <span class="k">if</span> <span class="n">cols</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">cols</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">arr</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">dct</span> <span class="o">=</span> <span class="p">{}</span>
@@ -490,13 +488,13 @@
             <span class="k">if</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
                 <span class="n">dct</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[:,</span><span class="n">ii</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">dct</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="n">dct</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="n">dct</span></div>
 
 
 <div class="viewcode-block" id="read_dynmat_out"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.read_dynmat_out.html#pwtools.pwscf.read_dynmat_out">[docs]</a><span class="k">def</span> <span class="nf">read_dynmat_out</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Backward compat wrapper for :func:`read_dynmat_ir_raman`.&quot;&quot;&quot;</span>
-    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s">&quot;read_dynmat_out() is deprecated, use read_dynmat_ir_raman()&quot;</span><span class="p">,</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;read_dynmat_out() is deprecated, use read_dynmat_ir_raman()&quot;</span><span class="p">,</span>
                   <span class="ne">DeprecationWarning</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">read_dynmat_ir_raman</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>                  </div>
 
@@ -569,22 +567,22 @@
 <span class="sd">    :func:`pwtools.kpath.get_path_norm`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">lines</span> <span class="o">=</span> <span class="n">file_readlines</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-    <span class="c"># Read number of bands (nbnd) and k-points (nks). OK, Fortran&#39;s namelists</span>
-    <span class="c"># win here :)</span>
-    <span class="c"># nbnd: number of bands = number of frequencies per k-point = 3*natoms for</span>
-    <span class="c">#   phonons</span>
-    <span class="c"># nks: number of k-points</span>
-    <span class="n">pat</span> <span class="o">=</span> <span class="s">r&#39;.*\s+nbnd\s*=\s*([0-9]+)\s*,\s*nks\s*=\s*([0-9]+)\s*/&#39;</span>
+    <span class="c1"># Read number of bands (nbnd) and k-points (nks). OK, Fortran&#39;s namelists</span>
+    <span class="c1"># win here :)</span>
+    <span class="c1"># nbnd: number of bands = number of frequencies per k-point = 3*natoms for</span>
+    <span class="c1">#   phonons</span>
+    <span class="c1"># nks: number of k-points</span>
+    <span class="n">pat</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;.*\s+nbnd\s*=\s*([0-9]+)\s*,\s*nks\s*=\s*([0-9]+)\s*/&#39;</span>
     <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pat</span><span class="p">,</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">assert</span> <span class="p">(</span><span class="n">match</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">),</span> <span class="s">&quot;match is None&quot;</span>
+    <span class="k">assert</span> <span class="p">(</span><span class="n">match</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">),</span> <span class="s2">&quot;match is None&quot;</span>
     <span class="n">nbnd</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
     <span class="n">nks</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
     <span class="n">kpoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nks</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">freqs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nks</span><span class="p">,</span> <span class="n">nbnd</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">step</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">nbnd</span>
-    <span class="c"># nasty trick: join all lines containing data into one 1d array: &quot; &quot;.join()</span>
-    <span class="c"># does &quot;1 2\n3 4&quot; -&gt; &quot;1 2\n 3 4&quot; and split() splits at \n + whitespace.</span>
-    <span class="n">items</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="c1"># nasty trick: join all lines containing data into one 1d array: &quot; &quot;.join()</span>
+    <span class="c1"># does &quot;1 2\n3 4&quot; -&gt; &quot;1 2\n 3 4&quot; and split() splits at \n + whitespace.</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="o">/</span> <span class="n">step</span><span class="p">):</span>
         <span class="n">kpoints</span><span class="p">[</span><span class="n">ii</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">ii</span><span class="o">*</span><span class="n">step</span><span class="p">:(</span><span class="n">ii</span><span class="o">*</span><span class="n">step</span><span class="o">+</span><span class="mi">3</span><span class="p">)]</span>
         <span class="n">freqs</span><span class="p">[</span><span class="n">ii</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">items</span><span class="p">[(</span><span class="n">ii</span><span class="o">*</span><span class="n">step</span><span class="o">+</span><span class="mi">3</span><span class="p">):(</span><span class="n">ii</span><span class="o">*</span><span class="n">step</span><span class="o">+</span><span class="n">step</span><span class="p">)]</span>
@@ -632,43 +630,43 @@
 <span class="sd">      The returned `cell` here has the same spatial orientation as the one</span>
 <span class="sd">      returned from crys.cc2cell(): a along x, b in xy-plane.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c"># some of celldm can be None</span>
-    <span class="n">tofloat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="c1"># some of celldm can be None</span>
+    <span class="n">tofloat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">aa</span><span class="p">,</span> <span class="n">bb_aa</span><span class="p">,</span> <span class="n">cc_aa</span><span class="p">,</span> <span class="n">cos_alpha</span><span class="p">,</span> <span class="n">cos_beta</span><span class="p">,</span> <span class="n">cos_gamma</span> <span class="o">=</span> <span class="p">[</span><span class="n">tofloat</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">celldm</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">bb_aa</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">bb_aa</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">bb</span> <span class="o">=</span> <span class="n">bb_aa</span> <span class="o">*</span> <span class="n">aa</span>
-    <span class="k">if</span> <span class="n">cc_aa</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">cc_aa</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">cc</span> <span class="o">=</span> <span class="n">cc_aa</span> <span class="o">*</span> <span class="n">aa</span>
-    <span class="k">if</span> <span class="n">cos_gamma</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">cos_gamma</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">sin_gamma</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">acos</span><span class="p">(</span><span class="n">cos_gamma</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">ibrav</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="c"># cubic P (sc), sc simple cubic</span>
-        <span class="c"># v1 = a(1,0,0),  v2 = a(0,1,0),  v3 = a(0,0,1)</span>
+        <span class="c1"># cubic P (sc), sc simple cubic</span>
+        <span class="c1"># v1 = a(1,0,0),  v2 = a(0,1,0),  v3 = a(0,0,1)</span>
         <span class="n">cell</span> <span class="o">=</span> <span class="n">aa</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">ibrav</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="c"># cubic F (fcc), fcc face centered cubic</span>
-        <span class="c"># v1 = (a/2)(-1,0,1),  v2 = (a/2)(0,1,1), v3 = (a/2)(-1,1,0)</span>
+        <span class="c1"># cubic F (fcc), fcc face centered cubic</span>
+        <span class="c1"># v1 = (a/2)(-1,0,1),  v2 = (a/2)(0,1,1), v3 = (a/2)(-1,1,0)</span>
         <span class="n">cell</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">aa</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span> 
                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span> 
                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">]])</span>
     <span class="k">elif</span> <span class="n">ibrav</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="c"># cubic I (bcc), bcc body entered cubic</span>
-        <span class="c"># v1 = (a/2)(1,1,1),  v2 = (a/2)(-1,1,1),  v3 = (a/2)(-1,-1,1)</span>
+        <span class="c1"># cubic I (bcc), bcc body entered cubic</span>
+        <span class="c1"># v1 = (a/2)(1,1,1),  v2 = (a/2)(-1,1,1),  v3 = (a/2)(-1,-1,1)</span>
         <span class="n">cell</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">aa</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span> 
                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span> 
                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">]])</span>
     <span class="k">elif</span> <span class="n">ibrav</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-        <span class="c"># Hexagonal and Trigonal P, simple hexagonal and trigonal(p)</span>
-        <span class="c"># v1 = a(1,0,0),  v2 = a(-1/2,sqrt(3)/2,0),  v3 = a(0,0,c/a)</span>
+        <span class="c1"># Hexagonal and Trigonal P, simple hexagonal and trigonal(p)</span>
+        <span class="c1"># v1 = a(1,0,0),  v2 = a(-1/2,sqrt(3)/2,0),  v3 = a(0,0,c/a)</span>
         <span class="n">cell</span> <span class="o">=</span> <span class="n">aa</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>            <span class="mi">0</span><span class="p">],</span> 
                               <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span>  <span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span> 
                               <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>            <span class="n">cc</span><span class="o">/</span><span class="n">aa</span><span class="p">]])</span>
     <span class="k">elif</span> <span class="n">ibrav</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
-        <span class="c"># Trigonal R, trigonal(r)</span>
-        <span class="c"># v1 = a(tx,-ty,tz),   v2 = a(0,2ty,tz),   v3 = a(-tx,-ty,tz)</span>
-        <span class="c">#   where c=cos(alpha) is the cosine of the angle alpha between any pair</span>
-        <span class="c">#   of crystallographic vectors, tc, ty, tz are defined as</span>
-        <span class="c"># tx=sqrt((1-c)/2), ty=sqrt((1-c)/6), tz=sqrt((1+2c)</span>
+        <span class="c1"># Trigonal R, trigonal(r)</span>
+        <span class="c1"># v1 = a(tx,-ty,tz),   v2 = a(0,2ty,tz),   v3 = a(-tx,-ty,tz)</span>
+        <span class="c1">#   where c=cos(alpha) is the cosine of the angle alpha between any pair</span>
+        <span class="c1">#   of crystallographic vectors, tc, ty, tz are defined as</span>
+        <span class="c1"># tx=sqrt((1-c)/2), ty=sqrt((1-c)/6), tz=sqrt((1+2c)</span>
         <span class="n">tx</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">cos_alpha</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span>
         <span class="n">ty</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">cos_alpha</span><span class="p">)</span><span class="o">/</span><span class="mf">6.0</span><span class="p">)</span>
         <span class="n">tz</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">cos_alpha</span><span class="p">)</span><span class="o">/</span><span class="mf">3.0</span><span class="p">)</span>
@@ -676,60 +674,60 @@
                               <span class="p">[</span> <span class="mf">0.0</span><span class="p">,</span>   <span class="mf">2.0</span><span class="o">*</span><span class="n">ty</span><span class="p">,</span>  <span class="n">tz</span><span class="p">],</span> 
                               <span class="p">[</span><span class="o">-</span><span class="n">tx</span><span class="p">,</span>   <span class="o">-</span><span class="n">ty</span><span class="p">,</span>      <span class="n">tz</span><span class="p">]])</span>
     <span class="k">elif</span> <span class="n">ibrav</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
-        <span class="c"># Tetragonal P (st), simple tetragonal (p)</span>
-        <span class="c"># v1 = a(1,0,0),  v2 = a(0,1,0),  v3 = a(0,0,c/a)</span>
+        <span class="c1"># Tetragonal P (st), simple tetragonal (p)</span>
+        <span class="c1"># v1 = a(1,0,0),  v2 = a(0,1,0),  v3 = a(0,0,c/a)</span>
         <span class="n">cell</span> <span class="o">=</span> <span class="n">aa</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span> 
                               <span class="p">[</span><span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span> 
                               <span class="p">[</span><span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="n">cc</span><span class="o">/</span><span class="n">aa</span><span class="p">]])</span>
     <span class="k">elif</span> <span class="n">ibrav</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
-        <span class="c"># Tetragonal I (bct), body centered tetragonal (i)</span>
-        <span class="c"># v1 = (a/2)(1,-1,c/a),  v2 = (a/2)(1,1,c/a),  v3 = (a/2)(-1,-1,c/a)</span>
+        <span class="c1"># Tetragonal I (bct), body centered tetragonal (i)</span>
+        <span class="c1"># v1 = (a/2)(1,-1,c/a),  v2 = (a/2)(1,1,c/a),  v3 = (a/2)(-1,-1,c/a)</span>
         <span class="n">cell</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">aa</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span>  <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="n">cc</span><span class="o">/</span><span class="n">aa</span><span class="p">],</span> 
                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span>  <span class="n">cc</span><span class="o">/</span><span class="n">aa</span><span class="p">],</span> 
                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="n">cc</span><span class="o">/</span><span class="n">aa</span><span class="p">]])</span>        
     <span class="k">elif</span> <span class="n">ibrav</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
-        <span class="c"># Orthorhombic P, simple orthorhombic (p)</span>
-        <span class="c"># v1 = (a,0,0),  v2 = (0,b,0), v3 = (0,0,c)</span>
+        <span class="c1"># Orthorhombic P, simple orthorhombic (p)</span>
+        <span class="c1"># v1 = (a,0,0),  v2 = (0,b,0), v3 = (0,0,c)</span>
         <span class="n">cell</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">aa</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span> 
                          <span class="p">[</span><span class="mi">0</span><span class="p">,</span>   <span class="n">bb</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
                          <span class="p">[</span><span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>  <span class="n">cc</span><span class="p">]])</span>
     <span class="k">elif</span> <span class="n">ibrav</span> <span class="o">==</span> <span class="mi">9</span><span class="p">:</span>
-        <span class="c"># Orthorhombic base-centered(bco), bco base centered orthorhombic</span>
-        <span class="c"># v1 = (a/2,b/2,0),  v2 = (-a/2,b/2,0),  v3 = (0,0,c)</span>
+        <span class="c1"># Orthorhombic base-centered(bco), bco base centered orthorhombic</span>
+        <span class="c1"># v1 = (a/2,b/2,0),  v2 = (-a/2,b/2,0),  v3 = (0,0,c)</span>
         <span class="n">cell</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="n">aa</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>   <span class="n">bb</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">],</span> 
                          <span class="p">[</span><span class="o">-</span><span class="n">aa</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>   <span class="n">bb</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">],</span> 
                          <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>        <span class="mi">0</span><span class="p">,</span>        <span class="n">cc</span><span class="p">]])</span>
     <span class="k">elif</span> <span class="n">ibrav</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
-        <span class="c"># Orthorhombic face-centered, face centered orthorhombic</span>
-        <span class="c"># v1 = (a/2,0,c/2),  v2 = (a/2,b/2,0),  v3 = (0,b/2,c/2)</span>
+        <span class="c1"># Orthorhombic face-centered, face centered orthorhombic</span>
+        <span class="c1"># v1 = (a/2,0,c/2),  v2 = (a/2,b/2,0),  v3 = (0,b/2,c/2)</span>
         <span class="n">cell</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">aa</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>       <span class="n">cc</span><span class="o">/</span><span class="mf">2.0</span><span class="p">],</span> 
                          <span class="p">[</span><span class="n">aa</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>    <span class="n">bb</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span> 
                          <span class="p">[</span><span class="mi">0</span><span class="p">,</span>         <span class="n">bb</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>  <span class="n">cc</span><span class="o">/</span><span class="mf">2.0</span><span class="p">]])</span>
     <span class="k">elif</span> <span class="n">ibrav</span> <span class="o">==</span> <span class="mi">11</span><span class="p">:</span>
-        <span class="c"># Orthorhombic body-centered, body centered orthorhombic</span>
-        <span class="c"># v1 = (a/2,b/2,c/2),  v2 = (-a/2,b/2,c/2),  v3 = (-a/2,-b/2,c/2)</span>
+        <span class="c1"># Orthorhombic body-centered, body centered orthorhombic</span>
+        <span class="c1"># v1 = (a/2,b/2,c/2),  v2 = (-a/2,b/2,c/2),  v3 = (-a/2,-b/2,c/2)</span>
         <span class="n">cell</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="n">aa</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>   <span class="n">bb</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>  <span class="n">cc</span><span class="o">/</span><span class="mf">2.0</span><span class="p">],</span> 
                          <span class="p">[</span><span class="o">-</span><span class="n">aa</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>   <span class="n">bb</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>  <span class="n">cc</span><span class="o">/</span><span class="mf">2.0</span><span class="p">],</span>
                          <span class="p">[</span><span class="o">-</span><span class="n">aa</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>  <span class="o">-</span><span class="n">bb</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>  <span class="n">cc</span><span class="o">/</span><span class="mf">2.0</span><span class="p">]])</span>
     <span class="k">elif</span> <span class="n">ibrav</span> <span class="o">==</span> <span class="mi">12</span><span class="p">:</span>
-        <span class="c"># Monoclinic P, monoclinic (p)</span>
-        <span class="c"># v1 = (a,0,0), v2= (b*cos(gamma), b*sin(gamma), 0),  v3 = (0, 0, c)</span>
+        <span class="c1"># Monoclinic P, monoclinic (p)</span>
+        <span class="c1"># v1 = (a,0,0), v2= (b*cos(gamma), b*sin(gamma), 0),  v3 = (0, 0, c)</span>
         <span class="n">cell</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">aa</span><span class="p">,</span>             <span class="mi">0</span><span class="p">,</span>              <span class="mi">0</span><span class="p">],</span> 
                          <span class="p">[</span><span class="n">bb</span><span class="o">*</span><span class="n">cos_gamma</span><span class="p">,</span>  <span class="n">bb</span><span class="o">*</span><span class="n">sin_gamma</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
                          <span class="p">[</span><span class="mi">0</span><span class="p">,</span>              <span class="mi">0</span><span class="p">,</span>              <span class="n">cc</span><span class="p">]])</span>
     <span class="k">elif</span> <span class="n">ibrav</span> <span class="o">==</span> <span class="mi">13</span><span class="p">:</span>
-        <span class="c"># Monoclinic base-centered, base centered monoclinic</span>
-        <span class="c"># v1 = (a/2,0,-c/2), v2 = (b*cos(gamma),b*sin(gamma), 0), v3 = (a/2,0,c/2)</span>
+        <span class="c1"># Monoclinic base-centered, base centered monoclinic</span>
+        <span class="c1"># v1 = (a/2,0,-c/2), v2 = (b*cos(gamma),b*sin(gamma), 0), v3 = (a/2,0,c/2)</span>
         <span class="n">cell</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">aa</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>         <span class="mi">0</span><span class="p">,</span>             <span class="o">-</span><span class="n">cc</span><span class="o">/</span><span class="mf">2.0</span><span class="p">],</span> 
                          <span class="p">[</span><span class="n">bb</span><span class="o">*</span><span class="n">cos_gamma</span><span class="p">,</span>   <span class="n">bb</span><span class="o">*</span><span class="n">sin_gamma</span><span class="p">,</span>   <span class="mi">0</span><span class="p">],</span>
                          <span class="p">[</span><span class="n">aa</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>         <span class="mi">0</span><span class="p">,</span>              <span class="n">cc</span><span class="o">/</span><span class="mf">2.0</span><span class="p">]])</span>
     <span class="k">elif</span> <span class="n">ibrav</span> <span class="o">==</span> <span class="mi">14</span><span class="p">:</span>
-        <span class="c"># Triclinic</span>
-        <span class="c"># v1 = (a, 0, 0),</span>
-        <span class="c"># v2 = (b*cos(gamma), b*sin(gamma), 0)</span>
-        <span class="c"># v3 = (c*cos(beta),  c*(cos(alpha)-cos(beta)cos(gamma))/sin(gamma),</span>
-        <span class="c"># c*sqrt( 1 + 2*cos(alpha)cos(beta)cos(gamma)</span>
-        <span class="c">#           - cos(alpha)^2-cos(beta)^2-cos(gamma)^2 )/sin(gamma) </span>
+        <span class="c1"># Triclinic</span>
+        <span class="c1"># v1 = (a, 0, 0),</span>
+        <span class="c1"># v2 = (b*cos(gamma), b*sin(gamma), 0)</span>
+        <span class="c1"># v3 = (c*cos(beta),  c*(cos(alpha)-cos(beta)cos(gamma))/sin(gamma),</span>
+        <span class="c1"># c*sqrt( 1 + 2*cos(alpha)cos(beta)cos(gamma)</span>
+        <span class="c1">#           - cos(alpha)^2-cos(beta)^2-cos(gamma)^2 )/sin(gamma) </span>
         <span class="n">v1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">aa</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">v2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">bb</span><span class="o">*</span><span class="n">cos_gamma</span><span class="p">,</span> <span class="n">bb</span><span class="o">*</span><span class="n">sin_gamma</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
         <span class="n">v3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">cc</span><span class="o">*</span><span class="n">cos_beta</span><span class="p">,</span> 
@@ -738,7 +736,7 @@
                        <span class="n">cos_alpha</span><span class="o">**</span><span class="mf">2.0</span><span class="o">-</span><span class="n">cos_beta</span><span class="o">**</span><span class="mf">2.0</span><span class="o">-</span><span class="n">cos_gamma</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)</span><span class="o">/</span><span class="n">sin_gamma</span><span class="p">])</span>
         <span class="n">cell</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">v3</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">StandardError</span><span class="p">(</span><span class="s">&quot;illegal ibrav: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span><span class="n">ibrav</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;illegal ibrav: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">ibrav</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cell</span>        </div>
 </pre></div>
 
@@ -756,13 +754,13 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

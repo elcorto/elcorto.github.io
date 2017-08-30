@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pwtools.signal &mdash; pwtools  documentation</title>
+    <title>pwtools.signal &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="Module code" href="../index.html" /> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -37,8 +38,8 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -46,14 +47,11 @@
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -65,20 +63,20 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.signal</h1><div class="highlight"><pre>
-<span class="c"># signal.py</span>
-<span class="c">#</span>
-<span class="c"># After scipy.signal: Some general &quot;signal procressing&quot; tools (FFT,</span>
-<span class="c"># correlation). Mostly textbook and reference implementations and utilities.</span>
+<span></span><span class="c1"># signal.py</span>
+<span class="c1">#</span>
+<span class="c1"># After scipy.signal: Some general &quot;signal procressing&quot; tools (FFT,</span>
+<span class="c1"># correlation). Mostly textbook and reference implementations and utilities.</span>
 
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span><span class="p">,</span> <span class="n">izip</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span>
-<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">fftconvolve</span><span class="p">,</span> <span class="n">gaussian</span><span class="p">,</span> <span class="n">kaiserord</span><span class="p">,</span> <span class="n">firwin</span><span class="p">,</span> <span class="n">lfilter</span><span class="p">,</span> <span class="n">freqz</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">trapz</span>
-<span class="kn">from</span> <span class="nn">pwtools</span> <span class="kn">import</span> <span class="n">_flib</span><span class="p">,</span> <span class="n">num</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">product</span><span class="p">,</span> <span class="n">izip</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="k">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="k">import</span> <span class="n">fftconvolve</span><span class="p">,</span> <span class="n">gaussian</span><span class="p">,</span> <span class="n">kaiserord</span><span class="p">,</span> <span class="n">firwin</span><span class="p">,</span> <span class="n">lfilter</span><span class="p">,</span> <span class="n">freqz</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="k">import</span> <span class="n">trapz</span>
+<span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">_flib</span><span class="p">,</span> <span class="n">num</span>
 
 
-<div class="viewcode-block" id="fftsample"><a class="viewcode-back" href="../../generated/api/pwtools.signal.fftsample.html#pwtools.signal.fftsample">[docs]</a><span class="k">def</span> <span class="nf">fftsample</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="n">mirr</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="fftsample"><a class="viewcode-back" href="../../generated/api/pwtools.signal.fftsample.html#pwtools.signal.fftsample">[docs]</a><span class="k">def</span> <span class="nf">fftsample</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="n">mirr</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert size and resolution between frequency and time domain.</span>
 <span class="sd">    </span>
 <span class="sd">    Convert between maximal frequency to sample (fmax) + desired frequency</span>
@@ -133,14 +131,14 @@
 <span class="sd">    Units:</span>
 <span class="sd">    In general frequency_unit = 1/time_unit, need not be Hz and s.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;f&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span>
         <span class="n">fmax</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span>
         <span class="k">if</span> <span class="n">mirr</span><span class="p">:</span>
             <span class="n">df</span> <span class="o">*=</span> <span class="mi">2</span>
         <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">/</span><span class="n">fmax</span>
         <span class="n">N</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">df</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dt</span><span class="p">,</span> <span class="n">N</span><span class="p">])</span>
-    <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;t&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span>
         <span class="n">dt</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
         <span class="k">if</span> <span class="n">mirr</span><span class="p">:</span>
             <span class="n">N</span> <span class="o">*=</span> <span class="mi">2</span>
@@ -148,10 +146,10 @@
         <span class="n">df</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">fmax</span><span class="p">,</span> <span class="n">df</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;illegal mode, allowed: t, f&quot;</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;illegal mode, allowed: t, f&quot;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="dft"><a class="viewcode-back" href="../../generated/api/pwtools.signal.dft.html#pwtools.signal.dft">[docs]</a><span class="k">def</span> <span class="nf">dft</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;loop&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="dft"><a class="viewcode-back" href="../../generated/api/pwtools.signal.dft.html#pwtools.signal.dft">[docs]</a><span class="k">def</span> <span class="nf">dft</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;loop&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Simple straightforward complex DFT algo. </span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
@@ -203,20 +201,20 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
     <span class="n">N</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="c"># n and k run from 0 ... N-1</span>
-    <span class="n">nk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+    <span class="c1"># n and k run from 0 ... N-1</span>
+    <span class="n">nk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s">&#39;loop&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;loop&#39;</span><span class="p">:</span>
         <span class="n">fta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">ik</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nk</span><span class="p">):</span>
-            <span class="n">fta</span><span class="p">[</span><span class="n">ik</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="mf">1.0j</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">nk</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span>
-    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s">&#39;matmul&#39;</span><span class="p">:</span>
-        <span class="c"># `mat` is the matrix with elements W**(n*k) in [1], eq. 12.2.2</span>
+            <span class="n">fta</span><span class="p">[</span><span class="n">ik</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="mf">1.0</span><span class="n">j</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">nk</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;matmul&#39;</span><span class="p">:</span>
+        <span class="c1"># `mat` is the matrix with elements W**(n*k) in [1], eq. 12.2.2</span>
         <span class="n">nkmat</span> <span class="o">=</span> <span class="n">nk</span><span class="o">*</span><span class="n">nk</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-        <span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="mf">1.0j</span><span class="o">*</span><span class="n">nkmat</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+        <span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="mf">1.0</span><span class="n">j</span><span class="o">*</span><span class="n">nkmat</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
         <span class="n">fta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;illegal method &#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span><span class="n">method</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;illegal method &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span><span class="n">method</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">fta</span>            </div>
 
 
@@ -259,12 +257,12 @@
     <span class="k">if</span> <span class="n">axis</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">axis</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ax</span> <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span> <span class="k">if</span> <span class="n">ax</span> <span class="o">!=</span> <span class="n">axis</span><span class="p">]</span>
-    <span class="c"># tuple here is 3x faster than generator expression</span>
-    <span class="c">#   idxs = (range(arr.shape[ax]) for ax in axes)  </span>
+    <span class="c1"># tuple here is 3x faster than generator expression</span>
+    <span class="c1">#   idxs = (range(arr.shape[ax]) for ax in axes)  </span>
     <span class="n">idxs</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">ax</span><span class="p">])</span> <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">)</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">idx_tup</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">idxs</span><span class="p">):</span>
-        <span class="n">sl</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="bp">None</span><span class="p">)]</span> <span class="o">*</span> <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span>
+        <span class="n">sl</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span> <span class="o">*</span> <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span>
         <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">ax</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="n">idx_tup</span><span class="p">,</span> <span class="n">axes</span><span class="p">):</span>
             <span class="n">sl</span><span class="p">[</span><span class="n">ax</span><span class="p">]</span> <span class="o">=</span> <span class="n">idx</span>
         <span class="n">out</span><span class="p">[</span><span class="n">sl</span><span class="p">]</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">sl</span><span class="p">])</span>
@@ -272,8 +270,8 @@
 
 
 
-<div class="viewcode-block" id="pad_zeros"><a class="viewcode-back" href="../../generated/api/pwtools.signal.pad_zeros.html#pwtools.signal.pad_zeros">[docs]</a><span class="k">def</span> <span class="nf">pad_zeros</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s">&#39;end&#39;</span><span class="p">,</span> <span class="n">nadd</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">upto</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tonext</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-              <span class="n">tonext_min</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="pad_zeros"><a class="viewcode-back" href="../../generated/api/pwtools.signal.pad_zeros.html#pwtools.signal.pad_zeros">[docs]</a><span class="k">def</span> <span class="nf">pad_zeros</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="n">nadd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">upto</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tonext</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+              <span class="n">tonext_min</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Pad an nd-array with zeros. Default is to append an array of zeros of </span>
 <span class="sd">    the same shape as `arr` to arr&#39;s end along `axis`.</span>
 <span class="sd">    </span>
@@ -328,24 +326,24 @@
 <span class="sd">    &gt;&gt;&gt; pydos.pad_zeros(arange(9), tonext=True).shape</span>
 <span class="sd">    (16,)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">tonext</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
-        <span class="n">tonext</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">if</span> <span class="n">tonext</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="n">tonext</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="n">nadd</span><span class="p">,</span> <span class="n">upto</span><span class="p">,</span> <span class="n">tonext</span><span class="p">]</span>
-    <span class="k">assert</span> <span class="n">lst</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="s">&quot;`nadd`, `upto` and `tonext` must be &quot;</span> <span class="o">+</span>\
-           <span class="s">&quot;all None or only one of them not None&quot;</span>
-    <span class="k">if</span> <span class="n">nadd</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">upto</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">tonext</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="n">tonext</span><span class="p">):</span>
-                <span class="c"># default</span>
+    <span class="k">assert</span> <span class="n">lst</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;`nadd`, `upto` and `tonext` must be &quot;</span> <span class="o">+</span>\
+           <span class="s2">&quot;all None or only one of them not None&quot;</span>
+    <span class="k">if</span> <span class="n">nadd</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">upto</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">tonext</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="n">tonext</span><span class="p">):</span>
+                <span class="c1"># default</span>
                 <span class="n">nadd</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">tonext_min</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="k">if</span> <span class="p">(</span><span class="n">tonext_min</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span> \
+                <span class="n">tonext_min</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="k">if</span> <span class="p">(</span><span class="n">tonext_min</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> \
                              <span class="k">else</span> <span class="n">tonext_min</span>
-                <span class="c"># beware of int overflows starting w/ 2**arange(64), but we</span>
-                <span class="c"># will never have such long arrays anyway</span>
+                <span class="c1"># beware of int overflows starting w/ 2**arange(64), but we</span>
+                <span class="c1"># will never have such long arrays anyway</span>
                 <span class="n">two_powers</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
-                <span class="k">assert</span> <span class="n">tonext_min</span> <span class="o">&lt;=</span> <span class="n">two_powers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="s">&quot;tonext_min exceeds &quot;</span>
-                    <span class="s">&quot;max power of 2&quot;</span><span class="p">)</span>
+                <span class="k">assert</span> <span class="n">tonext_min</span> <span class="o">&lt;=</span> <span class="n">two_powers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="s2">&quot;tonext_min exceeds &quot;</span>
+                    <span class="s2">&quot;max power of 2&quot;</span><span class="p">)</span>
                 <span class="n">power</span> <span class="o">=</span> <span class="n">two_powers</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">two_powers</span><span class="p">,</span>
                                                   <span class="n">tonext_min</span><span class="p">)]</span>
                 <span class="n">nadd</span> <span class="o">=</span> <span class="n">power</span> <span class="o">-</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>                                                       
@@ -356,12 +354,12 @@
     <span class="n">add_shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
     <span class="n">add_shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="n">nadd</span>
     <span class="n">add_shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">add_shape</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">where</span> <span class="o">==</span> <span class="s">&#39;end&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">where</span> <span class="o">==</span> <span class="s1">&#39;end&#39;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">arr</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">add_shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">arr</span><span class="o">.</span><span class="n">dtype</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">where</span> <span class="o">==</span> <span class="s">&#39;start&#39;</span><span class="p">:</span>        
+    <span class="k">elif</span> <span class="n">where</span> <span class="o">==</span> <span class="s1">&#39;start&#39;</span><span class="p">:</span>        
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">add_shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">arr</span><span class="o">.</span><span class="n">dtype</span><span class="p">),</span> <span class="n">arr</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">StandardError</span><span class="p">(</span><span class="s">&quot;illegal `where` arg: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span><span class="n">where</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;illegal `where` arg: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">where</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="welch"><a class="viewcode-back" href="../../generated/api/pwtools.signal.welch.html#pwtools.signal.welch">[docs]</a><span class="k">def</span> <span class="nf">welch</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">sym</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -380,7 +378,7 @@
         <span class="n">w</span> <span class="o">=</span> <span class="n">w</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">w</span></div>
 
-<div class="viewcode-block" id="lorentz"><a class="viewcode-back" href="../../generated/api/pwtools.signal.lorentz.html#pwtools.signal.lorentz">[docs]</a><span class="k">def</span> <span class="nf">lorentz</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sym</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="lorentz"><a class="viewcode-back" href="../../generated/api/pwtools.signal.lorentz.html#pwtools.signal.lorentz">[docs]</a><span class="k">def</span> <span class="nf">lorentz</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sym</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Lorentz window (same as Cauchy function). Function skeleton stolen from</span>
 <span class="sd">    scipy.signal.gaussian().</span>
 <span class="sd">    </span>
@@ -431,9 +429,9 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">arr</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span></div>
 
 
-<span class="c"># Generalization to correlation corr(v,w) should be straightforward.</span>
-<span class="c"># Autocorrelation is then corr(v,v).</span>
-<div class="viewcode-block" id="acorr"><a class="viewcode-back" href="../../generated/api/pwtools.signal.acorr.html#pwtools.signal.acorr">[docs]</a><span class="k">def</span> <span class="nf">acorr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<span class="c1"># Generalization to correlation corr(v,w) should be straightforward.</span>
+<span class="c1"># Autocorrelation is then corr(v,v).</span>
+<div class="viewcode-block" id="acorr"><a class="viewcode-back" href="../../generated/api/pwtools.signal.acorr.html#pwtools.signal.acorr">[docs]</a><span class="k">def</span> <span class="nf">acorr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;(Normalized) autocorrelation function (ACF) for 1d arrays:</span>
 <span class="sd">    Without normalization</span>
 <span class="sd">        c(t) = &lt;v(0) v(t)&gt;</span>
@@ -502,38 +500,37 @@
     <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nstep</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">_norm</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">norm</span> <span class="k">else</span> <span class="mi">0</span>
     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>    
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">nstep</span><span class="o">-</span><span class="n">t</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>    
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">nstep</span><span class="o">-</span><span class="n">t</span><span class="p">):</span>
                 <span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+=</span> <span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="n">t</span><span class="p">]</span> 
     <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
         <span class="n">vv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">v</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nstep</span><span class="p">,),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)))</span>
-        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>    
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>    
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>
                 <span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+=</span> <span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">vv</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="n">t</span><span class="p">]</span> 
     <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span> 
-        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>
             <span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="p">[:(</span><span class="n">nstep</span><span class="o">-</span><span class="n">t</span><span class="p">)]</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="n">t</span><span class="p">:])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span> 
-        <span class="c"># old_behavior : for numpy 1.4.x</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;full&#39;</span><span class="p">,</span> <span class="n">old_behavior</span><span class="o">=</span><span class="bp">False</span><span class="p">)[</span><span class="n">nstep</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)[</span><span class="n">nstep</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span>
     <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span> 
         <span class="k">return</span> <span class="n">_flib</span><span class="o">.</span><span class="n">acorr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">_norm</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span> 
         <span class="k">return</span> <span class="n">_flib</span><span class="o">.</span><span class="n">acorr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">_norm</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span> 
-        <span class="c"># Correlation via fft. After ifft, the imaginary part is (in theory) =</span>
-        <span class="c"># 0, in practise &lt; 1e-16, so we are safe to return the real part only.</span>
+        <span class="c1"># Correlation via fft. After ifft, the imaginary part is (in theory) =</span>
+        <span class="c1"># 0, in practise &lt; 1e-16, so we are safe to return the real part only.</span>
         <span class="n">vv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">v</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nstep</span><span class="p">,),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)))</span>
         <span class="n">c</span> <span class="o">=</span> <span class="n">ifft</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">vv</span><span class="p">))</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)[:</span><span class="n">nstep</span><span class="p">]</span><span class="o">.</span><span class="n">real</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;unknown method: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">method</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;unknown method: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">method</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">norm</span><span class="p">:</span>        
         <span class="k">return</span> <span class="n">c</span> <span class="o">/</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">c</span></div>
 
 
-<div class="viewcode-block" id="gauss"><a class="viewcode-back" href="../../generated/api/pwtools.signal.gauss.html#pwtools.signal.gauss">[docs]</a><span class="k">def</span> <span class="nf">gauss</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="gauss"><a class="viewcode-back" href="../../generated/api/pwtools.signal.gauss.html#pwtools.signal.gauss">[docs]</a><span class="k">def</span> <span class="nf">gauss</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Gaussian function.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
@@ -555,7 +552,7 @@
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mf">2.0</span> <span class="o">/</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="n">std</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="find_peaks"><a class="viewcode-back" href="../../generated/api/pwtools.signal.find_peaks.html#pwtools.signal.find_peaks">[docs]</a><span class="k">def</span> <span class="nf">find_peaks</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">spread</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="find_peaks"><a class="viewcode-back" href="../../generated/api/pwtools.signal.find_peaks.html#pwtools.signal.find_peaks">[docs]</a><span class="k">def</span> <span class="nf">find_peaks</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">spread</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Simple peak finding algorithm.</span>
 <span class="sd">    </span>
 <span class="sd">    Find all peaks where ``y &gt; ymin``. If `x` given, also extract peak maxima</span>
@@ -596,29 +593,29 @@
 <span class="sd">    &gt;&gt;&gt; for x0 in pos0:</span>
 <span class="sd">    ...    plot([x0], [spl(x0)], &#39;ro&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">ymin</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="k">if</span> <span class="n">ymin</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">ymin</span>
+    <span class="n">ymin</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="k">if</span> <span class="n">ymin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">ymin</span>
     <span class="n">idx0</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">dfy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dfy</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">dfy</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">dfy</span><span class="p">[</span><span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">ymin</span><span class="p">:</span>
             <span class="n">idx0</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">pos0</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="n">pos0</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">pos0</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i0</span> <span class="ow">in</span> <span class="n">idx0</span><span class="p">:</span>
-            <span class="n">sl</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">i0</span><span class="o">-</span><span class="n">spread</span><span class="p">,</span><span class="n">i0</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">spread</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
+            <span class="n">sl</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">i0</span><span class="o">-</span><span class="n">spread</span><span class="p">,</span><span class="n">i0</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">spread</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
             <span class="n">xx</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">sl</span><span class="p">]</span>
             <span class="n">yy</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">sl</span><span class="p">]</span>
-            <span class="n">spl</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">Spline</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="o">-</span><span class="n">yy</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+            <span class="n">spl</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">Spline</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="o">-</span><span class="n">yy</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">root</span> <span class="o">=</span> <span class="n">spl</span><span class="o">.</span><span class="n">get_min</span><span class="p">()</span>
                 <span class="n">pos0</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;error calculating spline maximum at idx=</span><span class="si">%i</span><span class="s">, x=</span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">i0</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="n">i0</span><span class="p">]))</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;error calculating spline maximum at idx=</span><span class="si">%i</span><span class="s2">, x=</span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">i0</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="n">i0</span><span class="p">]))</span>
     <span class="k">return</span> <span class="n">idx0</span><span class="p">,</span> <span class="n">pos0</span></div>
 
 
-<div class="viewcode-block" id="smooth"><a class="viewcode-back" href="../../generated/api/pwtools.signal.smooth.html#pwtools.signal.smooth">[docs]</a><span class="k">def</span> <span class="nf">smooth</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">kern</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">edge</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="smooth"><a class="viewcode-back" href="../../generated/api/pwtools.signal.smooth.html#pwtools.signal.smooth">[docs]</a><span class="k">def</span> <span class="nf">smooth</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">kern</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">edge</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Smooth `data` by convolution with a kernel `kern`. </span>
 <span class="sd">    </span>
 <span class="sd">    Uses scipy.signal.fftconvolve(). </span>
@@ -773,35 +770,35 @@
 <span class="sd">    The size of the chunk over which you explicitely loop depends on the data</span>
 <span class="sd">    of course.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c"># edge = &#39;m&#39;</span>
-    <span class="c"># ----------</span>
-    <span class="c"># </span>
-    <span class="c"># Add mirror of the signal left and right to handle edge effects, up to</span>
-    <span class="c"># signal length N on both ends. If M &gt; N then fill padding regions up with</span>
-    <span class="c"># zeros until we have sig = [(M,), (N,), (M,)]. fftconvolve(..., &#39;valid&#39;)</span>
-    <span class="c"># always returns only the signal length where sig and kern overlap</span>
-    <span class="c"># completely. Therefore, data at the far end doesn&#39;t influence the edge and</span>
-    <span class="c"># we can safely put zeros (or anything else) there. The returned length is</span>
-    <span class="c"># always N+M+1. </span>
-    <span class="c">#</span>
-    <span class="c"># example (M &lt; N), add M=3 data parts left and right</span>
-    <span class="c"># npad   = 3</span>
-    <span class="c"># data   =                 [1,2,3,4,5,6]</span>
-    <span class="c"># dleft  =           [4,3,2]</span>
-    <span class="c"># dright =                             [5,4,3]</span>
-    <span class="c"># sig    =           [4,3,2,1,2,3,4,5,6,5,4,3]</span>
-    <span class="c"># If M = 8 &gt; N, then:</span>
-    <span class="c"># dleft  =       [6,5,4,3,2]</span>
-    <span class="c"># dright =                             [5,4,3,2,1]</span>
-    <span class="c"># sig    = [0,0,0,6,5,4,3,2,1,2,3,4,5,6,5,4,3,2,1,0,0,0]</span>
-    <span class="c">#</span>
-    <span class="c"># edge = &#39;c&#39;</span>
-    <span class="c"># ----------</span>
-    <span class="c"># The same, but all padded values are the first (left) and last (right)</span>
-    <span class="c"># data value.</span>
+    <span class="c1"># edge = &#39;m&#39;</span>
+    <span class="c1"># ----------</span>
+    <span class="c1"># </span>
+    <span class="c1"># Add mirror of the signal left and right to handle edge effects, up to</span>
+    <span class="c1"># signal length N on both ends. If M &gt; N then fill padding regions up with</span>
+    <span class="c1"># zeros until we have sig = [(M,), (N,), (M,)]. fftconvolve(..., &#39;valid&#39;)</span>
+    <span class="c1"># always returns only the signal length where sig and kern overlap</span>
+    <span class="c1"># completely. Therefore, data at the far end doesn&#39;t influence the edge and</span>
+    <span class="c1"># we can safely put zeros (or anything else) there. The returned length is</span>
+    <span class="c1"># always N+M+1. </span>
+    <span class="c1">#</span>
+    <span class="c1"># example (M &lt; N), add M=3 data parts left and right</span>
+    <span class="c1"># npad   = 3</span>
+    <span class="c1"># data   =                 [1,2,3,4,5,6]</span>
+    <span class="c1"># dleft  =           [4,3,2]</span>
+    <span class="c1"># dright =                             [5,4,3]</span>
+    <span class="c1"># sig    =           [4,3,2,1,2,3,4,5,6,5,4,3]</span>
+    <span class="c1"># If M = 8 &gt; N, then:</span>
+    <span class="c1"># dleft  =       [6,5,4,3,2]</span>
+    <span class="c1"># dright =                             [5,4,3,2,1]</span>
+    <span class="c1"># sig    = [0,0,0,6,5,4,3,2,1,2,3,4,5,6,5,4,3,2,1,0,0,0]</span>
+    <span class="c1">#</span>
+    <span class="c1"># edge = &#39;c&#39;</span>
+    <span class="c1"># ----------</span>
+    <span class="c1"># The same, but all padded values are the first (left) and last (right)</span>
+    <span class="c1"># data value.</span>
     <span class="n">N</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
     <span class="n">M</span> <span class="o">=</span> <span class="n">kern</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">edge</span> <span class="o">==</span> <span class="s">&#39;m&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">edge</span> <span class="o">==</span> <span class="s1">&#39;m&#39;</span><span class="p">:</span>
         <span class="n">npad</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
         <span class="n">sleft</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">npad</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>        
         <span class="n">sright</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">npad</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> 
@@ -810,32 +807,32 @@
         <span class="k">assert</span> <span class="n">dleft</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">dright</span><span class="o">.</span><span class="n">shape</span>
         <span class="n">K</span> <span class="o">=</span> <span class="n">dleft</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">K</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">:</span>
-            <span class="n">dleft</span>  <span class="o">=</span> <span class="n">pad_zeros</span><span class="p">(</span><span class="n">dleft</span><span class="p">,</span>  <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s">&#39;start&#39;</span><span class="p">,</span> <span class="n">nadd</span><span class="o">=</span><span class="n">M</span><span class="o">-</span><span class="n">K</span><span class="p">)</span>
-            <span class="n">dright</span> <span class="o">=</span> <span class="n">pad_zeros</span><span class="p">(</span><span class="n">dright</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s">&#39;end&#39;</span><span class="p">,</span>   <span class="n">nadd</span><span class="o">=</span><span class="n">M</span><span class="o">-</span><span class="n">K</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">edge</span> <span class="o">==</span> <span class="s">&#39;c&#39;</span><span class="p">:</span>
-        <span class="n">sl</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="bp">None</span><span class="p">)]</span><span class="o">*</span><span class="n">data</span><span class="o">.</span><span class="n">ndim</span>
-        <span class="n">sl</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">dleft</span>  <span class="o">=</span> <span class="n">pad_zeros</span><span class="p">(</span><span class="n">dleft</span><span class="p">,</span>  <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="n">nadd</span><span class="o">=</span><span class="n">M</span><span class="o">-</span><span class="n">K</span><span class="p">)</span>
+            <span class="n">dright</span> <span class="o">=</span> <span class="n">pad_zeros</span><span class="p">(</span><span class="n">dright</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;end&#39;</span><span class="p">,</span>   <span class="n">nadd</span><span class="o">=</span><span class="n">M</span><span class="o">-</span><span class="n">K</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">edge</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span>
+        <span class="n">sl</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span><span class="o">*</span><span class="n">data</span><span class="o">.</span><span class="n">ndim</span>
+        <span class="n">sl</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">dleft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="n">slicetake</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sl</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)[</span><span class="n">sl</span><span class="p">],</span> <span class="n">M</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
         <span class="n">dright</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="n">slicetake</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sl</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)[</span><span class="n">sl</span><span class="p">],</span> <span class="n">M</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">dleft</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">dright</span><span class="o">.</span><span class="n">shape</span>
-        <span class="c"># 1d special case: (M,1) -&gt; (M,)</span>
+        <span class="c1"># 1d special case: (M,1) -&gt; (M,)</span>
         <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">dleft</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">dleft</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">dleft</span> <span class="o">=</span> <span class="n">dleft</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">dright</span> <span class="o">=</span> <span class="n">dright</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">StandardError</span><span class="p">(</span><span class="s">&quot;unknown value for edge&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;unknown value for edge&quot;</span><span class="p">)</span>
     <span class="n">sig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">dleft</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">dright</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
     <span class="n">kk</span> <span class="o">=</span> <span class="n">kern</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">kern</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="k">if</span> <span class="n">norm</span> <span class="k">else</span> <span class="n">kern</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">fftconvolve</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">kk</span><span class="p">,</span> <span class="s">&#39;valid&#39;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">ret</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">==</span> <span class="n">N</span><span class="o">+</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;unexpected convolve result shape&quot;</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">fftconvolve</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">kk</span><span class="p">,</span> <span class="s1">&#39;valid&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">ret</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">==</span> <span class="n">N</span><span class="o">+</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;unexpected convolve result shape&quot;</span>
     <span class="k">del</span> <span class="n">sig</span>
     <span class="k">if</span> <span class="n">M</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="c">##sl = slice(M/2+1,-(M/2)) # even kernel, shift result to left</span>
-        <span class="n">sl</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">M</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">M</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c"># even kernel, shift result to right</span>
+        <span class="c1">##sl = slice(M/2+1,-(M/2)) # even kernel, shift result to left</span>
+        <span class="n">sl</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">M</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">M</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># even kernel, shift result to right</span>
     <span class="k">else</span><span class="p">:</span>        
         <span class="n">sl</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">M</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">M</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">slicetake</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">sl</span><span class="o">=</span><span class="n">sl</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>        
-    <span class="k">assert</span> <span class="n">ret</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;ups, ret.shape (</span><span class="si">%s</span><span class="s">)!= data.shape (</span><span class="si">%s</span><span class="s">)&quot;</span> \
+    <span class="k">assert</span> <span class="n">ret</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;ups, ret.shape (</span><span class="si">%s</span><span class="s2">)!= data.shape (</span><span class="si">%s</span><span class="s2">)&quot;</span> \
                                       <span class="o">%</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">ret</span></div>
 
@@ -851,11 +848,11 @@
 <span class="sd">    add : int</span>
 <span class="sd">        number to add if `n` is even, +1 or -1</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">assert</span> <span class="n">add</span> <span class="ow">in</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&quot;add must be -1 or 1&quot;</span>
+    <span class="k">assert</span> <span class="n">add</span> <span class="ow">in</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;add must be -1 or 1&quot;</span>
     <span class="k">return</span> <span class="n">n</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">n</span> <span class="o">+</span> <span class="n">add</span></div>
 
 
-<div class="viewcode-block" id="scale"><a class="viewcode-back" href="../../generated/api/pwtools.signal.scale.html#pwtools.signal.scale">[docs]</a><span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="scale"><a class="viewcode-back" href="../../generated/api/pwtools.signal.scale.html#pwtools.signal.scale">[docs]</a><span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Scale `x` to unity.</span>
 
 <span class="sd">    Subtract min and divide by (max-min).</span>
@@ -896,8 +893,8 @@
 <span class="sd">    ----------</span>
 <span class="sd">    .. [1]: http://www.scipy.org/Cookbook/FIRFilter</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="FIRFilter.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.signal.FIRFilter.html#pwtools.signal.FIRFilter.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">nyq</span><span class="p">,</span> <span class="n">ntaps</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ripple</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">window</span><span class="o">=</span><span class="s">&#39;hamming&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;lowpass&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="FIRFilter.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.signal.FIRFilter.html#pwtools.signal.FIRFilter.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">nyq</span><span class="p">,</span> <span class="n">ntaps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ripple</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hamming&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lowpass&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -931,28 +928,28 @@
 <span class="sd">        mode : str</span>
 <span class="sd">            &#39;lowpass&#39;, &#39;highpass&#39;, &#39;bandpass&#39;, &#39;bandstop&#39;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">ntaps</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="p">[</span><span class="n">ripple</span><span class="p">,</span> <span class="n">width</span><span class="p">]</span> <span class="o">!=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;ntaps is None, we need &quot;</span>
-                <span class="s">&quot;ripple and width for a Kaiser window&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ntaps</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="p">[</span><span class="n">ripple</span><span class="p">,</span> <span class="n">width</span><span class="p">]</span> <span class="o">!=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;ntaps is None, we need &quot;</span>
+                <span class="s2">&quot;ripple and width for a Kaiser window&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ntaps</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="n">kaiserord</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">ripple</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">width</span><span class="p">)</span> <span class="o">/</span> <span class="n">nyq</span><span class="p">)</span>
-            <span class="n">window</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;kaiser&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">)</span>
+            <span class="n">window</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;kaiser&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ntaps</span> <span class="o">=</span> <span class="n">ntaps</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">window</span>               
-        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;lowpass&#39;</span><span class="p">:</span>
-            <span class="n">pass_zero</span> <span class="o">=</span> <span class="bp">True</span>    
-        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;highpass&#39;</span><span class="p">:</span>
-            <span class="n">pass_zero</span> <span class="o">=</span> <span class="bp">False</span>
-        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;bandpass&#39;</span><span class="p">:</span>
-            <span class="n">pass_zero</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;lowpass&#39;</span><span class="p">:</span>
+            <span class="n">pass_zero</span> <span class="o">=</span> <span class="kc">True</span>    
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;highpass&#39;</span><span class="p">:</span>
+            <span class="n">pass_zero</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;bandpass&#39;</span><span class="p">:</span>
+            <span class="n">pass_zero</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">cutoff</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
-        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;bandstop&#39;</span><span class="p">:</span>
-            <span class="n">pass_zero</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;bandstop&#39;</span><span class="p">:</span>
+            <span class="n">pass_zero</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">cutoff</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
             <span class="k">if</span> <span class="n">N</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">N</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">StandardError</span><span class="p">(</span><span class="s">&#39;unknown mode&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s1">&#39;unknown mode&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">taps</span> <span class="o">=</span> <span class="n">firwin</span><span class="p">(</span><span class="n">numtaps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ntaps</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="n">cutoff</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="n">nyq</span><span class="o">=</span><span class="n">nyq</span><span class="p">,</span>
                            <span class="n">pass_zero</span><span class="o">=</span><span class="n">pass_zero</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">)</span>
         <span class="n">w</span><span class="p">,</span><span class="n">h</span> <span class="o">=</span> <span class="n">freqz</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">taps</span><span class="p">)</span>
@@ -984,13 +981,13 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

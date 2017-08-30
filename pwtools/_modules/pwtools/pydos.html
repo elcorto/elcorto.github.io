@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pwtools.pydos &mdash; pwtools  documentation</title>
+    <title>pwtools.pydos &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="Module code" href="../index.html" /> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -37,8 +38,8 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -46,14 +47,11 @@
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -65,30 +63,30 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.pydos</h1><div class="highlight"><pre>
-<span class="c"># pydos.py</span>
-<span class="c">#</span>
-<span class="c"># This module implements the functionallity to calculate the phonon density of</span>
-<span class="c"># states (PDOS) from MD trajectories. For parsing output files into a format</span>
-<span class="c"># which is used here, see parse.py and test/* for examples. For a theory</span>
-<span class="c"># overview, see [1,2].</span>
-<span class="c">#</span>
-<span class="c"># [1] doc/source/written/background/phonon_dos.rst</span>
-<span class="c"># [2] http://elcorto.bitbucket.org/pwtools/written/background/phonon_dos.html</span>
-<span class="c">#</span>
-<span class="c"># Other codes wich do that:</span>
-<span class="c"># * tfreq from Tim Teatro</span>
-<span class="c">#   http://www.timteatro.net/2010/09/29/velocity-autocorrelation-and-vibrational-spectrum-calculation</span>
-<span class="c"># * fourier from CPMD</span>
+<span></span><span class="c1"># pydos.py</span>
+<span class="c1">#</span>
+<span class="c1"># This module implements the functionallity to calculate the phonon density of</span>
+<span class="c1"># states (PDOS) from MD trajectories. For parsing output files into a format</span>
+<span class="c1"># which is used here, see parse.py and test/* for examples. For a theory</span>
+<span class="c1"># overview, see [1,2].</span>
+<span class="c1">#</span>
+<span class="c1"># [1] doc/source/written/background/phonon_dos.rst</span>
+<span class="c1"># [2] http://elcorto.bitbucket.org/pwtools/written/background/phonon_dos.html</span>
+<span class="c1">#</span>
+<span class="c1"># Other codes wich do that:</span>
+<span class="c1"># * tfreq from Tim Teatro</span>
+<span class="c1">#   http://www.timteatro.net/2010/09/29/velocity-autocorrelation-and-vibrational-spectrum-calculation</span>
+<span class="c1"># * fourier from CPMD</span>
 
 <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">warnings</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="kn">import</span> <span class="n">fft</span>
-<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">convolve</span><span class="p">,</span> <span class="n">gaussian</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="k">import</span> <span class="n">fft</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="k">import</span> <span class="n">convolve</span><span class="p">,</span> <span class="n">gaussian</span>
 <span class="kn">import</span> <span class="nn">constants</span><span class="o">,</span> <span class="nn">_flib</span><span class="o">,</span> <span class="nn">num</span>
-<span class="kn">from</span> <span class="nn">pwtools.verbose</span> <span class="kn">import</span> <span class="n">verbose</span>
-<span class="kn">from</span> <span class="nn">pwtools.signal</span> <span class="kn">import</span> <span class="n">pad_zeros</span><span class="p">,</span> <span class="n">welch</span><span class="p">,</span> <span class="n">mirror</span>
+<span class="kn">from</span> <span class="nn">pwtools.verbose</span> <span class="k">import</span> <span class="n">verbose</span>
+<span class="kn">from</span> <span class="nn">pwtools.signal</span> <span class="k">import</span> <span class="n">pad_zeros</span><span class="p">,</span> <span class="n">welch</span><span class="p">,</span> <span class="n">mirror</span>
 
-<div class="viewcode-block" id="pyvacf"><a class="viewcode-back" href="../../written/background/pwtools.pydos.pyvacf.html#pwtools.pydos.pyvacf">[docs]</a><span class="k">def</span> <span class="nf">pyvacf</span><span class="p">(</span><span class="n">vel</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<div class="viewcode-block" id="pyvacf"><a class="viewcode-back" href="../../written/background/pwtools.pydos.pyvacf.html#pwtools.pydos.pyvacf">[docs]</a><span class="k">def</span> <span class="nf">pyvacf</span><span class="p">(</span><span class="n">vel</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Reference implementation for calculating the VACF of velocities in 3d</span>
 <span class="sd">    array `vel`. This is slow. Use for debugging only. For production, use</span>
 <span class="sd">    fvacf().</span>
@@ -112,36 +110,36 @@
     <span class="n">natoms</span> <span class="o">=</span> <span class="n">vel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">nstep</span> <span class="o">=</span> <span class="n">vel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nstep</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">natoms</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="c"># c(t) = &lt;v(t0) v(t0 + t)&gt; / &lt;v(t0)**2&gt; = C(t) / C(0)</span>
-        <span class="c">#</span>
-        <span class="c"># &quot;displacements&quot; `t&#39;</span>
+        <span class="c1"># c(t) = &lt;v(t0) v(t0 + t)&gt; / &lt;v(t0)**2&gt; = C(t) / C(0)</span>
+        <span class="c1">#</span>
+        <span class="c1"># &quot;displacements&quot; `t&#39;</span>
         <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>
-            <span class="c"># time origins t0 == j</span>
+            <span class="c1"># time origins t0 == j</span>
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="o">-</span><span class="n">t</span><span class="p">):</span>
                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">natoms</span><span class="p">):</span>
                     <span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">vel</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">,:],</span> <span class="n">vel</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="n">t</span><span class="p">,</span><span class="n">i</span><span class="p">,:])</span> <span class="o">*</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>    
-        <span class="c"># replace 1 inner loop</span>
+        <span class="c1"># replace 1 inner loop</span>
         <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="o">-</span><span class="n">t</span><span class="p">):</span>
-                <span class="c"># (natoms, 3) * (natoms, 1) -&gt; (natoms, 3)</span>
-                <span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">vel</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="o">...</span><span class="p">]</span> <span class="o">*</span> <span class="n">vel</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="n">t</span><span class="p">,</span><span class="o">...</span><span class="p">]</span> <span class="o">*</span> <span class="n">m</span><span class="p">[:,</span><span class="bp">None</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+                <span class="c1"># (natoms, 3) * (natoms, 1) -&gt; (natoms, 3)</span>
+                <span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">vel</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="o">...</span><span class="p">]</span> <span class="o">*</span> <span class="n">vel</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="n">t</span><span class="p">,</span><span class="o">...</span><span class="p">]</span> <span class="o">*</span> <span class="n">m</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>    
-        <span class="c"># replace 2 inner loops:</span>
-        <span class="c"># (xx, natoms, 3) * (1, natoms, 1) -&gt; (xx, natoms, 3)</span>
+        <span class="c1"># replace 2 inner loops:</span>
+        <span class="c1"># (xx, natoms, 3) * (1, natoms, 1) -&gt; (xx, natoms, 3)</span>
         <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>
-            <span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">vel</span><span class="p">[:(</span><span class="n">nstep</span><span class="o">-</span><span class="n">t</span><span class="p">),</span><span class="o">...</span><span class="p">]</span> <span class="o">*</span> <span class="n">vel</span><span class="p">[</span><span class="n">t</span><span class="p">:,</span><span class="o">...</span><span class="p">]</span><span class="o">*</span><span class="n">m</span><span class="p">[</span><span class="bp">None</span><span class="p">,:,</span><span class="bp">None</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+            <span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">vel</span><span class="p">[:(</span><span class="n">nstep</span><span class="o">-</span><span class="n">t</span><span class="p">),</span><span class="o">...</span><span class="p">]</span> <span class="o">*</span> <span class="n">vel</span><span class="p">[</span><span class="n">t</span><span class="p">:,</span><span class="o">...</span><span class="p">]</span><span class="o">*</span><span class="n">m</span><span class="p">[</span><span class="kc">None</span><span class="p">,:,</span><span class="kc">None</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;unknown method: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">method</span><span class="p">)</span>
-    <span class="c"># normalize to unity</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;unknown method: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">method</span><span class="p">)</span>
+    <span class="c1"># normalize to unity</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">c</span> <span class="o">/</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">c</span></div>
 
 
-<div class="viewcode-block" id="fvacf"><a class="viewcode-back" href="../../written/background/pwtools.pydos.fvacf.html#pwtools.pydos.fvacf">[docs]</a><span class="k">def</span> <span class="nf">fvacf</span><span class="p">(</span><span class="n">vel</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">nthreads</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="fvacf"><a class="viewcode-back" href="../../written/background/pwtools.pydos.fvacf.html#pwtools.pydos.fvacf">[docs]</a><span class="k">def</span> <span class="nf">fvacf</span><span class="p">(</span><span class="n">vel</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">nthreads</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Interface to Fortran function _flib.vacf(). Otherwise same</span>
 <span class="sd">    functionallity as pyvacf(). Use this for production calculations.</span>
 <span class="sd">    </span>
@@ -191,43 +189,43 @@
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
-<span class="sd">    _flib</span>
-<span class="sd">    vacf_pdos()</span>
+<span class="sd">    :mod:`pwtools._flib`</span>
+<span class="sd">    :func:`vacf_pdos`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c"># f2py copies and C-order vs. Fortran-order arrays</span>
-    <span class="c"># ------------------------------------------------</span>
-    <span class="c"># With vel = np.asarray(vel, order=&#39;F&#39;), we convert vel to F-order and a</span>
-    <span class="c"># copy is made by numpy. If we don&#39;t do it, the f2py wrapper code does.</span>
-    <span class="c"># This copy is unavoidable, unless we allocate the array vel in F-order in</span>
-    <span class="c"># the first place.</span>
-    <span class="c">#   c = _flib.vacf(np.asarray(vel, order=&#39;F&#39;), m, c, method, use_m)</span>
-    <span class="c"># </span>
-    <span class="c"># speed</span>
-    <span class="c"># -----</span>
-    <span class="c"># The most costly step is calculating the VACF. FFTing that is only the fft</span>
-    <span class="c"># of a 1d-array which is fast, even if the length is not a power of two.</span>
-    <span class="c"># Padding is not needed.</span>
-    <span class="c">#</span>
+    <span class="c1"># f2py copies and C-order vs. Fortran-order arrays</span>
+    <span class="c1"># ------------------------------------------------</span>
+    <span class="c1"># With vel = np.asarray(vel, order=&#39;F&#39;), we convert vel to F-order and a</span>
+    <span class="c1"># copy is made by numpy. If we don&#39;t do it, the f2py wrapper code does.</span>
+    <span class="c1"># This copy is unavoidable, unless we allocate the array vel in F-order in</span>
+    <span class="c1"># the first place.</span>
+    <span class="c1">#   c = _flib.vacf(np.asarray(vel, order=&#39;F&#39;), m, c, method, use_m)</span>
+    <span class="c1"># </span>
+    <span class="c1"># speed</span>
+    <span class="c1"># -----</span>
+    <span class="c1"># The most costly step is calculating the VACF. FFTing that is only the fft</span>
+    <span class="c1"># of a 1d-array which is fast, even if the length is not a power of two.</span>
+    <span class="c1"># Padding is not needed.</span>
+    <span class="c1">#</span>
     <span class="n">natoms</span> <span class="o">=</span> <span class="n">vel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">nstep</span> <span class="o">=</span> <span class="n">vel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">assert</span> <span class="n">vel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;last dim of vel must be 3: (nstep,natoms,3)&quot;</span><span class="p">)</span>
-    <span class="c"># `c` as &quot;intent(in, out)&quot; could be &quot;intent(out), allocatable&quot; or so,</span>
-    <span class="c"># makes extension more pythonic, don&#39;t pass `c` in, let be allocated on</span>
-    <span class="c"># Fortran side</span>
+    <span class="k">assert</span> <span class="n">vel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;last dim of vel must be 3: (nstep,natoms,3)&quot;</span><span class="p">)</span>
+    <span class="c1"># `c` as &quot;intent(in, out)&quot; could be &quot;intent(out), allocatable&quot; or so,</span>
+    <span class="c1"># makes extension more pythonic, don&#39;t pass `c` in, let be allocated on</span>
+    <span class="c1"># Fortran side</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nstep</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="c"># dummy</span>
+    <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># dummy</span>
         <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">natoms</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="n">use_m</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">use_m</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">verbose</span><span class="p">(</span><span class="s">&quot;calling _flib.vacf ...&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">nthreads</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="c"># Possible f2py bug workaround: The f2py extension does not always set</span>
-        <span class="c"># the number of threads correctly according to OMP_NUM_THREADS. Catch</span>
-        <span class="c"># OMP_NUM_THREADS here and set number of threads using the &quot;nthreads&quot;</span>
-        <span class="c"># arg.</span>
-        <span class="n">key</span> <span class="o">=</span> <span class="s">&#39;OMP_NUM_THREADS&#39;</span>
+    <span class="n">verbose</span><span class="p">(</span><span class="s2">&quot;calling _flib.vacf ...&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">nthreads</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Possible f2py bug workaround: The f2py extension does not always set</span>
+        <span class="c1"># the number of threads correctly according to OMP_NUM_THREADS. Catch</span>
+        <span class="c1"># OMP_NUM_THREADS here and set number of threads using the &quot;nthreads&quot;</span>
+        <span class="c1"># arg.</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;OMP_NUM_THREADS&#39;</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
             <span class="n">nthreads</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
             <span class="n">c</span> <span class="o">=</span> <span class="n">_flib</span><span class="o">.</span><span class="n">vacf</span><span class="p">(</span><span class="n">vel</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">use_m</span><span class="p">,</span> <span class="n">nthreads</span><span class="p">)</span>
@@ -235,12 +233,12 @@
             <span class="n">c</span> <span class="o">=</span> <span class="n">_flib</span><span class="o">.</span><span class="n">vacf</span><span class="p">(</span><span class="n">vel</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">use_m</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>        
         <span class="n">c</span> <span class="o">=</span> <span class="n">_flib</span><span class="o">.</span><span class="n">vacf</span><span class="p">(</span><span class="n">vel</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">use_m</span><span class="p">,</span> <span class="n">nthreads</span><span class="p">)</span>
-    <span class="n">verbose</span><span class="p">(</span><span class="s">&quot;... ready&quot;</span><span class="p">)</span>
+    <span class="n">verbose</span><span class="p">(</span><span class="s2">&quot;... ready&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">c</span></div>
 
 
-<div class="viewcode-block" id="pdos"><a class="viewcode-back" href="../../written/background/pwtools.pydos.pdos.html#pwtools.pydos.pdos">[docs]</a><span class="k">def</span> <span class="nf">pdos</span><span class="p">(</span><span class="n">vel</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">full_out</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-         <span class="n">npad</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tonext</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">mirr</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;direct&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="pdos"><a class="viewcode-back" href="../../written/background/pwtools.pydos.pdos.html#pwtools.pydos.pdos">[docs]</a><span class="k">def</span> <span class="nf">pdos</span><span class="p">(</span><span class="n">vel</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">full_out</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+         <span class="n">npad</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tonext</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mirr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;direct&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Phonon DOS by FFT of the VACF or direct FFT of atomic velocities.</span>
 <span class="sd">    </span>
 <span class="sd">    Integral area is normalized to `area`. It is possible (and recommended) to</span>
@@ -294,11 +292,6 @@
 <span class="sd">    &gt;&gt;&gt; # frequency in [1/cm]</span>
 <span class="sd">    &gt;&gt;&gt; plot(freq/rcm_to_Hz, dos)</span>
 <span class="sd">    </span>
-<span class="sd">    See Also</span>
-<span class="sd">    --------</span>
-<span class="sd">    :func:`direct_pdos`</span>
-<span class="sd">    :func:`vacf_pdos`</span>
-
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    padding (only method=&#39;direct&#39;): With `npad` we pad the velocities `vel`</span>
@@ -320,61 +313,64 @@
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
-<span class="sd">    pwtools.signal.fftsample</span>
-<span class="sd">    pwtools.signal.acorr</span>
+<span class="sd">    :func:`pwtools.signal.fftsample`</span>
+<span class="sd">    :func:`pwtools.signal.acorr`</span>
+<span class="sd">    :func:`direct_pdos`</span>
+<span class="sd">    :func:`vacf_pdos`</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">mass</span> <span class="o">=</span> <span class="n">m</span>
-    <span class="c"># assume vel.shape = (nstep,natoms,3)</span>
+    <span class="c1"># assume vel.shape = (nstep,natoms,3)</span>
     <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">assert</span> <span class="n">vel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span>
-    <span class="k">if</span> <span class="n">mass</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">mass</span><span class="p">)</span> <span class="o">==</span> <span class="n">vel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&quot;len(mass) != vel.shape[1]&quot;</span>
-        <span class="c"># define here b/c may be used twice below</span>
-        <span class="n">mass_bc</span> <span class="o">=</span> <span class="n">mass</span><span class="p">[</span><span class="bp">None</span><span class="p">,:,</span><span class="bp">None</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">mass</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">mass</span><span class="p">)</span> <span class="o">==</span> <span class="n">vel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;len(mass) != vel.shape[1]&quot;</span>
+        <span class="c1"># define here b/c may be used twice below</span>
+        <span class="n">mass_bc</span> <span class="o">=</span> <span class="n">mass</span><span class="p">[</span><span class="kc">None</span><span class="p">,:,</span><span class="kc">None</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">window</span><span class="p">:</span>
-        <span class="n">sl</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span><span class="o">*</span><span class="n">vel</span><span class="o">.</span><span class="n">ndim</span> 
-        <span class="n">sl</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span> <span class="c"># &#39;:&#39;</span>
+        <span class="n">sl</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="n">vel</span><span class="o">.</span><span class="n">ndim</span> 
+        <span class="n">sl</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="c1"># &#39;:&#39;</span>
         <span class="n">vel2</span> <span class="o">=</span> <span class="n">vel</span><span class="o">*</span><span class="p">(</span><span class="n">welch</span><span class="p">(</span><span class="n">vel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">])[</span><span class="n">sl</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">vel2</span> <span class="o">=</span> <span class="n">vel</span>
-    <span class="c"># handle options which are mutually exclusive</span>
-    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s">&#39;vacf&#39;</span><span class="p">:</span>
-        <span class="k">assert</span> <span class="n">npad</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="bp">None</span><span class="p">],</span> <span class="s">&quot;use npad={0,None} for method=&#39;vacf&#39;&quot;</span>
-    <span class="c"># padding</span>
-    <span class="k">if</span> <span class="n">npad</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="c1"># handle options which are mutually exclusive</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;vacf&#39;</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">npad</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">],</span> <span class="s2">&quot;use npad={0,None} for method=&#39;vacf&#39;&quot;</span>
+    <span class="c1"># padding</span>
+    <span class="k">if</span> <span class="n">npad</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">nadd</span> <span class="o">=</span> <span class="p">(</span><span class="n">vel2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">npad</span>
         <span class="k">if</span> <span class="n">tonext</span><span class="p">:</span>
-            <span class="n">vel2</span> <span class="o">=</span> <span class="n">pad_zeros</span><span class="p">(</span><span class="n">vel2</span><span class="p">,</span> <span class="n">tonext</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+            <span class="n">vel2</span> <span class="o">=</span> <span class="n">pad_zeros</span><span class="p">(</span><span class="n">vel2</span><span class="p">,</span> <span class="n">tonext</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
                              <span class="n">tonext_min</span><span class="o">=</span><span class="n">vel2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">+</span> <span class="n">nadd</span><span class="p">,</span> 
                              <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>    
-            <span class="n">vel2</span> <span class="o">=</span> <span class="n">pad_zeros</span><span class="p">(</span><span class="n">vel2</span><span class="p">,</span> <span class="n">tonext</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">nadd</span><span class="o">=</span><span class="n">nadd</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s">&#39;direct&#39;</span><span class="p">:</span> 
+            <span class="n">vel2</span> <span class="o">=</span> <span class="n">pad_zeros</span><span class="p">(</span><span class="n">vel2</span><span class="p">,</span> <span class="n">tonext</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nadd</span><span class="o">=</span><span class="n">nadd</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;direct&#39;</span><span class="p">:</span> 
         <span class="n">full_fft_vel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">vel2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">))</span><span class="o">**</span><span class="mf">2.0</span>
         <span class="n">full_faxis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">vel2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">],</span> <span class="n">dt</span><span class="p">)</span>
         <span class="n">split_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">full_faxis</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
         <span class="n">faxis</span> <span class="o">=</span> <span class="n">full_faxis</span><span class="p">[:</span><span class="n">split_idx</span><span class="p">]</span>
-        <span class="c"># First split the array, then multiply by `mass` and average. If</span>
-        <span class="c"># full_out, then we need full_fft_vel below, so copy before slicing.</span>
+        <span class="c1"># First split the array, then multiply by `mass` and average. If</span>
+        <span class="c1"># full_out, then we need full_fft_vel below, so copy before slicing.</span>
         <span class="n">arr</span> <span class="o">=</span> <span class="n">full_fft_vel</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">if</span> <span class="n">full_out</span> <span class="k">else</span> <span class="n">full_fft_vel</span>
-        <span class="n">fft_vel</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">slicetake</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">split_idx</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">mass</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">fft_vel</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">slicetake</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">split_idx</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mass</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">fft_vel</span> <span class="o">*=</span> <span class="n">mass_bc</span>
-        <span class="c"># average remaining axes, summing is enough b/c normalization is done below</span>
-        <span class="c"># sums: (nstep, natoms, 3) -&gt; (nstep, natoms) -&gt; (nstep,)</span>
-        <span class="n">pdos</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fft_vel</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="c1"># average remaining axes, summing is enough b/c normalization is done below</span>
+        <span class="c1"># sums: (nstep, natoms, 3) -&gt; (nstep, natoms) -&gt; (nstep,)</span>
+        <span class="n">pdos</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fft_vel</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">default_out</span> <span class="o">=</span> <span class="p">(</span><span class="n">faxis</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">norm_int</span><span class="p">(</span><span class="n">pdos</span><span class="p">,</span> <span class="n">faxis</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">full_out</span><span class="p">:</span>
-            <span class="c"># have to re-calculate this here b/c we never calculate the full_pdos</span>
-            <span class="c"># normally</span>
-            <span class="k">if</span> <span class="n">mass</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># have to re-calculate this here b/c we never calculate the full_pdos</span>
+            <span class="c1"># normally</span>
+            <span class="k">if</span> <span class="n">mass</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">full_fft_vel</span> <span class="o">*=</span> <span class="n">mass_bc</span>
-            <span class="n">full_pdos</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">full_fft_vel</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="n">full_pdos</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">full_fft_vel</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">extra_out</span> <span class="o">=</span> <span class="p">(</span><span class="n">full_faxis</span><span class="p">,</span> <span class="n">full_pdos</span><span class="p">,</span> <span class="n">split_idx</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">default_out</span> <span class="o">+</span> <span class="n">extra_out</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">default_out</span>
-    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s">&#39;vacf&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;vacf&#39;</span><span class="p">:</span>
         <span class="n">vacf</span> <span class="o">=</span> <span class="n">fvacf</span><span class="p">(</span><span class="n">vel2</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="n">mass</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">mirr</span><span class="p">:</span>
             <span class="n">fft_vacf</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">mirror</span><span class="p">(</span><span class="n">vacf</span><span class="p">))</span>
@@ -395,22 +391,22 @@
 
 <div class="viewcode-block" id="vacf_pdos"><a class="viewcode-back" href="../../written/background/pwtools.pydos.vacf_pdos.html#pwtools.pydos.vacf_pdos">[docs]</a><span class="k">def</span> <span class="nf">vacf_pdos</span><span class="p">(</span><span class="n">vel</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Wrapper for ``pdos(..., method=&#39;vacf&#39;, mirr=True, npad=None)``&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">kwds</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s">&#39;mirr&#39;</span><span class="p">):</span>
-        <span class="n">kwds</span><span class="p">[</span><span class="s">&#39;mirr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
-    <span class="k">return</span> <span class="n">pdos</span><span class="p">(</span><span class="n">vel</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;vacf&#39;</span><span class="p">,</span> <span class="n">npad</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span></div>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">kwds</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;mirr&#39;</span><span class="p">):</span>
+        <span class="n">kwds</span><span class="p">[</span><span class="s1">&#39;mirr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="n">pdos</span><span class="p">(</span><span class="n">vel</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;vacf&#39;</span><span class="p">,</span> <span class="n">npad</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="direct_pdos"><a class="viewcode-back" href="../../written/background/pwtools.pydos.direct_pdos.html#pwtools.pydos.direct_pdos">[docs]</a><span class="k">def</span> <span class="nf">direct_pdos</span><span class="p">(</span><span class="n">vel</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Wrapper for ``pdos(..., method=&#39;direct&#39;, npad=1)``&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">kwds</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s">&#39;npad&#39;</span><span class="p">):</span>
-        <span class="n">kwds</span><span class="p">[</span><span class="s">&#39;npad&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">if</span> <span class="n">kwds</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s">&#39;pad_tonext&#39;</span><span class="p">):</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s">&#39;always&#39;</span><span class="p">)</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s">&quot;&#39;pad_tonext&#39; was renamed &#39;tonext&#39;&quot;</span><span class="p">,</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">kwds</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;npad&#39;</span><span class="p">):</span>
+        <span class="n">kwds</span><span class="p">[</span><span class="s1">&#39;npad&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">kwds</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;pad_tonext&#39;</span><span class="p">):</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;always&#39;</span><span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&#39;pad_tonext&#39; was renamed &#39;tonext&#39;&quot;</span><span class="p">,</span>
             <span class="ne">DeprecationWarning</span><span class="p">)</span>
-        <span class="n">kwds</span><span class="p">[</span><span class="s">&#39;tonext&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s">&#39;pad_tonext&#39;</span><span class="p">]</span>
-        <span class="n">kwds</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;pad_tonext&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">pdos</span><span class="p">(</span><span class="n">vel</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;direct&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span></div>
+        <span class="n">kwds</span><span class="p">[</span><span class="s1">&#39;tonext&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s1">&#39;pad_tonext&#39;</span><span class="p">]</span>
+        <span class="n">kwds</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;pad_tonext&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pdos</span><span class="p">(</span><span class="n">vel</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;direct&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
@@ -427,13 +423,13 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

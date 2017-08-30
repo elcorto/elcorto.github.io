@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pwtools.calculators.Lammps &mdash; pwtools  documentation</title>
+    <title>pwtools.calculators.Lammps &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,16 +17,17 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="calculators" href="calculators.html" />
-    <link rel="next" title="pwtools.calculators.Lammps.calculate" href="pwtools.calculators.Lammps.calculate.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.calculators.Lammps.band_structure" href="pwtools.calculators.Lammps.band_structure.html" />
     <link rel="prev" title="pwtools.calculators.CalculatorBase.init_params_from_input" href="pwtools.calculators.CalculatorBase.init_params_from_input.html" /> 
   </head>
   <body role="document">
@@ -40,14 +41,14 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="pwtools.calculators.Lammps.calculate.html" title="pwtools.calculators.Lammps.calculate"
+          <a href="pwtools.calculators.Lammps.band_structure.html" title="pwtools.calculators.Lammps.band_structure"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="pwtools.calculators.CalculatorBase.init_params_from_input.html" title="pwtools.calculators.CalculatorBase.init_params_from_input"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="calculators.html" accesskey="U">calculators</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="calculators.html" accesskey="U">calculators</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -56,26 +57,23 @@
   <p class="topless"><a href="pwtools.calculators.CalculatorBase.init_params_from_input.html"
                         title="previous chapter">pwtools.calculators.CalculatorBase.init_params_from_input</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="pwtools.calculators.Lammps.calculate.html"
-                        title="next chapter">pwtools.calculators.Lammps.calculate</a></p>
+  <p class="topless"><a href="pwtools.calculators.Lammps.band_structure.html"
+                        title="next chapter">pwtools.calculators.Lammps.band_structure</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.calculators.Lammps.txt"
+      <li><a href="../../_sources/generated/api/pwtools.calculators.Lammps.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -95,12 +93,12 @@
 <p>LAMMPS calculator.</p>
 <p class="rubric">Examples</p>
 <p>Define a calculator object:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">calc</span> <span class="o">=</span> <span class="n">Lammps</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;/path/to/calculation/dir/lmp&#39;</span><span class="p">,</span>
-<span class="gp">... </span>              <span class="n">pair_style</span><span class="o">=</span><span class="s">&#39;tersoff&#39;</span><span class="p">,</span>
-<span class="gp">... </span>              <span class="n">pair_coeff</span><span class="o">=</span><span class="s">&#39;* * /path/to/potential/dir/AlN.tersoff Al N&#39;</span><span class="p">,</span>
-<span class="gp">... </span>              <span class="n">command</span><span class="o">=</span><span class="s">&#39;lammps &lt; lmp.in &gt; lmp.out 2&gt;&amp;1&#39;</span><span class="p">,</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">calc</span> <span class="o">=</span> <span class="n">Lammps</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;/path/to/calculation/dir/lmp&#39;</span><span class="p">,</span>
+<span class="gp">... </span>              <span class="n">pair_style</span><span class="o">=</span><span class="s1">&#39;tersoff&#39;</span><span class="p">,</span>
+<span class="gp">... </span>              <span class="n">pair_coeff</span><span class="o">=</span><span class="s1">&#39;* * /path/to/potential/dir/AlN.tersoff Al N&#39;</span><span class="p">,</span>
+<span class="gp">... </span>              <span class="n">command</span><span class="o">=</span><span class="s1">&#39;lammps &lt; lmp.in &gt; lmp.out 2&gt;&amp;1&#39;</span><span class="p">,</span>
 <span class="gp">... </span>              <span class="p">)</span> 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">at</span><span class="o">=</span><span class="n">crys</span><span class="o">.</span><span class="n">Structure</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">get_ase_atoms</span><span class="p">(</span><span class="n">pbc</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">at</span><span class="o">=</span><span class="n">crys</span><span class="o">.</span><span class="n">Structure</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">get_ase_atoms</span><span class="p">(</span><span class="n">pbc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">at</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">calc</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">at</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span>
 </pre></div>
@@ -113,7 +111,7 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>command</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -124,11 +122,17 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Lammps.calculate.html#pwtools.calculators.Lammps.calculate" title="pwtools.calculators.Lammps.calculate"><code class="xref py py-obj docutils literal"><span class="pre">calculate</span></code></a>([atoms,&nbsp;properties,&nbsp;system_changes])</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Lammps.band_structure.html#pwtools.calculators.Lammps.band_structure" title="pwtools.calculators.Lammps.band_structure"><code class="xref py py-obj docutils literal"><span class="pre">band_structure</span></code></a>()</td>
+<td>Create band-structure object for plotting.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Lammps.calculate.html#pwtools.calculators.Lammps.calculate" title="pwtools.calculators.Lammps.calculate"><code class="xref py py-obj docutils literal"><span class="pre">calculate</span></code></a>([atoms,&nbsp;properties,&nbsp;system_changes])</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Lammps.calculate_numerical_forces.html#pwtools.calculators.Lammps.calculate_numerical_forces" title="pwtools.calculators.Lammps.calculate_numerical_forces"><code class="xref py py-obj docutils literal"><span class="pre">calculate_numerical_forces</span></code></a>(atoms[,&nbsp;d])</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Lammps.calculate_numerical_forces.html#pwtools.calculators.Lammps.calculate_numerical_forces" title="pwtools.calculators.Lammps.calculate_numerical_forces"><code class="xref py py-obj docutils literal"><span class="pre">calculate_numerical_forces</span></code></a>(atoms[,&nbsp;d])</td>
 <td>Calculate numerical forces using finite difference.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Lammps.calculate_numerical_stress.html#pwtools.calculators.Lammps.calculate_numerical_stress" title="pwtools.calculators.Lammps.calculate_numerical_stress"><code class="xref py py-obj docutils literal"><span class="pre">calculate_numerical_stress</span></code></a>(atoms[,&nbsp;d,&nbsp;voigt])</td>
+<td>Calculate numerical stress using finite difference.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Lammps.calculation_required.html#pwtools.calculators.Lammps.calculation_required" title="pwtools.calculators.Lammps.calculation_required"><code class="xref py py-obj docutils literal"><span class="pre">calculation_required</span></code></a>(atoms,&nbsp;properties)</td>
 <td></td>
@@ -158,12 +162,12 @@
 <td></td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Lammps.get_magnetic_moments.html#pwtools.calculators.Lammps.get_magnetic_moments" title="pwtools.calculators.Lammps.get_magnetic_moments"><code class="xref py py-obj docutils literal"><span class="pre">get_magnetic_moments</span></code></a>([atoms])</td>
-<td></td>
+<td>Calculate magnetic moments projected onto atoms.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Lammps.get_potential_energy.html#pwtools.calculators.Lammps.get_potential_energy" title="pwtools.calculators.Lammps.get_potential_energy"><code class="xref py py-obj docutils literal"><span class="pre">get_potential_energy</span></code></a>([atoms,&nbsp;force_consistent])</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Lammps.get_property.html#pwtools.calculators.Lammps.get_property" title="pwtools.calculators.Lammps.get_property"><code class="xref py py-obj docutils literal"><span class="pre">get_property</span></code></a>(name[,&nbsp;atoms])</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Lammps.get_property.html#pwtools.calculators.Lammps.get_property" title="pwtools.calculators.Lammps.get_property"><code class="xref py py-obj docutils literal"><span class="pre">get_property</span></code></a>(name[,&nbsp;atoms,&nbsp;allow_calculation])</td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Lammps.get_spin_polarized.html#pwtools.calculators.Lammps.get_spin_polarized" title="pwtools.calculators.Lammps.get_spin_polarized"><code class="xref py py-obj docutils literal"><span class="pre">get_spin_polarized</span></code></a>()</td>
@@ -193,7 +197,7 @@
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Lammps.set_label.html#pwtools.calculators.Lammps.set_label" title="pwtools.calculators.Lammps.set_label"><code class="xref py py-obj docutils literal"><span class="pre">set_label</span></code></a>(label)</td>
 <td>Set label and convert label to directory and prefix.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Lammps.todict.html#pwtools.calculators.Lammps.todict" title="pwtools.calculators.Lammps.todict"><code class="xref py py-obj docutils literal"><span class="pre">todict</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Lammps.todict.html#pwtools.calculators.Lammps.todict" title="pwtools.calculators.Lammps.todict"><code class="xref py py-obj docutils literal"><span class="pre">todict</span></code></a>([skip_default])</td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Lammps.write_input.html#pwtools.calculators.Lammps.write_input" title="pwtools.calculators.Lammps.write_input"><code class="xref py py-obj docutils literal"><span class="pre">write_input</span></code></a>(atoms[,&nbsp;properties,&nbsp;system_changes])</td>
@@ -234,19 +238,19 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="pwtools.calculators.Lammps.calculate.html" title="pwtools.calculators.Lammps.calculate"
+          <a href="pwtools.calculators.Lammps.band_structure.html" title="pwtools.calculators.Lammps.band_structure"
              >next</a> |</li>
         <li class="right" >
           <a href="pwtools.calculators.CalculatorBase.init_params_from_input.html" title="pwtools.calculators.CalculatorBase.init_params_from_input"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="calculators.html" >calculators</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="calculators.html" >calculators</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

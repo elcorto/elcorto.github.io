@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pwtools.signal.fftsample &mdash; pwtools  documentation</title>
+    <title>pwtools.signal.fftsample &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="signal" href="signal.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.signal.find_peaks" href="pwtools.signal.find_peaks.html" />
     <link rel="prev" title="pwtools.signal.fft_1d_loop" href="pwtools.signal.fft_1d_loop.html" /> 
   </head>
@@ -45,9 +46,9 @@
         <li class="right" >
           <a href="pwtools.signal.fft_1d_loop.html" title="pwtools.signal.fft_1d_loop"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="signal.html" accesskey="U">signal</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="signal.html" accesskey="U">signal</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -61,21 +62,18 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.signal.fftsample.txt"
+      <li><a href="../../_sources/generated/api/pwtools.signal.fftsample.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -154,13 +152,13 @@ sufficient to get the desired df.</p>
 <p>Units:
 In general frequency_unit = 1/time_unit, need not be Hz and s.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># fmax = 100 Hz, df = 1 Hz -&gt; you need 200 steps with dt=0.005 sec</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fftsample</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;f&#39;</span><span class="p">)</span> 
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># fmax = 100 Hz, df = 1 Hz -&gt; you need 200 steps with dt=0.005 sec</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fftsample</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span> 
 <span class="go">array([  5.00000000e-03,   2.00000000e+03])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fftsample</span><span class="p">(</span><span class="mf">5e-3</span><span class="p">,</span> <span class="mf">2e3</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;t&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fftsample</span><span class="p">(</span><span class="mf">5e-3</span><span class="p">,</span> <span class="mf">2e3</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
 <span class="go">array([ 100. ,    1.])</span>
 <span class="go"># If you mirror, you only need 100 steps</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fftsample</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="n">mirr</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fftsample</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="n">mirr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="go">array([  5.00000000e-03,   1.00000000e+02])</span>
 </pre></div>
 </div>
@@ -189,14 +187,14 @@ In general frequency_unit = 1/time_unit, need not be Hz and s.</p>
         <li class="right" >
           <a href="pwtools.signal.fft_1d_loop.html" title="pwtools.signal.fft_1d_loop"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="signal.html" >signal</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="signal.html" >signal</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

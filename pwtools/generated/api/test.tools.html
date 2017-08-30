@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>test.tools &mdash; pwtools  documentation</title>
+    <title>test.tools &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="API Reference" href="index.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.test.tools.AllTypesFactory" href="pwtools.test.tools.AllTypesFactory.html" />
     <link rel="prev" title="pwtools.test.testenv.testdir" href="pwtools.test.testenv.testdir.html" /> 
   </head>
@@ -45,8 +46,8 @@
         <li class="right" >
           <a href="pwtools.test.testenv.testdir.html" title="pwtools.test.testenv.testdir"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API Reference</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API Reference</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -68,21 +69,18 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/test.tools.txt"
+      <li><a href="../../_sources/generated/api/test.tools.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -118,8 +116,8 @@ arrays etc. All other <code class="docutils literal"><span class="pre">*equal()<
 cases, but can also be called directly, of course.</p>
 <div class="section" id="how-to-change-pre-defined-comparison-functions">
 <h2>How to change pre-defined comparison functions<a class="headerlink" href="#how-to-change-pre-defined-comparison-functions" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pwtools.test.tools</span> <span class="kn">as</span> <span class="nn">tt</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># Update comparison functions&#39;s comp_map dictionary</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pwtools.test.tools</span> <span class="k">as</span> <span class="nn">tt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Update comparison functions&#39;s comp_map dictionary</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tt</span><span class="o">.</span><span class="n">all_types_almost_equal</span><span class="o">.</span><span class="n">comp_map</span><span class="p">[</span><span class="n">tt</span><span class="o">.</span><span class="n">arr_t</span><span class="p">]</span> <span class="o">=</span>
 <span class="gp">... </span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">tt</span><span class="o">.</span><span class="n">true_or_false</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">atol</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">rtol</span><span class="o">=</span><span class="mf">0.1</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tt</span><span class="o">.</span><span class="n">assert_all_types_almost_equal</span><span class="o">.</span><span class="n">comp_func</span><span class="o">.</span><span class="n">comp_map</span><span class="p">[</span><span class="n">tt</span><span class="o">.</span><span class="n">arr_t</span><span class="p">]</span> <span class="o">=</span>
@@ -225,7 +223,7 @@ cases, but can also be called directly, of course.</p>
 <td>Uncomment for debugging if tests fail.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.test.tools.skip.html#pwtools.test.tools.skip" title="pwtools.test.tools.skip"><code class="xref py py-obj docutils literal"><span class="pre">skip</span></code></a>(msg)</td>
-<td></td>
+<td>Use inside a test function or class.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.test.tools.testdir.html#pwtools.test.tools.testdir" title="pwtools.test.tools.testdir"><code class="xref py py-obj docutils literal"><span class="pre">testdir</span></code></a></td>
 <td>str(object=&#8217;&#8216;) -&gt; string</td>
@@ -261,13 +259,13 @@ cases, but can also be called directly, of course.</p>
         <li class="right" >
           <a href="pwtools.test.testenv.testdir.html" title="pwtools.test.testenv.testdir"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

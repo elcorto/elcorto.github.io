@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Installation &mdash; pwtools  documentation</title>
+    <title>Installation &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../index.html" />
-    <link rel="up" title="Documentation" href="index.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Tutorial" href="tutorial.html" />
     <link rel="prev" title="Parsing code output and using containers" href="features/parsing.html" /> 
   </head>
@@ -45,8 +46,8 @@
         <li class="right" >
           <a href="features/parsing.html" title="Parsing code output and using containers"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -77,21 +78,18 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/written/install.txt"
+      <li><a href="../_sources/written/install.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -106,16 +104,16 @@
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <p>There is no installation script (i.e. <code class="docutils literal"><span class="pre">setup.py</span></code>). Just copy the whole
 package somewhere and run <code class="docutils literal"><span class="pre">make</span></code> to compile extensions</p>
-<div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> <span class="nv">$HOME</span>/python/
-<span class="nv">$ </span>git clone https://github.com/elcorto/pwtools.git
-<span class="nv">$ </span><span class="nb">cd </span>pwtools
-<span class="nv">$ </span>make
-<span class="c"># ~/.bashrc or ~/.profile</span>
-<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/python/pwtools/bin:<span class="nv">$PATH</span>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> <span class="nv">$HOME</span>/python/
+$ git clone https://github.com/elcorto/pwtools.git
+$ <span class="nb">cd</span> pwtools
+$ make
+<span class="c1"># ~/.bashrc or ~/.profile</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/python/pwtools/bin:<span class="nv">$PATH</span>
 <span class="k">if</span> <span class="o">[</span> -n <span class="s2">&quot;</span><span class="nv">$PYTHONPATH</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-    <span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/python:<span class="nv">$PYTHONPATH</span>
+    <span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/python:<span class="nv">$PYTHONPATH</span>
 <span class="k">else</span>
-    <span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/python
+    <span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/python
 <span class="k">fi</span>
 </pre></div>
 </div>
@@ -126,12 +124,12 @@ instead of the std lib&#8217;s <code class="docutils literal"><span class="pre">
 <div class="section" id="add-on-packages-other-required-tools">
 <h2>Add-on packages / other required tools<a class="headerlink" href="#add-on-packages-other-required-tools" title="Permalink to this headline">¶</a></h2>
 <p>Debian:</p>
-<div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install python-numpy python-scipy python-nose python-dev <span class="se">\</span>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>$ sudo apt-get install python-numpy python-scipy python-nose python-dev <span class="se">\</span>
                        python-h5py gfortran python-matplotlib <span class="se">\</span>
                        liblapack-dev
-<span class="nv">$ </span>sudo apt-get install pip
-<span class="nv">$ </span>pip install pycifrw
-<span class="nv">$ </span>pip install pyspglib
+$ sudo apt-get install pip
+$ pip install pycifrw
+$ pip install pyspglib
 </pre></div>
 </div>
 <div class="section" id="must-have">
@@ -188,8 +186,8 @@ install script.</p>
 <p><a class="reference internal" href="../generated/api/pwtools.eos.ElkEOSFit.html#pwtools.eos.ElkEOSFit" title="pwtools.eos.ElkEOSFit"><code class="xref py py-class docutils literal"><span class="pre">pwtools.eos.ElkEOSFit</span></code></a> is deprecated now, and so you don&#8217;t
 really need the Elk code&#8217;s eos tool anymore. The other two things which come
 with <a class="reference external" href="https://bitbucket.org/elcorto/pwextern-free">pwextern-free</a> can be installed by:</p>
-<div class="last highlight-python"><div class="highlight"><pre>pip install pycifrw
-pip install pyspglib
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pycifrw</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">pyspglib</span>
 </pre></div>
 </div>
 </div>
@@ -214,13 +212,13 @@ on, but not yet 3.x.</p>
 <div class="section" id="compiling-fortran-extensions-and-openmp-notes">
 <h2>Compiling Fortran extensions and OpenMP notes<a class="headerlink" href="#compiling-fortran-extensions-and-openmp-notes" title="Permalink to this headline">¶</a></h2>
 <p>Use the <code class="docutils literal"><span class="pre">Makefile</span></code>:</p>
-<div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span>make <span class="nb">help</span>
-make gfortran            <span class="c"># gfortran, default</span>
-make gfortran-omp        <span class="c"># gfortran + OpenMP</span>
-make gfortran-mkl        <span class="c"># gfortran, Intel MKL lapack, set MKL_LIB</span>
-make ifort               <span class="c"># ifort</span>
-make ifort-omp           <span class="c"># ifort + OpenMP</span>
-make ifort-mkl           <span class="c"># ifort, Intel MKL lapack, set MKL_LIB</span>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>$ make <span class="nb">help</span>
+make gfortran            <span class="c1"># gfortran, default</span>
+make gfortran-omp        <span class="c1"># gfortran + OpenMP</span>
+make gfortran-mkl        <span class="c1"># gfortran, Intel MKL lapack, set MKL_LIB</span>
+make ifort               <span class="c1"># ifort</span>
+make ifort-omp           <span class="c1"># ifort + OpenMP</span>
+make ifort-mkl           <span class="c1"># ifort, Intel MKL lapack, set MKL_LIB</span>
 </pre></div>
 </div>
 <p>Generates <code class="docutils literal"><span class="pre">*.so</span></code> and <code class="docutils literal"><span class="pre">*.pyf</span></code> (f2py interface) files.</p>
@@ -241,7 +239,7 @@ the Makefile.</p>
 override this. We get <code class="docutils literal"><span class="pre">-O3</span> <span class="pre">-O2</span></code> and a compiler warning. We have to use f2py&#8217;s
 <code class="docutils literal"><span class="pre">--opt=</span></code> flag.</p>
 <p>On some systems (Debian), you may have:</p>
-<div class="highlight-shell"><div class="highlight"><pre>/usr/bin/f2py -&gt; f2py2.6
+<div class="highlight-shell"><div class="highlight"><pre><span></span>/usr/bin/f2py -&gt; f2py2.6
 /usr/bin/f2py2.5
 /usr/bin/f2py2.6
 </pre></div>
@@ -252,12 +250,12 @@ pragmas in <code class="docutils literal"><span class="pre">*.f90</span></code>.
 <code class="docutils literal"><span class="pre">make</span> <span class="pre">ifort-omp</span></code> or <code class="docutils literal"><span class="pre">make</span> <span class="pre">gfortran-omp</span></code>.</p>
 <p>If all went well, _flib.so should be linked to libgomp (or libiomp for ifort).
 Check with:</p>
-<div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span>ldd _flib.so
+<div class="highlight-shell"><div class="highlight"><pre><span></span>$ ldd _flib.so
 </pre></div>
 </div>
 <p>Setting the number of threads:</p>
-<div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">export </span><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span>2
-<span class="nv">$ </span>python -c <span class="s2">&quot;import numpy as np; from pwtools.pydos import fvacf; \</span>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="m">2</span>
+$ python -c <span class="s2">&quot;import numpy as np; from pwtools.pydos import fvacf; \</span>
 <span class="s2">             fvacf(np.random.rand(5000,1000,3))&quot;</span>
 </pre></div>
 </div>
@@ -276,14 +274,14 @@ results, even if it runs, if OpenMP is used incorrectly :) The test script
 <code class="docutils literal"><span class="pre">test/runtests.sh</span></code> calls <cite>make gfortran-omp</cite>, so if code is broken by OpenMP,
 all test using the Fortran extensions might fail. To run tests with other
 builds, use one  of</p>
-<div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span>make gfortran
-<span class="nv">$ </span>make ifort
-<span class="nv">$ </span>make ifort-omp
+<div class="highlight-shell"><div class="highlight"><pre><span></span>$ make gfortran
+$ make ifort
+$ make ifort-omp
 </pre></div>
 </div>
 <p>and</p>
-<div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd test</span>
-<span class="nv">$ </span>./runtests.sh --nobuild
+<div class="highlight-shell"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> <span class="nb">test</span>
+$ ./runtests.sh --nobuild
 </pre></div>
 </div>
 </div>
@@ -310,13 +308,13 @@ builds, use one  of</p>
         <li class="right" >
           <a href="features/parsing.html" title="Parsing code output and using containers"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >Documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

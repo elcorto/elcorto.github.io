@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pwtools.base &mdash; pwtools  documentation</title>
+    <title>pwtools.base &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="Module code" href="../index.html" /> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -37,8 +38,8 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -46,14 +47,11 @@
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -65,13 +63,13 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.base</h1><div class="highlight"><pre>
-<span class="kn">import</span> <span class="nn">os.path</span>
-<span class="kn">from</span> <span class="nn">pwtools</span> <span class="kn">import</span> <span class="n">common</span><span class="p">,</span> <span class="n">num</span>
+<span></span><span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">common</span><span class="p">,</span> <span class="n">num</span>
 <span class="kn">import</span> <span class="nn">cPickle</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s">&#39;always&#39;</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;always&#39;</span><span class="p">)</span>
 
-<span class="c"># Most of this class can probably be replaced by decorators.lazyprop .</span>
+<span class="c1"># Most of this class can probably be replaced by decorators.lazyprop .</span>
 <div class="viewcode-block" id="FlexibleGetters"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.html#pwtools.base.FlexibleGetters">[docs]</a><span class="k">class</span> <span class="nc">FlexibleGetters</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;The most basic base class -- the mothership! </span>
 <span class="sd">    </span>
@@ -131,81 +129,81 @@
 <span class="sd">    Setting self.attr_lst is optional. It is supposed to be used only in</span>
 <span class="sd">    set_all(). The try_set_attr() - method works without it, too. </span>
 <span class="sd">    &quot;&quot;&quot;</span> 
-    <span class="c"># Notes for derived classes (long explaination):</span>
-    <span class="c">#</span>
-    <span class="c"># In this class we define a number of members (self.foo, self.bar,</span>
-    <span class="c"># ...) which shall all be set by the set_all() method.</span>
-    <span class="c">#</span>
-    <span class="c"># There are 3 ways of doing it:</span>
-    <span class="c">#</span>
-    <span class="c"># 1) Put all code in set_all(). </span>
-    <span class="c">#    Con: One might forget to implement the setting of a member.</span>
-    <span class="c"># </span>
-    <span class="c"># 2) Implement set_all() so that for each data member of the API, we have</span>
-    <span class="c">#       self.foo = self.get_foo()</span>
-    <span class="c">#       self.bar = self.get_bar()</span>
-    <span class="c">#       ...</span>
-    <span class="c">#    and put the code for each member in a separate getter. This is good</span>
-    <span class="c">#    coding style, but often data needs to be shared between getters (e.g.</span>
-    <span class="c">#    get_foo() needs bar, which is the result of self.bar =</span>
-    <span class="c">#    self.get_bar(). This means that in general the calling order</span>
-    <span class="c">#    of the getters is important and is different in each set_all() of each</span>
-    <span class="c">#    derived class.</span>
-    <span class="c">#    Con: One might forget to call a getter in set_all() and/or in the wrong </span>
-    <span class="c">#         order.</span>
-    <span class="c"># </span>
-    <span class="c"># 3) Implement all getters such that they can be called in arbitrary order.</span>
-    <span class="c">#    Then in each set_all(), one does exactly the same:</span>
-    <span class="c">#</span>
-    <span class="c">#        attr_lst = [&#39;foo&#39;, &#39;bar&#39;, ...]</span>
-    <span class="c">#        for attr in attr_lst:</span>
-    <span class="c">#            self.try_set_attr(attr)</span>
-    <span class="c">#    </span>
-    <span class="c">#    This code (the &quot;getting&quot; of all API members) can then be moved to the</span>
-    <span class="c">#    *base* class&#39;s set_all() and thereby forcing all derived classes to</span>
-    <span class="c">#    conform to the API. </span>
-    <span class="c">#</span>
-    <span class="c">#    If again one getter needs a return value of another getter, one has to</span>
-    <span class="c">#    transform</span>
-    <span class="c">#    </span>
-    <span class="c">#       def get_foo(self):</span>
-    <span class="c">#           return do_stuff(self.bar)</span>
-    <span class="c">#    to </span>
-    <span class="c">#       </span>
-    <span class="c">#       def get_foo(self):</span>
-    <span class="c">#           if self.check_set_attr(&#39;bar&#39;):</span>
-    <span class="c">#               return do_stuff(self.bar)</span>
-    <span class="c">#           else:               </span>
-    <span class="c">#               return None</span>
-    <span class="c">#</span>
-    <span class="c">#    If one does</span>
-    <span class="c">#        self.foo = self.get_foo()</span>
-    <span class="c">#        self.bar = self.get_bar()</span>
-    <span class="c">#        ....</span>
-    <span class="c">#    then some calls may in fact be redundant b/c e.g. get_foo() has</span>
-    <span class="c">#    already been called inside get_bar(). There is NO big overhead in</span>
-    <span class="c">#    this approach b/c in each getter we test with try_set_attr() if a</span>
-    <span class="c">#    needed other member is already set.</span>
-    <span class="c">#    </span>
-    <span class="c">#    This way we get a flexible and easily extensible framework to</span>
-    <span class="c">#    implement new parsers and modify existing ones (just implement another</span>
-    <span class="c">#    getter get_newmember() in each class and extend the list of API</span>
-    <span class="c">#    members by &#39;newmember&#39;).</span>
-    <span class="c">#</span>
+    <span class="c1"># Notes for derived classes (long explaination):</span>
+    <span class="c1">#</span>
+    <span class="c1"># In this class we define a number of members (self.foo, self.bar,</span>
+    <span class="c1"># ...) which shall all be set by the set_all() method.</span>
+    <span class="c1">#</span>
+    <span class="c1"># There are 3 ways of doing it:</span>
+    <span class="c1">#</span>
+    <span class="c1"># 1) Put all code in set_all(). </span>
+    <span class="c1">#    Con: One might forget to implement the setting of a member.</span>
+    <span class="c1"># </span>
+    <span class="c1"># 2) Implement set_all() so that for each data member of the API, we have</span>
+    <span class="c1">#       self.foo = self.get_foo()</span>
+    <span class="c1">#       self.bar = self.get_bar()</span>
+    <span class="c1">#       ...</span>
+    <span class="c1">#    and put the code for each member in a separate getter. This is good</span>
+    <span class="c1">#    coding style, but often data needs to be shared between getters (e.g.</span>
+    <span class="c1">#    get_foo() needs bar, which is the result of self.bar =</span>
+    <span class="c1">#    self.get_bar(). This means that in general the calling order</span>
+    <span class="c1">#    of the getters is important and is different in each set_all() of each</span>
+    <span class="c1">#    derived class.</span>
+    <span class="c1">#    Con: One might forget to call a getter in set_all() and/or in the wrong </span>
+    <span class="c1">#         order.</span>
+    <span class="c1"># </span>
+    <span class="c1"># 3) Implement all getters such that they can be called in arbitrary order.</span>
+    <span class="c1">#    Then in each set_all(), one does exactly the same:</span>
+    <span class="c1">#</span>
+    <span class="c1">#        attr_lst = [&#39;foo&#39;, &#39;bar&#39;, ...]</span>
+    <span class="c1">#        for attr in attr_lst:</span>
+    <span class="c1">#            self.try_set_attr(attr)</span>
+    <span class="c1">#    </span>
+    <span class="c1">#    This code (the &quot;getting&quot; of all API members) can then be moved to the</span>
+    <span class="c1">#    *base* class&#39;s set_all() and thereby forcing all derived classes to</span>
+    <span class="c1">#    conform to the API. </span>
+    <span class="c1">#</span>
+    <span class="c1">#    If again one getter needs a return value of another getter, one has to</span>
+    <span class="c1">#    transform</span>
+    <span class="c1">#    </span>
+    <span class="c1">#       def get_foo(self):</span>
+    <span class="c1">#           return do_stuff(self.bar)</span>
+    <span class="c1">#    to </span>
+    <span class="c1">#       </span>
+    <span class="c1">#       def get_foo(self):</span>
+    <span class="c1">#           if self.check_set_attr(&#39;bar&#39;):</span>
+    <span class="c1">#               return do_stuff(self.bar)</span>
+    <span class="c1">#           else:               </span>
+    <span class="c1">#               return None</span>
+    <span class="c1">#</span>
+    <span class="c1">#    If one does</span>
+    <span class="c1">#        self.foo = self.get_foo()</span>
+    <span class="c1">#        self.bar = self.get_bar()</span>
+    <span class="c1">#        ....</span>
+    <span class="c1">#    then some calls may in fact be redundant b/c e.g. get_foo() has</span>
+    <span class="c1">#    already been called inside get_bar(). There is NO big overhead in</span>
+    <span class="c1">#    this approach b/c in each getter we test with try_set_attr() if a</span>
+    <span class="c1">#    needed other member is already set.</span>
+    <span class="c1">#    </span>
+    <span class="c1">#    This way we get a flexible and easily extensible framework to</span>
+    <span class="c1">#    implement new parsers and modify existing ones (just implement another</span>
+    <span class="c1">#    getter get_newmember() in each class and extend the list of API</span>
+    <span class="c1">#    members by &#39;newmember&#39;).</span>
+    <span class="c1">#</span>
     
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_attr_lst</span><span class="p">([])</span>
     
     <span class="k">def</span> <span class="nf">_debug_attrs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-                <span class="k">print</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">: None&quot;</span> <span class="o">%</span><span class="n">attr</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: None&quot;</span> <span class="o">%</span><span class="n">attr</span>
             <span class="k">else</span><span class="p">:</span>                
-                <span class="k">print</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">: ok&quot;</span> <span class="o">%</span><span class="n">attr</span>
+                <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: ok&quot;</span> <span class="o">%</span><span class="n">attr</span>
 
-<div class="viewcode-block" id="FlexibleGetters.set_all"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.set_all.html#pwtools.base.FlexibleGetters.set_all">[docs]</a>    <span class="k">def</span> <span class="nf">set_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_lst</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="FlexibleGetters.set_all"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.set_all.html#pwtools.base.FlexibleGetters.set_all">[docs]</a>    <span class="k">def</span> <span class="nf">set_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_lst</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Call getter for each attr name in `attr_lst`.&quot;&quot;&quot;</span>
-        <span class="n">attr_lst</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span> <span class="k">if</span> <span class="n">attr_lst</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">attr_lst</span>
+        <span class="n">attr_lst</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span> <span class="k">if</span> <span class="n">attr_lst</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">attr_lst</span>
         <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attr_lst</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">try_set_attr</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span></div>
     
@@ -214,22 +212,22 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span> <span class="o">=</span> <span class="n">attr_lst</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">init_attr_lst</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="FlexibleGetters.init_attr_lst"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.init_attr_lst.html#pwtools.base.FlexibleGetters.init_attr_lst">[docs]</a>    <span class="k">def</span> <span class="nf">init_attr_lst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_lst</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="FlexibleGetters.init_attr_lst"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.init_attr_lst.html#pwtools.base.FlexibleGetters.init_attr_lst">[docs]</a>    <span class="k">def</span> <span class="nf">init_attr_lst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_lst</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set each self.&lt;attr&gt; in `attr_lst` to None.&quot;&quot;&quot;</span>
-        <span class="n">lst</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span> <span class="k">if</span> <span class="n">attr_lst</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">attr_lst</span>
+        <span class="n">lst</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span> <span class="k">if</span> <span class="n">attr_lst</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">attr_lst</span>
         <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span></div>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="FlexibleGetters.dump"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.dump.html#pwtools.base.FlexibleGetters.dump">[docs]</a>    <span class="k">def</span> <span class="nf">dump</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dump_filename</span><span class="p">,</span> <span class="n">mkdir</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="FlexibleGetters.dump"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.dump.html#pwtools.base.FlexibleGetters.dump">[docs]</a>    <span class="k">def</span> <span class="nf">dump</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dump_filename</span><span class="p">,</span> <span class="n">mkdir</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Write object to binary file using cPickle. Read back</span>
 <span class="sd">         with :func:`~pwtools.io.read_pickle`.&quot;&quot;&quot;</span>
-        <span class="c"># Dumping with protocol &quot;2&quot; is supposed to be the fastest binary format</span>
-        <span class="c"># writing method. Probably, this is platform-specific.</span>
+        <span class="c1"># Dumping with protocol &quot;2&quot; is supposed to be the fastest binary format</span>
+        <span class="c1"># writing method. Probably, this is platform-specific.</span>
         <span class="k">if</span> <span class="n">mkdir</span><span class="p">:</span>
             <span class="n">dr</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">dump_filename</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">dr</span> <span class="o">!=</span> <span class="s">&#39;&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">dr</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
                 <span class="n">common</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">dr</span><span class="p">)</span>
-        <span class="n">cPickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">dump_filename</span><span class="p">,</span> <span class="s">&#39;wb&#39;</span><span class="p">),</span> <span class="n">protocol</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
+        <span class="n">cPickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">dump_filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">),</span> <span class="n">protocol</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="FlexibleGetters.load"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.load.html#pwtools.base.FlexibleGetters.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dump_filename</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load pickled object.</span>
@@ -248,11 +246,11 @@
 <span class="sd">        &gt;&gt;&gt; xx = FileParser()</span>
 <span class="sd">        &gt;&gt;&gt; xx.load(&#39;foo.pk&#39;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s">&quot;FlexibleGetters.load() is deprcated, use io.read_pickle() instead&quot;</span><span class="p">,</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;FlexibleGetters.load() is deprcated, use io.read_pickle() instead&quot;</span><span class="p">,</span>
                        <span class="ne">DeprecationWarning</span><span class="p">)</span>
-        <span class="c"># this does not work:</span>
-        <span class="c">#   self = cPickle.load(...)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">cPickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">dump_filename</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)</span></div>
+        <span class="c1"># this does not work:</span>
+        <span class="c1">#   self = cPickle.load(...)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">cPickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">dump_filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span></div>
     
 <div class="viewcode-block" id="FlexibleGetters.is_set_attr"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.is_set_attr.html#pwtools.base.FlexibleGetters.is_set_attr">[docs]</a>    <span class="k">def</span> <span class="nf">is_set_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check if self has the attribute self.&lt;attr&gt; and if it is _not_ None.</span>
@@ -268,16 +266,16 @@
 <span class="sd">        False : not defined or None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span> 
-            <span class="k">return</span> <span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">False</span></div>
+            <span class="k">return</span> <span class="kc">False</span></div>
     
 <div class="viewcode-block" id="FlexibleGetters.is_set_attr_lst"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.is_set_attr_lst.html#pwtools.base.FlexibleGetters.is_set_attr_lst">[docs]</a>    <span class="k">def</span> <span class="nf">is_set_attr_lst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_lst</span><span class="p">):</span>
-        <span class="k">assert</span> <span class="n">common</span><span class="o">.</span><span class="n">is_seq</span><span class="p">(</span><span class="n">attr_lst</span><span class="p">),</span> <span class="s">&quot;attr_lst must be a sequence&quot;</span>
+        <span class="k">assert</span> <span class="n">common</span><span class="o">.</span><span class="n">is_seq</span><span class="p">(</span><span class="n">attr_lst</span><span class="p">),</span> <span class="s2">&quot;attr_lst must be a sequence&quot;</span>
         <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attr_lst</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_set_attr</span><span class="p">(</span><span class="n">attr</span><span class="p">):</span>
-                <span class="k">return</span> <span class="bp">False</span>
-        <span class="k">return</span> <span class="bp">True</span>                </div>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>                </div>
 
 <div class="viewcode-block" id="FlexibleGetters.try_set_attr"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.try_set_attr.html#pwtools.base.FlexibleGetters.try_set_attr">[docs]</a>    <span class="k">def</span> <span class="nf">try_set_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;If self.&lt;attr&gt; does not exist or is None, then invoke an</span>
@@ -291,11 +289,11 @@
 <span class="sd">        attr : string</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_set_attr</span><span class="p">(</span><span class="n">attr</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">attr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">):</span>
-                <span class="n">get</span> <span class="o">=</span> <span class="s">&#39;_get&#39;</span>
+            <span class="k">if</span> <span class="n">attr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">):</span>
+                <span class="n">get</span> <span class="o">=</span> <span class="s1">&#39;_get&#39;</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">get</span> <span class="o">=</span> <span class="s">&#39;get_&#39;</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="nb">eval</span><span class="p">(</span><span class="s">&#39;self.</span><span class="si">%s%s</span><span class="s">()&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">get</span><span class="p">,</span> <span class="n">attr</span><span class="p">)))</span> </div>
+                <span class="n">get</span> <span class="o">=</span> <span class="s1">&#39;get_&#39;</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;self.</span><span class="si">%s%s</span><span class="s1">()&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">get</span><span class="p">,</span> <span class="n">attr</span><span class="p">)))</span> </div>
     
 <div class="viewcode-block" id="FlexibleGetters.try_set_attr_lst"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.try_set_attr_lst.html#pwtools.base.FlexibleGetters.try_set_attr_lst">[docs]</a>    <span class="k">def</span> <span class="nf">try_set_attr_lst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_lst</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attr_lst</span><span class="p">:</span>
@@ -337,7 +335,7 @@
         <span class="sd">&quot;&quot;&quot;Raise AssertionError if self.&lt;attr&gt; is not set (is_set_attr()</span>
 <span class="sd">        returns False.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_set_attr</span><span class="p">(</span><span class="n">attr</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s">&quot;attr &#39;</span><span class="si">%s</span><span class="s">&#39; is not set&quot;</span> <span class="o">%</span><span class="n">attr</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;attr &#39;</span><span class="si">%s</span><span class="s2">&#39; is not set&quot;</span> <span class="o">%</span><span class="n">attr</span><span class="p">)</span></div>
     
 <div class="viewcode-block" id="FlexibleGetters.assert_attr_lst"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.assert_attr_lst.html#pwtools.base.FlexibleGetters.assert_attr_lst">[docs]</a>    <span class="k">def</span> <span class="nf">assert_attr_lst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_lst</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attr_lst</span><span class="p">:</span>
@@ -360,18 +358,18 @@
 <span class="sd">        * if set, return ``self._&lt;attr_name&gt;_raw`` sliced by `sl` along `axis`,</span>
 <span class="sd">          else return None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">raw_attr_name</span> <span class="o">=</span> <span class="s">&#39;_</span><span class="si">%s</span><span class="s">_raw&#39;</span> <span class="o">%</span><span class="n">attr_name</span>
+        <span class="n">raw_attr_name</span> <span class="o">=</span> <span class="s1">&#39;_</span><span class="si">%s</span><span class="s1">_raw&#39;</span> <span class="o">%</span><span class="n">attr_name</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_set_attr</span><span class="p">(</span><span class="n">raw_attr_name</span><span class="p">):</span>
             <span class="n">arr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_attr_name</span><span class="p">)</span>
             <span class="n">ret</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">slicetake</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">sl</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span> 
-            <span class="c"># slicetake always returns an array, return scalar if ret =</span>
-            <span class="c"># array([10]) etc</span>
+            <span class="c1"># slicetake always returns an array, return scalar if ret =</span>
+            <span class="c1"># array([10]) etc</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
                 <span class="k">return</span> <span class="n">ret</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">ret</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">None</span></div>
+            <span class="k">return</span> <span class="kc">None</span></div>
     
 <div class="viewcode-block" id="FlexibleGetters.raw_return"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.raw_return.html#pwtools.base.FlexibleGetters.raw_return">[docs]</a>    <span class="k">def</span> <span class="nf">raw_return</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Call ``try_set_attr(_&lt;attr_name&gt;_raw)`` and return it if set, else</span>
@@ -379,12 +377,12 @@
 <span class="sd">        ``raw_slice_get(&lt;attr_name&gt;, sl=slice(None), axis=0)`` or axis=1 or any</span>
 <span class="sd">        other valid axis.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">raw_attr_name</span> <span class="o">=</span> <span class="s">&#39;_</span><span class="si">%s</span><span class="s">_raw&#39;</span> <span class="o">%</span><span class="n">attr_name</span>
+        <span class="n">raw_attr_name</span> <span class="o">=</span> <span class="s1">&#39;_</span><span class="si">%s</span><span class="s1">_raw&#39;</span> <span class="o">%</span><span class="n">attr_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">try_set_attr</span><span class="p">(</span><span class="n">raw_attr_name</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_set_attr</span><span class="p">(</span><span class="n">raw_attr_name</span><span class="p">):</span>
             <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_attr_name</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">None</span></div>
+            <span class="k">return</span> <span class="kc">None</span></div>
    
 <div class="viewcode-block" id="FlexibleGetters.get_return_attr"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.get_return_attr.html#pwtools.base.FlexibleGetters.get_return_attr">[docs]</a>    <span class="k">def</span> <span class="nf">get_return_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Call try_set_attr() are return self.&lt;attr_name&gt; if set.&quot;&quot;&quot;</span>
@@ -392,7 +390,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_set_attr</span><span class="p">(</span><span class="n">attr_name</span><span class="p">):</span>
             <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">None</span></div></div>
+            <span class="k">return</span> <span class="kc">None</span></div></div>
 
 </pre></div>
 
@@ -410,13 +408,13 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

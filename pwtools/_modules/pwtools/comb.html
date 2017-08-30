@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pwtools.comb &mdash; pwtools  documentation</title>
+    <title>pwtools.comb &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="Module code" href="../index.html" /> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -37,8 +38,8 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -46,14 +47,11 @@
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -65,18 +63,18 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.comb</h1><div class="highlight"><pre>
-<span class="c"># comb.py</span>
-<span class="c">#</span>
-<span class="c"># Some combinatorics stuff.</span>
+<span></span><span class="c1"># comb.py</span>
+<span class="c1">#</span>
+<span class="c1"># Some combinatorics stuff.</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">pwtools.common</span> <span class="kn">import</span> <span class="n">assert_cond</span> <span class="k">as</span> <span class="n">_assert</span>
-<span class="kn">from</span> <span class="nn">pwtools</span> <span class="kn">import</span> <span class="n">common</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pwtools.common</span> <span class="k">import</span> <span class="n">assert_cond</span> <span class="k">as</span> <span class="n">_assert</span>
+<span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">common</span>
 
 <div class="viewcode-block" id="fac"><a class="viewcode-back" href="../../generated/api/pwtools.comb.fac.html#pwtools.comb.fac">[docs]</a><span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Factorial n!. Returns integer.&quot;&quot;&quot;</span>
-    <span class="n">_assert</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="nb">int</span><span class="p">),</span> <span class="s">&#39;`n` must be int&#39;</span><span class="p">)</span>
-    <span class="n">_assert</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;`n` must be &gt;= 0&#39;</span><span class="p">)</span>
+    <span class="n">_assert</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="nb">int</span><span class="p">),</span> <span class="s1">&#39;`n` must be int&#39;</span><span class="p">)</span>
+    <span class="n">_assert</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;`n` must be &gt;= 0&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> </div>
@@ -86,7 +84,7 @@
     <span class="sd">&quot;&quot;&quot;Binomial coefficient (&quot;n over k&quot;).</span>
 <span class="sd">    fac(n)/(fac(k)*fac(n-k))</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">_assert</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;=</span> <span class="n">k</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;illegal input, only n &gt;= k &gt;= 0&#39;</span><span class="p">)</span>
+    <span class="n">_assert</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;=</span> <span class="n">k</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;illegal input, only n &gt;= k &gt;= 0&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">fac</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">))</span></div>
 
 
@@ -102,8 +100,8 @@
 <span class="sd">    Must return a copy of arr b/c the swap is an in-place operation and lists</span>
 <span class="sd">    are mutable.</span>
 <span class="sd">    &quot;&quot;&quot;</span>        
-    <span class="c"># aa = a.copy() for np arrays</span>
-    <span class="c"># aa = a[:]     for lists</span>
+    <span class="c1"># aa = a.copy() for np arrays</span>
+    <span class="c1"># aa = a[:]     for lists</span>
     <span class="n">aa</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:]</span>
     <span class="n">tmp</span> <span class="o">=</span> <span class="n">aa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">aa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">aa</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
@@ -142,12 +140,12 @@
 <span class="sd">    .. [2] www.cs.princeton.edu/~rs/talks/perms.pdf, page 12</span>
 <span class="sd">    .. [3] http://www.cut-the-knot.org/do_you_know/AllPerm.shtml</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c"># copy input</span>
+    <span class="c1"># copy input</span>
     <span class="n">aa</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">seq</span><span class="p">)[:]</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span>
     <span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="c"># first permutation is the input</span>
+    <span class="c1"># first permutation is the input</span>
     <span class="k">yield</span> <span class="n">aa</span><span class="p">[:]</span>
     <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">:</span>
@@ -155,8 +153,8 @@
                 <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">j</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="c"># copy</span>
-            <span class="c"># swap a[i] &lt;-&gt; a[j]</span>
+            <span class="c1"># copy</span>
+            <span class="c1"># swap a[i] &lt;-&gt; a[j]</span>
             <span class="n">tmp</span> <span class="o">=</span> <span class="n">aa</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
             <span class="n">aa</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">aa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="n">aa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
@@ -171,7 +169,7 @@
     <span class="sd">&quot;&quot;&quot;See ipermute().&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ipermute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)]</span></div>
 
-<div class="viewcode-block" id="unique2d"><a class="viewcode-back" href="../../generated/api/pwtools.comb.unique2d.html#pwtools.comb.unique2d">[docs]</a><span class="k">def</span> <span class="nf">unique2d</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="s">&#39;row&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="unique2d"><a class="viewcode-back" href="../../generated/api/pwtools.comb.unique2d.html#pwtools.comb.unique2d">[docs]</a><span class="k">def</span> <span class="nf">unique2d</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Reduce 2d array `arr` to a 2d array with unique rows (or cols).</span>
 
 <span class="sd">    Parameters</span>
@@ -197,28 +195,28 @@
 <span class="sd">    &gt;&gt;&gt; unique2d(permute(a)) # uses more memory, slower</span>
 <span class="sd">    &gt;&gt;&gt; permute(a, skip_equal=True))</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">what</span> <span class="o">==</span> <span class="s">&#39;row&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;row&#39;</span><span class="p">:</span>
         <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">what</span> <span class="o">==</span> <span class="s">&#39;col&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;col&#39;</span><span class="p">:</span>
         <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;illegal value of &#39;what&#39;: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span><span class="n">what</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;illegal value of &#39;what&#39;: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">what</span><span class="p">)</span>
     <span class="n">uniq</span> <span class="o">=</span> <span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]]</span>
     <span class="k">for</span> <span class="n">row_a</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">:</span>
-        <span class="n">is_in</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">is_in</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">for</span> <span class="n">row_u</span> <span class="ow">in</span> <span class="n">uniq</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">row_a</span> <span class="o">==</span> <span class="n">row_u</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
-                <span class="n">is_in</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">is_in</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="k">break</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">is_in</span><span class="p">:</span>
             <span class="n">uniq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row_a</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">what</span> <span class="o">==</span> <span class="s">&#39;row&#39;</span><span class="p">:</span>            
+    <span class="k">if</span> <span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;row&#39;</span><span class="p">:</span>            
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">uniq</span><span class="p">)</span>            
     <span class="k">else</span><span class="p">:</span>        
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">uniq</span><span class="p">)</span><span class="o">.</span><span class="n">T</span></div>
 
 
-<div class="viewcode-block" id="nested_loops"><a class="viewcode-back" href="../../generated/api/pwtools.comb.nested_loops.html#pwtools.comb.nested_loops">[docs]</a><span class="k">def</span> <span class="nf">nested_loops</span><span class="p">(</span><span class="n">lists</span><span class="p">,</span> <span class="n">ret_all</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">flatten</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="nested_loops"><a class="viewcode-back" href="../../generated/api/pwtools.comb.nested_loops.html#pwtools.comb.nested_loops">[docs]</a><span class="k">def</span> <span class="nf">nested_loops</span><span class="p">(</span><span class="n">lists</span><span class="p">,</span> <span class="n">ret_all</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">flatten</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Nonrecursive version of nested loops of arbitrary depth. Pure Python</span>
 <span class="sd">    version (no numpy).</span>
 <span class="sd">    </span>
@@ -308,25 +306,25 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">lens</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">lists</span><span class="p">)</span>
     <span class="n">mx_idxs</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">lens</span><span class="p">]</span>
-    <span class="c"># nperms = numpy.prod(lens)</span>
-    <span class="n">nperms</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="n">lens</span><span class="p">)</span>
-    <span class="c"># number of nesting levels</span>
+    <span class="c1"># nperms = numpy.prod(lens)</span>
+    <span class="n">nperms</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="n">lens</span><span class="p">)</span>
+    <span class="c1"># number of nesting levels</span>
     <span class="n">nlevels</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lists</span><span class="p">)</span>
-    <span class="c"># index into `lists`: lists[i][j] -&gt; lists[i][idxs[i]], i.e.</span>
-    <span class="c"># idxs[i] is the index into the ith list</span>
+    <span class="c1"># index into `lists`: lists[i][j] -&gt; lists[i][idxs[i]], i.e.</span>
+    <span class="c1"># idxs[i] is the index into the ith list</span>
     <span class="n">idxs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">nlevels</span>
     <span class="n">perm_idxs</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">perms</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="c"># e.g. [2,1,0]</span>
+    <span class="c1"># e.g. [2,1,0]</span>
     <span class="n">rev_rlevels</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">nlevels</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nperms</span><span class="p">):</span>         
         <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">rev_rlevels</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">idxs</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">mx_idxs</span><span class="p">[</span><span class="n">pos</span><span class="p">]:</span>
                 <span class="n">idxs</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-                <span class="c"># pos - 1 never gets &lt; 0 before all possible `nlevels`</span>
-                <span class="c"># permutations are generated.</span>
+                <span class="c1"># pos - 1 never gets &lt; 0 before all possible `nlevels`</span>
+                <span class="c1"># permutations are generated.</span>
                 <span class="n">idxs</span><span class="p">[</span><span class="n">pos</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="c"># [:] to append a copy                </span>
+        <span class="c1"># [:] to append a copy                </span>
         <span class="n">perm_idxs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idxs</span><span class="p">[:])</span>
         <span class="n">perms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">lists</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">idxs</span><span class="p">)])</span>
         <span class="n">idxs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -355,15 +353,15 @@
         <span class="k">else</span><span class="p">:</span>        
             <span class="k">return</span> <span class="mi">0</span>        
     <span class="k">else</span><span class="p">:</span>
-        <span class="c"># &gt;&gt;&gt; vstack((a, -b))</span>
-        <span class="c"># array([[1,  2,  3],</span>
-        <span class="c">#       [-1, -2,  0]])</span>
-        <span class="c"># &gt;&gt;&gt; vstack((a,-b)).sum(axis=0)</span>
-        <span class="c"># array([0, 0, 3])</span>
-        <span class="c"># &gt;&gt;&gt; z</span>
-        <span class="c"># array([0, 0, 0])</span>
-        <span class="c"># &gt;&gt;&gt; z[tmp==0] = 1</span>
-        <span class="c"># array([1, 1, 0])</span>
+        <span class="c1"># &gt;&gt;&gt; vstack((a, -b))</span>
+        <span class="c1"># array([[1,  2,  3],</span>
+        <span class="c1">#       [-1, -2,  0]])</span>
+        <span class="c1"># &gt;&gt;&gt; vstack((a,-b)).sum(axis=0)</span>
+        <span class="c1"># array([0, 0, 3])</span>
+        <span class="c1"># &gt;&gt;&gt; z</span>
+        <span class="c1"># array([0, 0, 0])</span>
+        <span class="c1"># &gt;&gt;&gt; z[tmp==0] = 1</span>
+        <span class="c1"># array([1, 1, 0])</span>
         <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="o">-</span><span class="n">b</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tmp</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
         <span class="n">z</span><span class="p">[</span><span class="n">tmp</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
@@ -374,12 +372,12 @@
     <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
     <span class="n">lst</span> <span class="o">=</span> <span class="n">permute</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">aa</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
-        <span class="k">print</span> <span class="n">aa</span></div>
+        <span class="nb">print</span> <span class="n">aa</span></div>
 
-<span class="c"># alias</span>
+<span class="c1"># alias</span>
 <span class="n">factorial</span> <span class="o">=</span> <span class="n">fac</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">sys</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </pre></div>
@@ -398,13 +396,13 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

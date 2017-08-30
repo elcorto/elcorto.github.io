@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pwtools.eos.EosFit &mdash; pwtools  documentation</title>
+    <title>pwtools.eos.EosFit &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="eos" href="eos.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.eos.EosFit.__call__" href="pwtools.eos.EosFit.__call__.html" />
     <link rel="prev" title="pwtools.eos.ElkEOSFit.try_set_attr_lst" href="pwtools.eos.ElkEOSFit.try_set_attr_lst.html" /> 
   </head>
@@ -45,9 +46,9 @@
         <li class="right" >
           <a href="pwtools.eos.ElkEOSFit.try_set_attr_lst.html" title="pwtools.eos.ElkEOSFit.try_set_attr_lst"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="eos.html" accesskey="U">eos</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="eos.html" accesskey="U">eos</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -61,21 +62,18 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.eos.EosFit.txt"
+      <li><a href="../../_sources/generated/api/pwtools.eos.EosFit.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -94,21 +92,21 @@
 <dd><p>Bases: <a class="reference internal" href="pwtools.num.Fit1D.html#pwtools.num.Fit1D" title="pwtools.num.Fit1D"><code class="xref py py-class docutils literal"><span class="pre">pwtools.num.Fit1D</span></code></a></p>
 <p>E(V) fit class.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.eos</span> <span class="kn">import</span> <span class="n">EosFit</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.constants</span> <span class="kn">import</span> <span class="n">eV_by_Ang3_to_GPa</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.eos</span> <span class="k">import</span> <span class="n">EosFit</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.constants</span> <span class="k">import</span> <span class="n">eV_by_Ang3_to_GPa</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">V</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">E</span> <span class="o">=</span> <span class="p">(</span><span class="n">V</span><span class="o">-</span><span class="mi">40</span><span class="p">)</span><span class="o">**</span><span class="mf">2.0</span> <span class="o">/</span> <span class="mf">50.0</span> <span class="o">+</span> <span class="mi">30</span> <span class="o">+</span> <span class="n">rand</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">V</span><span class="p">))</span> <span class="o">/</span> <span class="mf">5.0</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="s">&#39;o&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">EosFit</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">E</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">vv</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="n">V</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">V</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">200</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">vv</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">vv</span><span class="p">),</span> <span class="s">&#39;r-&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">v0</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s">&#39;v0&#39;</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="s">&quot;compare fit params and values obtained from methods:&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="s">&quot;V0: </span><span class="si">%f</span><span class="s"> Ang^3 (</span><span class="si">%f</span><span class="s">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">v0</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">get_min</span><span class="p">())</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="s">&quot;B0: </span><span class="si">%f</span><span class="s"> GPa   (</span><span class="si">%f</span><span class="s">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s">&#39;b0&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">eV_by_Ang3_to_GPa</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">bulkmod</span><span class="p">(</span><span class="n">v0</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="s">&quot;B1: </span><span class="si">%f</span><span class="s">           &quot;</span> <span class="o">%</span><span class="n">f</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s">&#39;b1&#39;</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="s">&quot;E0: </span><span class="si">%f</span><span class="s">  eV   (</span><span class="si">%f</span><span class="s">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s">&#39;e0&#39;</span><span class="p">],</span> <span class="n">f</span><span class="p">(</span><span class="n">v0</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="s">&quot;P0: </span><span class="si">%f</span><span class="s"> GPa       &quot;</span> <span class="o">%</span><span class="n">f</span><span class="o">.</span><span class="n">pressure</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">vv</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">vv</span><span class="p">),</span> <span class="s1">&#39;r-&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v0</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;v0&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s2">&quot;compare fit params and values obtained from methods:&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s2">&quot;V0: </span><span class="si">%f</span><span class="s2"> Ang^3 (</span><span class="si">%f</span><span class="s2">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">v0</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">get_min</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s2">&quot;B0: </span><span class="si">%f</span><span class="s2"> GPa   (</span><span class="si">%f</span><span class="s2">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;b0&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">eV_by_Ang3_to_GPa</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">bulkmod</span><span class="p">(</span><span class="n">v0</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s2">&quot;B1: </span><span class="si">%f</span><span class="s2">           &quot;</span> <span class="o">%</span><span class="n">f</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;b1&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s2">&quot;E0: </span><span class="si">%f</span><span class="s2">  eV   (</span><span class="si">%f</span><span class="s2">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;e0&#39;</span><span class="p">],</span> <span class="n">f</span><span class="p">(</span><span class="n">v0</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s2">&quot;P0: </span><span class="si">%f</span><span class="s2"> GPa       &quot;</span> <span class="o">%</span><span class="n">f</span><span class="o">.</span><span class="n">pressure</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="rubric">Attributes</p>
@@ -119,7 +117,7 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>spl</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -278,14 +276,14 @@
         <li class="right" >
           <a href="pwtools.eos.ElkEOSFit.try_set_attr_lst.html" title="pwtools.eos.ElkEOSFit.try_set_attr_lst"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="eos.html" >eos</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="eos.html" >eos</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

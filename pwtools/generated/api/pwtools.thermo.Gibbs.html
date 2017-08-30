@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pwtools.thermo.Gibbs &mdash; pwtools  documentation</title>
+    <title>pwtools.thermo.Gibbs &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="thermo" href="thermo.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.thermo.Gibbs.calc_F" href="pwtools.thermo.Gibbs.calc_F.html" />
     <link rel="prev" title="thermo" href="thermo.html" /> 
   </head>
@@ -45,9 +46,9 @@
         <li class="right" >
           <a href="thermo.html" title="thermo"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="thermo.html" accesskey="U">thermo</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="thermo.html" accesskey="U">thermo</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -61,21 +62,18 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.thermo.Gibbs.txt"
+      <li><a href="../../_sources/generated/api/pwtools.thermo.Gibbs.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -132,9 +130,9 @@ implemented</td>
 </tr>
 <tr class="row-even"><td>3d</td>
 <td>not implemented</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -286,24 +284,24 @@ to handle that.</p>
 <p class="rubric">Examples</p>
 <p>See also <code class="docutils literal"><span class="pre">test/test_gibbs.py</span></code> for worked examples using fake data.
 Really, go there and have a look. Now!</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="kn">import</span> <span class="n">mpl</span><span class="p">,</span> <span class="n">crys</span><span class="p">,</span> <span class="n">eos</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># isotropic cell</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">mpl</span><span class="p">,</span> <span class="n">crys</span><span class="p">,</span> <span class="n">eos</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># isotropic cell</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">volfunc_ax</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">crys</span><span class="o">.</span><span class="n">volume_cc</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">*</span><span class="mi">3</span> <span class="o">+</span> <span class="p">[</span><span class="mi">90</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gibbs</span><span class="o">=</span><span class="n">Gibbs</span><span class="p">(</span><span class="n">axes_flat</span><span class="o">=...</span><span class="p">,</span> <span class="n">etot</span><span class="o">=...</span><span class="p">,</span> <span class="n">phdos</span><span class="o">=...</span><span class="p">,</span>
 <span class="gp">... </span>            <span class="n">T</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2500</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> <span class="n">P</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> 
 <span class="gp">... </span>            <span class="n">volfunc_ax</span><span class="o">=</span><span class="n">volfunc_ax</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># EOS fit for G(V), polynomial for heat capacity (default is Spline)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">gibbs</span><span class="o">.</span><span class="n">set_fitfunc</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">num</span><span class="o">.</span><span class="n">PolyFit1D</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">deg</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">gibbs</span><span class="o">.</span><span class="n">set_fitfunc</span><span class="p">(</span><span class="s">&#39;1d-G&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">eos</span><span class="o">.</span><span class="n">EosFit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">gibbs</span><span class="o">.</span><span class="n">calc_G</span><span class="p">(</span><span class="n">calc_all</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># 1d case</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">V</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s">&#39;/ax0/V&#39;</span><span class="p">];</span> <span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="s">&#39;/T/P/ax0/G&#39;</span><span class="p">];</span> <span class="n">T</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="s">&#39;/T/T&#39;</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># plot G(V) for all T and P=20 GPa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># EOS fit for G(V), polynomial for heat capacity (default is Spline)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gibbs</span><span class="o">.</span><span class="n">set_fitfunc</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">num</span><span class="o">.</span><span class="n">PolyFit1D</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">deg</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gibbs</span><span class="o">.</span><span class="n">set_fitfunc</span><span class="p">(</span><span class="s1">&#39;1d-G&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">eos</span><span class="o">.</span><span class="n">EosFit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">gibbs</span><span class="o">.</span><span class="n">calc_G</span><span class="p">(</span><span class="n">calc_all</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 1d case</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">V</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s1">&#39;/ax0/V&#39;</span><span class="p">];</span> <span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;/T/P/ax0/G&#39;</span><span class="p">];</span> <span class="n">T</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;/T/T&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot G(V) for all T and P=20 GPa</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">G</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># Cp(T) for all P</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">g</span><span class="p">[</span><span class="s">&#39;/#opt/T/P/Cp&#39;</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># 2d case plot G(ax0,ax1) for T=2500 K, P=0 GPa</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="s">&#39;/T/P/ax0-ax1/G&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Cp(T) for all P</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;/#opt/T/P/Cp&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 2d case plot G(ax0,ax1) for T=2500 K, P=0 GPa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;/T/P/ax0-ax1/G&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">=</span><span class="n">mpl</span><span class="o">.</span><span class="n">Data2D</span><span class="p">(</span><span class="n">XY</span><span class="o">=</span><span class="n">axes_flat</span><span class="p">,</span> <span class="n">zz</span><span class="o">=</span><span class="n">G</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,:])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">mpl</span><span class="o">.</span><span class="n">fig_ax3d</span><span class="p">();</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">xx</span><span class="p">,</span><span class="n">d</span><span class="o">.</span><span class="n">yy</span><span class="p">,</span><span class="n">d</span><span class="o">.</span><span class="n">zz</span><span class="p">);</span> <span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -551,14 +549,14 @@ zero-point contributions. Check the bulk modulus, for example.</p>
         <li class="right" >
           <a href="thermo.html" title="thermo"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="thermo.html" >thermo</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="thermo.html" >thermo</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pwtools.batch &mdash; pwtools  documentation</title>
+    <title>pwtools.batch &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="Module code" href="../index.html" /> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -37,8 +38,8 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -46,14 +47,11 @@
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -65,15 +63,15 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.batch</h1><div class="highlight"><pre>
-<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">copy</span><span class="o">,</span> <span class="nn">shutil</span><span class="o">,</span> <span class="nn">warnings</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">pwtools</span> <span class="kn">import</span> <span class="n">common</span>
-<span class="kn">from</span> <span class="nn">pwtools.sql</span> <span class="kn">import</span> <span class="n">SQLEntry</span><span class="p">,</span> <span class="n">SQLiteDB</span>
-<span class="kn">from</span> <span class="nn">pwtools.verbose</span> <span class="kn">import</span> <span class="n">verbose</span>
+<span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">copy</span><span class="o">,</span> <span class="nn">shutil</span><span class="o">,</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">common</span>
+<span class="kn">from</span> <span class="nn">pwtools.sql</span> <span class="k">import</span> <span class="n">SQLEntry</span><span class="p">,</span> <span class="n">SQLiteDB</span>
+<span class="kn">from</span> <span class="nn">pwtools.verbose</span> <span class="k">import</span> <span class="n">verbose</span>
 <span class="n">pj</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span>
 
-<span class="c"># backwd compat</span>
-<span class="kn">from</span> <span class="nn">pwtools.sql</span> <span class="kn">import</span> <span class="n">sql_column</span><span class="p">,</span> <span class="n">sql_matrix</span>
+<span class="c1"># backwd compat</span>
+<span class="kn">from</span> <span class="nn">pwtools.sql</span> <span class="k">import</span> <span class="n">sql_column</span><span class="p">,</span> <span class="n">sql_matrix</span>
 
 <div class="viewcode-block" id="Machine"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Machine.html#pwtools.batch.Machine">[docs]</a><span class="k">class</span> <span class="nc">Machine</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This is a container for machine-specific stuff. Most of the</span>
@@ -83,8 +81,8 @@
 <span class="sd">    </span>
 <span class="sd">    Useful to predefine commonly used machines.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="Machine.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Machine.html#pwtools.batch.Machine.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">subcmd</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scratch</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
-                 <span class="n">home</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Machine.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Machine.html#pwtools.batch.Machine.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">subcmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scratch</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                 <span class="n">home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -101,26 +99,26 @@
 <span class="sd">            full jobfile name for FileTemplate (e.g.</span>
 <span class="sd">            &#39;calc.templ/job.local&#39;), use either this or `template`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="bp">None</span> <span class="ow">in</span> <span class="p">[</span><span class="n">filename</span><span class="p">,</span> <span class="n">template</span><span class="p">],</span> <span class="p">(</span><span class="s">&quot;use either `filename` &quot;</span>
-                                              <span class="s">&quot;or `template`&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="kc">None</span> <span class="ow">in</span> <span class="p">[</span><span class="n">filename</span><span class="p">,</span> <span class="n">template</span><span class="p">],</span> <span class="p">(</span><span class="s2">&quot;use either `filename` &quot;</span>
+                                              <span class="s2">&quot;or `template`&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="n">hostname</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">subcmd</span> <span class="o">=</span> <span class="n">subcmd</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scratch</span> <span class="o">=</span> <span class="n">scratch</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">home</span> <span class="o">=</span> <span class="n">home</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;subcmd&#39;</span><span class="p">,</span>
-                         <span class="s">&#39;scratch&#39;</span><span class="p">,</span>
-                         <span class="s">&#39;home&#39;</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;subcmd&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;scratch&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;home&#39;</span><span class="p">,</span>
                          <span class="p">]</span>
-        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">FileTemplate</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span></div>
     
 <div class="viewcode-block" id="Machine.get_jobfile_basename"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Machine.get_jobfile_basename.html#pwtools.batch.Machine.get_jobfile_basename">[docs]</a>    <span class="k">def</span> <span class="nf">get_jobfile_basename</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">basename</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">StandardError</span><span class="p">(</span><span class="s">&quot;cannot get job file name&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;cannot get job file name&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Machine.get_sql_record"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Machine.get_sql_record.html#pwtools.batch.Machine.get_sql_record">[docs]</a>    <span class="k">def</span> <span class="nf">get_sql_record</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a dict of SQLEntry instances. Each key is a attr name from</span>
@@ -185,8 +183,8 @@
 <span class="sd">        &gt;&gt;&gt; sct[&#39;ecutwfc&#39;] = SQLEntry(sqlval=23.0)</span>
 <span class="sd">        &gt;&gt;&gt; templ.writesql(dct, &#39;calc/0&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="FileTemplate.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.batch.FileTemplate.html#pwtools.batch.FileTemplate.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basename</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">txt</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">templ_dir</span><span class="o">=</span><span class="s">&#39;calc.templ&#39;</span><span class="p">,</span>
-                 <span class="n">filename</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="s">&#39;XXX&#39;</span><span class="o">+</span><span class="n">x</span><span class="o">.</span><span class="n">upper</span><span class="p">()):</span>
+<div class="viewcode-block" id="FileTemplate.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.batch.FileTemplate.html#pwtools.batch.FileTemplate.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">txt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">templ_dir</span><span class="o">=</span><span class="s1">&#39;calc.templ&#39;</span><span class="p">,</span>
+                 <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="s1">&#39;XXX&#39;</span><span class="o">+</span><span class="n">x</span><span class="o">.</span><span class="n">upper</span><span class="p">()):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -221,22 +219,22 @@
 <span class="sd">            |     placeholder = &quot;XXXLALA&quot;</span>
 <span class="sd">            |     func = lambda x: &quot;XXX&quot; + x.upper()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="p">(</span><span class="n">filename</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">basename</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">),</span> \
-               <span class="p">(</span><span class="s">&quot;use either `filename` or `templ_dir` + `basename`&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">basename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">),</span> \
+               <span class="p">(</span><span class="s2">&quot;use either `filename` or `templ_dir` + `basename`&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">keys</span> <span class="o">=</span> <span class="n">keys</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">txt</span> <span class="o">=</span> <span class="n">txt</span>
-        <span class="c"># We hardcode the convention that template and target files live in</span>
-        <span class="c"># different dirs and have the same name (&quot;basename&quot;) there.</span>
-        <span class="c">#   template = &lt;templ_dir&gt;/&lt;basename&gt;</span>
-        <span class="c">#   target   = &lt;calc_dir&gt;/&lt;basename&gt;</span>
-        <span class="c"># e.g.</span>
-        <span class="c">#   template = calc.templ/pw.in</span>
-        <span class="c">#   target   = calc/0/pw.in</span>
-        <span class="c"># Something like</span>
-        <span class="c">#   template = ./pw.in.templ</span>
-        <span class="c">#   target   = ./pw.in</span>
-        <span class="c"># is not possible.</span>
-        <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="c1"># We hardcode the convention that template and target files live in</span>
+        <span class="c1"># different dirs and have the same name (&quot;basename&quot;) there.</span>
+        <span class="c1">#   template = &lt;templ_dir&gt;/&lt;basename&gt;</span>
+        <span class="c1">#   target   = &lt;calc_dir&gt;/&lt;basename&gt;</span>
+        <span class="c1"># e.g.</span>
+        <span class="c1">#   template = calc.templ/pw.in</span>
+        <span class="c1">#   target   = calc/0/pw.in</span>
+        <span class="c1"># Something like</span>
+        <span class="c1">#   template = ./pw.in.templ</span>
+        <span class="c1">#   target   = ./pw.in</span>
+        <span class="c1"># is not possible.</span>
+        <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">templ_dir</span> <span class="o">=</span> <span class="n">templ_dir</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">basename</span> <span class="o">=</span> <span class="n">basename</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">pj</span><span class="p">(</span><span class="n">templ_dir</span><span class="p">,</span> <span class="n">basename</span><span class="p">)</span>
@@ -246,7 +244,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">basename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span></div>
         
-<div class="viewcode-block" id="FileTemplate.write"><a class="viewcode-back" href="../../generated/api/pwtools.batch.FileTemplate.write.html#pwtools.batch.FileTemplate.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dct</span><span class="p">,</span> <span class="n">calc_dir</span><span class="o">=</span><span class="s">&#39;calc&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;dct&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="FileTemplate.write"><a class="viewcode-back" href="../../generated/api/pwtools.batch.FileTemplate.write.html#pwtools.batch.FileTemplate.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dct</span><span class="p">,</span> <span class="n">calc_dir</span><span class="o">=</span><span class="s1">&#39;calc&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;dct&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Write file self.filename (e.g. calc/0/pw.in) by replacing </span>
 <span class="sd">        placeholders in the template (e.g. calc.templ/pw.in).</span>
 <span class="sd">        </span>
@@ -262,55 +260,55 @@
 <span class="sd">            | mode=&#39;sql&#39;: replacement values are dct[&lt;key&gt;].fileval and every</span>
 <span class="sd">            |     dct[&lt;key&gt;] is an SQLEntry instance</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="n">mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;dct&#39;</span><span class="p">,</span> <span class="s">&#39;sql&#39;</span><span class="p">],</span> <span class="p">(</span><span class="s">&quot;Wrong &#39;mode&#39; kwarg, use &#39;dct&#39; &quot;</span>
-                                        <span class="s">&quot;or &#39;sql&#39;&quot;</span><span class="p">)</span>
-        <span class="c"># copy_only : bypass reading the file and passing the text thru the</span>
-        <span class="c"># replacement machinery and getting the text back, unchanged. While</span>
-        <span class="c"># this works, it is slower and useless.</span>
+        <span class="k">assert</span> <span class="n">mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;dct&#39;</span><span class="p">,</span> <span class="s1">&#39;sql&#39;</span><span class="p">],</span> <span class="p">(</span><span class="s2">&quot;Wrong &#39;mode&#39; kwarg, use &#39;dct&#39; &quot;</span>
+                                        <span class="s2">&quot;or &#39;sql&#39;&quot;</span><span class="p">)</span>
+        <span class="c1"># copy_only : bypass reading the file and passing the text thru the</span>
+        <span class="c1"># replacement machinery and getting the text back, unchanged. While</span>
+        <span class="c1"># this works, it is slower and useless.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span> <span class="o">==</span> <span class="p">[]:</span>
-            <span class="n">_keys</span> <span class="o">=</span> <span class="bp">None</span>
-            <span class="n">txt</span> <span class="o">=</span> <span class="bp">None</span>
-            <span class="n">copy_only</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">_keys</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">txt</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">copy_only</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">_keys</span> <span class="o">=</span> <span class="n">dct</span><span class="o">.</span><span class="n">iterkeys</span><span class="p">()</span>
-                <span class="n">warn_not_found</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="n">warn_not_found</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span>
-                <span class="n">warn_not_found</span> <span class="o">=</span> <span class="bp">True</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">txt</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">warn_not_found</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">txt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">txt</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">file_read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">txt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">txt</span>
-            <span class="n">copy_only</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="n">copy_only</span> <span class="o">=</span> <span class="kc">False</span>
         
         <span class="n">tgt</span> <span class="o">=</span> <span class="n">pj</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">basename</span><span class="p">)</span>
-        <span class="n">verbose</span><span class="p">(</span><span class="s">&quot;write: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span><span class="n">tgt</span><span class="p">)</span>
+        <span class="n">verbose</span><span class="p">(</span><span class="s2">&quot;write: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">tgt</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">copy_only</span><span class="p">:</span>    
-            <span class="n">verbose</span><span class="p">(</span><span class="s">&quot;write: ignoring input, just copying file to </span><span class="si">%s</span><span class="s">&quot;</span>
+            <span class="n">verbose</span><span class="p">(</span><span class="s2">&quot;write: ignoring input, just copying file to </span><span class="si">%s</span><span class="s2">&quot;</span>
                     <span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">tgt</span><span class="p">))</span>
             <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">tgt</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>            
             <span class="n">rules</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">_keys</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;dct&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;dct&#39;</span><span class="p">:</span>
                     <span class="n">rules</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">key</span><span class="p">)]</span> <span class="o">=</span> <span class="n">dct</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-                <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;sql&#39;</span><span class="p">:</span>                    
-                    <span class="c"># dct = sql_record, a list of SQLEntry&#39;s</span>
+                <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;sql&#39;</span><span class="p">:</span>                    
+                    <span class="c1"># dct = sql_record, a list of SQLEntry&#39;s</span>
                     <span class="n">rules</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">key</span><span class="p">)]</span> <span class="o">=</span> <span class="n">dct</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">fileval</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">StandardError</span><span class="p">(</span><span class="s">&quot;&#39;mode&#39; must be wrong&quot;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;&#39;mode&#39; must be wrong&quot;</span><span class="p">)</span>
             <span class="n">new_txt</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">template_replace</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> 
                                               <span class="n">rules</span><span class="p">,</span> 
-                                              <span class="n">mode</span><span class="o">=</span><span class="s">&#39;txt&#39;</span><span class="p">,</span>
-                                              <span class="n">conv</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                              <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;txt&#39;</span><span class="p">,</span>
+                                              <span class="n">conv</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                                               <span class="n">warn_not_found</span><span class="o">=</span><span class="n">warn_not_found</span><span class="p">,</span>
-                                              <span class="n">warn_mult_found</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-                                              <span class="n">disp</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                                              <span class="n">warn_mult_found</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                              <span class="n">disp</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
             <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="n">tgt</span><span class="p">,</span> <span class="n">new_txt</span><span class="p">)</span> </div>
                                   
-<div class="viewcode-block" id="FileTemplate.writesql"><a class="viewcode-back" href="../../generated/api/pwtools.batch.FileTemplate.writesql.html#pwtools.batch.FileTemplate.writesql">[docs]</a>    <span class="k">def</span> <span class="nf">writesql</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sql_record</span><span class="p">,</span> <span class="n">calc_dir</span><span class="o">=</span><span class="s">&#39;calc&#39;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sql_record</span><span class="p">,</span> <span class="n">calc_dir</span><span class="o">=</span><span class="n">calc_dir</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;sql&#39;</span><span class="p">)</span></div></div>
+<div class="viewcode-block" id="FileTemplate.writesql"><a class="viewcode-back" href="../../generated/api/pwtools.batch.FileTemplate.writesql.html#pwtools.batch.FileTemplate.writesql">[docs]</a>    <span class="k">def</span> <span class="nf">writesql</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sql_record</span><span class="p">,</span> <span class="n">calc_dir</span><span class="o">=</span><span class="s1">&#39;calc&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sql_record</span><span class="p">,</span> <span class="n">calc_dir</span><span class="o">=</span><span class="n">calc_dir</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;sql&#39;</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="Calculation"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Calculation.html#pwtools.batch.Calculation">[docs]</a><span class="k">class</span> <span class="nc">Calculation</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -322,24 +320,24 @@
 <span class="sd">    The dir where file templates live is defined in the FileTemplates (usually</span>
 <span class="sd">    &#39;calc.templ&#39;).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c"># XXX ATM, the `params` argument is a list of SQLEntry instances which is</span>
-    <span class="c"># converted to a dict self.sql_record. This is fine in the context of</span>
-    <span class="c"># ParameterStudy (esp. with helper functions like sql.sql_column()) and</span>
-    <span class="c"># also necessary b/c ParameterStudy must know about sqlite types. (The fact</span>
-    <span class="c"># that it is a list rather then a dict in the first place is that the</span>
-    <span class="c"># parameter set usually comes from comb.nested_loops(), which returns</span>
-    <span class="c"># lists.)</span>
-    <span class="c">#</span>
-    <span class="c"># But this may be overly complicated if this class is used alone, where a</span>
-    <span class="c"># single Calculation will not write a sqlite database, just deal with</span>
-    <span class="c"># `templates`. Then a simple dict (without SQLEntry instances) to pass in</span>
-    <span class="c"># the params might do it. Keep in mind that in this situation, Calculation</span>
-    <span class="c"># should have no kowledge of sql at all. This is kept strictly in</span>
-    <span class="c"># ParameterStudy. Maybe allow `params` to be either a dict or a list of</span>
-    <span class="c"># SQLEntry instances. In the dict case, let get_sql_record() raise a</span>
-    <span class="c"># warning.</span>
-<div class="viewcode-block" id="Calculation.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Calculation.html#pwtools.batch.Calculation.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">machine</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">templates</span><span class="o">=</span><span class="p">[],</span> <span class="n">params</span><span class="o">=</span><span class="p">[],</span>
-                 <span class="n">calc_dir</span><span class="o">=</span><span class="s">&#39;calc_dir&#39;</span><span class="p">):</span>
+    <span class="c1"># XXX ATM, the `params` argument is a list of SQLEntry instances which is</span>
+    <span class="c1"># converted to a dict self.sql_record. This is fine in the context of</span>
+    <span class="c1"># ParameterStudy (esp. with helper functions like sql.sql_column()) and</span>
+    <span class="c1"># also necessary b/c ParameterStudy must know about sqlite types. (The fact</span>
+    <span class="c1"># that it is a list rather then a dict in the first place is that the</span>
+    <span class="c1"># parameter set usually comes from comb.nested_loops(), which returns</span>
+    <span class="c1"># lists.)</span>
+    <span class="c1">#</span>
+    <span class="c1"># But this may be overly complicated if this class is used alone, where a</span>
+    <span class="c1"># single Calculation will not write a sqlite database, just deal with</span>
+    <span class="c1"># `templates`. Then a simple dict (without SQLEntry instances) to pass in</span>
+    <span class="c1"># the params might do it. Keep in mind that in this situation, Calculation</span>
+    <span class="c1"># should have no kowledge of sql at all. This is kept strictly in</span>
+    <span class="c1"># ParameterStudy. Maybe allow `params` to be either a dict or a list of</span>
+    <span class="c1"># SQLEntry instances. In the dict case, let get_sql_record() raise a</span>
+    <span class="c1"># warning.</span>
+<div class="viewcode-block" id="Calculation.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Calculation.html#pwtools.batch.Calculation.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">machine</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">templates</span><span class="o">=</span><span class="p">[],</span> <span class="n">params</span><span class="o">=</span><span class="p">[],</span>
+                 <span class="n">calc_dir</span><span class="o">=</span><span class="s1">&#39;calc_dir&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -363,13 +361,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">calc_dir</span> <span class="o">=</span> <span class="n">calc_dir</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sql_record</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">sqlentry</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">sqlentry</span><span class="p">)</span> \
                                 <span class="k">for</span> <span class="n">sqlentry</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
-        <span class="c"># add machine-specific stuff only for replacement, doesn&#39;t go into</span>
-        <span class="c"># database</span>
+        <span class="c1"># add machine-specific stuff only for replacement, doesn&#39;t go into</span>
+        <span class="c1"># database</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sql_record_write</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql_record</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">machine</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">machine</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">sql_record_write</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">machine</span><span class="o">.</span><span class="n">get_sql_record</span><span class="p">())</span>                                           
-            <span class="c"># use machine.template if it has one</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">machine</span><span class="o">.</span><span class="n">template</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># use machine.template if it has one</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">machine</span><span class="o">.</span><span class="n">template</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">machine</span><span class="o">.</span><span class="n">template</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Calculation.get_sql_record"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Calculation.get_sql_record.html#pwtools.batch.Calculation.get_sql_record">[docs]</a>    <span class="k">def</span> <span class="nf">get_sql_record</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -454,45 +452,45 @@
 <span class="sd">    comb.nested_loops</span>
 <span class="sd">    sql.sql_column</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c"># more notes</span>
-    <span class="c"># ----------</span>
-    <span class="c"># The `params_lst` list of lists is a &quot;matrix&quot; which in fact represents the</span>
-    <span class="c"># sqlite database table. </span>
-    <span class="c"># </span>
-    <span class="c"># The most simple case is when we vary only one parameter::</span>
-    <span class="c">#</span>
-    <span class="c">#     [[SQLEntry(key=&#39;foo&#39;, sqlval=1.0)], </span>
-    <span class="c">#      [SQLEntry(key=&#39;foo&#39;, sqlval=2.0)]]</span>
-    <span class="c"># </span>
-    <span class="c"># The sqlite database would have one column and look like this::</span>
-    <span class="c">#     </span>
-    <span class="c">#     foo   </span>
-    <span class="c">#     ---   </span>
-    <span class="c">#     1.0   # calc_foo/0</span>
-    <span class="c">#     2.0   # calc_foo/1</span>
-    <span class="c"># </span>
-    <span class="c"># Note that you have one entry per row [[...], [...]], like in a</span>
-    <span class="c"># column vector, b/c &quot;foo&quot; is a *column* in the database and b/c each</span>
-    <span class="c"># calculation is represented by one row (record).</span>
-    <span class="c"># </span>
-    <span class="c"># Another example is a 2x2 setup (vary 2 parameters &#39;foo&#39; and &#39;bar&#39;)::</span>
-    <span class="c">#</span>
-    <span class="c">#     [[SQLEntry(key=&#39;foo&#39;, sqlval=1.0), SQLEntry(key=&#39;bar&#39;, sqlval=&#39;lala&#39;)],</span>
-    <span class="c">#      [SQLEntry(key=&#39;foo&#39;, sqlval=2.0), SQLEntry(key=&#39;bar&#39;, sqlval=&#39;huhu&#39;)]]</span>
-    <span class="c"># </span>
-    <span class="c"># Here we have 2 parameters &quot;foo&quot; and &quot;bar&quot; and the sqlite db would</span>
-    <span class="c"># thus have two columns::</span>
-    <span class="c">#</span>
-    <span class="c">#     foo   bar</span>
-    <span class="c">#     ---   ---</span>
-    <span class="c">#     1.0   lala  # calc_foo/0</span>
-    <span class="c">#     2.0   huhu  # calc_foo/1</span>
-    <span class="c"># </span>
-    <span class="c"># Each row (or record in sqlite) will be one Calculation, getting</span>
-    <span class="c"># it&#39;s own dir.</span>
-<div class="viewcode-block" id="ParameterStudy.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.batch.ParameterStudy.html#pwtools.batch.ParameterStudy.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">machines</span><span class="o">=</span><span class="p">[],</span> <span class="n">templates</span><span class="o">=</span><span class="p">[],</span> <span class="n">params_lst</span><span class="o">=</span><span class="p">[],</span> <span class="n">study_name</span><span class="o">=</span><span class="s">&#39;calc&#39;</span><span class="p">,</span>
-                 <span class="n">db_name</span><span class="o">=</span><span class="s">&#39;calc.db&#39;</span><span class="p">,</span> <span class="n">db_table</span><span class="o">=</span><span class="s">&#39;calc&#39;</span><span class="p">,</span> <span class="n">calc_root</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">curdir</span><span class="p">,</span>
-                 <span class="n">calc_dir_prefix</span><span class="o">=</span><span class="s">&#39;calc&#39;</span><span class="p">):</span>
+    <span class="c1"># more notes</span>
+    <span class="c1"># ----------</span>
+    <span class="c1"># The `params_lst` list of lists is a &quot;matrix&quot; which in fact represents the</span>
+    <span class="c1"># sqlite database table. </span>
+    <span class="c1"># </span>
+    <span class="c1"># The most simple case is when we vary only one parameter::</span>
+    <span class="c1">#</span>
+    <span class="c1">#     [[SQLEntry(key=&#39;foo&#39;, sqlval=1.0)], </span>
+    <span class="c1">#      [SQLEntry(key=&#39;foo&#39;, sqlval=2.0)]]</span>
+    <span class="c1"># </span>
+    <span class="c1"># The sqlite database would have one column and look like this::</span>
+    <span class="c1">#     </span>
+    <span class="c1">#     foo   </span>
+    <span class="c1">#     ---   </span>
+    <span class="c1">#     1.0   # calc_foo/0</span>
+    <span class="c1">#     2.0   # calc_foo/1</span>
+    <span class="c1"># </span>
+    <span class="c1"># Note that you have one entry per row [[...], [...]], like in a</span>
+    <span class="c1"># column vector, b/c &quot;foo&quot; is a *column* in the database and b/c each</span>
+    <span class="c1"># calculation is represented by one row (record).</span>
+    <span class="c1"># </span>
+    <span class="c1"># Another example is a 2x2 setup (vary 2 parameters &#39;foo&#39; and &#39;bar&#39;)::</span>
+    <span class="c1">#</span>
+    <span class="c1">#     [[SQLEntry(key=&#39;foo&#39;, sqlval=1.0), SQLEntry(key=&#39;bar&#39;, sqlval=&#39;lala&#39;)],</span>
+    <span class="c1">#      [SQLEntry(key=&#39;foo&#39;, sqlval=2.0), SQLEntry(key=&#39;bar&#39;, sqlval=&#39;huhu&#39;)]]</span>
+    <span class="c1"># </span>
+    <span class="c1"># Here we have 2 parameters &quot;foo&quot; and &quot;bar&quot; and the sqlite db would</span>
+    <span class="c1"># thus have two columns::</span>
+    <span class="c1">#</span>
+    <span class="c1">#     foo   bar</span>
+    <span class="c1">#     ---   ---</span>
+    <span class="c1">#     1.0   lala  # calc_foo/0</span>
+    <span class="c1">#     2.0   huhu  # calc_foo/1</span>
+    <span class="c1"># </span>
+    <span class="c1"># Each row (or record in sqlite) will be one Calculation, getting</span>
+    <span class="c1"># it&#39;s own dir.</span>
+<div class="viewcode-block" id="ParameterStudy.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.batch.ParameterStudy.html#pwtools.batch.ParameterStudy.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">machines</span><span class="o">=</span><span class="p">[],</span> <span class="n">templates</span><span class="o">=</span><span class="p">[],</span> <span class="n">params_lst</span><span class="o">=</span><span class="p">[],</span> <span class="n">study_name</span><span class="o">=</span><span class="s1">&#39;calc&#39;</span><span class="p">,</span>
+                 <span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;calc.db&#39;</span><span class="p">,</span> <span class="n">db_table</span><span class="o">=</span><span class="s1">&#39;calc&#39;</span><span class="p">,</span> <span class="n">calc_root</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">curdir</span><span class="p">,</span>
+                 <span class="n">calc_dir_prefix</span><span class="o">=</span><span class="s1">&#39;calc&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;                 </span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -543,7 +541,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">calc_dir_prefix</span> <span class="o">=</span> <span class="n">calc_dir_prefix</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dbfn</span> <span class="o">=</span> <span class="n">pj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calc_root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">db_name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ParameterStudy.write_input"><a class="viewcode-back" href="../../generated/api/pwtools.batch.ParameterStudy.write_input.html#pwtools.batch.ParameterStudy.write_input">[docs]</a>    <span class="k">def</span> <span class="nf">write_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="n">backup</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">sleep</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">excl</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="ParameterStudy.write_input"><a class="viewcode-back" href="../../generated/api/pwtools.batch.ParameterStudy.write_input.html#pwtools.batch.ParameterStudy.write_input">[docs]</a>    <span class="k">def</span> <span class="nf">write_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">backup</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sleep</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">excl</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create calculation dir(s) for each parameter set and write input files</span>
 <span class="sd">        based on ``templates``. Write sqlite database storing all relevant</span>
@@ -582,76 +580,76 @@
 <span class="sd">            ``rsync --exclude-from=excl_push`` when pushing appended new</span>
 <span class="sd">            calculations to a cluster.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="n">mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">],</span> <span class="s">&quot;Unknown mode: &#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span><span class="n">mode</span>
+        <span class="k">assert</span> <span class="n">mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">],</span> <span class="s2">&quot;Unknown mode: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span><span class="n">mode</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dbfn</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">backup</span><span class="p">:</span>
                 <span class="n">common</span><span class="o">.</span><span class="n">backup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dbfn</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;w&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span>
                 <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dbfn</span><span class="p">)</span>
         <span class="n">have_new_db</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dbfn</span><span class="p">)</span>
         <span class="n">common</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calc_root</span><span class="p">)</span>
-        <span class="c"># this call creates a file ``self.dbfn`` if it doesn&#39;t exist</span>
+        <span class="c1"># this call creates a file ``self.dbfn`` if it doesn&#39;t exist</span>
         <span class="n">sqldb</span> <span class="o">=</span> <span class="n">SQLiteDB</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dbfn</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">db_table</span><span class="p">)</span>
-        <span class="c"># max_idx: counter for calc dir numbering</span>
+        <span class="c1"># max_idx: counter for calc dir numbering</span>
         <span class="n">revision</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="n">have_new_db</span><span class="p">:</span>
             <span class="n">max_idx</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;a&#39;</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">sqldb</span><span class="o">.</span><span class="n">has_column</span><span class="p">(</span><span class="s">&#39;idx&#39;</span><span class="p">):</span>
-                    <span class="n">max_idx</span> <span class="o">=</span> <span class="n">sqldb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&quot;select max(idx) from </span><span class="si">%s</span><span class="s">&quot;</span> \
+            <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">sqldb</span><span class="o">.</span><span class="n">has_column</span><span class="p">(</span><span class="s1">&#39;idx&#39;</span><span class="p">):</span>
+                    <span class="n">max_idx</span> <span class="o">=</span> <span class="n">sqldb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select max(idx) from </span><span class="si">%s</span><span class="s2">&quot;</span> \
                     <span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">db_table</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">StandardError</span><span class="p">(</span><span class="s">&quot;database &#39;</span><span class="si">%s</span><span class="s">&#39;: table &#39;</span><span class="si">%s</span><span class="s">&#39; has no &quot;</span>
-                          <span class="s">&quot;column &#39;idx&#39;, don&#39;t know how to number calcs&quot;</span>
+                    <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;database &#39;</span><span class="si">%s</span><span class="s2">&#39;: table &#39;</span><span class="si">%s</span><span class="s2">&#39; has no &quot;</span>
+                          <span class="s2">&quot;column &#39;idx&#39;, don&#39;t know how to number calcs&quot;</span>
                           <span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dbfn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">db_table</span><span class="p">))</span>
-                <span class="k">if</span> <span class="n">sqldb</span><span class="o">.</span><span class="n">has_column</span><span class="p">(</span><span class="s">&#39;revision&#39;</span><span class="p">):</span>
-                    <span class="n">revision</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sqldb</span><span class="o">.</span><span class="n">get_single</span><span class="p">(</span><span class="s">&quot;select max(revision) </span><span class="se">\</span>
-<span class="s">                        from </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">db_table</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;w&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">sqldb</span><span class="o">.</span><span class="n">has_column</span><span class="p">(</span><span class="s1">&#39;revision&#39;</span><span class="p">):</span>
+                    <span class="n">revision</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sqldb</span><span class="o">.</span><span class="n">get_single</span><span class="p">(</span><span class="s2">&quot;select max(revision) </span><span class="se">\</span>
+<span class="s2">                        from </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">db_table</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span>
                 <span class="n">max_idx</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
         <span class="n">sql_records</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">hostnames</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">imach</span><span class="p">,</span> <span class="n">machine</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">machines</span><span class="p">):</span>
             <span class="n">hostnames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">machine</span><span class="o">.</span><span class="n">hostname</span><span class="p">)</span>
             <span class="n">calc_dir</span> <span class="o">=</span> <span class="n">pj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calc_root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_dir_prefix</span> <span class="o">+</span> \
-                          <span class="s">&#39;_</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">machine</span><span class="o">.</span><span class="n">hostname</span><span class="p">)</span>
+                          <span class="s1">&#39;_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">machine</span><span class="o">.</span><span class="n">hostname</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">backup</span><span class="p">:</span>
                     <span class="n">common</span><span class="o">.</span><span class="n">backup</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;w&#39;</span><span class="p">:</span>
-                    <span class="n">common</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;rm -r </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span><span class="n">calc_dir</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-            <span class="n">run_txt</span> <span class="o">=</span> <span class="s">&quot;here=$(pwd)</span><span class="se">\n</span><span class="s">&quot;</span>
+                <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span>
+                    <span class="n">common</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;rm -r </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">calc_dir</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">run_txt</span> <span class="o">=</span> <span class="s2">&quot;here=$(pwd)</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="k">for</span> <span class="n">_idx</span><span class="p">,</span> <span class="n">params</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params_lst</span><span class="p">):</span>
                 <span class="n">params</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
                 <span class="n">idx</span> <span class="o">=</span> <span class="n">max_idx</span> <span class="o">+</span> <span class="n">_idx</span> <span class="o">+</span> <span class="mi">1</span>
                 <span class="n">calc_subdir</span> <span class="o">=</span> <span class="n">pj</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">))</span>
                 <span class="n">extra_dct</span> <span class="o">=</span> \
-                    <span class="p">{</span><span class="s">&#39;revision&#39;</span><span class="p">:</span> <span class="n">revision</span><span class="p">,</span>
-                     <span class="s">&#39;study_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">study_name</span><span class="p">,</span>
-                     <span class="s">&#39;idx&#39;</span><span class="p">:</span> <span class="n">idx</span><span class="p">,</span>
-                     <span class="s">&#39;calc_name&#39;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">study_name</span> <span class="o">+</span> <span class="s">&quot;_run</span><span class="si">%i</span><span class="s">&quot;</span> <span class="o">%</span><span class="n">idx</span><span class="p">,</span>
+                    <span class="p">{</span><span class="s1">&#39;revision&#39;</span><span class="p">:</span> <span class="n">revision</span><span class="p">,</span>
+                     <span class="s1">&#39;study_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">study_name</span><span class="p">,</span>
+                     <span class="s1">&#39;idx&#39;</span><span class="p">:</span> <span class="n">idx</span><span class="p">,</span>
+                     <span class="s1">&#39;calc_name&#39;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">study_name</span> <span class="o">+</span> <span class="s2">&quot;_run</span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">idx</span><span class="p">,</span>
                      <span class="p">}</span>
                 <span class="n">extra_params</span> <span class="o">=</span> <span class="p">[</span><span class="n">SQLEntry</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">sqlval</span><span class="o">=</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> \
                                 <span class="n">extra_dct</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()]</span>
-                <span class="c"># templates[:] to copy b/c they may be modified in Calculation</span>
+                <span class="c1"># templates[:] to copy b/c they may be modified in Calculation</span>
                 <span class="n">calc</span> <span class="o">=</span> <span class="n">Calculation</span><span class="p">(</span><span class="n">machine</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span>
                                    <span class="n">templates</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">templates</span><span class="p">[:],</span> 
                                    <span class="n">params</span><span class="o">=</span><span class="n">params</span> <span class="o">+</span> <span class="n">extra_params</span><span class="p">,</span>
                                    <span class="n">calc_dir</span><span class="o">=</span><span class="n">calc_subdir</span><span class="p">,</span>
                                    <span class="p">)</span>
-                <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;w&#39;</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">calc_subdir</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;w&#39;</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">calc_subdir</span><span class="p">):</span>
                     <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">calc_subdir</span><span class="p">)</span>
                 <span class="n">calc</span><span class="o">.</span><span class="n">write_input</span><span class="p">()</span>                               
-                <span class="n">run_txt</span> <span class="o">+=</span> <span class="s">&quot;cd </span><span class="si">%i</span><span class="s"> &amp;&amp; </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s"> &amp;&amp; cd $here &amp;&amp; sleep </span><span class="si">%i</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span>\
+                <span class="n">run_txt</span> <span class="o">+=</span> <span class="s2">&quot;cd </span><span class="si">%i</span><span class="s2"> &amp;&amp; </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> &amp;&amp; cd $here &amp;&amp; sleep </span><span class="si">%i</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span>\
                             <span class="n">machine</span><span class="o">.</span><span class="n">subcmd</span><span class="p">,</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_jobfile_basename</span><span class="p">(),</span> <span class="n">sleep</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">imach</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>                            
                     <span class="n">sql_records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calc</span><span class="o">.</span><span class="n">get_sql_record</span><span class="p">())</span>
-            <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="n">pj</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">,</span> <span class="s">&#39;run.sh&#39;</span><span class="p">),</span> <span class="n">run_txt</span><span class="p">)</span>
+            <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="n">pj</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">,</span> <span class="s1">&#39;run.sh&#39;</span><span class="p">),</span> <span class="n">run_txt</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">sql_records</span><span class="p">:</span>
-            <span class="n">record</span><span class="p">[</span><span class="s">&#39;hostname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SQLEntry</span><span class="p">(</span><span class="n">sqlval</span><span class="o">=</span><span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">hostnames</span><span class="p">))</span>
-        <span class="c"># for incomplete parameters: collect header parts from all records and</span>
-        <span class="c"># make a set = unique entries</span>
+            <span class="n">record</span><span class="p">[</span><span class="s1">&#39;hostname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SQLEntry</span><span class="p">(</span><span class="n">sqlval</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">hostnames</span><span class="p">))</span>
+        <span class="c1"># for incomplete parameters: collect header parts from all records and</span>
+        <span class="c1"># make a set = unique entries</span>
         <span class="n">raw_header</span> <span class="o">=</span> <span class="p">[(</span><span class="n">key</span><span class="p">,</span> <span class="n">entry</span><span class="o">.</span><span class="n">sqltype</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">sql_records</span> \
             <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()]</span>
         <span class="n">header</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">raw_header</span><span class="p">))</span>
@@ -663,21 +661,21 @@
                     <span class="k">if</span> <span class="ow">not</span> <span class="n">sqldb</span><span class="o">.</span><span class="n">has_column</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
                         <span class="n">sqldb</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">entry</span><span class="o">.</span><span class="n">sqltype</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
         <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">sql_records</span><span class="p">:</span>
-            <span class="n">cmd</span> <span class="o">=</span> <span class="s">&quot;insert into </span><span class="si">%s</span><span class="s"> (</span><span class="si">%s</span><span class="s">) values (</span><span class="si">%s</span><span class="s">)&quot;</span>\
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;insert into </span><span class="si">%s</span><span class="s2"> (</span><span class="si">%s</span><span class="s2">) values (</span><span class="si">%s</span><span class="s2">)&quot;</span>\
                 <span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db_table</span><span class="p">,</span>
-                  <span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
-                  <span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;?&#39;</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
+                  <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+                  <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;?&#39;</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
             <span class="n">sqldb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">sqlval</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">itervalues</span><span class="p">()))</span>
-        <span class="k">if</span> <span class="n">excl</span> <span class="ow">and</span> <span class="n">revision</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">sqldb</span><span class="o">.</span><span class="n">has_column</span><span class="p">(</span><span class="s">&#39;revision&#39;</span><span class="p">):</span>
-            <span class="n">old_idx_lst</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="ow">in</span> <span class="n">sqldb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&quot;select idx from calc where </span><span class="se">\</span>
-<span class="s">                                                          revision &lt; ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">revision</span><span class="p">,))]</span>
-            <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="n">pj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calc_root</span><span class="p">,</span> <span class="s">&#39;excl_push&#39;</span><span class="p">),</span>
-                              <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">old_idx_lst</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">excl</span> <span class="ow">and</span> <span class="n">revision</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">sqldb</span><span class="o">.</span><span class="n">has_column</span><span class="p">(</span><span class="s1">&#39;revision&#39;</span><span class="p">):</span>
+            <span class="n">old_idx_lst</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="ow">in</span> <span class="n">sqldb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select idx from calc where </span><span class="se">\</span>
+<span class="s2">                                                          revision &lt; ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">revision</span><span class="p">,))]</span>
+            <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="n">pj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calc_root</span><span class="p">,</span> <span class="s1">&#39;excl_push&#39;</span><span class="p">),</span>
+                              <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">old_idx_lst</span><span class="p">))</span>
         <span class="n">sqldb</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span></div></div>
 
 
-<div class="viewcode-block" id="conv_table"><a class="viewcode-back" href="../../generated/api/pwtools.batch.conv_table.html#pwtools.batch.conv_table">[docs]</a><span class="k">def</span> <span class="nf">conv_table</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">ffmt</span><span class="o">=</span><span class="s">&quot;</span><span class="si">%15.4f</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">sfmt</span><span class="o">=</span><span class="s">&quot;</span><span class="si">%15s</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;last&#39;</span><span class="p">,</span> <span class="n">orig</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-               <span class="n">absdiff</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="conv_table"><a class="viewcode-back" href="../../generated/api/pwtools.batch.conv_table.html#pwtools.batch.conv_table">[docs]</a><span class="k">def</span> <span class="nf">conv_table</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">ffmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%15.4f</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">sfmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%15s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;last&#39;</span><span class="p">,</span> <span class="n">orig</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+               <span class="n">absdiff</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convergence table. Assume that quantity `xx` was varied, resulting in</span>
 <span class="sd">    `yy` values. Return a string (table) listing::</span>
 
@@ -726,26 +724,26 @@
     <span class="n">npoints</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
     <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">yy</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">yy</span> <span class="o">=</span> <span class="n">yy</span><span class="p">[:,</span><span class="bp">None</span><span class="p">]</span>
+        <span class="n">yy</span> <span class="o">=</span> <span class="n">yy</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">yy</span> <span class="o">=</span> <span class="n">yy</span><span class="o">.</span><span class="n">T</span>
     <span class="n">ny</span> <span class="o">=</span> <span class="n">yy</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">dyy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">iy</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ny</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;next&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;next&#39;</span><span class="p">:</span>
             <span class="n">dyy</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">iy</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
             <span class="n">dyy</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">iy</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">yy</span><span class="p">[:,</span><span class="n">iy</span><span class="p">])</span>
-        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;last&#39;</span><span class="p">:</span>    
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;last&#39;</span><span class="p">:</span>    
             <span class="n">dyy</span><span class="p">[:,</span><span class="n">iy</span><span class="p">]</span> <span class="o">=</span> <span class="n">yy</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">iy</span><span class="p">]</span> <span class="o">-</span> <span class="n">yy</span><span class="p">[:,</span><span class="n">iy</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">StandardError</span><span class="p">(</span><span class="s">&quot;unknown mode&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;unknown mode&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">absdiff</span><span class="p">:</span>
         <span class="n">dyy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dyy</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">orig</span><span class="p">:</span>            
-        <span class="n">fmtstr</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">&quot;</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">ny</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span> <span class="o">%</span><span class="p">((</span><span class="n">sfmt</span><span class="p">,)</span> <span class="o">+</span> <span class="p">(</span><span class="n">ffmt</span><span class="p">,)</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">ny</span><span class="p">)</span>
+        <span class="n">fmtstr</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">ny</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> <span class="o">%</span><span class="p">((</span><span class="n">sfmt</span><span class="p">,)</span> <span class="o">+</span> <span class="p">(</span><span class="n">ffmt</span><span class="p">,)</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">ny</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">fmtstr</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">&quot;</span><span class="o">*</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>   <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span> <span class="o">%</span><span class="p">((</span><span class="n">sfmt</span><span class="p">,)</span> <span class="o">+</span> <span class="p">(</span><span class="n">ffmt</span><span class="p">,)</span><span class="o">*</span><span class="n">ny</span><span class="p">)</span>
-    <span class="n">st</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="n">fmtstr</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">*</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>   <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> <span class="o">%</span><span class="p">((</span><span class="n">sfmt</span><span class="p">,)</span> <span class="o">+</span> <span class="p">(</span><span class="n">ffmt</span><span class="p">,)</span><span class="o">*</span><span class="n">ny</span><span class="p">)</span>
+    <span class="n">st</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">npoints</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">orig</span><span class="p">:</span>
             <span class="n">repl</span> <span class="o">=</span> <span class="p">(</span><span class="n">xx</span><span class="p">[</span><span class="n">idx</span><span class="p">],)</span> <span class="o">+</span> \
@@ -770,28 +768,28 @@
 <span class="sd">    If this function is called, dummy files are written to a temp dir, the</span>
 <span class="sd">    datsbase is read, and the file are deleted.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c"># HACK!!! Due to the way ParameterStudy.write_input() is coded, we really</span>
-    <span class="c"># need to set up a dummy ParameterStudy and read out the database to get</span>
-    <span class="c"># the replacement keys :-)</span>
+    <span class="c1"># HACK!!! Due to the way ParameterStudy.write_input() is coded, we really</span>
+    <span class="c1"># need to set up a dummy ParameterStudy and read out the database to get</span>
+    <span class="c1"># the replacement keys :-)</span>
     <span class="kn">import</span> <span class="nn">tempfile</span>
     <span class="n">calc_root</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">()</span>
-    <span class="n">jobfn_templ</span> <span class="o">=</span> <span class="n">pj</span><span class="p">(</span><span class="n">calc_root</span><span class="p">,</span> <span class="s">&#39;foo.job&#39;</span><span class="p">)</span>
-    <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="n">jobfn_templ</span><span class="p">,</span> <span class="s">&#39;dummy job template, go away!&#39;</span><span class="p">)</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">Machine</span><span class="p">(</span><span class="n">hostname</span><span class="o">=</span><span class="s">&#39;foo&#39;</span><span class="p">,</span> 
-                <span class="n">template</span><span class="o">=</span><span class="n">FileTemplate</span><span class="p">(</span><span class="n">basename</span><span class="o">=</span><span class="s">&#39;foo.job&#39;</span><span class="p">,</span>
+    <span class="n">jobfn_templ</span> <span class="o">=</span> <span class="n">pj</span><span class="p">(</span><span class="n">calc_root</span><span class="p">,</span> <span class="s1">&#39;foo.job&#39;</span><span class="p">)</span>
+    <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="n">jobfn_templ</span><span class="p">,</span> <span class="s1">&#39;dummy job template, go away!&#39;</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">Machine</span><span class="p">(</span><span class="n">hostname</span><span class="o">=</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> 
+                <span class="n">template</span><span class="o">=</span><span class="n">FileTemplate</span><span class="p">(</span><span class="n">basename</span><span class="o">=</span><span class="s1">&#39;foo.job&#39;</span><span class="p">,</span>
                                       <span class="n">templ_dir</span><span class="o">=</span><span class="n">calc_root</span><span class="p">))</span>
-    <span class="k">print</span> <span class="p">(</span><span class="s">&quot;writing test files to: </span><span class="si">%s</span><span class="s">, will be deleted&quot;</span> <span class="o">%</span><span class="n">calc_root</span><span class="p">)</span>
-    <span class="n">params_lst</span> <span class="o">=</span> <span class="p">[[</span><span class="n">SQLEntry</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s">&#39;dummy&#39;</span><span class="p">,</span> <span class="n">sqlval</span><span class="o">=</span><span class="mi">1</span><span class="p">)]]</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;writing test files to: </span><span class="si">%s</span><span class="s2">, will be deleted&quot;</span> <span class="o">%</span><span class="n">calc_root</span><span class="p">)</span>
+    <span class="n">params_lst</span> <span class="o">=</span> <span class="p">[[</span><span class="n">SQLEntry</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;dummy&#39;</span><span class="p">,</span> <span class="n">sqlval</span><span class="o">=</span><span class="mi">1</span><span class="p">)]]</span>
     <span class="n">study</span> <span class="o">=</span> <span class="n">ParameterStudy</span><span class="p">(</span><span class="n">machines</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">params_lst</span><span class="o">=</span><span class="n">params_lst</span><span class="p">,</span>
                            <span class="n">calc_root</span><span class="o">=</span><span class="n">calc_root</span><span class="p">)</span>
     <span class="n">study</span><span class="o">.</span><span class="n">write_input</span><span class="p">()</span>
-    <span class="n">db</span> <span class="o">=</span> <span class="n">SQLiteDB</span><span class="p">(</span><span class="n">study</span><span class="o">.</span><span class="n">dbfn</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s">&#39;calc&#39;</span><span class="p">)</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">SQLiteDB</span><span class="p">(</span><span class="n">study</span><span class="o">.</span><span class="n">dbfn</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s1">&#39;calc&#39;</span><span class="p">)</span>
     <span class="n">db_keys</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">get_header</span><span class="p">()]</span>
-    <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;dummy&#39;</span><span class="p">,</span> <span class="s">&#39;hostname&#39;</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;dummy&#39;</span><span class="p">,</span> <span class="s1">&#39;hostname&#39;</span><span class="p">]:</span>
         <span class="n">db_keys</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">db_keys</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">kk</span><span class="p">))</span>
     <span class="n">db</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;ParameterStudy&#39;</span> <span class="p">:</span> <span class="n">db_keys</span><span class="p">,</span>
-           <span class="s">&#39;Machine&#39;</span> <span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">get_sql_record</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ParameterStudy&#39;</span> <span class="p">:</span> <span class="n">db_keys</span><span class="p">,</span>
+           <span class="s1">&#39;Machine&#39;</span> <span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">get_sql_record</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
     <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">calc_root</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ret</span></div>
 
@@ -828,8 +826,8 @@
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">kwds</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
         
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;init&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">):</span>
-            <span class="nb">eval</span><span class="p">(</span><span class="s">&#39;self.init()&#39;</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;init&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">):</span>
+            <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;self.init()&#39;</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
@@ -846,13 +844,13 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

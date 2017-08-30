@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pwtools.sql.SQLiteDB &mdash; pwtools  documentation</title>
+    <title>pwtools.sql.SQLiteDB &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="sql" href="sql.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.sql.SQLiteDB.add_column" href="pwtools.sql.SQLiteDB.add_column.html" />
     <link rel="prev" title="pwtools.sql.SQLEntry" href="pwtools.sql.SQLEntry.html" /> 
   </head>
@@ -45,9 +46,9 @@
         <li class="right" >
           <a href="pwtools.sql.SQLEntry.html" title="pwtools.sql.SQLEntry"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="sql.html" accesskey="U">sql</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="sql.html" accesskey="U">sql</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -61,21 +62,18 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.sql.SQLiteDB.txt"
+      <li><a href="../../_sources/generated/api/pwtools.sql.SQLiteDB.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -102,14 +100,14 @@ methods.</p>
 type conversion Python -&gt; sqlite is done by the sqlite3 module. For
 instance, double numbers (i.e. Python float type) will be correctly
 stored as double by SQLite default.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&quot;insert into calc (&#39;a&#39;, &#39;b&#39;) values (?,?)&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="s">&#39;lala&#39;</span><span class="p">))</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;insert into calc (&#39;a&#39;, &#39;b&#39;) values (?,?)&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;lala&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first">Write values directly into sql command. Here all values are actually
 strings.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&quot;insert into calc (&#39;a&#39;, &#39;b&#39;) values (1.0, &#39;lala&#39;)&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&quot;insert into calc (&#39;a&#39;, &#39;b&#39;) values (</span><span class="si">%e</span><span class="s">, &#39;</span><span class="si">%s</span><span class="s">&#39;)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="s">&#39;lala&#39;</span><span class="p">)</span><span class="s">&quot;)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;insert into calc (&#39;a&#39;, &#39;b&#39;) values (1.0, &#39;lala&#39;)&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;insert into calc (&#39;a&#39;, &#39;b&#39;) values (</span><span class="si">%e</span><span class="s2">, &#39;</span><span class="si">%s</span><span class="s2">&#39;)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;lala&#39;</span><span class="p">)</span><span class="s2">&quot;)</span>
 </pre></div>
 </div>
 <p>There are some caveats. For example, the string (&#8216;lala&#8217; in the example)
@@ -120,35 +118,35 @@ less precision!</p>
 </li>
 </ol>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="n">SQLiteDB</span><span class="p">(</span><span class="s">&#39;test.db&#39;</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s">&#39;calc&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">create_table</span><span class="p">([(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;float&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;text&#39;</span><span class="p">)])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&quot;insert into </span><span class="si">%s</span><span class="s"> (&#39;a&#39;, &#39;b&#39;) values (1.0, &#39;lala&#39;)&quot;</span> <span class="o">%</span><span class="n">db</span><span class="o">.</span><span class="n">table</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&quot;insert into </span><span class="si">%s</span><span class="s"> (&#39;a&#39;, &#39;b&#39;) values (?,?)&quot;</span> <span class="o">%</span><span class="n">db</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="s">&#39;huhu&#39;</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># iterator</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&quot;select * from calc&quot;</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="k">print</span> <span class="n">record</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="n">SQLiteDB</span><span class="p">(</span><span class="s1">&#39;test.db&#39;</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s1">&#39;calc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">create_table</span><span class="p">([(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;float&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;insert into </span><span class="si">%s</span><span class="s2"> (&#39;a&#39;, &#39;b&#39;) values (1.0, &#39;lala&#39;)&quot;</span> <span class="o">%</span><span class="n">db</span><span class="o">.</span><span class="n">table</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;insert into </span><span class="si">%s</span><span class="s2"> (&#39;a&#39;, &#39;b&#39;) values (?,?)&quot;</span> <span class="o">%</span><span class="n">db</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="s1">&#39;huhu&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># iterator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select * from calc&quot;</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="n">record</span>
 <span class="go">(1.0, u&#39;lala&#39;)</span>
 <span class="go">(2.0, u&#39;huhu&#39;)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># list</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&quot;select * from calc&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># list</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select * from calc&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
 <span class="go">[(1.0, u&#39;lala&#39;), (2.0, u&#39;huhu&#39;)]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_list1d</span><span class="p">(</span><span class="s">&quot;select a from calc&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_list1d</span><span class="p">(</span><span class="s2">&quot;select a from calc&quot;</span><span class="p">)</span>
 <span class="go">[1.0, 2.0]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_list1d</span><span class="p">(</span><span class="s">&quot;select b from calc&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_list1d</span><span class="p">(</span><span class="s2">&quot;select b from calc&quot;</span><span class="p">)</span>
 <span class="go">[u&#39;lala&#39;, u&#39;huhu&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_array1d</span><span class="p">(</span><span class="s">&quot;select a from calc&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_array1d</span><span class="p">(</span><span class="s2">&quot;select a from calc&quot;</span><span class="p">)</span>
 <span class="go">array([ 1.,  2.])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="s">&#39;float&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&quot;update calc set c=5.0&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_array</span><span class="p">(</span><span class="s">&quot;select a,c from calc&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;float&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;update calc set c=5.0&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_array</span><span class="p">(</span><span class="s2">&quot;select a,c from calc&quot;</span><span class="p">)</span>
 <span class="go">array([[ 1.,  5.],</span>
 <span class="go">       [ 2.,  5.]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># db in memory, attach and query over multiple databases, assume both</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># databases have a table named &#39;calc&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="n">SQLiteDB</span><span class="p">(</span><span class="s">&#39;:memory:&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="s">&quot;attach &#39;foo.db&#39; as foo; attach &#39;bar.db&#39; as bar;&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_array</span><span class="p">(</span><span class="s">&quot;select foo.calc.a,bar.calc.b from foo.calc,bar.calc &quot;</span>
-<span class="gp">... </span><span class="s">&quot;where foo.calc.idx==bar.calc.idx and foo.calc.c not like &#39;</span><span class="si">%g</span><span class="s">ohome%&#39;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># db in memory, attach and query over multiple databases, assume both</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># databases have a table named &#39;calc&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="n">SQLiteDB</span><span class="p">(</span><span class="s1">&#39;:memory:&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="s2">&quot;attach &#39;foo.db&#39; as foo; attach &#39;bar.db&#39; as bar;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_array</span><span class="p">(</span><span class="s2">&quot;select foo.calc.a,bar.calc.b from foo.calc,bar.calc &quot;</span>
+<span class="gp">... </span><span class="s2">&quot;where foo.calc.idx==bar.calc.idx and foo.calc.c not like &#39;</span><span class="si">%g</span><span class="s2">ohome%&#39;&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="rubric">Methods</p>
@@ -296,10 +294,10 @@ data into that, use <a class="reference internal" href="pwtools.sql.SQLiteDB.exe
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">add_columns</span><span class="p">([(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;text&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;real&#39;</span><span class="p">)])</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">add_columns</span><span class="p">([(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;real&#39;</span><span class="p">)])</span>
 <span class="go"># is the same as</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;text&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;real&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;real&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -454,7 +452,7 @@ numpy 2d array. The result depends on the data types of the columns.</p>
 the column name and the column is a list. Column names are obtained
 from the <code class="docutils literal"><span class="pre">Cursor.description</span></code> attribute.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_dict</span><span class="p">(</span><span class="s">&quot;select foo,bar from calc&quot;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_dict</span><span class="p">(</span><span class="s2">&quot;select foo,bar from calc&quot;</span><span class="p">)</span>
 <span class="go">{&#39;foo&#39;: [1,2,3],</span>
 <span class="go"> &#39;bar&#39;: [&#39;x&#39;, &#39;y&#39;, &#39;z&#39;]}</span>
 </pre></div>
@@ -474,9 +472,9 @@ from the <code class="docutils literal"><span class="pre">Cursor.description</sp
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="n">SQLiteDB</span><span class="p">(</span><span class="s">&#39;test.db&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&quot;create table foo (a text, b real)&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_header</span><span class="p">(</span><span class="s">&#39;foo&#39;</span><span class="p">)</span> 
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="n">SQLiteDB</span><span class="p">(</span><span class="s1">&#39;test.db&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;create table foo (a text, b real)&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_header</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span> 
 <span class="go">[(&#39;a&#39;, &#39;text&#39;), (&#39;b&#39;, &#39;real&#39;)]</span>
 </pre></div>
 </div>
@@ -585,14 +583,14 @@ column, then <code class="docutils literal"><span class="pre">self.cur.fetchall(
         <li class="right" >
           <a href="pwtools.sql.SQLEntry.html" title="pwtools.sql.SQLEntry"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="sql.html" >sql</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="sql.html" >sql</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

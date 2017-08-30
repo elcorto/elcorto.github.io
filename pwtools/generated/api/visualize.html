@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>visualize &mdash; pwtools  documentation</title>
+    <title>visualize &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="API Reference" href="index.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.visualize.ViewFactory" href="pwtools.visualize.ViewFactory.html" />
     <link rel="prev" title="pwtools.verbose.verbose" href="pwtools.verbose.verbose.html" /> 
   </head>
@@ -45,8 +46,8 @@
         <li class="right" >
           <a href="pwtools.verbose.verbose.html" title="pwtools.verbose.verbose"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API Reference</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API Reference</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -71,21 +72,18 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/visualize.txt"
+      <li><a href="../../_sources/generated/api/visualize.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -108,7 +106,7 @@ and trajectory display. All viewer functions are actually callable instances of
 <code class="descclassname">ViewFactory.</code><code class="descname">__call__</code><span class="sig-paren">(</span><em>obj</em>, <em>logfile=None</em>, <em>structfile=None</em>, <em>disp=False</em>, <em>keepfiles=False</em>, <em>tmpdir='/tmp'</em>, <em>wait=True</em>, <em>bg=False</em>, <em>options=''</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/visualize.html#ViewFactory.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.visualize.ViewFactory.__call__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call viewer.</p>
 <p>The executed shell command is:</p>
-<div class="highlight-python"><div class="highlight"><pre>&lt;cmd&gt; &lt;options&gt; &lt;structfile&gt; &gt; &lt;logfile&gt;
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">cmd</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">options</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">structfile</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">logfile</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
@@ -157,15 +155,15 @@ viewer program may complain.</p>
 <h3>VMD<a class="headerlink" href="#vmd" title="Permalink to this headline">¶</a></h3>
 <p>Use <a class="reference internal" href="pwtools.visualize.view_vmd_xyz.html#pwtools.visualize.view_vmd_xyz" title="pwtools.visualize.view_vmd_xyz"><code class="xref py py-func docutils literal"><span class="pre">view_vmd_xyz()</span></code></a> or <a class="reference internal" href="pwtools.visualize.view_vmd_axsf.html#pwtools.visualize.view_vmd_axsf" title="pwtools.visualize.view_vmd_axsf"><code class="xref py py-func docutils literal"><span class="pre">view_vmd_axsf()</span></code></a>. To execute a tcl script
 after the struct has loaded (in the shell: <code class="docutils literal"><span class="pre">vmd</span> <span class="pre">-e</span> <span class="pre">script.tcl</span> <span class="pre">foo.xyz</span></code>), use:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">Trajectory</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">view_vmd_axsf</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="s">&#39;-e script.tcl&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">Trajectory</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">view_vmd_axsf</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="s1">&#39;-e script.tcl&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Note that the viewer (in this case VMD) is simply called like <code class="docutils literal"><span class="pre">vmd</span>
 <span class="pre">structfile</span></code>, which can take very long for big MD data b/c the VMD default
 is to use smth like <code class="docutils literal"><span class="pre">mol</span> <span class="pre">new</span> <span class="pre">...</span> <span class="pre">waitfor</span> <span class="pre">1</span></code>, which is slow. In that case you
 want to call VMD directly:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ vmd
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ vmd
 vmd &gt; mol new /tmp/foo.axsf type xsf waitfor all
 vmd &gt; set molid 0
 vmd &gt; source ~/work/vmd/ca_salt.tcl
@@ -173,7 +171,7 @@ vmd &gt; source ~/work/vmd/ca_salt.tcl
 </div>
 <p>The trick here is <code class="docutils literal"><span class="pre">...</span> <span class="pre">waitfor</span> <span class="pre">all</span></code>. See the VMD manual for the <code class="docutils literal"><span class="pre">mol</span></code>
 command. Or you place these lines in a script and use:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ vmd script_to_execute.tcl
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ vmd script_to_execute.tcl
 </pre></div>
 </div>
 </div>
@@ -230,13 +228,13 @@ command. Or you place these lines in a script and use:</p>
         <li class="right" >
           <a href="pwtools.verbose.verbose.html" title="pwtools.verbose.verbose"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

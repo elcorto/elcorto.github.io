@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pwtools.symmetry &mdash; pwtools  documentation</title>
+    <title>pwtools.symmetry &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="Module code" href="../index.html" /> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -37,8 +38,8 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -46,14 +47,11 @@
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -65,16 +63,36 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.symmetry</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">pwtools</span> <span class="kn">import</span> <span class="n">atomic_data</span>
-<span class="kn">from</span> <span class="nn">pwtools.crys</span> <span class="kn">import</span> <span class="n">Structure</span>
+<span></span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">atomic_data</span>
+<span class="kn">from</span> <span class="nn">pwtools.crys</span> <span class="k">import</span> <span class="n">Structure</span>
+
+<span class="c1"># FIXME: apparently, newer versions of spglib do NOT return None when the input</span>
+<span class="c1"># structure is irreducible. Instead, they return (cell, coords_frac, znucl).</span>
+<span class="c1"># The cell may have another orientation. Therefore, if we want to check for</span>
+<span class="c1"># irreducibility, we need to check for equal natoms, spacegroup, as well as</span>
+<span class="c1"># cell volume, cryst_const (NOT nell) using np.allclose.</span>
+<span class="c1">#</span>
+<span class="c1"># But the quesion is: do we use the &quot;we return None if the stuct is</span>
+<span class="c1"># irreducible&quot; behavior anywhere? If not, then fine, just fix the check below</span>
+<span class="c1"># and we are good.</span>
+<span class="c1"># </span>
+<span class="c1"># versions</span>
+<span class="c1"># --------</span>
+<span class="c1"># $ pip search spglib                                                                                                                                           [NORMAL]</span>
+<span class="c1"># pyspglib (1.8.3.1)  - This is the pyspglib module.</span>
+<span class="c1">#   INSTALLED: 1.8.3.1 (latest)</span>
+<span class="c1"># spglib (1.9.9.44)   - This is the spglib module.</span>
+<span class="c1">#</span>
+<span class="c1"># pyspglib was renamed spglib, etc etc</span>
 
 <div class="viewcode-block" id="spglib2struct"><a class="viewcode-back" href="../../generated/api/pwtools.symmetry.spglib2struct.html#pwtools.symmetry.spglib2struct">[docs]</a><span class="k">def</span> <span class="nf">spglib2struct</span><span class="p">(</span><span class="n">tup</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;function not usable, fixme&quot;</span><span class="p">)</span>
     <span class="sd">&quot;&quot;&quot;Transform returned tuple from various spglib functions to Structure.</span>
 
 <span class="sd">    This applies to ``spglib.find_primitive()`` and probably some more. Their</span>
 <span class="sd">    doc string says it returns an ``ase.Atoms`` object, but what it actually</span>
 <span class="sd">    returns is a tuple `(cell,coords_frac,znucl)`. `znucl` is a</span>
-<span class="sd">    list of integers with atomic core charge (e.g. 1 for H), see </span>
+<span class="sd">    list of integers with atomic core charge (e.g. 1 for H), see</span>
 <span class="sd">    :data:`pwtools.atomic_data.numbers`.</span>
 
 <span class="sd">    Parameters</span>
@@ -89,26 +107,26 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">((</span><span class="mi">1</span><span class="p">,))</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
-    <span class="k">if</span> <span class="n">tup</span> <span class="o">==</span> <span class="p">(</span><span class="bp">None</span><span class="p">,)</span><span class="o">*</span><span class="mi">3</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">None</span>
-    <span class="k">else</span><span class="p">:</span>        
+    <span class="k">if</span> <span class="n">tup</span> <span class="o">==</span> <span class="p">(</span><span class="kc">None</span><span class="p">,)</span><span class="o">*</span><span class="mi">3</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
         <span class="n">symbols</span> <span class="o">=</span> <span class="p">[</span><span class="n">atomic_data</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">tup</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
         <span class="n">st</span> <span class="o">=</span> <span class="n">Structure</span><span class="p">(</span><span class="n">coords_frac</span><span class="o">=</span><span class="n">tup</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cell</span><span class="o">=</span><span class="n">tup</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">symbols</span><span class="o">=</span><span class="n">symbols</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">st</span></div>
-            
+
 
 <div class="viewcode-block" id="spglib_get_primitive"><a class="viewcode-back" href="../../generated/api/pwtools.symmetry.spglib_get_primitive.html#pwtools.symmetry.spglib_get_primitive">[docs]</a><span class="k">def</span> <span class="nf">spglib_get_primitive</span><span class="p">(</span><span class="n">struct</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Find primitive structure for given Structure. </span>
-<span class="sd">    </span>
+    <span class="sd">&quot;&quot;&quot;Find primitive structure for given Structure.</span>
+
 <span class="sd">    Uses pyspglib.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    struct : Structure</span>
 <span class="sd">    **kwds : keywords</span>
-<span class="sd">        passed to ``spglib.find_primitive()``, e.g. `symprec` and </span>
+<span class="sd">        passed to ``spglib.find_primitive()``, e.g. `symprec` and</span>
 <span class="sd">        `angle_tolerance` last time I checked</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    Structure or None</span>
@@ -126,23 +144,24 @@
 <span class="sd">    cell which you would expect or get from other tools like Wien2K&#39;s sgroup.</span>
 <span class="sd">    Only things like `natoms` and the spacegroup can be safely compared.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">pyspglib</span> <span class="kn">import</span> <span class="n">spglib</span>
+    <span class="c1"># XXX why imports here??</span>
+    <span class="kn">from</span> <span class="nn">pyspglib</span> <span class="k">import</span> <span class="n">spglib</span>
     <span class="k">return</span> <span class="n">spglib2struct</span><span class="p">(</span><span class="n">spglib</span><span class="o">.</span><span class="n">find_primitive</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">get_fake_ase_atoms</span><span class="p">(),</span>
                                                <span class="o">**</span><span class="n">kwds</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="spglib_get_spacegroup"><a class="viewcode-back" href="../../generated/api/pwtools.symmetry.spglib_get_spacegroup.html#pwtools.symmetry.spglib_get_spacegroup">[docs]</a><span class="k">def</span> <span class="nf">spglib_get_spacegroup</span><span class="p">(</span><span class="n">struct</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Find spacegroup for given Structure. </span>
-<span class="sd">    </span>
+    <span class="sd">&quot;&quot;&quot;Find spacegroup for given Structure.</span>
+
 <span class="sd">    Uses pyspglib.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    struct : Structure</span>
 <span class="sd">    **kwds : keywords</span>
-<span class="sd">        passed to ``spglib.get_spacegroup()``, e.g. `symprec` and </span>
+<span class="sd">        passed to ``spglib.get_spacegroup()``, e.g. `symprec` and</span>
 <span class="sd">        `angle_tolerance` last time I checked</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    spg_num, spg_sym</span>
@@ -156,12 +175,13 @@
 <span class="sd">    The used function ``spglib.get_spacegroup()`` returns a string, which we</span>
 <span class="sd">    split into `spg_num` and `spg_sym`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">pyspglib</span> <span class="kn">import</span> <span class="n">spglib</span>
+    <span class="c1"># XXX why imports here??</span>
+    <span class="kn">from</span> <span class="nn">pyspglib</span> <span class="k">import</span> <span class="n">spglib</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">spglib</span><span class="o">.</span><span class="n">get_spacegroup</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">get_fake_ase_atoms</span><span class="p">(),</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
     <span class="n">spl</span> <span class="o">=</span> <span class="n">ret</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
     <span class="n">spg_sym</span> <span class="o">=</span> <span class="n">spl</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">spg_num</span> <span class="o">=</span> <span class="n">spl</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">spg_num</span> <span class="o">=</span> <span class="n">spg_num</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;(&#39;</span><span class="p">,</span><span class="s">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;)&#39;</span><span class="p">,</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">spg_num</span> <span class="o">=</span> <span class="n">spg_num</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="n">spg_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">spg_num</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">spg_num</span><span class="p">,</span><span class="n">spg_sym</span></div>
 
@@ -181,13 +201,13 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

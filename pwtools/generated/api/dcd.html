@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>dcd &mdash; pwtools  documentation</title>
+    <title>dcd &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="API Reference" href="index.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.dcd.HEADER_DTYPE" href="pwtools.dcd.HEADER_DTYPE.html" />
     <link rel="prev" title="pwtools.crys.volume_cell3d" href="pwtools.crys.volume_cell3d.html" /> 
   </head>
@@ -45,8 +46,8 @@
         <li class="right" >
           <a href="pwtools.crys.volume_cell3d.html" title="pwtools.crys.volume_cell3d"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API Reference</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API Reference</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -60,21 +61,18 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/dcd.txt"
+      <li><a href="../../_sources/generated/api/dcd.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -89,17 +87,17 @@
 <h1>dcd<a class="headerlink" href="#dcd" title="Permalink to this headline">¶</a></h1>
 <span class="target" id="module-pwtools.dcd"></span><p>Read dcd files. Some timings (in ipython). Reading lammps files, not using
 <cite>convang</cite> here, so angles are not converted but this is only a speed test.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="o">%</span><span class="n">timeit</span> <span class="n">cc</span><span class="p">,</span><span class="n">co</span><span class="o">=</span><span class="n">dcd</span><span class="o">.</span><span class="n">read_dcd_data_ref</span><span class="p">(</span><span class="s">&#39;lmp.out.dcd&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="o">%</span><span class="n">timeit</span> <span class="n">cc</span><span class="p">,</span><span class="n">co</span><span class="o">=</span><span class="n">dcd</span><span class="o">.</span><span class="n">read_dcd_data_ref</span><span class="p">(</span><span class="s1">&#39;lmp.out.dcd&#39;</span><span class="p">)</span>
 <span class="go">100 loops, best of 3: 3.35 ms per loop</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="o">%</span><span class="n">timeit</span> <span class="n">cc</span><span class="p">,</span><span class="n">co</span><span class="o">=</span><span class="n">dcd</span><span class="o">.</span><span class="n">read_dcd_data_f</span><span class="p">(</span><span class="s">&#39;lmp.out.dcd&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">%</span><span class="n">timeit</span> <span class="n">cc</span><span class="p">,</span><span class="n">co</span><span class="o">=</span><span class="n">dcd</span><span class="o">.</span><span class="n">read_dcd_data_f</span><span class="p">(</span><span class="s1">&#39;lmp.out.dcd&#39;</span><span class="p">)</span>
 <span class="go">1000 loops, best of 3: 455 µs per loop</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="o">%</span><span class="n">timeit</span> <span class="n">cc</span><span class="p">,</span><span class="n">co</span><span class="o">=</span><span class="n">dcd</span><span class="o">.</span><span class="n">read_dcd_data_f</span><span class="p">(</span><span class="s">&#39;lmp.out.dcd&#39;</span><span class="p">,</span> <span class="n">nstephdr</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">%</span><span class="n">timeit</span> <span class="n">cc</span><span class="p">,</span><span class="n">co</span><span class="o">=</span><span class="n">dcd</span><span class="o">.</span><span class="n">read_dcd_data_f</span><span class="p">(</span><span class="s1">&#39;lmp.out.dcd&#39;</span><span class="p">,</span> <span class="n">nstephdr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="go">1000 loops, best of 3: 241 µs per loop    </span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># pure numpy wins!</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="o">%</span><span class="n">timeit</span> <span class="n">cc</span><span class="p">,</span><span class="n">co</span><span class="o">=</span><span class="n">dcd</span><span class="o">.</span><span class="n">read_dcd_data</span><span class="p">(</span><span class="s">&#39;lmp.out.dcd&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># pure numpy wins!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">%</span><span class="n">timeit</span> <span class="n">cc</span><span class="p">,</span><span class="n">co</span><span class="o">=</span><span class="n">dcd</span><span class="o">.</span><span class="n">read_dcd_data</span><span class="p">(</span><span class="s1">&#39;lmp.out.dcd&#39;</span><span class="p">)</span>
 <span class="go">10000 loops, best of 3: 114 µs per loop</span>
 </pre></div>
 </div>
@@ -152,13 +150,13 @@
         <li class="right" >
           <a href="pwtools.crys.volume_cell3d.html" title="pwtools.crys.volume_cell3d"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

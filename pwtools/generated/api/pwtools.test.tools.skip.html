@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pwtools.test.tools.skip &mdash; pwtools  documentation</title>
+    <title>pwtools.test.tools.skip &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="test.tools" href="test.tools.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.test.tools.testdir" href="pwtools.test.tools.testdir.html" />
     <link rel="prev" title="pwtools.test.tools.msg" href="pwtools.test.tools.msg.html" /> 
   </head>
@@ -45,9 +46,9 @@
         <li class="right" >
           <a href="pwtools.test.tools.msg.html" title="pwtools.test.tools.msg"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="test.tools.html" accesskey="U">test.tools</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="test.tools.html" accesskey="U">test.tools</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -61,21 +62,18 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.test.tools.skip.txt"
+      <li><a href="../../_sources/generated/api/pwtools.test.tools.skip.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -91,7 +89,28 @@
 <dl class="function">
 <dt id="pwtools.test.tools.skip">
 <code class="descclassname">pwtools.test.tools.</code><code class="descname">skip</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/test/tools.html#skip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.test.tools.skip" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Use inside a test function or class. This raises
+nose.plugins.skip.SkipTest and makes the test be skipped. Doesn&#8217;t work as a
+decorator. If you need a decorator to temporarily disable a test function,
+then use unitest.skip(). The latter works only on test <em>functions</em> ... or
+so they say. For classes, only raising SkipTest will make nose really skip
+it.</p>
+<p class="rubric">Examples</p>
+<p>from pwtools.test.tools import skip
+import unitest</p>
+<dl class="docutils">
+<dt>def test_foo():</dt>
+<dd><dl class="first last docutils">
+<dt>if some_error_condition:</dt>
+<dd>skip(&#8220;skipping this test b/c of foo&#8221;)</dd>
+</dl>
+</dd>
+</dl>
+<p>&#64;unitest.skip(&#8220;disable test b/c we&#8217;re all out of zonk!&#8221;)
+def test_bar():</p>
+<blockquote>
+<div>assert baz == zonk</div></blockquote>
+</dd></dl>
 
 </div>
 
@@ -116,14 +135,14 @@
         <li class="right" >
           <a href="pwtools.test.tools.msg.html" title="pwtools.test.tools.msg"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="test.tools.html" >test.tools</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="test.tools.html" >test.tools</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

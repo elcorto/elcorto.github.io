@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pwtools.num.Interpol2D &mdash; pwtools  documentation</title>
+    <title>pwtools.num.Interpol2D &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="num" href="num.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.num.Interpol2D.__call__" href="pwtools.num.Interpol2D.__call__.html" />
     <link rel="prev" title="pwtools.num.Fit1D.is_mono" href="pwtools.num.Fit1D.is_mono.html" /> 
   </head>
@@ -45,9 +46,9 @@
         <li class="right" >
           <a href="pwtools.num.Fit1D.is_mono.html" title="pwtools.num.Fit1D.is_mono"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="num.html" accesskey="U">num</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="num.html" accesskey="U">num</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -61,21 +62,18 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.num.Interpol2D.txt"
+      <li><a href="../../_sources/generated/api/pwtools.num.Interpol2D.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -94,7 +92,7 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>Common 2D interpolator API.</p>
 <p>The API is the same as in <code class="docutils literal"><span class="pre">scipy.interpolate</span></code>, e.g.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">inter</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">interpolate</span><span class="o">.</span><span class="n">SomeInterpolatorClass</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">inter</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">interpolate</span><span class="o">.</span><span class="n">SomeInterpolatorClass</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">new_values</span> <span class="o">=</span> <span class="n">inter</span><span class="p">(</span><span class="n">new_points</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -132,7 +130,7 @@ does <a class="reference internal" href="pwtools.num.Interpol2D.get_min.html#pwt
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>points: 2d (M,2) or 1d (N,)</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>points</strong> : 2d (M,2) or 1d (N,)</p>
 <blockquote>
 <div><p>M points in 2-dim space where to evalutae the interpolator
 (only one in 1d case)</p>
@@ -199,19 +197,24 @@ kx = 3, ky = 3 (default)
 nxest, nyest</dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span> 
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">num</span><span class="p">,</span> <span class="n">mpl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span> 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="o">=</span><span class="n">x</span> 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">;</span> <span class="n">Y</span><span class="o">=</span><span class="n">Y</span><span class="o">.</span><span class="n">T</span> 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Z</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">Y</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span> 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dd</span><span class="o">=</span><span class="n">mpl</span><span class="o">.</span><span class="n">Data2D</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="o">=</span><span class="n">Y</span><span class="p">,</span><span class="n">Z</span><span class="o">=</span><span class="n">Z</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">inter</span><span class="o">=</span><span class="n">num</span><span class="o">.</span><span class="n">Interpol2D</span><span class="p">(</span><span class="n">dd</span><span class="o">=</span><span class="n">dd</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="s">&#39;rbf_multi&#39;</span><span class="p">);</span> <span class="n">inter</span><span class="p">([[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
-<span class="go">array([  5.0000001 ,  29.99999975])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">inter</span><span class="o">=</span><span class="n">num</span><span class="o">.</span><span class="n">Interpol2D</span><span class="p">(</span><span class="n">dd</span><span class="o">=</span><span class="n">dd</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="s">&#39;rbf_gauss&#39;</span><span class="p">);</span> <span class="n">inter</span><span class="p">([[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
-<span class="go">array([  5.00000549,  29.99999717])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">inter</span><span class="o">=</span><span class="n">num</span><span class="o">.</span><span class="n">Interpol2D</span><span class="p">(</span><span class="n">dd</span><span class="o">=</span><span class="n">dd</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="s">&#39;ct&#39;</span><span class="p">);</span> <span class="n">inter</span><span class="p">([[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
-<span class="go">array([  4.99762256,  30.010856  ])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">inter</span><span class="o">=</span><span class="n">num</span><span class="o">.</span><span class="n">Interpol2D</span><span class="p">(</span><span class="n">dd</span><span class="o">=</span><span class="n">dd</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="s">&#39;bispl&#39;</span><span class="p">);</span> <span class="n">inter</span><span class="p">([[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
-<span class="go">array([  5.,  30.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;what: </span><span class="si">{:15}</span><span class="s2"> target: [5,30] result: </span><span class="si">{}</span><span class="s2">&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">what</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;rbf_multi&#39;</span><span class="p">,</span> <span class="s1">&#39;rbf_inv_multi&#39;</span><span class="p">,</span> <span class="s1">&#39;rbf_gauss&#39;</span><span class="p">,</span> <span class="s1">&#39;ct&#39;</span><span class="p">,</span> <span class="s1">&#39;bispl&#39;</span><span class="p">,</span> 
+<span class="go">                 &#39;linear&#39;, &#39;nearest&#39;]:</span>
+<span class="gp">... </span>    <span class="n">inter</span><span class="o">=</span><span class="n">num</span><span class="o">.</span><span class="n">Interpol2D</span><span class="p">(</span><span class="n">dd</span><span class="o">=</span><span class="n">dd</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="n">what</span><span class="p">)</span>   
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">what</span><span class="p">,</span> <span class="n">inter</span><span class="p">([[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])))</span>
+<span class="go">what: rbf_multi       target: [5,30] result: [  4.99999972  29.99999988]</span>
+<span class="go">what: rbf_inv_multi   target: [5,30] result: [  4.99999661  29.9999993 ]</span>
+<span class="go">what: rbf_gauss       target: [5,30] result: [  4.99999783  29.99999569]</span>
+<span class="go">what: ct              target: [5,30] result: [  4.99762256  30.010856  ]</span>
+<span class="go">what: bispl           target: [5,30] result: [  5.  30.]</span>
+<span class="go">what: linear          target: [5,30] result: [  5.06925208  30.13850416]</span>
+<span class="go">what: nearest         target: [5,30] result: [  5.01385042  33.82271468]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -270,14 +273,14 @@ smallest <cite>z</cite> value.</p>
         <li class="right" >
           <a href="pwtools.num.Fit1D.is_mono.html" title="pwtools.num.Fit1D.is_mono"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="num.html" >num</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="num.html" >num</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

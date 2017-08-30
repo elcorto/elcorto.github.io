@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pwtools.batch.FileTemplate &mdash; pwtools  documentation</title>
+    <title>pwtools.batch.FileTemplate &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="batch" href="batch.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.batch.FileTemplate.write" href="pwtools.batch.FileTemplate.write.html" />
     <link rel="prev" title="pwtools.batch.Case" href="pwtools.batch.Case.html" /> 
   </head>
@@ -45,9 +46,9 @@
         <li class="right" >
           <a href="pwtools.batch.Case.html" title="pwtools.batch.Case"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="batch.html" accesskey="U">batch</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="batch.html" accesskey="U">batch</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -61,21 +62,18 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.batch.FileTemplate.txt"
+      <li><a href="../../_sources/generated/api/pwtools.batch.FileTemplate.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -107,35 +105,35 @@ calc/0/pw.in .</p>
 <p>Fist, set up a dictionary which maps placeholder to values. Remember,
 that the placeholders in the files will be obtained by processing the
 dictionary keys with <cite>func</cite>. In the example, this will be:</p>
-<div class="highlight-python"><div class="highlight"><pre>&#39;prefix&#39; -&gt; &#39;@prefix@&#39;
-&#39;ecutwfc&#39; -&gt; &#39;@ecutwfc@&#39;
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s1">&#39;prefix&#39;</span> <span class="o">-&gt;</span> <span class="s1">&#39;@prefix@&#39;</span>
+<span class="s1">&#39;ecutwfc&#39;</span> <span class="o">-&gt;</span> <span class="s1">&#39;@ecutwfc@&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dct</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dct</span><span class="p">[</span><span class="s">&#39;prefix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;foo_run_1&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dct</span><span class="p">[</span><span class="s">&#39;ecutwfc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">23.0</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dct</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dct</span><span class="p">[</span><span class="s1">&#39;prefix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;foo_run_1&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dct</span><span class="p">[</span><span class="s1">&#39;ecutwfc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">23.0</span>
 <span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># Not specifying the `keys` agrument to FileTemplate will instruct the</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># write() method to replace all placeholders in the template file which</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># match the placeholders defined by dct.keys(). This is the most simple</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># case.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c">#</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">templ</span> <span class="o">=</span> <span class="n">FileTemplate</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&#39;calc.templ/pw.in&#39;</span><span class="p">,</span>
-<span class="gp">... </span>                     <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s">&quot;@</span><span class="si">%s</span><span class="s">@&quot;</span> <span class="o">%</span><span class="n">x</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">templ</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">dct</span><span class="p">,</span> <span class="s">&#39;calc/0&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Not specifying the `keys` agrument to FileTemplate will instruct the</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># write() method to replace all placeholders in the template file which</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># match the placeholders defined by dct.keys(). This is the most simple</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># case.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">templ</span> <span class="o">=</span> <span class="n">FileTemplate</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;calc.templ/pw.in&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                     <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;@</span><span class="si">%s</span><span class="s2">@&quot;</span> <span class="o">%</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">templ</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">dct</span><span class="p">,</span> <span class="s1">&#39;calc/0&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># Now with `keys` explicitely.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">templ</span> <span class="o">=</span> <span class="n">FileTemplate</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&#39;calc.templ/pw.in&#39;</span><span class="p">,</span>
-<span class="gp">... </span>                     <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;prefix&#39;</span><span class="p">,</span> <span class="s">&#39;ecutwfc&#39;</span><span class="p">],</span>
-<span class="gp">... </span>                     <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s">&quot;@</span><span class="si">%s</span><span class="s">@&quot;</span> <span class="o">%</span><span class="n">x</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">templ</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">dct</span><span class="p">,</span> <span class="s">&#39;calc/0&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Now with `keys` explicitely.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">templ</span> <span class="o">=</span> <span class="n">FileTemplate</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;calc.templ/pw.in&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                     <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;prefix&#39;</span><span class="p">,</span> <span class="s1">&#39;ecutwfc&#39;</span><span class="p">],</span>
+<span class="gp">... </span>                     <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;@</span><span class="si">%s</span><span class="s2">@&quot;</span> <span class="o">%</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">templ</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">dct</span><span class="p">,</span> <span class="s1">&#39;calc/0&#39;</span><span class="p">)</span>
 <span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># or with SQL foo in a parameter study</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sql</span> <span class="kn">import</span> <span class="n">SQLEntry</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># or with SQL foo in a parameter study</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sql</span> <span class="k">import</span> <span class="n">SQLEntry</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dct</span> <span class="o">=</span> <span class="p">{}</span>                     
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dct</span><span class="p">[</span><span class="s">&#39;prefix&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">SQLEntry</span><span class="p">(</span><span class="n">sqlval</span><span class="o">=</span><span class="s">&#39;foo_run_1&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sct</span><span class="p">[</span><span class="s">&#39;ecutwfc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SQLEntry</span><span class="p">(</span><span class="n">sqlval</span><span class="o">=</span><span class="mf">23.0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">templ</span><span class="o">.</span><span class="n">writesql</span><span class="p">(</span><span class="n">dct</span><span class="p">,</span> <span class="s">&#39;calc/0&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dct</span><span class="p">[</span><span class="s1">&#39;prefix&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">SQLEntry</span><span class="p">(</span><span class="n">sqlval</span><span class="o">=</span><span class="s1">&#39;foo_run_1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sct</span><span class="p">[</span><span class="s1">&#39;ecutwfc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SQLEntry</span><span class="p">(</span><span class="n">sqlval</span><span class="o">=</span><span class="mf">23.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">templ</span><span class="o">.</span><span class="n">writesql</span><span class="p">(</span><span class="n">dct</span><span class="p">,</span> <span class="s1">&#39;calc/0&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="rubric">Methods</p>
@@ -287,14 +285,14 @@ self.func()</p>
         <li class="right" >
           <a href="pwtools.batch.Case.html" title="pwtools.batch.Case"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="batch.html" >batch</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="batch.html" >batch</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

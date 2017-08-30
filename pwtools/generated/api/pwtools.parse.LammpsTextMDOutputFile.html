@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pwtools.parse.LammpsTextMDOutputFile &mdash; pwtools  documentation</title>
+    <title>pwtools.parse.LammpsTextMDOutputFile &#8212; pwtools  documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,15 +17,16 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pwtools  documentation" href="../../index.html" />
-    <link rel="up" title="parse" href="parse.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="prev" title="pwtools.parse.LammpsDcdMDOutputFile.update_units" href="pwtools.parse.LammpsDcdMDOutputFile.update_units.html" /> 
   </head>
   <body role="document">
@@ -41,9 +42,9 @@
         <li class="right" >
           <a href="pwtools.parse.LammpsDcdMDOutputFile.update_units.html" title="pwtools.parse.LammpsDcdMDOutputFile.update_units"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="parse.html" accesskey="U">parse</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="parse.html" accesskey="U">parse</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -54,21 +55,18 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.parse.LammpsTextMDOutputFile.txt"
+      <li><a href="../../_sources/generated/api/pwtools.parse.LammpsTextMDOutputFile.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -127,38 +125,38 @@ to use the <code class="docutils literal"><span class="pre">type</span></code> c
 </ul>
 <p class="rubric">Examples</p>
 <p>Example lammps input:</p>
-<div class="highlight-python"><div class="highlight"><pre>clear
-units metal 
-boundary p p p 
-atom_style atomic
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">clear</span>
+<span class="n">units</span> <span class="n">metal</span> 
+<span class="n">boundary</span> <span class="n">p</span> <span class="n">p</span> <span class="n">p</span> 
+<span class="n">atom_style</span> <span class="n">atomic</span>
 
-read_data lmp.struct
+<span class="n">read_data</span> <span class="n">lmp</span><span class="o">.</span><span class="n">struct</span>
 
-### interactions 
-pair_style tersoff 
-pair_coeff * * AlN.tersoff Al N
+<span class="c1">### interactions </span>
+<span class="n">pair_style</span> <span class="n">tersoff</span> 
+<span class="n">pair_coeff</span> <span class="o">*</span> <span class="o">*</span> <span class="n">AlN</span><span class="o">.</span><span class="n">tersoff</span> <span class="n">Al</span> <span class="n">N</span>
 
-### IO
-dump dump_txt all custom 1 lmp.out.dump id type xsu ysu zsu xu yu zu fx fy fz vx vy vz
-dump dump_dcd all dcd 1 lmp.out.dcd
-##dump dump_xyz all xyz 1 lmp.out.xyz
-##dump_modify dump_xyz element Al N 
-dump_modify dump_txt sort id 
-dump_modify dump_dcd sort id unwrap yes
-thermo_style custom step temp vol cella cellb cellc cellalpha cellbeta cellgamma &amp;
-                    ke pe etotal &amp;
-                    press pxx pyy pzz pxy pxz pyz cpu
-thermo_modify flush yes
-thermo 1
+<span class="c1">### IO</span>
+<span class="n">dump</span> <span class="n">dump_txt</span> <span class="nb">all</span> <span class="n">custom</span> <span class="mi">1</span> <span class="n">lmp</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">dump</span> <span class="nb">id</span> <span class="nb">type</span> <span class="n">xsu</span> <span class="n">ysu</span> <span class="n">zsu</span> <span class="n">xu</span> <span class="n">yu</span> <span class="n">zu</span> <span class="n">fx</span> <span class="n">fy</span> <span class="n">fz</span> <span class="n">vx</span> <span class="n">vy</span> <span class="n">vz</span>
+<span class="n">dump</span> <span class="n">dump_dcd</span> <span class="nb">all</span> <span class="n">dcd</span> <span class="mi">1</span> <span class="n">lmp</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">dcd</span>
+<span class="c1">##dump dump_xyz all xyz 1 lmp.out.xyz</span>
+<span class="c1">##dump_modify dump_xyz element Al N </span>
+<span class="n">dump_modify</span> <span class="n">dump_txt</span> <span class="n">sort</span> <span class="nb">id</span> 
+<span class="n">dump_modify</span> <span class="n">dump_dcd</span> <span class="n">sort</span> <span class="nb">id</span> <span class="n">unwrap</span> <span class="n">yes</span>
+<span class="n">thermo_style</span> <span class="n">custom</span> <span class="n">step</span> <span class="n">temp</span> <span class="n">vol</span> <span class="n">cella</span> <span class="n">cellb</span> <span class="n">cellc</span> <span class="n">cellalpha</span> <span class="n">cellbeta</span> <span class="n">cellgamma</span> <span class="o">&amp;</span>
+                    <span class="n">ke</span> <span class="n">pe</span> <span class="n">etotal</span> <span class="o">&amp;</span>
+                    <span class="n">press</span> <span class="n">pxx</span> <span class="n">pyy</span> <span class="n">pzz</span> <span class="n">pxy</span> <span class="n">pxz</span> <span class="n">pyz</span> <span class="n">cpu</span>
+<span class="n">thermo_modify</span> <span class="n">flush</span> <span class="n">yes</span>
+<span class="n">thermo</span> <span class="mi">1</span>
 
-### init
-velocity all create 300.0 123 rot yes dist gaussian
+<span class="c1">### init</span>
+<span class="n">velocity</span> <span class="nb">all</span> <span class="n">create</span> <span class="mf">300.0</span> <span class="mi">123</span> <span class="n">rot</span> <span class="n">yes</span> <span class="n">dist</span> <span class="n">gaussian</span>
 
-### run
-fix fix_npt all npt temp 1000 1000 0.01 tri 0 0 0.3 tchain 4 pchain 4 &amp;
-    mtk yes scaleyz no scalexz no scalexy no flip no
-timestep 2.5e-3
-run 1000
+<span class="c1">### run</span>
+<span class="n">fix</span> <span class="n">fix_npt</span> <span class="nb">all</span> <span class="n">npt</span> <span class="n">temp</span> <span class="mi">1000</span> <span class="mi">1000</span> <span class="mf">0.01</span> <span class="n">tri</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.3</span> <span class="n">tchain</span> <span class="mi">4</span> <span class="n">pchain</span> <span class="mi">4</span> <span class="o">&amp;</span>
+    <span class="n">mtk</span> <span class="n">yes</span> <span class="n">scaleyz</span> <span class="n">no</span> <span class="n">scalexz</span> <span class="n">no</span> <span class="n">scalexy</span> <span class="n">no</span> <span class="n">flip</span> <span class="n">no</span>
+<span class="n">timestep</span> <span class="mf">2.5e-3</span>
+<span class="n">run</span> <span class="mi">1000</span>
 </pre></div>
 </div>
 <p class="rubric">Methods</p>
@@ -343,14 +341,14 @@ called &#8220;total energy&#8221;.</p>
         <li class="right" >
           <a href="pwtools.parse.LammpsDcdMDOutputFile.update_units.html" title="pwtools.parse.LammpsDcdMDOutputFile.update_units"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="parse.html" >parse</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="parse.html" >parse</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2015, Steve Schmerler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>
