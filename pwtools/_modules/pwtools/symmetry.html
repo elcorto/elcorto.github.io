@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.symmetry &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,38 +21,17 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -63,31 +39,45 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.symmetry</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">atomic_data</span>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pyspglib</span> <span class="k">import</span> <span class="n">spglib</span>
+
+<span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">atomic_data</span>
 <span class="kn">from</span> <span class="nn">pwtools.crys</span> <span class="k">import</span> <span class="n">Structure</span>
 
-<span class="c1"># FIXME: apparently, newer versions of spglib do NOT return None when the input</span>
-<span class="c1"># structure is irreducible. Instead, they return (cell, coords_frac, znucl).</span>
-<span class="c1"># The cell may have another orientation. Therefore, if we want to check for</span>
-<span class="c1"># irreducibility, we need to check for equal natoms, spacegroup, as well as</span>
-<span class="c1"># cell volume, cryst_const (NOT nell) using np.allclose.</span>
+<span class="c1"># spglib versions:</span>
 <span class="c1">#</span>
-<span class="c1"># But the quesion is: do we use the &quot;we return None if the stuct is</span>
-<span class="c1"># irreducible&quot; behavior anywhere? If not, then fine, just fix the check below</span>
-<span class="c1"># and we are good.</span>
-<span class="c1"># </span>
-<span class="c1"># versions</span>
-<span class="c1"># --------</span>
-<span class="c1"># $ pip search spglib                                                                                                                                           [NORMAL]</span>
-<span class="c1"># pyspglib (1.8.3.1)  - This is the pyspglib module.</span>
-<span class="c1">#   INSTALLED: 1.8.3.1 (latest)</span>
-<span class="c1"># spglib (1.9.9.44)   - This is the spglib module.</span>
+<span class="c1">#     $ pip3 search spglib</span>
+<span class="c1">#     pyspglib (1.8.3.1)  - This is the pyspglib module.</span>
+<span class="c1">#       INSTALLED: 1.8.3.1 (latest)</span>
+<span class="c1">#     spglib (1.10.3.14)  - This is the spglib module.</span>
 <span class="c1">#</span>
-<span class="c1"># pyspglib was renamed spglib, etc etc</span>
+<span class="c1"># The renamed version 1.10.x should have the same API, not tested yet.</span>
+
+
+<div class="viewcode-block" id="is_same_struct"><a class="viewcode-back" href="../../generated/api/pwtools.symmetry.is_same_struct.html#pwtools.symmetry.is_same_struct">[docs]</a><span class="k">def</span> <span class="nf">is_same_struct</span><span class="p">(</span><span class="n">st1</span><span class="p">,</span> <span class="n">st2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test if two :class:`~pwtools.crys.Structure` instances are the same.</span>
+
+<span class="sd">    Use ``numpy.allclose`` for float-type properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># maybe add early stopping (return if the first test fails), start with</span>
+    <span class="c1"># cheap tests, finally do spacegroup; only if we call this function very</span>
+    <span class="c1"># often and speed becomes an issue</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">same</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;symbols&#39;</span><span class="p">,</span> <span class="s1">&#39;natoms&#39;</span><span class="p">]</span>
+    <span class="n">close</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;volume&#39;</span><span class="p">,</span> <span class="s1">&#39;cryst_const&#39;</span><span class="p">,</span> <span class="s1">&#39;coords_frac&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">same</span><span class="p">:</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">ret</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">st1</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span> <span class="o">==</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">st2</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">close</span><span class="p">:</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">ret</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">st1</span><span class="p">,</span> <span class="n">attr</span><span class="p">),</span>
+                                  <span class="nb">getattr</span><span class="p">(</span><span class="n">st2</span><span class="p">,</span> <span class="n">attr</span><span class="p">))</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">ret</span> <span class="ow">and</span> <span class="n">spglib_get_spacegroup</span><span class="p">(</span><span class="n">st1</span><span class="p">)</span> <span class="o">==</span> <span class="n">spglib_get_spacegroup</span><span class="p">(</span><span class="n">st2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ret</span></div>
+
 
 <div class="viewcode-block" id="spglib2struct"><a class="viewcode-back" href="../../generated/api/pwtools.symmetry.spglib2struct.html#pwtools.symmetry.spglib2struct">[docs]</a><span class="k">def</span> <span class="nf">spglib2struct</span><span class="p">(</span><span class="n">tup</span><span class="p">):</span>
-    <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;function not usable, fixme&quot;</span><span class="p">)</span>
-    <span class="sd">&quot;&quot;&quot;Transform returned tuple from various spglib functions to Structure.</span>
+    <span class="sd">&quot;&quot;&quot;Transform returned tuple from various spglib functions to</span>
+<span class="sd">    :class:`~pwtools.crys.Structure`.</span>
 
 <span class="sd">    This applies to ``spglib.find_primitive()`` and probably some more. Their</span>
 <span class="sd">    doc string says it returns an ``ase.Atoms`` object, but what it actually</span>
@@ -99,24 +89,23 @@
 <span class="sd">    ----------</span>
 <span class="sd">    tup : tuple (3,)</span>
 <span class="sd">        Return value from ``spglib.find_primitive()`` and maybe others.</span>
-<span class="sd">        If ``(None,)*3`` then we return None.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    Structure or None</span>
+<span class="sd">    :class:`~pwtools.crys.Structure`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">((</span><span class="mi">1</span><span class="p">,))</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tup</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
-    <span class="k">if</span> <span class="n">tup</span> <span class="o">==</span> <span class="p">(</span><span class="kc">None</span><span class="p">,)</span><span class="o">*</span><span class="mi">3</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">None</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">symbols</span> <span class="o">=</span> <span class="p">[</span><span class="n">atomic_data</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">tup</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
-        <span class="n">st</span> <span class="o">=</span> <span class="n">Structure</span><span class="p">(</span><span class="n">coords_frac</span><span class="o">=</span><span class="n">tup</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cell</span><span class="o">=</span><span class="n">tup</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">symbols</span><span class="o">=</span><span class="n">symbols</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">st</span></div>
+    <span class="n">symbols</span> <span class="o">=</span> <span class="p">[</span><span class="n">atomic_data</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">tup</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+    <span class="n">st</span> <span class="o">=</span> <span class="n">Structure</span><span class="p">(</span><span class="n">coords_frac</span><span class="o">=</span><span class="n">tup</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cell</span><span class="o">=</span><span class="n">tup</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">symbols</span><span class="o">=</span><span class="n">symbols</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">st</span></div>
 
 
 <div class="viewcode-block" id="spglib_get_primitive"><a class="viewcode-back" href="../../generated/api/pwtools.symmetry.spglib_get_primitive.html#pwtools.symmetry.spglib_get_primitive">[docs]</a><span class="k">def</span> <span class="nf">spglib_get_primitive</span><span class="p">(</span><span class="n">struct</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Find primitive structure for given Structure.</span>
+    <span class="sd">&quot;&quot;&quot;Find primitive structure for given :class:`~pwtools.crys.Structure`.</span>
+
+<span class="sd">    If `struct` is irreducible (is already a primitive cell), we return None,</span>
+<span class="sd">    else a Structure.</span>
 
 <span class="sd">    Uses pyspglib.</span>
 
@@ -133,21 +122,25 @@
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    spglib returns (None,None,None) if no primitive cell can be found, i.e. the</span>
-<span class="sd">    given input Structure cannot be reduced, which can occur if (a) a given</span>
-<span class="sd">    Structure is already a primitive cell or (b) any other reason like a too</span>
-<span class="sd">    small value of `symprec`. Then,  we return None. See also</span>
-<span class="sd">    :func:`spglib2struct`.</span>
+<span class="sd">    spglib used to return (None,None,None) if no primitive cell can be found,</span>
+<span class="sd">    i.e. the given input Structure cannot be reduced, which can occur if (a) a</span>
+<span class="sd">    given Structure is already a primitive cell or (b) any other reason like a</span>
+<span class="sd">    too small value of `symprec`. Now ([py]spglib &gt;= 1.8.x) it seems to always</span>
+<span class="sd">    return data and use func:`is_same_struct` to determine if the struct is</span>
+<span class="sd">    irreducible. In that case we return None in order to keep the API</span>
+<span class="sd">    unchanged.</span>
 
 <span class="sd">    Also note that a primitive cell (e.g. with 2 atoms) can have a number of</span>
 <span class="sd">    different realizations. Therefore, you may not always get the primitive</span>
 <span class="sd">    cell which you would expect or get from other tools like Wien2K&#39;s sgroup.</span>
 <span class="sd">    Only things like `natoms` and the spacegroup can be safely compared.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># XXX why imports here??</span>
-    <span class="kn">from</span> <span class="nn">pyspglib</span> <span class="k">import</span> <span class="n">spglib</span>
-    <span class="k">return</span> <span class="n">spglib2struct</span><span class="p">(</span><span class="n">spglib</span><span class="o">.</span><span class="n">find_primitive</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">get_fake_ase_atoms</span><span class="p">(),</span>
-                                               <span class="o">**</span><span class="n">kwds</span><span class="p">))</span></div>
+    <span class="n">candidate</span> <span class="o">=</span> <span class="n">spglib2struct</span><span class="p">(</span><span class="n">spglib</span><span class="o">.</span><span class="n">find_primitive</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">get_fake_ase_atoms</span><span class="p">(),</span>
+                                                    <span class="o">**</span><span class="n">kwds</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">is_same_struct</span><span class="p">(</span><span class="n">candidate</span><span class="p">,</span> <span class="n">struct</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">candidate</span></div>
 
 
 <div class="viewcode-block" id="spglib_get_spacegroup"><a class="viewcode-back" href="../../generated/api/pwtools.symmetry.spglib_get_spacegroup.html#pwtools.symmetry.spglib_get_spacegroup">[docs]</a><span class="k">def</span> <span class="nf">spglib_get_spacegroup</span><span class="p">(</span><span class="n">struct</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
@@ -175,8 +168,6 @@
 <span class="sd">    The used function ``spglib.get_spacegroup()`` returns a string, which we</span>
 <span class="sd">    split into `spg_num` and `spg_sym`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># XXX why imports here??</span>
-    <span class="kn">from</span> <span class="nn">pyspglib</span> <span class="k">import</span> <span class="n">spglib</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">spglib</span><span class="o">.</span><span class="n">get_spacegroup</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">get_fake_ase_atoms</span><span class="p">(),</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
     <span class="n">spl</span> <span class="o">=</span> <span class="n">ret</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
     <span class="n">spg_sym</span> <span class="o">=</span> <span class="n">spl</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -184,30 +175,67 @@
     <span class="n">spg_num</span> <span class="o">=</span> <span class="n">spg_num</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="n">spg_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">spg_num</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">spg_num</span><span class="p">,</span><span class="n">spg_sym</span></div>
-
 </pre></div>
 
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

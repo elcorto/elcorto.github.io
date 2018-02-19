@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.crys.coord_trans &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,60 +21,19 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.crys.coord_trans3d" href="pwtools.crys.coord_trans3d.html" />
-    <link rel="prev" title="pwtools.crys.concatenate" href="pwtools.crys.concatenate.html" /> 
+    <link rel="prev" title="pwtools.crys.concatenate" href="pwtools.crys.concatenate.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.crys.coord_trans3d.html" title="pwtools.crys.coord_trans3d"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.crys.concatenate.html" title="pwtools.crys.concatenate"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="crys.html" accesskey="U">crys</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="pwtools.crys.concatenate.html"
-                        title="previous chapter">pwtools.crys.concatenate</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="pwtools.crys.coord_trans3d.html"
-                        title="next chapter">pwtools.crys.coord_trans3d</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.crys.coord_trans.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -108,7 +64,7 @@ See also coord_trans3d().</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>coords</strong> : array (d0, d1, ..., M)</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>coords</strong> : array (d0, d1, …, M)</p>
 <blockquote>
 <div><p>Array of arbitrary rank with coordinates (length M vectors) in old
 coord sys <cite>old</cite>. The only shape resiriction is that the last dim must
@@ -120,7 +76,7 @@ equal the number of coordinates (coords.shape[-1] == M == 3 for normal
 <div class="line-block">
 <div class="line">transformed are the <em>rows</em>.</div>
 </div>
-<div class="line">3d : coords must have shape (..., M)</div>
+<div class="line">3d : coords must have shape (…, M)</div>
 </div>
 <p>If <cite>coords</cite> has a different shape, use <cite>axis</cite> to define the M-axis.</p>
 </div></blockquote>
@@ -137,7 +93,7 @@ False: return new array</p>
 </div></blockquote>
 <p><strong>axis</strong> : the axis along which the length-M vectors are placed in <cite>coords</cite>,</p>
 <blockquote>
-<div><p>default is -1, i.e. coords.shape = (...,M)</p>
+<div><p>default is -1, i.e. coords.shape = (…,M)</p>
 </div></blockquote>
 </td>
 </tr>
@@ -151,14 +107,14 @@ False: return new array</p>
 <p class="last"><a class="reference internal" href="pwtools.crys.coord_trans3d.html#pwtools.crys.coord_trans3d" title="pwtools.crys.coord_trans3d"><code class="xref py py-obj docutils literal"><span class="pre">coord_trans3d</span></code></a></p>
 </div>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r15" rules="none">
+<table class="docutils citation" frame="void" id="r3232" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R15]</a></td><td><a class="reference external" href="http://www.mathe.tu-freiberg.de/~eiermann/Vorlesungen/HM/index_HM2.htm">http://www.mathe.tu-freiberg.de/~eiermann/Vorlesungen/HM/index_HM2.htm</a>, Ch.6</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[R3232]</a></td><td><a class="reference external" href="http://www.mathe.tu-freiberg.de/~eiermann/Vorlesungen/HM/index_HM2.htm">http://www.mathe.tu-freiberg.de/~eiermann/Vorlesungen/HM/index_HM2.htm</a>, Ch.6</td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Taken from [R15]_.</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Taken from [R3232]_.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v_I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">])</span>
@@ -198,31 +154,69 @@ False: return new array</p>
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="crys.html">crys</a><ul>
+      <li>Previous: <a href="pwtools.crys.concatenate.html" title="previous chapter">pwtools.crys.concatenate</a></li>
+      <li>Next: <a href="pwtools.crys.coord_trans3d.html" title="next chapter">pwtools.crys.coord_trans3d</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.crys.coord_trans3d.html" title="pwtools.crys.coord_trans3d"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.crys.concatenate.html" title="pwtools.crys.concatenate"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="crys.html" >crys</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/generated/api/pwtools.crys.coord_trans.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

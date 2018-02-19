@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.test.tools.AllTypesFactory &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,60 +21,19 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.test.tools.AllTypesFactory.__call__" href="pwtools.test.tools.AllTypesFactory.__call__.html" />
-    <link rel="prev" title="test.tools" href="test.tools.html" /> 
+    <link rel="prev" title="test.tools" href="test.tools.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.test.tools.AllTypesFactory.__call__.html" title="pwtools.test.tools.AllTypesFactory.__call__"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="test.tools.html" title="test.tools"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="test.tools.html" accesskey="U">test.tools</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="test.tools.html"
-                        title="previous chapter">test.tools</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="pwtools.test.tools.AllTypesFactory.__call__.html"
-                        title="next chapter">pwtools.test.tools.AllTypesFactory.__call__</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.test.tools.AllTypesFactory.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -90,7 +46,7 @@
 <dt id="pwtools.test.tools.AllTypesFactory">
 <em class="property">class </em><code class="descclassname">pwtools.test.tools.</code><code class="descname">AllTypesFactory</code><span class="sig-paren">(</span><em>comp_map={}</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/test/tools.html#AllTypesFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.test.tools.AllTypesFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p>Factory for creating functions which compare &#8220;any&#8221; type.</p>
+<p>Factory for creating functions which compare “any” type.</p>
 <p>We need a dict <cite>comp_map</cite> which maps types (result of <code class="docutils literal"><span class="pre">type(foo)</span></code>) to a
 comparison function for that type which returns True or False and is called
 like <code class="docutils literal"><span class="pre">comp_map[&lt;type&gt;](a,b)</span></code>. Also a <code class="docutils literal"><span class="pre">comp_map['default']</span></code> entry is
@@ -156,7 +112,7 @@ the comp func</p>
 Example: <a href="#id1"><span class="problematic" id="id2">``</span></a>{type(np.array([1.0])): np.allclose,</p>
 <blockquote>
 <div><p>type(1): lambda x,y: x==y,
-&#8216;default&#8217;: lambda x,y: x==y}``</p>
+‘default’: lambda x,y: x==y}``</p>
 </div></blockquote>
 </div></blockquote>
 </td>
@@ -179,31 +135,69 @@ Example: <a href="#id1"><span class="problematic" id="id2">``</span></a>{type(np
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="test.tools.html">test.tools</a><ul>
+      <li>Previous: <a href="test.tools.html" title="previous chapter">test.tools</a></li>
+      <li>Next: <a href="pwtools.test.tools.AllTypesFactory.__call__.html" title="next chapter">pwtools.test.tools.AllTypesFactory.__call__</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.test.tools.AllTypesFactory.__call__.html" title="pwtools.test.tools.AllTypesFactory.__call__"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="test.tools.html" title="test.tools"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="test.tools.html" >test.tools</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/generated/api/pwtools.test.tools.AllTypesFactory.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

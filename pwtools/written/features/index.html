@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Features &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,47 +21,468 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Overview" href="overview.html" />
-    <link rel="prev" title="Documentation" href="../index.html" /> 
+    <link rel="next" title="Installation" href="../install.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="../index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="overview.html" title="Overview"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="../index.html" title="Documentation"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Documentation</a> &#187;</li> 
-      </ul>
-    </div>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="features">
+<h1>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<span id="id1"></span><h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>container classes for single unit cells (<a class="reference internal" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal"><span class="pre">Structure</span></code></a>)
+and molecular dynamics trajectories (<a class="reference internal" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></a>)</li>
+<li>classes to set up calculations (parameter studies) based on template input
+files for any kind of computational backend (<a class="reference internal" href="../../generated/api/batch.html#module-pwtools.batch" title="pwtools.batch"><code class="xref py py-mod docutils literal"><span class="pre">batch</span></code></a>)</li>
+<li>simple sqlite3 interface with convenience data extraction methods
+(<a class="reference internal" href="../../generated/api/sql.html#module-pwtools.sql" title="pwtools.sql"><code class="xref py py-mod docutils literal"><span class="pre">sql</span></code></a>)</li>
+<li>velocity autocorrelation function and phonon DOS from MD trajectories
+(<a class="reference internal" href="../background/phonon_dos.html#module-pwtools.pydos" title="pwtools.pydos"><code class="xref py py-mod docutils literal"><span class="pre">pydos</span></code></a>)</li>
+<li>parsing of PWscf (<a class="reference external" href="http://www.quantum-espresso.org">QE</a>), <a class="reference external" href="http://www.cpmd.org">CPMD</a> , <a class="reference external" href="http://cp2k.org">CP2K</a> and <a class="reference external" href="http://lammps.sandia.gov">LAMMPS</a>
+output into Python objects for easy access (<a class="reference internal" href="../../generated/api/parse.html#module-pwtools.parse" title="pwtools.parse"><code class="xref py py-mod docutils literal"><span class="pre">parse</span></code></a>)</li>
+<li>structure io: read cif, pdb, write axsf, cif, xyz  (<a class="reference internal" href="../../generated/api/io.html#module-pwtools.io" title="pwtools.io"><code class="xref py py-mod docutils literal"><span class="pre">io</span></code></a>)</li>
+<li>pythonic interface to external molecular viewers for interactive use:
+xcrysden, avogadro, jmol, vmd (<a class="reference internal" href="../../generated/api/visualize.html#module-pwtools.visualize" title="pwtools.visualize"><code class="xref py py-mod docutils literal"><span class="pre">visualize</span></code></a>)</li>
+<li>interface to the <a class="reference external" href="http://elk.sourceforge.net">Elk</a> code’s EOS fitting tool and own implementation (only Vinet
+EOS) (<a class="reference internal" href="../../generated/api/eos.html#module-pwtools.eos" title="pwtools.eos"><code class="xref py py-mod docutils literal"><span class="pre">eos</span></code></a>)</li>
+<li>thermodynamic properties in the quasi-harmonic approximation from phonon
+density of states, QHA implementation (<a class="reference internal" href="../../generated/api/thermo.html#module-pwtools.thermo" title="pwtools.thermo"><code class="xref py py-mod docutils literal"><span class="pre">thermo</span></code></a>)</li>
+<li>MD analyis: radial pair distribution function (own implementation and <a class="reference external" href="http://www.ks.uiuc.edu/Research/vmd/">VMD</a>
+interface), RMS, RMSD (<a class="reference internal" href="../../generated/api/crys.html#module-pwtools.crys" title="pwtools.crys"><code class="xref py py-mod docutils literal"><span class="pre">crys</span></code></a>)</li>
+<li>unit cell related tools: super cell building, coordinate transformation,
+k-grid tools, … (<a class="reference internal" href="../../generated/api/crys.html#module-pwtools.crys" title="pwtools.crys"><code class="xref py py-mod docutils literal"><span class="pre">crys</span></code></a>)</li>
+<li>functions and classes to extend numpy/scipy, e.g. N-dim polynomial fitting
+(!) and a number of convenient 1D classes (polynomial, spline) with a common
+API (<a class="reference internal" href="../../generated/api/num.html#module-pwtools.num" title="pwtools.num"><code class="xref py py-mod docutils literal"><span class="pre">num</span></code></a>)</li>
+<li>basic signal processing / fft related tools (<a class="reference internal" href="../../generated/api/signal.html#module-pwtools.signal" title="pwtools.signal"><code class="xref py py-mod docutils literal"><span class="pre">signal</span></code></a>)</li>
+<li>radial basis function interpolation (<a class="reference internal" href="../../generated/api/rbf.html#module-pwtools.rbf" title="pwtools.rbf"><code class="xref py py-mod docutils literal"><span class="pre">rbf</span></code></a>)</li>
+<li>tools to handle matplotlib plots in scripts (<a class="reference internal" href="../../generated/api/mpl.html#module-pwtools.mpl" title="pwtools.mpl"><code class="xref py py-mod docutils literal"><span class="pre">mpl</span></code></a>)</li>
+<li>QE and LAMMPS calculators for ASE (<a class="reference internal" href="../../generated/api/calculators.html#module-pwtools.calculators" title="pwtools.calculators"><code class="xref py py-mod docutils literal"><span class="pre">calculators</span></code></a>)</li>
+</ul>
+<p>The very nice <a class="reference external" href="https://wiki.fysik.dtu.dk/ase">ASE</a> project is in some way related. It also stores atomic
+structure data in Python objects for further manipulation. If needed, one can
+convert a <a class="reference internal" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal"><span class="pre">Structure</span></code></a> to an ASE Atoms object. The design
+goal of ASE is, however, different from pwtools. ASE provides interfaces to a
+large pile of ab initio codes (“calculators”). MD and structure optimization in
+ASE is coded in Python, using only the calculator’s SCF engine in every step to
+get energy and forces. This is a very good idea, but only structure
+optimization is really developed and tested, as it seems. MD not so much.
+Better use a special MD code here. I’m not sure if ASE provides wave function
+extrapolation for Born-Oppenheimer MD [*]. Phonon calculations based on density
+functional perturbation theory like PWscf/PH or Abinit are not implemented
+(maybe in <a class="reference external" href="https://wiki.fysik.dtu.dk/gpaw/">GPAW</a>?). However, the supercell method can be used with the related
+<a class="reference external" href="http://phonopy.sourceforge.net">phonopy</a> package. The focus of the pwtools package is to be a handy pre- and
+postprocessor providing pythonic access to all input and output quantities of
+the used ab initio codes. In ASE, the calculator abtracts the backend code’s
+input away. With pwtools, you need to know the input file syntax of your
+backend code. Once you know that, you use only template files to set up
+calculations. Regarding visualization, ASE has some kind of GUI. We have
+<a class="reference internal" href="../../generated/api/visualize.html#module-pwtools.visualize" title="pwtools.visualize"><code class="xref py py-mod docutils literal"><span class="pre">visualize</span></code></a>, which is best used in an interactive Ipython
+session.</p>
+<p>In fact, appart from <a class="reference internal" href="../../generated/api/parse.html#module-pwtools.parse" title="pwtools.parse"><code class="xref py py-mod docutils literal"><span class="pre">parse</span></code></a>, which implements parsers for ab
+initio code output and <a class="reference internal" href="../../generated/api/pwscf.html#module-pwtools.pwscf" title="pwtools.pwscf"><code class="xref py py-mod docutils literal"><span class="pre">pwscf</span></code></a>, all other parts of the package
+are completely independent from any external simulation code’s output.
+Especially the parameter study tools in <a class="reference internal" href="../../generated/api/batch.html#module-pwtools.batch" title="pwtools.batch"><code class="xref py py-mod docutils literal"><span class="pre">batch</span></code></a> can be used for
+any kind of (computational) study, since only user-supplied template files are
+used.</p>
+<p>[*] Last time I checked, I stumbled over a <a class="reference external" href="https://listserv.fysik.dtu.dk/pipermail/gpaw-users/2013-April/002044.html">mailing list thread</a> where they said
+that in LCAO mode, the density would be re-used between steps.</p>
+</div>
+<div class="section" id="parameter-studies">
+<h2>Parameter studies<a class="headerlink" href="#parameter-studies" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../../generated/api/batch.html#module-pwtools.batch" title="pwtools.batch"><code class="xref py py-mod docutils literal"><span class="pre">batch</span></code></a> has tools for setting up parameter studies: automatic
+input generation, database tools (see also <a class="reference internal" href="../../generated/api/sql.html#module-pwtools.sql" title="pwtools.sql"><code class="xref py py-mod docutils literal"><span class="pre">sql</span></code></a>), …</p>
+<p>See <code class="docutils literal"><span class="pre">examples/parameter_study</span></code> for examples which you can copy and run.
+Here is just one of the input files:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="c1"># Write PWscf input files for a convergence study: vary ecutwfc.</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">common</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">sql</span><span class="p">,</span> <span class="n">crys</span><span class="p">,</span> <span class="n">pwscf</span>
+
+<span class="n">theo</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">Machine</span><span class="p">(</span><span class="n">hostname</span><span class="o">=</span><span class="s1">&#39;theo&#39;</span><span class="p">,</span>
+                     <span class="n">subcmd</span><span class="o">=</span><span class="s1">&#39;qsub&#39;</span><span class="p">,</span>
+                     <span class="n">scratch</span><span class="o">=</span><span class="s1">&#39;/scratch/schmerler&#39;</span><span class="p">,</span>
+                     <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;calc.templ/job.pbs.theo&#39;</span><span class="p">,</span>
+                     <span class="n">home</span><span class="o">=</span><span class="s1">&#39;/home/schmerler&#39;</span><span class="p">)</span>
+
+<span class="n">templates</span> <span class="o">=</span> <span class="p">[</span><span class="n">batch</span><span class="o">.</span><span class="n">FileTemplate</span><span class="p">(</span><span class="n">basename</span><span class="o">=</span><span class="s1">&#39;pw.in&#39;</span><span class="p">)]</span>
+
+<span class="c1"># rs-AlN</span>
+<span class="n">st</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">Structure</span><span class="p">(</span><span class="n">coords_frac</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">]),</span>
+                    <span class="n">symbols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Al&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">],</span>
+                    <span class="n">cryst_const</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.76</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span> <span class="o">+</span> <span class="p">[</span><span class="mi">60</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">params_lst</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">ecutwfc</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">params_lst</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">sql</span><span class="o">.</span><span class="n">SQLEntry</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;ecutwfc&#39;</span><span class="p">,</span> <span class="n">sqlval</span><span class="o">=</span><span class="n">ecutwfc</span><span class="p">),</span>
+                       <span class="n">sql</span><span class="o">.</span><span class="n">SQLEntry</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;ecutrho&#39;</span><span class="p">,</span> <span class="n">sqlval</span><span class="o">=</span><span class="mf">4.0</span><span class="o">*</span><span class="n">ecutwfc</span><span class="p">),</span>
+                       <span class="n">sql</span><span class="o">.</span><span class="n">SQLEntry</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;cell&#39;</span><span class="p">,</span> <span class="n">sqlval</span><span class="o">=</span><span class="n">common</span><span class="o">.</span><span class="n">str_arr</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">cell</span><span class="p">)),</span>
+                       <span class="n">sql</span><span class="o">.</span><span class="n">SQLEntry</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;natoms&#39;</span><span class="p">,</span> <span class="n">sqlval</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">natoms</span><span class="p">),</span>
+                       <span class="n">sql</span><span class="o">.</span><span class="n">SQLEntry</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;atpos&#39;</span><span class="p">,</span>
+                                    <span class="n">sqlval</span><span class="o">=</span><span class="n">pwscf</span><span class="o">.</span><span class="n">atpos_str</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">symbols</span><span class="p">,</span>
+                                                           <span class="n">st</span><span class="o">.</span><span class="n">coords_frac</span><span class="p">)),</span>
+                      <span class="p">])</span>
+
+<span class="n">calc</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">ParameterStudy</span><span class="p">(</span><span class="n">machines</span><span class="o">=</span><span class="n">theo</span><span class="p">,</span>
+                            <span class="n">templates</span><span class="o">=</span><span class="n">templates</span><span class="p">,</span>
+                            <span class="n">params_lst</span><span class="o">=</span><span class="n">params_lst</span><span class="p">,</span> 
+                            <span class="n">study_name</span><span class="o">=</span><span class="s1">&#39;convergence_test_cutoff&#39;</span><span class="p">,</span>
+                            <span class="p">)</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">write_input</span><span class="p">(</span><span class="n">sleep</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">backup</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;calc&#39;</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">symlink</span><span class="p">(</span><span class="s1">&#39;calc_theo&#39;</span><span class="p">,</span> <span class="s1">&#39;calc&#39;</span><span class="p">)</span>
+
+<span class="n">common</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;cp -r ../../../test/files/qe_pseudos calc_theo/pseudo; gunzip calc_theo/pseudo/*&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="parsing-code-output-and-using-containers">
+<h2>Parsing code output and using containers<a class="headerlink" href="#parsing-code-output-and-using-containers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="available-parsers">
+<span id="parser-classes"></span><h3>Available parsers<a class="headerlink" href="#available-parsers" title="Permalink to this headline">¶</a></h3>
+<p>A core feature of pwtools is a set of parsers for commonly used atomistic
+simulation codes. The parsers are located in <a class="reference internal" href="../../generated/api/parse.html#module-pwtools.parse" title="pwtools.parse"><code class="xref py py-mod docutils literal"><span class="pre">parse</span></code></a>. These
+parsers are available:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.CifFile.html#pwtools.parse.CifFile" title="pwtools.parse.CifFile"><code class="xref py py-class docutils literal"><span class="pre">CifFile</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.PDBFile.html#pwtools.parse.PDBFile" title="pwtools.parse.PDBFile"><code class="xref py py-class docutils literal"><span class="pre">PDBFile</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.PwSCFOutputFile.html#pwtools.parse.PwSCFOutputFile" title="pwtools.parse.PwSCFOutputFile"><code class="xref py py-class docutils literal"><span class="pre">PwSCFOutputFile</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.PwMDOutputFile.html#pwtools.parse.PwMDOutputFile" title="pwtools.parse.PwMDOutputFile"><code class="xref py py-class docutils literal"><span class="pre">PwMDOutputFile</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.PwVCMDOutputFile.html#pwtools.parse.PwVCMDOutputFile" title="pwtools.parse.PwVCMDOutputFile"><code class="xref py py-class docutils literal"><span class="pre">PwVCMDOutputFile</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.CpmdSCFOutputFile.html#pwtools.parse.CpmdSCFOutputFile" title="pwtools.parse.CpmdSCFOutputFile"><code class="xref py py-class docutils literal"><span class="pre">CpmdSCFOutputFile</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.CpmdMDOutputFile.html#pwtools.parse.CpmdMDOutputFile" title="pwtools.parse.CpmdMDOutputFile"><code class="xref py py-class docutils literal"><span class="pre">CpmdMDOutputFile</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.Cp2kSCFOutputFile.html#pwtools.parse.Cp2kSCFOutputFile" title="pwtools.parse.Cp2kSCFOutputFile"><code class="xref py py-class docutils literal"><span class="pre">Cp2kSCFOutputFile</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.Cp2kMDOutputFile.html#pwtools.parse.Cp2kMDOutputFile" title="pwtools.parse.Cp2kMDOutputFile"><code class="xref py py-class docutils literal"><span class="pre">Cp2kMDOutputFile</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.Cp2kDcdMDOutputFile.html#pwtools.parse.Cp2kDcdMDOutputFile" title="pwtools.parse.Cp2kDcdMDOutputFile"><code class="xref py py-class docutils literal"><span class="pre">Cp2kDcdMDOutputFile</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.Cp2kRelaxOutputFile.html#pwtools.parse.Cp2kRelaxOutputFile" title="pwtools.parse.Cp2kRelaxOutputFile"><code class="xref py py-class docutils literal"><span class="pre">Cp2kRelaxOutputFile</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.LammpsTextMDOutputFile.html#pwtools.parse.LammpsTextMDOutputFile" title="pwtools.parse.LammpsTextMDOutputFile"><code class="xref py py-class docutils literal"><span class="pre">LammpsTextMDOutputFile</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.LammpsDcdMDOutputFile.html#pwtools.parse.LammpsDcdMDOutputFile" title="pwtools.parse.LammpsDcdMDOutputFile"><code class="xref py py-class docutils literal"><span class="pre">LammpsDcdMDOutputFile</span></code></a></div>
+</div>
+</div></blockquote>
+<p>The parsers called <code class="docutils literal"><span class="pre">*OutputFile</span></code> are for parsing simulation code output. The
+others parse structure files (cif and pdb).</p>
+<p>All parsers have a common API and can be used like</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span> <span class="o">=</span> <span class="n">PwSCFOutputFile</span><span class="p">(</span><span class="s1">&#39;pw.out&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span><span class="o">.</span><span class="n">get_cell</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># or call all get_*() methods at once and access attributes</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span><span class="o">.</span><span class="n">cell</span>
+</pre></div>
+</div>
+<p>The problem with using the parsers directly is that there are of course
+differences between the codes. For instance, each one uses different units
+(Bohr, Angstrom, Ry, Ha, eV, …). Also, not all structure attributes are
+contained in the output of all codes. For example,
+<a class="reference internal" href="../../generated/api/pwtools.parse.PwSCFOutputFile.html#pwtools.parse.PwSCFOutputFile" title="pwtools.parse.PwSCFOutputFile"><code class="xref py py-class docutils literal"><span class="pre">PwSCFOutputFile</span></code></a> will parse Cartesian atomic coordinates into
+<code class="docutils literal"><span class="pre">pp.coords</span></code> and the unit cell into <code class="docutils literal"><span class="pre">pp.cell</span></code>. However, often we need to use
+the fractional coordinates <code class="docutils literal"><span class="pre">pp.coords_frac</span></code>. This quantity is not present in
+the PWscf output and thus <code class="docutils literal"><span class="pre">pp.coords_frac</span></code> will be None. However, we know
+that we can manually calculate it from <code class="docutils literal"><span class="pre">coords</span></code> and <code class="docutils literal"><span class="pre">cell</span></code>.</p>
+</div>
+<div class="section" id="container-classes-structure-and-trajectory">
+<span id="container-classes"></span><h3>Container classes <a class="reference internal" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal"><span class="pre">Structure</span></code></a> and <a class="reference internal" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></a><a class="headerlink" href="#container-classes-structure-and-trajectory" title="Permalink to this headline">¶</a></h3>
+<p>In order to abstract away the differences between codes as much as possible, we
+have implemented unified container classes. These classes are
+<a class="reference internal" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal"><span class="pre">Structure</span></code></a> and <a class="reference internal" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></a>. The
+former is used to represent a single crystal structure (unit cell, atom
+coordinates, total energy, stress tensor, …). The latter represents a
+sequence of structures, for instance an MD or relaxation run.</p>
+<p>They have two important features:</p>
+<ul class="simple">
+<li>A defined set of units
+(eV, Angstrom,…), to which all quantities are converted.</li>
+<li>Calculate all missing
+attributes automatically and thus provide a unified API.</li>
+</ul>
+<p>Note that the latter is a convenience feature and will also produce some
+redundant data. You may want to <a class="reference internal" href="../tutorial.html#avoid-auto-calc"><span class="std std-ref">turn it off</span></a>
+for parsing/storing big data.</p>
+<p>The auto-calculation of missing properties in <a class="reference internal" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></a>
+and <a class="reference internal" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal"><span class="pre">Structure</span></code></a> is done by trying to calculate all
+properties for which there is a <code class="docutils literal"><span class="pre">get_*</span></code> method. For example, if a parser
+finds <code class="docutils literal"><span class="pre">coords</span></code> and <code class="docutils literal"><span class="pre">cell</span></code> in the MD data, then in
+<a class="reference internal" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></a> <code class="docutils literal"><span class="pre">coords_frac</span></code> is calculated from that.</p>
+<p>You can of course use these classes to build new structures and trajectories by
+hand (just as with <code class="docutils literal"><span class="pre">ase.Atoms</span></code>, or you use <a class="reference internal" href="../../generated/api/pwtools.crys.atoms2struct.html#pwtools.crys.atoms2struct" title="pwtools.crys.atoms2struct"><code class="xref py py-func docutils literal"><span class="pre">atoms2struct()</span></code></a>):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">st</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">Structure</span><span class="p">(</span><span class="n">coords_frac</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="o">.</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">]),</span>
+<span class="go">                        cryst_const=np.array([3.0]*3 + [60]*3),</span>
+<span class="go">                        symbols=[&#39;Al&#39;,&#39;N&#39;])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">Trajectory</span><span class="p">(</span><span class="n">coords_frac</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>
+<span class="go">                         cell=rand(1000,3,3),</span>
+<span class="go">                         symbols=[&#39;H&#39;]*20)</span>
+</pre></div>
+</div>
+<p>By doing this, the <a class="reference internal" href="../../generated/api/pwtools.crys.Structure.set_all.html#pwtools.crys.Structure.set_all" title="pwtools.crys.Structure.set_all"><code class="xref py py-meth docutils literal"><span class="pre">set_all()</span></code></a> method is
+automatically called, which will calculate all possible attributes from the
+input data (for example <code class="docutils literal"><span class="pre">st.coords</span></code>, <code class="docutils literal"><span class="pre">st.cell</span></code>).</p>
+<p>However, some attributes may be undefined. For example, the <code class="docutils literal"><span class="pre">st</span></code> above will
+have no <code class="docutils literal"><span class="pre">etot</span></code> or <code class="docutils literal"><span class="pre">stress</span></code> attribute (they are None), since that was not
+defined in the input and there is no ways to calculate it, of course, whereas a
+Structure returned by <a class="reference internal" href="../../generated/api/pwtools.io.read_pw_scf.html#pwtools.io.read_pw_scf" title="pwtools.io.read_pw_scf"><code class="xref py py-func docutils literal"><span class="pre">read_pw_scf()</span></code></a> will have that.</p>
+<p>By using the <a class="reference internal" href="../../generated/api/pwtools.base.FlexibleGetters.dump.html#pwtools.base.FlexibleGetters.dump" title="pwtools.base.FlexibleGetters.dump"><code class="xref py py-meth docutils literal"><span class="pre">dump()</span></code></a> method, you can store
+the object as binary file [using Python’s <code class="docutils literal"><span class="pre">pickle</span></code> module] for fast
+re-loading later:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="s1">&#39;struck.pk&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st_loaded</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;struck.pk&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A Trajectory object can be viewed a list of Structure instances [even though it
+is implemented differently due to efficiency: we use 3d numpy arrays], it
+supports iteration and slicing, for example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># extract first and last Structure objects</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st_first</span> <span class="o">=</span> <span class="n">tr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st_last</span> <span class="o">=</span> <span class="n">tr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># slice out a part of the trajectory</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr_middle</span> <span class="o">=</span> <span class="n">tr</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">500</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># use every 5t step</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="p">[::</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Structure and Trajectory objects can also be freely concatenated into a new
+Trajectory:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tr_new</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">st1</span><span class="p">,</span> <span class="n">st2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr_new</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">st</span><span class="p">,</span> <span class="n">tr</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr_new</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">tr1</span><span class="p">,</span> <span class="n">tr2</span><span class="p">,</span> <span class="n">st</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="high-level-parsing-functions">
+<span id="high-level-parsing"></span><h3>High-level parsing functions<a class="headerlink" href="#high-level-parsing-functions" title="Permalink to this headline">¶</a></h3>
+<p>The most simple way to parse code output and get a container class is to use
+the high-level functions in <a class="reference internal" href="../../generated/api/io.html#module-pwtools.io" title="pwtools.io"><code class="xref py py-mod docutils literal"><span class="pre">io</span></code></a>.</p>
+<dl class="docutils">
+<dt>These return a <a class="reference internal" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal"><span class="pre">Structure</span></code></a>:</dt>
+<dd><div class="first last line-block">
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_cif.html#pwtools.io.read_cif" title="pwtools.io.read_cif"><code class="xref py py-func docutils literal"><span class="pre">read_cif()</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_pdb.html#pwtools.io.read_pdb" title="pwtools.io.read_pdb"><code class="xref py py-func docutils literal"><span class="pre">read_pdb()</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_pw_scf.html#pwtools.io.read_pw_scf" title="pwtools.io.read_pw_scf"><code class="xref py py-func docutils literal"><span class="pre">read_pw_scf()</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_cpmd_scf.html#pwtools.io.read_cpmd_scf" title="pwtools.io.read_cpmd_scf"><code class="xref py py-func docutils literal"><span class="pre">read_cpmd_scf()</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_cp2k_scf.html#pwtools.io.read_cp2k_scf" title="pwtools.io.read_cp2k_scf"><code class="xref py py-func docutils literal"><span class="pre">read_cp2k_scf()</span></code></a></div>
+</div>
+</dd>
+<dt>These return a <a class="reference internal" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></a>:</dt>
+<dd><div class="first last line-block">
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_pw_md.html#pwtools.io.read_pw_md" title="pwtools.io.read_pw_md"><code class="xref py py-func docutils literal"><span class="pre">read_pw_md()</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_pw_vcmd.html#pwtools.io.read_pw_vcmd" title="pwtools.io.read_pw_vcmd"><code class="xref py py-func docutils literal"><span class="pre">read_pw_vcmd()</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_cpmd_md.html#pwtools.io.read_cpmd_md" title="pwtools.io.read_cpmd_md"><code class="xref py py-func docutils literal"><span class="pre">read_cpmd_md()</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_cp2k_md.html#pwtools.io.read_cp2k_md" title="pwtools.io.read_cp2k_md"><code class="xref py py-func docutils literal"><span class="pre">read_cp2k_md()</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_cp2k_md_dcd.html#pwtools.io.read_cp2k_md_dcd" title="pwtools.io.read_cp2k_md_dcd"><code class="xref py py-func docutils literal"><span class="pre">read_cp2k_md_dcd()</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_cp2k_relax.html#pwtools.io.read_cp2k_relax" title="pwtools.io.read_cp2k_relax"><code class="xref py py-func docutils literal"><span class="pre">read_cp2k_relax()</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_lammps_md_txt.html#pwtools.io.read_lammps_md_txt" title="pwtools.io.read_lammps_md_txt"><code class="xref py py-func docutils literal"><span class="pre">read_lammps_md_txt()</span></code></a></div>
+<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_lammps_md_dcd.html#pwtools.io.read_lammps_md_dcd" title="pwtools.io.read_lammps_md_dcd"><code class="xref py py-func docutils literal"><span class="pre">read_lammps_md_dcd()</span></code></a></div>
+</div>
+</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">st</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_pw_scf</span><span class="p">(</span><span class="s1">&#39;pw.out&#39;</span><span class="p">)</span> <span class="c1"># SCF run</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">st</span><span class="o">.</span><span class="n">etot</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">cell</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_pw_md</span><span class="p">(</span><span class="s1">&#39;pw.out&#39;</span><span class="p">)</span> <span class="c1"># MD/relax run</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">etot</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>These functions use the appropriate parser class and transform the result of
+the parsing to a <a class="reference internal" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal"><span class="pre">Structure</span></code></a> or
+<a class="reference internal" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></a>. For example, what is essentially done is
+simply:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># same as tr=io.read_pw_md(&#39;pw.out&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">PwMDOutputFile</span><span class="p">(</span><span class="s1">&#39;pw.out&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">pp</span><span class="o">.</span><span class="n">get_traj</span><span class="p">()</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># same as st=io.read_cp2k_scf(&#39;cp2k.out&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">Cp2kSCFOutputFile</span><span class="p">(</span><span class="s1">&#39;cp2k.out&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span> <span class="o">=</span> <span class="n">pp</span><span class="o">.</span><span class="n">get_struct</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>It is important to note that Structure and Trajectory instances built by hand
+can be used in exactly the same way as those obtained by using one of the
+<code class="docutils literal"><span class="pre">io.read_*()</span></code> functions.</p>
+</div>
+<div class="section" id="units">
+<h3>Units<a class="headerlink" href="#units" title="Permalink to this headline">¶</a></h3>
+<p>Each parser will (try to) return the “natural” units of each code:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="12%" />
+<col width="21%" />
+<col width="25%" />
+<col width="27%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property</th>
+<th class="head">PWscf</th>
+<th class="head">CPMD</th>
+<th class="head">CP2K</th>
+<th class="head">LAMMPS (metal units)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>length</td>
+<td>Bohr</td>
+<td>Bohr</td>
+<td>Angstrom</td>
+<td>Angstrom</td>
+</tr>
+<tr class="row-odd"><td>energy</td>
+<td>Ry</td>
+<td>Ha</td>
+<td>Ha</td>
+<td>eV</td>
+</tr>
+<tr class="row-even"><td>forces</td>
+<td>Ry/Bohr</td>
+<td>Ha/Bohr</td>
+<td>Ha/Bohr</td>
+<td>eV/Angstrom</td>
+</tr>
+<tr class="row-odd"><td>stress</td>
+<td>kbar</td>
+<td>kbar</td>
+<td>bar[MD], GPa[SCF]</td>
+<td>bar</td>
+</tr>
+<tr class="row-even"><td>temperature</td>
+<td>K</td>
+<td>K</td>
+<td>K</td>
+<td>K</td>
+</tr>
+<tr class="row-odd"><td>velocity</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Bohr/thart (?)</td>
+<td>Bohr/thart</td>
+<td>Angstrom/ps</td>
+</tr>
+<tr class="row-even"><td>time</td>
+<td>tryd</td>
+<td>thart</td>
+<td>thart</td>
+<td>ps</td>
+</tr>
+</tbody>
+</table>
+<p>See <a class="reference internal" href="../../generated/api/constants.html#module-pwtools.constants" title="pwtools.constants"><code class="xref py py-mod docutils literal"><span class="pre">constants</span></code></a> for <cite>thart</cite> and <cite>tryd</cite>.</p>
+<p>For PWscf, we also detect things like “ATOMIC_POSITIONS crystal | alat | bohr”
+and transform accordingly. Nevertheless, <em>always</em> verify that the units you get
+are the ones you expect!</p>
+<p>In <a class="reference internal" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal"><span class="pre">Structure</span></code></a> and <a class="reference internal" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></a>, we have
+units eV, Angstrom,…</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="25%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property</th>
+<th class="head">unit</th>
+<th class="head">SI</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>length</td>
+<td>Angstrom</td>
+<td>(1e-10 m)</td>
+</tr>
+<tr class="row-odd"><td>energy</td>
+<td>eV</td>
+<td>(1.602176487e-19 J)</td>
+</tr>
+<tr class="row-even"><td>forces</td>
+<td>eV / Angstrom</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>stress</td>
+<td>GPa</td>
+<td>(not eV/Angstrom**3)</td>
+</tr>
+<tr class="row-even"><td>temperature</td>
+<td>K</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>velocity</td>
+<td>Angstrom / fs</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>time</td>
+<td>fs</td>
+<td>(1e-15 s)</td>
+</tr>
+<tr class="row-odd"><td>mass</td>
+<td>amu</td>
+<td>(1.6605387820000001e-27 kg)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="../index.html"
-                        title="previous chapter">Documentation</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="overview.html"
-                        title="next chapter">Overview</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/written/features/index.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameter-studies">Parameter studies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parsing-code-output-and-using-containers">Parsing code output and using containers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">&lt;no title&gt;</a><ul>
+      <li>Previous: <a href="../index.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="../install.html" title="next chapter">Installation</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
@@ -77,57 +495,22 @@
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="features">
-<h1>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="param_study.html">Parameter studies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="parsing.html">Parsing code output and using containers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parsing.html#available-parsers">Available parsers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parsing.html#container-classes-structure-and-trajectory">Container classes <code class="docutils literal"><span class="pre">Structure</span></code> and <code class="docutils literal"><span class="pre">Trajectory</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="parsing.html#high-level-parsing-functions">High-level parsing functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parsing.html#units">Units</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-
-
-          </div>
-        </div>
-      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="overview.html" title="Overview"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="../index.html" title="Documentation"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Documentation</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/written/features/index.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

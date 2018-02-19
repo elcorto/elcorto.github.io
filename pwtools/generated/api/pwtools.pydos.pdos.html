@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.pydos.pdos &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,60 +21,19 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.pydos.pyvacf" href="pwtools.pydos.pyvacf.html" />
-    <link rel="prev" title="pwtools.pydos.fvacf" href="pwtools.pydos.fvacf.html" /> 
+    <link rel="prev" title="pwtools.pydos.fvacf" href="pwtools.pydos.fvacf.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.pydos.pyvacf.html" title="pwtools.pydos.pyvacf"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.pydos.fvacf.html" title="pwtools.pydos.fvacf"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="pydos.html" accesskey="U">pydos</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="pwtools.pydos.fvacf.html"
-                        title="previous chapter">pwtools.pydos.fvacf</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="pwtools.pydos.pyvacf.html"
-                        title="next chapter">pwtools.pydos.pyvacf</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.pydos.pdos.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -117,19 +73,19 @@ recommended)</p>
 </div></blockquote>
 <p><strong>npad</strong> : {None, int}</p>
 <blockquote>
-<div><p>method=&#8217;direct&#8217; only: Length of zero padding along <cite>axis</cite>. <cite>npad=None</cite>
+<div><p>method=’direct’ only: Length of zero padding along <cite>axis</cite>. <cite>npad=None</cite>
 = no padding, <cite>npad &gt; 0</cite> = pad by a length of <code class="docutils literal"><span class="pre">(nstep-1)*npad</span></code>. <cite>npad
 &gt; 5</cite> usually results in sufficient interpolation.</p>
 </div></blockquote>
 <p><strong>tonext</strong> : bool</p>
 <blockquote>
-<div><p>method=&#8217;direct&#8217; only: Pad <cite>vel</cite> with zeros along <cite>axis</cite> up to the next
+<div><p>method=’direct’ only: Pad <cite>vel</cite> with zeros along <cite>axis</cite> up to the next
 power of two after the array length determined by <cite>npad</cite>. This gives
 you speed, but variable (better) frequency resolution.</p>
 </div></blockquote>
 <p><strong>mirr</strong> : bool</p>
 <blockquote>
-<div><p>method=&#8217;vacf&#8217; only: mirror one-sided VACF at t=0 before fft</p>
+<div><p>method=’vacf’ only: mirror one-sided VACF at t=0 before fft</p>
 </div></blockquote>
 </td>
 </tr>
@@ -144,11 +100,11 @@ you speed, but variable (better) frequency resolution.</p>
 <p>if full_out = True</p>
 <blockquote class="last">
 <div><div class="line-block">
-<div class="line">if method == &#8216;direct&#8217;:</div>
+<div class="line">if method == ‘direct’:</div>
 <div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">(faxis,</span> <span class="pre">pdos,</span> <span class="pre">(full_faxis,</span> <span class="pre">full_pdos,</span> <span class="pre">split_idx))</span></code></div>
 </div>
-<div class="line">if method == &#8216;vavcf&#8217;:</div>
+<div class="line">if method == ‘vavcf’:</div>
 <div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">(faxis,</span> <span class="pre">pdos,</span> <span class="pre">(full_faxis,</span> <span class="pre">full_pdos,</span> <span class="pre">split_idx,</span> <span class="pre">vacf,</span> <span class="pre">fft_vacf))</span></code></div>
 <div class="line">fft_vacf : 1d complex array, result of fft(vacf) or fft(mirror(vacf))</div>
@@ -165,16 +121,16 @@ you speed, but variable (better) frequency resolution.</p>
 <p class="last"><a class="reference internal" href="pwtools.signal.fftsample.html#pwtools.signal.fftsample" title="pwtools.signal.fftsample"><code class="xref py py-func docutils literal"><span class="pre">pwtools.signal.fftsample()</span></code></a>, <a class="reference internal" href="pwtools.signal.acorr.html#pwtools.signal.acorr" title="pwtools.signal.acorr"><code class="xref py py-func docutils literal"><span class="pre">pwtools.signal.acorr()</span></code></a>, <a class="reference internal" href="../../written/background/pwtools.pydos.direct_pdos.html#pwtools.pydos.direct_pdos" title="pwtools.pydos.direct_pdos"><code class="xref py py-func docutils literal"><span class="pre">direct_pdos()</span></code></a>, <a class="reference internal" href="../../written/background/pwtools.pydos.vacf_pdos.html#pwtools.pydos.vacf_pdos" title="pwtools.pydos.vacf_pdos"><code class="xref py py-func docutils literal"><span class="pre">vacf_pdos()</span></code></a></p>
 </div>
 <p class="rubric">Notes</p>
-<p>padding (only method=&#8217;direct&#8217;): With <cite>npad</cite> we pad the velocities <cite>vel</cite>
+<p>padding (only method=’direct’): With <cite>npad</cite> we pad the velocities <cite>vel</cite>
 with <code class="docutils literal"><span class="pre">npad*(nstep-1)</span></code> zeros along <cite>axis</cite> (the time axis) before FFT
 b/c the signal is not periodic. For <cite>npad=1</cite>, this gives us the exact
 same spectrum and frequency resolution as with <code class="docutils literal"><span class="pre">pdos(...,</span>
-<span class="pre">method='vacf',mirr=True)</span></code> b/c the array to be fft&#8217;ed has length
+<span class="pre">method='vacf',mirr=True)</span></code> b/c the array to be fft’ed has length
 <code class="docutils literal"><span class="pre">2*nstep-1</span></code> along the time axis in both cases (remember that the
 array length = length of the time axis influences the freq.
 resolution). FFT is only fast for arrays with length = a power of two.
 Therefore, you may get very different fft speeds depending on whether
-<code class="docutils literal"><span class="pre">2*nstep-1</span></code> is a power of two or not (in most cases it won&#8217;t). Try
+<code class="docutils literal"><span class="pre">2*nstep-1</span></code> is a power of two or not (in most cases it won’t). Try
 using <cite>tonext</cite> but remember that you get another (better) frequency
 resolution.</p>
 <p class="rubric">References</p>
@@ -197,31 +153,69 @@ resolution.</p>
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="pydos.html">pydos</a><ul>
+      <li>Previous: <a href="pwtools.pydos.fvacf.html" title="previous chapter">pwtools.pydos.fvacf</a></li>
+      <li>Next: <a href="pwtools.pydos.pyvacf.html" title="next chapter">pwtools.pydos.pyvacf</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.pydos.pyvacf.html" title="pwtools.pydos.pyvacf"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.pydos.fvacf.html" title="pwtools.pydos.fvacf"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="pydos.html" >pydos</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/generated/api/pwtools.pydos.pdos.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

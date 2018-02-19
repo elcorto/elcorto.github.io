@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.parse.PwSCFOutputFile &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,53 +21,18 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="pwtools.parse.PwMDOutputFile.update_units" href="pwtools.parse.PwMDOutputFile.update_units.html" /> 
+    <link rel="prev" title="pwtools.parse.PwMDOutputFile.update_units" href="pwtools.parse.PwMDOutputFile.update_units.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.parse.PwMDOutputFile.update_units.html" title="pwtools.parse.PwMDOutputFile.update_units"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="parse.html" accesskey="U">parse</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="pwtools.parse.PwMDOutputFile.update_units.html"
-                        title="previous chapter">pwtools.parse.PwMDOutputFile.update_units</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.parse.PwSCFOutputFile.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -83,11 +45,11 @@
 <dt id="pwtools.parse.PwSCFOutputFile">
 <em class="property">class </em><code class="descclassname">pwtools.parse.</code><code class="descname">PwSCFOutputFile</code><span class="sig-paren">(</span><em>filename=None</em>, <em>use_alat=True</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#PwSCFOutputFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.PwSCFOutputFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pwtools.parse.StructureFileParser.html#pwtools.parse.StructureFileParser" title="pwtools.parse.StructureFileParser"><code class="xref py py-class docutils literal"><span class="pre">pwtools.parse.StructureFileParser</span></code></a></p>
-<p>Parse a pw.x SCF output file (calculation=&#8217;scf&#8217;).</p>
+<p>Parse a pw.x SCF output file (calculation=’scf’).</p>
 <p>Some getters (_get_&lt;attr&gt;_raw) work for MD-like output, too. Here in the
 SCF case, only the first item along the time axis is returned and should
-only be used on calculation=&#8217;scf&#8217; output.</p>
-<p>SCF output files don&#8217;t have an ATOMIC_POSITIONS block. We need to parse the
+only be used on calculation=’scf’ output.</p>
+<p>SCF output files don’t have an ATOMIC_POSITIONS block. We need to parse the
 block below, which can be found at the top the file (cartesian, divided by
 alat). From that, we also get symbols:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Cartesian</span> <span class="n">axes</span>
@@ -99,8 +61,8 @@ alat). From that, we also get symbols:</p>
       <span class="mi">4</span>           <span class="n">N</span>   <span class="n">tau</span><span class="p">(</span>  <span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span>   <span class="mf">0.5000050</span>   <span class="mf">0.2886722</span>   <span class="mf">1.4209142</span>  <span class="p">)</span>
 </pre></div>
 </div>
-<p>Many quantities in PWscf&#8217;s output files are always in units of the lattice
-vector &#8220;a&#8221; (= a_0 = celldm1 = &#8220;alat&#8221; [Bohr]), i.e. divided by that value,
+<p>Many quantities in PWscf’s output files are always in units of the lattice
+vector “a” (= a_0 = celldm1 = “alat” [Bohr]), i.e. divided by that value,
 which is usually printed in the output in low precision:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lattice</span> <span class="n">parameter</span> <span class="p">(</span><span class="n">a_0</span><span class="p">)</span>   <span class="o">=</span>       <span class="mf">5.8789</span>  <span class="n">a</span><span class="o">.</span><span class="n">u</span><span class="o">.</span>
 </pre></div>
@@ -111,7 +73,7 @@ people will expect if they just call the parser on some file. Then, we
 multiply all relevent quantities with dimension length with the alat value
 from pw.out automatically.</p>
 <p>If <code class="docutils literal"><span class="pre">use_alat=False</span></code>, we use <code class="docutils literal"><span class="pre">alat=1.0</span></code>, i.e. all length quantities
-which are &#8220;in alat units&#8221; are returned exactly as found in the file, which
+which are “in alat units” are returned exactly as found in the file, which
 is the same behavior as in all other parsers. Unit conversion happens only
 when we pass things to Structure / Trajectory using self.units.</p>
 <p>If you need/want to use another alat (i.e. a value with more precision), 
@@ -122,7 +84,7 @@ then you need to explicitly provide that value and use <code class="docutils lit
 </pre></div>
 </div>
 <p><code class="docutils literal"><span class="pre">use_alat=False</span></code> will prevent parsing the low precision value from
-&#8216;pw.out&#8217;. The option <code class="docutils literal"><span class="pre">units=...</span></code> will overwrite <code class="docutils literal"><span class="pre">default_units['length']</span>
+‘pw.out’. The option <code class="docutils literal"><span class="pre">units=...</span></code> will overwrite <code class="docutils literal"><span class="pre">default_units['length']</span>
 <span class="pre">=</span> <span class="pre">Bohr/Ang</span></code>, which is used to convert all PWscf length [Bohr] to [Ang]
 when passing things to Trajectory.</p>
 <p>In either case, all quantities with a length unit or derived from such a
@@ -134,21 +96,21 @@ quantitiy, e.g.</p>
 <div class="line">coords</div>
 <div class="line">coords_frac</div>
 <div class="line">volume</div>
-<div class="line">...</div>
+<div class="line">…</div>
 </div>
 </div></blockquote>
-<p>will be correct (up to alat&#8217;s precision).</p>
-<p>All getters return PWscf standard units (Ry, Bohr, ...).</p>
+<p>will be correct (up to alat’s precision).</p>
+<p>All getters return PWscf standard units (Ry, Bohr, …).</p>
 <p>It is a special case for PWscf that a parser class may modify values parsed
 from a file (multiply by alat if use_alat=True, etc) <em>before</em> they are
 passed over to Structure / Trajectory  b/c otherwise the numbers would be
 pretty useless, unless you use <cite>units</cite> explicitely. To get an object with
-pwtools standard units (eV, Angstrom, ...), use <a class="reference internal" href="pwtools.parse.PwSCFOutputFile.get_struct.html#pwtools.parse.PwSCFOutputFile.get_struct" title="pwtools.parse.PwSCFOutputFile.get_struct"><code class="xref py py-meth docutils literal"><span class="pre">get_struct()</span></code></a>.</p>
+pwtools standard units (eV, Angstrom, …), use <a class="reference internal" href="pwtools.parse.PwSCFOutputFile.get_struct.html#pwtools.parse.PwSCFOutputFile.get_struct" title="pwtools.parse.PwSCFOutputFile.get_struct"><code class="xref py py-meth docutils literal"><span class="pre">get_struct()</span></code></a>.</p>
 <p class="rubric">Notes</p>
-<p>Total force: Pwscf writes a &#8220;Total Force&#8221; after the &#8220;Forces acting on
-atoms&#8221; section . This value a UNnormalized RMS of the force matrix
-(f_ij, i=1,natoms j=1,2,3) printed. According to .../PW/forces.f90,
-variable &#8220;sumfor&#8221;, the &#8220;Total Force&#8221; is <code class="docutils literal"><span class="pre">sqrt(sum_ij</span> <span class="pre">f_ij^2)</span></code>.
+<p>Total force: Pwscf writes a “Total Force” after the “Forces acting on
+atoms” section . This value a UNnormalized RMS of the force matrix
+(f_ij, i=1,natoms j=1,2,3) printed. According to …/PW/forces.f90,
+variable “sumfor”, the “Total Force” is <code class="docutils literal"><span class="pre">sqrt(sum_ij</span> <span class="pre">f_ij^2)</span></code>.
 Use <code class="docutils literal"><span class="pre">crys.rms(self.forces)</span></code> (for PwSCFOutputFile) or
 <code class="docutils literal"><span class="pre">crys.rms3d(self.forces,</span> <span class="pre">axis=self.timeaxis)</span></code> (for PwMDOutputFile)
 instead.</p>
@@ -218,7 +180,7 @@ Tested w/ QE 4.3.2 .</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">Container</span></code></td>
-<td>alias of <code class="xref py py-class docutils literal"><span class="pre">Structure</span></code></td>
+<td>alias of <a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal"><span class="pre">pwtools.crys.Structure</span></code></a></td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.parse.PwSCFOutputFile.apply_units.html#pwtools.parse.PwSCFOutputFile.apply_units" title="pwtools.parse.PwSCFOutputFile.apply_units"><code class="xref py py-obj docutils literal"><span class="pre">apply_units</span></code></a>()</td>
 <td></td>
@@ -242,10 +204,10 @@ Tested w/ QE 4.3.2 .</p>
 <td></td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.PwSCFOutputFile.dump.html#pwtools.parse.PwSCFOutputFile.dump" title="pwtools.parse.PwSCFOutputFile.dump"><code class="xref py py-obj docutils literal"><span class="pre">dump</span></code></a>(dump_filename[,&nbsp;mkdir])</td>
-<td>Write object to binary file using cPickle.</td>
+<td>Write object to binary file using pickle.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.parse.PwSCFOutputFile.get_alat.html#pwtools.parse.PwSCFOutputFile.get_alat" title="pwtools.parse.PwSCFOutputFile.get_alat"><code class="xref py py-obj docutils literal"><span class="pre">get_alat</span></code></a>([use_alat])</td>
-<td>Lattice parameter &#8220;alat&#8221; [Bohr].</td>
+<td>Lattice parameter “alat” [Bohr].</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.PwSCFOutputFile.get_cell.html#pwtools.parse.PwSCFOutputFile.get_cell" title="pwtools.parse.PwSCFOutputFile.get_cell"><code class="xref py py-obj docutils literal"><span class="pre">get_cell</span></code></a>()</td>
 <td>Start cell [Bohr].</td>
@@ -327,7 +289,7 @@ Tested w/ QE 4.3.2 .</p>
 <dl class="method">
 <dt id="pwtools.parse.PwSCFOutputFile.get_alat">
 <code class="descname">get_alat</code><span class="sig-paren">(</span><em>use_alat=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#PwSCFOutputFile.get_alat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.PwSCFOutputFile.get_alat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lattice parameter &#8220;alat&#8221; [Bohr]. If use_alat or self.use_alat is
+<dd><p>Lattice parameter “alat” [Bohr]. If use_alat or self.use_alat is
 False, return 1.0, i.e. disbale alat.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -382,28 +344,68 @@ False, return 1.0, i.e. disbale alat.</p>
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="parse.html">parse</a><ul>
+      <li>Previous: <a href="pwtools.parse.PwMDOutputFile.update_units.html" title="previous chapter">pwtools.parse.PwMDOutputFile.update_units</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.parse.PwMDOutputFile.update_units.html" title="pwtools.parse.PwMDOutputFile.update_units"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="parse.html" >parse</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/generated/api/pwtools.parse.PwSCFOutputFile.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

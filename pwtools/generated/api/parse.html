@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>parse &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,70 +21,19 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.parse.AWK" href="pwtools.parse.AWK.html" />
-    <link rel="prev" title="pwtools.num.vlinspace" href="pwtools.num.vlinspace.html" /> 
-  </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.parse.AWK.html" title="pwtools.parse.AWK"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.num.vlinspace.html" title="pwtools.num.vlinspace"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API Reference</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="../../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">parse</a><ul>
-<li><a class="reference internal" href="#parser-classes-for-different-file-formats-input-and-output-files">Parser classes for different file formats. Input- and output files.</a><ul>
-<li><a class="reference internal" href="#using-parsing-classes">Using Parsing classes</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+    <link rel="prev" title="pwtools.num.vlinspace" href="pwtools.num.vlinspace.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="pwtools.num.vlinspace.html"
-                        title="previous chapter">pwtools.num.vlinspace</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="pwtools.parse.AWK.html"
-                        title="next chapter">pwtools.parse.AWK</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/parse.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  </head>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -105,9 +51,9 @@
 <div class="line">awk (better mawk)</div>
 <div class="line">tail</div>
 <div class="line">wc </div>
-<div class="line">...</div>
+<div class="line">…</div>
 </div>
-<p>The tested egrep versions don&#8217;t know the <code class="docutils literal"><span class="pre">\s</span></code> character class for
+<p>The tested egrep versions don’t know the <code class="docutils literal"><span class="pre">\s</span></code> character class for
 whitespace as sed, Perl, Python or any other sane regex implementation
 does. Use <code class="docutils literal"><span class="pre">[</span> <span class="pre">]</span></code> instead.</p>
 <div class="section" id="using-parsing-classes">
@@ -139,24 +85,21 @@ on it will also return None.</p>
 <p>for each &lt;attr&gt; in self.attr_lst, thus setting self.&lt;attr&gt; to a defined
 value: None if nothing was found in the file or not None else</p>
 </li>
-<li><p class="first">All getters get_&lt;attr&gt;() will do their parsing action, possibly
+<li><p class="first">All getters get_&lt;attr&gt;() will do their parsing, possibly
 looking for a file self.filename, regardless of the fact that the attribute
 self.&lt;attr&gt; may already be defined (e.g. if parse() has been called before).</p>
 </li>
 <li><p class="first">For interactive use (you need &lt;attr&gt; only once), prefer get_&lt;attr&gt;() over
 parse().</p>
 </li>
-<li><p class="first">Use dump(&#8216;foo.pk&#8217;) only for temporary storage and fast re-reading. Use
-pwtool.common.cpickle_load(foo.pk). See also the <a href="#id1"><span class="problematic" id="id2">*</span></a>FileParser.load() docstring.</p>
-</li>
-<li><p class="first">Keep the original parsed output file around (self.filename), avoid
-get_txt().</p>
+<li><p class="first">Use dump(‘foo.pk’) only for temporary storage and fast re-reading. Use
+pwtool.io.read_pickle(‘foo.pk’). See also the <a href="#id1"><span class="problematic" id="id2">*</span></a>FileParser.load() docstring.</p>
 </li>
 <li><p class="first">Use relative paths in &lt;filename&gt;.</p>
 </li>
 <li><dl class="first docutils">
-<dt>If loading a dump()&#8217;ed pickle file from disk,</dt>
-<dd><p class="first last">pp=common.cpickle_load(...)</p>
+<dt>If loading a dump()’ed pickle file from disk,</dt>
+<dd><p class="first last">pp=io.read_pickle(…)</p>
 </dd>
 <dt>then use direct attr access</dt>
 <dd><p class="first last">pp.&lt;attr&gt;</p>
@@ -173,8 +116,8 @@ information, e.g.</p>
 <blockquote>
 <div><div class="line-block">
 <div class="line">cell + cryst_const</div>
-<div class="line">_&lt;attr&gt;_raw + &lt;attr&gt; (where &lt;attr&gt; = cell, forces, ...)</div>
-<div class="line">...</div>
+<div class="line">_&lt;attr&gt;_raw + &lt;attr&gt; (where &lt;attr&gt; = cell, forces, …)</div>
+<div class="line">…</div>
 </div>
 </div></blockquote>
 <p>especially in MD parsers, not so much in StructureFileParser drived
@@ -196,7 +139,8 @@ all getters have extracted all information that you need.</li>
 <p>Con:</p>
 <ul class="simple">
 <li>The object is full of (potentially big) arrays holding redundant
-information. Thus, the dump()&#8217;ed file may be large.</li>
+information. Thus, the dump()’ed file may be large. Use the compress()
+method.</li>
 <li>Parsing may be slow if each getter (of possibly many) is called.</li>
 </ul>
 <p>Using get_&lt;attr&gt;():</p>
@@ -207,15 +151,9 @@ information. Thus, the dump()&#8217;ed file may be large.</li>
 <p>Con:</p>
 <ul class="simple">
 <li>self.&lt;attr&gt; will NOT be set, since get_&lt;attr&gt;() only returns &lt;attr&gt; but
-doesn&#8217;t set self.&lt;attr&gt; = self.get_&lt;attr&gt;(), so dump() would save an
-&#8220;empty&#8221; file.</li>
+doesn’t set self.&lt;attr&gt; = self.get_&lt;attr&gt;(), so dump() would save an
+“empty” file.</li>
 </ul>
-<p>Note on get_txt():</p>
-<p>If a file parser calls get_txt(), then this has these effects: (1) It can
-slow down parsing for big files and (2) the saved binary file (by using
-dump()) will have at least the size of the text file. While the original file
-could then be deleted in theory, the dump()&#8217;ed file becomes unwieldly to work
-with.</p>
 </div>
 </div>
 <table border="1" class="longtable docutils">
@@ -225,7 +163,7 @@ with.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.AWK.html#pwtools.parse.AWK" title="pwtools.parse.AWK"><code class="xref py py-obj docutils literal"><span class="pre">AWK</span></code></a></td>
-<td>str(object=&#8217;&#8216;) -&gt; string</td>
+<td>str(object=’‘) -&gt; str</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Ang.html#pwtools.parse.Ang" title="pwtools.parse.Ang"><code class="xref py py-obj docutils literal"><span class="pre">Ang</span></code></a></td>
 <td>float(x) -&gt; floating point number</td>
@@ -249,13 +187,13 @@ with.</p>
 <td>Parse cp2k global/run_type cell_opt.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.Cp2kSCFOutputFile.html#pwtools.parse.Cp2kSCFOutputFile" title="pwtools.parse.Cp2kSCFOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">Cp2kSCFOutputFile</span></code></a>(*args,&nbsp;**kwds)</td>
-<td>CP2K SCF output parser (&#8220;global/run_type energy_force,print_level low&#8221;).</td>
+<td>CP2K SCF output parser (“global/run_type energy_force,print_level low”).</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.html#pwtools.parse.CpmdMDOutputFile" title="pwtools.parse.CpmdMDOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">CpmdMDOutputFile</span></code></a>(*args,&nbsp;**kwds)</td>
 <td>Parse CPMD MD output.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdSCFOutputFile.html#pwtools.parse.CpmdSCFOutputFile" title="pwtools.parse.CpmdSCFOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">CpmdSCFOutputFile</span></code></a>(*args,&nbsp;**kwds)</td>
-<td>Parse output from a CPMD &#8220;single point calculation&#8221; (wave function optimization).</td>
+<td>Parse output from a CPMD “single point calculation” (wave function optimization).</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.parse.DcdOutputFile.html#pwtools.parse.DcdOutputFile" title="pwtools.parse.DcdOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">DcdOutputFile</span></code></a></td>
 <td>Base class which implements dcd file reading.</td>
@@ -276,10 +214,10 @@ with.</p>
 <td>Parse pw.x MD-like output.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.parse.PwSCFOutputFile.html#pwtools.parse.PwSCFOutputFile" title="pwtools.parse.PwSCFOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">PwSCFOutputFile</span></code></a>([filename,&nbsp;use_alat])</td>
-<td>Parse a pw.x SCF output file (calculation=&#8217;scf&#8217;).</td>
+<td>Parse a pw.x SCF output file (calculation=’scf’).</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.PwVCMDOutputFile.html#pwtools.parse.PwVCMDOutputFile" title="pwtools.parse.PwVCMDOutputFile"><code class="xref py py-obj docutils literal"><span class="pre">PwVCMDOutputFile</span></code></a>(*args,&nbsp;**kwds)</td>
-<td>Parse only calculation=&#8217;vc-md&#8217;.</td>
+<td>Parse only calculation=’vc-md’.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.parse.Ry.html#pwtools.parse.Ry" title="pwtools.parse.Ry"><code class="xref py py-obj docutils literal"><span class="pre">Ry</span></code></a></td>
 <td>float(x) -&gt; floating point number</td>
@@ -334,30 +272,67 @@ with.</p>
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+      <li>Previous: <a href="pwtools.num.vlinspace.html" title="previous chapter">pwtools.num.vlinspace</a></li>
+      <li>Next: <a href="pwtools.parse.AWK.html" title="next chapter">pwtools.parse.AWK</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.parse.AWK.html" title="pwtools.parse.AWK"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.num.vlinspace.html" title="pwtools.num.vlinspace"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/generated/api/parse.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

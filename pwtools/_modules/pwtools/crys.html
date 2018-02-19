@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.crys &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,38 +21,17 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -63,9 +39,7 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.crys</h1><div class="highlight"><pre>
-<span></span><span class="c1"># Crystal and unit-cell related tools, MD analysis, container classes</span>
-
-<span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">acos</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sqrt</span>
+<span></span><span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">acos</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sqrt</span>
 <span class="kn">import</span> <span class="nn">textwrap</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">tempfile</span><span class="o">,</span> <span class="nn">types</span><span class="o">,</span> <span class="nn">copy</span><span class="o">,</span> <span class="nn">itertools</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -78,7 +52,7 @@
 <span class="kn">from</span> <span class="nn">pwtools.constants</span> <span class="k">import</span> <span class="n">Bohr</span><span class="p">,</span> <span class="n">Angstrom</span>
 <span class="kn">from</span> <span class="nn">pwtools.num</span> <span class="k">import</span> <span class="n">fempty</span><span class="p">,</span> <span class="n">rms</span><span class="p">,</span> <span class="n">rms3d</span><span class="p">,</span> <span class="n">match_mask</span><span class="p">,</span> <span class="n">norm</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;always&#39;</span><span class="p">)</span>
+<span class="c1">##warnings.simplefilter(&#39;always&#39;)</span>
 
 
 <span class="c1">#-----------------------------------------------------------------------------</span>
@@ -101,8 +75,8 @@
 <span class="c1"># crystallographic constants and basis vectors</span>
 <span class="c1">#-----------------------------------------------------------------------------</span>
 
-<span class="nd">@crys_add_doc</span>
-<div class="viewcode-block" id="volume_cell"><a class="viewcode-back" href="../../generated/api/pwtools.crys.volume_cell.html#pwtools.crys.volume_cell">[docs]</a><span class="k">def</span> <span class="nf">volume_cell</span><span class="p">(</span><span class="n">cell</span><span class="p">):</span>
+<div class="viewcode-block" id="volume_cell"><a class="viewcode-back" href="../../generated/api/pwtools.crys.volume_cell.html#pwtools.crys.volume_cell">[docs]</a><span class="nd">@crys_add_doc</span>
+<span class="k">def</span> <span class="nf">volume_cell</span><span class="p">(</span><span class="n">cell</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Volume of the unit cell from cell vectors. Calculates the triple</span>
 <span class="sd">    product::</span>
 <span class="sd">        </span>
@@ -142,7 +116,7 @@
     <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">cell</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="volume_cell3d"><a class="viewcode-back" href="../../generated/api/pwtools.crys.volume_cell3d.html#pwtools.crys.volume_cell3d">[docs]</a><span class="k">def</span> <span class="nf">volume_cell3d</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Same as volume_cell() for 3d arrays.</span>
+    <span class="sd">&quot;&quot;&quot;Same as :func:`volume_cell` for 3d arrays.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -157,8 +131,8 @@
         <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">volume_cell</span><span class="p">(</span><span class="n">cell</span><span class="p">[</span><span class="n">sl</span><span class="p">]))</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>        </div>
 
-<span class="nd">@crys_add_doc</span>
-<div class="viewcode-block" id="volume_cc"><a class="viewcode-back" href="../../generated/api/pwtools.crys.volume_cc.html#pwtools.crys.volume_cc">[docs]</a><span class="k">def</span> <span class="nf">volume_cc</span><span class="p">(</span><span class="n">cryst_const</span><span class="p">):</span>
+<div class="viewcode-block" id="volume_cc"><a class="viewcode-back" href="../../generated/api/pwtools.crys.volume_cc.html#pwtools.crys.volume_cc">[docs]</a><span class="nd">@crys_add_doc</span>
+<span class="k">def</span> <span class="nf">volume_cc</span><span class="p">(</span><span class="n">cryst_const</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Volume of the unit cell from crystallographic constants [1]_.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
@@ -185,7 +159,7 @@
 
 
 <div class="viewcode-block" id="volume_cc3d"><a class="viewcode-back" href="../../generated/api/pwtools.crys.volume_cc3d.html#pwtools.crys.volume_cc3d">[docs]</a><span class="k">def</span> <span class="nf">volume_cc3d</span><span class="p">(</span><span class="n">cryst_const</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Same as volume_cc() for 2d arrays (the name &quot;3d&quot; is just to indicate</span>
+    <span class="sd">&quot;&quot;&quot;Same as :func:`volume_cc` for 2d arrays (the name &quot;3d&quot; is just to indicate</span>
 <span class="sd">    that we work w/ trajectories).</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
@@ -201,8 +175,8 @@
         <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">volume_cc</span><span class="p">(</span><span class="n">cryst_const</span><span class="p">[</span><span class="n">sl</span><span class="p">]))</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>        </div>
 
-<span class="nd">@crys_add_doc</span>
-<div class="viewcode-block" id="cell2cc"><a class="viewcode-back" href="../../generated/api/pwtools.crys.cell2cc.html#pwtools.crys.cell2cc">[docs]</a><span class="k">def</span> <span class="nf">cell2cc</span><span class="p">(</span><span class="n">cell</span><span class="p">):</span>
+<div class="viewcode-block" id="cell2cc"><a class="viewcode-back" href="../../generated/api/pwtools.crys.cell2cc.html#pwtools.crys.cell2cc">[docs]</a><span class="nd">@crys_add_doc</span>
+<span class="k">def</span> <span class="nf">cell2cc</span><span class="p">(</span><span class="n">cell</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;From `cell` to crystallographic constants a, b, c, alpha, beta,</span>
 <span class="sd">    gamma. </span>
 <span class="sd">    This mapping is unique in the sense that multiple cells will have</span>
@@ -236,7 +210,7 @@
     <span class="k">return</span> <span class="n">cryst_const</span></div>
 
 <div class="viewcode-block" id="cell2cc3d"><a class="viewcode-back" href="../../generated/api/pwtools.crys.cell2cc3d.html#pwtools.crys.cell2cc3d">[docs]</a><span class="k">def</span> <span class="nf">cell2cc3d</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Same as cell2cc() for 3d arrays.</span>
+    <span class="sd">&quot;&quot;&quot;Same as :func:`cell2cc` for 3d arrays.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -251,8 +225,8 @@
         <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cell2cc</span><span class="p">(</span><span class="n">cell</span><span class="p">[</span><span class="n">sl</span><span class="p">]))</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>        </div>
 
-<span class="nd">@crys_add_doc</span>
-<div class="viewcode-block" id="cc2cell"><a class="viewcode-back" href="../../generated/api/pwtools.crys.cc2cell.html#pwtools.crys.cc2cell">[docs]</a><span class="k">def</span> <span class="nf">cc2cell</span><span class="p">(</span><span class="n">cryst_const</span><span class="p">):</span>
+<div class="viewcode-block" id="cc2cell"><a class="viewcode-back" href="../../generated/api/pwtools.crys.cc2cell.html#pwtools.crys.cc2cell">[docs]</a><span class="nd">@crys_add_doc</span>
+<span class="k">def</span> <span class="nf">cc2cell</span><span class="p">(</span><span class="n">cryst_const</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;From crystallographic constants a, b, c, alpha, beta,</span>
 <span class="sd">    gamma to `cell`.</span>
 <span class="sd">    This mapping not NOT unique in the sense that one set of `cryst_const` can</span>
@@ -307,7 +281,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">va</span><span class="p">,</span> <span class="n">vb</span><span class="p">,</span> <span class="n">vc</span><span class="p">])</span></div>
 
 <div class="viewcode-block" id="cc2cell3d"><a class="viewcode-back" href="../../generated/api/pwtools.crys.cc2cell3d.html#pwtools.crys.cc2cell3d">[docs]</a><span class="k">def</span> <span class="nf">cc2cell3d</span><span class="p">(</span><span class="n">cryst_const</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Same as cc2cell() for 2d arrays (the name &quot;3d&quot; is just to indicate</span>
+    <span class="sd">&quot;&quot;&quot;Same as :func:`cc2cell` for 2d arrays (the name &quot;3d&quot; is just to indicate</span>
 <span class="sd">    that we work w/ trajectories).</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
@@ -324,8 +298,8 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>        </div>
 
 
-<span class="nd">@crys_add_doc</span>
-<div class="viewcode-block" id="recip_cell"><a class="viewcode-back" href="../../generated/api/pwtools.crys.recip_cell.html#pwtools.crys.recip_cell">[docs]</a><span class="k">def</span> <span class="nf">recip_cell</span><span class="p">(</span><span class="n">cell</span><span class="p">):</span>
+<div class="viewcode-block" id="recip_cell"><a class="viewcode-back" href="../../generated/api/pwtools.crys.recip_cell.html#pwtools.crys.recip_cell">[docs]</a><span class="nd">@crys_add_doc</span>
+<span class="k">def</span> <span class="nf">recip_cell</span><span class="p">(</span><span class="n">cell</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Reciprocal lattice vectors ``{a,b,c}* = 2*pi / V * {b,c,a} x {c,a,b}``.</span>
 <span class="sd">    </span>
 <span class="sd">    The reciprocal volume is ``(2*pi)**3/V``. The length unit of the reciprocal</span>
@@ -433,7 +407,7 @@
             <span class="n">size</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">minpoints</span>
         <span class="c1"># only possible if minpoints=0        </span>
         <span class="k">if</span> <span class="p">(</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;at least one point count is zero, decrease `spacing`, &quot;</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;at least one point count is zero, decrease `spacing`, &quot;</span>
                                  <span class="s2">&quot;size=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="nb">str</span><span class="p">(</span><span class="n">size</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">fullout</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">size</span><span class="p">,</span> <span class="n">norms</span> <span class="o">*</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">size</span>
@@ -497,7 +471,7 @@
 <span class="sd">    &gt;&gt;&gt; kgrid(np.identity(3), h=pi, fullout=True)</span>
 <span class="sd">    (array([2, 2, 2]), array([ 3.14159265,  3.14159265,  3.14159265]))</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">kwds</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;dk&#39;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s1">&#39;dk&#39;</span> <span class="ow">in</span> <span class="n">kwds</span><span class="p">:</span>
         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;`dk` is deprecated, use `h` instead&quot;</span><span class="p">,</span>
                       <span class="ne">DeprecationWarning</span><span class="p">)</span>
         <span class="n">kwds</span><span class="p">[</span><span class="s1">&#39;h&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s1">&#39;dk&#39;</span><span class="p">]</span>
@@ -505,8 +479,8 @@
     <span class="k">return</span> <span class="n">grid_in_cell</span><span class="p">(</span><span class="n">recip_cell</span><span class="p">(</span><span class="n">cell</span><span class="p">),</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span></div>
 
 
-<span class="nd">@crys_add_doc</span>
-<div class="viewcode-block" id="cc2celldm"><a class="viewcode-back" href="../../generated/api/pwtools.crys.cc2celldm.html#pwtools.crys.cc2celldm">[docs]</a><span class="k">def</span> <span class="nf">cc2celldm</span><span class="p">(</span><span class="n">cryst_const</span><span class="p">,</span> <span class="n">fac</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<div class="viewcode-block" id="cc2celldm"><a class="viewcode-back" href="../../generated/api/pwtools.crys.cc2celldm.html#pwtools.crys.cc2celldm">[docs]</a><span class="nd">@crys_add_doc</span>
+<span class="k">def</span> <span class="nf">cc2celldm</span><span class="p">(</span><span class="n">cryst_const</span><span class="p">,</span> <span class="n">fac</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert cryst_const to PWscf `celldm`.</span>
 
@@ -531,8 +505,8 @@
     <span class="n">celldm</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">gamma</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="mf">180.0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">celldm</span></div>
 
-<span class="nd">@crys_add_doc</span>
-<div class="viewcode-block" id="celldm2cc"><a class="viewcode-back" href="../../generated/api/pwtools.crys.celldm2cc.html#pwtools.crys.celldm2cc">[docs]</a><span class="k">def</span> <span class="nf">celldm2cc</span><span class="p">(</span><span class="n">celldm</span><span class="p">,</span> <span class="n">fac</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<div class="viewcode-block" id="celldm2cc"><a class="viewcode-back" href="../../generated/api/pwtools.crys.celldm2cc.html#pwtools.crys.celldm2cc">[docs]</a><span class="nd">@crys_add_doc</span>
+<span class="k">def</span> <span class="nf">celldm2cc</span><span class="p">(</span><span class="n">celldm</span><span class="p">,</span> <span class="n">fac</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert PWscf celldm to cryst_const.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
@@ -661,7 +635,7 @@
     <span class="c1"># sc_coords_frac : crystal coords w.r.t the *old* cell, i.e. the entries are in</span>
     <span class="c1"># [0,(max(dims))], not [0,1], is scaled below</span>
     <span class="c1">#</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">kwds</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;direc&#39;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s1">&#39;direc&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwds</span><span class="p">:</span>
         <span class="n">kwds</span><span class="p">[</span><span class="s1">&#39;direc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">mask</span> <span class="o">=</span> <span class="n">scell_mask</span><span class="p">(</span><span class="o">*</span><span class="nb">tuple</span><span class="p">(</span><span class="n">dims</span><span class="p">),</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
     <span class="n">nmask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -673,7 +647,7 @@
         <span class="n">sc_cell</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">cell</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dims</span><span class="p">)[</span><span class="kc">None</span><span class="p">,:,</span><span class="kc">None</span><span class="p">]</span>
         <span class="n">container</span> <span class="o">=</span> <span class="n">Trajectory</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;unknown input type&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unknown input type&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">sc_symbols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">symbols</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">nmask</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">symbols</span> \
                      <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
@@ -687,7 +661,7 @@
             <span class="n">sc_coords_frac</span> <span class="o">=</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">coords_frac</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="kc">None</span><span class="p">,:]</span> \
                               <span class="o">+</span> <span class="n">mask</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="o">...</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">nstep</span><span class="p">,</span><span class="n">obj</span><span class="o">.</span><span class="n">natoms</span><span class="o">*</span><span class="n">nmask</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;huh!?&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;huh!?&quot;</span><span class="p">)</span>
     <span class="c1"># explicit loop version for testing, this is the reference implementation,</span>
     <span class="c1"># only for Structure</span>
     <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
@@ -702,9 +676,9 @@
                     <span class="n">sc_coords_frac</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">coords_frac</span><span class="p">[</span><span class="n">iatom</span><span class="p">,:]</span> <span class="o">+</span> <span class="n">mask</span><span class="p">[</span><span class="n">j</span><span class="p">,:]</span>
                     <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;method=2 only implemented for Structure&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;method=2 only implemented for Structure&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;unknown method: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="nb">repr</span><span class="p">(</span><span class="n">method</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unknown method: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="nb">repr</span><span class="p">(</span><span class="n">method</span><span class="p">))</span>
     <span class="n">sc_coords_frac</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">/=</span> <span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">sc_coords_frac</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">/=</span> <span class="n">dims</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">sc_coords_frac</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">/=</span> <span class="n">dims</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
@@ -866,8 +840,8 @@
 <div class="viewcode-block" id="pbc_wrap"><a class="viewcode-back" href="../../generated/api/pwtools.crys.pbc_wrap.html#pwtools.crys.pbc_wrap">[docs]</a><span class="k">def</span> <span class="nf">pbc_wrap</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Apply periodic boundary conditions to fractional coords. </span>
 
-<span class="sd">    Same as ``pbc_wrap_coords`` but accepts a Structure or Trajectory instead</span>
-<span class="sd">    of the array ``coords_frac``. Returns an object with atoms</span>
+<span class="sd">    Same as :func:`pbc_wrap_coords` but accepts a Structure or Trajectory</span>
+<span class="sd">    instead of the array ``coords_frac``. Returns an object with atoms</span>
 <span class="sd">    (coords_frac and coords) wrapped into the cell.</span>
 
 <span class="sd">    Parameters</span>
@@ -876,7 +850,7 @@
 <span class="sd">    copy : bool</span>
 <span class="sd">        Return copy or in-place modified object.</span>
 <span class="sd">    **kwds : keywords</span>
-<span class="sd">        passed to pbc_wrap_coords()</span>
+<span class="sd">        passed to :func:`pbc_wrap_coords`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">if</span> <span class="n">copy</span> <span class="k">else</span> <span class="n">obj</span>
     <span class="c1"># set to None so that it will be re-calculated by set_all()</span>
@@ -1088,8 +1062,8 @@
     <span class="k">return</span> <span class="n">sij</span></div>
 
 
-<span class="nd">@crys_add_doc</span>
-<div class="viewcode-block" id="rmax_smith"><a class="viewcode-back" href="../../generated/api/pwtools.crys.rmax_smith.html#pwtools.crys.rmax_smith">[docs]</a><span class="k">def</span> <span class="nf">rmax_smith</span><span class="p">(</span><span class="n">cell</span><span class="p">):</span>
+<div class="viewcode-block" id="rmax_smith"><a class="viewcode-back" href="../../generated/api/pwtools.crys.rmax_smith.html#pwtools.crys.rmax_smith">[docs]</a><span class="nd">@crys_add_doc</span>
+<span class="k">def</span> <span class="nf">rmax_smith</span><span class="p">(</span><span class="n">cell</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Calculate rmax as in [Smith]_, where rmax = the maximal distance up to</span>
 <span class="sd">    which minimum image nearest neighbor distances are correct.</span>
 <span class="sd">    </span>
@@ -1532,7 +1506,7 @@
         <span class="n">dup_trajs</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">amask</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">amask</span> <span class="o">*=</span> <span class="mi">2</span>
-    <span class="n">trajs</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">struct2traj</span><span class="p">,</span> <span class="n">trajs</span><span class="p">)</span>
+    <span class="n">trajs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">struct2traj</span><span class="p">,</span> <span class="n">trajs</span><span class="p">))</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">trajs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;len(trajs) != 2&quot;</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">amask</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;len(amask) != 2&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">dup_trajs</span><span class="p">:</span>
@@ -1571,7 +1545,7 @@
     <span class="n">norm_fac_pre</span> <span class="o">=</span> <span class="n">volume</span> <span class="o">/</span> <span class="n">volume_shells</span>
     
     <span class="k">if</span> <span class="n">nstep</span> <span class="o">*</span> <span class="n">natoms0</span> <span class="o">*</span> <span class="n">natoms1</span> <span class="o">*</span> <span class="mf">24.0</span> <span class="o">/</span> <span class="mf">1e9</span> <span class="o">&gt;</span> <span class="n">maxmem</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;would use more than maxmem=</span><span class="si">%f</span><span class="s2"> GB of memory, &quot;</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;would use more than maxmem=</span><span class="si">%f</span><span class="s2"> GB of memory, &quot;</span>
                             <span class="s2">&quot;try `tmask` to reduce time steps&quot;</span> <span class="o">%</span><span class="n">maxmem</span><span class="p">)</span>
 
     <span class="c1"># distances</span>
@@ -1742,7 +1716,7 @@
     <span class="n">dct</span><span class="p">[</span><span class="s1">&#39;usepbc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">usepbc</span>
     <span class="n">dct</span><span class="p">[</span><span class="s1">&#39;datafn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datafn</span>
     <span class="n">dct</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">asctime</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="n">dct</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="n">dct</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">vmd_tcl</span> <span class="o">=</span> <span class="n">vmd_tcl</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;XXX&#39;</span><span class="o">+</span><span class="n">key</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
     <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="n">scriptfn</span><span class="p">,</span> <span class="n">vmd_tcl</span><span class="p">)</span>
     <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;vmd -dispdev none -eofexit -e </span><span class="si">%s</span><span class="s2"> &quot;</span> <span class="o">%</span><span class="n">scriptfn</span>
@@ -1818,8 +1792,8 @@
     <span class="n">cell</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
     <span class="n">cc</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">cryst_const</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cc</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span> <span class="o">-</span> <span class="mf">90.0</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">:</span>
-        <span class="nb">print</span> <span class="n">cell</span>
-        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;`cell` is not orthogonal, check angles&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;`cell` is not orthogonal, check angles&quot;</span><span class="p">)</span>
     <span class="n">rmax_auto</span> <span class="o">=</span> <span class="n">rmax_smith</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">rmax</span> <span class="o">==</span> <span class="s1">&#39;auto&#39;</span><span class="p">:</span>
         <span class="n">rmax</span> <span class="o">=</span> <span class="n">rmax_auto</span>
@@ -2168,6 +2142,7 @@
 <span class="c1">#-----------------------------------------------------------------------------</span>
 
 <div class="viewcode-block" id="UnitsHandler"><a class="viewcode-back" href="../../generated/api/pwtools.crys.UnitsHandler.html#pwtools.crys.UnitsHandler">[docs]</a><span class="k">class</span> <span class="nc">UnitsHandler</span><span class="p">(</span><span class="n">FlexibleGetters</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for :class:`Structure`, providing unit conversion methods.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># XXX cryst_const is not in &#39;length&#39; and needs to be treated specially,</span>
         <span class="c1"># see _apply_units_raw()</span>
@@ -2202,9 +2177,9 @@
             <span class="k">elif</span> <span class="n">cc</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
                 <span class="n">cc</span><span class="p">[:,:</span><span class="mi">3</span><span class="p">]</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="s1">&#39;length&#39;</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;self.cryst_const has ndim != [1,2]&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;self.cryst_const has ndim != [1,2]&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">cryst_const</span> <span class="o">=</span> <span class="n">cc</span>
-        <span class="k">for</span> <span class="n">unit</span><span class="p">,</span> <span class="n">lst</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">units_map</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">unit</span><span class="p">,</span> <span class="n">lst</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">units_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="n">unit</span><span class="p">]</span> <span class="o">!=</span> <span class="mf">1.0</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
                     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_set_attr</span><span class="p">(</span><span class="n">attr_name</span><span class="p">):</span>
@@ -2226,10 +2201,10 @@
 <span class="sd">        units : dict, {&#39;length&#39;: 5, &#39;energy&#39;: 30, ...}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">units</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">all_units</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">units_map</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">units</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">all_units</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">units_map</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
                 <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">all_units</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;unknown unit: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unknown unit: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">units</span><span class="p">)</span></div></div>
 
 
@@ -2471,7 +2446,7 @@
         <span class="c1">#   self.foo = foo</span>
         <span class="c1">#   self.bar = bar</span>
         <span class="c1">#   ...</span>
-        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">kwds</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
             <span class="k">assert</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_attr_lst</span><span class="p">,</span> \
                 <span class="s2">&quot;illegal input arg: &#39;</span><span class="si">%s</span><span class="s2">&#39;, allowed: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_attr_lst</span><span class="p">))</span>
             <span class="c1"># cell can be 2d and will be treated by _extend() later</span>
@@ -2561,7 +2536,7 @@
             <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
             <span class="c1"># dict.copy() is shallow, use deepcopy instead    </span>
-            <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="s1">&#39;copy&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">DictType</span><span class="p">):</span>
+            <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="s1">&#39;copy&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">val</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
@@ -2837,7 +2812,7 @@
         <span class="sd">&quot;&quot;&quot;Dict with number of atoms per species.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_set_attr_lst</span><span class="p">([</span><span class="s1">&#39;order&#39;</span><span class="p">,</span> <span class="s1">&#39;typat&#39;</span><span class="p">]):</span>
             <span class="k">return</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">sym</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">typat</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">idx</span><span class="p">))</span> <span class="k">for</span> <span class="n">sym</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> 
-                         <span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()])</span>
+                         <span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span></div>
     
@@ -3011,13 +2986,13 @@
                 <span class="n">obj</span><span class="o">.</span><span class="n">timestep</span> <span class="o">*=</span> <span class="n">timestep_fac</span>
         <span class="k">return</span> <span class="n">obj</span>
     
-<div class="viewcode-block" id="Trajectory.next"><a class="viewcode-back" href="../../generated/api/pwtools.crys.Trajectory.next.html#pwtools.crys.Trajectory.next">[docs]</a>    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">nstep</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
             <span class="k">raise</span> <span class="ne">StopIteration</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">]</span></div>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">]</span>
     
 <div class="viewcode-block" id="Trajectory.get_ase_atoms"><a class="viewcode-back" href="../../generated/api/pwtools.crys.Trajectory.get_ase_atoms.html#pwtools.crys.Trajectory.get_ase_atoms">[docs]</a>    <span class="k">def</span> <span class="nf">get_ase_atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;only in Structure&quot;</span><span class="p">)</span></div>
@@ -3214,7 +3189,7 @@
         <span class="n">kern3d</span> <span class="o">=</span> <span class="n">kern</span><span class="p">[:,</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="c1"># ... but is trivial to add</span>
-        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;timeaxis != 0 not implemented&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;timeaxis != 0 not implemented&quot;</span><span class="p">)</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">Trajectory</span><span class="p">(</span><span class="n">set_all_auto</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="n">traj</span><span class="o">.</span><span class="n">attrs_nstep</span><span class="p">:</span>
         <span class="n">attr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">)</span>
@@ -3236,7 +3211,7 @@
                         <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">attr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>
                             <span class="n">tmp</span><span class="p">[:,</span><span class="n">jj</span><span class="p">,</span><span class="n">kk</span><span class="p">]</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">attr</span><span class="p">[:,</span><span class="n">jj</span><span class="p">,</span><span class="n">kk</span><span class="p">],</span> <span class="n">kern</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;ndim != 1,2,3 not allowed&quot;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;ndim != 1,2,3 not allowed&quot;</span><span class="p">)</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">tmp</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">attr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -3246,11 +3221,11 @@
                 <span class="k">elif</span> <span class="n">attr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
                     <span class="n">krn</span> <span class="o">=</span> <span class="n">kern3d</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;ndim != 1,2,3 not allowed&quot;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;ndim != 1,2,3 not allowed&quot;</span><span class="p">)</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">krn</span><span class="p">,</span>
                                                       <span class="n">axis</span><span class="o">=</span><span class="n">traj</span><span class="o">.</span><span class="n">timeaxis</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;unknown method&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unknown method&quot;</span><span class="p">)</span>
     <span class="c1"># nstep and timestep are the same for the smoothed traj, so we can copy all</span>
     <span class="c1"># non-nstep attrs over</span>
     <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="nb">set</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">attr_lst</span><span class="p">),</span> 
@@ -3382,14 +3357,16 @@
 
 
 <div class="viewcode-block" id="tensor2voigt"><a class="viewcode-back" href="../../generated/api/pwtools.crys.tensor2voigt.html#pwtools.crys.tensor2voigt">[docs]</a><span class="k">def</span> <span class="nf">tensor2voigt</span><span class="p">(</span><span class="n">tensor</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Convert stress tensor to Voigt notation.</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    tensor : (3,3)</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    voigt: [xx,yy,zz,yz,xz,xy]</span>
+<span class="sd">    voigt: 1d array</span>
+<span class="sd">        [xx,yy,zz,yz,xz,xy]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">assert</span> <span class="n">tensor</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;tensor must be (3,3)&quot;</span>
     <span class="n">voigt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
@@ -3403,10 +3380,12 @@
 
 
 <div class="viewcode-block" id="voigt2tensor"><a class="viewcode-back" href="../../generated/api/pwtools.crys.voigt2tensor.html#pwtools.crys.voigt2tensor">[docs]</a><span class="k">def</span> <span class="nf">voigt2tensor</span><span class="p">(</span><span class="n">voigt</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Convert Voigt stress array to stress tensor.</span>
+<span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    voigt: [xx,yy,zz,yz,xz,xy]</span>
+<span class="sd">    voigt: 1d array </span>
+<span class="sd">        [xx,yy,zz,yz,xz,xy]</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -3426,7 +3405,8 @@
     <span class="k">return</span> <span class="n">tensor</span></div>
 
 <div class="viewcode-block" id="voigt2tensor3d"><a class="viewcode-back" href="../../generated/api/pwtools.crys.voigt2tensor3d.html#pwtools.crys.voigt2tensor3d">[docs]</a><span class="k">def</span> <span class="nf">voigt2tensor3d</span><span class="p">(</span><span class="n">voigt</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Same as :func:`voigt2tensor` for trajectories.</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    voigt: (nstep,6)</span>
@@ -3452,7 +3432,8 @@
 
 
 <div class="viewcode-block" id="tensor2voigt3d"><a class="viewcode-back" href="../../generated/api/pwtools.crys.tensor2voigt3d.html#pwtools.crys.tensor2voigt3d">[docs]</a><span class="k">def</span> <span class="nf">tensor2voigt3d</span><span class="p">(</span><span class="n">tensor</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Same as :func:`tensor2voigt` for trajectories.</span>
+<span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    tensor : (nstep,3,3)</span>
@@ -3478,24 +3459,62 @@
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

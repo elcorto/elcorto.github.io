@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Pwscf &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,63 +21,17 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="Coordinate transformation" href="coord_trans.html" /> 
-  </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="coord_trans.html" title="Coordinate transformation"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Documentation</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Background</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="../../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Pwscf</a><ul>
-<li><a class="reference internal" href="#units">Units</a></li>
-<li><a class="reference internal" href="#atomic-coordinates">Atomic coordinates</a></li>
-<li><a class="reference internal" href="#total-force-on-atoms">Total force on atoms</a></li>
-</ul>
-</li>
-</ul>
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="coord_trans.html"
-                        title="previous chapter">Coordinate transformation</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/written/background/pwscf.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  </head>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -92,27 +43,27 @@
 <div class="section" id="units">
 <h2>Units<a class="headerlink" href="#units" title="Permalink to this headline">¶</a></h2>
 <p>From <a class="reference external" href="http://www.quantum-espresso.org/input-syntax/INPUT_PW.html">http://www.quantum-espresso.org/input-syntax/INPUT_PW.html</a>:
-&#8220;All quantities whose dimensions are not explicitly specified are in
-RYDBERG ATOMIC UNITS&#8221;. See also <code class="docutils literal"><span class="pre">constants.py</span></code>.</p>
+“All quantities whose dimensions are not explicitly specified are in
+RYDBERG ATOMIC UNITS”. See also <code class="docutils literal"><span class="pre">constants.py</span></code>.</p>
 <dl class="docutils">
 <dt>matdyn.x and phonon dos:</dt>
 <dd>With dos=.true., matdyn.x calculates the phonon density of states. The
 frequency axis in the output file is f in cm^-1. Note that THIS IS NOT THE
 ANGULAR FREQUENCY omega = 2*pi*f!!! Therefore, if you calculate with this
-frequency as in &#8220;hbar*omega&#8221;, then use f*2*pi!</dd>
+frequency as in “hbar*omega”, then use f*2*pi!</dd>
 </dl>
 </div>
 <div class="section" id="atomic-coordinates">
 <h2>Atomic coordinates<a class="headerlink" href="#atomic-coordinates" title="Permalink to this headline">¶</a></h2>
-<p>In PWscf terms, alat = celldm(1) = lattice constant &#8220;a&#8221; in a.u. . A length in
+<p>In PWscf terms, alat = celldm(1) = lattice constant “a” in a.u. . A length in
 a.u. means a unit or Bohr = a0 = 0.52917720859 Angstrom.</p>
 <p>To calculate the PDOS, atomic coordinates from MD trajectories have to be in
 cartesian coordinates. You may have to transform them <em>before</em> using them to
 calculate the PDOS. See</p>
 <p><code class="docutils literal"><span class="pre">test/test_pdos.py</span></code>
 <code class="docutils literal"><span class="pre">test/test_pdos_coord_trans.py</span></code></p>
-<p>This is necessary if you have &#8220;ATOMIC_POSITIONS crystal&#8221;.</p>
-<p>The scale (or unit: Bohr, Angstrom, ..., defined by celldm(1) or
+<p>This is necessary if you have “ATOMIC_POSITIONS crystal”.</p>
+<p>The scale (or unit: Bohr, Angstrom, …, defined by celldm(1) or
 CELL_PARAMETERS) does not matter, b/c currently the integral area under the
 PDOS curve is normalized in pydos.*_pdos(). But coords MUST be cartesian!</p>
 <p>For your convenience, here is a list of all possible formats (from the Pwscf
@@ -151,9 +102,9 @@ files).</p>
 </div>
 <div class="section" id="total-force-on-atoms">
 <h2>Total force on atoms<a class="headerlink" href="#total-force-on-atoms" title="Permalink to this headline">¶</a></h2>
-<p>Pwscf writes a &#8220;Total Force&#8221; after the &#8220;Forces acting on atoms&#8221; section . This
+<p>Pwscf writes a “Total Force” after the “Forces acting on atoms” section . This
 value is kind of an RMS of the force matrix (f_ij, i=1,natoms j=1,2,3) printed.
-According to .../PW/forces.f90, variable &#8220;sumfor&#8221;, the &#8220;Total Force&#8221; is:</p>
+According to …/PW/forces.f90, variable “sumfor”, the “Total Force” is:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_ij</span> <span class="n">f_ij</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -170,28 +121,63 @@ crys.rms3d() for MD runs where the RMS of each (f_ij) is:</p>
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="coord_trans.html" title="Coordinate transformation"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Documentation</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" >Background</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/written/background/pwscf.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.thermo.Gibbs &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,60 +21,19 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.thermo.Gibbs.calc_F" href="pwtools.thermo.Gibbs.calc_F.html" />
-    <link rel="prev" title="thermo" href="thermo.html" /> 
+    <link rel="prev" title="thermo" href="thermo.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.thermo.Gibbs.calc_F.html" title="pwtools.thermo.Gibbs.calc_F"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="thermo.html" title="thermo"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="thermo.html" accesskey="U">thermo</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="thermo.html"
-                        title="previous chapter">thermo</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="pwtools.thermo.Gibbs.calc_F.html"
-                        title="next chapter">pwtools.thermo.Gibbs.calc_F</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.thermo.Gibbs.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -137,7 +93,7 @@ implemented</td>
 </tbody>
 </table>
 <p>Internally, we only deal with <cite>ax0</cite> (1d), <cite>ax0</cite> + <cite>ax1</cite> (2d) and
-<cite>ax0</cite> + <cite>ax1</cite> + <cite>ax2</cite> (3d), thus for 2d and 3d it doesn&#8217;t matter which cell
+<cite>ax0</cite> + <cite>ax1</cite> + <cite>ax2</cite> (3d), thus for 2d and 3d it doesn’t matter which cell
 axes is which, you just have to remember :)</p>
 <p class="rubric">Notes</p>
 <p>Functions for fitting G(V), V(T) etc are defined in a dictionary attribute
@@ -164,21 +120,21 @@ functions.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>&#8216;1d-G&#8217;</td>
+<tr class="row-even"><td>‘1d-G’</td>
 <td>fit G(V), <code class="docutils literal"><span class="pre">__call__(V,der=2)</span></code> for B(V) =
 V*d^2G/dV^2</td>
 </tr>
-<tr class="row-odd"><td>&#8216;2d-G&#8217;</td>
+<tr class="row-odd"><td>‘2d-G’</td>
 <td>fit G(ax0,ax1)</td>
 </tr>
-<tr class="row-even"><td>&#8216;1d-ax&#8217;</td>
+<tr class="row-even"><td>‘1d-ax’</td>
 <td>fit V(ax0)</td>
 </tr>
-<tr class="row-odd"><td>&#8216;alpha&#8217;</td>
+<tr class="row-odd"><td>‘alpha’</td>
 <td>fit x_opt(T), x=ax0,ax1,ax2,V,
 <code class="docutils literal"><span class="pre">__call__(T,der=1)</span></code> for alpha_x = 1/x * dx/dT</td>
 </tr>
-<tr class="row-even"><td>&#8216;C&#8217;</td>
+<tr class="row-even"><td>‘C’</td>
 <td>fit G_opt(T), <code class="docutils literal"><span class="pre">__call__(T,der=2)</span></code> for
 Cp = -T * d^G_opt(T,P)/dT^2</td>
 </tr>
@@ -187,7 +143,7 @@ Cp = -T * d^G_opt(T,P)/dT^2</td>
 <p>Hints for which fitfuncs to choose: The defaults are pretty good, but
 nevertheless tessting is mandatory! Good choices are
 <a class="reference internal" href="pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal"><span class="pre">PolyFit</span></code></a> / <a class="reference internal" href="pwtools.num.PolyFit1D.html#pwtools.num.PolyFit1D" title="pwtools.num.PolyFit1D"><code class="xref py py-class docutils literal"><span class="pre">PolyFit1D</span></code></a> for all
-axes-related grids (1d-G, 2d-G, 1d-ax) since you won&#8217;t have too many
+axes-related grids (1d-G, 2d-G, 1d-ax) since you won’t have too many
 points here. Then a fit is better than a <a class="reference internal" href="pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-class docutils literal"><span class="pre">Spline</span></code></a>.
 Always use <code class="docutils literal"><span class="pre">PolyFit(...,</span> <span class="pre">scale=True)</span></code> or scale the x-y data manually
 before fitting to the same order of magnitude! For T grids, choose a very
@@ -200,7 +156,7 @@ convention for dict keys returned by methods: The keys (strings) mimic HDF5
 path names, e.g. <code class="docutils literal"><span class="pre">/group0/group1/array</span></code>, thus the last name in the path
 is the name of the array (<cite>z</cite> in the examples below). All previous names
 define the grid and thus the dimension of the array. A group name starting
-with &#8220;#&#8221; is just a prefix. Below, <cite>na=len(a)</cite>, etc.</p>
+with “#” is just a prefix. Below, <cite>na=len(a)</cite>, etc.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="21%" />
@@ -248,11 +204,11 @@ with &#8220;#&#8221; is just a prefix. Below, <cite>na=len(a)</cite>, etc.</p>
 </tr>
 </tbody>
 </table>
-<p><cite>axes_flat</cite> : Usually, flat grids like &#8220;ax0-ax1&#8221; or &#8220;ax0-ax1-ax2&#8221; are
+<p><cite>axes_flat</cite> : Usually, flat grids like “ax0-ax1” or “ax0-ax1-ax2” are
 created by nested loops <code class="docutils literal"><span class="pre">[(ax0_i,ax1_i)</span> <span class="pre">for</span> <span class="pre">ax0_i</span> <span class="pre">in</span> <span class="pre">ax0</span> <span class="pre">for</span> <span class="pre">ax1_i</span> <span class="pre">in</span>
 <span class="pre">ax1]</span></code> and therefore have shape (nax0*nax1,2) or (nax0*nax1*nax2,3) . But
 that is not required. They can be completely unctructured (e.g. if points
-have been added later to the grid manually) &#8211; only <cite>fitfunc</cite> must be able
+have been added later to the grid manually) – only <cite>fitfunc</cite> must be able
 to handle that.</p>
 <p>Units</p>
 <table border="1" class="docutils">
@@ -344,12 +300,12 @@ Really, go there and have a look. Now!</p>
 </div></blockquote>
 <p><strong>etot</strong> : 1d array, (axes_flat.shape[0],)</p>
 <blockquote>
-<div><p>Total energy [eV] for each axes_flat[i,...]</p>
+<div><p>Total energy [eV] for each axes_flat[i,…]</p>
 </div></blockquote>
 <p><strong>phdos</strong> : sequence (axes_flat.shape[0],)</p>
 <blockquote>
 <div><p>Phonon dos arrays for each axes grid point.
-axes_flat[i,...] -&gt; phdos[i] = &lt;2d array (nfreq,2)&gt;, units see
+axes_flat[i,…] -&gt; phdos[i] = &lt;2d array (nfreq,2)&gt;, units see
 <a class="reference internal" href="pwtools.thermo.HarmonicThermo.html#pwtools.thermo.HarmonicThermo" title="pwtools.thermo.HarmonicThermo"><code class="xref py py-class docutils literal"><span class="pre">HarmonicThermo</span></code></a>.</p>
 </div></blockquote>
 <p><strong>axes_flat</strong> : 1d or 2d array</p>
@@ -374,7 +330,7 @@ shape (N,) .</p>
 <p><strong>volfunc_ax</strong> : callable</p>
 <blockquote>
 <div><p>calculate cell volume based on cell axes, 
-V[i] = volfunc_ax(axes_flat[i,...]) where axes_flat[i,...]:</p>
+V[i] = volfunc_ax(axes_flat[i,…]) where axes_flat[i,…]:</p>
 <blockquote>
 <div><div class="line-block">
 <div class="line">1d: [a0]</div>
@@ -386,9 +342,9 @@ V[i] = volfunc_ax(axes_flat[i,...]) where axes_flat[i,...]:</p>
 </div></blockquote>
 <p><strong>case</strong> : str, optional</p>
 <blockquote>
-<div><p>&#8216;1d&#8217;, &#8216;2d&#8217;, &#8216;3d&#8217; or None. If None then it will be determined from
-axes_flat.shape[1]. Can be used to evaluate &#8220;fake&#8221; 1d data: set
-case=&#8216;1d&#8217; but let <cite>axes_flat</cite> be (N,2) or (N,3)</p>
+<div><p>‘1d’, ‘2d’, ‘3d’ or None. If None then it will be determined from
+axes_flat.shape[1]. Can be used to evaluate “fake” 1d data: set
+case=‘1d’ but let <cite>axes_flat</cite> be (N,2) or (N,3)</p>
 </div></blockquote>
 <p><strong>**kwds: keywords</strong></p>
 <blockquote class="last">
@@ -427,23 +383,23 @@ case=&#8216;1d&#8217; but let <cite>axes_flat</cite> be (N,2) or (N,3)</p>
 <div><dl class="docutils">
 <dt>Keys for 1d: </dt>
 <dd><div class="first line-block">
-<div class="line">&#8216;/ax0/T/F&#8217;</div>
-<div class="line">&#8216;/ax0/T/Fvib&#8217;</div>
+<div class="line">‘/ax0/T/F’</div>
+<div class="line">‘/ax0/T/Fvib’</div>
 </div>
-<p class="last">...</p>
+<p class="last">…</p>
 </dd>
 <dt>Keys for 2d: </dt>
 <dd><div class="first last line-block">
-<div class="line">&#8216;/ax0-ax1/T/F&#8217;</div>
-<div class="line">&#8216;/ax0-ax1/T/Fvib&#8217;</div>
-<div class="line">...</div>
+<div class="line">‘/ax0-ax1/T/F’</div>
+<div class="line">‘/ax0-ax1/T/Fvib’</div>
+<div class="line">…</div>
 </div>
 </dd>
 <dt>Keys for 3d: </dt>
 <dd><div class="first last line-block">
-<div class="line">&#8216;/ax0-ax1-ax2/T/F&#8217;</div>
-<div class="line">&#8216;/ax0-ax1-ax2/T/Fvib&#8217;</div>
-<div class="line">...</div>
+<div class="line">‘/ax0-ax1-ax2/T/F’</div>
+<div class="line">‘/ax0-ax1-ax2/T/Fvib’</div>
+<div class="line">…</div>
 </div>
 </dd>
 </dl>
@@ -494,7 +450,7 @@ from minimizing G(ax0,ax1,ax2,T,P) w.r.t. (ax0,ax1,ax2).</p>
 <dt id="pwtools.thermo.Gibbs.calc_H">
 <code class="descname">calc_H</code><span class="sig-paren">(</span><em>calc_all=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#Gibbs.calc_H"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.Gibbs.calc_H" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enthalpy H=E+P*V, B and related properties on P grid
-without zero-point contributions. Doesn&#8217;t need any other method&#8217;s
+without zero-point contributions. Doesn’t need any other method’s
 results.</p>
 <p>The results of <a class="reference internal" href="pwtools.thermo.Gibbs.calc_G.html#pwtools.thermo.Gibbs.calc_G" title="pwtools.thermo.Gibbs.calc_G"><code class="xref py py-meth docutils literal"><span class="pre">calc_G()</span></code></a> will in general be _different_ from those
 calculated here in the limit T-&gt;0 (typical use case: T=5K) because of
@@ -532,31 +488,69 @@ zero-point contributions. Check the bulk modulus, for example.</p>
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="thermo.html">thermo</a><ul>
+      <li>Previous: <a href="thermo.html" title="previous chapter">thermo</a></li>
+      <li>Next: <a href="pwtools.thermo.Gibbs.calc_F.html" title="next chapter">pwtools.thermo.Gibbs.calc_F</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.thermo.Gibbs.calc_F.html" title="pwtools.thermo.Gibbs.calc_F"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="thermo.html" title="thermo"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="thermo.html" >thermo</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/generated/api/pwtools.thermo.Gibbs.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

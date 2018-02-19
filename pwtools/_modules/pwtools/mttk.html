@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.mttk &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,38 +21,17 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -63,23 +39,23 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.mttk</h1><div class="highlight"><pre>
-<span></span><span class="c1"># mttk.py</span>
-<span class="c1">#</span>
-<span class="c1"># Fictitious masses for Nose-Hoover thermostat chains (NHCs) and barostat from</span>
-<span class="c1"># the MTTK paper [1].</span>
-<span class="c1">#</span>
-<span class="c1"># Atomic units: All fictitious masses have dimension [mass * length**2] = [kg *</span>
-<span class="c1"># m**2] and are converted to Hartree atomic units: mass[kg] / m0 (electron</span>
-<span class="c1"># mass), length[m] / a0 (Bohr). We are not totally sure, but we belief that</span>
-<span class="c1"># these are the units for qmass an bmass used in Abinit. As usual, this is not</span>
-<span class="c1"># really documented anywhere, but we rely of the documentation for &quot;noseinert&quot;</span>
-<span class="c1"># (ionmov 8), which states that &quot;... the inertia factor WT of the Nose-Hoover</span>
-<span class="c1"># thermostat (when ionmov=8), in atomic units of weight*length^2, that is</span>
-<span class="c1"># (electron mass)*(Bohr)^2&quot;.</span>
-<span class="c1">#</span>
-<span class="c1"># [1] Glenn J. Martyna and Mark E. Tuckerman and Douglas J. Tobias and Michael</span>
-<span class="c1">#     L. Klein, &quot;Explicit reversible integrators for extended systems</span>
-<span class="c1">#     dynamics&quot;, Mol. Phys. 87(5), pp. 1117, 1996</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Fictitious masses for Nose-Hoover thermostat chains (NHCs) and barostat from</span>
+<span class="sd">the MTTK paper [1]_.</span>
+
+<span class="sd">Atomic units: All fictitious masses have dimension [mass * length**2] = [kg *</span>
+<span class="sd">m**2] and are converted to Hartree atomic units: mass[kg] / m0 (electron</span>
+<span class="sd">mass), length[m] / a0 (Bohr). We are not totally sure, but we belief that</span>
+<span class="sd">these are the units for qmass an bmass used in Abinit. As usual, this is not</span>
+<span class="sd">really documented anywhere, but we rely of the documentation for &quot;noseinert&quot;</span>
+<span class="sd">(ionmov 8), which states that &quot;... the inertia factor WT of the Nose-Hoover</span>
+<span class="sd">thermostat (when ionmov=8), in atomic units of weight*length^2, that is</span>
+<span class="sd">(electron mass)*(Bohr)^2&quot;.</span>
+
+<span class="sd">.. [1] Glenn J. Martyna and Mark E. Tuckerman and Douglas J. Tobias and Michael</span>
+<span class="sd">       L. Klein, &quot;Explicit reversible integrators for extended systems</span>
+<span class="sd">       dynamics&quot;, Mol. Phys. 87(5), pp. 1117, 1996</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">pwtools.constants</span> <span class="k">import</span> <span class="n">kb</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">a0</span>
 
@@ -108,8 +84,8 @@
     <span class="k">return</span> <span class="n">func</span></div>
 
 
-<span class="nd">@add_doc</span>
-<div class="viewcode-block" id="particle_nhc_masses"><a class="viewcode-back" href="../../generated/api/pwtools.mttk.particle_nhc_masses.html#pwtools.mttk.particle_nhc_masses">[docs]</a><span class="k">def</span> <span class="nf">particle_nhc_masses</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">nf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nnos</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+<div class="viewcode-block" id="particle_nhc_masses"><a class="viewcode-back" href="../../generated/api/pwtools.mttk.particle_nhc_masses.html#pwtools.mttk.particle_nhc_masses">[docs]</a><span class="nd">@add_doc</span>
+<span class="k">def</span> <span class="nf">particle_nhc_masses</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">nf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nnos</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Fictitious masses Q_p for the particle NHC to thermostat the atoms.</span>
 <span class="sd">    </span>
 <span class="sd">    Abinit: qmass for ionmov 13.</span>
@@ -133,8 +109,8 @@
     <span class="k">return</span> <span class="p">[</span><span class="n">q1</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">qi</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">nnos</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
 
 
-<span class="nd">@add_doc</span>
-<div class="viewcode-block" id="barostat_nhc_masses"><a class="viewcode-back" href="../../generated/api/pwtools.mttk.barostat_nhc_masses.html#pwtools.mttk.barostat_nhc_masses">[docs]</a><span class="k">def</span> <span class="nf">barostat_nhc_masses</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">nnos</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+<div class="viewcode-block" id="barostat_nhc_masses"><a class="viewcode-back" href="../../generated/api/pwtools.mttk.barostat_nhc_masses.html#pwtools.mttk.barostat_nhc_masses">[docs]</a><span class="nd">@add_doc</span>
+<span class="k">def</span> <span class="nf">barostat_nhc_masses</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">nnos</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Fictitious masses Q_b for the barostat NHC to thermostat the barostat.</span>
 <span class="sd">    </span>
 <span class="sd">    There is NO equivalent in Abinit. I think they use the particle NHC also</span>
@@ -159,8 +135,8 @@
     <span class="k">return</span> <span class="p">[</span><span class="n">q1</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">qi</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">nnos</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
 
 
-<span class="nd">@add_doc</span>
-<div class="viewcode-block" id="barostat_mass_w"><a class="viewcode-back" href="../../generated/api/pwtools.mttk.barostat_mass_w.html#pwtools.mttk.barostat_mass_w">[docs]</a><span class="k">def</span> <span class="nf">barostat_mass_w</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">nf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<div class="viewcode-block" id="barostat_mass_w"><a class="viewcode-back" href="../../generated/api/pwtools.mttk.barostat_mass_w.html#pwtools.mttk.barostat_mass_w">[docs]</a><span class="nd">@add_doc</span>
+<span class="k">def</span> <span class="nf">barostat_mass_w</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">nf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Fictitious mass W for the barostat itself for isotropic cell</span>
 <span class="sd">    fluctuations.</span>
 <span class="sd">    </span>
@@ -180,8 +156,8 @@
     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">nf</span><span class="o">+</span><span class="n">ndim</span><span class="p">)</span><span class="o">*</span><span class="n">kb</span><span class="o">*</span><span class="n">temp</span> <span class="o">/</span> <span class="n">freq</span><span class="o">**</span><span class="mf">2.0</span>  <span class="o">/</span> <span class="n">m0</span> <span class="o">/</span> <span class="n">a0</span><span class="o">**</span><span class="mf">2.0</span></div>
 
 
-<span class="nd">@add_doc</span>
-<div class="viewcode-block" id="barostat_mass_wg"><a class="viewcode-back" href="../../generated/api/pwtools.mttk.barostat_mass_wg.html#pwtools.mttk.barostat_mass_wg">[docs]</a><span class="k">def</span> <span class="nf">barostat_mass_wg</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">nf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<div class="viewcode-block" id="barostat_mass_wg"><a class="viewcode-back" href="../../generated/api/pwtools.mttk.barostat_mass_wg.html#pwtools.mttk.barostat_mass_wg">[docs]</a><span class="nd">@add_doc</span>
+<span class="k">def</span> <span class="nf">barostat_mass_wg</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">nf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Fictitious mass W_g for the barostat itself for full cell fluctuations.</span>
 <span class="sd">    </span>
 <span class="sd">    Abinit: bmass for ionmov 13 + optcell 2.</span>
@@ -204,24 +180,62 @@
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

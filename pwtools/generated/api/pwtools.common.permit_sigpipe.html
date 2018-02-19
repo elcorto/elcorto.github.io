@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.common.permit_sigpipe &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,60 +21,19 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.common.pop_from_list" href="pwtools.common.pop_from_list.html" />
-    <link rel="prev" title="pwtools.common.makedirs" href="pwtools.common.makedirs.html" /> 
+    <link rel="prev" title="pwtools.common.makedirs" href="pwtools.common.makedirs.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.common.pop_from_list.html" title="pwtools.common.pop_from_list"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.common.makedirs.html" title="pwtools.common.makedirs"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="common.html" accesskey="U">common</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="pwtools.common.makedirs.html"
-                        title="previous chapter">pwtools.common.makedirs</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="pwtools.common.pop_from_list.html"
-                        title="next chapter">pwtools.common.pop_from_list</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.common.permit_sigpipe.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -98,22 +54,22 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">out</span><span class="p">,</span><span class="n">err</span> <span class="o">=</span> <span class="n">pp</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>sometimes end with a broken pipe error: &#8220;grep: writing output: Broken
-pipe&#8221;. They run fine at the bash prompt, while failing with Popen. The
-reason is that they actually &#8220;kind of&#8221; fail in the shell too, namely,
-SIGPIPE [1,2]. This can be seen by runing the call in strace &#8220;$ strace grep
-...&#8221;. Popen chokes on that. The solution is to ignore SIGPIPE.</p>
+<p>sometimes end with a broken pipe error: “grep: writing output: Broken
+pipe”. They run fine at the bash prompt, while failing with Popen. The
+reason is that they actually “kind of” fail in the shell too, namely,
+SIGPIPE [1,2]. This can be seen by runing the call in strace “$ strace grep
+…”. Popen chokes on that. The solution is to ignore SIGPIPE.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r13" rules="none">
+<table class="docutils citation" frame="void" id="r2829" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R13]</a></td><td><a class="reference external" href="http://mail.python.org/pipermail/tutor/2007-October/058042.html">http://mail.python.org/pipermail/tutor/2007-October/058042.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[R2829]</a></td><td><a class="reference external" href="http://mail.python.org/pipermail/tutor/2007-October/058042.html">http://mail.python.org/pipermail/tutor/2007-October/058042.html</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r14" rules="none">
+<table class="docutils citation" frame="void" id="r2929" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[R14]</a></td><td><a class="reference external" href="http://article.gmane.org/gmane.comp.python.devel/88798/">http://article.gmane.org/gmane.comp.python.devel/88798/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[R2929]</a></td><td><a class="reference external" href="http://article.gmane.org/gmane.comp.python.devel/88798/">http://article.gmane.org/gmane.comp.python.devel/88798/</a></td></tr>
 </tbody>
 </table>
 </dd></dl>
@@ -124,31 +80,69 @@ SIGPIPE [1,2]. This can be seen by runing the call in strace &#8220;$ strace gre
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="common.html">common</a><ul>
+      <li>Previous: <a href="pwtools.common.makedirs.html" title="previous chapter">pwtools.common.makedirs</a></li>
+      <li>Next: <a href="pwtools.common.pop_from_list.html" title="next chapter">pwtools.common.pop_from_list</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.common.pop_from_list.html" title="pwtools.common.pop_from_list"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.common.makedirs.html" title="pwtools.common.makedirs"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="common.html" >common</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/generated/api/pwtools.common.permit_sigpipe.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

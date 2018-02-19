@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.num &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,38 +21,17 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -63,9 +39,7 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.num</h1><div class="highlight"><pre>
-<span></span><span class="c1"># num.py : numpy/scipy like stuff.</span>
-
-<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">copy</span>
+<span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">types</span>
 <span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -76,7 +50,7 @@
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="k">import</span> <span class="n">simps</span><span class="p">,</span> <span class="n">trapz</span>
 <span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">_flib</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;always&#39;</span><span class="p">)</span>
+<span class="c1">##warnings.simplefilter(&#39;always&#39;)</span>
 
 <span class="c1"># Hack for older scipy versions.</span>
 <span class="k">try</span><span class="p">:</span> 
@@ -211,8 +185,8 @@
         <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">xnew</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">xnew</span> <span class="o">=</span> <span class="n">x</span>
-    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;s&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">splrep_kwargs</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;s&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">splrep_kwargs</span><span class="p">:</span>
             <span class="n">splrep_kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
     <span class="n">yd</span> <span class="o">=</span> <span class="n">splev</span><span class="p">(</span><span class="n">xnew</span><span class="p">,</span> <span class="n">splrep</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">splrep_kwargs</span><span class="p">),</span> <span class="n">der</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">fullout</span><span class="p">:</span>
@@ -267,8 +241,8 @@
 
 <div class="viewcode-block" id="Fit1D"><a class="viewcode-back" href="../../generated/api/pwtools.num.Fit1D.html#pwtools.eos.Fit1D">[docs]</a><span class="k">class</span> <span class="nc">Fit1D</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for 1D data fit/interpolation classes (:class:`Spline`,</span>
-<span class="sd">    :class:`PolyFit1D`). It provides :meth:`get_min`, ::meth:`get_max`,</span>
-<span class="sd">    meth:`get_root`, :meth:`is_mono`. </span>
+<span class="sd">    :class:`PolyFit1D`). It provides :meth:`get_min`, :meth:`get_max`,</span>
+<span class="sd">    :meth:`get_root`, :meth:`is_mono`. </span>
 <span class="sd">    </span>
 <span class="sd">    The assumed API is that the ``__call__`` method has a kwd `der` which</span>
 <span class="sd">    causes it to calculate derivatives, i.e. ``__call__(x, der=1)`` is the</span>
@@ -358,12 +332,15 @@
     
 
 <div class="viewcode-block" id="Spline"><a class="viewcode-back" href="../../generated/api/pwtools.num.Spline.html#pwtools.eos.Spline">[docs]</a><span class="k">class</span> <span class="nc">Spline</span><span class="p">(</span><span class="n">Fit1D</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Like scipy.interpolate.UnivariateSpline, this is a wrapper around</span>
-<span class="sd">    scipy.interpolate.splrep/splev with some nice features like y-&gt;x lookup and</span>
-<span class="sd">    interpolation accuracy check etc. It basically simplifies setting up a</span>
-<span class="sd">    spline interpolation and holds x-y data plus the spline knots (self.tck)</span>
-<span class="sd">    together in one place. You can work with the methods here, but you can also</span>
-<span class="sd">    use the normal tck (self.tck) in scipy.interpolate.splev() etc.</span>
+    <span class="sd">&quot;&quot;&quot;:class:`Fit1D`-based spline interpolator.</span>
+<span class="sd">    </span>
+<span class="sd">    Like ``scipy.interpolate.UnivariateSpline``, this is a wrapper around</span>
+<span class="sd">    ``scipy.interpolate.splrep/splev`` with some nice features like y-&gt;x lookup</span>
+<span class="sd">    and interpolation accuracy check etc. It basically simplifies setting up a</span>
+<span class="sd">    spline interpolation and holds x-y data plus the spline knots</span>
+<span class="sd">    (``self.tck``) together in one place. You can work with the methods here,</span>
+<span class="sd">    but you can also use the normal tck (``self.tck``) in</span>
+<span class="sd">    ``scipy.interpolate.splev()`` etc.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -751,10 +728,10 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">arr</span>
     
-    <span class="n">axis_is_int</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">IntType</span><span class="p">)</span>
+    <span class="n">axis_is_int</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">axis</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">keepdims</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;axis=None + keepdims=True makes no sense&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;axis=None + keepdims=True makes no sense&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">axis_is_int</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">keepdims</span><span class="p">:</span>
@@ -762,11 +739,11 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">axis_is_int</span><span class="p">:</span>
             <span class="n">tosum</span> <span class="o">=</span> <span class="p">[</span><span class="n">axis</span><span class="p">]</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">TupleType</span><span class="p">)</span> <span class="ow">or</span> \
-            <span class="nb">isinstance</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">ListType</span><span class="p">):</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">or</span> \
+            <span class="nb">isinstance</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="n">tosum</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;illegal type for axis: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">axis</span><span class="p">)))</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;illegal type for axis: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">axis</span><span class="p">)))</span>
         <span class="k">if</span> <span class="n">keepdims</span><span class="p">:</span>
             <span class="n">alldims</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
             <span class="n">tosum</span> <span class="o">=</span> <span class="p">[</span><span class="n">xx</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">alldims</span> <span class="k">if</span> <span class="n">xx</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tosum</span><span class="p">]</span>
@@ -858,7 +835,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">yy</span> <span class="o">=</span> <span class="n">yy</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;use points+values or xx+yy+values as input&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;use points+values or xx+yy+values as input&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">values</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">xx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yy</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">xx</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">yy</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">zz</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">XY</span>
@@ -918,7 +895,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="o">=</span> <span class="n">_call</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">call</span> <span class="o">=</span> <span class="n">_call</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;unknown interpolator type: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">what</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unknown interpolator type: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">what</span><span class="p">)</span></div>
    
 <div class="viewcode-block" id="Interpol2D.__call__"><a class="viewcode-back" href="../../generated/api/pwtools.num.Interpol2D.__call__.html#pwtools.eos.Interpol2D.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="o">**</span><span class="n">callkwds</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1341,15 +1318,15 @@
 
 
 <div class="viewcode-block" id="polyval"><a class="viewcode-back" href="../../generated/api/pwtools.num.polyval.html#pwtools.eos.polyval">[docs]</a><span class="k">def</span> <span class="nf">polyval</span><span class="p">(</span><span class="n">fit</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">avg</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Evaluate polynomial generated by ``polyfit()`` on `points`.</span>
+    <span class="sd">&quot;&quot;&quot;Evaluate polynomial generated by :func:`polyfit` on `points`.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    fit, points : see polyfit()</span>
+<span class="sd">    fit, points : see :func:`polyfit`</span>
 <span class="sd">    der : int, optional</span>
 <span class="sd">        Derivative order. Only for 1D, uses np.polyder().</span>
 <span class="sd">    avg : bool, optional</span>
-<span class="sd">        Internal hack, only used by ``avgpolyval()``.</span>
+<span class="sd">        Internal hack, only used by :func:`avgpolyval`.</span>
 <span class="sd">    </span>
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
@@ -1380,7 +1357,7 @@
 
 <div class="viewcode-block" id="avgpolyfit"><a class="viewcode-back" href="../../generated/api/pwtools.num.avgpolyfit.html#pwtools.eos.avgpolyfit">[docs]</a><span class="k">def</span> <span class="nf">avgpolyfit</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">degmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">degmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
                <span class="n">degrange</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Same as polyfit(), but fit multiple polys. There are two types of fits,</span>
+    <span class="sd">&quot;&quot;&quot;Same as :func:`polyfit`, but fit multiple polys. There are two types of fits,</span>
 <span class="sd">    which can be combined. (1) Fit `levels` polys and remove one level of</span>
 <span class="sd">    endpoints in each go from `points`. (2) Fit polys with varying degrees (see</span>
 <span class="sd">    `degmin` + `degmax` or `degrange`).</span>
@@ -1428,7 +1405,7 @@
             <span class="p">(</span><span class="s2">&quot;use deg, degmin+degmax or degrange&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">deg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>    
             <span class="k">assert</span> <span class="n">degmin</span> <span class="o">&lt;=</span> <span class="n">degmax</span><span class="p">,</span> <span class="s2">&quot;degmin (</span><span class="si">%i</span><span class="s2">) &gt; degmax (</span><span class="si">%i</span><span class="s2">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">degmin</span><span class="p">,</span> <span class="n">degmax</span><span class="p">)</span>
-            <span class="n">degs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">degmin</span><span class="p">,</span> <span class="n">degmax</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">degs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">degmin</span><span class="p">,</span> <span class="n">degmax</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">degs</span> <span class="o">=</span> <span class="p">[</span><span class="n">deg</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
@@ -1455,7 +1432,7 @@
 
 
 <div class="viewcode-block" id="avgpolyval"><a class="viewcode-back" href="../../generated/api/pwtools.num.avgpolyval.html#pwtools.eos.avgpolyval">[docs]</a><span class="k">def</span> <span class="nf">avgpolyval</span><span class="p">(</span><span class="n">fit</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight_type</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Use poly fits from avgpolyfit() and average them according to their RMS</span>
+    <span class="sd">&quot;&quot;&quot;Use poly fits from :func:`avgpolyfit` and average them according to their RMS</span>
 <span class="sd">    error.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
@@ -1493,11 +1470,11 @@
         <span class="n">err</span> <span class="o">=</span> <span class="n">errors</span> <span class="o">/</span> <span class="n">errors</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">*</span> \
               <span class="p">(</span><span class="n">degrees</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">npoints</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;unknown weight_type&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unknown weight_type&quot;</span><span class="p">)</span>
     <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">err</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)</span>
     <span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">/</span> <span class="n">weights</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">ft</span><span class="p">,</span><span class="n">wght</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">izip</span><span class="p">(</span><span class="n">fits</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ft</span><span class="p">,</span><span class="n">wght</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">fits</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
         <span class="n">wft</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">ft</span><span class="p">)</span>
         <span class="n">wft</span><span class="p">[</span><span class="s1">&#39;coeffs&#39;</span><span class="p">]</span> <span class="o">*=</span> <span class="n">wght</span>
         <span class="n">ret</span> <span class="o">+=</span> <span class="n">polyval</span><span class="p">(</span><span class="n">wft</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="n">der</span><span class="p">,</span> <span class="n">avg</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1509,7 +1486,7 @@
 
 <div class="viewcode-block" id="PolyFit"><a class="viewcode-back" href="../../generated/api/pwtools.num.PolyFit.html#pwtools.eos.PolyFit">[docs]</a><span class="k">class</span> <span class="nc">PolyFit</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;High level interface to [avg]poly{fit,val}, similar to :class:`Spline`</span>
-<span class="sd">    and :meth:`Interpol2D`.</span>
+<span class="sd">    and :class:`Interpol2D`.</span>
 
 <span class="sd">    Arguments and keywords to :meth:`__init__` are the same as for</span>
 <span class="sd">    :func:`polyfit` or :func:`avgpolyfit`. Keywords to :meth:`__call__` are</span>
@@ -1575,7 +1552,7 @@
             <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">keys</span><span class="p">]</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="kc">False</span>            
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">dct</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dct</span><span class="p">:</span>
                 <span class="n">ret</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="k">break</span>
         <span class="k">return</span> <span class="n">ret</span>                
@@ -1921,24 +1898,62 @@
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

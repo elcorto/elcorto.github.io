@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.eos &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,38 +21,17 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -119,6 +95,7 @@
 
 
 <div class="viewcode-block" id="EVFunction"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EVFunction.html#pwtools.eos.EVFunction">[docs]</a><span class="k">class</span> <span class="nc">EVFunction</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for E(V) models, such as the Vinet EOS.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">param_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;e0&#39;</span><span class="p">,</span> <span class="s1">&#39;b0&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">,</span> <span class="s1">&#39;v0&#39;</span><span class="p">]</span>
     
@@ -166,6 +143,7 @@
     
 
 <div class="viewcode-block" id="Vinet"><a class="viewcode-back" href="../../generated/api/pwtools.eos.Vinet.html#pwtools.eos.Vinet">[docs]</a><span class="k">class</span> <span class="nc">Vinet</span><span class="p">(</span><span class="n">EVFunction</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Vinet EOS model.&quot;&quot;&quot;</span>
 <div class="viewcode-block" id="Vinet.evaluate"><a class="viewcode-back" href="../../generated/api/pwtools.eos.Vinet.evaluate.html#pwtools.eos.Vinet.evaluate">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">_vinet</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span></div>
     
@@ -230,6 +208,7 @@
         <span class="k">return</span> <span class="n">num</span><span class="o">.</span><span class="n">Spline</span><span class="p">(</span><span class="n">vv</span><span class="p">,</span> <span class="bp">self</span><span class="p">(</span><span class="n">vv</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     
 <div class="viewcode-block" id="EosFit.fit"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EosFit.fit.html#pwtools.eos.EosFit.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit E(V) model, fill ``self.params``.&quot;&quot;&quot;</span>
         <span class="c1"># Quadratic fit to get an initial guess for the parameters. </span>
         <span class="c1"># Thanks: https://github.com/materialsproject/pymatgen</span>
         <span class="c1"># -&gt; pymatgen/io/abinitio/eos.py </span>
@@ -239,7 +218,7 @@
         <span class="n">b0</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">v0</span>
         <span class="n">b1</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># b1 is usually a small number like 4</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">v0</span> <span class="ow">and</span> <span class="n">v0</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span><span class="o">.</span><span class="n">max</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s1">&#39;The minimum volume of a fitted parabola is not in the input volumes&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;The minimum volume of a fitted parabola is not in the input volumes&#39;</span><span class="p">)</span>
         
         <span class="c1"># need to use lst2dct and dct2lst here to keep the order of parameters </span>
         <span class="n">pp0_dct</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">e0</span><span class="o">=</span><span class="n">e0</span><span class="p">,</span> <span class="n">b0</span><span class="o">=</span><span class="n">b0</span><span class="p">,</span> <span class="n">b1</span><span class="o">=</span><span class="n">b1</span><span class="p">,</span> <span class="n">v0</span><span class="o">=</span><span class="n">v0</span><span class="p">)</span>
@@ -266,7 +245,7 @@
     <span class="c1"># Fit1D compat</span>
 <div class="viewcode-block" id="EosFit.get_min"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EosFit.get_min.html#pwtools.eos.EosFit.get_min">[docs]</a>    <span class="k">def</span> <span class="nf">get_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;V0 [Ang^3]&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;v0&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;v0&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;v0&#39;</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>    
             <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">EosFit</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_min</span><span class="p">()</span></div>
@@ -289,7 +268,7 @@
 <span class="sd">        volume : scalar, 1d array</span>
 <span class="sd">            volume per atom [Ang^3]</span>
 <span class="sd">        &quot;&quot;&quot;</span>        
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;b0&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;b0&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;b0&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">eV_by_Ang3_to_GPa</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">volume</span> <span class="o">*</span> <span class="bp">self</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">eV_by_Ang3_to_GPa</span></div></div>
@@ -384,8 +363,8 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="p">):</span>
             <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>            
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After calling the fit() method, find data from &#39;</span><span class="si">%s</span><span class="s2">&#39; &quot;</span>
-                  <span class="s2">&quot;in </span><span class="si">%s</span><span class="s2">/&quot;</span> <span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">((</span><span class="s2">&quot;After calling the fit() method, find data from &#39;</span><span class="si">%s</span><span class="s2">&#39; &quot;</span>
+                  <span class="s2">&quot;in </span><span class="si">%s</span><span class="s2">/&quot;</span> <span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">infn</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="p">,</span> <span class="s1">&#39;eos.in&#39;</span><span class="p">)</span></div>
     
     <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -460,7 +439,7 @@
             <span class="n">vv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ev</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">vv</span><span class="p">,</span> <span class="n">vv</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">spl_ev</span><span class="p">(</span><span class="n">vv</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">fac</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;unknown bv_method: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span><span class="n">bv_method</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unknown bv_method: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span><span class="n">bv_method</span><span class="p">)</span></div>
     
 <div class="viewcode-block" id="ExternEOS.get_min"><a class="viewcode-back" href="../../generated/api/pwtools.eos.ExternEOS.get_min.html#pwtools.eos.ExternEOS.get_min">[docs]</a>    <span class="k">def</span> <span class="nf">get_min</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">behave</span><span class="o">=</span><span class="s1">&#39;new&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -493,7 +472,7 @@
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">bv_method</span> <span class="o">==</span> <span class="s1">&#39;ev&#39;</span><span class="p">:</span>
             <span class="n">v0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spl_ev</span><span class="o">.</span><span class="n">get_min</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;unknown bv_method: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span><span class="n">bv_method</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unknown bv_method: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span><span class="n">bv_method</span><span class="p">)</span>
         <span class="n">p0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spl_pv</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span>
         <span class="n">e0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spl_ev</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span>
         <span class="n">b0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spl_bv</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span>
@@ -507,7 +486,7 @@
             <span class="n">dct</span><span class="p">[</span><span class="s1">&#39;b0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">b0</span>
             <span class="k">return</span> <span class="n">dct</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;unknown value for `behave`: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="nb">str</span><span class="p">(</span><span class="n">behave</span><span class="p">))</span></div>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unknown value for `behave`: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="nb">str</span><span class="p">(</span><span class="n">behave</span><span class="p">))</span></div>
     
     <span class="k">def</span> <span class="nf">_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -619,8 +598,8 @@
         <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">infn</span><span class="p">,</span> <span class="n">infn_txt</span><span class="p">)</span>
         <span class="n">out</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="s1">&#39;cd </span><span class="si">%s</span><span class="s1"> &amp;&amp; </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">app_basename</span><span class="p">))</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-            <span class="nb">print</span> <span class="n">out</span>
-            <span class="nb">print</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="p">,</span><span class="s1">&#39;PARAM.OUT&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">((</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir</span><span class="p">,</span><span class="s1">&#39;PARAM.OUT&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span>
         <span class="c1"># Remove normalization on natoms. See .../eos/output.f90:</span>
         <span class="c1"># fitev: [volume [Bohr^3] / natoms, energy [Ha] / natoms]</span>
         <span class="c1"># fitpv: [volume [Bohr^3] / natoms, pressure [GPa]]</span>
@@ -637,24 +616,62 @@
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

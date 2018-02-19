@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.crys.rpdf &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,60 +21,19 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.crys.scell" href="pwtools.crys.scell.html" />
-    <link rel="prev" title="pwtools.crys.rmsd" href="pwtools.crys.rmsd.html" /> 
+    <link rel="prev" title="pwtools.crys.rmsd" href="pwtools.crys.rmsd.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.crys.scell.html" title="pwtools.crys.scell"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.crys.rmsd.html" title="pwtools.crys.rmsd"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="crys.html" accesskey="U">crys</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="pwtools.crys.rmsd.html"
-                        title="previous chapter">pwtools.crys.rmsd</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="pwtools.crys.scell.html"
-                        title="next chapter">pwtools.crys.scell</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.crys.rpdf.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -102,21 +58,21 @@ Only fixed-cell MD at the moment.</p>
 <div><p>The case <code class="docutils literal"><span class="pre">len(trajs)==1</span></code> is the same as providing the object directly
 (most common case). Internally we expand the input to <code class="docutils literal"><span class="pre">[trajs,</span>
 <span class="pre">trajs]</span></code>, i.e. the RPDF of the 2nd coord set w.r.t. to the first is
-calculated &#8211; the order matters! This is like selection 1 and 2 in VMD,
+calculated – the order matters! This is like selection 1 and 2 in VMD,
 but nornmally you would use <cite>amask</cite> instead. The option to provide a
-list of two Trajectory objects exists for cases where you don&#8217;t want to
+list of two Trajectory objects exists for cases where you don’t want to
 use <cite>amask</cite>, but create two different Trajectory objects outside.</p>
 </div></blockquote>
 <p><strong>dr</strong> : float, optional</p>
 <blockquote>
 <div><p>Radius spacing. Must have the same unit as <cite>cell</cite>, e.g. Angstrom.</p>
 </div></blockquote>
-<p><strong>rmax</strong> : {&#8216;auto&#8217;, float}, optional</p>
+<p><strong>rmax</strong> : {‘auto’, float}, optional</p>
 <blockquote>
 <div><p>Max. radius up to which minimum image nearest neighbors are counted.
 For cubic boxes of side length L, this is L/2 [AT,MD].</p>
 <div class="line-block">
-<div class="line">&#8216;auto&#8217; : the method of [Smith] is used to calculate the max. sphere</div>
+<div class="line">‘auto’ : the method of [Smith] is used to calculate the max. sphere</div>
 <div class="line-block">
 <div class="line">raduis for any cell shape</div>
 </div>
@@ -151,7 +107,7 @@ creating bool arrays:</p>
 </div>
 <p>where <code class="docutils literal"><span class="pre">{d}</span></code> is a placeholder for the distance array (you really have to
 use <code class="docutils literal"><span class="pre">{d}</span></code>). The placeholder is optional in some pattern. This is similar
-to VMD&#8217;s &#8220;within&#8221; (<code class="docutils literal"><span class="pre">pbc=False</span></code>) or &#8220;pbwithin&#8221; (<code class="docutils literal"><span class="pre">pbc=True</span></code>) syntax.</p>
+to VMD’s “within” (<code class="docutils literal"><span class="pre">pbc=False</span></code>) or “pbwithin” (<code class="docutils literal"><span class="pre">pbc=True</span></code>) syntax.</p>
 </div></blockquote>
 <p><strong>pbc</strong> : bool, optional</p>
 <blockquote>
@@ -201,17 +157,17 @@ correct only up to <cite>rmax_smith</cite>.</p>
 <p>See <code class="docutils literal"><span class="pre">examples/rpdf/</span></code> for educational evidence. For notes on how VMD does
 this, see comments in the code below.</p>
 <p>selection : The selection mechanism with <cite>amask</cite> is in principle as capable
-as VMD&#8217;s, but relies completely on the user&#8217;s ability to create bool arrays
+as VMD’s, but relies completely on the user’s ability to create bool arrays
 to filter the atoms. In practice, anything more complicated than
-<code class="docutils literal"><span class="pre">array(symbols)=='O'</span></code> (&#8220;name O&#8221; in VMD) is much more difficult than VMD&#8217;s
+<code class="docutils literal"><span class="pre">array(symbols)=='O'</span></code> (“name O” in VMD) is much more difficult than VMD’s
 powerful selection syntax.</p>
 <p>Curently, the atom distances are calculated by using numpy fancy indexing.
 That creates (big) arrays in memory. For data from long MDs, you may run
 into trouble here. For a 20000 step MD, start by using every 200th step or
 so (use <code class="docutils literal"><span class="pre">tmask=slice(None,None,200)</span></code>) and look at the histogram, as you
-take more and more points into account (every 100th, 50th step, ...).
+take more and more points into account (every 100th, 50th step, …).
 Especially for Car Parrinello, where time steps are small and the structure
-doesn&#8217;t change much, there is no need to use every step. See also <cite>maxmem</cite>.</p>
+doesn’t change much, there is no need to use every step. See also <cite>maxmem</cite>.</p>
 <p class="rubric">References</p>
 <dl class="docutils">
 <dt>[AT] M. P. Allen, D. J. Tildesley, Computer Simulation of Liquids,</dt>
@@ -264,31 +220,69 @@ Friedrich Vieweg &amp; Sohn Verlagsgesellschaft 1995</dd>
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="crys.html">crys</a><ul>
+      <li>Previous: <a href="pwtools.crys.rmsd.html" title="previous chapter">pwtools.crys.rmsd</a></li>
+      <li>Next: <a href="pwtools.crys.scell.html" title="next chapter">pwtools.crys.scell</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.crys.scell.html" title="pwtools.crys.scell"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.crys.rmsd.html" title="pwtools.crys.rmsd"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="crys.html" >crys</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/generated/api/pwtools.crys.rpdf.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

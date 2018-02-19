@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.test.tools &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
@@ -24,38 +21,17 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -100,12 +76,12 @@
 <span class="sd">Easy, eh? :)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">warnings</span><span class="o">,</span> <span class="nn">copy</span><span class="o">,</span> <span class="nn">tempfile</span><span class="o">,</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">warnings</span><span class="o">,</span> <span class="nn">copy</span><span class="o">,</span> <span class="nn">tempfile</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">importlib</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">num</span><span class="p">,</span> <span class="n">common</span>
 <span class="kn">from</span> <span class="nn">pwtools.test.testenv</span> <span class="k">import</span> <span class="n">testdir</span>
 <span class="kn">from</span> <span class="nn">nose.plugins.skip</span> <span class="k">import</span> <span class="n">SkipTest</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;always&#39;</span><span class="p">)</span>
+<span class="c1">##warnings.simplefilter(&#39;always&#39;)</span>
 
 <span class="c1">#-----------------------------------------------------------------------------</span>
 <span class="c1"># define types, could probably also use the types module</span>
@@ -114,7 +90,9 @@
 <span class="n">arr_t</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">]))</span>
 <span class="n">dict_t</span> <span class="o">=</span> <span class="nb">type</span><span class="p">({</span><span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
 <span class="n">float_t</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">np_float_t</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">])[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">int_t</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">np_int_t</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">])[</span><span class="mi">0</span><span class="p">])</span>
 
 
 <span class="c1">#-----------------------------------------------------------------------------</span>
@@ -128,17 +106,17 @@
 
 
 <div class="viewcode-block" id="err"><a class="viewcode-back" href="../../../generated/api/pwtools.test.tools.err.html#pwtools.test.tools.err">[docs]</a><span class="k">def</span> <span class="nf">err</span><span class="p">(</span><span class="n">txt</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;error: &#39;</span> <span class="o">+</span> <span class="n">txt</span><span class="p">)</span></div>
+    <span class="nb">print</span><span class="p">((</span><span class="s1">&#39;error: &#39;</span> <span class="o">+</span> <span class="n">txt</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="true_or_false"><a class="viewcode-back" href="../../../generated/api/pwtools.test.tools.true_or_false.html#pwtools.test.tools.true_or_false">[docs]</a><span class="k">def</span> <span class="nf">true_or_false</span><span class="p">(</span><span class="n">cond</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Wrapper for a fucntion which returns bool. Should be used to build all</span>
 <span class="sd">    comp funcs.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">cond</span><span class="p">:</span>
-        <span class="nb">print</span> <span class="s2">&quot;.. ok&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;.. ok&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span> <span class="s2">&quot;.. uuhhhh, FAIL!&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;.. uuhhhh, FAIL!&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 
 <span class="c1">#-----------------------------------------------------------------------------</span>
@@ -186,15 +164,15 @@
                 <span class="n">err</span><span class="p">(</span><span class="s2">&quot;AllTypesFactory: d1 (</span><span class="si">%s</span><span class="s2">) and d2 (</span><span class="si">%s</span><span class="s2">) are not the &quot;</span>
                       <span class="s2">&quot;same type&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">d1_t</span><span class="p">,</span> <span class="n">d2_t</span><span class="p">))</span>
                 <span class="k">return</span> <span class="kc">False</span>       
-        <span class="k">for</span> <span class="n">typ</span><span class="p">,</span> <span class="n">comp_func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">comp_map</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">typ</span><span class="p">,</span> <span class="n">comp_func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">comp_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">d1_t</span> <span class="o">==</span> <span class="n">typ</span><span class="p">:</span>
                 <span class="n">msg</span><span class="p">(</span><span class="s2">&quot;AllTypesFactory: type=</span><span class="si">%s</span><span class="s2">, comp_func=</span><span class="si">%s</span><span class="s2">&quot;</span> \
                       <span class="o">%</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">typ</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">comp_func</span><span class="p">)))</span>
                 <span class="k">return</span> <span class="n">comp_func</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">comp_map</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;default&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">comp_map</span><span class="p">:</span>
             <span class="n">comp_func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">comp_map</span><span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;no default comparison function defined, &quot;</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;no default comparison function defined, &quot;</span>
                 <span class="s2">&quot;cannot process type=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">d1_t</span><span class="p">))</span>
         <span class="n">msg</span><span class="p">(</span><span class="s2">&quot;AllTypesFactory: type=default, comp_func=</span><span class="si">%s</span><span class="s2">&quot;</span> \
               <span class="o">%</span><span class="nb">str</span><span class="p">(</span><span class="n">comp_func</span><span class="p">))</span>
@@ -228,8 +206,8 @@
             <span class="n">keys</span> <span class="o">=</span> <span class="n">attr_lst</span>
         <span class="c1"># Test equal keys only if user doesn&#39;t provide them.            </span>
         <span class="k">if</span> <span class="n">keys</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>            
-            <span class="n">d1_keys</span> <span class="o">=</span> <span class="n">d1</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>    
-            <span class="n">d2_keys</span> <span class="o">=</span> <span class="n">d2</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+            <span class="n">d1_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">d1</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>    
+            <span class="n">d2_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">d2</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">d1_keys</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">d2_keys</span><span class="p">):</span>
                 <span class="n">err</span><span class="p">(</span><span class="s2">&quot;DictWithAllTypesFactory: key list not equally long&quot;</span><span class="p">)</span>
                 <span class="k">return</span> <span class="kc">False</span>
@@ -300,7 +278,9 @@
 <span class="n">comp_map_no_dict_almost_equal</span> <span class="o">=</span> <span class="p">{</span>\
     <span class="n">arr_t</span><span class="p">:</span> <span class="n">array_almost_equal</span><span class="p">,</span>
     <span class="n">int_t</span><span class="p">:</span> <span class="n">float_almost_equal</span><span class="p">,</span>
+    <span class="n">np_int_t</span><span class="p">:</span> <span class="n">float_almost_equal</span><span class="p">,</span>
     <span class="n">float_t</span><span class="p">:</span> <span class="n">float_almost_equal</span><span class="p">,</span>
+    <span class="n">np_float_t</span><span class="p">:</span> <span class="n">float_almost_equal</span><span class="p">,</span>
     <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="n">default_equal</span><span class="p">,</span>
     <span class="p">}</span>
 
@@ -359,7 +339,7 @@
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">pp</span><span class="p">,</span> <span class="s1">&#39;attr_lst&#39;</span><span class="p">):</span>
             <span class="n">attr_lst</span> <span class="o">=</span> <span class="n">pp</span><span class="o">.</span><span class="n">attr_lst</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;no attr_lst from input or test object &#39;pp&#39;&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;no attr_lst from input or test object &#39;pp&#39;&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">attr_lst</span><span class="p">:</span>
         <span class="n">msg</span><span class="p">(</span><span class="s2">&quot;assert_attrs_not_none: testing: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">name</span><span class="p">)</span>
         <span class="n">attr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">pp</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
@@ -410,9 +390,9 @@
     <span class="k">elif</span> <span class="n">ext</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;tgz&#39;</span><span class="p">,</span> <span class="s1">&#39;tar.gz&#39;</span><span class="p">]:</span>
         <span class="n">cmd</span> <span class="o">+=</span> <span class="s2">&quot;tar -C </span><span class="si">{workdir}</span><span class="s2"> -xzf </span><span class="si">{filename}</span><span class="s2">.</span><span class="si">{ext}</span><span class="s2">;&quot;</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;unsuported file format of file: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">src</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unsuported file format of file: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">src</span><span class="p">))</span>
     <span class="n">cmd</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workdir</span><span class="o">=</span><span class="n">workdir</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="n">src</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="n">ext</span><span class="p">)</span>
-    <span class="nb">print</span> <span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">backtick</span><span class="p">(</span><span class="n">cmd</span><span class="p">))</span>
     <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="s2">&quot;unpack failed: &#39;</span><span class="si">%s</span><span class="s2">&#39; not found&quot;</span> <span class="o">%</span><span class="n">filename</span>
     <span class="k">return</span> <span class="n">filename</span></div>
 
@@ -421,9 +401,8 @@
     <span class="sd">&quot;&quot;&quot;Use inside a test function or class. This raises</span>
 <span class="sd">    nose.plugins.skip.SkipTest and makes the test be skipped. Doesn&#39;t work as a</span>
 <span class="sd">    decorator. If you need a decorator to temporarily disable a test function,</span>
-<span class="sd">    then use unitest.skip(). The latter works only on test *functions* ... or</span>
-<span class="sd">    so they say. For classes, only raising SkipTest will make nose really skip</span>
-<span class="sd">    it.</span>
+<span class="sd">    then use unitest.skip(). The latter is supposed to work on test functions</span>
+<span class="sd">    and classes (probably unittest.TestCase and derivatives, untested). </span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -435,34 +414,98 @@
 <span class="sd">        if some_error_condition:</span>
 <span class="sd">            skip(&quot;skipping this test b/c of foo&quot;)</span>
 <span class="sd">    </span>
-<span class="sd">    @unitest.skip(&quot;disable test b/c we&#39;re all out of zonk!&quot;)</span>
 <span class="sd">    def test_bar():</span>
+<span class="sd">        skip(&quot;we&#39;re not at the bar, skip ordering beer&quot;)</span>
+<span class="sd">        normal_test_code_here()</span>
+
+<span class="sd">    @unitest.skip(&quot;disable test b/c we&#39;re all out of zonk!&quot;)</span>
+<span class="sd">    def test_baz():</span>
 <span class="sd">        assert baz == zonk</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">raise</span> <span class="n">SkipTest</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="skip_if_pkg_missing"><a class="viewcode-back" href="../../../generated/api/pwtools.test.tools.skip_if_pkg_missing.html#pwtools.test.tools.skip_if_pkg_missing">[docs]</a><span class="k">def</span> <span class="nf">skip_if_pkg_missing</span><span class="p">(</span><span class="n">pkgs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Call skip() if package(s)/module(s) are not importable.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pkgs : str or sequence</span>
+<span class="sd">        module/package name or sequence of names</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">try_import</span><span class="p">(</span><span class="n">pkg</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">pkg</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="n">skip</span><span class="p">(</span><span class="s2">&quot;skip test, package or module not found: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pkg</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pkgs</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">try_import</span><span class="p">(</span><span class="n">pkgs</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">common</span><span class="o">.</span><span class="n">is_seq</span><span class="p">(</span><span class="n">pkgs</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">pkg</span> <span class="ow">in</span> <span class="n">pkgs</span><span class="p">:</span>
+            <span class="n">try_import</span><span class="p">(</span><span class="n">pkg</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;input is no str or sequence: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pkgs</span><span class="p">))</span></div>
 </pre></div>
 
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

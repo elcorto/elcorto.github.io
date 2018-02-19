@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.calculators.Pwscf &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,60 +21,19 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.calculators.Pwscf.band_structure" href="pwtools.calculators.Pwscf.band_structure.html" />
-    <link rel="prev" title="pwtools.calculators.Lammps.write_input" href="pwtools.calculators.Lammps.write_input.html" /> 
+    <link rel="prev" title="pwtools.calculators.Lammps.write_input" href="pwtools.calculators.Lammps.write_input.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.calculators.Pwscf.band_structure.html" title="pwtools.calculators.Pwscf.band_structure"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.calculators.Lammps.write_input.html" title="pwtools.calculators.Lammps.write_input"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="calculators.html" accesskey="U">calculators</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="pwtools.calculators.Lammps.write_input.html"
-                        title="previous chapter">pwtools.calculators.Lammps.write_input</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="pwtools.calculators.Pwscf.band_structure.html"
-                        title="next chapter">pwtools.calculators.Pwscf.band_structure</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.calculators.Pwscf.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -91,8 +47,8 @@
 <em class="property">class </em><code class="descclassname">pwtools.calculators.</code><code class="descname">Pwscf</code><span class="sig-paren">(</span><em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/calculators.html#Pwscf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.calculators.Pwscf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">ase.calculators.calculator.FileIOCalculator</span></code>, <a class="reference internal" href="pwtools.calculators.CalculatorBase.html#pwtools.calculators.CalculatorBase" title="pwtools.calculators.CalculatorBase"><code class="xref py py-class docutils literal"><span class="pre">pwtools.calculators.CalculatorBase</span></code></a></p>
 <p>Pwscf (pw.x) calculator.</p>
-<p>ATM, we don&#8217;t write a <code class="docutils literal"><span class="pre">ase.calculators.calculator.Parameters</span></code> class
-(dict) and have no read() method so I guess that restarts don&#8217;t work. Only
+<p>ATM, we don’t write a <code class="docutils literal"><span class="pre">ase.calculators.calculator.Parameters</span></code> class
+(dict) and have no read() method so I guess that restarts don’t work. Only
 simple SCF runs for now.</p>
 <p class="rubric">Examples</p>
 <p>Define a calculator object:</p>
@@ -127,11 +83,11 @@ simple SCF runs for now.</p>
 <p class="rubric">Attributes</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="41%" />
-<col width="59%" />
+<col width="52%" />
+<col width="48%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td>command</td>
+<tr class="row-odd"><td><strong>command</strong></td>
 <td>&#160;</td>
 </tr>
 </tbody>
@@ -213,7 +169,7 @@ simple SCF runs for now.</p>
 <td>Clear all information from old calculation.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.Pwscf.set.html#pwtools.calculators.Pwscf.set" title="pwtools.calculators.Pwscf.set"><code class="xref py py-obj docutils literal"><span class="pre">set</span></code></a>(**kwargs)</td>
-<td>Set parameters like set(key1=value1, key2=value2, ...).</td>
+<td>Set parameters like set(key1=value1, key2=value2, …).</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.Pwscf.set_label.html#pwtools.calculators.Pwscf.set_label" title="pwtools.calculators.Pwscf.set_label"><code class="xref py py-obj docutils literal"><span class="pre">set_label</span></code></a>(label)</td>
 <td>Set label and convert label to directory and prefix.</td>
@@ -236,10 +192,10 @@ simple SCF runs for now.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>All parameters: ``self.parameters.keys()``</strong></p>
 <p><strong>label</strong> : str</p>
 <blockquote>
-<div><p>Basename of input and output files (e.g. &#8216;pw&#8217;) or a path to the
-calculation dir <em>including</em> the basename (&#8216;/path/to/pw&#8217;, where
-directory=&#8217;/path/to&#8217; and prefix=&#8217;pw&#8217;). In <code class="docutils literal"><span class="pre">self.command</span></code>,
-&#8216;&lt;prefix&gt;.in&#8217; and &#8216;&lt;prefix&gt;.out&#8217; are used.</p>
+<div><p>Basename of input and output files (e.g. ‘pw’) or a path to the
+calculation dir <em>including</em> the basename (‘/path/to/pw’, where
+directory=’/path/to’ and prefix=’pw’). In <code class="docutils literal"><span class="pre">self.command</span></code>,
+‘&lt;prefix&gt;.in’ and ‘&lt;prefix&gt;.out’ are used.</p>
 </div></blockquote>
 <p><strong>kpts</strong> : ASE k-points description</p>
 <blockquote>
@@ -250,12 +206,12 @@ as in <code class="docutils literal"><span class="pre">kpts=pwtools.crys.kgrid(s
 </div></blockquote>
 <p><strong>calc_name</strong> : str</p>
 <blockquote>
-<div><p>&#8216;prefix&#8217; in PWscf</p>
+<div><p>‘prefix’ in PWscf</p>
 </div></blockquote>
 <p><strong>pp</strong> : str or sequence</p>
 <blockquote>
 <div><p>Definition of the pseudopotential file and thus <cite>xc</cite>. If <cite>pp</cite> is a
-string (e.g. &#8216;pbe-n-kjpaw_psl.0.1.UPF&#8217;), then the atom symbols are
+string (e.g. ‘pbe-n-kjpaw_psl.0.1.UPF’), then the atom symbols are
 used to build the PP file name
 <code class="docutils literal"><span class="pre">'&lt;atom_symbol&gt;.pbe-n-kjpaw_psl.0.1.UPF'</span></code> for each atom type. Needs
 a file of that name in <cite>pseudo_dir</cite>. If <cite>pp</cite> is a list, e.g.
@@ -286,31 +242,69 @@ then this is used for each atom type.</p>
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="calculators.html">calculators</a><ul>
+      <li>Previous: <a href="pwtools.calculators.Lammps.write_input.html" title="previous chapter">pwtools.calculators.Lammps.write_input</a></li>
+      <li>Next: <a href="pwtools.calculators.Pwscf.band_structure.html" title="next chapter">pwtools.calculators.Pwscf.band_structure</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.calculators.Pwscf.band_structure.html" title="pwtools.calculators.Pwscf.band_structure"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.calculators.Lammps.write_input.html" title="pwtools.calculators.Lammps.write_input"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="calculators.html" >calculators</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/generated/api/pwtools.calculators.Pwscf.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

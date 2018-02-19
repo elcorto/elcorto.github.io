@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.batch.ParameterStudy &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,60 +21,19 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.batch.ParameterStudy.write_input" href="pwtools.batch.ParameterStudy.write_input.html" />
-    <link rel="prev" title="pwtools.batch.Machine.get_sql_record" href="pwtools.batch.Machine.get_sql_record.html" /> 
+    <link rel="prev" title="pwtools.batch.Machine.get_sql_record" href="pwtools.batch.Machine.get_sql_record.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.batch.ParameterStudy.write_input.html" title="pwtools.batch.ParameterStudy.write_input"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.batch.Machine.get_sql_record.html" title="pwtools.batch.Machine.get_sql_record"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="batch.html" accesskey="U">batch</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="pwtools.batch.Machine.get_sql_record.html"
-                        title="previous chapter">pwtools.batch.Machine.get_sql_record</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="pwtools.batch.ParameterStudy.write_input.html"
-                        title="next chapter">pwtools.batch.ParameterStudy.write_input</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.batch.ParameterStudy.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -90,8 +46,8 @@
 <dt id="pwtools.batch.ParameterStudy">
 <em class="property">class </em><code class="descclassname">pwtools.batch.</code><code class="descname">ParameterStudy</code><span class="sig-paren">(</span><em>machines=[]</em>, <em>templates=[]</em>, <em>params_lst=[]</em>, <em>study_name='calc'</em>, <em>db_name='calc.db'</em>, <em>db_table='calc'</em>, <em>calc_root='.'</em>, <em>calc_dir_prefix='calc'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#ParameterStudy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.ParameterStudy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p>Class to represent a parameter study, i.e. a number of Calculations,
-based on template files.</p>
+<p>Class to represent a parameter study (a number of Calculations,
+based on template files).</p>
 <p>The basic idea is to assemble all to-be-varied parameters in a script
 outside (<cite>params_lst</cite>) and pass these to this class along with a list of
 <cite>templates</cite> files, usually software input files. Then, a simple loop over
@@ -113,7 +69,7 @@ the parameter sets is done and input files are written.</p>
 operates on a <cite>calc_dir_root</cite> where such a database already exists, then
 the default is to append new calculations. The numbering of calc dirs
 continues at the end. This can be changed with the <cite>mode</cite> kwarg of
-<a class="reference internal" href="pwtools.batch.ParameterStudy.write_input.html#pwtools.batch.ParameterStudy.write_input" title="pwtools.batch.ParameterStudy.write_input"><code class="xref py py-meth docutils literal"><span class="pre">write_input()</span></code></a>. By default, a sql column &#8220;revision&#8221; is
+<a class="reference internal" href="pwtools.batch.ParameterStudy.write_input.html#pwtools.batch.ParameterStudy.write_input" title="pwtools.batch.ParameterStudy.write_input"><code class="xref py py-meth docutils literal"><span class="pre">write_input()</span></code></a>. By default, a sql column “revision” is
 added which numbers each addition.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
@@ -173,7 +129,7 @@ added which numbers each addition.</p>
 <p><strong>templates</strong> : see Calculation</p>
 <p><strong>params_lst</strong> : list of lists</p>
 <blockquote>
-<div><p>The &#8220;parameter sets&#8221;. Each sublist is a set of calculation
+<div><p>The “parameter sets”. Each sublist is a set of calculation
 parameters as SQLEntry instances:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="n">SQLEntry</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="n">SQLEntry</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="o">...</span><span class="p">],</span> <span class="c1"># calc_foo/0</span>
  <span class="p">[</span><span class="n">SQLEntry</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="n">SQLEntry</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="o">...</span><span class="p">],</span> <span class="c1"># calc_foo/1</span>
@@ -190,15 +146,15 @@ FileTemplate, not here!
 Note: Each sublist (parameter set) is flattened, so that it
 can in fact be a nested list, e.g. params_lst = the result of a
 complex comb.nested_loops() call. Also, sublists need not have the
-same length or <cite>key</cite> attributes per entry (&#8220;incomplete parameter
-sets&#8221;). The sqlite table header is compiled from all distinct
+same length or <cite>key</cite> attributes per entry (“incomplete parameter
+sets”). The sqlite table header is compiled from all distinct
 <a href="#id1"><span class="problematic" id="id2">`</span></a>key`s found.</p>
 </div></blockquote>
 <p><strong>study_name</strong> : str, optional</p>
 <blockquote>
 <div><p>Name for the parameter study. From this, the <cite>calc_name</cite> for input
 files and job name etc. will be built. By default, a string
-&#8220;_run&lt;idx&gt;&#8221; is appended to create a unique name.</p>
+“_run&lt;idx&gt;” is appended to create a unique name.</p>
 </div></blockquote>
 <p><strong>db_name</strong> : str, optional</p>
 <blockquote>
@@ -214,7 +170,7 @@ files and job name etc. will be built. By default, a string
 </div></blockquote>
 <p><strong>calc_dir_prefix</strong> : str, optional</p>
 <blockquote class="last">
-<div><p>Prefix for the top calculation dir (e.g. &#8216;calc&#8217; for &#8216;calc_foo&#8217;).</p>
+<div><p>Prefix for the top calculation dir (e.g. ‘calc’ for ‘calc_foo’).</p>
 </div></blockquote>
 </td>
 </tr>
@@ -242,19 +198,19 @@ locally or submitt batch job file, depending on <code class="docutils literal"><
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>mode</strong> : str, optional</p>
 <blockquote>
 <div><p>Fine tune how to write input files (based on <code class="docutils literal"><span class="pre">templates</span></code>) to calc
-dirs calc_foo/0/, calc_foo/1/, ... . Note that this doesn&#8217;t change
+dirs calc_foo/0/, calc_foo/1/, … . Note that this doesn’t change
 the base dir calc_foo at all, only the subdirs for each calc.
-{&#8216;a&#8217;, &#8216;w&#8217;}</p>
+{‘a’, ‘w’}</p>
 <div class="line-block">
-<div class="line">&#8216;a&#8217;: Append mode (default). If a previous database is found, then</div>
+<div class="line">‘a’: Append mode (default). If a previous database is found, then</div>
 <div class="line-block">
-<div class="line">subsequent calculations are numbered based on the last &#8216;idx&#8217;.</div>
+<div class="line">subsequent calculations are numbered based on the last ‘idx’.</div>
 <div class="line">calc_foo/0 # old</div>
 <div class="line">calc_foo/1 # old</div>
 <div class="line">calc_foo/2 # new</div>
 <div class="line">calc_foo/3 # new</div>
 </div>
-<div class="line">&#8216;w&#8217;: Write mode. The target dirs are purged and overwritten. Also,</div>
+<div class="line">‘w’: Write mode. The target dirs are purged and overwritten. Also,</div>
 <div class="line-block">
 <div class="line">the database (self.dbfn) is overwritten. Use this to</div>
 <div class="line">iteratively tune your inputs, NOT for working on already</div>
@@ -295,31 +251,69 @@ calculations to a cluster.</p>
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="batch.html">batch</a><ul>
+      <li>Previous: <a href="pwtools.batch.Machine.get_sql_record.html" title="previous chapter">pwtools.batch.Machine.get_sql_record</a></li>
+      <li>Next: <a href="pwtools.batch.ParameterStudy.write_input.html" title="next chapter">pwtools.batch.ParameterStudy.write_input</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.batch.ParameterStudy.write_input.html" title="pwtools.batch.ParameterStudy.write_input"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.batch.Machine.get_sql_record.html" title="pwtools.batch.Machine.get_sql_record"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="batch.html" >batch</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/generated/api/pwtools.batch.ParameterStudy.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

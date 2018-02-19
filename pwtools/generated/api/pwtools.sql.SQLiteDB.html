@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.sql.SQLiteDB &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,60 +21,19 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.sql.SQLiteDB.add_column" href="pwtools.sql.SQLiteDB.add_column.html" />
-    <link rel="prev" title="pwtools.sql.SQLEntry" href="pwtools.sql.SQLEntry.html" /> 
+    <link rel="prev" title="pwtools.sql.SQLEntry" href="pwtools.sql.SQLEntry.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.sql.SQLiteDB.add_column.html" title="pwtools.sql.SQLiteDB.add_column"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.sql.SQLEntry.html" title="pwtools.sql.SQLEntry"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="sql.html" accesskey="U">sql</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="pwtools.sql.SQLEntry.html"
-                        title="previous chapter">pwtools.sql.SQLEntry</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="pwtools.sql.SQLiteDB.add_column.html"
-                        title="next chapter">pwtools.sql.SQLiteDB.add_column</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.sql.SQLiteDB.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -110,9 +66,9 @@ strings.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;insert into calc (&#39;a&#39;, &#39;b&#39;) values (</span><span class="si">%e</span><span class="s2">, &#39;</span><span class="si">%s</span><span class="s2">&#39;)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;lala&#39;</span><span class="p">)</span><span class="s2">&quot;)</span>
 </pre></div>
 </div>
-<p>There are some caveats. For example, the string (&#8216;lala&#8217; in the example)
+<p>There are some caveats. For example, the string (‘lala’ in the example)
 must appear <em>qsingle-quoted</em> in the sqlite cmd to be recognized as such.
-Also aviod things like <cite>&#8221;... %s&#8221; %str(1.0)</cite>. This will truncate the
+Also aviod things like <cite>“… %s” %str(1.0)</cite>. This will truncate the
 float after less then 16 digits and thus store the 8-byte float with
 less precision!</p>
 </li>
@@ -180,7 +136,7 @@ less precision!</p>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.sql.SQLiteDB.executescript.html#pwtools.sql.SQLiteDB.executescript" title="pwtools.sql.SQLiteDB.executescript"><code class="xref py py-obj docutils literal"><span class="pre">executescript</span></code></a>(*args,&nbsp;**kwargs)</td>
 <td>This calls self.cur.executescript().</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.sql.SQLiteDB.fill_column.html#pwtools.sql.SQLiteDB.fill_column" title="pwtools.sql.SQLiteDB.fill_column"><code class="xref py py-obj docutils literal"><span class="pre">fill_column</span></code></a>(col,&nbsp;values[,&nbsp;start,&nbsp;extend,&nbsp;...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.sql.SQLiteDB.fill_column.html#pwtools.sql.SQLiteDB.fill_column" title="pwtools.sql.SQLiteDB.fill_column"><code class="xref py py-obj docutils literal"><span class="pre">fill_column</span></code></a>(col,&nbsp;values[,&nbsp;start,&nbsp;extend,&nbsp;…])</td>
 <td>Fill existing column <cite>col</cite> with values from <cite>values</cite>, starting from rowid <cite>start</cite>.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.sql.SQLiteDB.finish.html#pwtools.sql.SQLiteDB.finish" title="pwtools.sql.SQLiteDB.finish"><code class="xref py py-obj docutils literal"><span class="pre">finish</span></code></a>()</td>
@@ -236,7 +192,7 @@ less precision!</p>
 <blockquote class="last">
 <div><p>name of the database table, you can also use <a class="reference internal" href="pwtools.sql.SQLiteDB.set_table.html#pwtools.sql.SQLiteDB.set_table" title="pwtools.sql.SQLiteDB.set_table"><code class="xref py py-meth docutils literal"><span class="pre">set_table()</span></code></a>
 later or the <cite>table</cite> keyword in all methods which need to know to
-which database table you&#8217;re talking</p>
+which database table you’re talking</p>
 </div></blockquote>
 </td>
 </tr>
@@ -355,7 +311,7 @@ same format which <a class="reference internal" href="pwtools.sql.SQLiteDB.get_h
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>header</strong> : list of lists/tuples</p>
 <blockquote>
-<div><p>[(colname1, sqltype1), (colname2, sqltype2), ...]</p>
+<div><p>[(colname1, sqltype1), (colname2, sqltype2), …]</p>
 </div></blockquote>
 <p class="last"><strong>table</strong> : str, optional</p>
 </td>
@@ -388,7 +344,7 @@ same format which <a class="reference internal" href="pwtools.sql.SQLiteDB.get_h
 <dt id="pwtools.sql.SQLiteDB.fill_column">
 <code class="descname">fill_column</code><span class="sig-paren">(</span><em>col</em>, <em>values</em>, <em>start=1</em>, <em>extend=True</em>, <em>overwrite=False</em>, <em>table=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.fill_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.fill_column" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fill existing column <cite>col</cite> with values from <cite>values</cite>, starting from
-rowid <cite>start</cite>. &#8220;rowid&#8221; is a special sqlite column which is always
+rowid <cite>start</cite>. “rowid” is a special sqlite column which is always
 present and which numbers all rows.</p>
 <p>The column must already exist. To add a new column and fill it, see
 <a class="reference internal" href="pwtools.sql.SQLiteDB.attach_column.html#pwtools.sql.SQLiteDB.attach_column" title="pwtools.sql.SQLiteDB.attach_column"><code class="xref py py-meth docutils literal"><span class="pre">attach_column()</span></code></a>.</p>
@@ -566,31 +522,69 @@ column, then <code class="docutils literal"><span class="pre">self.cur.fetchall(
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="sql.html">sql</a><ul>
+      <li>Previous: <a href="pwtools.sql.SQLEntry.html" title="previous chapter">pwtools.sql.SQLEntry</a></li>
+      <li>Next: <a href="pwtools.sql.SQLiteDB.add_column.html" title="next chapter">pwtools.sql.SQLiteDB.add_column</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.sql.SQLiteDB.add_column.html" title="pwtools.sql.SQLiteDB.add_column"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.sql.SQLEntry.html" title="pwtools.sql.SQLEntry"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="sql.html" >sql</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/generated/api/pwtools.sql.SQLiteDB.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

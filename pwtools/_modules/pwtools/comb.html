@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.comb &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,38 +21,17 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -63,13 +39,11 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.comb</h1><div class="highlight"><pre>
-<span></span><span class="c1"># comb.py</span>
-<span class="c1">#</span>
-<span class="c1"># Some combinatorics stuff.</span>
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">pwtools.common</span> <span class="k">import</span> <span class="n">assert_cond</span> <span class="k">as</span> <span class="n">_assert</span>
 <span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">common</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">reduce</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
 
 <div class="viewcode-block" id="fac"><a class="viewcode-back" href="../../generated/api/pwtools.comb.fac.html#pwtools.comb.fac">[docs]</a><span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Factorial n!. Returns integer.&quot;&quot;&quot;</span>
@@ -88,6 +62,7 @@
     <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">fac</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">))</span></div>
 
 
+<span class="c1"># XXX remove? seems unused</span>
 <div class="viewcode-block" id="_swap"><a class="viewcode-back" href="../../generated/api/pwtools.comb._swap.html#pwtools.comb._swap">[docs]</a><span class="k">def</span> <span class="nf">_swap</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Swap arr[i] &lt;-&gt; arr[j]. Return i-j-swapped copy of `arr`.</span>
 <span class="sd">    </span>
@@ -108,7 +83,7 @@
     <span class="n">aa</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
     <span class="k">return</span> <span class="n">aa</span></div>
 
-
+<span class="c1"># XXX remove? use itertools.permutations()??</span>
 <div class="viewcode-block" id="ipermute"><a class="viewcode-back" href="../../generated/api/pwtools.comb.ipermute.html#pwtools.comb.ipermute">[docs]</a><span class="k">def</span> <span class="nf">ipermute</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Calculate all N! permutations of sequence `seq` (return generator</span>
 <span class="sd">    object). This function was written before itertools.permutations()</span>
@@ -165,9 +140,11 @@
             <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span></div>
 
+<span class="c1"># XXX remove? use itertools.permutations()??</span>
 <div class="viewcode-block" id="permute"><a class="viewcode-back" href="../../generated/api/pwtools.comb.permute.html#pwtools.comb.permute">[docs]</a><span class="k">def</span> <span class="nf">permute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;See ipermute().&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ipermute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)]</span></div>
+
 
 <div class="viewcode-block" id="unique2d"><a class="viewcode-back" href="../../generated/api/pwtools.comb.unique2d.html#pwtools.comb.unique2d">[docs]</a><span class="k">def</span> <span class="nf">unique2d</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Reduce 2d array `arr` to a 2d array with unique rows (or cols).</span>
@@ -216,123 +193,54 @@
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">uniq</span><span class="p">)</span><span class="o">.</span><span class="n">T</span></div>
 
 
-<div class="viewcode-block" id="nested_loops"><a class="viewcode-back" href="../../generated/api/pwtools.comb.nested_loops.html#pwtools.comb.nested_loops">[docs]</a><span class="k">def</span> <span class="nf">nested_loops</span><span class="p">(</span><span class="n">lists</span><span class="p">,</span> <span class="n">ret_all</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">flatten</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Nonrecursive version of nested loops of arbitrary depth. Pure Python</span>
-<span class="sd">    version (no numpy).</span>
+<div class="viewcode-block" id="_ensure_list"><a class="viewcode-back" href="../../generated/api/pwtools.comb._ensure_list.html#pwtools.comb._ensure_list">[docs]</a><span class="k">def</span> <span class="nf">_ensure_list</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">is_seq</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">_ensure_list</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">arg</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">arg</span></div>
+
+
+<span class="c1"># XXX return iterator (py3)</span>
+<div class="viewcode-block" id="nested_loops"><a class="viewcode-back" href="../../generated/api/pwtools.comb.nested_loops.html#pwtools.comb.nested_loops">[docs]</a><span class="k">def</span> <span class="nf">nested_loops</span><span class="p">(</span><span class="n">lists</span><span class="p">,</span> <span class="n">flatten</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Nested loops, optional flattening.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    lists : list of lists </span>
+<span class="sd">    lists : list of sequences</span>
 <span class="sd">        The objects to permute. len(lists) == the depth (nesting levels) of the</span>
 <span class="sd">        equivalent nested loops. Individual lists may contain a mix of</span>
 <span class="sd">        different types/objects, e.g. [[&#39;a&#39;, &#39;b&#39;], [Foo(), Bar(), Baz()],</span>
 <span class="sd">        [1,2,3,4,5,6,7]].</span>
-<span class="sd">    ret_all : bool</span>
-<span class="sd">        True: return perms, perm_idxs</span>
-<span class="sd">        False: return perms</span>
 <span class="sd">    flatten : bool</span>
 <span class="sd">        Flatten each entry in returned list. </span>
-
+<span class="sd">    </span>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    perms : list of lists with permuted objects</span>
-<span class="sd">    perm_idxs : list of lists with indices of the permutation if ret_all=True</span>
-
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    In Python &gt;= 2.6, this is almost the same as itertools.product() but was</span>
-<span class="sd">    written before that was in itertools.</span>
-<span class="sd">    </span>
-<span class="sd">    &gt;&gt;&gt; [x for x in itertools.product([1,2],[33,44,55],[sin,cos])]</span>
-<span class="sd">    &gt;&gt;&gt; nested_loops([[1,2],[33,44,55],[sin,cos]])</span>
-<span class="sd">    </span>
-<span class="sd">    Note that nested_loops() takes a list of lists, while itertools.product()</span>
-<span class="sd">    only the lists itself.</span>
+<span class="sd">    list : nested lists </span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; a=[1,2]; b=[3,4]; c=[5,6];</span>
-<span class="sd">    &gt;&gt;&gt; perms=[]</span>
-<span class="sd">    &gt;&gt;&gt; for aa in a:</span>
-<span class="sd">    ....:   for bb in b:</span>
-<span class="sd">    ....:       for cc in c:</span>
-<span class="sd">    ....:           perms.append([aa,bb,cc])</span>
-<span class="sd">    ....:             </span>
-<span class="sd">    &gt;&gt;&gt; perms</span>
-<span class="sd">    [[1, 3, 5],</span>
-<span class="sd">     [1, 3, 6],</span>
-<span class="sd">     [1, 4, 5],</span>
-<span class="sd">     [1, 4, 6],</span>
-<span class="sd">     [2, 3, 5],</span>
-<span class="sd">     [2, 3, 6],</span>
-<span class="sd">     [2, 4, 5],</span>
-<span class="sd">     [2, 4, 6]]</span>
-<span class="sd">    &gt;&gt;&gt; nested_loops([a,b,c], ret_all=True)</span>
-<span class="sd">    ([[1, 3, 5],</span>
-<span class="sd">      [1, 3, 6],</span>
-<span class="sd">      [1, 4, 5],</span>
-<span class="sd">      [1, 4, 6],</span>
-<span class="sd">      [2, 3, 5],</span>
-<span class="sd">      [2, 3, 6],</span>
-<span class="sd">      [2, 4, 5],</span>
-<span class="sd">      [2, 4, 6]],</span>
-<span class="sd">     [[0, 0, 0],</span>
-<span class="sd">      [0, 0, 1],</span>
-<span class="sd">      [0, 1, 0],</span>
-<span class="sd">      [0, 1, 1],</span>
-<span class="sd">      [1, 0, 0],</span>
-<span class="sd">      [1, 0, 1],</span>
-<span class="sd">      [1, 1, 0],</span>
-<span class="sd">      [1, 1, 1]])</span>
-<span class="sd">    &gt;&gt;&gt; nested_loops([[1,2], [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;], [sin, cos]])</span>
-<span class="sd">    [[1, &#39;a&#39;, &lt;ufunc &#39;sin&#39;&gt;],</span>
-<span class="sd">     [1, &#39;a&#39;, &lt;ufunc &#39;cos&#39;&gt;],</span>
-<span class="sd">     [1, &#39;b&#39;, &lt;ufunc &#39;sin&#39;&gt;],</span>
-<span class="sd">     [1, &#39;b&#39;, &lt;ufunc &#39;cos&#39;&gt;],</span>
-<span class="sd">     [1, &#39;c&#39;, &lt;ufunc &#39;sin&#39;&gt;],</span>
-<span class="sd">     [1, &#39;c&#39;, &lt;ufunc &#39;cos&#39;&gt;],</span>
-<span class="sd">     [2, &#39;a&#39;, &lt;ufunc &#39;sin&#39;&gt;],</span>
-<span class="sd">     [2, &#39;a&#39;, &lt;ufunc &#39;cos&#39;&gt;],</span>
-<span class="sd">     [2, &#39;b&#39;, &lt;ufunc &#39;sin&#39;&gt;],</span>
-<span class="sd">     [2, &#39;b&#39;, &lt;ufunc &#39;cos&#39;&gt;],</span>
-<span class="sd">     [2, &#39;c&#39;, &lt;ufunc &#39;sin&#39;&gt;],</span>
-<span class="sd">     [2, &#39;c&#39;, &lt;ufunc &#39;cos&#39;&gt;]]</span>
+<span class="sd">    &gt;&gt;&gt; from pwtools import comb</span>
+<span class="sd">    &gt;&gt;&gt; comb.nested_loops([[1,2],[&#39;a&#39;,&#39;b&#39;]])</span>
+<span class="sd">    [[1, &#39;a&#39;], [1, &#39;b&#39;], [2, &#39;a&#39;], [2, &#39;b&#39;]]</span>
+
 <span class="sd">    # If values of different lists should be varied together, use zip(). Note</span>
 <span class="sd">    # that you get nested lists back. Use flatten=True to get flattened lists.</span>
-<span class="sd">    &gt;&gt;&gt; nested_loops([zip([1,2], [&#39;a&#39;, &#39;b&#39;]), [88, 99]])</span>
-<span class="sd">    [[(1, &#39;a&#39;), 88], [(1, &#39;a&#39;), 99], [(2, &#39;b&#39;), 88], [(2, &#39;b&#39;), 99]]</span>
-<span class="sd">    &gt;&gt;&gt; nested_loops([zip([1,2], [&#39;a&#39;, &#39;b&#39;]), [88, 99]], flatten=True)</span>
-<span class="sd">    [[1, &#39;a&#39;, 88], [1, &#39;a&#39;, 99], [2, &#39;b&#39;, 88], [2, &#39;b&#39;, 99]]</span>
+<span class="sd">    &gt;&gt;&gt; comb.nested_loops([(1,2), zip([&#39;a&#39;,&#39;b&#39;],(np.sin,np.cos))])</span>
+<span class="sd">    [[1, [&#39;a&#39;, &lt;ufunc &#39;sin&#39;&gt;]],</span>
+<span class="sd">     [1, [&#39;b&#39;, &lt;ufunc &#39;cos&#39;&gt;]],</span>
+<span class="sd">     [2, [&#39;a&#39;, &lt;ufunc &#39;sin&#39;&gt;]],</span>
+<span class="sd">     [2, [&#39;b&#39;, &lt;ufunc &#39;cos&#39;&gt;]]]</span>
+
+<span class="sd">    &gt;&gt;&gt; comb.nested_loops([(1,2), zip([&#39;a&#39;,&#39;b&#39;],(np.sin,np.cos))], flatten=True)</span>
+<span class="sd">    [[1, &#39;a&#39;, &lt;ufunc &#39;sin&#39;&gt;],</span>
+<span class="sd">     [1, &#39;b&#39;, &lt;ufunc &#39;cos&#39;&gt;],</span>
+<span class="sd">     [2, &#39;a&#39;, &lt;ufunc &#39;sin&#39;&gt;],</span>
+<span class="sd">     [2, &#39;b&#39;, &lt;ufunc &#39;cos&#39;&gt;]]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">lens</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">lists</span><span class="p">)</span>
-    <span class="n">mx_idxs</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">lens</span><span class="p">]</span>
-    <span class="c1"># nperms = numpy.prod(lens)</span>
-    <span class="n">nperms</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="n">lens</span><span class="p">)</span>
-    <span class="c1"># number of nesting levels</span>
-    <span class="n">nlevels</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lists</span><span class="p">)</span>
-    <span class="c1"># index into `lists`: lists[i][j] -&gt; lists[i][idxs[i]], i.e.</span>
-    <span class="c1"># idxs[i] is the index into the ith list</span>
-    <span class="n">idxs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">nlevels</span>
-    <span class="n">perm_idxs</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">perms</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="c1"># e.g. [2,1,0]</span>
-    <span class="n">rev_rlevels</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">nlevels</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nperms</span><span class="p">):</span>         
-        <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">rev_rlevels</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">idxs</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">mx_idxs</span><span class="p">[</span><span class="n">pos</span><span class="p">]:</span>
-                <span class="n">idxs</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-                <span class="c1"># pos - 1 never gets &lt; 0 before all possible `nlevels`</span>
-                <span class="c1"># permutations are generated.</span>
-                <span class="n">idxs</span><span class="p">[</span><span class="n">pos</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="c1"># [:] to append a copy                </span>
-        <span class="n">perm_idxs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idxs</span><span class="p">[:])</span>
-        <span class="n">perms</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">lists</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">idxs</span><span class="p">)])</span>
-        <span class="n">idxs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="n">perms</span> <span class="o">=</span> <span class="p">[</span><span class="n">common</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">perms</span><span class="p">]</span> <span class="k">if</span> <span class="n">flatten</span> <span class="k">else</span> <span class="n">perms</span>
-    <span class="k">if</span> <span class="n">ret_all</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">perms</span><span class="p">,</span> <span class="n">perm_idxs</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">perms</span></div>
+    <span class="n">perms</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">lists</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">[</span><span class="n">common</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">perms</span><span class="p">]</span> <span class="k">if</span> <span class="n">flatten</span> <span class="k">else</span> <span class="n">perms</span>
+    <span class="k">return</span> <span class="n">_ensure_list</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="kron"><a class="viewcode-back" href="../../generated/api/pwtools.comb.kron.html#pwtools.comb.kron">[docs]</a><span class="k">def</span> <span class="nf">kron</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
@@ -372,11 +280,13 @@
     <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
     <span class="n">lst</span> <span class="o">=</span> <span class="n">permute</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">aa</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
-        <span class="nb">print</span> <span class="n">aa</span></div>
+        <span class="nb">print</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span></div>
 
+<span class="c1"># XXX remove</span>
 <span class="c1"># alias</span>
 <span class="n">factorial</span> <span class="o">=</span> <span class="n">fac</span>
 
+<span class="c1"># XXX remove</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">sys</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
@@ -385,24 +295,62 @@
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

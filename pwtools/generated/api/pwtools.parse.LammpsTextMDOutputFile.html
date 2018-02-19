@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.parse.LammpsTextMDOutputFile &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,53 +21,18 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="pwtools.parse.LammpsDcdMDOutputFile.update_units" href="pwtools.parse.LammpsDcdMDOutputFile.update_units.html" /> 
+    <link rel="prev" title="pwtools.parse.LammpsDcdMDOutputFile.update_units" href="pwtools.parse.LammpsDcdMDOutputFile.update_units.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.parse.LammpsDcdMDOutputFile.update_units.html" title="pwtools.parse.LammpsDcdMDOutputFile.update_units"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="parse.html" accesskey="U">parse</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="pwtools.parse.LammpsDcdMDOutputFile.update_units.html"
-                        title="previous chapter">pwtools.parse.LammpsDcdMDOutputFile.update_units</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/pwtools.parse.LammpsTextMDOutputFile.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -101,12 +63,12 @@ structure optimization (<code class="docutils literal"><span class="pre">minimiz
 <p class="rubric">Notes</p>
 <ul class="simple">
 <li>columns in <cite>filename</cite> and <cite>dumpfilename</cite>: We automagically extract
-the &#8220;header&#8221; (e.g. &#8220;Step Temp Volume Cella ...&#8221; in <cite>filename</cite> or
-&#8220;ITEM: ATOMS id type xsu ysu zsu fx fy fz vx vy vz&#8221; in
+the “header” (e.g. “Step Temp Volume Cella …” in <cite>filename</cite> or
+“ITEM: ATOMS id type xsu ysu zsu fx fy fz vx vy vz” in
 <cite>dumpfilename</cite>) and map data to these symbols. See <cite>_thermo_dct</cite> and
-<cite>_dump_dct</cite>. Currently, &#8220;xsu ysu zsu&#8221; is parsed to get
-coords_frac. &#8220;xu yu zu&#8221; is parsed to get coords. Wrapped coordinates
-(e.g. &#8220;xs ys zs&#8221; and &#8220;x y z&#8221;) are ignored.</li>
+<cite>_dump_dct</cite>. Currently, “xsu ysu zsu” is parsed to get
+coords_frac. “xu yu zu” is parsed to get coords. Wrapped coordinates
+(e.g. “xs ys zs” and “x y z”) are ignored.</li>
 <li>multiple runs from one input script (i.e. 2 or more <code class="docutils literal"><span class="pre">run</span></code>
 commands): it seems that the last step of the preceeding run is
 printed again by the new run by <code class="docutils literal"><span class="pre">thermo_style</span></code>, which results in
@@ -114,7 +76,7 @@ more <cite>nstep</cite> in <cite>filename</cite> as there really are in <cite>du
 parse all important stuff (coords, cell, velocity) from
 <cite>dumpfilename</cite>, but <cite>temperature</cite> and <cite>stress</cite> etc. is from
 <cite>filename</cite>. Watch out when plotting.</li>
-<li>cell: We parse cell from &#8220;ITEM: BOX BOUNDS&#8221; in <cite>dumpfilename</cite> and the
+<li>cell: We parse cell from “ITEM: BOX BOUNDS” in <cite>dumpfilename</cite> and the
 cell is always [[x,0,0],[xy,y,0],[xz,yz,z]], i.e. it is aligned in the
 same way in each timestep.</li>
 <li>atom symbols: First we try to read <cite>symbolsfilename</cite>, which may have been
@@ -167,7 +129,7 @@ to use the <code class="docutils literal"><span class="pre">type</span></code> c
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">Container</span></code></td>
-<td>alias of <code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></td>
+<td>alias of <a class="reference internal" href="pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">pwtools.crys.Trajectory</span></code></a></td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.apply_units.html#pwtools.parse.LammpsTextMDOutputFile.apply_units" title="pwtools.parse.LammpsTextMDOutputFile.apply_units"><code class="xref py py-obj docutils literal"><span class="pre">apply_units</span></code></a>()</td>
 <td></td>
@@ -191,7 +153,7 @@ to use the <code class="docutils literal"><span class="pre">type</span></code> c
 <td></td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.dump.html#pwtools.parse.LammpsTextMDOutputFile.dump" title="pwtools.parse.LammpsTextMDOutputFile.dump"><code class="xref py py-obj docutils literal"><span class="pre">dump</span></code></a>(dump_filename[,&nbsp;mkdir])</td>
-<td>Write object to binary file using cPickle.</td>
+<td>Write object to binary file using pickle.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_cell.html#pwtools.parse.LammpsTextMDOutputFile.get_cell" title="pwtools.parse.LammpsTextMDOutputFile.get_cell"><code class="xref py py-obj docutils literal"><span class="pre">get_cell</span></code></a>()</td>
 <td></td>
@@ -300,7 +262,7 @@ output is written to. The lammps default is <code class="docutils literal"><span
 <p><strong>order</strong> : dict, optional</p>
 <blockquote class="last">
 <div><p>See <a class="reference internal" href="pwtools.crys.Structure.get_order.html#pwtools.crys.Structure.get_order" title="pwtools.crys.Structure.get_order"><code class="xref py py-meth docutils literal"><span class="pre">pwtools.crys.Structure.get_order()</span></code></a>. Mapping of atom
-symbols to <code class="docutils literal"><span class="pre">type</span></code> in lammps, i.e. {&#8216;Al&#8217;: 1, &#8216;N&#8217;: 2}. If None then
+symbols to <code class="docutils literal"><span class="pre">type</span></code> in lammps, i.e. {‘Al’: 1, ‘N’: 2}. If None then
 we try to use <code class="docutils literal"><span class="pre">dump_modify</span> <span class="pre">...</span> <span class="pre">element</span></code> if present in <cite>filename</cite>,
 where lammps echos the input script. <cite>symbols</cite> is build from the
 <code class="docutils literal"><span class="pre">type</span></code> column in <cite>dumpfilename</cite>.</p>
@@ -316,7 +278,7 @@ where lammps echos the input script. <cite>symbols</cite> is build from the
 <code class="descname">get_etot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#LammpsTextMDOutputFile.get_etot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.LammpsTextMDOutputFile.get_etot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Potetntial energy PotEng [eV]. etot+ekin here is
 TotEng=PotEng+KinEng in lammps. In DFT, the potential energy is usually
-called &#8220;total energy&#8221;.</p>
+called “total energy”.</p>
 </dd></dl>
 
 </dd></dl>
@@ -327,28 +289,68 @@ called &#8220;total energy&#8221;.</p>
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="parse.html">parse</a><ul>
+      <li>Previous: <a href="pwtools.parse.LammpsDcdMDOutputFile.update_units.html" title="previous chapter">pwtools.parse.LammpsDcdMDOutputFile.update_units</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.parse.LammpsDcdMDOutputFile.update_units.html" title="pwtools.parse.LammpsDcdMDOutputFile.update_units"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="parse.html" >parse</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/generated/api/pwtools.parse.LammpsTextMDOutputFile.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

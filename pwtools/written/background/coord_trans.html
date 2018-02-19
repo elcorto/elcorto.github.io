@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Coordinate transformation &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,74 +21,17 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Pwscf" href="pwscf.html" />
-    <link rel="prev" title="pwtools.pydos.pyvacf" href="pwtools.pydos.pyvacf.html" /> 
-  </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwscf.html" title="Pwscf"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.pydos.pyvacf.html" title="pwtools.pydos.pyvacf"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Documentation</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Background</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="../../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Coordinate transformation</a><ul>
-<li><a class="reference internal" href="#notation">Notation</a></li>
-<li><a class="reference internal" href="#row-vs-column-form">Row vs. column form</a></li>
-<li><a class="reference internal" href="#theory">Theory</a><ul>
-<li><a class="reference internal" href="#notes-for-the-special-case-fractional-cartesian">Notes for the special case fractional &lt;-&gt; cartesian</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#implementation">Implementation</a></li>
-</ul>
-</li>
-</ul>
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="pwtools.pydos.pyvacf.html"
-                        title="previous chapter">pwtools.pydos.pyvacf</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="pwscf.html"
-                        title="next chapter">Pwscf</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/written/background/coord_trans.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  </head>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -104,13 +44,13 @@
 <h2>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h2>
 <p><span class="math">\(X\)</span>, <span class="math">\(Y\)</span> are square matrices with basis vectors as <em>rows</em></p>
 <div class="line-block">
-<div class="line"><span class="math">\(X\)</span> ... old, shape: (3,3) .. or (M,M) in general</div>
-<div class="line"><span class="math">\(Y\)</span> ... new, shape: (3,3)</div>
-<div class="line"><span class="math">\(I\)</span> ... identity matrix, basis vecs of cartesian system, shape: (3,3)</div>
-<div class="line"><span class="math">\(C\)</span> ... transformation matrix, shape(3,3)</div>
-<div class="line"><span class="math">\(v_X\)</span> ... row vector v in basis X, shape: (1,3)</div>
-<div class="line"><span class="math">\(v_Y\)</span> ... row vector v in basis Y, shape: (1,3)</div>
-<div class="line"><span class="math">\(v_I\)</span> ... row vector v in basis I, shape: (1,3)</div>
+<div class="line"><span class="math">\(X\)</span> … old, shape: (3,3) .. or (M,M) in general</div>
+<div class="line"><span class="math">\(Y\)</span> … new, shape: (3,3)</div>
+<div class="line"><span class="math">\(I\)</span> … identity matrix, basis vecs of cartesian system, shape: (3,3)</div>
+<div class="line"><span class="math">\(C\)</span> … transformation matrix, shape(3,3)</div>
+<div class="line"><span class="math">\(v_X\)</span> … row vector v in basis X, shape: (1,3)</div>
+<div class="line"><span class="math">\(v_Y\)</span> … row vector v in basis Y, shape: (1,3)</div>
+<div class="line"><span class="math">\(v_I\)</span> … row vector v in basis I, shape: (1,3)</div>
 </div>
 </div>
 <div class="section" id="row-vs-column-form">
@@ -152,7 +92,7 @@ more simple.</p>
 <div class="section" id="implementation">
 <h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
 <p>We now switch to code examples, where <span class="math">\(v_X\)</span> == <code class="docutils literal"><span class="pre">v_X</span></code>.</p>
-<p>In general, we don&#8217;t have one vector <code class="docutils literal"><span class="pre">v_X</span></code> but an array <code class="docutils literal"><span class="pre">R_X</span></code> of shape
+<p>In general, we don’t have one vector <code class="docutils literal"><span class="pre">v_X</span></code> but an array <code class="docutils literal"><span class="pre">R_X</span></code> of shape
 (N,M) of row vectors:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">R_X</span> <span class="o">=</span> <span class="p">[[</span><span class="o">---</span> <span class="n">v_X0</span> <span class="o">---</span><span class="p">],</span>
        <span class="p">[</span><span class="o">---</span> <span class="n">v_X1</span> <span class="o">---</span><span class="p">],</span>
@@ -162,7 +102,7 @@ more simple.</p>
 </div>
 <p>We want to use fast numpy array broadcasting to transform all the <code class="docutils literal"><span class="pre">v_X</span></code>
 vectors at once.
-The shape of <code class="docutils literal"><span class="pre">R_X</span></code> doesn&#8217;t matter, as long as the last dimension matches the
+The shape of <code class="docutils literal"><span class="pre">R_X</span></code> doesn’t matter, as long as the last dimension matches the
 dimensions of <code class="docutils literal"><span class="pre">C</span></code>, for example <code class="docutils literal"><span class="pre">R_X:</span> <span class="pre">(N,M,3),</span> <span class="pre">C:</span> <span class="pre">(3,3),</span> <span class="pre">dot(R_X,C):</span> <span class="pre">(N,M,3))</span></code>.</p>
 <p>Examples:</p>
 <p>1d: <code class="docutils literal"><span class="pre">R_X.shape</span> <span class="pre">=</span> <span class="pre">(3,)</span></code>:</p>
@@ -198,10 +138,10 @@ dimensions of <code class="docutils literal"><span class="pre">C</span></code>, 
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">allclose</span><span class="p">(</span><span class="n">R_Y1</span><span class="p">,</span> <span class="n">R_Y3</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Here we used the fact that <code class="docutils literal"><span class="pre">linalg.solve</span></code> can solve for many rhs&#8217;s at the
-same time (<code class="docutils literal"><span class="pre">Ax=b,</span> <span class="pre">A:(M,M),</span> <span class="pre">b:(M,N)</span></code> where the rhs&#8217;s are the columns of
+<p>Here we used the fact that <code class="docutils literal"><span class="pre">linalg.solve</span></code> can solve for many rhs’s at the
+same time (<code class="docutils literal"><span class="pre">Ax=b,</span> <span class="pre">A:(M,M),</span> <span class="pre">b:(M,N)</span></code> where the rhs’s are the columns of
 <code class="docutils literal"><span class="pre">b</span></code>). The result from <code class="docutils literal"><span class="pre">linalg.solve</span></code> has the same shape as <code class="docutils literal"><span class="pre">b</span></code>:
-<code class="docutils literal"><span class="pre">(M,N)</span></code>, i.e. each result vector is a column. That&#8217;s why we need the last
+<code class="docutils literal"><span class="pre">(M,N)</span></code>, i.e. each result vector is a column. That’s why we need the last
 transpose.</p>
 <p>3d: <code class="docutils literal"><span class="pre">R_X.shape</span> <span class="pre">=</span> <span class="pre">(nstep,</span> <span class="pre">natoms,</span> <span class="pre">3)</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># R_X[istep, iatom,:] is the shape (3,) vec of coords for atom `iatom` at</span>
@@ -235,31 +175,63 @@ in each loop.</p>
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwscf.html" title="Pwscf"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.pydos.pyvacf.html" title="pwtools.pydos.pyvacf"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Documentation</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" >Background</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/written/background/coord_trans.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

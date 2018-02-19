@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.common &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,38 +21,17 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -63,26 +39,17 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.common</h1><div class="highlight"><pre>
-<span></span><span class="c1"># common.py</span>
-<span class="c1">#</span>
-<span class="c1"># File operations, common system utils and other handy tools.</span>
-
-<span class="c1"># Import std lib&#39;s signal module, not the one from pwtools. AFAIK, this is</span>
-<span class="c1"># needed for Python 2.4 ... 2.6. See PEP 328.</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
-<span class="kn">import</span> <span class="nn">signal</span>
-
-<span class="kn">import</span> <span class="nn">types</span>
+<span></span><span class="kn">import</span> <span class="nn">signal</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">subprocess</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">ConfigParser</span>
-<span class="kn">import</span> <span class="nn">cPickle</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;always&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="c1">##warnings.simplefilter(&#39;always&#39;)</span>
 
 <span class="kn">from</span> <span class="nn">pwtools.verbose</span> <span class="k">import</span> <span class="n">verbose</span>
 <span class="kn">from</span> <span class="nn">pwtools.num</span> <span class="k">import</span> <span class="n">EPS</span>
@@ -113,33 +80,21 @@
 <span class="c1"># Config file stuff</span>
 <span class="c1">#-----------------------------------------------------------------------------</span>
 
-<div class="viewcode-block" id="PydosConfigParser"><a class="viewcode-back" href="../../generated/api/pwtools.common.PydosConfigParser.html#pwtools.common.PydosConfigParser">[docs]</a><span class="k">class</span> <span class="nc">PydosConfigParser</span><span class="p">(</span><span class="n">ConfigParser</span><span class="o">.</span><span class="n">SafeConfigParser</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;All values passed as `arg` to self.set(self, section, option, arg) are</span>
-<span class="sd">    converted to a string with frepr(). get*() methods are the usual ones</span>
-<span class="sd">    provided by the base class ConfigParser.SafeConfigParser: get(), getint(),</span>
-<span class="sd">    getfloat(), getboolean(). Option keys are case-sensitive.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># make keys case-sensitive</span>
-    <span class="n">ConfigParser</span><span class="o">.</span><span class="n">SafeConfigParser</span><span class="o">.</span><span class="n">optionxform</span> <span class="o">=</span> <span class="nb">str</span>
-<div class="viewcode-block" id="PydosConfigParser.set"><a class="viewcode-back" href="../../generated/api/pwtools.common.PydosConfigParser.set.html#pwtools.common.PydosConfigParser.set">[docs]</a>    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
-        <span class="n">ConfigParser</span><span class="o">.</span><span class="n">SafeConfigParser</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">frepr</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span></div></div>
-
-
 <div class="viewcode-block" id="add_to_config"><a class="viewcode-back" href="../../generated/api/pwtools.common.add_to_config.html#pwtools.common.add_to_config">[docs]</a><span class="k">def</span> <span class="nf">add_to_config</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Add sections and key-val paris in `info` to `config`.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    config : ConfigParser object</span>
+<span class="sd">    config : configparser.ConfigParser object</span>
 <span class="sd">    info : dict of dicts, see io.writearr()</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    modified config</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">sec</span><span class="p">,</span> <span class="n">dct</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">sec</span><span class="p">,</span> <span class="n">dct</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">config</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">sec</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">dct</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">dct</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">sec</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">config</span></div>
 
@@ -174,7 +129,7 @@
 <span class="sd">    &gt;&gt;&gt; toslice(&#39;1:5&#39;)</span>
 <span class="sd">    slice(1, 5, None)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_cond</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">StringType</span><span class="p">),</span> <span class="s2">&quot;input must be string&quot;</span><span class="p">)</span>
+    <span class="n">assert_cond</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">),</span> <span class="s2">&quot;input must be string&quot;</span><span class="p">)</span>
     <span class="c1"># XXX This is fixed in numpy 1.5.1:</span>
     <span class="c1">#   https://github.com/numpy/numpy/commit/9089036b</span>
     <span class="c1"># np.s_ doesn&#39;t work for slices starting at end, like</span>
@@ -187,7 +142,7 @@
     <span class="c1"># slice(9223372036854775805, None, None)</span>
     <span class="k">if</span> <span class="n">val</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="o">!=</span> <span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span> 
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;Some minus slices (e.g -2:) not supported &quot;</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Some minus slices (e.g -2:) not supported &quot;</span>
                 <span class="s2">&quot;by your numpy (probably old version). Use &quot;</span>
                 <span class="s2">&quot;[&lt;start&gt;[:&lt;step&gt;]:&lt;end&gt;] as workaround.&quot;</span><span class="p">)</span>
     <span class="c1"># This eval() trick works but seems hackish. Better ideas, anyone?</span>
@@ -211,20 +166,20 @@
 <span class="sd">    -----</span>
 <span class="sd">    All string vals are case-insensitive.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">BooleanType</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
     <span class="n">got_str</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">got_int</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">StringType</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
         <span class="n">got_str</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">IntType</span><span class="p">):</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
         <span class="n">got_int</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">,</span> <span class="s2">&quot;input value must be string or integer&quot;</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;input value must be string or integer&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">got_str</span> <span class="ow">and</span> <span class="p">(</span><span class="n">val</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;.true.&#39;</span><span class="p">,</span> <span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">,</span> <span class="s1">&#39;yes&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">]))</span> \
         <span class="ow">or</span> <span class="p">(</span><span class="n">got_int</span> <span class="ow">and</span> <span class="p">(</span><span class="n">val</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)):</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="kc">True</span>
@@ -232,7 +187,7 @@
         <span class="ow">or</span> <span class="p">(</span><span class="n">got_int</span> <span class="ow">and</span> <span class="p">(</span><span class="n">val</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)):</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;illegal input value &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span><span class="n">frepr</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;illegal input value &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span><span class="n">frepr</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">ret</span></div>
 
 
@@ -253,7 +208,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    float</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_cond</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">StringType</span><span class="p">),</span> <span class="s2">&quot;`st` must be string&quot;</span><span class="p">)</span>
+    <span class="n">assert_cond</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">),</span> <span class="s2">&quot;`st` must be string&quot;</span><span class="p">)</span>
     <span class="n">st</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="s1">&#39;d&#39;</span> <span class="ow">in</span> <span class="n">st</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
@@ -300,9 +255,9 @@
 <span class="sd">    &gt;&gt;&gt; frepr(&#39;abc&#39;)</span>
 <span class="sd">    &#39;abc&#39; </span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">FloatType</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">ffmt</span> <span class="o">%</span><span class="n">var</span>
-    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">StringType</span><span class="p">):</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">var</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="n">var</span><span class="p">)</span></div>
@@ -315,10 +270,11 @@
 
 <div class="viewcode-block" id="str2seq"><a class="viewcode-back" href="../../generated/api/pwtools.common.str2seq.html#pwtools.common.str2seq">[docs]</a><span class="k">def</span> <span class="nf">str2seq</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; &quot;1 2 3&quot; -&gt; [func(&#39;1&#39;), func(&#39;2&#39;), func(&#39;3&#39;)]&quot;&quot;&quot;</span>
+    <span class="c1"># XXX check usage of this, check if we need list() at all</span>
     <span class="k">if</span> <span class="n">sep</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">sep</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">sep</span><span class="p">)))</span></div>
 
 
 <div class="viewcode-block" id="str2tup"><a class="viewcode-back" href="../../generated/api/pwtools.common.str2tup.html#pwtools.common.str2tup">[docs]</a><span class="k">def</span> <span class="nf">str2tup</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -455,7 +411,7 @@
     <span class="k">return</span> <span class="n">fullpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">))</span></div>
 
 
-
+<span class="c1"># XXX remove dict mode</span>
 <div class="viewcode-block" id="template_replace"><a class="viewcode-back" href="../../generated/api/pwtools.common.template_replace.html#pwtools.common.template_replace">[docs]</a><span class="k">def</span> <span class="nf">template_replace</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">dct</span><span class="p">,</span> <span class="n">conv</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">warn_mult_found</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                      <span class="n">warn_not_found</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">disp</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;dct&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Replace placeholders dct.keys() with string values dct.values() in a</span>
@@ -506,7 +462,7 @@
 <span class="sd">    &gt;&gt;&gt; txt % dct</span>
 <span class="sd">    &#39;1  3.1415926535897931e+00&#39;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">DictType</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;1st arg is a dict. You probably use the old syntax. &quot;</span>
                          <span class="s2">&quot;The new syntax in func(txt, dct) instead of &quot;</span>
                          <span class="s2">&quot;func(dct, txt)&quot;</span><span class="p">)</span>
@@ -521,13 +477,13 @@
     <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;txt&#39;</span><span class="p">:</span>
         <span class="n">is_txt_mode</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;mode must be &#39;txt&#39; or &#39;dct&#39;&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;mode must be &#39;txt&#39; or &#39;dct&#39;&quot;</span><span class="p">)</span>
     
     <span class="c1"># This is a copy. Each txt.replace() returns an additional copy. We need</span>
     <span class="c1"># that if we loop over dct.iteritems() and sucessively replace averything.</span>
     <span class="k">if</span> <span class="n">is_txt_mode</span><span class="p">:</span> 
         <span class="n">new_txt</span> <span class="o">=</span> <span class="n">txt</span>
-    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">dct</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">dct</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">is_dct_mode</span><span class="p">:</span>
             <span class="c1"># The key is &#39;%(foo)s&#39;, but searching for &#39;%(foo)&#39; must suffice,</span>
             <span class="c1"># since we don&#39;t know the format string, in this case &#39;s&#39;, in</span>
@@ -540,8 +496,8 @@
                 <span class="k">if</span> <span class="n">conv</span><span class="p">:</span>
                     <span class="n">val</span> <span class="o">=</span> <span class="n">frepr</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">ffmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%.16e</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>                    
-                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">StringType</span><span class="p">):</span>
-                        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;dict vals must be strings: &quot;</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;dict vals must be strings: &quot;</span>
                                         <span class="s2">&quot;key: &#39;</span><span class="si">%s</span><span class="s2">&#39;, val: &quot;</span> <span class="o">%</span><span class="n">key</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">)))</span>
             <span class="k">if</span> <span class="n">warn_mult_found</span><span class="p">:</span>                    
                 <span class="n">cnt</span> <span class="o">=</span> <span class="n">txt</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">tst_key</span><span class="p">)</span>
@@ -554,7 +510,7 @@
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;template_replace: </span><span class="si">%s</span><span class="s2"> -&gt; </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">warn_not_found</span><span class="p">:</span>
-                <span class="nb">print</span> <span class="s2">&quot;template_replace: key not found: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">tst_key</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;template_replace: key not found: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">tst_key</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">is_dct_mode</span><span class="p">:</span>
         <span class="n">new_txt</span> <span class="o">=</span> <span class="n">txt</span> <span class="o">%</span> <span class="n">dct</span>
     <span class="k">return</span> <span class="n">new_txt</span></div>
@@ -609,7 +565,7 @@
         <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">src</span><span class="p">):</span>
             <span class="n">copy</span> <span class="o">=</span> <span class="n">shutil</span><span class="o">.</span><span class="n">copytree</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;source &#39;</span><span class="si">%s</span><span class="s2">&#39; is not file or dir&quot;</span> <span class="o">%</span><span class="n">src</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;source &#39;</span><span class="si">%s</span><span class="s2">&#39; is not file or dir&quot;</span> <span class="o">%</span><span class="n">src</span><span class="p">)</span>
         <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">dst</span> <span class="o">=</span> <span class="n">src</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">%s%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span><span class="n">idx</span><span class="p">)</span>
         <span class="k">while</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dst</span><span class="p">):</span>
@@ -617,7 +573,7 @@
             <span class="n">dst</span> <span class="o">=</span> <span class="n">src</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">%s%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span><span class="n">idx</span><span class="p">)</span>
         <span class="c1"># sanity check</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dst</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;destination &#39;</span><span class="si">%s</span><span class="s2">&#39; exists&quot;</span> <span class="o">%</span><span class="n">dst</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;destination &#39;</span><span class="si">%s</span><span class="s2">&#39; exists&quot;</span> <span class="o">%</span><span class="n">dst</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>        
             <span class="n">copy</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span></div>
 
@@ -628,13 +584,13 @@
 <div class="viewcode-block" id="dict2str"><a class="viewcode-back" href="../../generated/api/pwtools.common.dict2str.html#pwtools.common.dict2str">[docs]</a><span class="k">def</span> <span class="nf">dict2str</span><span class="p">(</span><span class="n">dct</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Nicer than simply __repr__.&quot;&quot;&quot;</span>
     <span class="n">st</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>    
-    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">dct</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">dct</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">st</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">st</span>        </div>
 
 <span class="c1"># backward compat only</span>
 <div class="viewcode-block" id="print_dct"><a class="viewcode-back" href="../../generated/api/pwtools.common.print_dct.html#pwtools.common.print_dct">[docs]</a><span class="k">def</span> <span class="nf">print_dct</span><span class="p">(</span><span class="n">dct</span><span class="p">):</span>
-    <span class="nb">print</span> <span class="n">dict2str</span><span class="p">(</span><span class="n">dct</span><span class="p">)</span></div>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dict2str</span><span class="p">(</span><span class="n">dct</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="dict2class"><a class="viewcode-back" href="../../generated/api/pwtools.common.dict2class.html#pwtools.common.dict2class">[docs]</a><span class="k">def</span> <span class="nf">dict2class</span><span class="p">(</span><span class="n">dct</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Dummy&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -666,18 +622,15 @@
     <span class="sd">&quot;&quot;&quot;Test if `seq` is some kind of sequence, based on calling iter(seq), i.e.</span>
 <span class="sd">    if the object is iterable.</span>
 
-<span class="sd">    Exclude cases which are iterable but that we still don&#39;t like: </span>
-<span class="sd">        StringTypes = StringType + UnicodeType</span>
-<span class="sd">        FileType</span>
-<span class="sd">    UnicodeType is for lists of unicode strings [u&#39;aaa&#39;, u&#39;bbb&#39;]. In fact, we</span>
-<span class="sd">    wish to catch list, tuple, numpy array.</span>
+<span class="sd">    Exclude cases which are iterable but that we still don&#39;t like (string, file</span>
+<span class="sd">    object). In fact, we wish to catch list, tuple, numpy array.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    seq : (nested) sequence of arbitrary objects</span>
 <span class="sd">    &quot;&quot;&quot;</span> 
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">StringTypes</span><span class="p">)</span> <span class="ow">or</span> \
-       <span class="nb">isinstance</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">FileType</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> \
+       <span class="nb">isinstance</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">io</span><span class="o">.</span><span class="n">IOBase</span><span class="p">):</span>
        <span class="k">return</span> <span class="kc">False</span>
     <span class="k">else</span><span class="p">:</span>        
         <span class="k">try</span><span class="p">:</span>
@@ -736,7 +689,9 @@
 <span class="c1">#-----------------------------------------------------------------------------</span>
 
 <div class="viewcode-block" id="system"><a class="viewcode-back" href="../../generated/api/pwtools.common.system.html#pwtools.common.system">[docs]</a><span class="k">def</span> <span class="nf">system</span><span class="p">(</span><span class="n">call</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Fire up shell commamd line `call`. </span>
+    <span class="sd">&quot;&quot;&quot;Fire up shell commamd line `call`.</span>
+
+<span class="sd">    No exception is raised if the command fails.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -777,21 +732,27 @@
     <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGPIPE</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIG_DFL</span><span class="p">)</span></div>
 
 
+<span class="c1"># XXX The error handling is not safe since we raise the exception only when</span>
+<span class="c1"># stderr is not empty w/o checking the retcode. This fails if we do</span>
+<span class="c1"># backtick(&#39;dhwjqdhwjwqdk 2&gt;/dev/null&#39;). This may have been a design decision</span>
+<span class="c1"># in order to deal with flaky shell commands. But we should never use that in</span>
+<span class="c1"># tests.</span>
 <div class="viewcode-block" id="backtick"><a class="viewcode-back" href="../../generated/api/pwtools.common.backtick.html#pwtools.common.backtick">[docs]</a><span class="k">def</span> <span class="nf">backtick</span><span class="p">(</span><span class="n">call</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Convenient shell backtick replacement with gentle error handling.</span>
+    <span class="sd">&quot;&quot;&quot;Convenient shell backtick replacement. Raise exception if stderr is not</span>
+<span class="sd">    empty.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; print backtick(&#39;ls -l&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; print(backtick(&#39;ls -l&#39;))</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">pp</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">call</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
-        <span class="n">preexec_fn</span><span class="o">=</span><span class="n">permit_sigpipe</span><span class="p">)</span>
+            <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+            <span class="n">preexec_fn</span><span class="o">=</span><span class="n">permit_sigpipe</span><span class="p">)</span>
     <span class="n">out</span><span class="p">,</span><span class="n">err</span> <span class="o">=</span> <span class="n">pp</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">err</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;Error calling command: &#39;</span><span class="si">%s</span><span class="s2">&#39;</span><span class="se">\n</span><span class="s2">Error message &quot;</span>
+    <span class="k">if</span> <span class="n">err</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">!=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Error calling command: &#39;</span><span class="si">%s</span><span class="s2">&#39;</span><span class="se">\n</span><span class="s2">Error message &quot;</span>
             <span class="s2">&quot;follows:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">call</span><span class="p">,</span> <span class="n">err</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">out</span>            </div>
+    <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span></div>
 
 <span class="c1">#-----------------------------------------------------------------------------</span>
 <span class="c1"># pickle</span>
@@ -802,7 +763,7 @@
 <span class="sd">    :func:`~pwtools.io.read_pickle` instead.&quot;&quot;&quot;</span>
     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;cpickle_load() is deprcated, use io.read_pickle() instead&quot;</span><span class="p">,</span>
                    <span class="ne">DeprecationWarning</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">cPickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span></div>
 
 <span class="c1">#-----------------------------------------------------------------------------</span>
 <span class="c1"># aliases</span>
@@ -816,24 +777,62 @@
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

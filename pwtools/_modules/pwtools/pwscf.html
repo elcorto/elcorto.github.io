@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.pwscf &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,38 +21,17 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -63,10 +39,8 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.pwscf</h1><div class="highlight"><pre>
-<span></span><span class="c1"># pwscf.py</span>
-<span class="c1">#</span>
-<span class="c1"># Some handy tools to construct strings for building pwscf input files.</span>
-<span class="c1"># Readers for QE postprocessing tool output (matdyn.x, dynmat.x).</span>
+<span></span><span class="sd">&quot;&quot;&quot;Some handy tools to construct strings for building pwscf input files.</span>
+<span class="sd">Readers for QE postprocessing tool output (matdyn.x, dynmat.x).&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">warnings</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -114,10 +88,10 @@
     <span class="k">return</span> <span class="n">txt</span>        </div>
 
 
-<div class="viewcode-block" id="atpos_str_fast"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.atpos_str_fast.html#pwtools.pwscf.atpos_str_fast">[docs]</a><span class="k">def</span> <span class="nf">atpos_str_fast</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">work</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="atpos_str_fast"><a class="viewcode-back" href="../../generated/api/pwtools.pwscf.atpos_str_fast.html#pwtools.pwscf.atpos_str_fast">[docs]</a><span class="k">def</span> <span class="nf">atpos_str_fast</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">coords</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Fast version of atpos_str() for usage in loops. We use a fixed string</span>
-<span class="sd">    dtype ``|S20`` to convert the array `coords` to string form. We also avoid</span>
-<span class="sd">    all assert&#39;s etc for speed.</span>
+<span class="sd">    dtype ``U32`` to convert the array `coords` to string form. We also avoid</span>
+<span class="sd">    all asserts for speed.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -125,25 +99,27 @@
 <span class="sd">        rows of coords</span>
 <span class="sd">    coords : array (natoms, 3) with atomic coords, can also be (natoms, &gt;3) to</span>
 <span class="sd">        add constraints on atomic forces in PWscf</span>
-<span class="sd">    work : optional, array of shape (natoms, 4)</span>
-<span class="sd">        Pre-allocated work array. This can be the result of numpy.empty(). It</span>
-<span class="sd">        is used to temporarily store the string dtype array.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    string</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The string dtype + flatten trick used here is the fastest way to convert a</span>
+<span class="sd">    numpy array to string. However the number of digits is limited to 32 chars.</span>
+<span class="sd">    We use 32 b/c</span>
+
+<span class="sd">    &gt;&gt;&gt; array([pi]*2).astype(&#39;U&#39;)</span>
+<span class="sd">    array([&#39;3.141592653589793&#39;, &#39;3.141592653589793&#39;], dtype=&#39;&lt;U32&#39;)</span>
+<span class="sd">    </span>
+<span class="sd">    ``&lt;`` means little endian and is based on the machine arch automatically.</span>
+<span class="sd">    </span>
+<span class="sd">    Needs about 1/3 of the time of :func:`atpos_str`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># The string dtype + flatten trick is the fastest way to convert a numpy</span>
-    <span class="c1"># array to string. However the number of digits is limited to 11 (at least</span>
-    <span class="c1"># on my 64 bit machine). Formatting like &#39;%e&#39; cannot be used. It is like a</span>
-    <span class="c1"># fixed digit form of &#39;%f&#39;. Needs about 2/3 of the time of atpos_str(), so</span>
-    <span class="c1"># the speedup is OK, but not very high. String operations are slow. The</span>
-    <span class="c1"># next thing would be Cython or so.</span>
-    <span class="c1"># work: Even allocations in a loop are fast, so using `work` brings next to</span>
-    <span class="c1"># nothing.</span>
     <span class="n">nrows</span> <span class="o">=</span> <span class="n">coords</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">ncols</span> <span class="o">=</span> <span class="n">coords</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;|S20&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">work</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">work</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;U32&#39;</span><span class="p">)</span>
     <span class="n">arr</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">symbols</span>
     <span class="n">arr</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">coords</span>
     <span class="n">txt</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;  &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">ncols</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">*</span><span class="n">nrows</span> <span class="o">%</span><span class="nb">tuple</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
@@ -484,7 +460,7 @@
         <span class="k">return</span> <span class="n">arr</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">dct</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">ii</span><span class="p">,</span><span class="n">name</span> <span class="ow">in</span> <span class="n">cols</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">ii</span><span class="p">,</span><span class="n">name</span> <span class="ow">in</span> <span class="n">cols</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
                 <span class="n">dct</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[:,</span><span class="n">ii</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
@@ -583,7 +559,7 @@
     <span class="c1"># nasty trick: join all lines containing data into one 1d array: &quot; &quot;.join()</span>
     <span class="c1"># does &quot;1 2\n3 4&quot; -&gt; &quot;1 2\n 3 4&quot; and split() splits at \n + whitespace.</span>
     <span class="n">items</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="o">/</span> <span class="n">step</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="o">//</span> <span class="n">step</span><span class="p">):</span>
         <span class="n">kpoints</span><span class="p">[</span><span class="n">ii</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">ii</span><span class="o">*</span><span class="n">step</span><span class="p">:(</span><span class="n">ii</span><span class="o">*</span><span class="n">step</span><span class="o">+</span><span class="mi">3</span><span class="p">)]</span>
         <span class="n">freqs</span><span class="p">[</span><span class="n">ii</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">items</span><span class="p">[(</span><span class="n">ii</span><span class="o">*</span><span class="n">step</span><span class="o">+</span><span class="mi">3</span><span class="p">):(</span><span class="n">ii</span><span class="o">*</span><span class="n">step</span><span class="o">+</span><span class="n">step</span><span class="p">)]</span>
     <span class="k">return</span> <span class="n">kpoints</span><span class="p">,</span> <span class="n">freqs</span></div>
@@ -736,31 +712,69 @@
                        <span class="n">cos_alpha</span><span class="o">**</span><span class="mf">2.0</span><span class="o">-</span><span class="n">cos_beta</span><span class="o">**</span><span class="mf">2.0</span><span class="o">-</span><span class="n">cos_gamma</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)</span><span class="o">/</span><span class="n">sin_gamma</span><span class="p">])</span>
         <span class="n">cell</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">v3</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;illegal ibrav: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">ibrav</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;illegal ibrav: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">ibrav</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cell</span>        </div>
 </pre></div>
 
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

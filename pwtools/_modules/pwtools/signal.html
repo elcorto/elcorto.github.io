@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.signal &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,38 +21,17 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -63,12 +39,12 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.signal</h1><div class="highlight"><pre>
-<span></span><span class="c1"># signal.py</span>
-<span class="c1">#</span>
-<span class="c1"># After scipy.signal: Some general &quot;signal procressing&quot; tools (FFT,</span>
-<span class="c1"># correlation). Mostly textbook and reference implementations and utilities.</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Some general signal procressing tools (FFT, correlation). Mostly textbook and</span>
+<span class="sd">reference implementations plus some utilities.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">product</span><span class="p">,</span> <span class="n">izip</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">product</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="k">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span>
 <span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="k">import</span> <span class="n">fftconvolve</span><span class="p">,</span> <span class="n">gaussian</span><span class="p">,</span> <span class="n">kaiserord</span><span class="p">,</span> <span class="n">firwin</span><span class="p">,</span> <span class="n">lfilter</span><span class="p">,</span> <span class="n">freqz</span>
@@ -263,7 +239,7 @@
     <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">idx_tup</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">idxs</span><span class="p">):</span>
         <span class="n">sl</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span> <span class="o">*</span> <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span>
-        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">ax</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="n">idx_tup</span><span class="p">,</span> <span class="n">axes</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">idx_tup</span><span class="p">,</span> <span class="n">axes</span><span class="p">):</span>
             <span class="n">sl</span><span class="p">[</span><span class="n">ax</span><span class="p">]</span> <span class="o">=</span> <span class="n">idx</span>
         <span class="n">out</span><span class="p">[</span><span class="n">sl</span><span class="p">]</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">sl</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">out</span>        </div>
@@ -359,7 +335,7 @@
     <span class="k">elif</span> <span class="n">where</span> <span class="o">==</span> <span class="s1">&#39;start&#39;</span><span class="p">:</span>        
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">add_shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">arr</span><span class="o">.</span><span class="n">dtype</span><span class="p">),</span> <span class="n">arr</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;illegal `where` arg: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">where</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;illegal `where` arg: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">where</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="welch"><a class="viewcode-back" href="../../generated/api/pwtools.signal.welch.html#pwtools.signal.welch">[docs]</a><span class="k">def</span> <span class="nf">welch</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">sym</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -379,7 +355,7 @@
     <span class="k">return</span> <span class="n">w</span></div>
 
 <div class="viewcode-block" id="lorentz"><a class="viewcode-back" href="../../generated/api/pwtools.signal.lorentz.html#pwtools.signal.lorentz">[docs]</a><span class="k">def</span> <span class="nf">lorentz</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sym</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Lorentz window (same as Cauchy function). Function skeleton stolen from</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Lorentz window (same as Cauchy function). Function skeleton stolen from</span>
 <span class="sd">    scipy.signal.gaussian().</span>
 <span class="sd">    </span>
 <span class="sd">    The Lorentz function is</span>
@@ -428,11 +404,39 @@
 <span class="sd">    The length of the returned array is 2*arr.shape[axis]-1 .&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">arr</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span></div>
 
-
-<span class="c1"># Generalization to correlation corr(v,w) should be straightforward.</span>
-<span class="c1"># Autocorrelation is then corr(v,v).</span>
+<span class="c1"># XXX</span>
+<span class="c1"># Check f2py wrapper of _flib.acorr(): The signature is:</span>
+<span class="c1"># 	In [13]: num._flib.acorr?</span>
+<span class="c1"># 	Type:           fortran</span>
+<span class="c1"># 	String form:    &lt;fortran object&gt;</span>
+<span class="c1"># 	Docstring:     </span>
+<span class="c1"># 	c = acorr(v,c,method,norm,[nstep])</span>
+<span class="c1"># 	</span>
+<span class="c1"># 	Wrapper for ``acorr``.</span>
+<span class="c1"># 	</span>
+<span class="c1"># 	Parameters</span>
+<span class="c1"># 	----------</span>
+<span class="c1"># 	v : input rank-1 array(&#39;d&#39;) with bounds (nstep)</span>
+<span class="c1"># 	c : input rank-1 array(&#39;d&#39;) with bounds (nstep)</span>
+<span class="c1"># 	method : input int</span>
+<span class="c1"># 	norm : input int</span>
+<span class="c1"># 	</span>
+<span class="c1"># 	Other Parameters</span>
+<span class="c1"># 	----------------</span>
+<span class="c1"># 	nstep : input int, optional</span>
+<span class="c1"># 	    Default: len(v)</span>
+<span class="c1"># 	</span>
+<span class="c1"># 	Returns</span>
+<span class="c1"># 	-------</span>
+<span class="c1"># 	c : rank-1 array(&#39;d&#39;) with bounds (nstep)</span>
+<span class="c1"># </span>
+<span class="c1"># We need to pass in a result array &#39;c&#39; which gets overwritten, but this also</span>
+<span class="c1"># gets returned. Check f2py docs for wrapping such that c generated on the</span>
+<span class="c1"># Fortran side.</span>
+<span class="c1">#</span>
 <div class="viewcode-block" id="acorr"><a class="viewcode-back" href="../../generated/api/pwtools.signal.acorr.html#pwtools.signal.acorr">[docs]</a><span class="k">def</span> <span class="nf">acorr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;(Normalized) autocorrelation function (ACF) for 1d arrays:</span>
+    <span class="sd">&quot;&quot;&quot;(Normalized) autocorrelation function (ACF) for 1d arrays.</span>
+
 <span class="sd">    Without normalization</span>
 <span class="sd">        c(t) = &lt;v(0) v(t)&gt;</span>
 <span class="sd">    and with</span>
@@ -467,6 +471,9 @@
 <span class="sd">    </span>
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
+<span class="sd">    Generalization of this function to correlation corr(v,w) should be</span>
+<span class="sd">    straightforward. Autocorrelation is then corr(v,v).</span>
+
 <span class="sd">    speed:</span>
 <span class="sd">        methods 1 ...  are loosely ordered slow ... fast</span>
 <span class="sd">    methods:</span>
@@ -500,16 +507,16 @@
     <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nstep</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">_norm</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">norm</span> <span class="k">else</span> <span class="mi">0</span>
     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>    
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">nstep</span><span class="o">-</span><span class="n">t</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>    
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="o">-</span><span class="n">t</span><span class="p">):</span>
                 <span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+=</span> <span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="n">t</span><span class="p">]</span> 
     <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
         <span class="n">vv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">v</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nstep</span><span class="p">,),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)))</span>
-        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>    
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>    
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>
                 <span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+=</span> <span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">vv</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="n">t</span><span class="p">]</span> 
     <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span> 
-        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>
             <span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="p">[:(</span><span class="n">nstep</span><span class="o">-</span><span class="n">t</span><span class="p">)]</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="n">t</span><span class="p">:])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span> 
         <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)[</span><span class="n">nstep</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span>
@@ -820,17 +827,17 @@
             <span class="n">dleft</span> <span class="o">=</span> <span class="n">dleft</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">dright</span> <span class="o">=</span> <span class="n">dright</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;unknown value for edge&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unknown value for edge&quot;</span><span class="p">)</span>
     <span class="n">sig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">dleft</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">dright</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
     <span class="n">kk</span> <span class="o">=</span> <span class="n">kern</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">kern</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="k">if</span> <span class="n">norm</span> <span class="k">else</span> <span class="n">kern</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">fftconvolve</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">kk</span><span class="p">,</span> <span class="s1">&#39;valid&#39;</span><span class="p">)</span>
     <span class="k">assert</span> <span class="n">ret</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">==</span> <span class="n">N</span><span class="o">+</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;unexpected convolve result shape&quot;</span>
     <span class="k">del</span> <span class="n">sig</span>
     <span class="k">if</span> <span class="n">M</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="c1">##sl = slice(M/2+1,-(M/2)) # even kernel, shift result to left</span>
-        <span class="n">sl</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">M</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">M</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># even kernel, shift result to right</span>
+        <span class="c1">##sl = slice(M//2+1,-(M//2)) # even kernel, shift result to left</span>
+        <span class="n">sl</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">M</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">M</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># even kernel, shift result to right</span>
     <span class="k">else</span><span class="p">:</span>        
-        <span class="n">sl</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">M</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">M</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">sl</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">M</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">M</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">slicetake</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">sl</span><span class="o">=</span><span class="n">sl</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>        
     <span class="k">assert</span> <span class="n">ret</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;ups, ret.shape (</span><span class="si">%s</span><span class="s2">)!= data.shape (</span><span class="si">%s</span><span class="s2">)&quot;</span> \
                                       <span class="o">%</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
@@ -949,7 +956,7 @@
             <span class="k">if</span> <span class="n">N</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">N</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s1">&#39;unknown mode&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;unknown mode&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">taps</span> <span class="o">=</span> <span class="n">firwin</span><span class="p">(</span><span class="n">numtaps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ntaps</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="n">cutoff</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="n">nyq</span><span class="o">=</span><span class="n">nyq</span><span class="p">,</span>
                            <span class="n">pass_zero</span><span class="o">=</span><span class="n">pass_zero</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">)</span>
         <span class="n">w</span><span class="p">,</span><span class="n">h</span> <span class="o">=</span> <span class="n">freqz</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">taps</span><span class="p">)</span>
@@ -970,24 +977,62 @@
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

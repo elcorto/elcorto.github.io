@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>rbf &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,47 +21,170 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.rbf.RBFFunction" href="pwtools.rbf.RBFFunction.html" />
-    <link rel="prev" title="pwtools.random.random_struct" href="pwtools.random.random_struct.html" /> 
+    <link rel="prev" title="pwtools.random.random_struct" href="pwtools.random.random_struct.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.rbf.RBFFunction.html" title="pwtools.rbf.RBFFunction"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.random.random_struct.html" title="pwtools.random.random_struct"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API Reference</a> &#187;</li> 
-      </ul>
-    </div>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="rbf">
+<h1>rbf<a class="headerlink" href="#rbf" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-pwtools.rbf"></span><p>Radial Basis Functions Neural Network for interpolation of n-dim data points.</p>
+<p>Refs:</p>
+<table class="docutils citation" frame="void" id="r63" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R63]</td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Radial_basis_function_network">http://en.wikipedia.org/wiki/Radial_basis_function_network</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="r64" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R64]</td><td>Numerical Recipies, 3rd ed., ch 3.7</td></tr>
+</tbody>
+</table>
+<div class="section" id="training">
+<h2>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h2>
+<p>For our RBF network, we use the traditional approach and simply solve a
+linear system for the weights. Calculating the distance matrix w/
+scipy.spatial.distance.cdist() or num.distsq() is handled efficiently,
+even for many points. But we get into trouble for many points (order 1e4) b/c
+solving a big dense linear system (1e4 x 1e4) with plain numpy.linalg on a
+single core is possible but painful (takes some minutes) – the traditional
+RBF problem. Maybe use numpy build against threaded MKL, or even scalapack?
+For the latter, look at how GPAW does this.</p>
+<p>There are some other projects out there:</p>
+<ul class="simple">
+<li>scipy.interpolate.Rbf 
+Essentially the same as we do. We took some ideas from there.</li>
+<li><a class="reference external" href="http://pypi.python.org/pypi/PyRadbas/0.1.0">http://pypi.python.org/pypi/PyRadbas/0.1.0</a>
+Seems to work with gaussians hardcoded. Not what we want.</li>
+<li><a class="reference external" href="http://code.google.com/p/pyrbf/">http://code.google.com/p/pyrbf/</a>
+Seems pretty useful for large problems (many points), but not 
+documented very much.</li>
+</ul>
+</div>
+<div class="section" id="rbf-parameter">
+<h2>rbf parameter<a class="headerlink" href="#rbf-parameter" title="Permalink to this headline">¶</a></h2>
+<p>Each RBF has a single parameter (<cite>param</cite>), which can be tuned. This is
+usually a measure for the “width” of the function.</p>
+<ul class="simple">
+<li>What seems to work best is RBFMultiquadric + train(‘linalg’) +
+param=’est’ (mean distance of all points), i.e. the “traditional” RBF
+approach. This is exactly what’s done in scipy.interpolate.Rbf .</li>
+<li>It seems that for very few data points (say 5x5 for x**2 + x**2), the
+default param=’est’ is too small, which results in wildly fluctuating
+interpolation, b/c there is no “support” in between the data points. We
+need to have wider RBFs. Usually, bigger (x10), sometimes much bigger
+(x100) params work.</li>
+<li>However, we also had a case where we found that the square of a
+small param (param (from ‘est’) = 0.3, param**2 = 0.1) was actually much
+better than the one from param=’est’.</li>
+</ul>
+</div>
+<div class="section" id="other-traing-methods">
+<h2>other traing methods<a class="headerlink" href="#other-traing-methods" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="pwtools.rbf.train_param.html#pwtools.rbf.train_param" title="pwtools.rbf.train_param"><code class="xref py py-func docutils literal"><span class="pre">train_param()</span></code></a>, i.e. optimizing the RBF’s free parameter by repeated
+training, works extremely good, for all kinds of (random) training
+point pattern on all test problems, but not so much for real world 
+data, when points are slightly noisy.</li>
+<li>If you really use train_param(), then make sure to use train_param(…,
+ftol=1e-8, maxfun=…), i.e. pass fmin() keywords. The default fmin()
+convergence thresholds are pretty high.</li>
+<li>We’d like have a method which lets us specify some kind of smoothness.
+For perfect data, RBF works perfect. But for “almost” perfect data, we
+would like to do some kind of fit instead, like the “s” parameter to
+scipy.interpolate.bisplrep(). But then, this wouldn’t be interpolation
+anymore.</li>
+</ul>
+</div>
+<div class="section" id="input-data">
+<h2>input data<a class="headerlink" href="#input-data" title="Permalink to this headline">¶</a></h2>
+<p>It usually helps if all data ranges (points X and values Y) are in the same
+order of magnitude, e.g. all have a maximum close to unity or so. If, for
+example, X and Y have very different scales (say X -0.1 .. 0.1 and Y
+0…1e4), you may get bad interpolation between points. This is b/c the RBFs
+also live on more or less equal x-y scales.</p>
+</div>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.RBFFunction.html#pwtools.rbf.RBFFunction" title="pwtools.rbf.RBFFunction"><code class="xref py py-obj docutils literal"><span class="pre">RBFFunction</span></code></a>([param])</td>
+<td>Radial basis function base class.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.RBFGauss.html#pwtools.rbf.RBFGauss" title="pwtools.rbf.RBFGauss"><code class="xref py py-obj docutils literal"><span class="pre">RBFGauss</span></code></a>([param])</td>
+<td>Gaussian RBF <span class="math">\(\exp\left(-\frac{r^2}{2\,p^2}\right)\)</span></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.RBFInt.html#pwtools.rbf.RBFInt" title="pwtools.rbf.RBFInt"><code class="xref py py-obj docutils literal"><span class="pre">RBFInt</span></code></a>(X[,&nbsp;Y,&nbsp;C,&nbsp;rbf,&nbsp;verbose,&nbsp;distmethod])</td>
+<td>Radial basis function neural network interpolator.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.RBFInverseMultiquadric.html#pwtools.rbf.RBFInverseMultiquadric" title="pwtools.rbf.RBFInverseMultiquadric"><code class="xref py py-obj docutils literal"><span class="pre">RBFInverseMultiquadric</span></code></a>([param])</td>
+<td>Inverse Multiquadric RBF <span class="math">\(\frac{1}{\sqrt{r^2 + p^2}}\)</span></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.RBFMultiquadric.html#pwtools.rbf.RBFMultiquadric" title="pwtools.rbf.RBFMultiquadric"><code class="xref py py-obj docutils literal"><span class="pre">RBFMultiquadric</span></code></a>([param])</td>
+<td>Multiquadric RBF <span class="math">\(\sqrt{r^2 + p^2}\)</span></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.train_param.html#pwtools.rbf.train_param" title="pwtools.rbf.train_param"><code class="xref py py-obj docutils literal"><span class="pre">train_param</span></code></a>(X,&nbsp;Y[,&nbsp;param0,&nbsp;pattern,&nbsp;…])</td>
+<td>Try to optimize the RBF’s <cite>param</cite> automatically.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="pwtools.random.random_struct.html"
-                        title="previous chapter">pwtools.random.random_struct</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="pwtools.rbf.RBFFunction.html"
-                        title="next chapter">pwtools.rbf.RBFFunction</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/generated/api/rbf.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+      <li>Previous: <a href="pwtools.random.random_struct.html" title="previous chapter">pwtools.random.random_struct</a></li>
+      <li>Next: <a href="pwtools.rbf.RBFFunction.html" title="next chapter">pwtools.rbf.RBFFunction</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
@@ -77,73 +197,22 @@
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="rbf">
-<h1>rbf<a class="headerlink" href="#rbf" title="Permalink to this headline">¶</a></h1>
-<span class="target" id="module-pwtools.rbf"></span><table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.RBFFunction.html#pwtools.rbf.RBFFunction" title="pwtools.rbf.RBFFunction"><code class="xref py py-obj docutils literal"><span class="pre">RBFFunction</span></code></a>([param])</td>
-<td>Represent a single radial basis function.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.RBFGauss.html#pwtools.rbf.RBFGauss" title="pwtools.rbf.RBFGauss"><code class="xref py py-obj docutils literal"><span class="pre">RBFGauss</span></code></a>([param])</td>
-<td><p class="rubric">Methods</p>
-</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.RBFInt.html#pwtools.rbf.RBFInt" title="pwtools.rbf.RBFInt"><code class="xref py py-obj docutils literal"><span class="pre">RBFInt</span></code></a>(X[,&nbsp;Y,&nbsp;C,&nbsp;rbf,&nbsp;verbose,&nbsp;distmethod])</td>
-<td>Radial basis function neural network interpolator.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.RBFInverseMultiquadric.html#pwtools.rbf.RBFInverseMultiquadric" title="pwtools.rbf.RBFInverseMultiquadric"><code class="xref py py-obj docutils literal"><span class="pre">RBFInverseMultiquadric</span></code></a>([param])</td>
-<td><p class="rubric">Methods</p>
-</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.RBFMultiquadric.html#pwtools.rbf.RBFMultiquadric" title="pwtools.rbf.RBFMultiquadric"><code class="xref py py-obj docutils literal"><span class="pre">RBFMultiquadric</span></code></a>([param])</td>
-<td><p class="rubric">Methods</p>
-</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.train_param.html#pwtools.rbf.train_param" title="pwtools.rbf.train_param"><code class="xref py py-obj docutils literal"><span class="pre">train_param</span></code></a>(X,&nbsp;Y[,&nbsp;param0,&nbsp;pattern,&nbsp;...])</td>
-<td>This could be also implemented as another training method inside RBFInt.</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-
-          </div>
-        </div>
-      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pwtools.rbf.RBFFunction.html" title="pwtools.rbf.RBFFunction"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="pwtools.random.random_struct.html" title="pwtools.random.random_struct"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >API Reference</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/generated/api/rbf.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

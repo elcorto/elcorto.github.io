@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>pwtools.thermo &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,38 +21,17 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -63,9 +39,7 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.thermo</h1><div class="highlight"><pre>
-<span></span><span class="c1"># thermo.py</span>
-<span class="c1">#</span>
-<span class="c1"># (Quasi)harmonic approximation. Thermal expansion tools.</span>
+<span></span><span class="sd">&quot;&quot;&quot;(Quasi)harmonic approximation. Thermal expansion tools.&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="k">import</span> <span class="n">simps</span><span class="p">,</span> <span class="n">trapz</span>
@@ -195,7 +169,7 @@
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dos</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;freq and dos don&#39;t have &quot;</span>
                                              <span class="s2">&quot;equal length&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-            <span class="nb">print</span> <span class="s2">&quot;HarmonicThermo: number of dos points: </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;HarmonicThermo: number of dos points: </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">))</span>
         
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">skipfreq</span><span class="p">:</span>
             <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span>
@@ -483,7 +457,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">kwds</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fixnan</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">skipfreq</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                          <span class="n">dosarea</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds</span><span class="p">)</span>                         
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwds</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwds</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">T</span> <span class="o">=</span> <span class="n">T</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="n">P</span>
@@ -508,7 +482,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">case</span> <span class="o">=</span> <span class="s1">&#39;2d&#39;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">axes_prefix</span> <span class="o">=</span> <span class="s1">&#39;/ax0-ax1&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;case 3d not implemented&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;case 3d not implemented&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ret</span><span class="p">[</span><span class="s1">&#39;/T/T&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">T</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ret</span><span class="p">[</span><span class="s1">&#39;/P/P&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">P</span>
@@ -534,7 +508,7 @@
 <span class="sd">            function with signature ``func(x,y)`` which returns a</span>
 <span class="sd">            :class:`~pwtools.num.Spline`-like object, e.g. ``Spline(x,y,k=5)``</span>
 <span class="sd">        &quot;&quot;&quot;</span>            
-        <span class="k">assert</span> <span class="n">what</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitfunc</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="p">(</span><span class="s2">&quot;unknown key: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span><span class="n">what</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">what</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitfunc</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;unknown key: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span><span class="n">what</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fitfunc</span><span class="p">[</span><span class="n">what</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span></div>
 
     <span class="nd">@staticmethod</span>
@@ -600,7 +574,7 @@
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">volfunc_ax</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;/#opt</span><span class="si">%s</span><span class="s1">/V&#39;</span> <span class="o">%</span><span class="n">prfx</span><span class="p">][</span><span class="n">tpsl</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">volfunc_ax</span><span class="p">(</span><span class="n">xopt</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;unknown case: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">case</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unknown case: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">case</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="nf">_set_not_calc_none</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">prfx</span><span class="o">=</span><span class="s1">&#39;/T/P&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;We know that the stuff below was not calculated, so set them to</span>
@@ -661,7 +635,7 @@
                     <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">npoints</span><span class="p">):</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                <span class="nb">print</span> <span class="s2">&quot;calc_F: axes_flat idx = </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">idx</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;calc_F: axes_flat idx = </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">idx</span><span class="p">)</span>
             <span class="n">ha</span> <span class="o">=</span> <span class="n">HarmonicThermo</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">phdos</span><span class="p">[</span><span class="n">idx</span><span class="p">][:,</span><span class="mi">0</span><span class="p">],</span> 
                                 <span class="n">dos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">phdos</span><span class="p">[</span><span class="n">idx</span><span class="p">][:,</span><span class="mi">1</span><span class="p">],</span>
                                 <span class="n">temp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> 
@@ -701,7 +675,7 @@
                        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">))</span>
             <span class="k">for</span> <span class="n">pidx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nP</span><span class="p">):</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                    <span class="nb">print</span> <span class="s2">&quot;calc_H: pidx = </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">pidx</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;calc_H: pidx = </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">pidx</span><span class="p">))</span>
                 <span class="n">gg</span> <span class="o">=</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;/P&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes_prefix</span> <span class="o">+</span> <span class="s1">&#39;/H&#39;</span><span class="p">][</span><span class="n">pidx</span><span class="p">,:]</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_fit_opt_store</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">gg</span><span class="p">,</span> <span class="n">prfx</span><span class="o">=</span><span class="s1">&#39;/P&#39;</span><span class="p">,</span>
                                     <span class="n">tpidx</span><span class="o">=</span><span class="p">[</span><span class="n">pidx</span><span class="p">],</span> <span class="n">ghsym</span><span class="o">=</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
@@ -751,7 +725,7 @@
             <span class="k">for</span> <span class="n">tidx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nT</span><span class="p">):</span>
                 <span class="k">for</span> <span class="n">pidx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nP</span><span class="p">):</span>
                     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                        <span class="nb">print</span> <span class="s2">&quot;calc_G: tidx = </span><span class="si">%i</span><span class="s2">, pidx = </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">tidx</span><span class="p">,</span><span class="n">pidx</span><span class="p">)</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;calc_G: tidx = </span><span class="si">%i</span><span class="s2">, pidx = </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">tidx</span><span class="p">,</span><span class="n">pidx</span><span class="p">))</span>
                     <span class="n">gg</span> <span class="o">=</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;/T/P&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes_prefix</span> <span class="o">+</span> <span class="s1">&#39;/G&#39;</span><span class="p">][</span><span class="n">tidx</span><span class="p">,</span><span class="n">pidx</span><span class="p">,:]</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_fit_opt_store</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">gg</span><span class="p">,</span> <span class="n">prfx</span><span class="o">=</span><span class="s1">&#39;/T/P&#39;</span><span class="p">,</span>
                                         <span class="n">tpidx</span><span class="o">=</span><span class="p">[</span><span class="n">tidx</span><span class="p">,</span><span class="n">pidx</span><span class="p">],</span> <span class="n">ghsym</span><span class="o">=</span><span class="s1">&#39;G&#39;</span><span class="p">)</span>
@@ -780,7 +754,7 @@
 
 
 <div class="viewcode-block" id="debye_func"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.debye_func.html#pwtools.thermo.debye_func">[docs]</a><span class="k">def</span> <span class="nf">debye_func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nstep</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Debye function</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Debye function</span>
 
 <span class="sd">    :math:`f(x) = 3 \int_0^1 t^3 / [\exp(t x) - 1] dt`</span>
 <span class="sd">    </span>
@@ -796,13 +770,13 @@
     <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">StandardError</span><span class="p">(</span><span class="s2">&quot;x is not 1d array&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;x is not 1d array&quot;</span><span class="p">)</span>
     <span class="n">tt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">zero</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">nstep</span><span class="p">)</span>
     <span class="k">return</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">trapz</span><span class="p">(</span><span class="n">tt</span><span class="o">**</span><span class="mf">3.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">tt</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">tt</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="einstein_func"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.einstein_func.html#pwtools.thermo.einstein_func">[docs]</a><span class="k">def</span> <span class="nf">einstein_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Einstein function </span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Einstein function </span>
 <span class="sd">    </span>
 <span class="sd">    :math:`f(x) = 1 / [ \exp(x) - 1 ]`</span>
 <span class="sd">    </span>
@@ -852,24 +826,62 @@
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

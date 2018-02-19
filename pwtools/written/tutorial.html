@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Tutorial &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
@@ -24,78 +21,19 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Background" href="background/index.html" />
-    <link rel="prev" title="Installation" href="install.html" /> 
-  </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="background/index.html" title="Background"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="install.html" title="Installation"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Documentation</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Tutorial</a><ul>
-<li><a class="reference internal" href="#using-ase">Using ASE?</a></li>
-<li><a class="reference internal" href="#parse-md-output-plot-stuff">Parse MD output, plot stuff</a></li>
-<li><a class="reference internal" href="#parse-scf-or-relax-output-plot-stuff">Parse SCF or relax output, plot stuff</a></li>
-<li><a class="reference internal" href="#binary-io">Binary IO</a></li>
-<li><a class="reference internal" href="#view-a-structure-or-trajectory">View a structure or trajectory</a></li>
-<li><a class="reference internal" href="#find-monkhorst-pack-k-grid-sampling-for-a-given-unit-cell">Find Monkhorst-Pack k-grid sampling for a given unit cell</a></li>
-<li><a class="reference internal" href="#find-spacegroup">Find spacegroup</a></li>
-<li><a class="reference internal" href="#smoothing-a-signal-or-a-trajectory">Smoothing a signal or a Trajectory</a></li>
-<li><a class="reference internal" href="#avoid-auto-calculation-for-big-md-data">Avoid auto-calculation for big MD data</a></li>
-<li><a class="reference internal" href="#interpolation-and-fitting">Interpolation and fitting</a></li>
-<li><a class="reference internal" href="#work-with-sqlite-databases">Work with SQLite databases</a></li>
-<li><a class="reference internal" href="#more-stuff">More stuff</a></li>
-</ul>
-</li>
-</ul>
+    <link rel="prev" title="Installation" href="install.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="install.html"
-                        title="previous chapter">Installation</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="background/index.html"
-                        title="next chapter">Background</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/written/tutorial.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  </head>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -185,8 +123,8 @@ structs or trajectories.</p>
 <h2>Find Monkhorst-Pack k-grid sampling for a given unit cell<a class="headerlink" href="#find-monkhorst-pack-k-grid-sampling-for-a-given-unit-cell" title="Permalink to this headline">¶</a></h2>
 <p>Say you know from a previous convergence study that a k-grid spacing of
 <code class="docutils literal"><span class="pre">h=0.5</span></code> 1/Angstrom is OK. Now you have a slab or other super cell of your
-structure and you want to know &#8220;what k-grid do I need to get the same
-accuracy&#8221;. Simple:</p>
+structure and you want to know “what k-grid do I need to get the same
+accuracy”. Simple:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">crys</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># new cell in Angstrom</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cell</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
@@ -211,9 +149,9 @@ want to know the space group of the final optimized structure, namely
 </div>
 <div class="section" id="smoothing-a-signal-or-a-trajectory">
 <h2>Smoothing a signal or a Trajectory<a class="headerlink" href="#smoothing-a-signal-or-a-trajectory" title="Permalink to this headline">¶</a></h2>
-<p>Smoothing a signal (usually called &#8220;time series&#8221;) by convolution with another
+<p>Smoothing a signal (usually called “time series”) by convolution with another
 function and with edge effects handling: <a class="reference internal" href="../generated/api/pwtools.signal.smooth.html#pwtools.signal.smooth" title="pwtools.signal.smooth"><code class="xref py py-func docutils literal"><span class="pre">pwtools.signal.smooth()</span></code></a>. The same
-can be applied to a Trajectory, which is just a &#8220;time series&#8221; of Structures.
+can be applied to a Trajectory, which is just a “time series” of Structures.
 See <a class="reference internal" href="../generated/api/pwtools.crys.smooth.html#pwtools.crys.smooth" title="pwtools.crys.smooth"><code class="xref py py-func docutils literal"><span class="pre">pwtools.crys.smooth()</span></code></a>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a_smooth</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="mi">151</span><span class="p">))</span>
@@ -229,7 +167,7 @@ missing properties</span></a> might take long and/or fill
 up all memory. To avoid that, call the parser explicitly and say
 <code class="docutils literal"><span class="pre">auto_calc=False</span></code> when creating the <a class="reference internal" href="../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></a>,
 which will deactivate auto-calculation. It will only do unit conversion to eV,
-Ang, etc. [you can of course also access the parser&#8217;s attributes directly, e.g.
+Ang, etc. [you can of course also access the parser’s attributes directly, e.g.
 <code class="docutils literal"><span class="pre">pp.coords</span></code> in the unit of the MD code (e.g. Bohr) instead of <code class="docutils literal"><span class="pre">tr.coords</span></code>
 in Ang].</p>
 <p>This is an example for parsing LAMMPS dcd binary data (<code class="docutils literal"><span class="pre">log.lammps</span></code> is the
@@ -247,7 +185,7 @@ certain things:</p>
 <p>You may also use <code class="docutils literal"><span class="pre">auto_calc=True</span></code> here and see what will be
 auto-calculated from this minimal input data.</p>
 <p>Of course you need to know what can be found in the MD data (e.g. if the MD
-code writes no fractional coords, then parsing <code class="docutils literal"><span class="pre">coords_frac</span></code> won&#8217;t work).</p>
+code writes no fractional coords, then parsing <code class="docutils literal"><span class="pre">coords_frac</span></code> won’t work).</p>
 <p>To find out what can be parsed, also check which <code class="docutils literal"><span class="pre">get_*()</span></code> methods the parser
 implements (mind also base classes, best is to use Tab completion in ipython:
 <code class="docutils literal"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">pp.get_&lt;tab&gt;</span></code> or have a look at the API documentation).</p>
@@ -279,30 +217,81 @@ implements (mind also base classes, best is to use Tab completion in ipython:
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-ase">Using ASE?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parse-md-output-plot-stuff">Parse MD output, plot stuff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parse-scf-or-relax-output-plot-stuff">Parse SCF or relax output, plot stuff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#binary-io">Binary IO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#view-a-structure-or-trajectory">View a structure or trajectory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#find-monkhorst-pack-k-grid-sampling-for-a-given-unit-cell">Find Monkhorst-Pack k-grid sampling for a given unit cell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#find-spacegroup">Find spacegroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smoothing-a-signal-or-a-trajectory">Smoothing a signal or a Trajectory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#avoid-auto-calculation-for-big-md-data">Avoid auto-calculation for big MD data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interpolation-and-fitting">Interpolation and fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#work-with-sqlite-databases">Work with SQLite databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#more-stuff">More stuff</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">&lt;no title&gt;</a><ul>
+      <li>Previous: <a href="install.html" title="previous chapter">Installation</a></li>
+      <li>Next: <a href="background/index.html" title="next chapter">Background</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="background/index.html" title="Background"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="install.html" title="Installation"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >Documentation</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/written/tutorial.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>

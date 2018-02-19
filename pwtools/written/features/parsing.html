@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Parsing code output and using containers &#8212; pwtools  documentation</title>
-    
-    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -24,71 +21,17 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Installation" href="../install.html" />
-    <link rel="prev" title="Parameter studies" href="param_study.html" /> 
-  </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../install.html" title="Installation"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="param_study.html" title="Parameter studies"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Documentation</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Features</a> &#187;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="../../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Parsing code output and using containers</a><ul>
-<li><a class="reference internal" href="#available-parsers">Available parsers</a></li>
-<li><a class="reference internal" href="#container-classes-structure-and-trajectory">Container classes <code class="docutils literal"><span class="pre">Structure</span></code> and <code class="docutils literal"><span class="pre">Trajectory</span></code></a></li>
-<li><a class="reference internal" href="#high-level-parsing-functions">High-level parsing functions</a></li>
-<li><a class="reference internal" href="#units">Units</a></li>
-</ul>
-</li>
-</ul>
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="param_study.html"
-                        title="previous chapter">Parameter studies</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="../install.html"
-                        title="next chapter">Installation</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/written/features/parsing.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+  </head>
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -119,7 +62,7 @@ parsers are available:</p>
 <div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.LammpsDcdMDOutputFile.html#pwtools.parse.LammpsDcdMDOutputFile" title="pwtools.parse.LammpsDcdMDOutputFile"><code class="xref py py-class docutils literal"><span class="pre">LammpsDcdMDOutputFile</span></code></a></div>
 </div>
 </div></blockquote>
-<p>The parsers called <code class="docutils literal"><span class="pre">*OutpoutFile</span></code> are for parsing simulation code output. The
+<p>The parsers called <code class="docutils literal"><span class="pre">*OutputFile</span></code> are for parsing simulation code output. The
 others parse structure files (cif and pdb).</p>
 <p>All parsers have a common API and can be used like</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span> <span class="o">=</span> <span class="n">PwSCFOutputFile</span><span class="p">(</span><span class="s1">&#39;pw.out&#39;</span><span class="p">)</span>
@@ -131,7 +74,7 @@ others parse structure files (cif and pdb).</p>
 </div>
 <p>The problem with using the parsers directly is that there are of course
 differences between the codes. For instance, each one uses different units
-(Bohr, Angstrom, Ry, Ha, eV, ...). Also, not all structure attributes are
+(Bohr, Angstrom, Ry, Ha, eV, …). Also, not all structure attributes are
 contained in the output of all codes. For example,
 <a class="reference internal" href="../../generated/api/pwtools.parse.PwSCFOutputFile.html#pwtools.parse.PwSCFOutputFile" title="pwtools.parse.PwSCFOutputFile"><code class="xref py py-class docutils literal"><span class="pre">PwSCFOutputFile</span></code></a> will parse Cartesian atomic coordinates into
 <code class="docutils literal"><span class="pre">pp.coords</span></code> and the unit cell into <code class="docutils literal"><span class="pre">pp.cell</span></code>. However, often we need to use
@@ -145,12 +88,12 @@ that we can manually calculate it from <code class="docutils literal"><span clas
 have implemented unified container classes. These classes are
 <a class="reference internal" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal"><span class="pre">Structure</span></code></a> and <a class="reference internal" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></a>. The
 former is used to represent a single crystal structure (unit cell, atom
-coordinates, total energy, stress tensor, ...). The latter represents a
+coordinates, total energy, stress tensor, …). The latter represents a
 sequence of structures, for instance an MD or relaxation run.</p>
 <p>They have two important features:</p>
 <ul class="simple">
 <li>A defined set of units
-(eV, Angstrom,...), to which all quantities are converted.</li>
+(eV, Angstrom,…), to which all quantities are converted.</li>
 <li>Calculate all missing
 attributes automatically and thus provide a unified API.</li>
 </ul>
@@ -180,7 +123,8 @@ have no <code class="docutils literal"><span class="pre">etot</span></code> or <
 defined in the input and there is no ways to calculate it, of course, whereas a
 Structure returned by <a class="reference internal" href="../../generated/api/pwtools.io.read_pw_scf.html#pwtools.io.read_pw_scf" title="pwtools.io.read_pw_scf"><code class="xref py py-func docutils literal"><span class="pre">read_pw_scf()</span></code></a> will have that.</p>
 <p>By using the <a class="reference internal" href="../../generated/api/pwtools.base.FlexibleGetters.dump.html#pwtools.base.FlexibleGetters.dump" title="pwtools.base.FlexibleGetters.dump"><code class="xref py py-meth docutils literal"><span class="pre">dump()</span></code></a> method, you can store
-the object as binary file [using Python&#8217;s cPickle module] for fast re-loading later:</p>
+the object as binary file [using Python’s <code class="docutils literal"><span class="pre">pickle</span></code> module] for fast
+re-loading later:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="s1">&#39;struck.pk&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st_loaded</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;struck.pk&#39;</span><span class="p">)</span>
 </pre></div>
@@ -258,7 +202,7 @@ can be used in exactly the same way as those obtained by using one of the
 </div>
 <div class="section" id="units">
 <h2>Units<a class="headerlink" href="#units" title="Permalink to this headline">¶</a></h2>
-<p>Each parser will (try to) return the &#8220;natural&#8221; units of each code:</p>
+<p>Each parser will (try to) return the “natural” units of each code:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -324,11 +268,11 @@ can be used in exactly the same way as those obtained by using one of the
 </tbody>
 </table>
 <p>See <a class="reference internal" href="../../generated/api/constants.html#module-pwtools.constants" title="pwtools.constants"><code class="xref py py-mod docutils literal"><span class="pre">constants</span></code></a> for <cite>thart</cite> and <cite>tryd</cite>.</p>
-<p>For PWscf, we also detect things like &#8220;ATOMIC_POSITIONS crystal | alat | bohr&#8221;
+<p>For PWscf, we also detect things like “ATOMIC_POSITIONS crystal | alat | bohr”
 and transform accordingly. Nevertheless, <em>always</em> verify that the units you get
 are the ones you expect!</p>
 <p>In <a class="reference internal" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal"><span class="pre">Structure</span></code></a> and <a class="reference internal" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></a>, we have
-units eV, Angstrom,...</p>
+units eV, Angstrom,…</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="20%" />
@@ -383,31 +327,63 @@ units eV, Angstrom,...</p>
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background/index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../install.html" title="Installation"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="param_study.html" title="Parameter studies"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pwtools  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Documentation</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" >Features</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/written/features/parsing.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Steve Schmerler.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
-    </div>
+
+    
+
+    
   </body>
 </html>
