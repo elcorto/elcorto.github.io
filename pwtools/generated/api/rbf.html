@@ -98,18 +98,10 @@ better than the one from param=’est’.</li>
 <div class="section" id="other-traing-methods">
 <h2>other traing methods<a class="headerlink" href="#other-traing-methods" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="pwtools.rbf.train_param.html#pwtools.rbf.train_param" title="pwtools.rbf.train_param"><code class="xref py py-func docutils literal"><span class="pre">train_param()</span></code></a>, i.e. optimizing the RBF’s free parameter by repeated
-training, works extremely good, for all kinds of (random) training
-point pattern on all test problems, but not so much for real world 
-data, when points are slightly noisy.</li>
-<li>If you really use train_param(), then make sure to use train_param(…,
-ftol=1e-8, maxfun=…), i.e. pass fmin() keywords. The default fmin()
-convergence thresholds are pretty high.</li>
 <li>We’d like have a method which lets us specify some kind of smoothness.
-For perfect data, RBF works perfect. But for “almost” perfect data, we
+For perfect data, RBF works perfect. But for noisy data, we
 would like to do some kind of fit instead, like the “s” parameter to
-scipy.interpolate.bisplrep(). But then, this wouldn’t be interpolation
-anymore.</li>
+scipy.interpolate.bisplrep().</li>
 </ul>
 </div>
 <div class="section" id="input-data">
@@ -140,9 +132,6 @@ also live on more or less equal x-y scales.</p>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.RBFMultiquadric.html#pwtools.rbf.RBFMultiquadric" title="pwtools.rbf.RBFMultiquadric"><code class="xref py py-obj docutils literal"><span class="pre">RBFMultiquadric</span></code></a>([param])</td>
 <td>Multiquadric RBF <span class="math">\(\sqrt{r^2 + p^2}\)</span></td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.train_param.html#pwtools.rbf.train_param" title="pwtools.rbf.train_param"><code class="xref py py-obj docutils literal"><span class="pre">train_param</span></code></a>(X,&nbsp;Y[,&nbsp;param0,&nbsp;pattern,&nbsp;…])</td>
-<td>Try to optimize the RBF’s <cite>param</cite> automatically.</td>
 </tr>
 </tbody>
 </table>

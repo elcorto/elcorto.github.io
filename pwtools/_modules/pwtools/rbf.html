@@ -89,18 +89,10 @@
 
 <span class="sd">other traing methods</span>
 <span class="sd">--------------------</span>
-<span class="sd">* :func:`train_param`, i.e. optimizing the RBF&#39;s free parameter by repeated</span>
-<span class="sd">  training, works extremely good, for all kinds of (random) training</span>
-<span class="sd">  point pattern on all test problems, but not so much for real world </span>
-<span class="sd">  data, when points are slightly noisy.</span>
-<span class="sd">* If you really use train_param(), then make sure to use train_param(...,</span>
-<span class="sd">  ftol=1e-8, maxfun=...), i.e. pass fmin() keywords. The default fmin()</span>
-<span class="sd">  convergence thresholds are pretty high.</span>
 <span class="sd">* We&#39;d like have a method which lets us specify some kind of smoothness.</span>
-<span class="sd">  For perfect data, RBF works perfect. But for &quot;almost&quot; perfect data, we</span>
+<span class="sd">  For perfect data, RBF works perfect. But for noisy data, we</span>
 <span class="sd">  would like to do some kind of fit instead, like the &quot;s&quot; parameter to</span>
-<span class="sd">  scipy.interpolate.bisplrep(). But then, this wouldn&#39;t be interpolation</span>
-<span class="sd">  anymore.</span>
+<span class="sd">  scipy.interpolate.bisplrep().</span>
 
 <span class="sd">input data</span>
 <span class="sd">----------</span>
@@ -529,80 +521,6 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">deriv</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>            
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
-
-
-<span class="c1"># This function is very experimental and pretty untested. Also, I don&#39;t seem</span>
-<span class="c1"># to remember what the data skipping business is all about. It&#39;s not that we</span>
-<span class="c1"># do cross validation here.</span>
-<div class="viewcode-block" id="train_param"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.train_param.html#pwtools.rbf.train_param">[docs]</a><span class="k">def</span> <span class="nf">train_param</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">param0</span><span class="o">=</span><span class="s1">&#39;est&#39;</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="s1">&#39;rand&#39;</span><span class="p">,</span> <span class="n">regstep</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-                <span class="n">randskip</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rbf</span><span class="o">=</span><span class="n">RBFMultiquadric</span><span class="p">(),</span> <span class="o">**</span><span class="n">fmin_kwds</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Try to optimize the RBF&#39;s `param` automatically.</span>
-<span class="sd">    </span>
-<span class="sd">    We try to optimizes `param` by fmin using only a subset</span>
-<span class="sd">    of the training set, evaluating the full training set and measuring the</span>
-<span class="sd">    interpolation error at the missing points.</span>
-<span class="sd">    </span>
-<span class="sd">    This could be also implemented as another training method inside RBFInt.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    X, Y: See RBFInt.</span>
-<span class="sd">    param0 : float or str &#39;est&#39;</span>
-<span class="sd">        Start RBF parameter. &#39;est&#39; for using the mean point distance in the</span>
-<span class="sd">        training point set.</span>
-<span class="sd">    pattern : str</span>
-<span class="sd">        Pattern for picking out training points from X.</span>
-<span class="sd">        &#39;reg&#39;: Use a &quot;regular&quot; pattern, i.e. use only every `regstep`th point.</span>
-<span class="sd">             Note that of course this depends on how points in X are sorted.</span>
-<span class="sd">        &#39;rand&#39;: Pick points at random, leaving out a fraction of `randskip`</span>
-<span class="sd">            points. Example: randskip=0.2 means use ramdomly 80% of all points. </span>
-<span class="sd">    regstep : int</span>
-<span class="sd">    randskip : float in [0,1]</span>
-<span class="sd">    shuffle : randomize sort order of points in X *before* using `pattern`.</span>
-<span class="sd">        Note that is for testing and in fact somewhat redundant, for instance</span>
-<span class="sd">            shuffle=True  + pattern=&#39;regular&#39; + regstep=2</span>
-<span class="sd">        is the same as</span>
-<span class="sd">            shuffle=False + pattern=&#39;random&#39; + randskip=0.5</span>
-<span class="sd">    rbf : RBFFunction instance</span>
-<span class="sd">    **fmin_kwds : passed to fmin()</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    RBFInt instance</span>
-<span class="sd">    </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">npoints</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;</span> <span class="n">randskip</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;use 0.0 &lt; randskip &lt; 1.0&quot;</span><span class="p">)</span>                
-    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">regstep</span> <span class="o">&lt;</span> <span class="n">npoints</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;use 0 &lt; regstep &lt; npoints&quot;</span><span class="p">)</span>               
-    <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
-        <span class="n">rbfi</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="s1">&#39;linalg&#39;</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">d</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">-</span> <span class="n">rbfi</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="n">err</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">d</span><span class="p">))</span>
-        <span class="nb">print</span><span class="p">((</span><span class="s1">&#39;train_param: err=</span><span class="si">%e</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">err</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">err</span>
-    <span class="n">idxs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">npoints</span><span class="p">))</span>
-    <span class="k">if</span> <span class="n">shuffle</span><span class="p">:</span>        
-        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">idxs</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">pattern</span> <span class="o">==</span> <span class="s1">&#39;reg&#39;</span><span class="p">:</span>
-        <span class="n">Xtr</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">idxs</span><span class="p">[::</span><span class="n">regstep</span><span class="p">],</span><span class="o">...</span><span class="p">]</span>
-        <span class="n">Ytr</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">idxs</span><span class="p">[::</span><span class="n">regstep</span><span class="p">]]</span>
-    <span class="k">elif</span> <span class="n">pattern</span> <span class="o">==</span> <span class="s1">&#39;rand&#39;</span><span class="p">:</span>
-        <span class="n">msk</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">npoints</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">randskip</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
-        <span class="n">Xtr</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">idxs</span><span class="p">)[</span><span class="n">msk</span><span class="p">],</span><span class="o">...</span><span class="p">]</span>
-        <span class="n">Ytr</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">idxs</span><span class="p">)[</span><span class="n">msk</span><span class="p">]]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unknown pattern&quot;</span><span class="p">)</span>
-    <span class="n">rbfi</span> <span class="o">=</span> <span class="n">RBFInt</span><span class="p">(</span><span class="n">Xtr</span><span class="p">,</span> <span class="n">Ytr</span><span class="p">,</span> <span class="n">rbf</span><span class="o">=</span><span class="n">rbf</span><span class="p">)</span>
-    <span class="n">rbfi</span><span class="o">.</span><span class="n">calc_dist_mat</span><span class="p">()</span> <span class="c1"># only for get_param .. fix later</span>
-    <span class="n">p0</span> <span class="o">=</span> <span class="n">rbfi</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="n">param0</span><span class="p">)</span> 
-    <span class="n">popt</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">fmin</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="p">[</span><span class="n">p0</span><span class="p">],</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">),</span> <span class="o">**</span><span class="n">fmin_kwds</span><span class="p">)</span>
-    <span class="c1"># After optimization, re-train w/ all points, using the optimized param.</span>
-    <span class="c1"># Not sure if we should set param &lt; popt b/c the full points set has</span>
-    <span class="c1"># less mean distance. For test cases, this doesn&#39;t seem to make much</span>
-    <span class="c1"># difference. Even not for randskip=0.5 (use only half the points) where we</span>
-    <span class="c1"># would expect that the true `param` would be param/2.</span>
-    <span class="n">rbfi</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="s1">&#39;linalg&#39;</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="n">popt</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">rbfi</span></div>
 </pre></div>
 
           </div>

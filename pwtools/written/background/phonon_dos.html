@@ -45,7 +45,7 @@
 <p>Here are some (textbook) notes about correlation, which you should read in
 order to understand how the phonon DOS (= vibrational density of states =
 power spectrum of the atomic velocities) is calculated in pwtools (see
-<a class="reference internal" href="#module-pwtools.pydos" title="pwtools.pydos"><code class="xref py py-mod docutils literal"><span class="pre">pydos</span></code></a>).</p>
+<a class="reference internal" href="../../generated/api/pydos.html#module-pwtools.pydos" title="pwtools.pydos"><code class="xref py py-mod docutils literal"><span class="pre">pydos</span></code></a>).</p>
 <p>The cross-correlation theorem for the two-sided correlation:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">corr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="n">ifft</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">fft</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span>
 </pre></div>
@@ -123,69 +123,22 @@ implementation, use <a class="reference internal" href="../../generated/api/pwto
 increasing the interpolation, use more padding <cite>of the time series</cite>, for
 instance <code class="docutils literal"><span class="pre">pad_zeros(v,</span> <span class="pre">nadd=(len(v)-1)*5)</span></code> instead of <cite>len(v)-1</cite>.</p>
 </div>
-<div class="section" id="calculation-of-the-phonon-dos-from-md-data-in-pwtools">
-<h2>Calculation of the phonon DOS from MD data in pwtools<a class="headerlink" href="#calculation-of-the-phonon-dos-from-md-data-in-pwtools" title="Permalink to this headline">¶</a></h2>
-<p>The main function is <a class="reference internal" href="pwtools.pydos.pdos.html#pwtools.pydos.pdos" title="pwtools.pydos.pdos"><code class="xref py py-func docutils literal"><span class="pre">pdos()</span></code></a>. The <a class="reference internal" href="#module-pwtools.pydos" title="pwtools.pydos"><code class="xref py py-mod docutils literal"><span class="pre">pydos</span></code></a>
-module containes many helper and reference implementations which may be ignored.
-The module has</p>
-<span class="target" id="module-pwtools.pydos"></span><p>This module implements the functionality to calculate the phonon density of
-states (PDOS) from MD trajectories. For parsing output files into a format
-which is used here, see parse.py and test/* for examples. For a theory
-overview, see <a class="reference internal" href="#r86" id="id1">[R86]</a>.</p>
-<p>Other codes which do that are <a class="reference internal" href="#r87" id="id2">[R87]</a> and <a class="reference internal" href="#r88" id="id3">[R88]</a>.</p>
-<table class="docutils citation" frame="void" id="r86" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R86]</a></td><td>doc/source/written/background/phonon_dos.rst</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="r87" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[R87]</a></td><td>tfreq from Tim Teatro
-<a class="reference external" href="http://www.timteatro.net/2010/09/29/velocity-autocorrelation-and-vibrational-spectrum-calculation">http://www.timteatro.net/2010/09/29/velocity-autocorrelation-and-vibrational-spectrum-calculation</a></td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="r88" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[R88]</a></td><td>fourier.x from CPMD</td></tr>
-</tbody>
-</table>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.pydos.pdos.html#pwtools.pydos.pdos" title="pwtools.pydos.pdos"><code class="xref py py-obj docutils literal"><span class="pre">pdos</span></code></a>(vel[,&nbsp;dt,&nbsp;m,&nbsp;full_out,&nbsp;area,&nbsp;window,&nbsp;…])</td>
-<td>Phonon DOS by FFT of the VACF or direct FFT of atomic velocities.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.pydos.vacf_pdos.html#pwtools.pydos.vacf_pdos" title="pwtools.pydos.vacf_pdos"><code class="xref py py-obj docutils literal"><span class="pre">vacf_pdos</span></code></a>(vel,&nbsp;*args,&nbsp;**kwds)</td>
-<td>Wrapper for <code class="docutils literal"><span class="pre">pdos(...,</span> <span class="pre">method='vacf',</span> <span class="pre">mirr=True,</span> <span class="pre">npad=None)</span></code></td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.pydos.direct_pdos.html#pwtools.pydos.direct_pdos" title="pwtools.pydos.direct_pdos"><code class="xref py py-obj docutils literal"><span class="pre">direct_pdos</span></code></a>(vel,&nbsp;*args,&nbsp;**kwds)</td>
-<td>Wrapper for <code class="docutils literal"><span class="pre">pdos(...,</span> <span class="pre">method='direct',</span> <span class="pre">npad=1)</span></code></td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.pydos.fvacf.html#pwtools.pydos.fvacf" title="pwtools.pydos.fvacf"><code class="xref py py-obj docutils literal"><span class="pre">fvacf</span></code></a>(vel[,&nbsp;m,&nbsp;method,&nbsp;nthreads])</td>
-<td>Interface to Fortran function _flib.vacf().</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.pydos.pyvacf.html#pwtools.pydos.pyvacf" title="pwtools.pydos.pyvacf"><code class="xref py py-obj docutils literal"><span class="pre">pyvacf</span></code></a>(vel[,&nbsp;m,&nbsp;method])</td>
-<td>Reference implementation for calculating the VACF of velocities in 3d array <cite>vel</cite>.</td>
-</tr>
-</tbody>
-</table>
+<div class="section" id="calculation-of-the-phonon-dos-from-md-data">
+<h2>Calculation of the phonon DOS from MD data<a class="headerlink" href="#calculation-of-the-phonon-dos-from-md-data" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="../../generated/api/pydos.html#module-pwtools.pydos" title="pwtools.pydos"><code class="xref py py-mod docutils literal"><span class="pre">pydos</span></code></a> module containes many helper and reference
+implementations, but the the main function to be used is
+<a class="reference internal" href="../../generated/api/pwtools.pydos.pdos.html#pwtools.pydos.pdos" title="pwtools.pydos.pdos"><code class="xref py py-func docutils literal"><span class="pre">pdos()</span></code></a>.</p>
 <p>There are two ways of computing the phonon density of states (PDOS) from an MD
 trajectory. <code class="docutils literal"><span class="pre">v</span></code> is the 3d array of atomic velocities with shape (nstep,natoms,3),
 i.e. <code class="docutils literal"><span class="pre">Trajectory.velocity</span></code>, see <a class="reference internal" href="../../generated/api/pwtools.crys.velocity_traj.html#pwtools.crys.velocity_traj" title="pwtools.crys.velocity_traj"><code class="xref py py-func docutils literal"><span class="pre">velocity_traj()</span></code></a>.</p>
 <ul class="simple">
 <li><dl class="first docutils">
 <dt><code class="docutils literal"><span class="pre">method='vacf'</span></code>: <code class="docutils literal"><span class="pre">fft</span></code> of the velocity autocorrelation function (<code class="docutils literal"><span class="pre">vacf</span></code>):</dt>
-<dd><code class="docutils literal"><span class="pre">v</span></code> -&gt; <code class="docutils literal"><span class="pre">vacf</span></code> -&gt; <code class="docutils literal"><span class="pre">fft(vacf)</span></code> = PDOS, see <a class="reference internal" href="pwtools.pydos.vacf_pdos.html#pwtools.pydos.vacf_pdos" title="pwtools.pydos.vacf_pdos"><code class="xref py py-func docutils literal"><span class="pre">vacf_pdos()</span></code></a></dd>
+<dd><code class="docutils literal"><span class="pre">v</span></code> -&gt; <code class="docutils literal"><span class="pre">vacf</span></code> -&gt; <code class="docutils literal"><span class="pre">fft(vacf)</span></code> = PDOS, see <a class="reference internal" href="../../generated/api/pwtools.pydos.vacf_pdos.html#pwtools.pydos.vacf_pdos" title="pwtools.pydos.vacf_pdos"><code class="xref py py-func docutils literal"><span class="pre">vacf_pdos()</span></code></a></dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">method='direct'</span></code>:  <code class="docutils literal"><span class="pre">abs(fft(v))**2</span></code> = PDOS, see <a class="reference internal" href="pwtools.pydos.direct_pdos.html#pwtools.pydos.direct_pdos" title="pwtools.pydos.direct_pdos"><code class="xref py py-func docutils literal"><span class="pre">direct_pdos()</span></code></a>,</dt>
+<dt><code class="docutils literal"><span class="pre">method='direct'</span></code>:  <code class="docutils literal"><span class="pre">abs(fft(v))**2</span></code> = PDOS, see <a class="reference internal" href="../../generated/api/pwtools.pydos.direct_pdos.html#pwtools.pydos.direct_pdos" title="pwtools.pydos.direct_pdos"><code class="xref py py-func docutils literal"><span class="pre">direct_pdos()</span></code></a>,</dt>
 <dd>This is much faster and mathematically exactly the same, see
 <code class="docutils literal"><span class="pre">examples/examples/phonon_dos</span></code> and <code class="docutils literal"><span class="pre">test/test_pdos.py</span></code> .</dd>
 </dl>
@@ -193,14 +146,14 @@ i.e. <code class="docutils literal"><span class="pre">Trajectory.velocity</span>
 </ul>
 <p>Both methods are implemented but actually only method ‘direct’ is worth using.
 Method ‘vacf’ still exists for historical reasons and as reference.</p>
-<p>The actual implementation is in <a class="reference internal" href="pwtools.pydos.pdos.html#pwtools.pydos.pdos" title="pwtools.pydos.pdos"><code class="xref py py-func docutils literal"><span class="pre">pdos()</span></code></a> and the above two
+<p>The actual implementation is in <a class="reference internal" href="../../generated/api/pwtools.pydos.pdos.html#pwtools.pydos.pdos" title="pwtools.pydos.pdos"><code class="xref py py-func docutils literal"><span class="pre">pdos()</span></code></a> and the above two
 functions are convenience wrappers.</p>
 <ul class="simple">
 <li>In method ‘vacf’, if we mirror the <code class="docutils literal"><span class="pre">vacf</span></code> at t=0 before the <code class="docutils literal"><span class="pre">fft</span></code>, then we get
 double frequency resolution.</li>
-<li>By default, <a class="reference internal" href="pwtools.pydos.direct_pdos.html#pwtools.pydos.direct_pdos" title="pwtools.pydos.direct_pdos"><code class="xref py py-func docutils literal"><span class="pre">direct_pdos()</span></code></a> uses zero-padding of <code class="docutils literal"><span class="pre">v</span></code> to
+<li>By default, <a class="reference internal" href="../../generated/api/pwtools.pydos.direct_pdos.html#pwtools.pydos.direct_pdos" title="pwtools.pydos.direct_pdos"><code class="xref py py-func docutils literal"><span class="pre">direct_pdos()</span></code></a> uses zero-padding of <code class="docutils literal"><span class="pre">v</span></code> to
 get the same frequency resolution as we would get with mirroring the signal
-(<code class="docutils literal"><span class="pre">mirr=True</span></code>) <a class="reference internal" href="pwtools.pydos.vacf_pdos.html#pwtools.pydos.vacf_pdos" title="pwtools.pydos.vacf_pdos"><code class="xref py py-func docutils literal"><span class="pre">vacf_pdos()</span></code></a>. Also, padding is necessary
+(<code class="docutils literal"><span class="pre">mirr=True</span></code>) <a class="reference internal" href="../../generated/api/pwtools.pydos.vacf_pdos.html#pwtools.pydos.vacf_pdos" title="pwtools.pydos.vacf_pdos"><code class="xref py py-func docutils literal"><span class="pre">vacf_pdos()</span></code></a>. Also, padding is necessary
 b/c of the arguments outlined above for the 1d case.</li>
 <li>Both methods use Welch windowing by default to reduce “leakage” from
 neighboring peaks.</li>
