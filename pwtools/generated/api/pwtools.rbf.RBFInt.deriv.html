@@ -24,8 +24,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.rbf.RBFInt.get_dist_mat" href="pwtools.rbf.RBFInt.get_dist_mat.html" />
-    <link rel="prev" title="pwtools.rbf.RBFInt.calc_dist_mat" href="pwtools.rbf.RBFInt.calc_dist_mat.html" />
+    <link rel="next" title="pwtools.rbf.RBFInt.fit" href="pwtools.rbf.RBFInt.fit.html" />
+    <link rel="prev" title="pwtools.rbf.RBFInt.calc_distsq" href="pwtools.rbf.RBFInt.calc_distsq.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -44,10 +44,10 @@
 <h1>pwtools.rbf.RBFInt.deriv<a class="headerlink" href="#pwtools-rbf-rbfint-deriv" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="pwtools.rbf.RBFInt.deriv">
-<code class="descclassname">RBFInt.</code><code class="descname">deriv</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.deriv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.deriv" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">RBFInt.</code><code class="descname">deriv</code><span class="sig-paren">(</span><em>points</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.deriv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.deriv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Matrix of partial first derivatives.</p>
 <dl class="docutils">
-<dt>Implemented for </dt>
+<dt>Implemented for</dt>
 <dd>RBFMultiquadric
 RBFGauss</dd>
 </dl>
@@ -55,16 +55,16 @@ RBFGauss</dd>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>X</strong> : see interpolate()</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>points</strong> : see <a class="reference internal" href="pwtools.rbf.RBFInt.__call__.html#pwtools.rbf.RBFInt.__call__" title="pwtools.rbf.RBFInt.__call__"><code class="xref py py-meth docutils literal"><span class="pre">__call__()</span></code></a></p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">2d array (L,N)</p>
 <blockquote class="last">
-<div><p>Each row holds the partial derivatives of one input point <code class="docutils literal"><span class="pre">X[i,:]</span> <span class="pre">=</span>
-<span class="pre">[x_0,</span> <span class="pre">...,</span> <span class="pre">x_N]</span></code>. For all points X: (L,N), we get the matrix:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="n">dy</span><span class="o">/</span><span class="n">dx0_0</span><span class="p">,</span> <span class="n">dy</span><span class="o">/</span><span class="n">dx0_1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">dy</span><span class="o">/</span><span class="n">dx0_N</span><span class="p">],</span>
+<div><p>Each row holds the partial derivatives of one input point <code class="docutils literal"><span class="pre">points[i,:]</span> <span class="pre">=</span>
+<span class="pre">[x_0,</span> <span class="pre">...,</span> <span class="pre">x_N-1]</span></code>. For all points points: (L,N), we get the matrix:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="n">dy</span><span class="o">/</span><span class="n">dx0_0</span><span class="p">,</span>   <span class="n">dy</span><span class="o">/</span><span class="n">dx0_1</span><span class="p">,</span>   <span class="o">...</span><span class="p">,</span> <span class="n">dy</span><span class="o">/</span><span class="n">dx0_N</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
  <span class="p">[</span><span class="o">...</span><span class="p">],</span>
- <span class="p">[</span><span class="n">dy</span><span class="o">/</span><span class="n">dxL_0</span><span class="p">,</span> <span class="n">dy</span><span class="o">/</span><span class="n">dxL_1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">dy</span><span class="o">/</span><span class="n">dxL_N</span><span class="p">]]</span>
+ <span class="p">[</span><span class="n">dy</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1</span><span class="n">_0</span><span class="p">,</span> <span class="n">dy</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1</span><span class="n">_1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">dy</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1</span><span class="n">_N</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -82,10 +82,24 @@ RBFGauss</dd>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">pwtools</h1>
+    
+  </a>
+</p>
 
 
 
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=pwtools&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
 
 
 
@@ -109,8 +123,8 @@ RBFGauss</dd>
   <li><a href="index.html">API Reference</a><ul>
   <li><a href="rbf.html">rbf</a><ul>
   <li><a href="pwtools.rbf.RBFInt.html">pwtools.rbf.RBFInt</a><ul>
-      <li>Previous: <a href="pwtools.rbf.RBFInt.calc_dist_mat.html" title="previous chapter">pwtools.rbf.RBFInt.calc_dist_mat</a></li>
-      <li>Next: <a href="pwtools.rbf.RBFInt.get_dist_mat.html" title="next chapter">pwtools.rbf.RBFInt.get_dist_mat</a></li>
+      <li>Previous: <a href="pwtools.rbf.RBFInt.calc_distsq.html" title="previous chapter">pwtools.rbf.RBFInt.calc_distsq</a></li>
+      <li>Next: <a href="pwtools.rbf.RBFInt.fit.html" title="next chapter">pwtools.rbf.RBFInt.fit</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

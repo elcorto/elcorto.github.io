@@ -1,0 +1,231 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Radial Basis Functions Networks for interpolation or fitting of N-dim data points &#8212; pwtools  documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="radial-basis-functions-networks-for-interpolation-or-fitting-of-n-dim-data-points">
+<span id="rbf"></span><h1>Radial Basis Functions Networks for interpolation or fitting of N-dim data points<a class="headerlink" href="#radial-basis-functions-networks-for-interpolation-or-fitting-of-n-dim-data-points" title="Permalink to this headline">¶</a></h1>
+<p>Refs:</p>
+<table class="docutils footnote" frame="void" id="id1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Radial_basis_function_network">http://en.wikipedia.org/wiki/Radial_basis_function_network</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td>Numerical Recipes, 3rd ed., ch 3.7</td></tr>
+</tbody>
+</table>
+<div class="section" id="training">
+<h2>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h2>
+<p>For our RBF network, we use the traditional approach and simply solve a linear
+system for the weights. Calculating the distance matrix w/
+<code class="docutils literal"><span class="pre">scipy.spatial.distance.cdist</span></code> or <a class="reference internal" href="../../generated/api/pwtools.num.distsq.html#pwtools.num.distsq" title="pwtools.num.distsq"><code class="xref py py-func docutils literal"><span class="pre">distsq()</span></code></a> is handled
+efficiently, even for many points. But we get into trouble for many points
+(order 1e4) b/c solving a big dense linear system (1e4 x 1e4) with plain
+<code class="docutils literal"><span class="pre">scipy.linalg</span></code> on a single core is possible but painful (takes some minutes)
+– the traditional RBF problem. Maybe use numpy build against threaded MKL, or
+even scalapack? For the latter, look at how GPAW does this.</p>
+</div>
+<div class="section" id="rbf-parameter">
+<h2>rbf parameter<a class="headerlink" href="#rbf-parameter" title="Permalink to this headline">¶</a></h2>
+<p>Each RBF has a single parameter <span class="math">\(p\)</span>, which can be tuned. This is
+usually a measure for the “width” of the function. e.g. in
+<a class="reference internal" href="../../generated/api/pwtools.rbf.RBFMultiquadric.html#pwtools.rbf.RBFMultiquadric" title="pwtools.rbf.RBFMultiquadric"><code class="xref py py-class docutils literal"><span class="pre">RBFMultiquadric</span></code></a> <span class="math">\(\sqrt{r^2+p^2}\)</span>, attribute
+<code class="docutils literal"><span class="pre">param</span></code> in the code.</p>
+<ul class="simple">
+<li>What seems to work best is <a class="reference internal" href="../../generated/api/pwtools.rbf.RBFMultiquadric.html#pwtools.rbf.RBFMultiquadric" title="pwtools.rbf.RBFMultiquadric"><code class="xref py py-class docutils literal"><span class="pre">RBFMultiquadric</span></code></a> +
+<code class="docutils literal"><span class="pre">RBFInt.get_param(param='est')</span></code> (mean-distance of all points, default),
+i.e. the “traditional” RBF approach. This is exactly what’s done in
+<code class="docutils literal"><span class="pre">scipy.interpolate.Rbf</span></code>.</li>
+<li>It seems that for very few data points (say 5x5 for x**2 + x**2), the default
+mean-distance estimate is too small. We then have good interpolation at the
+data points, but wildly fluctuating bogus between them, since there is no
+data support in between the data points. We need to have wider RBFs. Usually,
+bigger (x10), sometimes much bigger (x100) params work.</li>
+<li>Similarly, in some cases params smaller than the mean-distance estimate
+provide lower fit error at the points, but with the same between-points behavior
+as above.</li>
+</ul>
+<p>In general however, the mean-distance estimate is the best default one can use
+(see below for more details).</p>
+</div>
+<div class="section" id="interpolation-vs-fitting">
+<h2>Interpolation vs. fitting<a class="headerlink" href="#interpolation-vs-fitting" title="Permalink to this headline">¶</a></h2>
+<p>For smooth noise-free data, RBF works perfect. But for noisy data, we would
+like to do some kind of fit instead, like the “s” parameter to
+<code class="docutils literal"><span class="pre">scipy.interpolate.bisplrep</span></code>. <code class="docutils literal"><span class="pre">scipy.interpolate.Rbf</span></code> has a “smooth”
+parameter and what they do is some form of regularization (solve (<code class="docutils literal"><span class="pre">G-I*smooth)</span>
+<span class="pre">.</span> <span class="pre">w</span> <span class="pre">=</span> <span class="pre">z</span></code> instead of <code class="docutils literal"><span class="pre">G</span> <span class="pre">.</span> <span class="pre">w</span> <span class="pre">=</span> <span class="pre">z</span></code>; <code class="docutils literal"><span class="pre">G</span></code> = RBF matrix, <code class="docutils literal"><span class="pre">w</span></code> = weights to
+solve for, <code class="docutils literal"><span class="pre">z</span></code> = data).</p>
+<p>We found (see <code class="docutils literal"><span class="pre">examples/rbf.py</span></code>) that <code class="docutils literal"><span class="pre">scipy.linalg.solve</span></code> often gives an
+ill-conditioned matrix warning, which shows numerical instability and results
+in bad interpolation. It seems that problems start to show as soon as the noise
+level (<code class="docutils literal"><span class="pre">z</span></code> + noise) is in the same order or magnitude as the mean point distance.
+Then we see wildly fluctuating data points which are hard to interpolate. In
+that case, the mean-distance estimate for the rbf param breaks down and one
+needs to use smaller values to interpolate all fluctuations. However, in most
+cases, on does actually want to perform a fit instead in such situations.</p>
+<p>If we switch from <code class="docutils literal"><span class="pre">scipy.linalg.solve</span></code> to <code class="docutils literal"><span class="pre">scipy.linalg.lstsq</span></code> and solve the
+system in a least squares sense, we get much more stable solutions. With
+<code class="docutils literal"><span class="pre">lstsq</span></code>, we have the smoothness by construction, b/c we do <em>not</em> perform
+interpolation anymore – this is a fit now. The advantage of using least
+squares is that we don’t have a smoothness parameter which needs to be tuned.</p>
+<p>If the noise is low relative to the point distance, we get interpolation-like
+results, which cannot be distinguished from the solutions obtained with a
+normal linear system solver. The method will try its best to do interpolation,
+but will smoothly transition to fitting as noise increases, which is what we
+want. Hence, lstsq is the default solver.</p>
+</div>
+<div class="section" id="optimize-rbf-param">
+<h2>optimize rbf param<a class="headerlink" href="#optimize-rbf-param" title="Permalink to this headline">¶</a></h2>
+<p>With <a class="reference internal" href="../../generated/api/pwtools.rbf.RBFInt.fit_opt_param.html#pwtools.rbf.RBFInt.fit_opt_param" title="pwtools.rbf.RBFInt.fit_opt_param"><code class="xref py py-meth docutils literal"><span class="pre">fit_opt_param()</span></code></a>, we try to optimize
+<code class="docutils literal"><span class="pre">rbf.param</span></code> by repeated fitting with <code class="docutils literal"><span class="pre">fit(solver='lstsq')</span></code>. In all
+experiments so far, we find that the mean-distance estimate of <code class="docutils literal"><span class="pre">param</span></code> is
+actually very good and doesn’t change much when optimizing. However, this is
+not always the global min. There are cases where we find a much smaller
+<code class="docutils literal"><span class="pre">param</span></code> (e.g. factor 10 smaller), which leads to better fits at the data
+points but oscillations between them (found with methods where we actually have
+more points for testing than we use for fitting, see <code class="docutils literal"><span class="pre">examples/rbf.py</span></code>). That
+minimum was found sometimes with <code class="docutils literal"><span class="pre">scipy.optimize.fmin</span></code> and always with
+<code class="docutils literal"><span class="pre">scipy.optimize.differential_evolution</span></code>. However, as stated above, we usually
+want to do a fit with the mean-distance estimate rather than a perfect
+interpolation in those cases.</p>
+</div>
+<div class="section" id="other-codes">
+<h2>other codes<a class="headerlink" href="#other-codes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">scipy.interpolate.Rbf</span></code>
+Essentially the same as we do. We took some ideas from there.</li>
+<li><a class="reference external" href="http://pypi.python.org/pypi/PyRadbas/0.1.0">http://pypi.python.org/pypi/PyRadbas/0.1.0</a>
+Seems to work with Gaussians hardcoded. Not what we want.</li>
+<li><a class="reference external" href="http://code.google.com/p/pyrbf/">http://code.google.com/p/pyrbf/</a>
+Seems pretty useful for large problems (many points), but not
+documented very much.</li>
+</ul>
+</div>
+<div class="section" id="input-data">
+<h2>input data<a class="headerlink" href="#input-data" title="Permalink to this headline">¶</a></h2>
+<p>It usually helps if all data ranges (points X and values Y) are in the same
+order of magnitude, e.g. all have a maximum close to unity or so. If, for
+example, X and Y have very different scales (say X -0.1 .. 0.1 and Y
+0…1e4), you may get bad interpolation between points. This is b/c the RBFs
+also live on more or less equal x-y scales.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">pwtools</h1>
+    
+  </a>
+</p>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=pwtools&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Background</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/written/background/rbf.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

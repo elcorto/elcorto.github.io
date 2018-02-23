@@ -70,9 +70,9 @@ else a Structure.</p>
 <p>spglib used to return (None,None,None) if no primitive cell can be found,
 i.e. the given input Structure cannot be reduced, which can occur if (a) a
 given Structure is already a primitive cell or (b) any other reason like a
-too small value of <cite>symprec</cite>. Now ([py]spglib &gt;= 1.8.x) it seems to always
-return data and use func:<cite>is_same_struct</cite> to determine if the struct is
-irreducible. In that case we return None in order to keep the API
+too small value of <cite>symprec</cite>. Now [py]spglib &gt;= 1.8.x seems to always
+return data instead. We use <a class="reference internal" href="pwtools.symmetry.is_same_struct.html#pwtools.symmetry.is_same_struct" title="pwtools.symmetry.is_same_struct"><code class="xref py py-func docutils literal"><span class="pre">is_same_struct()</span></code></a> to determine if the
+struct is irreducible. In that case we return None in order to keep the API
 unchanged.</p>
 <p>Also note that a primitive cell (e.g. with 2 atoms) can have a number of
 different realizations. Therefore, you may not always get the primitive
@@ -88,10 +88,24 @@ Only things like <cite>natoms</cite> and the spacegroup can be safely compared.<
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">pwtools</h1>
+    
+  </a>
+</p>
 
 
 
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=pwtools&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
 
 
 

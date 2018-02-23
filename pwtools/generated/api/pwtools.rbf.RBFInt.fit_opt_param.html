@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>pwtools.rbf.RBFInt.get_dist_mat &#8212; pwtools  documentation</title>
+    <title>pwtools.rbf.RBFInt.fit_opt_param &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.rbf.RBFInt.get_param" href="pwtools.rbf.RBFInt.get_param.html" />
-    <link rel="prev" title="pwtools.rbf.RBFInt.deriv" href="pwtools.rbf.RBFInt.deriv.html" />
+    <link rel="next" title="pwtools.rbf.RBFInt.get_distsq" href="pwtools.rbf.RBFInt.get_distsq.html" />
+    <link rel="prev" title="pwtools.rbf.RBFInt.fit" href="pwtools.rbf.RBFInt.fit.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -40,36 +40,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="pwtools-rbf-rbfint-get-dist-mat">
-<h1>pwtools.rbf.RBFInt.get_dist_mat<a class="headerlink" href="#pwtools-rbf-rbfint-get-dist-mat" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="pwtools-rbf-rbfint-fit-opt-param">
+<h1>pwtools.rbf.RBFInt.fit_opt_param<a class="headerlink" href="#pwtools-rbf-rbfint-fit-opt-param" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
-<dt id="pwtools.rbf.RBFInt.get_dist_mat">
-<code class="descclassname">RBFInt.</code><code class="descname">get_dist_mat</code><span class="sig-paren">(</span><em>X=None</em>, <em>C=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.get_dist_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.get_dist_mat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Matrix of distance values r_ij = ||x_i - c_j|| with:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">x_i</span> <span class="p">:</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span>
-<span class="n">c_i</span> <span class="p">:</span> <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span>
-</pre></div>
-</div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>X</strong> : None or array (M,N) with N-dim points</p>
-<blockquote>
-<div><p>Training data or interpolation points. If None then self.Rsq is
-returned.</p>
-</div></blockquote>
-<p><strong>C</strong> : 2d array (K,N), optional</p>
-<blockquote>
-<div><p>If None then self.C is used.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>Rsq</strong> : (M,K), where K = M usually for training</p>
-</td>
-</tr>
-</tbody>
-</table>
+<dt id="pwtools.rbf.RBFInt.fit_opt_param">
+<code class="descclassname">RBFInt.</code><code class="descname">fit_opt_param</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.fit_opt_param"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.fit_opt_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optimize <code class="docutils literal"><span class="pre">rbf.param</span></code> and weights simultaneously by minimizing the
+fit error with <a class="reference internal" href="pwtools.rbf.RBFInt.fit.html#pwtools.rbf.RBFInt.fit" title="pwtools.rbf.RBFInt.fit"><code class="xref py py-meth docutils literal"><span class="pre">fit()</span></code></a> using <code class="docutils literal"><span class="pre">solver='lstsq'</span></code>. Can be used in
+place of <a class="reference internal" href="pwtools.rbf.RBFInt.fit.html#pwtools.rbf.RBFInt.fit" title="pwtools.rbf.RBFInt.fit"><code class="xref py py-meth docutils literal"><span class="pre">fit()</span></code></a>.</p>
 </dd></dl>
 
 </div>
@@ -80,10 +58,24 @@ returned.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">pwtools</h1>
+    
+  </a>
+</p>
 
 
 
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=pwtools&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
 
 
 
@@ -107,8 +99,8 @@ returned.</p>
   <li><a href="index.html">API Reference</a><ul>
   <li><a href="rbf.html">rbf</a><ul>
   <li><a href="pwtools.rbf.RBFInt.html">pwtools.rbf.RBFInt</a><ul>
-      <li>Previous: <a href="pwtools.rbf.RBFInt.deriv.html" title="previous chapter">pwtools.rbf.RBFInt.deriv</a></li>
-      <li>Next: <a href="pwtools.rbf.RBFInt.get_param.html" title="next chapter">pwtools.rbf.RBFInt.get_param</a></li>
+      <li>Previous: <a href="pwtools.rbf.RBFInt.fit.html" title="previous chapter">pwtools.rbf.RBFInt.fit</a></li>
+      <li>Next: <a href="pwtools.rbf.RBFInt.get_distsq.html" title="next chapter">pwtools.rbf.RBFInt.get_distsq</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -137,7 +129,7 @@ returned.</p>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
-      <a href="../../_sources/generated/api/pwtools.rbf.RBFInt.get_dist_mat.rst.txt"
+      <a href="../../_sources/generated/api/pwtools.rbf.RBFInt.fit_opt_param.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

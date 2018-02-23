@@ -42,76 +42,7 @@
             
   <div class="section" id="rbf">
 <h1>rbf<a class="headerlink" href="#rbf" title="Permalink to this headline">¶</a></h1>
-<span class="target" id="module-pwtools.rbf"></span><p>Radial Basis Functions Neural Network for interpolation of n-dim data points.</p>
-<p>Refs:</p>
-<table class="docutils citation" frame="void" id="r63" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[R63]</td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Radial_basis_function_network">http://en.wikipedia.org/wiki/Radial_basis_function_network</a></td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="r64" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[R64]</td><td>Numerical Recipies, 3rd ed., ch 3.7</td></tr>
-</tbody>
-</table>
-<div class="section" id="training">
-<h2>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h2>
-<p>For our RBF network, we use the traditional approach and simply solve a
-linear system for the weights. Calculating the distance matrix w/
-scipy.spatial.distance.cdist() or num.distsq() is handled efficiently,
-even for many points. But we get into trouble for many points (order 1e4) b/c
-solving a big dense linear system (1e4 x 1e4) with plain numpy.linalg on a
-single core is possible but painful (takes some minutes) – the traditional
-RBF problem. Maybe use numpy build against threaded MKL, or even scalapack?
-For the latter, look at how GPAW does this.</p>
-<p>There are some other projects out there:</p>
-<ul class="simple">
-<li>scipy.interpolate.Rbf 
-Essentially the same as we do. We took some ideas from there.</li>
-<li><a class="reference external" href="http://pypi.python.org/pypi/PyRadbas/0.1.0">http://pypi.python.org/pypi/PyRadbas/0.1.0</a>
-Seems to work with gaussians hardcoded. Not what we want.</li>
-<li><a class="reference external" href="http://code.google.com/p/pyrbf/">http://code.google.com/p/pyrbf/</a>
-Seems pretty useful for large problems (many points), but not 
-documented very much.</li>
-</ul>
-</div>
-<div class="section" id="rbf-parameter">
-<h2>rbf parameter<a class="headerlink" href="#rbf-parameter" title="Permalink to this headline">¶</a></h2>
-<p>Each RBF has a single parameter (<cite>param</cite>), which can be tuned. This is
-usually a measure for the “width” of the function.</p>
-<ul class="simple">
-<li>What seems to work best is RBFMultiquadric + train(‘linalg’) +
-param=’est’ (mean distance of all points), i.e. the “traditional” RBF
-approach. This is exactly what’s done in scipy.interpolate.Rbf .</li>
-<li>It seems that for very few data points (say 5x5 for x**2 + x**2), the
-default param=’est’ is too small, which results in wildly fluctuating
-interpolation, b/c there is no “support” in between the data points. We
-need to have wider RBFs. Usually, bigger (x10), sometimes much bigger
-(x100) params work.</li>
-<li>However, we also had a case where we found that the square of a
-small param (param (from ‘est’) = 0.3, param**2 = 0.1) was actually much
-better than the one from param=’est’.</li>
-</ul>
-</div>
-<div class="section" id="other-traing-methods">
-<h2>other traing methods<a class="headerlink" href="#other-traing-methods" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>We’d like have a method which lets us specify some kind of smoothness.
-For perfect data, RBF works perfect. But for noisy data, we
-would like to do some kind of fit instead, like the “s” parameter to
-scipy.interpolate.bisplrep().</li>
-</ul>
-</div>
-<div class="section" id="input-data">
-<h2>input data<a class="headerlink" href="#input-data" title="Permalink to this headline">¶</a></h2>
-<p>It usually helps if all data ranges (points X and values Y) are in the same
-order of magnitude, e.g. all have a maximum close to unity or so. If, for
-example, X and Y have very different scales (say X -0.1 .. 0.1 and Y
-0…1e4), you may get bad interpolation between points. This is b/c the RBFs
-also live on more or less equal x-y scales.</p>
-</div>
+<span class="target" id="module-pwtools.rbf"></span><p>Radial Basis Function N-dim fitting. See <a class="reference internal" href="../../written/background/rbf.html#rbf"><span class="std std-ref">Radial Basis Functions Networks for interpolation or fitting of N-dim data points</span></a> for details.</p>
 <table border="1" class="longtable docutils">
 <colgroup>
 <col width="10%" />
@@ -124,7 +55,7 @@ also live on more or less equal x-y scales.</p>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.RBFGauss.html#pwtools.rbf.RBFGauss" title="pwtools.rbf.RBFGauss"><code class="xref py py-obj docutils literal"><span class="pre">RBFGauss</span></code></a>([param])</td>
 <td>Gaussian RBF <span class="math">\(\exp\left(-\frac{r^2}{2\,p^2}\right)\)</span></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.RBFInt.html#pwtools.rbf.RBFInt" title="pwtools.rbf.RBFInt"><code class="xref py py-obj docutils literal"><span class="pre">RBFInt</span></code></a>(X[,&nbsp;Y,&nbsp;C,&nbsp;rbf,&nbsp;verbose,&nbsp;distmethod])</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.RBFInt.html#pwtools.rbf.RBFInt" title="pwtools.rbf.RBFInt"><code class="xref py py-obj docutils literal"><span class="pre">RBFInt</span></code></a>(points[,&nbsp;values,&nbsp;centers,&nbsp;rbf,&nbsp;verbose])</td>
 <td>Radial basis function neural network interpolator.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.RBFInverseMultiquadric.html#pwtools.rbf.RBFInverseMultiquadric" title="pwtools.rbf.RBFInverseMultiquadric"><code class="xref py py-obj docutils literal"><span class="pre">RBFInverseMultiquadric</span></code></a>([param])</td>
@@ -143,10 +74,24 @@ also live on more or less equal x-y scales.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">pwtools</h1>
+    
+  </a>
+</p>
 
 
 
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=pwtools&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
 
 
 

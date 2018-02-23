@@ -45,7 +45,7 @@
 <dl class="function">
 <dt id="pwtools.signal.smooth">
 <code class="descclassname">pwtools.signal.</code><code class="descname">smooth</code><span class="sig-paren">(</span><em>data</em>, <em>kern</em>, <em>axis=0</em>, <em>edge='m'</em>, <em>norm=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#smooth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.smooth" title="Permalink to this definition">¶</a></dt>
-<dd><p>Smooth <cite>data</cite> by convolution with a kernel <cite>kern</cite>.</p>
+<dd><p>Smooth N-dim <cite>data</cite> by convolution with a kernel <cite>kern</cite>.</p>
 <p>Uses scipy.signal.fftconvolve().</p>
 <p>Note that due to edge effect handling (padding) and kernal normalization,
 the convolution identity convolve(data,kern) == convolve(kern,data) doesn’t
@@ -56,13 +56,13 @@ apply here. We always return an array of <code class="docutils literal"><span cl
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : nd array</p>
 <blockquote>
-<div><p>The data to smooth. Example: 1d (N,) or (N,natoms,3)
+<div><p>The data to smooth. Example: 1d (N,) or (N,K,3)
 for trajectory</p>
 </div></blockquote>
 <p><strong>kern</strong> : nd array</p>
 <blockquote>
 <div><p>Convolution kernel. Example: 1d (M,) or (M,1,1)
-for trajectory</p>
+for trajectory along axis=0 (data length N)</p>
 </div></blockquote>
 <p><strong>axis</strong> : int</p>
 <blockquote>
@@ -158,7 +158,7 @@ example:</p>
 </pre></div>
 </div>
 <p>The size of the chunk over which you explicitely loop depends on the data
-of course.</p>
+of course. We do exactly this in <a class="reference internal" href="pwtools.crys.smooth.html#pwtools.crys.smooth" title="pwtools.crys.smooth"><code class="xref py py-func docutils literal"><span class="pre">pwtools.crys.smooth()</span></code></a>.</p>
 <p class="rubric">References</p>
 <p>[1] <a class="reference external" href="http://wiki.scipy.org/Cookbook/SignalSmooth">http://wiki.scipy.org/Cookbook/SignalSmooth</a></p>
 <p class="rubric">Examples</p>
@@ -217,10 +217,24 @@ of course.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">pwtools</h1>
+    
+  </a>
+</p>
 
 
 
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=pwtools&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
 
 
 

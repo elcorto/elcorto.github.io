@@ -125,9 +125,9 @@
 <span class="sd">    spglib used to return (None,None,None) if no primitive cell can be found,</span>
 <span class="sd">    i.e. the given input Structure cannot be reduced, which can occur if (a) a</span>
 <span class="sd">    given Structure is already a primitive cell or (b) any other reason like a</span>
-<span class="sd">    too small value of `symprec`. Now ([py]spglib &gt;= 1.8.x) it seems to always</span>
-<span class="sd">    return data and use func:`is_same_struct` to determine if the struct is</span>
-<span class="sd">    irreducible. In that case we return None in order to keep the API</span>
+<span class="sd">    too small value of `symprec`. Now [py]spglib &gt;= 1.8.x seems to always</span>
+<span class="sd">    return data instead. We use :func:`is_same_struct` to determine if the</span>
+<span class="sd">    struct is irreducible. In that case we return None in order to keep the API</span>
 <span class="sd">    unchanged.</span>
 
 <span class="sd">    Also note that a primitive cell (e.g. with 2 atoms) can have a number of</span>
@@ -182,10 +182,24 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">pwtools</h1>
+    
+  </a>
+</p>
 
 
 
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=pwtools&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
 
 
 

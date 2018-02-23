@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>pwtools.rbf.RBFInt.msg &#8212; pwtools  documentation</title>
+    <title>pwtools.rbf.RBFInt.calc_distsq &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.rbf.RBFInt.set_Y" href="pwtools.rbf.RBFInt.set_Y.html" />
-    <link rel="prev" title="pwtools.rbf.RBFInt.interpolate" href="pwtools.rbf.RBFInt.interpolate.html" />
+    <link rel="next" title="pwtools.rbf.RBFInt.deriv" href="pwtools.rbf.RBFInt.deriv.html" />
+    <link rel="prev" title="pwtools.rbf.RBFInt.__call__" href="pwtools.rbf.RBFInt.__call__.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -40,12 +40,25 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="pwtools-rbf-rbfint-msg">
-<h1>pwtools.rbf.RBFInt.msg<a class="headerlink" href="#pwtools-rbf-rbfint-msg" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="pwtools-rbf-rbfint-calc-distsq">
+<h1>pwtools.rbf.RBFInt.calc_distsq<a class="headerlink" href="#pwtools-rbf-rbfint-calc-distsq" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
-<dt id="pwtools.rbf.RBFInt.msg">
-<code class="descclassname">RBFInt.</code><code class="descname">msg</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.msg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.msg" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print a message.</p>
+<dt id="pwtools.rbf.RBFInt.calc_distsq">
+<code class="descclassname">RBFInt.</code><code class="descname">calc_distsq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.calc_distsq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.calc_distsq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate self.distsq for the training set.</p>
+<p>Can be used in conjunction w/ set_values() to construct a network which
+calculates distsq only once. Then it can be trained for different
+values many times, using the same points grid w/o re-calculating distsq
+over and over again.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rbfi</span> <span class="o">=</span> <span class="n">rbf</span><span class="o">.</span><span class="n">RBFInt</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rbfi</span><span class="o">.</span><span class="n">calc_distsq</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">values</span> <span class="ow">in</span> <span class="o">...</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span> <span class="n">rbfi</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span> <span class="n">rbfi</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span> <span class="n">ZI</span><span class="o">=</span><span class="n">rbfi</span><span class="p">(</span><span class="n">XI</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -56,10 +69,24 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">pwtools</h1>
+    
+  </a>
+</p>
 
 
 
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=pwtools&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
 
 
 
@@ -83,8 +110,8 @@
   <li><a href="index.html">API Reference</a><ul>
   <li><a href="rbf.html">rbf</a><ul>
   <li><a href="pwtools.rbf.RBFInt.html">pwtools.rbf.RBFInt</a><ul>
-      <li>Previous: <a href="pwtools.rbf.RBFInt.interpolate.html" title="previous chapter">pwtools.rbf.RBFInt.interpolate</a></li>
-      <li>Next: <a href="pwtools.rbf.RBFInt.set_Y.html" title="next chapter">pwtools.rbf.RBFInt.set_Y</a></li>
+      <li>Previous: <a href="pwtools.rbf.RBFInt.__call__.html" title="previous chapter">pwtools.rbf.RBFInt.__call__</a></li>
+      <li>Next: <a href="pwtools.rbf.RBFInt.deriv.html" title="next chapter">pwtools.rbf.RBFInt.deriv</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -113,7 +140,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
-      <a href="../../_sources/generated/api/pwtools.rbf.RBFInt.msg.rst.txt"
+      <a href="../../_sources/generated/api/pwtools.rbf.RBFInt.calc_distsq.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

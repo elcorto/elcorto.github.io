@@ -40,80 +40,19 @@
             
   <h1>Source code for pwtools.rbf</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Radial Basis Functions Neural Network for interpolation of n-dim data points.</span>
-
-<span class="sd">Refs:</span>
-
-<span class="sd">.. [1] http://en.wikipedia.org/wiki/Radial_basis_function_network</span>
-<span class="sd">.. [2] Numerical Recipies, 3rd ed., ch 3.7</span>
-
-<span class="sd">Training</span>
-<span class="sd">--------</span>
-<span class="sd">For our RBF network, we use the traditional approach and simply solve a</span>
-<span class="sd">linear system for the weights. Calculating the distance matrix w/</span>
-<span class="sd">scipy.spatial.distance.cdist() or num.distsq() is handled efficiently,</span>
-<span class="sd">even for many points. But we get into trouble for many points (order 1e4) b/c</span>
-<span class="sd">solving a big dense linear system (1e4 x 1e4) with plain numpy.linalg on a</span>
-<span class="sd">single core is possible but painful (takes some minutes) -- the traditional</span>
-<span class="sd">RBF problem. Maybe use numpy build against threaded MKL, or even scalapack?</span>
-<span class="sd">For the latter, look at how GPAW does this.</span>
-
-<span class="sd">There are some other projects out there:</span>
-
-<span class="sd">* scipy.interpolate.Rbf </span>
-<span class="sd">  Essentially the same as we do. We took some ideas from there.</span>
-<span class="sd">* http://pypi.python.org/pypi/PyRadbas/0.1.0</span>
-<span class="sd">  Seems to work with gaussians hardcoded. Not what we want.</span>
-<span class="sd">* http://code.google.com/p/pyrbf/</span>
-<span class="sd">  Seems pretty useful for large problems (many points), but not </span>
-<span class="sd">  documented very much.</span>
-
-<span class="sd">rbf parameter</span>
-<span class="sd">-------------</span>
-<span class="sd">Each RBF has a single parameter (`param`), which can be tuned. This is</span>
-<span class="sd">usually a measure for the &quot;width&quot; of the function.</span>
-
-<span class="sd">* What seems to work best is RBFMultiquadric + train(&#39;linalg&#39;) +</span>
-<span class="sd">  param=&#39;est&#39; (mean distance of all points), i.e. the &quot;traditional&quot; RBF</span>
-<span class="sd">  approach. This is exactly what&#39;s done in scipy.interpolate.Rbf .</span>
-
-<span class="sd">* It seems that for very few data points (say 5x5 for x**2 + x**2), the</span>
-<span class="sd">  default param=&#39;est&#39; is too small, which results in wildly fluctuating</span>
-<span class="sd">  interpolation, b/c there is no &quot;support&quot; in between the data points. We</span>
-<span class="sd">  need to have wider RBFs. Usually, bigger (x10), sometimes much bigger</span>
-<span class="sd">  (x100) params work.</span>
-
-<span class="sd">* However, we also had a case where we found that the square of a</span>
-<span class="sd">  small param (param (from &#39;est&#39;) = 0.3, param**2 = 0.1) was actually much</span>
-<span class="sd">  better than the one from param=&#39;est&#39;.</span>
-
-<span class="sd">other traing methods</span>
-<span class="sd">--------------------</span>
-<span class="sd">* We&#39;d like have a method which lets us specify some kind of smoothness.</span>
-<span class="sd">  For perfect data, RBF works perfect. But for noisy data, we</span>
-<span class="sd">  would like to do some kind of fit instead, like the &quot;s&quot; parameter to</span>
-<span class="sd">  scipy.interpolate.bisplrep().</span>
-
-<span class="sd">input data</span>
-<span class="sd">----------</span>
-<span class="sd">It usually helps if all data ranges (points X and values Y) are in the same</span>
-<span class="sd">order of magnitude, e.g. all have a maximum close to unity or so. If, for</span>
-<span class="sd">example, X and Y have very different scales (say X -0.1 .. 0.1 and Y</span>
-<span class="sd">0...1e4), you may get bad interpolation between points. This is b/c the RBFs</span>
-<span class="sd">also live on more or less equal x-y scales.</span>
+<span class="sd">Radial Basis Function N-dim fitting. See :ref:`rbf` for details.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">optimize</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy.optimize</span> <span class="k">as</span> <span class="nn">opt</span>
 <span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">linalg</span>
 <span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="k">import</span> <span class="n">distance</span>
 <span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">num</span>
-<span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">timer</span>
 
-<span class="c1">##TT = timer.TagTimer()</span>
 
-<div class="viewcode-block" id="RBFFunction"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFFunction.html#pwtools.rbf.RBFFunction">[docs]</a><span class="k">class</span> <span class="nc">RBFFunction</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="RBFFunction"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFFunction.html#pwtools.rbf.RBFFunction">[docs]</a><span class="k">class</span> <span class="nc">RBFFunction</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Radial basis function base class.&quot;&quot;&quot;</span>
 <div class="viewcode-block" id="RBFFunction.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFFunction.html#pwtools.rbf.RBFFunction.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -123,7 +62,7 @@
 <span class="sd">            The RBF&#39;s free parameter.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="n">param</span></div>
-    
+
     <span class="k">def</span> <span class="nf">_get_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
         <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">param</span>
         <span class="k">assert</span> <span class="n">p</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;param is None&quot;</span><span class="p">)</span>
@@ -136,13 +75,12 @@
 <span class="sd">        rsq : scalar or nd array</span>
 <span class="sd">            Squared distances. Squared b/c this avoids using sqrt() in the</span>
 <span class="sd">            distance matrix (R) calculation just to square them here again.</span>
-<span class="sd">            bad:  R   = sqrt((X - C)**2)</span>
-<span class="sd">            good: Rsq = (X - C)**2</span>
-<span class="sd">            Note that with scipy.spatial, we get R instead of Rsq anyway.</span>
+<span class="sd">            Note that with scipy.spatial, we get R instead of R**2 anyway.</span>
 <span class="sd">        param : scalar or None, optional</span>
 <span class="sd">            If None, then self.param is used.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div></div>
+
 
 <div class="viewcode-block" id="RBFGauss"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFGauss.html#pwtools.rbf.RBFGauss">[docs]</a><span class="k">class</span> <span class="nc">RBFGauss</span><span class="p">(</span><span class="n">RBFFunction</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Gaussian RBF :math:`\exp\left(-\frac{r^2}{2\,p^2}\right)`</span>
@@ -150,368 +88,361 @@
 <div class="viewcode-block" id="RBFGauss.__call__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFGauss.__call__.html#pwtools.rbf.RBFGauss.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rsq</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">rsq</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)</span></div></div>
 
+
 <div class="viewcode-block" id="RBFMultiquadric"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFMultiquadric.html#pwtools.rbf.RBFMultiquadric">[docs]</a><span class="k">class</span> <span class="nc">RBFMultiquadric</span><span class="p">(</span><span class="n">RBFFunction</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Multiquadric RBF :math:`\sqrt{r^2 + p^2}`&quot;&quot;&quot;</span>
 <div class="viewcode-block" id="RBFMultiquadric.__call__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFMultiquadric.__call__.html#pwtools.rbf.RBFMultiquadric.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rsq</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">rsq</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)</span></div></div>
+
 
 <div class="viewcode-block" id="RBFInverseMultiquadric"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInverseMultiquadric.html#pwtools.rbf.RBFInverseMultiquadric">[docs]</a><span class="k">class</span> <span class="nc">RBFInverseMultiquadric</span><span class="p">(</span><span class="n">RBFFunction</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Inverse Multiquadric RBF :math:`\frac{1}{\sqrt{r^2 + p^2}}`&quot;&quot;&quot;</span>
 <div class="viewcode-block" id="RBFInverseMultiquadric.__call__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInverseMultiquadric.__call__.html#pwtools.rbf.RBFInverseMultiquadric.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rsq</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">rsq</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span></div></div>
 
-<div class="viewcode-block" id="RBFInt"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.html#pwtools.rbf.RBFInt">[docs]</a><span class="k">class</span> <span class="nc">RBFInt</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+<div class="viewcode-block" id="RBFInt"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.html#pwtools.rbf.RBFInt">[docs]</a><span class="k">class</span> <span class="nc">RBFInt</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Radial basis function neural network interpolator.&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="RBFInt.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.html#pwtools.rbf.RBFInt.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rbf</span><span class="o">=</span><span class="n">RBFMultiquadric</span><span class="p">(),</span>
-                 <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">distmethod</span><span class="o">=</span><span class="s1">&#39;fortran&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="RBFInt.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.html#pwtools.rbf.RBFInt.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rbf</span><span class="o">=</span><span class="n">RBFMultiquadric</span><span class="p">(),</span>
+                 <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X : 2d array, (M,N)</span>
+<span class="sd">        points : 2d array, (M,N)</span>
 <span class="sd">            data points : M points in N-dim space, training set points</span>
-<span class="sd">        Y: 1d array, (M,)</span>
+<span class="sd">        values : 1d array, (M,)</span>
 <span class="sd">            function values at training points</span>
-<span class="sd">        C : 2d array (K,N)</span>
-<span class="sd">            K N-dim center vectors, for usual interpolation training X == C</span>
+<span class="sd">        centers : 2d array (K,N)</span>
+<span class="sd">            K N-dim center vectors, for usual interpolation training points == centers</span>
 <span class="sd">            (default)</span>
 <span class="sd">        rbf : RBFFunction instance, optional</span>
 <span class="sd">        verbose : bool, optional</span>
 <span class="sd">            print some messages</span>
-<span class="sd">        distmethod : str, optional</span>
-<span class="sd">            Choose method for distance matrix calculation.</span>
-<span class="sd">                fortran : Fortran implementation (OpenMP, fastest)</span>
-<span class="sd">                spatial : scipy.spatial.distance.cdist</span>
-<span class="sd">                numpy : pure numpy (memory hungry, slowest)</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; from pwtools import mpl, rbf</span>
-<span class="sd">        &gt;&gt;&gt; # 1D example w/ derivatives. For 1d, we need to use X[:,None] b/c the</span>
-<span class="sd">        &gt;&gt;&gt; # input array containing training (X) and interpolation (XI) points must</span>
-<span class="sd">        &gt;&gt;&gt; # be 2d.</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; # 1D example w/ derivatives. For 1d, we need to use points[:,None]</span>
+<span class="sd">        &gt;&gt;&gt; # input array containing training (dd.DY) and interpolation</span>
+<span class="sd">        &gt;&gt;&gt; # (ddi.XY) points must be 2d.</span>
 <span class="sd">        &gt;&gt;&gt; fig,ax = mpl.fig_ax()</span>
-<span class="sd">        &gt;&gt;&gt; X=linspace(0,10,20)     # shape (M,), M=20 points</span>
-<span class="sd">        &gt;&gt;&gt; Y=sin(X)                # shape (M,)</span>
-<span class="sd">        &gt;&gt;&gt; rbfi=rbf.RBFInt(X[:,None],Y)    </span>
-<span class="sd">        &gt;&gt;&gt; rbfi.train()</span>
-<span class="sd">        &gt;&gt;&gt; XI=linspace(0,10,100)   # shape (M,), M=100 points</span>
-<span class="sd">        &gt;&gt;&gt; ax.plot(X,Y,&#39;o&#39;, label=&#39;data&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; ax.plot(XI, sin(XI), label=&#39;sin(x)&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; ax.plot(XI, rbfi(XI[:,None]), label=&#39;rbf&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; ax.plot(XI, cos(XI), label=&#39;cos(x)&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; ax.plot(XI, rbfi(XI[:,None],der=1)[:,0], label=&#39;d(rbf)/dx&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; x=linspace(0,10,20)     # shape (M,), M=20 points</span>
+<span class="sd">        &gt;&gt;&gt; z=sin(x)                # shape (M,)</span>
+<span class="sd">        &gt;&gt;&gt; rbfi=rbf.RBFInt(x[:,None],z)</span>
+<span class="sd">        &gt;&gt;&gt; rbfi.fit()</span>
+<span class="sd">        &gt;&gt;&gt; xi=linspace(0,10,100)   # shape (M,), M=100 points</span>
+<span class="sd">        &gt;&gt;&gt; ax.plot(x,z,&#39;o&#39;, label=&#39;data&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; ax.plot(xi, sin(xi), label=&#39;sin(x)&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; ax.plot(xi, rbfi(xi[:,None]), label=&#39;rbf&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; ax.plot(xi, cos(xi), label=&#39;cos(x)&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; ax.plot(xi, rbfi(xi[:,None],der=1)[:,0], label=&#39;d(rbf)/dx&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; ax.legend()</span>
 <span class="sd">        &gt;&gt;&gt; # 2D example</span>
-<span class="sd">        &gt;&gt;&gt; x1=linspace(-3,3,10); x2=x1</span>
-<span class="sd">        &gt;&gt;&gt; X1,X2=np.meshgrid(x1,x2); X1,X2 = X1.T,X2.T</span>
-<span class="sd">        &gt;&gt;&gt; X = np.array([X1.flatten(), X2.flatten()]).T</span>
-<span class="sd">        &gt;&gt;&gt; Y = (np.sin(X1)+np.cos(X2)).flatten()</span>
-<span class="sd">        &gt;&gt;&gt; x1i=linspace(-3,3,50); x2i=x1i</span>
-<span class="sd">        &gt;&gt;&gt; X1I,X2I=np.meshgrid(x1i,x2i); X1I,X2I = X1I.T,X2I.T</span>
-<span class="sd">        &gt;&gt;&gt; XI = np.array([X1I.flatten(), X2I.flatten()]).T</span>
-<span class="sd">        &gt;&gt;&gt; rbfi=rbf.RBFInt(X,Y)</span>
-<span class="sd">        &gt;&gt;&gt; rbfi.train()</span>
+<span class="sd">        &gt;&gt;&gt; x = np.linspace(-3,3,10)</span>
+<span class="sd">        &gt;&gt;&gt; dd = mpl.Data2D(x=x, y=x)</span>
+<span class="sd">        &gt;&gt;&gt; dd.update(Z=np.sin(dd.X)+np.cos(dd.Y))</span>
+<span class="sd">        &gt;&gt;&gt; rbfi=rbf.RBFInt(dd.XY, dd.zz)</span>
+<span class="sd">        &gt;&gt;&gt; rbfi.fit()</span>
+<span class="sd">        &gt;&gt;&gt; xi=linspace(-3,3,50)</span>
+<span class="sd">        &gt;&gt;&gt; ddi = mpl.Data2D(x=xi, y=xi)</span>
 <span class="sd">        &gt;&gt;&gt; fig1,ax1 = mpl.fig_ax3d()</span>
-<span class="sd">        &gt;&gt;&gt; ax1.scatter(X[:,0], X[:,1], Y, label=&#39;data&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; ax1.plot_wireframe(X1I, X2I, rbfi(XI).reshape(50,50), label=&#39;rbf&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; ax1.scatter(dd.xx, dd.yy, dd.zz, label=&#39;data&#39;, color=&#39;r&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; ax1.plot_wireframe(ddi.X, ddi.Y, rbfi(ddi.XY).reshape(50,50), </span>
+<span class="sd">        ...                    label=&#39;rbf&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; ax1.set_xlabel(&#39;x&#39;); ax1.set_ylabel(&#39;y&#39;);</span>
 <span class="sd">        &gt;&gt;&gt; ax1.legend()</span>
 <span class="sd">        &gt;&gt;&gt; fig2,ax2 = mpl.fig_ax3d()</span>
-<span class="sd">        &gt;&gt;&gt; ax2.plot_wireframe(X1I, X2I, rbfi(XI).reshape(50,50), label=&#39;rbf&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; ax2.plot_wireframe(X1I, X2I, rbfi(XI,der=1)[:,0].reshape(50,50),</span>
-<span class="sd">        ...                    color=&#39;b&#39;, label=&#39;rbf d/dx&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; ax2.plot_wireframe(X1I, X2I, rbfi(XI,der=1)[:,1].reshape(50,50),</span>
-<span class="sd">        ...                    color=&#39;r&#39;, label=&#39;rbf d/dy&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; offset=2</span>
+<span class="sd">        &gt;&gt;&gt; ax2.plot_wireframe(ddi.X, ddi.Y, rbfi(ddi.XY).reshape(50,50), </span>
+<span class="sd">        ...                    label=&#39;rbf&#39;, color=&#39;b&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; ax2.plot_wireframe(ddi.X, ddi.Y, </span>
+<span class="sd">        ...                    rbfi(ddi.XY, der=1)[:,0].reshape(50,50)+offset,</span>
+<span class="sd">        ...                    color=&#39;g&#39;, label=&#39;d(rbf)/dx&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; ax2.plot_wireframe(ddi.X, ddi.Y, </span>
+<span class="sd">        ...                    rbfi(ddi.XY, der=1)[:,1].reshape(50,50)+2*offset,</span>
+<span class="sd">        ...                    color=&#39;r&#39;, label=&#39;d(rbf)/dy&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; ax2.set_xlabel(&#39;x&#39;); ax2.set_ylabel(&#39;y&#39;);</span>
 <span class="sd">        &gt;&gt;&gt; ax2.legend()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Y</span> <span class="o">=</span> <span class="n">Y</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="k">if</span> <span class="n">C</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">C</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">points</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">values</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">centers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="k">if</span> <span class="n">centers</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">centers</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rbf</span> <span class="o">=</span> <span class="n">rbf</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">distmethod</span> <span class="o">=</span> <span class="n">distmethod</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_assert_ndim_X</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_assert_ndim_X</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_assert_ndim_Y</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assert_ndim_points</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assert_ndim_points</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">centers</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assert_ndim_values</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">Rsq</span> <span class="o">=</span> <span class="kc">None</span></div>
-    
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_assert_ndim_X</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-        <span class="k">assert</span> <span class="n">X</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;X or C not 2d array&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">distsq</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_assert_ndim_Y</span><span class="p">(</span><span class="n">Y</span><span class="p">):</span>
-        <span class="k">assert</span> <span class="n">Y</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Y not 1d array&quot;</span><span class="p">)</span>
-    
-<div class="viewcode-block" id="RBFInt.msg"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.msg.html#pwtools.rbf.RBFInt.msg">[docs]</a>    <span class="k">def</span> <span class="nf">msg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Print a message.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">_assert_ndim_points</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">points</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;points or centers not 2d array&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="RBFInt.calc_dist_mat"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.calc_dist_mat.html#pwtools.rbf.RBFInt.calc_dist_mat">[docs]</a>    <span class="k">def</span> <span class="nf">calc_dist_mat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Calculate self.Rsq for the training set. </span>
-<span class="sd">        </span>
-<span class="sd">        Can be used in conjunction w/ set_Y() to construct a network which</span>
-<span class="sd">        calculates Rsq only once. Then it can be trained for different Y many</span>
-<span class="sd">        times, using the same X grid w/o re-calculating Rsq over and over</span>
-<span class="sd">        again.</span>
-<span class="sd">        </span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_assert_ndim_values</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">values</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;values not 1d array&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="RBFInt.calc_distsq"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.calc_distsq.html#pwtools.rbf.RBFInt.calc_distsq">[docs]</a>    <span class="k">def</span> <span class="nf">calc_distsq</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate self.distsq for the training set.</span>
+
+<span class="sd">        Can be used in conjunction w/ set_values() to construct a network which</span>
+<span class="sd">        calculates distsq only once. Then it can be trained for different</span>
+<span class="sd">        values many times, using the same points grid w/o re-calculating distsq</span>
+<span class="sd">        over and over again.</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; rbfi = rbf.RBFInt(X=X, Y=None)</span>
-<span class="sd">        &gt;&gt;&gt; rbfi.calc_dist_mat()</span>
-<span class="sd">        &gt;&gt;&gt; for Y in ...:</span>
-<span class="sd">        &gt;&gt;&gt; ... rbfi.set_Y(Y)</span>
-<span class="sd">        &gt;&gt;&gt; ... rbfi.train()</span>
-<span class="sd">        &gt;&gt;&gt; ... YI=rbfi(XI)</span>
+<span class="sd">        &gt;&gt;&gt; rbfi = rbf.RBFInt(points=points, values=None)</span>
+<span class="sd">        &gt;&gt;&gt; rbfi.calc_distsq()</span>
+<span class="sd">        &gt;&gt;&gt; for values in ...:</span>
+<span class="sd">        &gt;&gt;&gt; ... rbfi.set_values(values)</span>
+<span class="sd">        &gt;&gt;&gt; ... rbfi.fit()</span>
+<span class="sd">        &gt;&gt;&gt; ... ZI=rbfi(XI)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Rsq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_dist_mat</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">)</span></div>
-    
-<div class="viewcode-block" id="RBFInt.set_Y"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.set_Y.html#pwtools.rbf.RBFInt.set_Y">[docs]</a>    <span class="k">def</span> <span class="nf">set_Y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_assert_ndim_Y</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Y</span> <span class="o">=</span> <span class="n">Y</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">distsq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_distsq</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="RBFInt.get_dist_mat"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.get_dist_mat.html#pwtools.rbf.RBFInt.get_dist_mat">[docs]</a>    <span class="k">def</span> <span class="nf">get_dist_mat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="RBFInt.set_values"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.set_values.html#pwtools.rbf.RBFInt.set_values">[docs]</a>    <span class="k">def</span> <span class="nf">set_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assert_ndim_values</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">values</span></div>
+
+<div class="viewcode-block" id="RBFInt.get_distsq"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.get_distsq.html#pwtools.rbf.RBFInt.get_distsq">[docs]</a>    <span class="k">def</span> <span class="nf">get_distsq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Matrix of distance values r_ij = ||x_i - c_j|| with::</span>
 
-<span class="sd">            x_i : X[i,:]</span>
-<span class="sd">            c_i : C[i,:]</span>
+<span class="sd">            x_i : points[i,:]</span>
+<span class="sd">            c_i : centers[i,:]</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X : None or array (M,N) with N-dim points</span>
-<span class="sd">            Training data or interpolation points. If None then self.Rsq is</span>
-<span class="sd">            returned.</span>
-<span class="sd">        C : 2d array (K,N), optional</span>
-<span class="sd">            If None then self.C is used.</span>
-
+<span class="sd">        points : array (M,N) with N-dim points, optional</span>
+<span class="sd">            If None then ``self.points`` is used.</span>
+<span class="sd">        </span>
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Rsq : (M,K), where K = M usually for training</span>
+<span class="sd">        distsq : (M,K), where K = M usually for training</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># pure numpy:</span>
-        <span class="c1">#     dist = X[:,None,...] - C[None,...]</span>
-        <span class="c1">#     Rsq = (dist**2.0).sum(axis=-1)</span>
-        <span class="c1"># where   </span>
-        <span class="c1">#     X:    (M,N)</span>
-        <span class="c1">#     C:    (K,N)</span>
-        <span class="c1">#     dist: (M,K,N) &quot;matrix&quot; of distance vectors (only for numpy case)</span>
-        <span class="c1">#     Rsq:  (M,K)    matrix of squared distance values</span>
-        <span class="c1"># Creates *big* temorary arrays if X is big (~1e4 points).</span>
+        <span class="c1">#     dist = points[:,None,...] - centers[None,...]</span>
+        <span class="c1">#     distsq = (dist**2.0).sum(axis=-1)</span>
+        <span class="c1"># where</span>
+        <span class="c1">#     points:  (M,N)</span>
+        <span class="c1">#     centers: (K,N)</span>
+        <span class="c1">#     dist:    (M,K,N) &quot;matrix&quot; of distance vectors (only for numpy case)</span>
+        <span class="c1">#     distsq:  (M,K)    matrix of squared distance values</span>
+        <span class="c1"># Creates *big* temporary arrays if points is big (~1e4 points).</span>
         <span class="c1">#</span>
         <span class="c1"># training:</span>
-        <span class="c1">#     If X == C, we could also use pdist(X), which would give us a 1d</span>
-        <span class="c1">#     array of all distances. But we need the redundant square matrix</span>
-        <span class="c1">#     form for get_rbf_mat() anyway, so there is no real point in</span>
-        <span class="c1">#     special-casing that. These two are the same:</span>
-        <span class="c1">#      &gt;&gt;&gt; R = spatial.squareform(spatial.distances.pdist(X))</span>
-        <span class="c1">#      &gt;&gt;&gt; R = spatial.distances.cdist(X,X)</span>
-        <span class="c1">#      &gt;&gt;&gt; Rsq = R**2</span>
-        <span class="k">if</span> <span class="n">X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;get_dist_mat...&quot;</span><span class="p">)</span>
-            <span class="n">C</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="k">if</span> <span class="n">C</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">C</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">distmethod</span> <span class="o">==</span> <span class="s1">&#39;spatial&#39;</span><span class="p">:</span>
-                <span class="n">Rsq</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">cdist</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span><span class="o">**</span><span class="mf">2.0</span>
-            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">distmethod</span> <span class="o">==</span> <span class="s1">&#39;fortran&#39;</span><span class="p">:</span>                
-                <span class="n">Rsq</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">distsq</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">C</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">distmethod</span> <span class="o">==</span> <span class="s1">&#39;numpy&#39;</span><span class="p">:</span>                
-                <span class="n">dist</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span><span class="kc">None</span><span class="p">,</span><span class="o">...</span><span class="p">]</span> <span class="o">-</span> <span class="n">C</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
-                <span class="n">Rsq</span> <span class="o">=</span> <span class="p">(</span><span class="n">dist</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1">#     If points == centers, we could also use pdist(points), which</span>
+        <span class="c1">#     would give us a 1d array of all distances. But we need the</span>
+        <span class="c1">#     redundant square matrix form for G=rbf(distsq) anyway, so there</span>
+        <span class="c1">#     is no real point in special-casing that. These two are the same:</span>
+        <span class="c1">#      &gt;&gt;&gt; R = spatial.squareform(spatial.distances.pdist(points))</span>
+        <span class="c1">#      &gt;&gt;&gt; R = spatial.distances.cdist(points,points)</span>
+        <span class="c1">#      &gt;&gt;&gt; distsq = R**2</span>
+        <span class="k">if</span> <span class="n">points</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">distsq</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">num</span><span class="o">.</span><span class="n">distsq</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">centers</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unknown value for distmethod: </span><span class="si">%s</span><span class="s2">&quot;</span>
-                    <span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">distmethod</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">Rsq</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">distsq</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">Rsq</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;self.Rsq is None&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">Rsq</span></div>
+            <span class="k">return</span> <span class="n">num</span><span class="o">.</span><span class="n">distsq</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">centers</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RBFInt.get_rbf_mat"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.get_rbf_mat.html#pwtools.rbf.RBFInt.get_rbf_mat">[docs]</a>    <span class="k">def</span> <span class="nf">get_rbf_mat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Rsq</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Matrix of RBF values g_ij = rbf(||x_i - c_j||).&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;get_rbf_mat...&quot;</span><span class="p">)</span>
-        <span class="n">Rsq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Rsq</span> <span class="k">if</span> <span class="n">Rsq</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Rsq</span>
-        <span class="n">G</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rbf</span><span class="p">(</span><span class="n">Rsq</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">G</span></div>
-    
 <div class="viewcode-block" id="RBFInt.get_param"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.get_param.html#pwtools.rbf.RBFInt.get_param">[docs]</a>    <span class="k">def</span> <span class="nf">get_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return `param` for RBF (to set self.rbf.param).</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        param : string &#39;est&#39; or float</span>
-<span class="sd">            If &#39;est&#39;, then return the mean distance of all points. </span>
+<span class="sd">            If &#39;est&#39;, then return the mean distance of all points.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;get_param...&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">param</span> <span class="o">==</span> <span class="s1">&#39;est&#39;</span><span class="p">:</span>
-            <span class="n">Rsq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_dist_mat</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Rsq</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_distsq</span><span class="p">())</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">param</span></div>
 
-    <span class="k">def</span> <span class="nf">_train_linalg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="s1">&#39;est&#39;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Simple training by solving for the weights w_j:</span>
-<span class="sd">            y_i = Sum_j g_ij w_j</span>
-<span class="sd">        in case C == X (center vectors are all data points). Then G is</span>
-<span class="sd">        quadratic w/ dim (M,M).</span>
+<div class="viewcode-block" id="RBFInt.train"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.train.html#pwtools.rbf.RBFInt.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Use :meth:`fit` instead.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;train(mode=..) deprecated, use fit()&quot;</span><span class="p">,</span>
+                          <span class="ne">DeprecationWarning</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">)</span></div>
 
-<span class="sd">        By definition, this always yields perfect interpolation at the points</span>
-<span class="sd">        in X, but may oscillate between points if you have only a few. Use</span>
-<span class="sd">        bigger param in that case.</span>
-
-<span class="sd">        This method is a sure-fire one, i.e. it always works by definition. You</span>
-<span class="sd">        &quot;only&quot; need to choose `param` properly (which can be very hard</span>
-<span class="sd">        sometimes).</span>
-<span class="sd">        </span>
-<span class="sd">        can update:</span>
-<span class="sd">        -----------</span>
-<span class="sd">        weights</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        {&#39;weights&#39;: w, &#39;param&#39;: p}</span>
-<span class="sd">            w : (K,), linear output weights for K center vectors</span>
-<span class="sd">            p : None</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;_train_linalg...&quot;</span><span class="p">)</span>
-        <span class="c1"># this test may be expensive for big data sets</span>
-        <span class="k">assert</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s2">&quot;C == X not fulfilled&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">Rsq</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">Rsq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_dist_mat</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rbf</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
-        <span class="n">G</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rbf_mat</span><span class="p">(</span><span class="n">Rsq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Rsq</span><span class="p">)</span>
-        <span class="n">weights</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;weights&#39;</span><span class="p">:</span> <span class="n">weights</span><span class="p">,</span> <span class="s1">&#39;param&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
     
-<div class="viewcode-block" id="RBFInt.train"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.train.html#pwtools.rbf.RBFInt.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;linalg&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Call one of the training methods self._train_&lt;mode&gt;().</span>
+<div class="viewcode-block" id="RBFInt.fit"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.fit.html#pwtools.rbf.RBFInt.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="s1">&#39;est&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lstsq&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Solve for the weights w_j:</span>
+<span class="sd">            z_i = Sum_j g_ij w_j</span>
 <span class="sd">        </span>
-<span class="sd">        Always use this, not the methods directly, as they don&#39;t set</span>
-<span class="sd">        self.weights after training!</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_train_&#39;</span> <span class="o">+</span> <span class="n">mode</span><span class="p">)</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;param&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">rbf</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;param&#39;</span><span class="p">]</span></div>
-    
-<div class="viewcode-block" id="RBFInt.interpolate"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.interpolate.html#pwtools.rbf.RBFInt.interpolate">[docs]</a>    <span class="k">def</span> <span class="nf">interpolate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Actually do interpolation. Return interpolated Y values at each</span>
-<span class="sd">        point in X.</span>
+<span class="sd">        in case centers == points (center vectors are all data points). Then G is</span>
+<span class="sd">        quadratic w/ dim (M,M). Updates ``self.weights``.</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X : see interpolate()</span>
+<span class="sd">        param : &#39;est&#39; or float</span>
+<span class="sd">            see :meth:`get_param`</span>
+<span class="sd">        solver : str</span>
+<span class="sd">            &#39;solve&#39; : interpolation</span>
+<span class="sd">                By definition, this always yields perfect interpolation at the points</span>
+<span class="sd">                in points, but may oscillate between points if you have only a few. Use</span>
+<span class="sd">                bigger param in that case.</span>
+<span class="sd">            &#39;lstsq&#39; : fitting</span>
+<span class="sd">                use least squares</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># this test may be expensive for big data sets</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">centers</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s2">&quot;centers == points not fulfilled&quot;</span>
+        <span class="c1"># re-use self.distsq if possible</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">distsq</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">distsq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_distsq</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rbf</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rbf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distsq</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">solver</span> <span class="o">==</span> <span class="s1">&#39;solve&#39;</span><span class="p">:</span>
+            <span class="n">weights</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">linalg</span><span class="p">,</span> <span class="n">solver</span><span class="p">)(</span><span class="n">G</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">solver</span> <span class="o">==</span> <span class="s1">&#39;lstsq&#39;</span><span class="p">:</span>
+            <span class="n">weights</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">rnk</span><span class="p">,</span> <span class="n">svs</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">linalg</span><span class="p">,</span> <span class="n">solver</span><span class="p">)(</span><span class="n">G</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unknown solver: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">solver</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span></div>
+
+<div class="viewcode-block" id="RBFInt.fit_opt_param"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.fit_opt_param.html#pwtools.rbf.RBFInt.fit_opt_param">[docs]</a>    <span class="k">def</span> <span class="nf">fit_opt_param</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Optimize ``rbf.param`` and weights simultaneously by minimizing the</span>
+<span class="sd">        fit error with :meth:`fit` using ``solver=&#39;lstsq&#39;``. Can be used in</span>
+<span class="sd">        place of :meth:`fit`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">pvec</span><span class="p">):</span>
+            <span class="n">param</span> <span class="o">=</span> <span class="n">pvec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="n">param</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lstsq&#39;</span><span class="p">)</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+            <span class="n">err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="n">res</span><span class="p">)</span>
+            <span class="n">err</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">err</span><span class="p">))</span> <span class="k">if</span> <span class="n">param</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">err</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;err=</span><span class="si">{}</span><span class="s1">, param=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">param</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">err</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="s1">&#39;est&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lstsq&#39;</span><span class="p">)</span> 
+        <span class="c1"># self.rbf.param and self.weights are constantly updated in func(), the</span>
+        <span class="c1"># last iteration already set the converged values, no need to assign</span>
+        <span class="c1"># the result of fmin() </span>
+        <span class="n">optimize</span><span class="o">.</span><span class="n">fmin</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">rbf</span><span class="o">.</span><span class="n">param</span><span class="p">],</span> <span class="n">disp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span></div>
+        <span class="c1">##optimize.differential_evolution(func, bounds=[(0,3*self.rbf.param)], </span>
+        <span class="c1">##                                disp=self.verbose)</span>
+
+<div class="viewcode-block" id="RBFInt.interpolate"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.interpolate.html#pwtools.rbf.RBFInt.interpolate">[docs]</a>    <span class="k">def</span> <span class="nf">interpolate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Actually do interpolation. Return interpolated values values at each</span>
+<span class="sd">        point in points.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        points : see :meth:`__call__`</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        YI : 1d array (L,)</span>
+<span class="sd">        vals : 1d array (L,)</span>
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
-<span class="sd">        Calculates </span>
-<span class="sd">            Rsq = (X - C)**2      # squared distance matrix</span>
-<span class="sd">            G = rbf(Rsq)          # RBF values</span>
-<span class="sd">            YI = dot(G, w)        # interpolation y_i = Sum_j g_ij w_j</span>
+<span class="sd">        Calculates</span>
+<span class="sd">            distsq = (points - centers)**2  # squared distance matrix</span>
+<span class="sd">            G = rbf(distsq)                 # RBF values</span>
+<span class="sd">            zi = dot(G, w)                  # interpolation z_i = Sum_j g_ij w_j</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_assert_ndim_X</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="n">Rsq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_dist_mat</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">)</span>
-        <span class="n">G</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rbf_mat</span><span class="p">(</span><span class="n">Rsq</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assert_ndim_points</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        <span class="n">distsq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_distsq</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">points</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rbf</span><span class="p">(</span><span class="n">distsq</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">G</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">),</span> \
                <span class="s2">&quot;shape mismatch between g_ij: </span><span class="si">%s</span><span class="s2"> and w_j: </span><span class="si">%s</span><span class="s2">, 2nd dim of &quot;</span>\
-               <span class="s2">&quot;g_ij must match length of w_j&quot;</span> <span class="o">%</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> \
-               <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+               <span class="s2">&quot;g_ij must match length of w_j&quot;</span> <span class="o">%</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span>
+                                                 <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
         <span class="c1"># normalize weights</span>
         <span class="n">ww</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span>
         <span class="n">maxw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ww</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">*</span><span class="mf">1.0</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">ww</span> <span class="o">/</span> <span class="n">maxw</span><span class="p">)</span> <span class="o">*</span> <span class="n">maxw</span>
-        <span class="k">return</span> <span class="n">ret</span></div>
-    
-<div class="viewcode-block" id="RBFInt.deriv"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.deriv.html#pwtools.rbf.RBFInt.deriv">[docs]</a>    <span class="k">def</span> <span class="nf">deriv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">ww</span> <span class="o">/</span> <span class="n">maxw</span><span class="p">)</span> <span class="o">*</span> <span class="n">maxw</span></div>
+
+<div class="viewcode-block" id="RBFInt.deriv"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.deriv.html#pwtools.rbf.RBFInt.deriv">[docs]</a>    <span class="k">def</span> <span class="nf">deriv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Matrix of partial first derivatives.</span>
 
-<span class="sd">        Implemented for </span>
+<span class="sd">        Implemented for</span>
 <span class="sd">            RBFMultiquadric</span>
 <span class="sd">            RBFGauss</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X : see interpolate()</span>
+<span class="sd">        points : see :meth:`__call__`</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        2d array (L,N)</span>
-<span class="sd">            Each row holds the partial derivatives of one input point ``X[i,:] =</span>
-<span class="sd">            [x_0, ..., x_N]``. For all points X: (L,N), we get the matrix::</span>
+<span class="sd">            Each row holds the partial derivatives of one input point ``points[i,:] =</span>
+<span class="sd">            [x_0, ..., x_N-1]``. For all points points: (L,N), we get the matrix::</span>
 
-<span class="sd">                [[dy/dx0_0, dy/dx0_1, ..., dy/dx0_N],</span>
+<span class="sd">                [[dy/dx0_0,   dy/dx0_1,   ..., dy/dx0_N-1],</span>
 <span class="sd">                 [...],</span>
-<span class="sd">                 [dy/dxL_0, dy/dxL_1, ..., dy/dxL_N]]</span>
+<span class="sd">                 [dy/dxL-1_0, dy/dxL-1_1, ..., dy/dxL-1_N-1]]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># For the implemented RBF types, the derivatives w.r.t. to the point</span>
         <span class="c1"># coords simplify to nice dot products, which can be evaluated</span>
         <span class="c1"># reasonably fast w/ numpy. We don&#39;t need to change the RBF&#39;s</span>
         <span class="c1"># implementations to provide a deriv() method. For that, they would</span>
-        <span class="c1"># need to take X and C explicitely as args instead of squared</span>
+        <span class="c1"># need to take points and centers explicitly as args instead of squared</span>
         <span class="c1"># distances, which are calculated fast by Fortran outside.</span>
         <span class="c1">#</span>
         <span class="c1"># Speed:</span>
-        <span class="c1"># We have one python loop over the L points (X.shape=(L,N)) left, so</span>
+        <span class="c1"># We have one python loop over the L points (points.shape=(L,N)) left, so</span>
         <span class="c1"># this gets slow for many points.</span>
-        <span class="c1"># </span>
+        <span class="c1">#</span>
         <span class="c1"># Loop versions (for RBFMultiquadric):</span>
         <span class="c1">#</span>
-        <span class="c1"># # 3 loops:                </span>
+        <span class="c1"># # 3 loops:</span>
         <span class="c1"># D = np.zeros((L,N), dtype=float)</span>
         <span class="c1"># for zz in range(L):</span>
         <span class="c1">#     for kk in range(N):</span>
         <span class="c1">#         for ii in range(len(self.weights)):</span>
-        <span class="c1">#             D[zz,kk] += (X[zz,kk] - C[ii,kk]) / G[zz,ii] * \</span>
+        <span class="c1">#             D[zz,kk] += (points[zz,kk] - centers[ii,kk]) / G[zz,ii] * \</span>
         <span class="c1">#                 self.weights[ii]</span>
-        <span class="c1"># </span>
+        <span class="c1">#</span>
         <span class="c1"># # 2 loops:</span>
         <span class="c1"># D = np.zeros((L,N), dtype=float)</span>
         <span class="c1"># for zz in range(L):</span>
         <span class="c1">#     for kk in range(N):</span>
-        <span class="c1">#         vec = -1.0 * (C[:,kk] - X[zz,kk]) / G[zz,:]</span>
+        <span class="c1">#         vec = -1.0 * (centers[:,kk] - points[zz,kk]) / G[zz,:]</span>
         <span class="c1">#         D[zz,kk] = np.dot(vec, self.weights)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_assert_ndim_X</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="n">L</span><span class="p">,</span><span class="n">N</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
-        <span class="n">C</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span>
-        <span class="n">Rsq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_dist_mat</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">)</span>
-        <span class="n">G</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rbf_mat</span><span class="p">(</span><span class="n">Rsq</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assert_ndim_points</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        <span class="n">L</span><span class="p">,</span><span class="n">N</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">centers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">centers</span>
+        <span class="n">distsq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_distsq</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">points</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rbf</span><span class="p">(</span><span class="n">distsq</span><span class="p">)</span>
         <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="n">ww</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span>
         <span class="n">maxw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ww</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">*</span><span class="mf">1.0</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rbf</span><span class="p">,</span> <span class="n">RBFMultiquadric</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">zz</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
-                <span class="n">D</span><span class="p">[</span><span class="n">zz</span><span class="p">,:]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(((</span><span class="n">C</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="n">zz</span><span class="p">,:])</span> <span class="o">/</span> <span class="n">G</span><span class="p">[</span><span class="n">zz</span><span class="p">,:][:,</span><span class="kc">None</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">ww</span> <span class="o">/</span> <span class="n">maxw</span><span class="p">)</span> <span class="o">*</span> <span class="n">maxw</span>
+                <span class="n">D</span><span class="p">[</span><span class="n">zz</span><span class="p">,:]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(((</span><span class="n">centers</span> <span class="o">-</span> <span class="n">points</span><span class="p">[</span><span class="n">zz</span><span class="p">,:])</span> <span class="o">/</span> <span class="n">G</span><span class="p">[</span><span class="n">zz</span><span class="p">,:][:,</span><span class="kc">None</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">ww</span> <span class="o">/</span> <span class="n">maxw</span><span class="p">)</span> <span class="o">*</span> <span class="n">maxw</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rbf</span><span class="p">,</span> <span class="n">RBFGauss</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">zz</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
                 <span class="n">D</span><span class="p">[</span><span class="n">zz</span><span class="p">,:]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">rbf</span><span class="o">.</span><span class="n">param</span><span class="o">**</span><span class="mf">2.0</span> <span class="o">*</span> \
-                    <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(((</span><span class="n">C</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="n">zz</span><span class="p">,:])</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="n">zz</span><span class="p">,:][:,</span><span class="kc">None</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">ww</span> <span class="o">/</span> <span class="n">maxw</span><span class="p">)</span> <span class="o">*</span> <span class="n">maxw</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(((</span><span class="n">centers</span> <span class="o">-</span> <span class="n">points</span><span class="p">[</span><span class="n">zz</span><span class="p">,:])</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="n">zz</span><span class="p">,:][:,</span><span class="kc">None</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">ww</span> <span class="o">/</span> <span class="n">maxw</span><span class="p">)</span> <span class="o">*</span> <span class="n">maxw</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;derivative for rbf type not implemented&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">D</span>                </div>
+        <span class="k">return</span> <span class="n">D</span></div>
 
 <div class="viewcode-block" id="RBFInt.__call__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.__call__.html#pwtools.rbf.RBFInt.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Call self.interpolate() or self.deriv().</span>
+<span class="sd">        Call :meth:`interpolate` or :meth:`deriv`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X : 2d array (L,N) or 1d array (N,) or None </span>
-<span class="sd">            L data points in N-dim space. If None, then X = self.X, i.e. just</span>
+<span class="sd">        points : 2d array (L,N) or 1d array (N,) or None</span>
+<span class="sd">            L data points in N-dim space. If None, then points = self.points, i.e. just</span>
 <span class="sd">            evaluate the training set. If 1d, then this is just 1 point, which</span>
 <span class="sd">            will be converted to shape (1,N) internally.</span>
 <span class="sd">        der : int</span>
 <span class="sd">            If == 1 return matrix of partial derivatives (see self.deriv()), else</span>
-<span class="sd">            interpolated Y values (default).</span>
+<span class="sd">            interpolated values values (default).</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        YI : 1d array (L,)</span>
+<span class="sd">        vals : 1d array (L,)</span>
 <span class="sd">            Interpolated values.</span>
-<span class="sd">        or             </span>
-<span class="sd">        D : 2d array (L,N)</span>
+<span class="sd">        or</span>
+<span class="sd">        derivs : 2d array (L,N)</span>
 <span class="sd">            1st partial derivatives.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="s1">&#39;der&#39;</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
@@ -519,7 +450,7 @@
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;only der=1 supported&quot;</span><span class="p">)</span>
             <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;der&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">deriv</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>            
+        <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 </pre></div>
 
@@ -528,10 +459,24 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">pwtools</h1>
+    
+  </a>
+</p>
 
 
 
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=pwtools&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
 
 
 

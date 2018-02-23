@@ -359,10 +359,10 @@
 <span class="sd">    scipy.signal.gaussian().</span>
 <span class="sd">    </span>
 <span class="sd">    The Lorentz function is</span>
+<span class="sd">    </span>
+<span class="sd">    .. math::</span>
 
-<span class="sd">    .. math:: </span>
-
-<span class="sd">        L(x) = \\frac{\Gamma}{(x-x_0)^2 + \Gamma^2}</span>
+<span class="sd">        L(x) = \frac{\Gamma}{(x-x_0)^2 + \Gamma^2}</span>
 <span class="sd">    </span>
 <span class="sd">    Here :math:`x_0 = 0` and `std` = :math:`\Gamma`.</span>
 <span class="sd">    Some definitions use :math:`1/2\,\Gamma` instead of :math:`\Gamma`, but</span>
@@ -623,7 +623,7 @@
 
 
 <div class="viewcode-block" id="smooth"><a class="viewcode-back" href="../../generated/api/pwtools.signal.smooth.html#pwtools.signal.smooth">[docs]</a><span class="k">def</span> <span class="nf">smooth</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">kern</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">edge</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Smooth `data` by convolution with a kernel `kern`. </span>
+    <span class="sd">&quot;&quot;&quot;Smooth N-dim `data` by convolution with a kernel `kern`. </span>
 <span class="sd">    </span>
 <span class="sd">    Uses scipy.signal.fftconvolve(). </span>
 <span class="sd">    </span>
@@ -634,11 +634,11 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    data : nd array</span>
-<span class="sd">        The data to smooth. Example: 1d (N,) or (N,natoms,3)</span>
+<span class="sd">        The data to smooth. Example: 1d (N,) or (N,K,3)</span>
 <span class="sd">        for trajectory</span>
 <span class="sd">    kern : nd array</span>
 <span class="sd">        Convolution kernel. Example: 1d (M,) or (M,1,1)</span>
-<span class="sd">        for trajectory</span>
+<span class="sd">        for trajectory along axis=0 (data length N)</span>
 <span class="sd">    axis : int</span>
 <span class="sd">        Axis along which to do the smoothing. That is actually not needed for</span>
 <span class="sd">        the convolution ``fftconvolve(data, kern)`` but is used for padding the</span>
@@ -775,7 +775,7 @@
 <span class="sd">    &gt;&gt;&gt;         ret[:,jj,kk] = smooth(arr[:,jj,kk], kern) </span>
 <span class="sd">    </span>
 <span class="sd">    The size of the chunk over which you explicitely loop depends on the data</span>
-<span class="sd">    of course.</span>
+<span class="sd">    of course. We do exactly this in :func:`pwtools.crys.smooth`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># edge = &#39;m&#39;</span>
     <span class="c1"># ----------</span>
@@ -979,10 +979,24 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">pwtools</h1>
+    
+  </a>
+</p>
 
 
 
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=pwtools&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
 
 
 

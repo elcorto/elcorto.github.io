@@ -24,7 +24,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.rbf.RBFInt.calc_dist_mat" href="pwtools.rbf.RBFInt.calc_dist_mat.html" />
+    <link rel="next" title="pwtools.rbf.RBFInt.calc_distsq" href="pwtools.rbf.RBFInt.calc_distsq.html" />
     <link rel="prev" title="pwtools.rbf.RBFInt" href="pwtools.rbf.RBFInt.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -45,30 +45,30 @@
 <dl class="method">
 <dt id="pwtools.rbf.RBFInt.__call__">
 <code class="descclassname">RBFInt.</code><code class="descname">__call__</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.__call__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Call self.interpolate() or self.deriv().</p>
+<dd><p>Call <a class="reference internal" href="pwtools.rbf.RBFInt.interpolate.html#pwtools.rbf.RBFInt.interpolate" title="pwtools.rbf.RBFInt.interpolate"><code class="xref py py-meth docutils literal"><span class="pre">interpolate()</span></code></a> or <a class="reference internal" href="pwtools.rbf.RBFInt.deriv.html#pwtools.rbf.RBFInt.deriv" title="pwtools.rbf.RBFInt.deriv"><code class="xref py py-meth docutils literal"><span class="pre">deriv()</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>X</strong> : 2d array (L,N) or 1d array (N,) or None</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>points</strong> : 2d array (L,N) or 1d array (N,) or None</p>
 <blockquote>
-<div><p>L data points in N-dim space. If None, then X = self.X, i.e. just
+<div><p>L data points in N-dim space. If None, then points = self.points, i.e. just
 evaluate the training set. If 1d, then this is just 1 point, which
 will be converted to shape (1,N) internally.</p>
 </div></blockquote>
 <p><strong>der</strong> : int</p>
 <blockquote>
 <div><p>If == 1 return matrix of partial derivatives (see self.deriv()), else
-interpolated Y values (default).</p>
+interpolated values values (default).</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>YI</strong> : 1d array (L,)</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>vals</strong> : 1d array (L,)</p>
 <blockquote>
 <div><p>Interpolated values.</p>
 </div></blockquote>
 <p>or</p>
-<p><strong>D</strong> : 2d array (L,N)</p>
+<p><strong>derivs</strong> : 2d array (L,N)</p>
 <blockquote class="last">
 <div><p>1st partial derivatives.</p>
 </div></blockquote>
@@ -86,10 +86,24 @@ interpolated Y values (default).</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">pwtools</a></h1>
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">pwtools</h1>
+    
+  </a>
+</p>
 
 
 
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=pwtools&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
 
 
 
@@ -114,7 +128,7 @@ interpolated Y values (default).</p>
   <li><a href="rbf.html">rbf</a><ul>
   <li><a href="pwtools.rbf.RBFInt.html">pwtools.rbf.RBFInt</a><ul>
       <li>Previous: <a href="pwtools.rbf.RBFInt.html" title="previous chapter">pwtools.rbf.RBFInt</a></li>
-      <li>Next: <a href="pwtools.rbf.RBFInt.calc_dist_mat.html" title="next chapter">pwtools.rbf.RBFInt.calc_dist_mat</a></li>
+      <li>Next: <a href="pwtools.rbf.RBFInt.calc_distsq.html" title="next chapter">pwtools.rbf.RBFInt.calc_distsq</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
