@@ -270,11 +270,11 @@
 
     
 <div class="viewcode-block" id="RBFInt.fit"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.fit.html#pwtools.rbf.RBFInt.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="s1">&#39;est&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lstsq&#39;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Solve for the weights w_j:</span>
-<span class="sd">            z_i = Sum_j g_ij w_j</span>
+        <span class="sd">&quot;&quot;&quot;Solve linear system for the weights w:</span>
+<span class="sd">            G . w = z</span>
 <span class="sd">        </span>
-<span class="sd">        in case centers == points (center vectors are all data points). Then G is</span>
-<span class="sd">        quadratic w/ dim (M,M). Updates ``self.weights``.</span>
+<span class="sd">        with centers == points (center vectors are all data points). Then G is</span>
+<span class="sd">        quadratic. Updates ``self.weights``.</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -282,11 +282,13 @@
 <span class="sd">            see :meth:`get_param`</span>
 <span class="sd">        solver : str</span>
 <span class="sd">            &#39;solve&#39; : interpolation</span>
-<span class="sd">                By definition, this always yields perfect interpolation at the points</span>
-<span class="sd">                in points, but may oscillate between points if you have only a few. Use</span>
-<span class="sd">                bigger param in that case.</span>
-<span class="sd">            &#39;lstsq&#39; : fitting</span>
-<span class="sd">                use least squares</span>
+<span class="sd">                Use ``scipy.linalg.solve()``. By definition, this always yields</span>
+<span class="sd">                perfect interpolation at the data points. May be numerically</span>
+<span class="sd">                unstable.</span>
+<span class="sd">            &#39;lstsq&#39; : least squares regression (default)</span>
+<span class="sd">                Use ``scipy.linalg.lstsq()``. Numerically more stable. Will</span>
+<span class="sd">                mostly be the same as the interpolation result, but will not go</span>
+<span class="sd">                thru all points for very noisy data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># this test may be expensive for big data sets</span>
         <span class="k">assert</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">centers</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s2">&quot;centers == points not fulfilled&quot;</span>
@@ -487,10 +489,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background, details, special topics</a></li>
 </ul>
 
 <div class="relations">

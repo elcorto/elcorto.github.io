@@ -54,8 +54,6 @@
 </div>
 <p>This is for easy testing of multiple interpolators on a surface z = f(x,y),
 which is given as an unordered set of points.</p>
-<p>Except for ‘bispl’, all interpolators do actually work in ND as well, as
-does <a class="reference internal" href="pwtools.num.Interpol2D.get_min.html#pwtools.num.Interpol2D.get_min" title="pwtools.num.Interpol2D.get_min"><code class="xref py py-meth docutils literal"><span class="pre">get_min()</span></code></a>.</p>
 <p class="rubric">Methods</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -125,33 +123,54 @@ does <a class="reference internal" href="pwtools.num.Interpol2D.get_min.html#pwt
 <div class="line">‘rbf_multi’ : RBFN w/ multiquadric rbf, see <a class="reference internal" href="pwtools.rbf.RBFInt.html#pwtools.rbf.RBFInt" title="pwtools.rbf.RBFInt"><code class="xref py py-class docutils literal"><span class="pre">RBFInt</span></code></a></div>
 <div class="line">‘rbf_inv_multi’ : RBFN w/ inverse multiquadric rbf</div>
 <div class="line">‘rbf_gauss’ : RBFN w/ gaussian rbf</div>
+<div class="line">‘poly’      : <a class="reference internal" href="pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal"><span class="pre">PolyFit</span></code></a></div>
 <div class="line">‘bispl’     : scipy.interpolate.bispl{rep,ev} </div>
 <div class="line">‘ct’        : scipy.interpolate.CloughTocher2DInterpolator</div>
 <div class="line">‘linear’    : scipy.interpolate.LinearNDInterpolator</div>
 <div class="line">‘nearest’   : scipy.interpolate.NearestNDInterpolator</div>
 </div>
 </div></blockquote>
-<p class="last"><strong>**initkwds</strong> : keywords passed on to the interpolator’s constructor</p>
+<p><strong>**initkwds</strong> : keywords passed on to the interpolator’s constructor or</p>
+<blockquote class="last">
+<div><p>fit() method (RBF case)</p>
+</div></blockquote>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Notes</p>
+<p>Despite the name “Interpol2D”, the RBF methods ‘rbf_*’ as well as ‘poly’ are
+actually fits (least squares regression). You can force interpolation with
+the RBF methods using the <code class="docutils literal"><span class="pre">solver='solve'</span></code> keyword (see
+<a class="reference internal" href="pwtools.rbf.RBFInt.fit.html#pwtools.rbf.RBFInt.fit" title="pwtools.rbf.RBFInt.fit"><code class="xref py py-meth docutils literal"><span class="pre">pwtools.rbf.RBFInt.fit()</span></code></a>).</p>
 <p>The methods ‘ct’, ‘linear’ and of course ‘nearest’ can be inaccurate
 (see also <code class="docutils literal"><span class="pre">test/test_interpol.py</span></code>). Use only for plotting, not for
 data evaluation, i.e. accurate minimas etc.</p>
+<p>Except for ‘bispl’, all interpolators do actually work in ND as well, as
+does <a class="reference internal" href="pwtools.num.Interpol2D.get_min.html#pwtools.num.Interpol2D.get_min" title="pwtools.num.Interpol2D.get_min"><code class="xref py py-meth docutils literal"><span class="pre">get_min()</span></code></a>.</p>
 <p>Possible keywords (examples):</p>
-<dl class="docutils">
-<dt>rbf :</dt>
-<dd>param = ‘est’ (default)
-param = 0.05</dd>
-<dt>ct :</dt>
-<dd>tol = 1e-6 (default)</dd>
-<dt>bispl :</dt>
-<dd>s = 1e-4 
-kx = 3, ky = 3 (default)
-nxest, nyest</dd>
-</dl>
+<div class="line-block">
+<div class="line">rbf :</div>
+<div class="line-block">
+<div class="line">param = ‘est’ (default)</div>
+<div class="line">param = 0.05</div>
+<div class="line">solver = ‘solve’ | ‘lstsq’ (default)</div>
+</div>
+<div class="line">ct :</div>
+<div class="line-block">
+<div class="line">tol = 1e-6 (default)</div>
+</div>
+<div class="line">bispl :</div>
+<div class="line-block">
+<div class="line">s = 1e-4 </div>
+<div class="line">kx = 3, ky = 3 (default)</div>
+<div class="line">nxest, nyest</div>
+</div>
+<div class="line">poly :</div>
+<div class="line-block">
+<div class="line">deg = 5</div>
+</div>
+</div>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">num</span><span class="p">,</span> <span class="n">mpl</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span> 
@@ -160,13 +179,21 @@ nxest, nyest</dd>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Z</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">Y</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span> 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dd</span><span class="o">=</span><span class="n">mpl</span><span class="o">.</span><span class="n">Data2D</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="o">=</span><span class="n">Y</span><span class="p">,</span><span class="n">Z</span><span class="o">=</span><span class="n">Z</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;what: </span><span class="si">{:15}</span><span class="s2"> target: [5,30] result: </span><span class="si">{}</span><span class="s2">&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">what</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;rbf_multi&#39;</span><span class="p">,</span> <span class="s1">&#39;rbf_inv_multi&#39;</span><span class="p">,</span> <span class="s1">&#39;rbf_gauss&#39;</span><span class="p">,</span> <span class="s1">&#39;ct&#39;</span><span class="p">,</span> <span class="s1">&#39;bispl&#39;</span><span class="p">,</span> 
-<span class="go">                 &#39;linear&#39;, &#39;nearest&#39;]:</span>
-<span class="gp">... </span>    <span class="n">inter</span><span class="o">=</span><span class="n">num</span><span class="o">.</span><span class="n">Interpol2D</span><span class="p">(</span><span class="n">dd</span><span class="o">=</span><span class="n">dd</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="n">what</span><span class="p">)</span>   
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;rbf_multi&#39;</span><span class="p">,</span> <span class="s1">&#39;rbf_inv_multi&#39;</span><span class="p">,</span>
+<span class="gp">... </span>               <span class="s1">&#39;rbf_gauss&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;deg&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}),</span> 
+<span class="gp">... </span>               <span class="s1">&#39;ct&#39;</span><span class="p">,</span> <span class="s1">&#39;bispl&#39;</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;nearest&#39;</span><span class="p">]:</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="n">what</span> <span class="o">=</span> <span class="n">method</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span>        <span class="n">kwds</span> <span class="o">=</span> <span class="n">method</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">what</span> <span class="o">=</span> <span class="n">method</span>
+<span class="gp">... </span>        <span class="n">kwds</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="gp">... </span>    <span class="n">inter</span><span class="o">=</span><span class="n">num</span><span class="o">.</span><span class="n">Interpol2D</span><span class="p">(</span><span class="n">dd</span><span class="o">=</span><span class="n">dd</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="n">what</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>   
 <span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">what</span><span class="p">,</span> <span class="n">inter</span><span class="p">([[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])))</span>
-<span class="go">what: rbf_multi       target: [5,30] result: [  4.99999972  29.99999988]</span>
-<span class="go">what: rbf_inv_multi   target: [5,30] result: [  4.99999661  29.9999993 ]</span>
-<span class="go">what: rbf_gauss       target: [5,30] result: [  4.99999783  29.99999569]</span>
+<span class="go">what: rbf_multi       target: [5,30] result: [  5.00000005  29.99999959]</span>
+<span class="go">what: rbf_inv_multi   target: [5,30] result: [  4.99999808  29.99999798]</span>
+<span class="go">what: rbf_gauss       target: [5,30] result: [  5.00000051  30.00000352]</span>
+<span class="go">what: poly            target: [5,30] result: [  5.  30.]</span>
 <span class="go">what: ct              target: [5,30] result: [  4.99762256  30.010856  ]</span>
 <span class="go">what: bispl           target: [5,30] result: [  5.  30.]</span>
 <span class="go">what: linear          target: [5,30] result: [  5.06925208  30.13850416]</span>
@@ -242,10 +269,10 @@ smallest <cite>z</cite> value.</p>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background, details, special topics</a></li>
 </ul>
 
 <div class="relations">

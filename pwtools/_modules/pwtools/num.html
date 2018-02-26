@@ -750,7 +750,6 @@
         <span class="k">return</span> <span class="n">_sum</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">tosum</span><span class="p">)</span></div>
 
 
-<span class="c1"># XXX PolyFit can be added as well!</span>
 <div class="viewcode-block" id="Interpol2D"><a class="viewcode-back" href="../../generated/api/pwtools.num.Interpol2D.html#pwtools.eos.Interpol2D">[docs]</a><span class="k">class</span> <span class="nc">Interpol2D</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Common 2D interpolator API. </span>
 <span class="sd">    </span>
@@ -761,9 +760,6 @@
 
 <span class="sd">    This is for easy testing of multiple interpolators on a surface z = f(x,y),</span>
 <span class="sd">    which is given as an unordered set of points.</span>
-<span class="sd">    </span>
-<span class="sd">    Except for &#39;bispl&#39;, all interpolators do actually work in ND as well, as</span>
-<span class="sd">    does :meth:`get_min`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="Interpol2D.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.num.Interpol2D.html#pwtools.eos.Interpol2D.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">yy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">dd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">what</span><span class="o">=</span><span class="s1">&#39;rbf_inv_multi&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">initkwds</span><span class="p">):</span>
@@ -781,30 +777,43 @@
 <span class="sd">            | &#39;rbf_multi&#39; : RBFN w/ multiquadric rbf, see :class:`~pwtools.rbf.RBFInt`</span>
 <span class="sd">            | &#39;rbf_inv_multi&#39; : RBFN w/ inverse multiquadric rbf</span>
 <span class="sd">            | &#39;rbf_gauss&#39; : RBFN w/ gaussian rbf</span>
+<span class="sd">            | &#39;poly&#39;      : :class:`PolyFit`</span>
 <span class="sd">            | &#39;bispl&#39;     : scipy.interpolate.bispl{rep,ev} </span>
 <span class="sd">            | &#39;ct&#39;        : scipy.interpolate.CloughTocher2DInterpolator</span>
 <span class="sd">            | &#39;linear&#39;    : scipy.interpolate.LinearNDInterpolator</span>
 <span class="sd">            | &#39;nearest&#39;   : scipy.interpolate.NearestNDInterpolator</span>
-<span class="sd">        **initkwds : keywords passed on to the interpolator&#39;s constructor             </span>
+<span class="sd">        **initkwds : keywords passed on to the interpolator&#39;s constructor or</span>
+<span class="sd">            fit() method (RBF case)</span>
 <span class="sd">        </span>
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
+<span class="sd">        Despite the name &quot;Interpol2D&quot;, the RBF methods &#39;rbf_*&#39; as well as &#39;poly&#39; are</span>
+<span class="sd">        actually fits (least squares regression). You can force interpolation with</span>
+<span class="sd">        the RBF methods using the ``solver=&#39;solve&#39;`` keyword (see</span>
+<span class="sd">        :meth:`pwtools.rbf.RBFInt.fit`).</span>
+<span class="sd">        </span>
 <span class="sd">        The methods &#39;ct&#39;, &#39;linear&#39; and of course &#39;nearest&#39; can be inaccurate</span>
 <span class="sd">        (see also ``test/test_interpol.py``). Use only for plotting, not for</span>
 <span class="sd">        data evaluation, i.e. accurate minimas etc.</span>
 
+<span class="sd">        Except for &#39;bispl&#39;, all interpolators do actually work in ND as well, as</span>
+<span class="sd">        does :meth:`get_min`.</span>
+
 <span class="sd">        Possible keywords (examples):</span>
 <span class="sd">        </span>
-<span class="sd">        rbf :</span>
-<span class="sd">            param = &#39;est&#39; (default)</span>
-<span class="sd">            param = 0.05</span>
-<span class="sd">        ct :</span>
-<span class="sd">            tol = 1e-6 (default)</span>
-<span class="sd">        bispl :</span>
-<span class="sd">            s = 1e-4 </span>
-<span class="sd">            kx = 3, ky = 3 (default)</span>
-<span class="sd">            nxest, nyest</span>
-<span class="sd">        </span>
+<span class="sd">        | rbf :</span>
+<span class="sd">        |     param = &#39;est&#39; (default)</span>
+<span class="sd">        |     param = 0.05</span>
+<span class="sd">        |     solver = &#39;solve&#39; | &#39;lstsq&#39; (default)</span>
+<span class="sd">        | ct :</span>
+<span class="sd">        |     tol = 1e-6 (default)</span>
+<span class="sd">        | bispl :</span>
+<span class="sd">        |     s = 1e-4 </span>
+<span class="sd">        |     kx = 3, ky = 3 (default)</span>
+<span class="sd">        |     nxest, nyest</span>
+<span class="sd">        | poly :</span>
+<span class="sd">        |     deg = 5</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; from pwtools import num, mpl</span>
@@ -814,17 +823,25 @@
 <span class="sd">        &gt;&gt;&gt; Z=(X+3)**2+(Y+4)**2 + 5 </span>
 <span class="sd">        &gt;&gt;&gt; dd=mpl.Data2D(X=X,Y=Y,Z=Z)</span>
 <span class="sd">        &gt;&gt;&gt; fmt=&quot;what: {:15} target: [5,30] result: {}&quot;</span>
-<span class="sd">        &gt;&gt;&gt; for what in [&#39;rbf_multi&#39;, &#39;rbf_inv_multi&#39;, &#39;rbf_gauss&#39;, &#39;ct&#39;, &#39;bispl&#39;, </span>
-<span class="sd">		         &#39;linear&#39;, &#39;nearest&#39;]:</span>
-<span class="sd">        ...     inter=num.Interpol2D(dd=dd, what=what)   </span>
+<span class="sd">        &gt;&gt;&gt; for method in [&#39;rbf_multi&#39;, &#39;rbf_inv_multi&#39;,</span>
+<span class="sd">        ...                &#39;rbf_gauss&#39;, (&#39;poly&#39;, {&#39;deg&#39;: 5}), </span>
+<span class="sd">        ...                &#39;ct&#39;, &#39;bispl&#39;, &#39;linear&#39;, &#39;nearest&#39;]:</span>
+<span class="sd">        ...     if isinstance(method, tuple):</span>
+<span class="sd">        ...         what = method[0]</span>
+<span class="sd">        ...         kwds = method[1]</span>
+<span class="sd">        ...     else:</span>
+<span class="sd">        ...         what = method</span>
+<span class="sd">        ...         kwds = {}</span>
+<span class="sd">        ...     inter=num.Interpol2D(dd=dd, what=what, **kwds)   </span>
 <span class="sd">        ...     print(fmt.format(what, inter([[-3,-4],[0,0]])))</span>
-<span class="sd">	what: rbf_multi       target: [5,30] result: [  4.99999972  29.99999988]</span>
-<span class="sd">	what: rbf_inv_multi   target: [5,30] result: [  4.99999661  29.9999993 ]</span>
-<span class="sd">	what: rbf_gauss       target: [5,30] result: [  4.99999783  29.99999569]</span>
-<span class="sd">	what: ct              target: [5,30] result: [  4.99762256  30.010856  ]</span>
-<span class="sd">	what: bispl           target: [5,30] result: [  5.  30.]</span>
-<span class="sd">	what: linear          target: [5,30] result: [  5.06925208  30.13850416]</span>
-<span class="sd">	what: nearest         target: [5,30] result: [  5.01385042  33.82271468]</span>
+<span class="sd">        what: rbf_multi       target: [5,30] result: [  5.00000005  29.99999959]</span>
+<span class="sd">        what: rbf_inv_multi   target: [5,30] result: [  4.99999808  29.99999798]</span>
+<span class="sd">        what: rbf_gauss       target: [5,30] result: [  5.00000051  30.00000352]</span>
+<span class="sd">        what: poly            target: [5,30] result: [  5.  30.]</span>
+<span class="sd">        what: ct              target: [5,30] result: [  4.99762256  30.010856  ]</span>
+<span class="sd">        what: bispl           target: [5,30] result: [  5.  30.]</span>
+<span class="sd">        what: linear          target: [5,30] result: [  5.06925208  30.13850416]</span>
+<span class="sd">        what: nearest         target: [5,30] result: [  5.01385042  33.82271468]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">dd</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">xx</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">yy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -846,17 +863,21 @@
         <span class="k">if</span> <span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;rbf_multi&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="o">=</span> <span class="n">rbf</span><span class="o">.</span><span class="n">RBFInt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
                                     <span class="n">rbf</span><span class="o">=</span><span class="n">rbf</span><span class="o">.</span><span class="n">RBFMultiquadric</span><span class="p">())</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="s1">&#39;linalg&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">initkwds</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">**</span><span class="n">initkwds</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">call</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inter</span>
         <span class="k">elif</span> <span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;rbf_inv_multi&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="o">=</span> <span class="n">rbf</span><span class="o">.</span><span class="n">RBFInt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
                                     <span class="n">rbf</span><span class="o">=</span><span class="n">rbf</span><span class="o">.</span><span class="n">RBFInverseMultiquadric</span><span class="p">())</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="s1">&#39;linalg&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">initkwds</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">**</span><span class="n">initkwds</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">call</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inter</span>
         <span class="k">elif</span> <span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;rbf_gauss&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="o">=</span> <span class="n">rbf</span><span class="o">.</span><span class="n">RBFInt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">rbf</span><span class="o">=</span><span class="n">rbf</span><span class="o">.</span><span class="n">RBFGauss</span><span class="p">())</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="s1">&#39;linalg&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">initkwds</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">**</span><span class="n">initkwds</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">call</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inter</span>
+        <span class="k">elif</span> <span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;poly&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="o">=</span> <span class="n">PolyFit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">initkwds</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">call</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inter</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">call</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_poly_format_return</span>
         <span class="k">elif</span> <span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;ct&#39;</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">CloughTocher2DInterpolator</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;could not import &quot;</span>
@@ -897,7 +918,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">call</span> <span class="o">=</span> <span class="n">_call</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unknown interpolator type: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">what</span><span class="p">)</span></div>
-   
+    
+    <span class="c1"># See pwtools.test.test_polyfit.test_api: work around subtle PolyFit API</span>
+    <span class="c1"># difference to all other interpolators w/o breaking neither Interpol2D&#39;s</span>
+    <span class="c1"># nor PolyFit&#39;s API</span>
+    <span class="k">def</span> <span class="nf">_poly_format_return</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">))</span>
+
 <div class="viewcode-block" id="Interpol2D.__call__"><a class="viewcode-back" href="../../generated/api/pwtools.num.Interpol2D.__call__.html#pwtools.eos.Interpol2D.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="o">**</span><span class="n">callkwds</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -1639,6 +1666,7 @@
             <span class="o">%</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
         <span class="c1"># set self.x, self.y, need that in Fit1D._findroot()</span>
         <span class="n">Fit1D</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span></div>
+
     
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_fix_shape_init</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
@@ -1866,7 +1894,7 @@
 <span class="sd">    </span>
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    [1] http://mathworld.wolfram.com/EulerAngles.html</span>
+<span class="sd">    .. [1] http://mathworld.wolfram.com/EulerAngles.html</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">deg</span><span class="p">:</span>
         <span class="n">phi</span> <span class="o">=</span> <span class="n">radians</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
@@ -1929,10 +1957,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background, details, special topics</a></li>
 </ul>
 
 <div class="relations">

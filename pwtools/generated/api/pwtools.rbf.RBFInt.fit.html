@@ -46,11 +46,11 @@
 <dt id="pwtools.rbf.RBFInt.fit">
 <code class="descclassname">RBFInt.</code><code class="descname">fit</code><span class="sig-paren">(</span><em>param='est'</em>, <em>solver='lstsq'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#RBFInt.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.RBFInt.fit" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Solve for the weights w_j:</dt>
-<dd>z_i = Sum_j g_ij w_j</dd>
+<dt>Solve linear system for the weights w:</dt>
+<dd>G . w = z</dd>
 </dl>
-<p>in case centers == points (center vectors are all data points). Then G is
-quadratic w/ dim (M,M). Updates <code class="docutils literal"><span class="pre">self.weights</span></code>.</p>
+<p>with centers == points (center vectors are all data points). Then G is
+quadratic. Updates <code class="docutils literal"><span class="pre">self.weights</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -63,12 +63,14 @@ quadratic w/ dim (M,M). Updates <code class="docutils literal"><span class="pre"
 <blockquote class="last">
 <div><dl class="docutils">
 <dt>‘solve’ <span class="classifier-delimiter">:</span> <span class="classifier">interpolation</span></dt>
-<dd><p class="first last">By definition, this always yields perfect interpolation at the points
-in points, but may oscillate between points if you have only a few. Use
-bigger param in that case.</p>
+<dd><p class="first last">Use <code class="docutils literal"><span class="pre">scipy.linalg.solve()</span></code>. By definition, this always yields
+perfect interpolation at the data points. May be numerically
+unstable.</p>
 </dd>
-<dt>‘lstsq’ <span class="classifier-delimiter">:</span> <span class="classifier">fitting</span></dt>
-<dd><p class="first last">use least squares</p>
+<dt>‘lstsq’ <span class="classifier-delimiter">:</span> <span class="classifier">least squares regression (default)</span></dt>
+<dd><p class="first last">Use <code class="docutils literal"><span class="pre">scipy.linalg.lstsq()</span></code>. Numerically more stable. Will
+mostly be the same as the interpolation result, but will not go
+thru all points for very noisy data.</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -114,10 +116,10 @@ bigger param in that case.</p>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background, details, special topics</a></li>
 </ul>
 
 <div class="relations">

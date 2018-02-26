@@ -125,21 +125,40 @@
         <span class="n">ax3d</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">[:,</span><span class="n">j</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">z</span><span class="p">[:,</span><span class="n">j</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ax3d</span>        </div>
 
+
 <div class="viewcode-block" id="fig_ax"><a class="viewcode-back" href="../../generated/api/pwtools.mpl.fig_ax.html#pwtools.mpl.fig_ax">[docs]</a><span class="k">def</span> <span class="nf">fig_ax</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;``fig,ax = fig_ax()``&quot;&quot;&quot;</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span></div>
 
-<div class="viewcode-block" id="fig_ax3d"><a class="viewcode-back" href="../../generated/api/pwtools.mpl.fig_ax3d.html#pwtools.mpl.fig_ax3d">[docs]</a><span class="k">def</span> <span class="nf">fig_ax3d</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;``fig,ax3d = fig_ax()``&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="fig_ax3d"><a class="viewcode-back" href="../../generated/api/pwtools.mpl.fig_ax3d.html#pwtools.mpl.fig_ax3d">[docs]</a><span class="k">def</span> <span class="nf">fig_ax3d</span><span class="p">(</span><span class="n">clean</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;``fig,ax3d = fig_ax()``</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    clean : bool</span>
+<span class="sd">        see :func:`clean_ax3d`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span> 
         <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="c1"># mpl &lt; 1.0.0</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">Axes3D</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">clean</span><span class="p">:</span>
+        <span class="n">clean_ax3d</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="clean_ax3d"><a class="viewcode-back" href="../../generated/api/pwtools.mpl.clean_ax3d.html#pwtools.mpl.clean_ax3d">[docs]</a><span class="k">def</span> <span class="nf">clean_ax3d</span><span class="p">(</span><span class="n">ax</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;On ``Axes3DSubplot`` `ax`, set x,y,z pane color to white and remove</span>
+<span class="sd">    grid.&quot;&quot;&quot;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">w_xaxis</span><span class="o">.</span><span class="n">set_pane_color</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">w_yaxis</span><span class="o">.</span><span class="n">set_pane_color</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">w_zaxis</span><span class="o">.</span><span class="n">set_pane_color</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Plot"><a class="viewcode-back" href="../../generated/api/pwtools.mpl.Plot.html#pwtools.mpl.Plot">[docs]</a><span class="k">class</span> <span class="nc">Plot</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -477,16 +496,15 @@
 <span class="c1"># backwd compat</span>
 <span class="n">Data3D</span> <span class="o">=</span> <span class="n">Data2D</span>
 
-<div class="viewcode-block" id="get_2d_testdata"><a class="viewcode-back" href="../../generated/api/pwtools.mpl.get_2d_testdata.html#pwtools.mpl.get_2d_testdata">[docs]</a><span class="k">def</span> <span class="nf">get_2d_testdata</span><span class="p">():</span>
+<div class="viewcode-block" id="get_2d_testdata"><a class="viewcode-back" href="../../generated/api/pwtools.mpl.get_2d_testdata.html#pwtools.mpl.get_2d_testdata">[docs]</a><span class="k">def</span> <span class="nf">get_2d_testdata</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;2D sin + cos data.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    ret : :class:`Data2D`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
-    <span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">meshgridt</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">meshgridt</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
     <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">Data2D</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="o">=</span><span class="n">Z</span><span class="p">)</span></div>
 
@@ -814,10 +832,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background, details, special topics</a></li>
 </ul>
 
 <div class="relations">

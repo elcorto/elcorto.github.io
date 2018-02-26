@@ -40,6 +40,9 @@
             
   <div class="section" id="radial-basis-functions-networks-for-interpolation-or-fitting-of-n-dim-data-points">
 <span id="rbf"></span><h1>Radial Basis Functions Networks for interpolation or fitting of N-dim data points<a class="headerlink" href="#radial-basis-functions-networks-for-interpolation-or-fitting-of-n-dim-data-points" title="Permalink to this headline">¶</a></h1>
+<p>Some background information on the method implemented in
+<a class="reference internal" href="../../generated/api/rbf.html#module-pwtools.rbf" title="pwtools.rbf"><code class="xref py py-mod docutils literal"><span class="pre">rbf</span></code></a>. For code examples, see the docstring of
+<a class="reference internal" href="../../generated/api/pwtools.rbf.RBFInt.html#pwtools.rbf.RBFInt" title="pwtools.rbf.RBFInt"><code class="xref py py-class docutils literal"><span class="pre">RBFInt</span></code></a> and <code class="docutils literal"><span class="pre">examples/rbf/</span></code>.</p>
 <p>Refs:</p>
 <table class="docutils footnote" frame="void" id="id1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -123,7 +126,7 @@ actually very good and doesn’t change much when optimizing. However, this is
 not always the global min. There are cases where we find a much smaller
 <code class="docutils literal"><span class="pre">param</span></code> (e.g. factor 10 smaller), which leads to better fits at the data
 points but oscillations between them (found with methods where we actually have
-more points for testing than we use for fitting, see <code class="docutils literal"><span class="pre">examples/rbf.py</span></code>). That
+more points for testing than we use for fitting, see <code class="docutils literal"><span class="pre">examples/rbf/</span></code>). That
 minimum was found sometimes with <code class="docutils literal"><span class="pre">scipy.optimize.fmin</span></code> and always with
 <code class="docutils literal"><span class="pre">scipy.optimize.differential_evolution</span></code>. However, as stated above, we usually
 want to do a fit with the mean-distance estimate rather than a perfect
@@ -185,10 +188,10 @@ also live on more or less equal x-y scales.</p>
 <li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Background, details, special topics</a></li>
 </ul>
 
 <div class="relations">

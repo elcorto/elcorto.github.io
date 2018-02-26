@@ -50,11 +50,80 @@
 band-stop). Uses firwin() and in some cases kaiserord().</p>
 <p>Doc strings stolen from scipy.signal.</p>
 <p class="rubric">Notes</p>
-<p>To plot the frequency response (the frequency bands), use::
-&gt;&gt;&gt; f = Filter(…)
-&gt;&gt;&gt; plot(f.w, abs(f.h))</p>
+<p>To plot the frequency response (the frequency bands), use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">h</span><span class="p">))</span>
+</pre></div>
+</div>
 <p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r4646" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[R4646]</a></td><td><a class="reference external" href="http://www.scipy.org/Cookbook/FIRFilter">http://www.scipy.org/Cookbook/FIRFilter</a></td></tr>
+</tbody>
+</table>
 <p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Example for using a digital filter.</span>
+<span class="c1">#</span>
+<span class="c1"># Aliasing</span>
+<span class="c1"># --------</span>
+<span class="c1"># Suppose you have a signal with 50 + 80 or 120 Hz and a Nyquist freq of 100.</span>
+<span class="c1"># The 80 Hz part can be filtered out by using a lowpass with e.g. cutoff=70 or</span>
+<span class="c1"># a bandpass with cutoff=[10,70] or so.</span>
+<span class="c1">#</span>
+<span class="c1"># Because the Nyquist frequency is 100 Hz, the 120 Hz signal is aliased back</span>
+<span class="c1"># (folded back at 100 Hz) to 80 Hz by sampling the signal and shows then up as</span>
+<span class="c1"># a peak in FFT. This can be also taken care of by using a filter in time</span>
+<span class="c1"># domain on the signal before FFT, but make sure that the filter cutoff</span>
+<span class="c1"># frequencies are such that the aliased peak is excluded (i.e. smaller then 80</span>
+<span class="c1"># Hz). As such, the aliased 50+120 signal behaves exactly like a 50+80 signal.</span>
+<span class="c1">#</span>
+<span class="c1"># Note that in general, you don&#39;t know to which frequency aliases have been put</span>
+<span class="c1"># and just using a bandpass around you desired frequency band won&#39;t help. The</span>
+<span class="c1"># only solution in this case is to avoid aliasing in the first place :)</span>
+
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">mpl</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="k">import</span> <span class="n">hanning</span>
+<span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="k">import</span> <span class="n">fft</span>
+<span class="kn">from</span> <span class="nn">pwtools.signal</span> <span class="k">import</span> <span class="n">fftsample</span><span class="p">,</span> <span class="n">FIRFilter</span><span class="p">,</span> <span class="n">pad_zeros</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+<span class="n">plt</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">plt</span>
+
+<span class="n">plots</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">prepare_plots</span><span class="p">([</span><span class="s1">&#39;freq&#39;</span><span class="p">,</span> <span class="s1">&#39;filt_pad&#39;</span><span class="p">,</span> <span class="s1">&#39;filt_nopad&#39;</span><span class="p">])</span>
+<span class="n">nyq</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># Hz</span>
+<span class="n">df</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># Hz</span>
+<span class="n">dt</span><span class="p">,</span> <span class="n">nstep</span> <span class="o">=</span> <span class="n">fftsample</span><span class="p">(</span><span class="n">nyq</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">nstep</span><span class="p">))</span>
+<span class="n">filt1</span> <span class="o">=</span> <span class="n">FIRFilter</span><span class="p">(</span><span class="n">cutoff</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">],</span> <span class="n">nyq</span><span class="o">=</span><span class="n">nyq</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;bandpass&#39;</span><span class="p">,</span> <span class="n">ripple</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+                  <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">filt2</span> <span class="o">=</span> <span class="n">FIRFilter</span><span class="p">(</span><span class="n">cutoff</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">],</span> <span class="n">nyq</span><span class="o">=</span><span class="n">nyq</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;bandpass&#39;</span><span class="p">,</span> <span class="n">ntaps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                  <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hamming&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">filt1</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">filt1</span><span class="o">.</span><span class="n">h</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;filt1&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">filt2</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">filt2</span><span class="o">.</span><span class="n">h</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;filt2&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">pad</span> <span class="ow">in</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">]:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="mi">20</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="mi">80</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pad</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">pad_zeros</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nadd</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">pl</span> <span class="o">=</span> <span class="n">plots</span><span class="p">[</span><span class="s1">&#39;filt_pad&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">pl</span> <span class="o">=</span> <span class="n">plots</span><span class="p">[</span><span class="s1">&#39;filt_nopad&#39;</span><span class="p">]</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">sl</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">win</span> <span class="o">=</span> <span class="n">hanning</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">sl</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="n">sl</span><span class="p">]),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;fft(x)&#39;</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">sl</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">filt1</span><span class="p">(</span><span class="n">x</span><span class="p">))[</span><span class="n">sl</span><span class="p">]),</span>     <span class="n">label</span><span class="o">=</span><span class="s1">&#39;fft(filt1(x))&#39;</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">sl</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">filt1</span><span class="p">(</span><span class="n">win</span><span class="o">*</span><span class="n">x</span><span class="p">))[</span><span class="n">sl</span><span class="p">]),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;fft(filt1(hanning*x))&#39;</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">sl</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">filt2</span><span class="p">(</span><span class="n">win</span><span class="o">*</span><span class="n">x</span><span class="p">))[</span><span class="n">sl</span><span class="p">]),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;fft(filt2(hanning*x))&#39;</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;zero pad = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">pad</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
 <p class="rubric">Methods</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -183,10 +252,10 @@ build a Kaiser window.</p>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../written/features/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background, details, special topics</a></li>
 </ul>
 
 <div class="relations">
