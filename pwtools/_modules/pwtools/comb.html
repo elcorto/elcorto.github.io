@@ -45,106 +45,6 @@
 <span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">reduce</span>
 <span class="kn">import</span> <span class="nn">itertools</span>
 
-<div class="viewcode-block" id="fac"><a class="viewcode-back" href="../../generated/api/pwtools.comb.fac.html#pwtools.comb.fac">[docs]</a><span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Factorial n!. Returns integer.&quot;&quot;&quot;</span>
-    <span class="n">_assert</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="nb">int</span><span class="p">),</span> <span class="s1">&#39;`n` must be int&#39;</span><span class="p">)</span>
-    <span class="n">_assert</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;`n` must be &gt;= 0&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> </div>
-
-
-<div class="viewcode-block" id="binom"><a class="viewcode-back" href="../../generated/api/pwtools.comb.binom.html#pwtools.comb.binom">[docs]</a><span class="k">def</span> <span class="nf">binom</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Binomial coefficient (&quot;n over k&quot;).</span>
-<span class="sd">    fac(n)/(fac(k)*fac(n-k))</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">_assert</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;=</span> <span class="n">k</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;illegal input, only n &gt;= k &gt;= 0&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">fac</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">))</span></div>
-
-
-<span class="c1"># XXX remove? seems unused</span>
-<div class="viewcode-block" id="_swap"><a class="viewcode-back" href="../../generated/api/pwtools.comb._swap.html#pwtools.comb._swap">[docs]</a><span class="k">def</span> <span class="nf">_swap</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Swap arr[i] &lt;-&gt; arr[j]. Return i-j-swapped copy of `arr`.</span>
-<span class="sd">    </span>
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    arr : 1d list</span>
-<span class="sd">    </span>
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    Must return a copy of arr b/c the swap is an in-place operation and lists</span>
-<span class="sd">    are mutable.</span>
-<span class="sd">    &quot;&quot;&quot;</span>        
-    <span class="c1"># aa = a.copy() for np arrays</span>
-    <span class="c1"># aa = a[:]     for lists</span>
-    <span class="n">aa</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:]</span>
-    <span class="n">tmp</span> <span class="o">=</span> <span class="n">aa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="n">aa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">aa</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-    <span class="n">aa</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
-    <span class="k">return</span> <span class="n">aa</span></div>
-
-<span class="c1"># XXX remove? use itertools.permutations()??</span>
-<div class="viewcode-block" id="ipermute"><a class="viewcode-back" href="../../generated/api/pwtools.comb.ipermute.html#pwtools.comb.ipermute">[docs]</a><span class="k">def</span> <span class="nf">ipermute</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Calculate all N! permutations of sequence `seq` (return generator</span>
-<span class="sd">    object). This function was written before itertools.permutations()</span>
-<span class="sd">    existed, which is actually much faster.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    seq : 1d list to permute, len(seq) = N</span>
-<span class="sd">    </span>
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; import itertools</span>
-<span class="sd">    &gt;&gt;&gt; [x for x in ipermute([1,2,3])]</span>
-<span class="sd">    [[1, 2, 3], [2, 1, 3], [3, 1, 2], [1, 3, 2], [2, 3, 1], [3, 2, 1]]</span>
-<span class="sd">    &gt;&gt;&gt; [x for x in itertools.permutations([1,2,3])]</span>
-<span class="sd">    [(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)]</span>
-<span class="sd">    # only unique ones</span>
-<span class="sd">    &gt;&gt;&gt; set([x for x in itertools.permutations([1,0,0])])</span>
-<span class="sd">    set([(0, 0, 1), (0, 1, 0), (1, 0, 0)])</span>
-
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    algo : We use the Counting QuickPerm Algorithm [1]_. Works like Heap&#39;s</span>
-<span class="sd">        Algorithm [2]_ [3]_  but not recursive. Uses N!-1 swaps.</span>
-
-<span class="sd">    References</span>
-<span class="sd">    ----------</span>
-<span class="sd">    .. [1] http://permute.tchs.info/quickperm.php</span>
-<span class="sd">    .. [2] www.cs.princeton.edu/~rs/talks/perms.pdf, page 12</span>
-<span class="sd">    .. [3] http://www.cut-the-knot.org/do_you_know/AllPerm.shtml</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># copy input</span>
-    <span class="n">aa</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">seq</span><span class="p">)[:]</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="c1"># first permutation is the input</span>
-    <span class="k">yield</span> <span class="n">aa</span><span class="p">[:]</span>
-    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">:</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">j</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="c1"># copy</span>
-            <span class="c1"># swap a[i] &lt;-&gt; a[j]</span>
-            <span class="n">tmp</span> <span class="o">=</span> <span class="n">aa</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-            <span class="n">aa</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">aa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="n">aa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
-            <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="k">yield</span> <span class="n">aa</span><span class="p">[:]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span></div>
-
-<span class="c1"># XXX remove? use itertools.permutations()??</span>
-<div class="viewcode-block" id="permute"><a class="viewcode-back" href="../../generated/api/pwtools.comb.permute.html#pwtools.comb.permute">[docs]</a><span class="k">def</span> <span class="nf">permute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;See ipermute().&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ipermute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)]</span></div>
-
 
 <div class="viewcode-block" id="unique2d"><a class="viewcode-back" href="../../generated/api/pwtools.comb.unique2d.html#pwtools.comb.unique2d">[docs]</a><span class="k">def</span> <span class="nf">unique2d</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Reduce 2d array `arr` to a 2d array with unique rows (or cols).</span>
@@ -165,12 +65,6 @@
 <span class="sd">    &gt;&gt;&gt; unique2d(a, &#39;row&#39;)</span>
 <span class="sd">    array([[1, 2, 3],</span>
 <span class="sd">           [1, 2, 4]])</span>
-<span class="sd">    </span>
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    # These do the same:</span>
-<span class="sd">    &gt;&gt;&gt; unique2d(permute(a)) # uses more memory, slower</span>
-<span class="sd">    &gt;&gt;&gt; permute(a, skip_equal=True))</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;row&#39;</span><span class="p">:</span>
         <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
@@ -201,6 +95,7 @@
 
 
 <span class="c1"># XXX return iterator (py3)</span>
+<span class="c1"># legacy, we keep it for now b/c it is used in batch.py</span>
 <div class="viewcode-block" id="nested_loops"><a class="viewcode-back" href="../../generated/api/pwtools.comb.nested_loops.html#pwtools.comb.nested_loops">[docs]</a><span class="k">def</span> <span class="nf">nested_loops</span><span class="p">(</span><span class="n">lists</span><span class="p">,</span> <span class="n">flatten</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Nested loops, optional flattening.</span>
 <span class="sd">    </span>
@@ -241,55 +136,6 @@
     <span class="n">perms</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">lists</span><span class="p">)</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="p">[</span><span class="n">common</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">perms</span><span class="p">]</span> <span class="k">if</span> <span class="n">flatten</span> <span class="k">else</span> <span class="n">perms</span>
     <span class="k">return</span> <span class="n">_ensure_list</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="kron"><a class="viewcode-back" href="../../generated/api/pwtools.comb.kron.html#pwtools.comb.kron">[docs]</a><span class="k">def</span> <span class="nf">kron</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Kronecker symbol for scalars and arrays.</span>
-<span class="sd">    </span>
-<span class="sd">    &gt;&gt;&gt; kron(1, 2)</span>
-<span class="sd">    0</span>
-<span class="sd">    &gt;&gt;&gt; kron(2, 2)</span>
-<span class="sd">    1</span>
-<span class="sd">    &gt;&gt;&gt; a = array([1,2,3])</span>
-<span class="sd">    &gt;&gt;&gt; b = array([1,2,0])</span>
-<span class="sd">    &gt;&gt;&gt; kron(a,b)</span>
-<span class="sd">    [1,1,0]</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>        
-            <span class="k">return</span> <span class="mi">0</span>        
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># &gt;&gt;&gt; vstack((a, -b))</span>
-        <span class="c1"># array([[1,  2,  3],</span>
-        <span class="c1">#       [-1, -2,  0]])</span>
-        <span class="c1"># &gt;&gt;&gt; vstack((a,-b)).sum(axis=0)</span>
-        <span class="c1"># array([0, 0, 3])</span>
-        <span class="c1"># &gt;&gt;&gt; z</span>
-        <span class="c1"># array([0, 0, 0])</span>
-        <span class="c1"># &gt;&gt;&gt; z[tmp==0] = 1</span>
-        <span class="c1"># array([1, 1, 0])</span>
-        <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="o">-</span><span class="n">b</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tmp</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-        <span class="n">z</span><span class="p">[</span><span class="n">tmp</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="n">z</span></div>
-
-
-<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../generated/api/pwtools.comb.main.html#pwtools.comb.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
-    <span class="n">lst</span> <span class="o">=</span> <span class="n">permute</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">aa</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span></div>
-
-<span class="c1"># XXX remove</span>
-<span class="c1"># alias</span>
-<span class="n">factorial</span> <span class="o">=</span> <span class="n">fac</span>
-
-<span class="c1"># XXX remove</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">sys</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </pre></div>
 
           </div>
