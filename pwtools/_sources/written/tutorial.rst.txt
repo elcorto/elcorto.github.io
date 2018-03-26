@@ -168,14 +168,14 @@ Interpolation and fitting
 Care for some surface data? Here we fit with a 2D polynomial::
 
     >>> from pwtools import num, rbf, mpl
-    >>> fig,ax=mpl.fig_ax3d(clean=True)
-    >>> dd=mpl.get_2d_testdata(20)
+    >>> fig,ax = mpl.fig_ax3d(clean=True)
+    >>> dd = mpl.get_2d_testdata(20)
     >>> ax.scatter(dd.xx, dd.yy, dd.zz)
     >>> # same as 
     >>> #   num.Interpol2D(dd=dd, what='poly', deg=5)
     >>> #   num.Interpol2D(dd.XY, dd.zz, what='poly', deg=5)
-    >>> f=num.PolyFit(dd.XY, dd.zz, deg=5)
-    >>> ddi=mpl.get_2d_testdata(50)
+    >>> f = num.PolyFit(dd.XY, dd.zz, deg=5)
+    >>> ddi = mpl.get_2d_testdata(50)
     >>> ddi.update(zz=f(ddi.XY))
     >>> ax.plot_surface(ddi.X, ddi.Y, ddi.Z, alpha=0.3, color='r')
 

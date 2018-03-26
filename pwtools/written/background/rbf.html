@@ -56,84 +56,86 @@
 <tr><td class="label">[2]</td><td>Numerical Recipes, 3rd ed., ch 3.7</td></tr>
 </tbody>
 </table>
-<div class="section" id="training">
-<h2>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h2>
-<p>For our RBF network, we use the traditional approach and simply solve a linear
-system for the weights. Calculating the distance matrix w/
-<code class="docutils literal"><span class="pre">scipy.spatial.distance.cdist</span></code> or <a class="reference internal" href="../../generated/api/pwtools.num.distsq.html#pwtools.num.distsq" title="pwtools.num.distsq"><code class="xref py py-func docutils literal"><span class="pre">distsq()</span></code></a> is handled
-efficiently, even for many points. But we get into trouble for many points
-(order 1e4) b/c solving a big dense linear system (1e4 x 1e4) with plain
-<code class="docutils literal"><span class="pre">scipy.linalg</span></code> on a single core is possible but painful (takes some minutes)
-– the traditional RBF problem. Maybe use numpy build against threaded MKL, or
-even scalapack? For the latter, look at how GPAW does this.</p>
+<div class="section" id="theory">
+<h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h2>
+<p>The goal is to interpolate or fit an unordered set of <span class="math">\(M\)</span> ND data points
+<span class="math">\(\mathbf x_i\)</span> and values <span class="math">\(z_i\)</span> so as to obtain <span class="math">\(z=f(\mathbf
+x)\)</span>. In radial basis function (RBF) interpolation, the interpolating function
+<span class="math">\(f(\mathbf x)\)</span> is a linear combination of RBFs <span class="math">\(\phi(r)\)</span></p>
+<div class="math">
+\[f(\mathbf x) = \sum_j w_j\,\phi(|\mathbf x - \mathbf c_j|)\]</div>
+<p>with the weights <span class="math">\(w_j\)</span> and the center points <span class="math">\(\mathbf c_j\)</span>. An RBF
+<span class="math">\(\phi(r)\)</span> is thus a function of the distance <span class="math">\(r=|\mathbf x -
+\mathbf c_j|\)</span> between <span class="math">\(\mathbf x\)</span> and a center point. Common functions
+include</p>
+<div class="math">
+\[\begin{split}\begin{align}
+    &amp; \phi(r) = \exp\left(-\frac{r^2}{2\,p^2}\right) &amp;&amp; \text{Gaussian}\\
+    &amp; \phi(r) = \sqrt{r^2 + p^2} &amp;&amp; \text{multiquadric}\\
+    &amp; \phi(r) = \frac{1}{\sqrt{r^2 + p^2}} &amp;&amp; \text{inverse multiquadric}
+\end{align}\end{split}\]</div>
+<p>All RBFs contain a single parameter <span class="math">\(p\)</span> which defines the width of the
+function. The function <span class="math">\(f(\mathbf x)\)</span> can be also thought of as a neural network
+with one hidden layer and activation functions
+<span class="math">\(\phi\)</span>.</p>
+<p>In interpolation the center points <span class="math">\(\mathbf c_j\)</span> are equal to the data points
+<span class="math">\(\mathbf x_j\)</span> such that</p>
+<div class="math">
+\[\begin{split}\begin{gather}
+    z_i = f(\mathbf x_i) = \sum_j w_j\,\phi(|\mathbf x_i - \mathbf x_j|) = \sum_j w_j\,G_{ij}\\
+    \mathbf G\,\mathbf w = \mathbf z\\
+\end{gather}\end{split}\]</div>
+<p>with <span class="math">\(\mathbf G\)</span> the <span class="math">\(M\times M\)</span> matrix of RBF function values. The
+weights <span class="math">\(\mathbf w = (w_j)\)</span> are found by solving the linear system</p>
+<div class="math">
+\[\mathbf w = \mathbf G^{-1}\,\mathbf z\]</div>
+<p>Thus, the applicability of the method is limited by the number of points
+<span class="math">\(M\)</span> in the sense that a dense linear system <span class="math">\(M\times M\)</span> must be
+stored and solved. For large point sets, the calculation of the distance matrix
+<span class="math">\(R_{ij} = |\mathbf x_i - \mathbf x_j|\)</span> is one of the bottlenecks. In
+pwtools, this is coded in Fortran (see <a class="reference internal" href="../../generated/api/pwtools.num.distsq.html#pwtools.num.distsq" title="pwtools.num.distsq"><code class="xref py py-func docutils literal"><span class="pre">distsq()</span></code></a>).</p>
 </div>
 <div class="section" id="rbf-parameter">
-<h2>rbf parameter<a class="headerlink" href="#rbf-parameter" title="Permalink to this headline">¶</a></h2>
-<p>Each RBF has a single parameter <span class="math">\(p\)</span>, which can be tuned. This is
-usually a measure for the “width” of the function. e.g. in
-<a class="reference internal" href="../../generated/api/pwtools.rbf.RBFMultiquadric.html#pwtools.rbf.RBFMultiquadric" title="pwtools.rbf.RBFMultiquadric"><code class="xref py py-class docutils literal"><span class="pre">RBFMultiquadric</span></code></a> <span class="math">\(\sqrt{r^2+p^2}\)</span>, attribute
-<code class="docutils literal"><span class="pre">param</span></code> in the code.</p>
-<ul class="simple">
-<li>What seems to work best is <a class="reference internal" href="../../generated/api/pwtools.rbf.RBFMultiquadric.html#pwtools.rbf.RBFMultiquadric" title="pwtools.rbf.RBFMultiquadric"><code class="xref py py-class docutils literal"><span class="pre">RBFMultiquadric</span></code></a> +
-<code class="docutils literal"><span class="pre">RBFInt.get_param(param='est')</span></code> (mean-distance of all points, default),
-i.e. the “traditional” RBF approach. This is exactly what’s done in
-<code class="docutils literal"><span class="pre">scipy.interpolate.Rbf</span></code>.</li>
-<li>It seems that for very few data points (say 5x5 for x**2 + x**2), the default
-mean-distance estimate is too small. We then have good interpolation at the
-data points, but wildly fluctuating bogus between them, since there is no
-data support in between the data points. We need to have wider RBFs. Usually,
-bigger (x10), sometimes much bigger (x100) params work.</li>
-<li>Similarly, in some cases params smaller than the mean-distance estimate
-provide lower fit error at the points, but with the same between-points behavior
-as above.</li>
-</ul>
-<p>In general however, the mean-distance estimate is the best default one can use
-(see below for more details).</p>
+<h2>RBF parameter <span class="math">\(p\)</span><a class="headerlink" href="#rbf-parameter" title="Permalink to this headline">¶</a></h2>
+<p>Each RBF has a single “width” parameter <span class="math">\(p\)</span>, which can be tuned (attribute
+<code class="docutils literal"><span class="pre">param</span></code> in the code). While <span class="math">\(f(\mathbf x)\)</span> goes through all data points
+<span class="math">\(\mathbf x_i\)</span> by definition, the behavior of the interpolation between
+points is determined by <span class="math">\(p\)</span>. For instance, too narrow functions
+<span class="math">\(\phi\)</span> can lead to oscillations between points. Therefore <span class="math">\(p\)</span> must
+be tuned for the specific data set. A good estimate for <span class="math">\(p\)</span> in many cases
+is the mean distance <span class="math">\(p=1/M^2\,\sum_{ij} R_{ij}\)</span>
+(<code class="docutils literal"><span class="pre">RBFInt.get_param(param='est')</span></code>). While the Gaussian RBF is rather sensitive
+to the value of <span class="math">\(p\)</span>, the multiquadric and inverse multiquadric functions
+provide stable interpolation results for a wide range of <span class="math">\(p\)</span> values.</p>
+<p>In general, <span class="math">\(p\)</span> should be determined by methods such as K-fold cross
+validation, which is outside the scope of pwtools. See <code class="docutils literal"><span class="pre">scikit-learn</span></code> for
+more.</p>
 </div>
 <div class="section" id="interpolation-vs-fitting">
 <h2>Interpolation vs. fitting<a class="headerlink" href="#interpolation-vs-fitting" title="Permalink to this headline">¶</a></h2>
 <p>For smooth noise-free data, RBF works perfect. But for noisy data, we would
-like to do some kind of fit instead, like the “s” parameter to
+like to do a fit instead, like the “s” parameter to
 <code class="docutils literal"><span class="pre">scipy.interpolate.bisplrep</span></code>. <code class="docutils literal"><span class="pre">scipy.interpolate.Rbf</span></code> has a “smooth”
-parameter and what they do is some form of regularization (solve (<code class="docutils literal"><span class="pre">G-I*smooth)</span>
-<span class="pre">.</span> <span class="pre">w</span> <span class="pre">=</span> <span class="pre">z</span></code> instead of <code class="docutils literal"><span class="pre">G</span> <span class="pre">.</span> <span class="pre">w</span> <span class="pre">=</span> <span class="pre">z</span></code>; <code class="docutils literal"><span class="pre">G</span></code> = RBF matrix, <code class="docutils literal"><span class="pre">w</span></code> = weights to
-solve for, <code class="docutils literal"><span class="pre">z</span></code> = data).</p>
-<p>We found (see <code class="docutils literal"><span class="pre">examples/rbf.py</span></code>) that <code class="docutils literal"><span class="pre">scipy.linalg.solve</span></code> often gives an
-ill-conditioned matrix warning, which shows numerical instability and results
-in bad interpolation. It seems that problems start to show as soon as the noise
-level (<code class="docutils literal"><span class="pre">z</span></code> + noise) is in the same order or magnitude as the mean point distance.
-Then we see wildly fluctuating data points which are hard to interpolate. In
-that case, the mean-distance estimate for the rbf param breaks down and one
-needs to use smaller values to interpolate all fluctuations. However, in most
-cases, on does actually want to perform a fit instead in such situations.</p>
-<p>If we switch from <code class="docutils literal"><span class="pre">scipy.linalg.solve</span></code> to <code class="docutils literal"><span class="pre">scipy.linalg.lstsq</span></code> and solve the
-system in a least squares sense, we get much more stable solutions. With
-<code class="docutils literal"><span class="pre">lstsq</span></code>, we have the smoothness by construction, b/c we do <em>not</em> perform
-interpolation anymore – this is a fit now. The advantage of using least
-squares is that we don’t have a smoothness parameter which needs to be tuned.</p>
+parameter <span class="math">\(\lambda\)</span> for regularization</p>
+<div class="math">
+\[\mathbf w = (\mathbf G^{-1} + \lambda\,\mathbf I)\,\mathbf z\]</div>
+<p>We found that <code class="docutils literal"><span class="pre">scipy.linalg.solve</span></code> often gives an ill-conditioned matrix
+warning, which shows numerical instability and results in bad interpolation. In
+that case, one can use regularization which (i) adds numerical stability and
+(ii) creates a more “stiff” (low curvature) function which does not interpolate
+all points.</p>
+<p>One can also switch from <code class="docutils literal"><span class="pre">scipy.linalg.solve</span></code> to <code class="docutils literal"><span class="pre">scipy.linalg.lstsq</span></code> and
+solve the system in a least squares sense, in which case we also get much more
+stable solutions. The advantage of using least squares is that we have the
+smoothness by construction no smoothness parameter needs to be tuned.</p>
 <p>If the noise is low relative to the point distance, we get interpolation-like
 results, which cannot be distinguished from the solutions obtained with a
 normal linear system solver. The method will try its best to do interpolation,
 but will smoothly transition to fitting as noise increases, which is what we
 want. Hence, lstsq is the default solver.</p>
 </div>
-<div class="section" id="optimize-rbf-param">
-<h2>optimize rbf param<a class="headerlink" href="#optimize-rbf-param" title="Permalink to this headline">¶</a></h2>
-<p>With <a class="reference internal" href="../../generated/api/pwtools.rbf.RBFInt.fit_opt_param.html#pwtools.rbf.RBFInt.fit_opt_param" title="pwtools.rbf.RBFInt.fit_opt_param"><code class="xref py py-meth docutils literal"><span class="pre">fit_opt_param()</span></code></a>, we try to optimize
-<code class="docutils literal"><span class="pre">rbf.param</span></code> by repeated fitting with <code class="docutils literal"><span class="pre">fit(solver='lstsq')</span></code>. In all
-experiments so far, we find that the mean-distance estimate of <code class="docutils literal"><span class="pre">param</span></code> is
-actually very good and doesn’t change much when optimizing. However, this is
-not always the global min. There are cases where we find a much smaller
-<code class="docutils literal"><span class="pre">param</span></code> (e.g. factor 10 smaller), which leads to better fits at the data
-points but oscillations between them (found with methods where we actually have
-more points for testing than we use for fitting, see <code class="docutils literal"><span class="pre">examples/rbf/</span></code>). That
-minimum was found sometimes with <code class="docutils literal"><span class="pre">scipy.optimize.fmin</span></code> and always with
-<code class="docutils literal"><span class="pre">scipy.optimize.differential_evolution</span></code>. However, as stated above, we usually
-want to do a fit with the mean-distance estimate rather than a perfect
-interpolation in those cases.</p>
-</div>
 <div class="section" id="other-codes">
-<h2>other codes<a class="headerlink" href="#other-codes" title="Permalink to this headline">¶</a></h2>
+<h2>Other codes<a class="headerlink" href="#other-codes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">scipy.interpolate.Rbf</span></code>
 Essentially the same as we do. We took some ideas from there.</li>
@@ -145,7 +147,7 @@ documented very much.</li>
 </ul>
 </div>
 <div class="section" id="input-data">
-<h2>input data<a class="headerlink" href="#input-data" title="Permalink to this headline">¶</a></h2>
+<h2>Input data<a class="headerlink" href="#input-data" title="Permalink to this headline">¶</a></h2>
 <p>It usually helps if all data ranges (points X and values Y) are in the same
 order of magnitude, e.g. all have a maximum close to unity or so. If, for
 example, X and Y have very different scales (say X -0.1 .. 0.1 and Y

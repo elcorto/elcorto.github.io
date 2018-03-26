@@ -101,9 +101,16 @@
         <span class="k">return</span> <span class="p">(</span><span class="n">rsq</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span></div></div>
 
 
+<span class="n">rbf_dct</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;gauss&#39;</span><span class="p">:</span> <span class="n">RBFGauss</span><span class="p">,</span>
+    <span class="s1">&#39;multi&#39;</span><span class="p">:</span> <span class="n">RBFMultiquadric</span><span class="p">,</span>
+    <span class="s1">&#39;inv_multi&#39;</span><span class="p">:</span> <span class="n">RBFInverseMultiquadric</span><span class="p">,</span>
+    <span class="p">}</span>
+
+
 <div class="viewcode-block" id="RBFInt"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.html#pwtools.rbf.RBFInt">[docs]</a><span class="k">class</span> <span class="nc">RBFInt</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Radial basis function neural network interpolator.&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="RBFInt.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.html#pwtools.rbf.RBFInt.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rbf</span><span class="o">=</span><span class="n">RBFMultiquadric</span><span class="p">(),</span>
+    <span class="sd">&quot;&quot;&quot;Radial basis function network interpolation and fitting.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="RBFInt.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.html#pwtools.rbf.RBFInt.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rbf</span><span class="o">=</span><span class="s1">&#39;multi&#39;</span><span class="p">,</span>
                  <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -115,7 +122,7 @@
 <span class="sd">        centers : 2d array (K,N)</span>
 <span class="sd">            K N-dim center vectors, for usual interpolation training points == centers</span>
 <span class="sd">            (default)</span>
-<span class="sd">        rbf : RBFFunction instance, optional</span>
+<span class="sd">        rbf : str or :class:`RBFFunction` instance</span>
 <span class="sd">        verbose : bool, optional</span>
 <span class="sd">            print some messages</span>
 
@@ -168,7 +175,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">points</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">values</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">centers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="k">if</span> <span class="n">centers</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">centers</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rbf</span> <span class="o">=</span> <span class="n">rbf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rbf</span> <span class="o">=</span> <span class="n">rbf_dct</span><span class="p">[</span><span class="n">rbf</span><span class="p">]()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rbf</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">rbf</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_assert_ndim_points</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_assert_ndim_points</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">centers</span><span class="p">)</span>
@@ -269,7 +276,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">)</span></div>
 
     
-<div class="viewcode-block" id="RBFInt.fit"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.fit.html#pwtools.rbf.RBFInt.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="s1">&#39;est&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lstsq&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="RBFInt.fit"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.RBFInt.fit.html#pwtools.rbf.RBFInt.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="s1">&#39;est&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lstsq&#39;</span><span class="p">,</span> <span class="n">reg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Solve linear system for the weights w:</span>
 <span class="sd">            G . w = z</span>
 <span class="sd">        </span>
@@ -281,14 +288,22 @@
 <span class="sd">        param : &#39;est&#39; or float</span>
 <span class="sd">            see :meth:`get_param`</span>
 <span class="sd">        solver : str</span>
-<span class="sd">            &#39;solve&#39; : interpolation</span>
+<span class="sd">            &#39;solve&#39; : linear system solver</span>
 <span class="sd">                Use ``scipy.linalg.solve()``. By definition, this always yields</span>
-<span class="sd">                perfect interpolation at the data points. May be numerically</span>
-<span class="sd">                unstable.</span>
-<span class="sd">            &#39;lstsq&#39; : least squares regression (default)</span>
-<span class="sd">                Use ``scipy.linalg.lstsq()``. Numerically more stable. Will</span>
-<span class="sd">                mostly be the same as the interpolation result, but will not go</span>
-<span class="sd">                thru all points for very noisy data.</span>
+<span class="sd">                perfect interpolation at the data points for ``reg=None``. May</span>
+<span class="sd">                be numerically unstable in that case. Use `reg` to increase</span>
+<span class="sd">                stability and create smooth fitting (generate more stiff</span>
+<span class="sd">                functions), similar to ``lstsq`` but appears to be numerically</span>
+<span class="sd">                more stable (no small noise in solution) .. but it is another</span>
+<span class="sd">                parameter that needs to be tuned.</span>
+<span class="sd">            &#39;lstsq&#39; : least squares solver (default)</span>
+<span class="sd">                Use ``scipy.linalg.lstsq()``. Numerically more stable than</span>
+<span class="sd">                direct solver w/o regularization. Will mostly be the same as</span>
+<span class="sd">                the interpolation result, but will not go thru all points for</span>
+<span class="sd">                very noisy data. May create small noise in solution (plot fit</span>
+<span class="sd">                with high point density).</span>
+<span class="sd">        reg : None, float, optional</span>
+<span class="sd">            regularization parameter for solver=&#39;solve&#39; </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># this test may be expensive for big data sets</span>
         <span class="k">assert</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">centers</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s2">&quot;centers == points not fulfilled&quot;</span>
@@ -298,7 +313,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">rbf</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
         <span class="n">G</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rbf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distsq</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">solver</span> <span class="o">==</span> <span class="s1">&#39;solve&#39;</span><span class="p">:</span>
-            <span class="n">weights</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">linalg</span><span class="p">,</span> <span class="n">solver</span><span class="p">)(</span><span class="n">G</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">reg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">weights</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">linalg</span><span class="p">,</span> <span class="n">solver</span><span class="p">)(</span><span class="n">G</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">weights</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">linalg</span><span class="p">,</span> <span class="n">solver</span><span class="p">)(</span><span class="n">G</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">reg</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">solver</span> <span class="o">==</span> <span class="s1">&#39;lstsq&#39;</span><span class="p">:</span>
             <span class="n">weights</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">rnk</span><span class="p">,</span> <span class="n">svs</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">linalg</span><span class="p">,</span> <span class="n">solver</span><span class="p">)(</span><span class="n">G</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
