@@ -120,7 +120,7 @@ which is given as an unordered set of points.</p>
 <blockquote>
 <div><p>which interpolator to use</p>
 <div class="line-block">
-<div class="line">‘rbf_multi’ : RBFN w/ multiquadric rbf, see <a class="reference internal" href="pwtools.rbf.RBFInt.html#pwtools.rbf.RBFInt" title="pwtools.rbf.RBFInt"><code class="xref py py-class docutils literal"><span class="pre">RBFInt</span></code></a></div>
+<div class="line">‘rbf_multi’ : RBFN w/ multiquadric rbf, see <a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal"><span class="pre">Rbf</span></code></a></div>
 <div class="line">‘rbf_inv_multi’ : RBFN w/ inverse multiquadric rbf</div>
 <div class="line">‘rbf_gauss’ : RBFN w/ gaussian rbf</div>
 <div class="line">‘poly’      : <a class="reference internal" href="pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal"><span class="pre">PolyFit</span></code></a></div>
@@ -141,8 +141,9 @@ which is given as an unordered set of points.</p>
 <p class="rubric">Notes</p>
 <p>Despite the name “Interpol2D”, the RBF methods ‘rbf_*’ as well as ‘poly’ are
 actually fits (least squares regression). You can force interpolation with
-the RBF methods using the <code class="docutils literal"><span class="pre">solver='solve'</span></code> keyword (see
-<a class="reference internal" href="pwtools.rbf.RBFInt.fit.html#pwtools.rbf.RBFInt.fit" title="pwtools.rbf.RBFInt.fit"><code class="xref py py-meth docutils literal"><span class="pre">pwtools.rbf.RBFInt.fit()</span></code></a>).</p>
+the RBF methods using the <code class="docutils literal"><span class="pre">r=0</span></code> keyword (see
+<a class="reference internal" href="pwtools.rbf.Rbf.fit.html#pwtools.rbf.Rbf.fit" title="pwtools.rbf.Rbf.fit"><code class="xref py py-meth docutils literal"><span class="pre">pwtools.rbf.Rbf.fit()</span></code></a>), which will use <code class="docutils literal"><span class="pre">scipy.linalg.solve</span></code>
+without regularization.</p>
 <p>The methods ‘ct’, ‘linear’ and of course ‘nearest’ can be inaccurate
 (see also <code class="docutils literal"><span class="pre">test/test_interpol.py</span></code>). Use only for plotting, not for
 data evaluation, i.e. accurate minimas etc.</p>
@@ -152,9 +153,9 @@ does <a class="reference internal" href="pwtools.num.Interpol2D.get_min.html#pwt
 <div class="line-block">
 <div class="line">rbf :</div>
 <div class="line-block">
-<div class="line">param = ‘est’ (default)</div>
-<div class="line">param = 0.05</div>
-<div class="line">solver = ‘solve’ | ‘lstsq’ (default)</div>
+<div class="line">p=’mean’ [,r=None] (default)    # linalg.lstsq</div>
+<div class="line">p=’scipy’, r=1e-8               # linalg.solve w/ regularization </div>
+<div class="line">p=3.5, r=0                      # linalg.solve w/o regularization</div>
 </div>
 <div class="line">ct :</div>
 <div class="line-block">

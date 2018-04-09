@@ -56,31 +56,57 @@ common tasks.</p>
 which behaves like <code class="docutils literal"><span class="pre">ase.Atoms</span></code> without the need to have ASE installed.
 This is used in <a class="reference internal" href="../generated/api/symmetry.html#module-pwtools.symmetry" title="pwtools.symmetry"><code class="xref py py-mod docutils literal"><span class="pre">pwtools.symmetry</span></code></a>, for example.</p>
 </div>
-<div class="section" id="parse-md-output-plot-stuff">
-<h2>Parse MD output, plot stuff<a class="headerlink" href="#parse-md-output-plot-stuff" title="Permalink to this headline">¶</a></h2>
-<p>Lets take cp2k as an example (assuming an interactive Ipython session):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">io</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_cp2k_md</span><span class="p">(</span><span class="s1">&#39;cp2k.out&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">etot</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">figure</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># x-coord of all atoms over time</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="parse-scf-or-relax-output-plot-stuff">
-<h2>Parse SCF or relax output, plot stuff<a class="headerlink" href="#parse-scf-or-relax-output-plot-stuff" title="Permalink to this headline">¶</a></h2>
-<p>Parse SCF and relax run from PWscf:</p>
+<div class="section" id="parse-scf-relax-or-md-output">
+<h2>Parse SCF, relax or MD output<a class="headerlink" href="#parse-scf-relax-or-md-output" title="Permalink to this headline">¶</a></h2>
+<p>Parse SCF run from QE (single <a class="reference internal" href="../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal"><span class="pre">Structure</span></code></a>):</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">io</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_pw_scf</span><span class="p">(</span><span class="s1">&#39;pw.scf.out&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># coords, forces, ...: shape = (natoms,3)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">st</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">etot</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_pw_md</span><span class="p">(</span><span class="s1">&#39;pw.relax.out&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">etot</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">figure</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># max force component during relaxation</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># tr.forces.shape = (nstep, natoms, 3)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">forces</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># natoms=2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">coords_frac</span>
+<span class="go">array([[0.  , 0.  , 0.  ],</span>
+<span class="go">       [0.25, 0.25, 0.25]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">etot</span>
+<span class="go">-258.58148870118305</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">stress</span>
+<span class="go">array([[9.825, 0.   , 0.   ],</span>
+<span class="go">       [0.   , 9.825, 0.   ],</span>
+<span class="go">       [0.   , 0.   , 9.825]])</span>
+</pre></div>
+</div>
+<p>Variable cell relax run from QE into <a class="reference internal" href="../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></a>. Use the
+MD parser:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_pw_md</span><span class="p">(</span><span class="s1">&#39;pw.vc_relax.out&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">.</span><span class="n">nstep</span>
+<span class="go">7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">.</span><span class="n">etot</span> <span class="o">-</span> <span class="n">tr</span><span class="o">.</span><span class="n">etot</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">array([-0.74763576,  0.68611164,  0.22244653, -0.06793023, -0.01616479,</span>
+<span class="go">        0.00121567,  0.        ])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">.</span><span class="n">volume</span>
+<span class="go">array([54.12697068, 51.59033133, 49.81153398, 50.1512203 , 50.26524368,</span>
+<span class="go">       50.25804864, 50.25804864])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># [trace(s)/3 for s in tr.stress]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">.</span><span class="n">pressure</span>
+<span class="go">array([ 2.60203333e+01, -5.28800000e+00, -2.22400000e+00,  6.80000000e-01,</span>
+<span class="go">        1.14000000e-01, -6.30000000e-02, -2.33333333e-02])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">.</span><span class="n">cryst_const</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
+<span class="go">array([  3.29944506,   3.29944506,   5.33081055,  90.        ,</span>
+<span class="go">        90.        , 120.00001397])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># nstep=7, natoms=4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">.</span><span class="n">coords</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(7, 4, 3)</span>
+</pre></div>
+</div>
+<p>Now an MD from CP2K:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_cp2k_md</span><span class="p">(</span><span class="s1">&#39;cp2k.out&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">.</span><span class="n">nstep</span>
+<span class="go">123456</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># extract first and last Structure objects</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st_first</span> <span class="o">=</span> <span class="n">tr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st_last</span> <span class="o">=</span> <span class="n">tr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># slice out a part of the trajectory</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr_middle</span> <span class="o">=</span> <span class="n">tr</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">500</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># use every 5th step</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="p">[::</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -149,7 +175,7 @@ want to know the space group of the final optimized structure, namely
 <span class="gp">&gt;&gt;&gt; </span><span class="n">symmetry</span><span class="o">.</span><span class="n">get_spglib_spacegroup</span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">symprec</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Easy, eh? Or build one using ASE:</p>
+<p>Or build one using ASE:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ase.build</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">at</span> <span class="o">=</span> <span class="n">ase</span><span class="o">.</span><span class="n">build</span><span class="o">.</span><span class="n">bulk</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;AlN&#39;</span><span class="p">,</span> <span class="n">crystalstructure</span><span class="o">=</span><span class="s1">&#39;rocksalt&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">symmetry</span><span class="o">.</span><span class="n">spglib_get_spacegroup</span><span class="p">(</span><span class="n">crys</span><span class="o">.</span><span class="n">atoms2struct</span><span class="p">(</span><span class="n">at</span><span class="p">))</span>
@@ -208,23 +234,21 @@ Trajectory, which is just a “time series” of Structures. See
 </div>
 <img alt="../_images/interpol_2d.png" src="../_images/interpol_2d.png" />
 <p>Example result from a 1D fit of noisy data (<code class="docutils literal"><span class="pre">examples/rbf/noise.py</span></code>) using
-<a class="reference internal" href="../generated/api/pwtools.rbf.RBFInt.html#pwtools.rbf.RBFInt" title="pwtools.rbf.RBFInt"><code class="xref py py-class docutils literal"><span class="pre">RBFInt</span></code></a>. Without all plot commands and only one data set:</p>
+<a class="reference internal" href="../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal"><span class="pre">Rbf</span></code></a>. Without all plot commands and only one data set:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="c1"># number of points</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">rand</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">rbf</span><span class="o">.</span><span class="n">RBFInt</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="kc">None</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">rbf</span><span class="o">.</span><span class="n">Rbf</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="kc">None</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/rbf_1d_opt_False.png" src="../_images/rbf_1d_opt_False.png" />
 <p>2D interpolation of samples of a “mexican hat” function <span class="math">\(\sin(r)/r\)</span>
-(<code class="docutils literal"><span class="pre">examples/rbf/surface.py</span></code>), also using <a class="reference internal" href="../generated/api/pwtools.rbf.RBFInt.html#pwtools.rbf.RBFInt" title="pwtools.rbf.RBFInt"><code class="xref py py-class docutils literal"><span class="pre">RBFInt</span></code></a>. See
+(<code class="docutils literal"><span class="pre">examples/rbf/surface.py</span></code>), also using <a class="reference internal" href="../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal"><span class="pre">Rbf</span></code></a>. See
 <a class="reference internal" href="background/rbf.html#rbf"><span class="std std-ref">Radial Basis Functions Networks for interpolation or fitting of N-dim data points</span></a> for more. Similar to the <a class="reference internal" href="../generated/api/pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal"><span class="pre">PolyFit</span></code></a> example above:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># same as</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#   num.Interpol2D(dd=dd, what=&#39;rbf_multi&#39;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#   num.Interpol2D(dd.XZ, dd.zz, what=&#39;rbf_multi&#39;)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">=</span><span class="n">rbf</span><span class="o">.</span><span class="n">RBFInt</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">XZ</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">zz</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">=</span><span class="n">rbf</span><span class="o">.</span><span class="n">Rbf</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">XZ</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">zz</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/rbf_2d_surface_opt_False.png" src="../_images/rbf_2d_surface_opt_False.png" />
@@ -234,7 +258,7 @@ Trajectory, which is just a “time series” of Structures. See
 <a class="reference internal" href="../generated/api/pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-class docutils literal"><span class="pre">Spline</span></code></a>
 <a class="reference internal" href="../generated/api/pwtools.num.Interpol2D.html#pwtools.num.Interpol2D" title="pwtools.num.Interpol2D"><code class="xref py py-class docutils literal"><span class="pre">Interpol2D</span></code></a>
 <a class="reference internal" href="../generated/api/pwtools.num.meshgridt.html#pwtools.num.meshgridt" title="pwtools.num.meshgridt"><code class="xref py py-class docutils literal"><span class="pre">meshgridt</span></code></a>
-<a class="reference internal" href="../generated/api/pwtools.rbf.RBFInt.html#pwtools.rbf.RBFInt" title="pwtools.rbf.RBFInt"><code class="xref py py-class docutils literal"><span class="pre">RBFInt</span></code></a></p>
+<a class="reference internal" href="../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal"><span class="pre">Rbf</span></code></a></p>
 </div>
 <div class="section" id="avoid-auto-calculation-for-big-md-data">
 <h2>Avoid auto-calculation for big MD data<a class="headerlink" href="#avoid-auto-calculation-for-big-md-data" title="Permalink to this headline">¶</a></h2>
@@ -270,8 +294,8 @@ implements (mind also base classes, best is to use Tab completion in ipython:
 <h2>Work with SQLite databases<a class="headerlink" href="#work-with-sqlite-databases" title="Permalink to this headline">¶</a></h2>
 <p>See <a class="reference internal" href="../generated/api/pwtools.sql.SQLiteDB.html#pwtools.sql.SQLiteDB" title="pwtools.sql.SQLiteDB"><code class="xref py py-class docutils literal"><span class="pre">SQLiteDB</span></code></a>.</p>
 </div>
-<div class="section" id="more-stuff">
-<h2>More stuff<a class="headerlink" href="#more-stuff" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="more">
+<h2>More<a class="headerlink" href="#more" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="dispersion_example.html#dispersion-example"><span class="std std-ref">Phonon dispersion calculation and plotting</span></a></li>
 <li><a class="reference internal" href="cp2k_restart.html#cp2k-restart"><span class="std std-ref">How to do a restart in cp2k</span></a></li>
@@ -317,8 +341,7 @@ implements (mind also base classes, best is to use Tab completion in ipython:
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#using-ase">Using ASE?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#parse-md-output-plot-stuff">Parse MD output, plot stuff</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#parse-scf-or-relax-output-plot-stuff">Parse SCF or relax output, plot stuff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parse-scf-relax-or-md-output">Parse SCF, relax or MD output</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#binary-io">Binary IO</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#view-a-structure-or-trajectory">View a structure or trajectory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#find-monkhorst-pack-k-grid-sampling-for-a-given-unit-cell">Find Monkhorst-Pack k-grid sampling for a given unit cell</a></li>
@@ -327,7 +350,7 @@ implements (mind also base classes, best is to use Tab completion in ipython:
 <li class="toctree-l2"><a class="reference internal" href="#interpolation-and-fitting">Interpolation and fitting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#avoid-auto-calculation-for-big-md-data">Avoid auto-calculation for big MD data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#work-with-sqlite-databases">Work with SQLite databases</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#more-stuff">More stuff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#more">More</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="background/index.html">Background, details, special topics</a></li>

@@ -1,0 +1,168 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>pwtools.rbf.FitError.cv &#8212; pwtools  documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.rbf.FitError.err_cv" href="pwtools.rbf.FitError.err_cv.html" />
+    <link rel="prev" title="pwtools.rbf.FitError" href="pwtools.rbf.FitError.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-rbf-fiterror-cv">
+<h1>pwtools.rbf.FitError.cv<a class="headerlink" href="#pwtools-rbf-fiterror-cv" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.rbf.FitError.cv">
+<code class="descclassname">FitError.</code><code class="descname">cv</code><span class="sig-paren">(</span><em>params</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#FitError.cv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.FitError.cv" title="Permalink to this definition">¶</a></dt>
+<dd><p>K-fold repeated CV.</p>
+<p>Split data (points, values) randomly into K parts (“folds”, K = <code class="docutils literal"><span class="pre">ns</span></code>
+in <code class="docutils literal"><span class="pre">self.cv_kwds</span></code>) along axis 0 and use each part once as test set,
+the rest as training set. For example <cite>ns=5</cite>: split in 5 parts at
+random indices, use 5 times 4/5 data for train, 1/5 for test (each of
+the folds), so 5 fits total -&gt; 5 fit errors. Optionally repeat <code class="docutils literal"><span class="pre">nr</span></code>
+times with different random splits. So, <cite>nr</cite> * <cite>ns</cite> fit errors total.</p>
+<p>Each time, build an Rbf interpolator with <code class="docutils literal"><span class="pre">self.rbf_kwds</span></code>, fit,
+return the fit error (scalar sum of squares from
+<a class="reference internal" href="pwtools.rbf.Rbf.fit_error.html#pwtools.rbf.Rbf.fit_error" title="pwtools.rbf.Rbf.fit_error"><code class="xref py py-meth docutils literal"><span class="pre">Rbf.fit_error()</span></code></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>params</strong> : seq length 1 or 2</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">params[0] = p</div>
+<div class="line">params[1] = r (optional)</div>
+</div>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>errs</strong> : 1d array (nr*ns,)</p>
+<blockquote class="last">
+<div><p>direct fit error from each fold</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">pwtools</h1>
+    
+  </a>
+</p>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=pwtools&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background, details, special topics</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="rbf.html">rbf</a><ul>
+  <li><a href="pwtools.rbf.FitError.html">pwtools.rbf.FitError</a><ul>
+      <li>Previous: <a href="pwtools.rbf.FitError.html" title="previous chapter">pwtools.rbf.FitError</a></li>
+      <li>Next: <a href="pwtools.rbf.FitError.err_cv.html" title="next chapter">pwtools.rbf.FitError.err_cv</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/generated/api/pwtools.rbf.FitError.cv.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

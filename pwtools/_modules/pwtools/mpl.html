@@ -172,7 +172,7 @@
 <span class="sd">    &gt;&gt;&gt; pp = mpl.Plot() </span>
 <span class="sd">    &gt;&gt;&gt; pp.ax.plot([1,2,3], label=&#39;ax&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; pp.ax2 = pp.ax.twinx()</span>
-<span class="sd">    &gt;&gt;&gt; pp.ax2.plot([2,2,1], &#39;r&#39;, label=&#39;ax2&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; pp.ax2.plot([3,2,1], &#39;r&#39;, label=&#39;ax2&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; # legend on `ax` (default legaxname=&#39;ax&#39;) with all lines from `ax` and</span>
 <span class="sd">    &gt;&gt;&gt; # `ax2`</span>
 <span class="sd">    &gt;&gt;&gt; pp.legend([&#39;ax&#39;, &#39;ax2&#39;], loc=&#39;lower left&#39;)</span>
@@ -221,11 +221,9 @@
 <span class="sd">            ([line1, line2, ...], [&#39;foo&#39;, &#39;bar&#39;, ...])</span>
 <span class="sd">        where lines and labels are taken from all axes. Use this as input for</span>
 <span class="sd">        any axis&#39;s legend() method.</span>
-<span class="sd">        &quot;&quot;&quot;</span>            
-        <span class="n">axhls</span> <span class="o">=</span> <span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axname</span><span class="p">)</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span> <span class="k">for</span> <span class="n">axname</span> <span class="ow">in</span>
-                 <span class="n">axnames</span><span class="p">]</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="p">[</span><span class="n">common</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="nb">tuple</span><span class="p">(</span><span class="n">axhls</span><span class="p">))]</span>
-        <span class="k">return</span> <span class="n">ret</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ret</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">collect_legends</span><span class="p">(</span><span class="o">*</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axname</span><span class="p">)</span> <span class="k">for</span> <span class="n">axname</span> <span class="ow">in</span>
+                                      <span class="n">axnames</span><span class="p">))</span></div>
     
 <div class="viewcode-block" id="Plot.legend"><a class="viewcode-back" href="../../generated/api/pwtools.mpl.Plot.legend.html#pwtools.mpl.Plot.legend">[docs]</a>    <span class="k">def</span> <span class="nf">legend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axnames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">legaxname</span><span class="o">=</span><span class="s1">&#39;ax&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Collect legend entries from all axes in `axnames` and place legend on</span>
@@ -268,6 +266,24 @@
         <span class="k">for</span> <span class="n">ex</span> <span class="ow">in</span> <span class="n">ext</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">base</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">ex</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span></div></div>
 
+
+<div class="viewcode-block" id="collect_legends"><a class="viewcode-back" href="../../generated/api/pwtools.mpl.collect_legends.html#pwtools.mpl.collect_legends">[docs]</a><span class="k">def</span> <span class="nf">collect_legends</span><span class="p">(</span><span class="o">*</span><span class="n">axs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Collect legend data from multiple axes, return input for legend().</span>
+<span class="sd">    </span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax = mpl.fig_ax()</span>
+<span class="sd">    &gt;&gt;&gt; ax.plot([1,2,3], label=&#39;ax&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; ax2 = ax.twinx()</span>
+<span class="sd">    &gt;&gt;&gt; ax2.plot([3,2,1], &#39;r&#39;, label=&#39;ax2&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; ax.legend(*mpl.collect_legends(ax, ax2))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">axhls</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span> <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span>
+                  <span class="n">axs</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">[</span><span class="n">common</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">axhls</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ret</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
+    
 
 <div class="viewcode-block" id="prepare_plots"><a class="viewcode-back" href="../../generated/api/pwtools.mpl.prepare_plots.html#pwtools.mpl.prepare_plots">[docs]</a><span class="k">def</span> <span class="nf">prepare_plots</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;2d&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Return a dict of Plot instances.</span>
