@@ -4,24 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>pwtools.num.Spline &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.num.Spline.__call__" href="pwtools.num.Spline.__call__.html" />
@@ -31,8 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -45,17 +37,17 @@
 <dl class="class">
 <dt id="pwtools.num.Spline">
 <em class="property">class </em><code class="descclassname">pwtools.num.</code><code class="descname">Spline</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>eps=1e-10</em>, <em>checkeps=True</em>, <em>**splrep_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Spline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Spline" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pwtools.num.Fit1D.html#pwtools.num.Fit1D" title="pwtools.num.Fit1D"><code class="xref py py-class docutils literal"><span class="pre">pwtools.num.Fit1D</span></code></a></p>
-<p><a class="reference internal" href="pwtools.num.Fit1D.html#pwtools.num.Fit1D" title="pwtools.num.Fit1D"><code class="xref py py-class docutils literal"><span class="pre">Fit1D</span></code></a>-based spline interpolator.</p>
-<p>Like <code class="docutils literal"><span class="pre">scipy.interpolate.UnivariateSpline</span></code>, this is a wrapper around
-<code class="docutils literal"><span class="pre">scipy.interpolate.splrep/splev</span></code> with some nice features like y-&gt;x lookup
+<dd><p>Bases: <a class="reference internal" href="pwtools.num.Fit1D.html#pwtools.num.Fit1D" title="pwtools.num.Fit1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.num.Fit1D</span></code></a></p>
+<p><a class="reference internal" href="pwtools.num.Fit1D.html#pwtools.num.Fit1D" title="pwtools.num.Fit1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fit1D</span></code></a>-based spline interpolator.</p>
+<p>Like <code class="docutils literal notranslate"><span class="pre">scipy.interpolate.UnivariateSpline</span></code>, this is a wrapper around
+<code class="docutils literal notranslate"><span class="pre">scipy.interpolate.splrep/splev</span></code> with some nice features like y-&gt;x lookup
 and interpolation accuracy check etc. It basically simplifies setting up a
 spline interpolation and holds x-y data plus the spline knots
-(<code class="docutils literal"><span class="pre">self.tck</span></code>) together in one place. You can work with the methods here,
-but you can also use the normal tck (<code class="docutils literal"><span class="pre">self.tck</span></code>) in
-<code class="docutils literal"><span class="pre">scipy.interpolate.splev()</span></code> etc.</p>
+(<code class="docutils literal notranslate"><span class="pre">self.tck</span></code>) together in one place. You can work with the methods here,
+but you can also use the normal tck (<code class="docutils literal notranslate"><span class="pre">self.tck</span></code>) in
+<code class="docutils literal notranslate"><span class="pre">scipy.interpolate.splev()</span></code> etc.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="k">import</span> <span class="n">splev</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="k">import</span> <span class="n">splev</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">num</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -80,29 +72,35 @@ but you can also use the normal tck (<code class="docutils literal"><span class=
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.Spline.__call__.html#pwtools.num.Spline.__call__" title="pwtools.num.Spline.__call__"><code class="xref py py-obj docutils literal"><span class="pre">__call__</span></code></a>(x,&nbsp;*args,&nbsp;**kwargs)</td>
-<td></td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.Spline.__call__.html#pwtools.num.Spline.__call__" title="pwtools.num.Spline.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(x,&nbsp;*args,&nbsp;**kwargs)</td>
+<td>Call self as a function.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.num.Spline.get_max.html#pwtools.num.Spline.get_max" title="pwtools.num.Spline.get_max"><code class="xref py py-obj docutils literal"><span class="pre">get_max</span></code></a>([x0,&nbsp;xab])</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.num.Spline.get_max.html#pwtools.num.Spline.get_max" title="pwtools.num.Spline.get_max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_max</span></code></a>([x0,&nbsp;xab])</td>
 <td>Convenience method.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.Spline.get_min.html#pwtools.num.Spline.get_min" title="pwtools.num.Spline.get_min"><code class="xref py py-obj docutils literal"><span class="pre">get_min</span></code></a>([x0,&nbsp;xab])</td>
-<td>Return x where y(x) = min(y) by calculating the root of the fit’s 1st derivative (by calling <code class="docutils literal"><span class="pre">self(x,</span> <span class="pre">der=1)</span></code>).</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.Spline.get_min.html#pwtools.num.Spline.get_min" title="pwtools.num.Spline.get_min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_min</span></code></a>([x0,&nbsp;xab])</td>
+<td>Return x where y(x) = min(y) by calculating the root of the fit’s 1st derivative (by calling <code class="docutils literal notranslate"><span class="pre">self(x,</span> <span class="pre">der=1)</span></code>).</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.num.Spline.get_root.html#pwtools.num.Spline.get_root" title="pwtools.num.Spline.get_root"><code class="xref py py-obj docutils literal"><span class="pre">get_root</span></code></a>([x0,&nbsp;xab])</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.num.Spline.get_root.html#pwtools.num.Spline.get_root" title="pwtools.num.Spline.get_root"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_root</span></code></a>([x0,&nbsp;xab])</td>
 <td>Return x where y(x) = 0 by calculating the root of the fit function.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.Spline.invsplev.html#pwtools.num.Spline.invsplev" title="pwtools.num.Spline.invsplev"><code class="xref py py-obj docutils literal"><span class="pre">invsplev</span></code></a>(y0[,&nbsp;x0,&nbsp;xab])</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.Spline.invsplev.html#pwtools.num.Spline.invsplev" title="pwtools.num.Spline.invsplev"><code class="xref py py-obj docutils literal notranslate"><span class="pre">invsplev</span></code></a>(y0[,&nbsp;x0,&nbsp;xab])</td>
 <td>Lookup x for a given y, i.e.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.num.Spline.is_mono.html#pwtools.num.Spline.is_mono" title="pwtools.num.Spline.is_mono"><code class="xref py py-obj docutils literal"><span class="pre">is_mono</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.num.Spline.is_mono.html#pwtools.num.Spline.is_mono" title="pwtools.num.Spline.is_mono"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_mono</span></code></a>()</td>
 <td>Return True if the curve described by the fit function f(x) is monotonic.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.Spline.splev.html#pwtools.num.Spline.splev" title="pwtools.num.Spline.splev"><code class="xref py py-obj docutils literal"><span class="pre">splev</span></code></a>(x,&nbsp;*args,&nbsp;**kwds)</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.Spline.splev.html#pwtools.num.Spline.splev" title="pwtools.num.Spline.splev"><code class="xref py py-obj docutils literal notranslate"><span class="pre">splev</span></code></a>(x,&nbsp;*args,&nbsp;**kwds)</td>
 <td></td>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="pwtools.num.Spline.__call__">
+<code class="descname">__call__</code><span class="sig-paren">(</span><em>x</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Spline.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Spline.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="pwtools.num.Spline.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>eps=1e-10</em>, <em>checkeps=True</em>, <em>**splrep_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Spline.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Spline.__init__" title="Permalink to this definition">¶</a></dt>
@@ -225,12 +223,14 @@ construct an inverse spline: Spline(y,x).</p>
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -241,7 +241,7 @@ construct an inverse spline: Spline(y,x).</p>
       &copy;2018, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

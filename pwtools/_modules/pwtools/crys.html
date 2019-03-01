@@ -4,24 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>pwtools.crys &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -29,8 +22,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -2143,7 +2135,7 @@
 
 <div class="viewcode-block" id="UnitsHandler"><a class="viewcode-back" href="../../generated/api/pwtools.crys.UnitsHandler.html#pwtools.crys.UnitsHandler">[docs]</a><span class="k">class</span> <span class="nc">UnitsHandler</span><span class="p">(</span><span class="n">FlexibleGetters</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for :class:`Structure`, providing unit conversion methods.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="UnitsHandler.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.crys.UnitsHandler.html#pwtools.crys.UnitsHandler.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># XXX cryst_const is not in &#39;length&#39; and needs to be treated specially,</span>
         <span class="c1"># see _apply_units_raw()</span>
         
@@ -2160,7 +2152,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_units</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">key</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">units_map</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">units_applied</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="c1"># Init all unit factors in self.units to 1.0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_units</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_units</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="nf">_apply_units_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Only used by derived classes. Apply unit factors to all attrs in</span>
@@ -2942,8 +2934,8 @@
     <span class="n">is_traj</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">is_struct</span> <span class="o">=</span> <span class="kc">False</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Trajectory</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<div class="viewcode-block" id="Trajectory.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Trajectory</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span></div>
     
     <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span>
@@ -3050,13 +3042,13 @@
 
 <span class="sd">    Used for ``spglib``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scaled_positions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cell</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="FakeASEAtoms.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.crys.FakeASEAtoms.html#pwtools.crys.FakeASEAtoms.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scaled_positions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cell</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">FakeASEAtoms</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">coords_frac</span><span class="o">=</span><span class="n">scaled_positions</span><span class="p">,</span>
                                            <span class="n">cell</span><span class="o">=</span><span class="n">cell</span><span class="p">,</span>
                                            <span class="n">symbols</span><span class="o">=</span><span class="n">symbols</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_scaled_positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_coords_frac</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_coords</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">get_number_of_atoms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_natoms</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_number_of_atoms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_natoms</span></div>
 
 <div class="viewcode-block" id="FakeASEAtoms.get_magnetic_moments"><a class="viewcode-back" href="../../generated/api/pwtools.crys.FakeASEAtoms.get_magnetic_moments.html#pwtools.crys.FakeASEAtoms.get_magnetic_moments">[docs]</a>    <span class="k">def</span> <span class="nf">get_magnetic_moments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="kc">None</span></div>
@@ -3506,12 +3498,14 @@
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -3522,7 +3516,7 @@
       &copy;2018, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
     </div>

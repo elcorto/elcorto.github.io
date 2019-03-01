@@ -4,24 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Velocity autocorrelation function and phonon DOS &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -29,8 +22,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -45,35 +37,35 @@
 <p>Here are some (textbook) notes about correlation, which you should read in
 order to understand how the phonon DOS (= vibrational density of states =
 power spectrum of the atomic velocities) is calculated in pwtools (see
-<a class="reference internal" href="../../generated/api/pydos.html#module-pwtools.pydos" title="pwtools.pydos"><code class="xref py py-mod docutils literal"><span class="pre">pydos</span></code></a>).</p>
+<a class="reference internal" href="../../generated/api/pydos.html#module-pwtools.pydos" title="pwtools.pydos"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pydos</span></code></a>).</p>
 <p>The cross-correlation theorem for the two-sided correlation:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">corr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="n">ifft</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">fft</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">corr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="n">ifft</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">fft</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>If a == b, then this reduces to the special case of the Wiener-Khinchin theorem
 (autocorrelation of <cite>a</cite>):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">corr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="p">)</span> <span class="o">=</span> <span class="n">ifft</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">a</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">corr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="p">)</span> <span class="o">=</span> <span class="n">ifft</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">a</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>where the power spectrum of <cite>a</cite> is simply:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">fft</span><span class="p">(</span><span class="n">corr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="p">))</span> <span class="o">==</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">a</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fft</span><span class="p">(</span><span class="n">corr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="p">))</span> <span class="o">==</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">a</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
 </pre></div>
 </div>
 <p>Both theorems assume <em>periodic</em> data, i.e. <cite>a</cite> and <cite>b</cite> repeat after <cite>nstep</cite>
-points. To deal with non-periodic data, we use zero-padding with <code class="docutils literal"><span class="pre">nstep-1</span></code>
-points at the end of <cite>a</cite> before <code class="docutils literal"><span class="pre">fft</span></code>. Therefore, the correlated signal is
-<code class="docutils literal"><span class="pre">2*nstep-1</span></code> points long (“two-sided correlation”) and contains the correlations for positive and
+points. To deal with non-periodic data, we use zero-padding with <code class="docutils literal notranslate"><span class="pre">nstep-1</span></code>
+points at the end of <cite>a</cite> before <code class="docutils literal notranslate"><span class="pre">fft</span></code>. Therefore, the correlated signal is
+<code class="docutils literal notranslate"><span class="pre">2*nstep-1</span></code> points long (“two-sided correlation”) and contains the correlations for positive and
 negative lags. Since the autocorrelation function is symmetric around lag=0, we
-return 0 … +lag in <a class="reference internal" href="../../generated/api/pwtools.signal.acorr.html#pwtools.signal.acorr" title="pwtools.signal.acorr"><code class="xref py py-func docutils literal"><span class="pre">pwtools.signal.acorr()</span></code></a>. To compare that with
-<code class="docutils literal"><span class="pre">scipy.signal.correlate(a,a,'full')</span></code>, we need to mirror the result at lag=0
+return 0 … +lag in <a class="reference internal" href="../../generated/api/pwtools.signal.acorr.html#pwtools.signal.acorr" title="pwtools.signal.acorr"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.signal.acorr()</span></code></a>. To compare that with
+<code class="docutils literal notranslate"><span class="pre">scipy.signal.correlate(a,a,'full')</span></code>, we need to mirror the result at lag=0
 again.</p>
 <p>Here are these equalities with discrete data. Note that due to the
 way in which fft/ifft packs the data in the returned array, we need
 to do some slicing + mirror tricks to get it right. In each example,
-the arrays c1,c2,c3 and p1,p2 are the same and for <code class="docutils literal"><span class="pre">corr(v,v)</span></code> we use
-<code class="docutils literal"><span class="pre">acorr(v)</span></code> here.</p>
+the arrays c1,c2,c3 and p1,p2 are the same and for <code class="docutils literal notranslate"><span class="pre">corr(v,v)</span></code> we use
+<code class="docutils literal notranslate"><span class="pre">acorr(v)</span></code> here.</p>
 <p>Two-sided correlation for -lag…0…+lag:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.signal</span> <span class="k">import</span> <span class="n">pad_zeros</span><span class="p">,</span> <span class="n">welch</span><span class="p">,</span> <span class="n">mirror</span><span class="p">,</span> <span class="n">acorr</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.signal</span> <span class="k">import</span> <span class="n">pad_zeros</span><span class="p">,</span> <span class="n">welch</span><span class="p">,</span> <span class="n">mirror</span><span class="p">,</span> <span class="n">acorr</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="k">import</span> <span class="n">correlate</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="k">import</span> <span class="n">fft</span><span class="p">,</span><span class="n">ifft</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pad</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pad_zeros</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nadd</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -90,76 +82,76 @@ the arrays c1,c2,c3 and p1,p2 are the same and for <code class="docutils literal
 <span class="gp">... </span><span class="n">plot</span><span class="p">(</span><span class="n">c3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;acorr&#39;</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;corr&#39;</span><span class="p">);</span> <span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>and the power spectra as <code class="docutils literal"><span class="pre">fft(corr(v,v))</span></code>, now one-sided:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span><span class="o">=</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">pad</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)[:</span><span class="n">n</span><span class="p">]</span>
+<p>and the power spectra as <code class="docutils literal notranslate"><span class="pre">fft(corr(v,v))</span></code>, now one-sided:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span><span class="o">=</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">pad</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)[:</span><span class="n">n</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span><span class="o">=</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">mirror</span><span class="p">(</span><span class="n">acorr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)))))[:</span><span class="n">n</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">figure</span><span class="p">();</span> <span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;fft&#39;</span><span class="p">);</span> <span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;acorr&#39;</span><span class="p">);</span> \
 <span class="gp">... </span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;spectrum&#39;</span><span class="p">);</span> <span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>also with a Welch window:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span><span class="o">=</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">pad</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="n">w</span><span class="p">)))</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)[:</span><span class="n">n</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span><span class="o">=</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">pad</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="n">w</span><span class="p">)))</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)[:</span><span class="n">n</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span><span class="o">=</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">mirror</span><span class="p">(</span><span class="n">acorr</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="n">w</span><span class="p">,</span><span class="n">norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)))))[:</span><span class="n">n</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">figure</span><span class="p">();</span> <span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;fft&#39;</span><span class="p">);</span> <span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;acorr&#39;</span><span class="p">);</span> \
 <span class="gp">... </span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;spectrum welch&#39;</span><span class="p">);</span> <span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The zero-padding before <code class="docutils literal"><span class="pre">fft</span></code> is manadatory! It is also done inside
-<code class="xref py py-func docutils literal"><span class="pre">scipy.signal.correlate()</span></code>.</p>
-<p>The 1D reference implementation is <a class="reference internal" href="../../generated/api/pwtools.signal.acorr.html#pwtools.signal.acorr" title="pwtools.signal.acorr"><code class="xref py py-func docutils literal"><span class="pre">pwtools.signal.acorr()</span></code></a>, which contains the
+<p>The zero-padding before <code class="docutils literal notranslate"><span class="pre">fft</span></code> is manadatory! It is also done inside
+<code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.signal.correlate()</span></code>.</p>
+<p>The 1D reference implementation is <a class="reference internal" href="../../generated/api/pwtools.signal.acorr.html#pwtools.signal.acorr" title="pwtools.signal.acorr"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.signal.acorr()</span></code></a>, which contains the
 fft-based correlation (Wiener-Khinchin) along with other methods.</p>
 </div>
 <div class="section" id="padding-and-smoothing">
 <h2>Padding and smoothing<a class="headerlink" href="#padding-and-smoothing" title="Permalink to this headline">¶</a></h2>
-<p>There is <a class="reference external" href="http://www.timteatro.net/2010/09/29/velocity-autocorrelation-and-vibrational-spectrum-calculation">another code</a> out there (appart from <code class="docutils literal"><span class="pre">fourier.x</span></code> from CPMD)
+<p>There is <a class="reference external" href="http://www.timteatro.net/2010/09/29/velocity-autocorrelation-and-vibrational-spectrum-calculation">another code</a> out there (appart from <code class="docutils literal notranslate"><span class="pre">fourier.x</span></code> from CPMD)
 which calculates the phonon DOS from MD data. What they do is padding the
-<cite>correlation</cite> function, i.e. something like <code class="docutils literal"><span class="pre">fft(pad(acorr(v)))</span></code>, which is
-<cite>not</cite> the same as <code class="docutils literal"><span class="pre">fft(mirror(acorr(v)))</span></code>. They also use smoothing (convolution
-with a gaussian, i.e. <code class="docutils literal"><span class="pre">fft(smooth(pad(acorr(v))))</span></code>) after padding, which is
+<cite>correlation</cite> function, i.e. something like <code class="docutils literal notranslate"><span class="pre">fft(pad(acorr(v)))</span></code>, which is
+<cite>not</cite> the same as <code class="docutils literal notranslate"><span class="pre">fft(mirror(acorr(v)))</span></code>. They also use smoothing (convolution
+with a gaussian, i.e. <code class="docutils literal notranslate"><span class="pre">fft(smooth(pad(acorr(v))))</span></code>) after padding, which is
 less effective than using a Welch (or any other) window function. But we
 haven’t tested the code, so all this may work just fine.</p>
-<p>For smoothing the spectrum (e.g. <code class="docutils literal"><span class="pre">p1=(abs(fft(pad(v)))**2.0)[:n]</span></code>) using our
-implementation, use <a class="reference internal" href="../../generated/api/pwtools.signal.smooth.html#pwtools.signal.smooth" title="pwtools.signal.smooth"><code class="xref py py-func docutils literal"><span class="pre">pwtools.signal.smooth()</span></code></a>, i.e. <code class="docutils literal"><span class="pre">smooth(p1)</span></code>. For
+<p>For smoothing the spectrum (e.g. <code class="docutils literal notranslate"><span class="pre">p1=(abs(fft(pad(v)))**2.0)[:n]</span></code>) using our
+implementation, use <a class="reference internal" href="../../generated/api/pwtools.signal.smooth.html#pwtools.signal.smooth" title="pwtools.signal.smooth"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.signal.smooth()</span></code></a>, i.e. <code class="docutils literal notranslate"><span class="pre">smooth(p1)</span></code>. For
 increasing the interpolation, use more padding <cite>of the time series</cite>, for
-instance <code class="docutils literal"><span class="pre">pad_zeros(v,</span> <span class="pre">nadd=(len(v)-1)*5)</span></code> instead of <cite>len(v)-1</cite>.</p>
+instance <code class="docutils literal notranslate"><span class="pre">pad_zeros(v,</span> <span class="pre">nadd=(len(v)-1)*5)</span></code> instead of <cite>len(v)-1</cite>.</p>
 </div>
 <div class="section" id="calculation-of-the-phonon-dos-from-md-data">
 <h2>Calculation of the phonon DOS from MD data<a class="headerlink" href="#calculation-of-the-phonon-dos-from-md-data" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="../../generated/api/pydos.html#module-pwtools.pydos" title="pwtools.pydos"><code class="xref py py-mod docutils literal"><span class="pre">pydos</span></code></a> module containes many helper and reference
+<p>The <a class="reference internal" href="../../generated/api/pydos.html#module-pwtools.pydos" title="pwtools.pydos"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pydos</span></code></a> module containes many helper and reference
 implementations, but the the main function to be used is
-<a class="reference internal" href="../../generated/api/pwtools.pydos.pdos.html#pwtools.pydos.pdos" title="pwtools.pydos.pdos"><code class="xref py py-func docutils literal"><span class="pre">pdos()</span></code></a>.</p>
+<a class="reference internal" href="../../generated/api/pwtools.pydos.pdos.html#pwtools.pydos.pdos" title="pwtools.pydos.pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">pdos()</span></code></a>.</p>
 <p>There are two ways of computing the phonon density of states (PDOS) from an MD
-trajectory. <code class="docutils literal"><span class="pre">v</span></code> is the 3d array of atomic velocities with shape (nstep,natoms,3),
-i.e. <code class="docutils literal"><span class="pre">Trajectory.velocity</span></code>, see <a class="reference internal" href="../../generated/api/pwtools.crys.velocity_traj.html#pwtools.crys.velocity_traj" title="pwtools.crys.velocity_traj"><code class="xref py py-func docutils literal"><span class="pre">velocity_traj()</span></code></a>.</p>
+trajectory. <code class="docutils literal notranslate"><span class="pre">v</span></code> is the 3d array of atomic velocities with shape (nstep,natoms,3),
+i.e. <code class="docutils literal notranslate"><span class="pre">Trajectory.velocity</span></code>, see <a class="reference internal" href="../../generated/api/pwtools.crys.velocity_traj.html#pwtools.crys.velocity_traj" title="pwtools.crys.velocity_traj"><code class="xref py py-func docutils literal notranslate"><span class="pre">velocity_traj()</span></code></a>.</p>
 <ul class="simple">
 <li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">method='vacf'</span></code>: <code class="docutils literal"><span class="pre">fft</span></code> of the velocity autocorrelation function (<code class="docutils literal"><span class="pre">vacf</span></code>):</dt>
-<dd><code class="docutils literal"><span class="pre">v</span></code> -&gt; <code class="docutils literal"><span class="pre">vacf</span></code> -&gt; <code class="docutils literal"><span class="pre">fft(vacf)</span></code> = PDOS, see <a class="reference internal" href="../../generated/api/pwtools.pydos.vacf_pdos.html#pwtools.pydos.vacf_pdos" title="pwtools.pydos.vacf_pdos"><code class="xref py py-func docutils literal"><span class="pre">vacf_pdos()</span></code></a></dd>
+<dt><code class="docutils literal notranslate"><span class="pre">method='vacf'</span></code>: <code class="docutils literal notranslate"><span class="pre">fft</span></code> of the velocity autocorrelation function (<code class="docutils literal notranslate"><span class="pre">vacf</span></code>):</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">v</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">vacf</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">fft(vacf)</span></code> = PDOS, see <a class="reference internal" href="../../generated/api/pwtools.pydos.vacf_pdos.html#pwtools.pydos.vacf_pdos" title="pwtools.pydos.vacf_pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">vacf_pdos()</span></code></a></dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">method='direct'</span></code>:  <code class="docutils literal"><span class="pre">abs(fft(v))**2</span></code> = PDOS, see <a class="reference internal" href="../../generated/api/pwtools.pydos.direct_pdos.html#pwtools.pydos.direct_pdos" title="pwtools.pydos.direct_pdos"><code class="xref py py-func docutils literal"><span class="pre">direct_pdos()</span></code></a>,</dt>
+<dt><code class="docutils literal notranslate"><span class="pre">method='direct'</span></code>:  <code class="docutils literal notranslate"><span class="pre">abs(fft(v))**2</span></code> = PDOS, see <a class="reference internal" href="../../generated/api/pwtools.pydos.direct_pdos.html#pwtools.pydos.direct_pdos" title="pwtools.pydos.direct_pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">direct_pdos()</span></code></a>,</dt>
 <dd>This is much faster and mathematically exactly the same, see
-<code class="docutils literal"><span class="pre">examples/examples/phonon_dos</span></code> and <code class="docutils literal"><span class="pre">test/test_pdos.py</span></code> .</dd>
+<code class="docutils literal notranslate"><span class="pre">examples/examples/phonon_dos</span></code> and <code class="docutils literal notranslate"><span class="pre">test/test_pdos.py</span></code> .</dd>
 </dl>
 </li>
 </ul>
 <p>Both methods are implemented but actually only method ‘direct’ is worth using.
 Method ‘vacf’ still exists for historical reasons and as reference.</p>
-<p>The actual implementation is in <a class="reference internal" href="../../generated/api/pwtools.pydos.pdos.html#pwtools.pydos.pdos" title="pwtools.pydos.pdos"><code class="xref py py-func docutils literal"><span class="pre">pdos()</span></code></a> and the above two
+<p>The actual implementation is in <a class="reference internal" href="../../generated/api/pwtools.pydos.pdos.html#pwtools.pydos.pdos" title="pwtools.pydos.pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">pdos()</span></code></a> and the above two
 functions are convenience wrappers.</p>
 <ul class="simple">
-<li>In method ‘vacf’, if we mirror the <code class="docutils literal"><span class="pre">vacf</span></code> at t=0 before the <code class="docutils literal"><span class="pre">fft</span></code>, then we get
+<li>In method ‘vacf’, if we mirror the <code class="docutils literal notranslate"><span class="pre">vacf</span></code> at t=0 before the <code class="docutils literal notranslate"><span class="pre">fft</span></code>, then we get
 double frequency resolution.</li>
-<li>By default, <a class="reference internal" href="../../generated/api/pwtools.pydos.direct_pdos.html#pwtools.pydos.direct_pdos" title="pwtools.pydos.direct_pdos"><code class="xref py py-func docutils literal"><span class="pre">direct_pdos()</span></code></a> uses zero-padding of <code class="docutils literal"><span class="pre">v</span></code> to
+<li>By default, <a class="reference internal" href="../../generated/api/pwtools.pydos.direct_pdos.html#pwtools.pydos.direct_pdos" title="pwtools.pydos.direct_pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">direct_pdos()</span></code></a> uses zero-padding of <code class="docutils literal notranslate"><span class="pre">v</span></code> to
 get the same frequency resolution as we would get with mirroring the signal
-(<code class="docutils literal"><span class="pre">mirr=True</span></code>) <a class="reference internal" href="../../generated/api/pwtools.pydos.vacf_pdos.html#pwtools.pydos.vacf_pdos" title="pwtools.pydos.vacf_pdos"><code class="xref py py-func docutils literal"><span class="pre">vacf_pdos()</span></code></a>. Also, padding is necessary
+(<code class="docutils literal notranslate"><span class="pre">mirr=True</span></code>) <a class="reference internal" href="../../generated/api/pwtools.pydos.vacf_pdos.html#pwtools.pydos.vacf_pdos" title="pwtools.pydos.vacf_pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">vacf_pdos()</span></code></a>. Also, padding is necessary
 b/c of the arguments outlined above for the 1d case.</li>
 <li>Both methods use Welch windowing by default to reduce “leakage” from
 neighboring peaks.</li>
 <li>Both methods must produce exactly the same results (up to numerical noise).</li>
 <li>The frequency axis of the PDOS is in Hz. It is “f”, NOT the angular frequency
-2*pi*f. See also <code class="docutils literal"><span class="pre">examples/pdos_methods.py</span></code>.</li>
+2*pi*f. See also <code class="docutils literal notranslate"><span class="pre">examples/pdos_methods.py</span></code>.</li>
 <li><dl class="first docutils">
 <dt>The difference to the 1d case:</dt>
 <dd><ul class="first last">
@@ -223,12 +215,14 @@ PDOS, not the peak positions</li>
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -239,7 +233,7 @@ PDOS, not the peak positions</li>
       &copy;2018, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

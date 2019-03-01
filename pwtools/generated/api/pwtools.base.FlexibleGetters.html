@@ -4,24 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>pwtools.base.FlexibleGetters &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.base.FlexibleGetters.assert_attr" href="pwtools.base.FlexibleGetters.assert_attr.html" />
@@ -31,8 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -45,14 +37,14 @@
 <dl class="class">
 <dt id="pwtools.base.FlexibleGetters">
 <em class="property">class </em><code class="descclassname">pwtools.base.</code><code class="descname">FlexibleGetters</code><a class="reference internal" href="../../_modules/pwtools/base.html#FlexibleGetters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.base.FlexibleGetters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The most basic base class – the mothership!</p>
 <p>Implements a mechanism which allows to call getters in
 arbitrary order, even if they depend on each other. The mechanism also
 assured that the code in each getter is only executed once (by using checks
 with self.is_set_attr()).</p>
 <p>For each attr, there must exist a getter. We define the convention:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">foo</span>  <span class="o">-&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_foo</span><span class="p">()</span> 
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">foo</span>  <span class="o">-&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_foo</span><span class="p">()</span> 
 <span class="bp">self</span><span class="o">.</span><span class="n">bar</span>  <span class="o">-&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_bar</span><span class="p">()</span>  
 <span class="bp">self</span><span class="o">.</span><span class="n">_baz</span> <span class="o">-&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_baz</span><span class="p">()</span> <span class="c1"># note the underscores</span>
 <span class="o">...</span> 
@@ -66,7 +58,7 @@ general code (see parse.py). One drawback: Beware of cyclic dependencies
 (i.e. get_bar -&gt; get_foo -&gt; get_bar -&gt; …, max. recursion limit error).
 Always test! This corner case danger is outweight by usefullness.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MySuperParsingClass</span><span class="p">(</span><span class="n">FlexibleGetters</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MySuperParsingClass</span><span class="p">(</span><span class="n">FlexibleGetters</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_attr_lst</span><span class="p">([</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;_baz&#39;</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_all</span><span class="p">()</span>
@@ -104,62 +96,68 @@ set_all(). The try_set_attr() - method works without it, too.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.assert_attr.html#pwtools.base.FlexibleGetters.assert_attr" title="pwtools.base.FlexibleGetters.assert_attr"><code class="xref py py-obj docutils literal"><span class="pre">assert_attr</span></code></a>(attr)</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.assert_attr.html#pwtools.base.FlexibleGetters.assert_attr" title="pwtools.base.FlexibleGetters.assert_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_attr</span></code></a>(attr)</td>
 <td>Raise AssertionError if self.&lt;attr&gt; is not set (is_set_attr() returns False.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.assert_attr_lst.html#pwtools.base.FlexibleGetters.assert_attr_lst" title="pwtools.base.FlexibleGetters.assert_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">assert_attr_lst</span></code></a>(attr_lst)</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.assert_attr_lst.html#pwtools.base.FlexibleGetters.assert_attr_lst" title="pwtools.base.FlexibleGetters.assert_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_attr_lst</span></code></a>(attr_lst)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.assert_set_attr.html#pwtools.base.FlexibleGetters.assert_set_attr" title="pwtools.base.FlexibleGetters.assert_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">assert_set_attr</span></code></a>(attr)</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.assert_set_attr.html#pwtools.base.FlexibleGetters.assert_set_attr" title="pwtools.base.FlexibleGetters.assert_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_set_attr</span></code></a>(attr)</td>
 <td>Same as assert_attr(), but run try_set_attr() first.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.assert_set_attr_lst.html#pwtools.base.FlexibleGetters.assert_set_attr_lst" title="pwtools.base.FlexibleGetters.assert_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">assert_set_attr_lst</span></code></a>(attr_lst)</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.assert_set_attr_lst.html#pwtools.base.FlexibleGetters.assert_set_attr_lst" title="pwtools.base.FlexibleGetters.assert_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_set_attr_lst</span></code></a>(attr_lst)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.check_set_attr.html#pwtools.base.FlexibleGetters.check_set_attr" title="pwtools.base.FlexibleGetters.check_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">check_set_attr</span></code></a>(attr)</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.check_set_attr.html#pwtools.base.FlexibleGetters.check_set_attr" title="pwtools.base.FlexibleGetters.check_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_set_attr</span></code></a>(attr)</td>
 <td>Run try_set_attr() and return the result of is_set_attr(), i.e.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.check_set_attr_lst.html#pwtools.base.FlexibleGetters.check_set_attr_lst" title="pwtools.base.FlexibleGetters.check_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">check_set_attr_lst</span></code></a>(attr_lst)</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.check_set_attr_lst.html#pwtools.base.FlexibleGetters.check_set_attr_lst" title="pwtools.base.FlexibleGetters.check_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_set_attr_lst</span></code></a>(attr_lst)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.dump.html#pwtools.base.FlexibleGetters.dump" title="pwtools.base.FlexibleGetters.dump"><code class="xref py py-obj docutils literal"><span class="pre">dump</span></code></a>(dump_filename[,&nbsp;mkdir])</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.dump.html#pwtools.base.FlexibleGetters.dump" title="pwtools.base.FlexibleGetters.dump"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump</span></code></a>(dump_filename[,&nbsp;mkdir])</td>
 <td>Write object to binary file using pickle.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.get_return_attr.html#pwtools.base.FlexibleGetters.get_return_attr" title="pwtools.base.FlexibleGetters.get_return_attr"><code class="xref py py-obj docutils literal"><span class="pre">get_return_attr</span></code></a>(attr_name)</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.get_return_attr.html#pwtools.base.FlexibleGetters.get_return_attr" title="pwtools.base.FlexibleGetters.get_return_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_return_attr</span></code></a>(attr_name)</td>
 <td>Call try_set_attr() are return self.&lt;attr_name&gt; if set.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.init_attr_lst.html#pwtools.base.FlexibleGetters.init_attr_lst" title="pwtools.base.FlexibleGetters.init_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">init_attr_lst</span></code></a>([attr_lst])</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.init_attr_lst.html#pwtools.base.FlexibleGetters.init_attr_lst" title="pwtools.base.FlexibleGetters.init_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_attr_lst</span></code></a>([attr_lst])</td>
 <td>Set each self.&lt;attr&gt; in <cite>attr_lst</cite> to None.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.is_set_attr.html#pwtools.base.FlexibleGetters.is_set_attr" title="pwtools.base.FlexibleGetters.is_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">is_set_attr</span></code></a>(attr)</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.is_set_attr.html#pwtools.base.FlexibleGetters.is_set_attr" title="pwtools.base.FlexibleGetters.is_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr</span></code></a>(attr)</td>
 <td>Check if self has the attribute self.&lt;attr&gt; and if it is _not_ None.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.is_set_attr_lst.html#pwtools.base.FlexibleGetters.is_set_attr_lst" title="pwtools.base.FlexibleGetters.is_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">is_set_attr_lst</span></code></a>(attr_lst)</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.is_set_attr_lst.html#pwtools.base.FlexibleGetters.is_set_attr_lst" title="pwtools.base.FlexibleGetters.is_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr_lst</span></code></a>(attr_lst)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.load.html#pwtools.base.FlexibleGetters.load" title="pwtools.base.FlexibleGetters.load"><code class="xref py py-obj docutils literal"><span class="pre">load</span></code></a>(dump_filename)</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.load.html#pwtools.base.FlexibleGetters.load" title="pwtools.base.FlexibleGetters.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(dump_filename)</td>
 <td>Load pickled object.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.raw_return.html#pwtools.base.FlexibleGetters.raw_return" title="pwtools.base.FlexibleGetters.raw_return"><code class="xref py py-obj docutils literal"><span class="pre">raw_return</span></code></a>(attr_name)</td>
-<td>Call <code class="docutils literal"><span class="pre">try_set_attr(_&lt;attr_name&gt;_raw)</span></code> and return it if set, else None.</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.raw_return.html#pwtools.base.FlexibleGetters.raw_return" title="pwtools.base.FlexibleGetters.raw_return"><code class="xref py py-obj docutils literal notranslate"><span class="pre">raw_return</span></code></a>(attr_name)</td>
+<td>Call <code class="docutils literal notranslate"><span class="pre">try_set_attr(_&lt;attr_name&gt;_raw)</span></code> and return it if set, else None.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.raw_slice_get.html#pwtools.base.FlexibleGetters.raw_slice_get" title="pwtools.base.FlexibleGetters.raw_slice_get"><code class="xref py py-obj docutils literal"><span class="pre">raw_slice_get</span></code></a>(attr_name,&nbsp;sl,&nbsp;axis)</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.raw_slice_get.html#pwtools.base.FlexibleGetters.raw_slice_get" title="pwtools.base.FlexibleGetters.raw_slice_get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">raw_slice_get</span></code></a>(attr_name,&nbsp;sl,&nbsp;axis)</td>
 <td>Shortcut method:</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.set_all.html#pwtools.base.FlexibleGetters.set_all" title="pwtools.base.FlexibleGetters.set_all"><code class="xref py py-obj docutils literal"><span class="pre">set_all</span></code></a>([attr_lst])</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.set_all.html#pwtools.base.FlexibleGetters.set_all" title="pwtools.base.FlexibleGetters.set_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_all</span></code></a>([attr_lst])</td>
 <td>Call getter for each attr name in <cite>attr_lst</cite>.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.set_attr_lst.html#pwtools.base.FlexibleGetters.set_attr_lst" title="pwtools.base.FlexibleGetters.set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">set_attr_lst</span></code></a>(attr_lst)</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.set_attr_lst.html#pwtools.base.FlexibleGetters.set_attr_lst" title="pwtools.base.FlexibleGetters.set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_attr_lst</span></code></a>(attr_lst)</td>
 <td>Set self.attr_lst and init each attr to None.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.try_set_attr.html#pwtools.base.FlexibleGetters.try_set_attr" title="pwtools.base.FlexibleGetters.try_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">try_set_attr</span></code></a>(attr)</td>
-<td>If self.&lt;attr&gt; does not exist or is None, then invoke an</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.try_set_attr.html#pwtools.base.FlexibleGetters.try_set_attr" title="pwtools.base.FlexibleGetters.try_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_set_attr</span></code></a>(attr)</td>
+<td>If self.&lt;attr&gt; does not exist or is None, then invoke an appropirately named getter as if this command would be executed.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.try_set_attr_lst.html#pwtools.base.FlexibleGetters.try_set_attr_lst" title="pwtools.base.FlexibleGetters.try_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">try_set_attr_lst</span></code></a>(attr_lst)</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.base.FlexibleGetters.try_set_attr_lst.html#pwtools.base.FlexibleGetters.try_set_attr_lst" title="pwtools.base.FlexibleGetters.try_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_set_attr_lst</span></code></a>(attr_lst)</td>
 <td></td>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="pwtools.base.FlexibleGetters.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/base.html#FlexibleGetters.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.base.FlexibleGetters.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="pwtools.base.FlexibleGetters.__weakref__">
 <code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.base.FlexibleGetters.__weakref__" title="Permalink to this definition">¶</a></dt>
@@ -185,7 +183,7 @@ returns False.</p>
 <dd><p>Run try_set_attr() and return the result of is_set_attr(), i.e. True
 or False. Most important shortcut method.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_set_attr</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span> <span class="o">*</span> <span class="mi">2</span>
     <span class="k">else</span><span class="p">:</span>
@@ -193,7 +191,7 @@ or False. Most important shortcut method.</p>
 </pre></div>
 </div>
 <p>which is the same as</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">try_set_attr</span><span class="p">(</span><span class="s1">&#39;bar):</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_set_attr</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span> <span class="o">*</span> <span class="mi">2</span>
@@ -207,7 +205,7 @@ or False. Most important shortcut method.</p>
 <dt id="pwtools.base.FlexibleGetters.dump">
 <code class="descname">dump</code><span class="sig-paren">(</span><em>dump_filename</em>, <em>mkdir=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/base.html#FlexibleGetters.dump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.base.FlexibleGetters.dump" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write object to binary file using pickle. Read back
-with <a class="reference internal" href="pwtools.io.read_pickle.html#pwtools.io.read_pickle" title="pwtools.io.read_pickle"><code class="xref py py-func docutils literal"><span class="pre">read_pickle()</span></code></a>.</p>
+with <a class="reference internal" href="pwtools.io.read_pickle.html#pwtools.io.read_pickle" title="pwtools.io.read_pickle"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_pickle()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -249,7 +247,7 @@ with <a class="reference internal" href="pwtools.io.read_pickle.html#pwtools.io.
 <code class="descname">load</code><span class="sig-paren">(</span><em>dump_filename</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/base.html#FlexibleGetters.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.base.FlexibleGetters.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load pickled object.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># save</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># save</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">FileParser</span><span class="p">(</span><span class="s1">&#39;foo.txt&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="s1">&#39;foo.pk&#39;</span><span class="p">)</span>
@@ -267,9 +265,9 @@ with <a class="reference internal" href="pwtools.io.read_pickle.html#pwtools.io.
 <dl class="method">
 <dt id="pwtools.base.FlexibleGetters.raw_return">
 <code class="descname">raw_return</code><span class="sig-paren">(</span><em>attr_name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/base.html#FlexibleGetters.raw_return"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.base.FlexibleGetters.raw_return" title="Permalink to this definition">¶</a></dt>
-<dd><p>Call <code class="docutils literal"><span class="pre">try_set_attr(_&lt;attr_name&gt;_raw)</span></code> and return it if set, else
+<dd><p>Call <code class="docutils literal notranslate"><span class="pre">try_set_attr(_&lt;attr_name&gt;_raw)</span></code> and return it if set, else
 None. This is faster but the same the same as
-<code class="docutils literal"><span class="pre">raw_slice_get(&lt;attr_name&gt;,</span> <span class="pre">sl=slice(None),</span> <span class="pre">axis=0)</span></code> or axis=1 or any
+<code class="docutils literal notranslate"><span class="pre">raw_slice_get(&lt;attr_name&gt;,</span> <span class="pre">sl=slice(None),</span> <span class="pre">axis=0)</span></code> or axis=1 or any
 other valid axis.</p>
 </dd></dl>
 
@@ -278,9 +276,9 @@ other valid axis.</p>
 <code class="descname">raw_slice_get</code><span class="sig-paren">(</span><em>attr_name</em>, <em>sl</em>, <em>axis</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/base.html#FlexibleGetters.raw_slice_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.base.FlexibleGetters.raw_slice_get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shortcut method:</p>
 <ul class="simple">
-<li>call <code class="docutils literal"><span class="pre">try_set_attr(_&lt;attr_name&gt;_raw)</span></code> -&gt; set
-<code class="docutils literal"><span class="pre">self._&lt;attr_name&gt;_raw</span></code> to None or smth else</li>
-<li>if set, return <code class="docutils literal"><span class="pre">self._&lt;attr_name&gt;_raw</span></code> sliced by <cite>sl</cite> along <cite>axis</cite>,
+<li>call <code class="docutils literal notranslate"><span class="pre">try_set_attr(_&lt;attr_name&gt;_raw)</span></code> -&gt; set
+<code class="docutils literal notranslate"><span class="pre">self._&lt;attr_name&gt;_raw</span></code> to None or smth else</li>
+<li>if set, return <code class="docutils literal notranslate"><span class="pre">self._&lt;attr_name&gt;_raw</span></code> sliced by <cite>sl</cite> along <cite>axis</cite>,
 else return None</li>
 </ul>
 </dd></dl>
@@ -302,7 +300,7 @@ else return None</li>
 <code class="descname">try_set_attr</code><span class="sig-paren">(</span><em>attr</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/base.html#FlexibleGetters.try_set_attr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.base.FlexibleGetters.try_set_attr" title="Permalink to this definition">¶</a></dt>
 <dd><p>If self.&lt;attr&gt; does not exist or is None, then invoke an
 appropirately named getter as if this command would be executed:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">foo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_foo</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">foo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_foo</span><span class="p">()</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">_foo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_foo</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -375,12 +373,14 @@ appropirately named getter as if this command would be executed:</p>
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -391,7 +391,7 @@ appropirately named getter as if this command would be executed:</p>
       &copy;2018, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

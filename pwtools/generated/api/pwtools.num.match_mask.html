@@ -4,24 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>pwtools.num.match_mask &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.num.meshgridt" href="pwtools.num.meshgridt.html" />
@@ -31,8 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -45,12 +37,12 @@
 <dl class="function">
 <dt id="pwtools.num.match_mask">
 <code class="descclassname">pwtools.num.</code><code class="descname">match_mask</code><span class="sig-paren">(</span><em>arr</em>, <em>values</em>, <em>fullout=False</em>, <em>eps=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#match_mask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.match_mask" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bool array of <code class="docutils literal"><span class="pre">len(arr)</span></code> which is True if <code class="docutils literal"><span class="pre">arr[i]</span> <span class="pre">==</span> <span class="pre">values[j],</span>
+<dd><p>Bool array of <code class="docutils literal notranslate"><span class="pre">len(arr)</span></code> which is True if <code class="docutils literal notranslate"><span class="pre">arr[i]</span> <span class="pre">==</span> <span class="pre">values[j],</span>
 <span class="pre">j=0..len(values)</span></code>.</p>
-<p>This is the same as creating bool arrays like <code class="docutils literal"><span class="pre">arr</span> <span class="pre">==</span> <span class="pre">some_value</span></code> just
+<p>This is the same as creating bool arrays like <code class="docutils literal notranslate"><span class="pre">arr</span> <span class="pre">==</span> <span class="pre">some_value</span></code> just
 that <cite>some_value</cite> can be an array (numpy can only do <cite>some_value</cite> =
 scalar). By default we assume integer arrays, unless <cite>eps</cite> is used.</p>
-<p>With <cite>eps=None</cite> and <cite>fullout=False</cite>, it behaves like <code class="docutils literal"><span class="pre">numpy.in1d</span></code>.</p>
+<p>With <cite>eps=None</cite> and <cite>fullout=False</cite>, it behaves like <code class="docutils literal notranslate"><span class="pre">numpy.in1d</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -71,12 +63,12 @@ scalar). By default we assume integer arrays, unless <cite>eps</cite> is used.</
 <p><strong>ret, idx_lst</strong> : fullout = True</p>
 <p><strong>ret</strong> : 1d array, bool, len(arr)</p>
 <blockquote>
-<div><p>Bool mask array for indexing <cite>arr</cite>. <code class="docutils literal"><span class="pre">arr[ret]</span></code> pulls out all values
+<div><p>Bool mask array for indexing <cite>arr</cite>. <code class="docutils literal notranslate"><span class="pre">arr[ret]</span></code> pulls out all values
 which are also in <cite>values</cite>.</p>
 </div></blockquote>
 <p><strong>idx_lst</strong> : 1d array</p>
 <blockquote class="last">
-<div><p>Indices for which <code class="docutils literal"><span class="pre">arr[idx_lst[i]]</span></code> equals some value in <cite>values</cite>.</p>
+<div><p>Indices for which <code class="docutils literal notranslate"><span class="pre">arr[idx_lst[i]]</span></code> equals some value in <cite>values</cite>.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -84,10 +76,10 @@ which are also in <cite>values</cite>.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><code class="xref py py-obj docutils literal"><span class="pre">numpy.in1d</span></code></p>
+<p class="last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.in1d</span></code></p>
 </div>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span><span class="o">=</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]);</span> <span class="n">values</span><span class="o">=</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span><span class="o">=</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]);</span> <span class="n">values</span><span class="o">=</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">num</span><span class="o">.</span><span class="n">match_mask</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
 <span class="go">array([ True, False,  True, False, False], dtype=bool)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">num</span><span class="o">.</span><span class="n">match_mask</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">fullout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -162,12 +154,14 @@ which are also in <cite>values</cite>.</p>
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -178,7 +172,7 @@ which are also in <cite>values</cite>.</p>
       &copy;2018, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

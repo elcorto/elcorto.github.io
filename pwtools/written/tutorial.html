@@ -4,24 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Tutorial &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Background, details, special topics" href="background/index.html" />
@@ -31,8 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -46,20 +38,20 @@
 common tasks.</p>
 <div class="section" id="using-ase">
 <h2>Using ASE?<a class="headerlink" href="#using-ase" title="Permalink to this headline">¶</a></h2>
-<p>No problem, use <a class="reference internal" href="../generated/api/pwtools.crys.atoms2struct.html#pwtools.crys.atoms2struct" title="pwtools.crys.atoms2struct"><code class="xref py py-func docutils literal"><span class="pre">atoms2struct()</span></code></a> and
-<a class="reference internal" href="../generated/api/pwtools.crys.struct2atoms.html#pwtools.crys.struct2atoms" title="pwtools.crys.struct2atoms"><code class="xref py py-func docutils literal"><span class="pre">struct2atoms()</span></code></a> to convert back and forth. If you have a
-<a class="reference internal" href="../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal"><span class="pre">Structure</span></code></a>, you can also use the
-<a class="reference internal" href="../generated/api/pwtools.crys.Structure.get_ase_atoms.html#pwtools.crys.Structure.get_ase_atoms" title="pwtools.crys.Structure.get_ase_atoms"><code class="xref py py-meth docutils literal"><span class="pre">get_ase_atoms()</span></code></a> method, which is the same as
-<code class="docutils literal"><span class="pre">struct2atoms(struct)</span></code>.</p>
+<p>No problem, use <a class="reference internal" href="../generated/api/pwtools.crys.atoms2struct.html#pwtools.crys.atoms2struct" title="pwtools.crys.atoms2struct"><code class="xref py py-func docutils literal notranslate"><span class="pre">atoms2struct()</span></code></a> and
+<a class="reference internal" href="../generated/api/pwtools.crys.struct2atoms.html#pwtools.crys.struct2atoms" title="pwtools.crys.struct2atoms"><code class="xref py py-func docutils literal notranslate"><span class="pre">struct2atoms()</span></code></a> to convert back and forth. If you have a
+<a class="reference internal" href="../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a>, you can also use the
+<a class="reference internal" href="../generated/api/pwtools.crys.Structure.get_ase_atoms.html#pwtools.crys.Structure.get_ase_atoms" title="pwtools.crys.Structure.get_ase_atoms"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_ase_atoms()</span></code></a> method, which is the same as
+<code class="docutils literal notranslate"><span class="pre">struct2atoms(struct)</span></code>.</p>
 <p>For basic ASE compatibility, you may get away with
-<a class="reference internal" href="../generated/api/pwtools.crys.Structure.get_fake_ase_atoms.html#pwtools.crys.Structure.get_fake_ase_atoms" title="pwtools.crys.Structure.get_fake_ase_atoms"><code class="xref py py-meth docutils literal"><span class="pre">get_fake_ase_atoms()</span></code></a>. That creates an object
-which behaves like <code class="docutils literal"><span class="pre">ase.Atoms</span></code> without the need to have ASE installed.
-This is used in <a class="reference internal" href="../generated/api/symmetry.html#module-pwtools.symmetry" title="pwtools.symmetry"><code class="xref py py-mod docutils literal"><span class="pre">pwtools.symmetry</span></code></a>, for example.</p>
+<a class="reference internal" href="../generated/api/pwtools.crys.Structure.get_fake_ase_atoms.html#pwtools.crys.Structure.get_fake_ase_atoms" title="pwtools.crys.Structure.get_fake_ase_atoms"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_fake_ase_atoms()</span></code></a>. That creates an object
+which behaves like <code class="docutils literal notranslate"><span class="pre">ase.Atoms</span></code> without the need to have ASE installed.
+This is used in <a class="reference internal" href="../generated/api/symmetry.html#module-pwtools.symmetry" title="pwtools.symmetry"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pwtools.symmetry</span></code></a>, for example.</p>
 </div>
 <div class="section" id="parse-scf-relax-or-md-output">
 <h2>Parse SCF, relax or MD output<a class="headerlink" href="#parse-scf-relax-or-md-output" title="Permalink to this headline">¶</a></h2>
-<p>Parse SCF run from QE (single <a class="reference internal" href="../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal"><span class="pre">Structure</span></code></a>):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">io</span>
+<p>Parse SCF run from QE (single <a class="reference internal" href="../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">io</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_pw_scf</span><span class="p">(</span><span class="s1">&#39;pw.scf.out&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># natoms=2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">coords_frac</span>
@@ -73,9 +65,9 @@ This is used in <a class="reference internal" href="../generated/api/symmetry.ht
 <span class="go">       [0.   , 0.   , 9.825]])</span>
 </pre></div>
 </div>
-<p>Variable cell relax run from QE into <a class="reference internal" href="../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></a>. Use the
+<p>Variable cell relax run from QE into <a class="reference internal" href="../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trajectory</span></code></a>. Use the
 MD parser:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_pw_md</span><span class="p">(</span><span class="s1">&#39;pw.vc_relax.out&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_pw_md</span><span class="p">(</span><span class="s1">&#39;pw.vc_relax.out&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">.</span><span class="n">nstep</span>
 <span class="go">7</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">.</span><span class="n">etot</span> <span class="o">-</span> <span class="n">tr</span><span class="o">.</span><span class="n">etot</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -97,7 +89,7 @@ MD parser:</p>
 </pre></div>
 </div>
 <p>Now an MD from CP2K:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_cp2k_md</span><span class="p">(</span><span class="s1">&#39;cp2k.out&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_cp2k_md</span><span class="p">(</span><span class="s1">&#39;cp2k.out&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">.</span><span class="n">nstep</span>
 <span class="go">123456</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># extract first and last Structure objects</span>
@@ -112,14 +104,14 @@ MD parser:</p>
 </div>
 <div class="section" id="binary-io">
 <h2>Binary IO<a class="headerlink" href="#binary-io" title="Permalink to this headline">¶</a></h2>
-<p>You can save a <a class="reference internal" href="../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal"><span class="pre">Structure</span></code></a> or
-<a class="reference internal" href="../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></a> object as binary file:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># save to binary pickle file</span>
+<p>You can save a <a class="reference internal" href="../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a> or
+<a class="reference internal" href="../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trajectory</span></code></a> object as binary file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># save to binary pickle file</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="s1">&#39;traj.pk&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>and read it back in later using <a class="reference internal" href="../generated/api/pwtools.io.read_pickle.html#pwtools.io.read_pickle" title="pwtools.io.read_pickle"><code class="xref py py-func docutils literal"><span class="pre">read_pickle()</span></code></a></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;traj.pk&#39;</span><span class="p">)</span>
+<p>and read it back in later using <a class="reference internal" href="../generated/api/pwtools.io.read_pickle.html#pwtools.io.read_pickle" title="pwtools.io.read_pickle"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_pickle()</span></code></a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;traj.pk&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>which is usually very fast.</p>
@@ -128,7 +120,7 @@ MD parser:</p>
 <h2>View a structure or trajectory<a class="headerlink" href="#view-a-structure-or-trajectory" title="Permalink to this headline">¶</a></h2>
 <p>Supported viewers are <a class="reference external" href="http://www.xcrysden.org/">xcrysden</a>, <a class="reference external" href="http://jmol.sourceforge.net/">jmol</a>, <a class="reference external" href="http://avogadro.cc">avogadro</a> and <a class="reference external" href="http://www.ks.uiuc.edu/Research/vmd/">VMD</a>. Look at single
 structs or trajectories.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">visualize</span><span class="p">,</span> <span class="n">random</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">visualize</span><span class="p">,</span> <span class="n">random</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random_struct</span><span class="p">([</span><span class="s1">&#39;Si&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">visualize</span><span class="o">.</span><span class="n">view_xcrysden</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">##visualize.view_jmol(st)</span>
@@ -137,7 +129,7 @@ structs or trajectories.</p>
 </div>
 <img alt="../_images/random_Si.png" src="../_images/random_Si.png" />
 <p>Andf you have VMD installed, view a random MD trajectory:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">crys</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">random</span><span class="o">.</span><span class="n">random_struct</span><span class="p">([</span><span class="s1">&#39;Si&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> \
 <span class="gp">... </span>                       <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)])</span>
@@ -152,31 +144,31 @@ structs or trajectories.</p>
 <div class="section" id="find-monkhorst-pack-k-grid-sampling-for-a-given-unit-cell">
 <h2>Find Monkhorst-Pack k-grid sampling for a given unit cell<a class="headerlink" href="#find-monkhorst-pack-k-grid-sampling-for-a-given-unit-cell" title="Permalink to this headline">¶</a></h2>
 <p>Say you know from a previous convergence study that a k-grid spacing of
-<code class="docutils literal"><span class="pre">h=0.5</span></code> 1/Angstrom is OK. Now you have a slab or other super cell of your
+<code class="docutils literal notranslate"><span class="pre">h=0.5</span></code> 1/Angstrom is OK. Now you have a slab or other super cell of your
 structure and you want to know “what k-grid do I need to get the same
 accuracy”. Simple:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">crys</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">crys</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># new cell in Angstrom</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cell</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">crys</span><span class="o">.</span><span class="n">kgrid</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="go">array([2, 2, 3])</span>
 </pre></div>
 </div>
-<p>OK, so use a <span class="math">\(2\times2\times3\)</span> MP grid. Instead of defining <code class="docutils literal"><span class="pre">cell</span></code> by
+<p>OK, so use a <span class="math notranslate nohighlight">\(2\times2\times3\)</span> MP grid. Instead of defining <code class="docutils literal notranslate"><span class="pre">cell</span></code> by
 hand, you could also build your structure, have it in a Structure object, say
-<code class="docutils literal"><span class="pre">st</span></code> and use <code class="docutils literal"><span class="pre">st.cell</span></code> instead.</p>
+<code class="docutils literal notranslate"><span class="pre">st</span></code> and use <code class="docutils literal notranslate"><span class="pre">st.cell</span></code> instead.</p>
 </div>
 <div class="section" id="find-spacegroup">
 <h2>Find spacegroup<a class="headerlink" href="#find-spacegroup" title="Permalink to this headline">¶</a></h2>
-<p>Say you have a Trajectory <code class="docutils literal"><span class="pre">tr</span></code>, which is the result of a relax calculation and you
+<p>Say you have a Trajectory <code class="docutils literal notranslate"><span class="pre">tr</span></code>, which is the result of a relax calculation and you
 want to know the space group of the final optimized structure, namely
-<code class="docutils literal"><span class="pre">tr[-1]</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">symmetry</span><span class="p">,</span> <span class="n">crys</span>
+<code class="docutils literal notranslate"><span class="pre">tr[-1]</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">symmetry</span><span class="p">,</span> <span class="n">crys</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">symmetry</span><span class="o">.</span><span class="n">get_spglib_spacegroup</span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">symprec</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Or build one using ASE:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ase.build</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ase.build</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">at</span> <span class="o">=</span> <span class="n">ase</span><span class="o">.</span><span class="n">build</span><span class="o">.</span><span class="n">bulk</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;AlN&#39;</span><span class="p">,</span> <span class="n">crystalstructure</span><span class="o">=</span><span class="s1">&#39;rocksalt&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">symmetry</span><span class="o">.</span><span class="n">spglib_get_spacegroup</span><span class="p">(</span><span class="n">crys</span><span class="o">.</span><span class="n">atoms2struct</span><span class="p">(</span><span class="n">at</span><span class="p">))</span>
 <span class="go">(225, &#39;Fm-3m&#39;)</span>
@@ -186,19 +178,19 @@ want to know the space group of the final optimized structure, namely
 <div class="section" id="smoothing-a-signal-or-a-trajectory">
 <h2>Smoothing a signal or a Trajectory<a class="headerlink" href="#smoothing-a-signal-or-a-trajectory" title="Permalink to this headline">¶</a></h2>
 <p>Smoothing a signal (usually called “time series”) can be done by convolution
-with another function (e.g. with <code class="docutils literal"><span class="pre">scipy.signal.convolve</span></code> or
-<code class="docutils literal"><span class="pre">scipy.signal.fftconvolve</span></code>). We implement advanced methods which add edge
-effect handling: <a class="reference internal" href="../generated/api/pwtools.signal.smooth.html#pwtools.signal.smooth" title="pwtools.signal.smooth"><code class="xref py py-func docutils literal"><span class="pre">pwtools.signal.smooth()</span></code></a>. The same can be applied to a
+with another function (e.g. with <code class="docutils literal notranslate"><span class="pre">scipy.signal.convolve</span></code> or
+<code class="docutils literal notranslate"><span class="pre">scipy.signal.fftconvolve</span></code>). We implement advanced methods which add edge
+effect handling: <a class="reference internal" href="../generated/api/pwtools.signal.smooth.html#pwtools.signal.smooth" title="pwtools.signal.smooth"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.signal.smooth()</span></code></a>. The same can be applied to a
 Trajectory, which is just a “time series” of Structures. See
-<a class="reference internal" href="../generated/api/pwtools.crys.smooth.html#pwtools.crys.smooth" title="pwtools.crys.smooth"><code class="xref py py-func docutils literal"><span class="pre">pwtools.crys.smooth()</span></code></a>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<a class="reference internal" href="../generated/api/pwtools.crys.smooth.html#pwtools.crys.smooth" title="pwtools.crys.smooth"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.crys.smooth()</span></code></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a_smooth</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="mi">151</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">Trajectory</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tr_smooth</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="mi">151</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.signal</span> <span class="k">import</span> <span class="n">smooth</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.signal</span> <span class="k">import</span> <span class="n">smooth</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">mpl</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="k">import</span> <span class="n">hann</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">fig_ax</span><span class="p">()</span>
@@ -212,14 +204,14 @@ Trajectory, which is just a “time series” of Structures. See
 </pre></div>
 </div>
 <img alt="../_images/smooth_1d.png" src="../_images/smooth_1d.png" />
-<p>The same is applied to each atomic coordinate in <a class="reference internal" href="../generated/api/pwtools.crys.smooth.html#pwtools.crys.smooth" title="pwtools.crys.smooth"><code class="xref py py-func docutils literal"><span class="pre">pwtools.crys.smooth()</span></code></a>.</p>
-<p>Find more about edge effects in <code class="docutils literal"><span class="pre">examples/lorentz.py</span></code> and the doc string of
-<a class="reference internal" href="../generated/api/pwtools.signal.smooth.html#pwtools.signal.smooth" title="pwtools.signal.smooth"><code class="xref py py-func docutils literal"><span class="pre">pwtools.signal.smooth()</span></code></a>.</p>
+<p>The same is applied to each atomic coordinate in <a class="reference internal" href="../generated/api/pwtools.crys.smooth.html#pwtools.crys.smooth" title="pwtools.crys.smooth"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.crys.smooth()</span></code></a>.</p>
+<p>Find more about edge effects in <code class="docutils literal notranslate"><span class="pre">examples/lorentz.py</span></code> and the doc string of
+<a class="reference internal" href="../generated/api/pwtools.signal.smooth.html#pwtools.signal.smooth" title="pwtools.signal.smooth"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.signal.smooth()</span></code></a>.</p>
 </div>
 <div class="section" id="interpolation-and-fitting">
 <span id="avoid-auto-calc"></span><h2>Interpolation and fitting<a class="headerlink" href="#interpolation-and-fitting" title="Permalink to this headline">¶</a></h2>
 <p>Care for some surface data? Here we fit with a 2D polynomial:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">num</span><span class="p">,</span> <span class="n">rbf</span><span class="p">,</span> <span class="n">mpl</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">num</span><span class="p">,</span> <span class="n">rbf</span><span class="p">,</span> <span class="n">mpl</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">fig_ax3d</span><span class="p">(</span><span class="n">clean</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dd</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">get_2d_testdata</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">xx</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">yy</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">zz</span><span class="p">)</span>
@@ -233,19 +225,19 @@ Trajectory, which is just a “time series” of Structures. See
 </pre></div>
 </div>
 <img alt="../_images/interpol_2d.png" src="../_images/interpol_2d.png" />
-<p>Example result from a 1D fit of noisy data (<code class="docutils literal"><span class="pre">examples/rbf/noise.py</span></code>) using
-<a class="reference internal" href="../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal"><span class="pre">Rbf</span></code></a>. Without all plot commands and only one data set:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="c1"># number of points</span>
+<p>Example result from a 1D fit of noisy data (<code class="docutils literal notranslate"><span class="pre">examples/rbf/noise.py</span></code>) using
+<a class="reference internal" href="../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a>. Without all plot commands and only one data set:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="c1"># number of points</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">rand</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">rbf</span><span class="o">.</span><span class="n">Rbf</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="kc">None</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/rbf_1d_opt_False.png" src="../_images/rbf_1d_opt_False.png" />
-<p>2D interpolation of samples of a “mexican hat” function <span class="math">\(\sin(r)/r\)</span>
-(<code class="docutils literal"><span class="pre">examples/rbf/surface.py</span></code>), also using <a class="reference internal" href="../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal"><span class="pre">Rbf</span></code></a>. See
-<a class="reference internal" href="background/rbf.html#rbf"><span class="std std-ref">Radial Basis Functions Networks for interpolation or fitting of N-dim data points</span></a> for more. Similar to the <a class="reference internal" href="../generated/api/pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal"><span class="pre">PolyFit</span></code></a> example above:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># same as</span>
+<p>2D interpolation of samples of a “mexican hat” function <span class="math notranslate nohighlight">\(\sin(r)/r\)</span>
+(<code class="docutils literal notranslate"><span class="pre">examples/rbf/surface.py</span></code>), also using <a class="reference internal" href="../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a>. See
+<a class="reference internal" href="background/rbf.html#rbf"><span class="std std-ref">Radial Basis Functions Networks for interpolation or fitting of N-dim data points</span></a> for more. Similar to the <a class="reference internal" href="../generated/api/pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolyFit</span></code></a> example above:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># same as</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#   num.Interpol2D(dd=dd, what=&#39;rbf_multi&#39;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#   num.Interpol2D(dd.XZ, dd.zz, what=&#39;rbf_multi&#39;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">=</span><span class="n">rbf</span><span class="o">.</span><span class="n">Rbf</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">XZ</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">zz</span><span class="p">)</span>
@@ -253,46 +245,46 @@ Trajectory, which is just a “time series” of Structures. See
 </div>
 <img alt="../_images/rbf_2d_surface_opt_False.png" src="../_images/rbf_2d_surface_opt_False.png" />
 <p>See also</p>
-<p><a class="reference internal" href="../generated/api/pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal"><span class="pre">PolyFit</span></code></a>
-<a class="reference internal" href="../generated/api/pwtools.num.PolyFit1D.html#pwtools.num.PolyFit1D" title="pwtools.num.PolyFit1D"><code class="xref py py-class docutils literal"><span class="pre">PolyFit1D</span></code></a>
-<a class="reference internal" href="../generated/api/pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-class docutils literal"><span class="pre">Spline</span></code></a>
-<a class="reference internal" href="../generated/api/pwtools.num.Interpol2D.html#pwtools.num.Interpol2D" title="pwtools.num.Interpol2D"><code class="xref py py-class docutils literal"><span class="pre">Interpol2D</span></code></a>
-<a class="reference internal" href="../generated/api/pwtools.num.meshgridt.html#pwtools.num.meshgridt" title="pwtools.num.meshgridt"><code class="xref py py-class docutils literal"><span class="pre">meshgridt</span></code></a>
-<a class="reference internal" href="../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal"><span class="pre">Rbf</span></code></a></p>
+<p><a class="reference internal" href="../generated/api/pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolyFit</span></code></a>
+<a class="reference internal" href="../generated/api/pwtools.num.PolyFit1D.html#pwtools.num.PolyFit1D" title="pwtools.num.PolyFit1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolyFit1D</span></code></a>
+<a class="reference internal" href="../generated/api/pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Spline</span></code></a>
+<a class="reference internal" href="../generated/api/pwtools.num.Interpol2D.html#pwtools.num.Interpol2D" title="pwtools.num.Interpol2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interpol2D</span></code></a>
+<a class="reference internal" href="../generated/api/pwtools.num.meshgridt.html#pwtools.num.meshgridt" title="pwtools.num.meshgridt"><code class="xref py py-class docutils literal notranslate"><span class="pre">meshgridt</span></code></a>
+<a class="reference internal" href="../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a></p>
 </div>
 <div class="section" id="avoid-auto-calculation-for-big-md-data">
 <h2>Avoid auto-calculation for big MD data<a class="headerlink" href="#avoid-auto-calculation-for-big-md-data" title="Permalink to this headline">¶</a></h2>
 <p>If you have really big MD data (say several GB), then the <a class="reference internal" href="background/parsing.html#container-classes"><span class="std std-ref">auto-calculation of
 missing properties</span></a> might take long and/or fill
 up all memory. To avoid that, call the parser explicitly and say
-<code class="docutils literal"><span class="pre">auto_calc=False</span></code> when creating the <a class="reference internal" href="../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">Trajectory</span></code></a>,
+<code class="docutils literal notranslate"><span class="pre">auto_calc=False</span></code> when creating the <a class="reference internal" href="../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trajectory</span></code></a>,
 which will deactivate auto-calculation. It will only do unit conversion to eV,
 Ang, etc. [you can of course also access the parser’s attributes directly, e.g.
-<code class="docutils literal"><span class="pre">pp.coords</span></code> in the unit of the MD code (e.g. Bohr) instead of <code class="docutils literal"><span class="pre">tr.coords</span></code>
+<code class="docutils literal notranslate"><span class="pre">pp.coords</span></code> in the unit of the MD code (e.g. Bohr) instead of <code class="docutils literal notranslate"><span class="pre">tr.coords</span></code>
 in Ang].</p>
-<p>This is an example for parsing LAMMPS dcd binary data (<code class="docutils literal"><span class="pre">log.lammps</span></code> is the
-logfile and the default binary file is <code class="docutils literal"><span class="pre">lmp.out.dcd</span></code>).</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">LammpsDcdMDOutputFile</span><span class="p">(</span><span class="s1">&#39;log.lammps&#39;</span><span class="p">)</span>
+<p>This is an example for parsing LAMMPS dcd binary data (<code class="docutils literal notranslate"><span class="pre">log.lammps</span></code> is the
+logfile and the default binary file is <code class="docutils literal notranslate"><span class="pre">lmp.out.dcd</span></code>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">LammpsDcdMDOutputFile</span><span class="p">(</span><span class="s1">&#39;log.lammps&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">pp</span><span class="o">.</span><span class="n">get_traj</span><span class="p">(</span><span class="n">auto_calc</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># default is auto_calc=True</span>
 </pre></div>
 </div>
 <p>In order to maximally reduce data, you can tell the parser to parse only
 certain things:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span><span class="o">.</span><span class="n">set_attr_lst</span><span class="p">([</span><span class="s1">&#39;etot&#39;</span><span class="p">,</span> <span class="s1">&#39;coords&#39;</span><span class="p">,</span> <span class="s1">&#39;temperature&#39;</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span><span class="o">.</span><span class="n">set_attr_lst</span><span class="p">([</span><span class="s1">&#39;etot&#39;</span><span class="p">,</span> <span class="s1">&#39;coords&#39;</span><span class="p">,</span> <span class="s1">&#39;temperature&#39;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">pp</span><span class="o">.</span><span class="n">get_traj</span><span class="p">(</span><span class="n">auto_calc</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>You may also use <code class="docutils literal"><span class="pre">auto_calc=True</span></code> here and see what will be
+<p>You may also use <code class="docutils literal notranslate"><span class="pre">auto_calc=True</span></code> here and see what will be
 auto-calculated from this minimal input data.</p>
 <p>Of course you need to know what can be found in the MD data (e.g. if the MD
-code writes no fractional coords, then parsing <code class="docutils literal"><span class="pre">coords_frac</span></code> won’t work).</p>
-<p>To find out what can be parsed, also check which <code class="docutils literal"><span class="pre">get_*()</span></code> methods the parser
+code writes no fractional coords, then parsing <code class="docutils literal notranslate"><span class="pre">coords_frac</span></code> won’t work).</p>
+<p>To find out what can be parsed, also check which <code class="docutils literal notranslate"><span class="pre">get_*()</span></code> methods the parser
 implements (mind also base classes, best is to use Tab completion in ipython:
-<code class="docutils literal"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">pp.get_&lt;tab&gt;</span></code> or have a look at the API documentation).</p>
+<code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">pp.get_&lt;tab&gt;</span></code> or have a look at the API documentation).</p>
 </div>
 <div class="section" id="work-with-sqlite-databases">
 <h2>Work with SQLite databases<a class="headerlink" href="#work-with-sqlite-databases" title="Permalink to this headline">¶</a></h2>
-<p>See <a class="reference internal" href="../generated/api/pwtools.sql.SQLiteDB.html#pwtools.sql.SQLiteDB" title="pwtools.sql.SQLiteDB"><code class="xref py py-class docutils literal"><span class="pre">SQLiteDB</span></code></a>.</p>
+<p>See <a class="reference internal" href="../generated/api/pwtools.sql.SQLiteDB.html#pwtools.sql.SQLiteDB" title="pwtools.sql.SQLiteDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLiteDB</span></code></a>.</p>
 </div>
 <div class="section" id="more">
 <h2>More<a class="headerlink" href="#more" title="Permalink to this headline">¶</a></h2>
@@ -369,12 +361,14 @@ implements (mind also base classes, best is to use Tab completion in ipython:
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -385,7 +379,7 @@ implements (mind also base classes, best is to use Tab completion in ipython:
       &copy;2018, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

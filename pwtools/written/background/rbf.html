@@ -4,24 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Radial Basis Functions Networks for interpolation or fitting of N-dim data points &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -29,8 +22,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -40,12 +32,12 @@
             
   <div class="section" id="radial-basis-functions-networks-for-interpolation-or-fitting-of-n-dim-data-points">
 <span id="rbf"></span><h1>Radial Basis Functions Networks for interpolation or fitting of N-dim data points<a class="headerlink" href="#radial-basis-functions-networks-for-interpolation-or-fitting-of-n-dim-data-points" title="Permalink to this headline">¶</a></h1>
-<p>Some background information on the method implemented in <a class="reference internal" href="../../generated/api/rbf.html#module-pwtools.rbf" title="pwtools.rbf"><code class="xref py py-mod docutils literal"><span class="pre">rbf</span></code></a>.
-For code examples, see the doc string of <a class="reference internal" href="../../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal"><span class="pre">Rbf</span></code></a>. See
-<code class="docutils literal"><span class="pre">examples/rbf/</span></code> for advanced topics such as cross-validation error
+<p>Some background information on the method implemented in <a class="reference internal" href="../../generated/api/rbf.html#module-pwtools.rbf" title="pwtools.rbf"><code class="xref py py-mod docutils literal notranslate"><span class="pre">rbf</span></code></a>.
+For code examples, see the doc string of <a class="reference internal" href="../../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a>. See
+<code class="docutils literal notranslate"><span class="pre">examples/rbf/</span></code> for advanced topics such as cross-validation error
 convergence, avoidance of overfitting, error landscape analysis and
-optimization of the RBF parameter <span class="math">\(p\)</span> (and regularization strength
-<span class="math">\(r\)</span>).</p>
+optimization of the RBF parameter <span class="math notranslate nohighlight">\(p\)</span> (and regularization strength
+<span class="math notranslate nohighlight">\(r\)</span>).</p>
 <p>Refs:</p>
 <table class="docutils footnote" frame="void" id="id1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -61,86 +53,86 @@ optimization of the RBF parameter <span class="math">\(p\)</span> (and regulariz
 </table>
 <div class="section" id="theory">
 <h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h2>
-<p>The goal is to interpolate or fit an unordered set of <span class="math">\(M\)</span> ND data points
-<span class="math">\(\mathbf x_i\)</span> and values <span class="math">\(z_i\)</span> so as to obtain <span class="math">\(z=f(\mathbf
+<p>The goal is to interpolate or fit an unordered set of <span class="math notranslate nohighlight">\(M\)</span> ND data points
+<span class="math notranslate nohighlight">\(\mathbf x_i\)</span> and values <span class="math notranslate nohighlight">\(z_i\)</span> so as to obtain <span class="math notranslate nohighlight">\(z=f(\mathbf
 x)\)</span>. In radial basis function (RBF) interpolation, the interpolating function
-<span class="math">\(f(\mathbf x)\)</span> is a linear combination of RBFs <span class="math">\(\phi(r)\)</span></p>
-<div class="math">
+<span class="math notranslate nohighlight">\(f(\mathbf x)\)</span> is a linear combination of RBFs <span class="math notranslate nohighlight">\(\phi(r)\)</span></p>
+<div class="math notranslate nohighlight">
 \[f(\mathbf x) = \sum_j w_j\,\phi(|\mathbf x - \mathbf c_j|)\]</div>
-<p>with the weights <span class="math">\(w_j\)</span> and the center points <span class="math">\(\mathbf c_j\)</span>. An RBF
-<span class="math">\(\phi(r)\)</span> is thus a function of the distance <span class="math">\(r=|\mathbf x -
-\mathbf c_j|\)</span> between <span class="math">\(\mathbf x\)</span> and a center point. Common functions
+<p>with the weights <span class="math notranslate nohighlight">\(w_j\)</span> and the center points <span class="math notranslate nohighlight">\(\mathbf c_j\)</span>. An RBF
+<span class="math notranslate nohighlight">\(\phi(r)\)</span> is thus a function of the distance <span class="math notranslate nohighlight">\(r=|\mathbf x -
+\mathbf c_j|\)</span> between <span class="math notranslate nohighlight">\(\mathbf x\)</span> and a center point. Common functions
 include</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}\begin{align}
     &amp; \phi(r) = \exp\left(-\frac{r^2}{2\,p^2}\right) &amp;&amp; \text{Gaussian}\\
     &amp; \phi(r) = \sqrt{r^2 + p^2} &amp;&amp; \text{multiquadric}\\
     &amp; \phi(r) = \frac{1}{\sqrt{r^2 + p^2}} &amp;&amp; \text{inverse multiquadric}
 \end{align}\end{split}\]</div>
-<p>All RBFs contain a single parameter <span class="math">\(p\)</span> which defines the width of the
-function. The function <span class="math">\(f(\mathbf x)\)</span> can be also thought of as a neural
-network with one hidden layer and activation functions <span class="math">\(\phi\)</span>.</p>
-<p>In interpolation the center points <span class="math">\(\mathbf c_j\)</span> are equal to the data points
-<span class="math">\(\mathbf x_j\)</span> such that</p>
-<div class="math">
+<p>All RBFs contain a single parameter <span class="math notranslate nohighlight">\(p\)</span> which defines the width of the
+function. The function <span class="math notranslate nohighlight">\(f(\mathbf x)\)</span> can be also thought of as a neural
+network with one hidden layer and activation functions <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
+<p>In interpolation the center points <span class="math notranslate nohighlight">\(\mathbf c_j\)</span> are equal to the data points
+<span class="math notranslate nohighlight">\(\mathbf x_j\)</span> such that</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}\begin{gather}
     z_i = f(\mathbf x_i) = \sum_j w_j\,\phi(|\mathbf x_i - \mathbf x_j|) = \sum_j w_j\,G_{ij}\\
     \mathbf G\,\mathbf w = \mathbf z\\
 \end{gather}\end{split}\]</div>
-<p>with <span class="math">\(\mathbf G\)</span> the <span class="math">\(M\times M\)</span> matrix of RBF function values. The
-weights <span class="math">\(\mathbf w = (w_j)\)</span> are found by solving the linear system
-<span class="math">\(\mathbf G\,\mathbf w = \mathbf z\)</span>.</p>
+<p>with <span class="math notranslate nohighlight">\(\mathbf G\)</span> the <span class="math notranslate nohighlight">\(M\times M\)</span> matrix of RBF function values. The
+weights <span class="math notranslate nohighlight">\(\mathbf w = (w_j)\)</span> are found by solving the linear system
+<span class="math notranslate nohighlight">\(\mathbf G\,\mathbf w = \mathbf z\)</span>.</p>
 <p>Thus, the applicability of the method is limited by the number of points
-<span class="math">\(M\)</span> in the sense that a dense linear system <span class="math">\(M\times M\)</span> must be
+<span class="math notranslate nohighlight">\(M\)</span> in the sense that a dense linear system <span class="math notranslate nohighlight">\(M\times M\)</span> must be
 stored and solved. For large point sets, the calculation of the distance matrix
-<span class="math">\(R_{ij} = |\mathbf x_i - \mathbf x_j|\)</span> is one of the bottlenecks. In
-pwtools, this is coded in Fortran (see <a class="reference internal" href="../../generated/api/pwtools.num.distsq.html#pwtools.num.distsq" title="pwtools.num.distsq"><code class="xref py py-func docutils literal"><span class="pre">distsq()</span></code></a>).</p>
+<span class="math notranslate nohighlight">\(R_{ij} = |\mathbf x_i - \mathbf x_j|\)</span> is one of the bottlenecks. In
+pwtools, this is coded in Fortran (see <a class="reference internal" href="../../generated/api/pwtools.num.distsq.html#pwtools.num.distsq" title="pwtools.num.distsq"><code class="xref py py-func docutils literal notranslate"><span class="pre">distsq()</span></code></a>).</p>
 </div>
-<div class="section" id="rbf-parameter">
-<h2>RBF parameter <span class="math">\(p\)</span><a class="headerlink" href="#rbf-parameter" title="Permalink to this headline">¶</a></h2>
-<p>Each RBF has a single “width” parameter <span class="math">\(p\)</span>, which can be tuned
-(attribute <code class="docutils literal"><span class="pre">Rbf.p</span></code> in the code). While <span class="math">\(f(\mathbf x)\)</span> goes through all
-data points <span class="math">\(\mathbf x_i\)</span> by definition (in interpolation, regularization
-<span class="math">\(r\rightarrow 0\)</span>), the behavior of the interpolation between points is
-determined by <span class="math">\(p\)</span>. For instance, too narrow functions <span class="math">\(\phi\)</span> can
-lead to oscillations between points. Therefore <span class="math">\(p\)</span> must be tuned for the
-specific data set. The scipy implementation <span class="math">\(p_{\text{scipy}}\)</span> in
-<code class="docutils literal"><span class="pre">scipy.interpolate.Rbf</span></code> uses something like the mean nearest neighbor
-distance. We provide this as <code class="docutils literal"><span class="pre">Rbf(points,</span> <span class="pre">values,</span> <span class="pre">p='scipy')</span></code> or
-<code class="docutils literal"><span class="pre">rbf.estimate_p(points,</span> <span class="pre">'scipy')</span></code>. The default in <a class="reference internal" href="../../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal"><span class="pre">pwtools.rbf.Rbf</span></code></a>
+<div class="section" id="rbf-parameter-p">
+<h2>RBF parameter <span class="math notranslate nohighlight">\(p\)</span><a class="headerlink" href="#rbf-parameter-p" title="Permalink to this headline">¶</a></h2>
+<p>Each RBF has a single “width” parameter <span class="math notranslate nohighlight">\(p\)</span>, which can be tuned
+(attribute <code class="docutils literal notranslate"><span class="pre">Rbf.p</span></code> in the code). While <span class="math notranslate nohighlight">\(f(\mathbf x)\)</span> goes through all
+data points <span class="math notranslate nohighlight">\(\mathbf x_i\)</span> by definition (in interpolation, regularization
+<span class="math notranslate nohighlight">\(r\rightarrow 0\)</span>), the behavior of the interpolation between points is
+determined by <span class="math notranslate nohighlight">\(p\)</span>. For instance, too narrow functions <span class="math notranslate nohighlight">\(\phi\)</span> can
+lead to oscillations between points. Therefore <span class="math notranslate nohighlight">\(p\)</span> must be tuned for the
+specific data set. The scipy implementation <span class="math notranslate nohighlight">\(p_{\text{scipy}}\)</span> in
+<code class="docutils literal notranslate"><span class="pre">scipy.interpolate.Rbf</span></code> uses something like the mean nearest neighbor
+distance. We provide this as <code class="docutils literal notranslate"><span class="pre">Rbf(points,</span> <span class="pre">values,</span> <span class="pre">p='scipy')</span></code> or
+<code class="docutils literal notranslate"><span class="pre">rbf.estimate_p(points,</span> <span class="pre">'scipy')</span></code>. The default in <a class="reference internal" href="../../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.rbf.Rbf</span></code></a>
 however is the mean distance of all points
-<span class="math">\(p_{\text{pwtools}}=1/M^2\,\sum_{ij} R_{ij}\)</span> (<code class="docutils literal"><span class="pre">Rbf(points,</span> <span class="pre">values,</span>
-<span class="pre">p='mean')</span></code> or <code class="docutils literal"><span class="pre">rbf.estimate_p(points,</span> <span class="pre">'mean')</span></code>). This is always bigger than
-<span class="math">\(p_{\text{scipy}}\)</span>, and yes this will change with the min-max span of the
+<span class="math notranslate nohighlight">\(p_{\text{pwtools}}=1/M^2\,\sum_{ij} R_{ij}\)</span> (<code class="docutils literal notranslate"><span class="pre">Rbf(points,</span> <span class="pre">values,</span>
+<span class="pre">p='mean')</span></code> or <code class="docutils literal notranslate"><span class="pre">rbf.estimate_p(points,</span> <span class="pre">'mean')</span></code>). This is always bigger than
+<span class="math notranslate nohighlight">\(p_{\text{scipy}}\)</span>, and yes this will change with the min-max span of the
 data, while the mean nearest neighbor
 distance stays constant. However it is usually the better
-start guess for <span class="math">\(p\)</span> since it is less prone to overfitting in case of
-noisy data, where the smaller scipy <span class="math">\(p\)</span> will often still interpolate all
-points. However, there is no ad-hoc best choice for <span class="math">\(p\)</span>. In general,
-<span class="math">\(p\)</span> must be determined by methods such as K-fold cross validation. Use
-<a class="reference internal" href="../../generated/api/pwtools.rbf.FitError.html#pwtools.rbf.FitError" title="pwtools.rbf.FitError"><code class="xref py py-class docutils literal"><span class="pre">FitError</span></code></a>, esp. <a class="reference internal" href="../../generated/api/pwtools.rbf.FitError.err_cv.html#pwtools.rbf.FitError.err_cv" title="pwtools.rbf.FitError.err_cv"><code class="xref py py-meth docutils literal"><span class="pre">err_cv()</span></code></a> or
-other tools from <code class="docutils literal"><span class="pre">scikit-learn</span></code> which are outside of the scope of pwtools.
-See <code class="docutils literal"><span class="pre">examples/rbf/overfit.py</span></code>.</p>
+start guess for <span class="math notranslate nohighlight">\(p\)</span> since it is less prone to overfitting in case of
+noisy data, where the smaller scipy <span class="math notranslate nohighlight">\(p\)</span> will often still interpolate all
+points. However, there is no ad-hoc best choice for <span class="math notranslate nohighlight">\(p\)</span>. In general,
+<span class="math notranslate nohighlight">\(p\)</span> must be determined by methods such as K-fold cross validation. Use
+<a class="reference internal" href="../../generated/api/pwtools.rbf.FitError.html#pwtools.rbf.FitError" title="pwtools.rbf.FitError"><code class="xref py py-class docutils literal notranslate"><span class="pre">FitError</span></code></a>, esp. <a class="reference internal" href="../../generated/api/pwtools.rbf.FitError.err_cv.html#pwtools.rbf.FitError.err_cv" title="pwtools.rbf.FitError.err_cv"><code class="xref py py-meth docutils literal notranslate"><span class="pre">err_cv()</span></code></a> or
+other tools from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> which are outside of the scope of pwtools.
+See <code class="docutils literal notranslate"><span class="pre">examples/rbf/overfit.py</span></code>.</p>
 </div>
 <div class="section" id="interpolation-vs-fitting-and-regularization">
 <h2>Interpolation vs. fitting and regularization<a class="headerlink" href="#interpolation-vs-fitting-and-regularization" title="Permalink to this headline">¶</a></h2>
 <p>For smooth noise-free data, RBF provides nice interpolation. But for noisy
 data, we would like to do a fit instead, similar to “s” parameter of
-<code class="docutils literal"><span class="pre">scipy.interpolate.bisplrep</span></code>. <code class="docutils literal"><span class="pre">scipy.interpolate.Rbf</span></code> has a “smooth”
-parameter for regularization. Here we can do the same (<code class="docutils literal"><span class="pre">Rbf.r</span></code>, <code class="docutils literal"><span class="pre">Rbf(points,</span>
+<code class="docutils literal notranslate"><span class="pre">scipy.interpolate.bisplrep</span></code>. <code class="docutils literal notranslate"><span class="pre">scipy.interpolate.Rbf</span></code> has a “smooth”
+parameter for regularization. Here we can do the same (<code class="docutils literal notranslate"><span class="pre">Rbf.r</span></code>, <code class="docutils literal notranslate"><span class="pre">Rbf(points,</span>
 <span class="pre">values,</span> <span class="pre">r=1e-8)</span></code>) and solve</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[(\mathbf G + r\,\mathbf I)\,\mathbf w = \mathbf z\]</div>
-<p>which creates a more “stiff” (low curvature) function <span class="math">\(f(\mathbf x)\)</span>
+<p>which creates a more “stiff” (low curvature) function <span class="math notranslate nohighlight">\(f(\mathbf x)\)</span>
 which does not necessarily interpolate all points. The regularization also
-deals with the numerical instability of <span class="math">\(\mathbf G\,\mathbf w = \mathbf
-z\)</span>, which results in <code class="docutils literal"><span class="pre">scipy.linalg.solve</span></code> often issuing an ill-conditioned
+deals with the numerical instability of <span class="math notranslate nohighlight">\(\mathbf G\,\mathbf w = \mathbf
+z\)</span>, which results in <code class="docutils literal notranslate"><span class="pre">scipy.linalg.solve</span></code> often issuing an ill-conditioned
 matrix warning and very bad interpolation results.</p>
-<p>See <code class="docutils literal"><span class="pre">examples/rbf/</span></code> for how to investigate the <span class="math">\((p,r)\)</span> fit error
-landscape and to calculate optimal <span class="math">\(p\)</span> and <span class="math">\(r\)</span> for
+<p>See <code class="docutils literal notranslate"><span class="pre">examples/rbf/</span></code> for how to investigate the <span class="math notranslate nohighlight">\((p,r)\)</span> fit error
+landscape and to calculate optimal <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(r\)</span> for
 a given data set:</p>
 <img alt="../../_images/crossval_pr_gauss.png" src="../../_images/crossval_pr_gauss.png" />
-<p>One can also switch from <code class="docutils literal"><span class="pre">scipy.linalg.solve</span></code> to <code class="docutils literal"><span class="pre">scipy.linalg.lstsq</span></code> and
+<p>One can also switch from <code class="docutils literal notranslate"><span class="pre">scipy.linalg.solve</span></code> to <code class="docutils literal notranslate"><span class="pre">scipy.linalg.lstsq</span></code> and
 solve the system in a least squares sense without regularization. In that case
 we also get much more stable solutions. The advantage [*] of using least
 squares is that we have the smoothness by construction no smoothness parameter
@@ -149,14 +141,14 @@ interpolation-like results, which cannot be distinguished from the solutions
 obtained with a normal linear system solver. The method will try its best to do
 interpolation, but will smoothly transition to fitting as noise increases.</p>
 <dl class="docutils">
-<dt>[*] However, we found that <code class="docutils literal"><span class="pre">lstsq</span></code> can introduce small numerical noise in the</dt>
+<dt>[*] However, we found that <code class="docutils literal notranslate"><span class="pre">lstsq</span></code> can introduce small numerical noise in the</dt>
 <dd>solution, so test before using (as always!).</dd>
 </dl>
 </div>
 <div class="section" id="other-codes">
 <h2>Other codes<a class="headerlink" href="#other-codes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">scipy.interpolate.Rbf</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">scipy.interpolate.Rbf</span></code></li>
 <li><a class="reference external" href="http://pypi.python.org/pypi/PyRadbas/0.1.0">http://pypi.python.org/pypi/PyRadbas/0.1.0</a></li>
 <li><a class="reference external" href="http://code.google.com/p/pyrbf/">http://code.google.com/p/pyrbf/</a></li>
 </ul>
@@ -220,12 +212,14 @@ also live on more or less equal x-y scales.</p>
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -236,7 +230,7 @@ also live on more or less equal x-y scales.</p>
       &copy;2018, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

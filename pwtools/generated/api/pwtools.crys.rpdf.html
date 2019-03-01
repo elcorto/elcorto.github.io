@@ -4,24 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>pwtools.crys.rpdf &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.crys.scell" href="pwtools.crys.scell.html" />
@@ -31,8 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -55,8 +47,8 @@ Only fixed-cell MD at the moment.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>trajs</strong> : Structure or Trajectory or list of one or two such objects</p>
 <blockquote>
-<div><p>The case <code class="docutils literal"><span class="pre">len(trajs)==1</span></code> is the same as providing the object directly
-(most common case). Internally we expand the input to <code class="docutils literal"><span class="pre">[trajs,</span>
+<div><p>The case <code class="docutils literal notranslate"><span class="pre">len(trajs)==1</span></code> is the same as providing the object directly
+(most common case). Internally we expand the input to <code class="docutils literal notranslate"><span class="pre">[trajs,</span>
 <span class="pre">trajs]</span></code>, i.e. the RPDF of the 2nd coord set w.r.t. to the first is
 calculated – the order matters! This is like selection 1 and 2 in VMD,
 but nornmally you would use <cite>amask</cite> instead. The option to provide a
@@ -82,32 +74,32 @@ For cubic boxes of side length L, this is L/2 [AT,MD].</p>
 <p><strong>amask</strong> : None, list of one or two bool 1d arrays, list of one or two strings</p>
 <blockquote>
 <div><p>Optional atom mask. This is the complementary functionality to
-<cite>sel</cite> in <a class="reference internal" href="pwtools.crys.vmd_measure_gofr.html#pwtools.crys.vmd_measure_gofr" title="pwtools.crys.vmd_measure_gofr"><code class="xref py py-func docutils literal"><span class="pre">vmd_measure_gofr()</span></code></a>. If <code class="docutils literal"><span class="pre">len(amask)==1</span></code>, then we expand
-to <code class="docutils literal"><span class="pre">[amask,</span> <span class="pre">amask]</span></code> internally, which would calculate the RPDF
+<cite>sel</cite> in <a class="reference internal" href="pwtools.crys.vmd_measure_gofr.html#pwtools.crys.vmd_measure_gofr" title="pwtools.crys.vmd_measure_gofr"><code class="xref py py-func docutils literal notranslate"><span class="pre">vmd_measure_gofr()</span></code></a>. If <code class="docutils literal notranslate"><span class="pre">len(amask)==1</span></code>, then we expand
+to <code class="docutils literal notranslate"><span class="pre">[amask,</span> <span class="pre">amask]</span></code> internally, which would calculate the RPDF
 between the same atom selection. If two masks are given, then the first
-is applied to <code class="docutils literal"><span class="pre">trajs[0]</span></code> and the second to <code class="docutils literal"><span class="pre">trajs[1]</span></code>. Use this to
+is applied to <code class="docutils literal notranslate"><span class="pre">trajs[0]</span></code> and the second to <code class="docutils literal notranslate"><span class="pre">trajs[1]</span></code>. Use this to
 select only certain atoms in each Trajectory. The default is to provide
 bool arrays. If you provide strings, they are assumed to be atom names
-and we create a bool array <code class="docutils literal"><span class="pre">np.array(symbols)</span> <span class="pre">==</span> <span class="pre">amask[i]</span></code>.</p>
+and we create a bool array <code class="docutils literal notranslate"><span class="pre">np.array(symbols)</span> <span class="pre">==</span> <span class="pre">amask[i]</span></code>.</p>
 </div></blockquote>
 <p><strong>tmask</strong> : None or slice object, optional</p>
 <blockquote>
 <div><p>Time mask. Slice for the time axis, e.g. to use only every 100th step,
-starting from step 2000 to the end, use <code class="docutils literal"><span class="pre">tmask=slice(2000,None,100)</span></code>,
-which is the same as <code class="docutils literal"><span class="pre">np.s_[2000::100]</span></code>.</p>
+starting from step 2000 to the end, use <code class="docutils literal notranslate"><span class="pre">tmask=slice(2000,None,100)</span></code>,
+which is the same as <code class="docutils literal notranslate"><span class="pre">np.s_[2000::100]</span></code>.</p>
 </div></blockquote>
 <p><strong>dmask</strong> : None or string, optional</p>
 <blockquote>
 <div><p>Distance mask. Restrict to certain distances using numpy syntax for
 creating bool arrays:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s1">&#39;&gt;=1.0&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;&gt;=1.0&#39;</span>
 <span class="s1">&#39;</span><span class="si">{d}</span><span class="s1"> &gt;=1.0&#39;</span> <span class="c1"># the same</span>
 <span class="s1">&#39;(</span><span class="si">{d}</span><span class="s1"> &gt; 1.0) &amp; (</span><span class="si">{d}</span><span class="s1"> &lt; 3.0)&#39;</span>
 </pre></div>
 </div>
-<p>where <code class="docutils literal"><span class="pre">{d}</span></code> is a placeholder for the distance array (you really have to
-use <code class="docutils literal"><span class="pre">{d}</span></code>). The placeholder is optional in some pattern. This is similar
-to VMD’s “within” (<code class="docutils literal"><span class="pre">pbc=False</span></code>) or “pbwithin” (<code class="docutils literal"><span class="pre">pbc=True</span></code>) syntax.</p>
+<p>where <code class="docutils literal notranslate"><span class="pre">{d}</span></code> is a placeholder for the distance array (you really have to
+use <code class="docutils literal notranslate"><span class="pre">{d}</span></code>). The placeholder is optional in some pattern. This is similar
+to VMD’s “within” (<code class="docutils literal notranslate"><span class="pre">pbc=False</span></code>) or “pbwithin” (<code class="docutils literal notranslate"><span class="pre">pbc=True</span></code>) syntax.</p>
 </div></blockquote>
 <p><strong>pbc</strong> : bool, optional</p>
 <blockquote>
@@ -116,7 +108,7 @@ to VMD’s “within” (<code class="docutils literal"><span class="pre">pbc=Fa
 <p><strong>norm_vmd</strong> : bool, optional</p>
 <blockquote>
 <div><p>Normalize <cite>g(r)</cite> like in VMD by counting duplicate atoms and normalize to
-<code class="docutils literal"><span class="pre">natoms0</span> <span class="pre">*</span> <span class="pre">natoms1</span> <span class="pre">-</span> <span class="pre">duplicates</span></code> instead of <code class="docutils literal"><span class="pre">natoms0*natoms1</span></code>. Affects
+<code class="docutils literal notranslate"><span class="pre">natoms0</span> <span class="pre">*</span> <span class="pre">natoms1</span> <span class="pre">-</span> <span class="pre">duplicates</span></code> instead of <code class="docutils literal notranslate"><span class="pre">natoms0*natoms1</span></code>. Affects
 all-all correlations only. <cite>num_int</cite> is not affected. Use this only for
 testing.</p>
 </div></blockquote>
@@ -138,7 +130,7 @@ histogram bin</p>
 </div></blockquote>
 <p><strong>num_int</strong> : 1d array, (len(rad),)</p>
 <blockquote class="last">
-<div><p>the (averaged) number integral <code class="docutils literal"><span class="pre">number_density*hist*4*pi*r**2.0*dr</span></code></p>
+<div><p>the (averaged) number integral <code class="docutils literal notranslate"><span class="pre">number_density*hist*4*pi*r**2.0*dr</span></code></p>
 </div></blockquote>
 </td>
 </tr>
@@ -146,7 +138,7 @@ histogram bin</p>
 </table>
 <p class="rubric">Notes</p>
 <p><cite>rmax</cite> : The maximal <cite>rmax</cite> for which g(r) is correctly normalized is the
-result of <a class="reference internal" href="pwtools.crys.rmax_smith.html#pwtools.crys.rmax_smith" title="pwtools.crys.rmax_smith"><code class="xref py py-func docutils literal"><span class="pre">rmax_smith()</span></code></a>, i.e. the radius if the biggest sphere which
+result of <a class="reference internal" href="pwtools.crys.rmax_smith.html#pwtools.crys.rmax_smith" title="pwtools.crys.rmax_smith"><code class="xref py py-func docutils literal notranslate"><span class="pre">rmax_smith()</span></code></a>, i.e. the radius if the biggest sphere which
 fits entirely into the cell. This is simply L/2 for cubic boxes of side
 length L and volume L**3, for instance. We do explicitely allow <cite>rmax</cite> &gt;
 <cite>rmax_smith</cite> for testing, but be aware that <cite>g(r)</cite> and the number integral
@@ -154,17 +146,17 @@ are <em>wrong</em> for <cite>rmax</cite> &gt; <cite>rmax_smith</cite>.</p>
 <p>Even though the number integral will always converge to the number of all
 neighbors for r -&gt; infinity, the integral value (the number of neigbors) is
 correct only up to <cite>rmax_smith</cite>.</p>
-<p>See <code class="docutils literal"><span class="pre">examples/rpdf/</span></code> for educational evidence. For notes on how VMD does
+<p>See <code class="docutils literal notranslate"><span class="pre">examples/rpdf/</span></code> for educational evidence. For notes on how VMD does
 this, see comments in the code below.</p>
 <p>selection : The selection mechanism with <cite>amask</cite> is in principle as capable
 as VMD’s, but relies completely on the user’s ability to create bool arrays
 to filter the atoms. In practice, anything more complicated than
-<code class="docutils literal"><span class="pre">array(symbols)=='O'</span></code> (“name O” in VMD) is much more difficult than VMD’s
+<code class="docutils literal notranslate"><span class="pre">array(symbols)=='O'</span></code> (“name O” in VMD) is much more difficult than VMD’s
 powerful selection syntax.</p>
 <p>Curently, the atom distances are calculated by using numpy fancy indexing.
 That creates (big) arrays in memory. For data from long MDs, you may run
 into trouble here. For a 20000 step MD, start by using every 200th step or
-so (use <code class="docutils literal"><span class="pre">tmask=slice(None,None,200)</span></code>) and look at the histogram, as you
+so (use <code class="docutils literal notranslate"><span class="pre">tmask=slice(None,None,200)</span></code>) and look at the histogram, as you
 take more and more points into account (every 100th, 50th step, …).
 Especially for Car Parrinello, where time steps are small and the structure
 doesn’t change much, there is no need to use every step. See also <cite>maxmem</cite>.</p>
@@ -180,16 +172,16 @@ Friedrich Vieweg &amp; Sohn Verlagsgesellschaft 1995</dd>
 1989</dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># simple all-all RPDF, time-averaged over all MD steps</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># simple all-all RPDF, time-averaged over all MD steps</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">rpdf</span><span class="p">(</span><span class="n">traj</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># the same as rpdf(traj,...)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># the same as rpdf(traj,...)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">rpdf</span><span class="p">([</span><span class="n">traj</span><span class="p">],</span> <span class="o">...</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">rpdf</span><span class="p">([</span><span class="n">traj</span><span class="p">,</span> <span class="n">traj</span><span class="p">],</span> <span class="o">...</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 2 selections: RPDF of all H&#39;s around all O&#39;s, average time step 3000 to</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 2 selections: RPDF of all H&#39;s around all O&#39;s, average time step 3000 to</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># end, take every 50th step</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">traj</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_cp2k_md</span><span class="p">(</span><span class="s1">&#39;cp2k.out&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">rpdf</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">dr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">amask</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">],</span><span class="n">tmask</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[</span><span class="mi">3000</span><span class="p">::</span><span class="mi">50</span><span class="p">])</span>
@@ -198,7 +190,7 @@ Friedrich Vieweg &amp; Sohn Verlagsgesellschaft 1995</dd>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;number integral&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># use bool arrays for `amask`, need this for more complicated pattern</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># use bool arrays for `amask`, need this for more complicated pattern</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">symbols</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># VMD: sel1=&#39;name O&#39;, sel2=&#39;name H&#39;, same as amask=[&#39;O&#39;, &#39;H&#39;]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">rpdf</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">dr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">amask</span><span class="o">=</span><span class="p">[</span><span class="n">sy</span><span class="o">==</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">sy</span><span class="o">==</span><span class="s1">&#39;H&#39;</span><span class="p">],</span><span class="n">tmask</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[</span><span class="mi">3000</span><span class="p">::</span><span class="mi">50</span><span class="p">])</span>
@@ -207,7 +199,7 @@ Friedrich Vieweg &amp; Sohn Verlagsgesellschaft 1995</dd>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">rpdf</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">dr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">amask</span><span class="o">=</span><span class="p">[</span><span class="n">sy</span><span class="o">==</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">sy</span><span class="o">==</span><span class="s1">&#39;H&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">sy</span><span class="o">==</span><span class="s1">&#39;Cl&#39;</span><span class="p">)],</span><span class="n">tmask</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[</span><span class="mi">3000</span><span class="p">::</span><span class="mi">50</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># skip distances &gt;1 Ang</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># skip distances &gt;1 Ang</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">rpdf</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">dr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">amask</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">],</span><span class="n">tmask</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[</span><span class="mi">3000</span><span class="p">::</span><span class="mi">50</span><span class="p">]</span>
 <span class="gp">... </span>         <span class="n">dmask</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{d}</span><span class="s1">&gt;1.0&#39;</span><span class="p">)</span>
 </pre></div>
@@ -271,12 +263,14 @@ Friedrich Vieweg &amp; Sohn Verlagsgesellschaft 1995</dd>
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -287,7 +281,7 @@ Friedrich Vieweg &amp; Sohn Verlagsgesellschaft 1995</dd>
       &copy;2018, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

@@ -4,24 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>pwtools.parse &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -29,8 +22,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -292,7 +284,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">Container</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">Structure</span>
     <span class="n">default_units</span> <span class="o">=</span> <span class="p">{}</span>    
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="StructureFileParser.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.parse.StructureFileParser.html#pwtools.parse.StructureFileParser.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parse_called</span> <span class="o">=</span> <span class="kc">False</span>    
         <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
         <span class="c1"># Some parsers do </span>
@@ -311,7 +303,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">update_units</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_units</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_units</span><span class="p">(</span><span class="n">units</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cont</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">set_all_auto</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">init_attr_lst</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cont</span><span class="o">.</span><span class="n">attr_lst</span><span class="p">)</span>            
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_attr_lst</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cont</span><span class="o">.</span><span class="n">attr_lst</span><span class="p">)</span>            </div>
     
 <div class="viewcode-block" id="StructureFileParser.parse"><a class="viewcode-back" href="../../generated/api/pwtools.parse.StructureFileParser.parse.html#pwtools.parse.StructureFileParser.parse">[docs]</a>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_all</span><span class="p">()</span>
@@ -529,7 +521,7 @@
     <span class="c1"># 56 - 66       LString       sGroup         Space  group.</span>
     <span class="c1"># 67 - 70       Integer       z              Z value.</span>
     <span class="c1">#</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<div class="viewcode-block" id="PDBFile.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.parse.PDBFile.html#pwtools.parse.PDBFile.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="n">StructureFileParser</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
         <span class="c1"># only the ones for which we have getters</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span> <span class="o">=</span> <span class="p">[</span>\
@@ -539,7 +531,7 @@
             <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">init_attr_lst</span><span class="p">()</span>      
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">txt</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">file_read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">txt</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">file_read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span></div>
     
     <span class="k">def</span> <span class="nf">_get_coords_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">pat</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;(ATOM|HETATM)[\s0-9]+([A-Za-z]+)[\sa-zA-Z0-9]*&#39;</span> <span class="o">+</span> \
@@ -691,7 +683,7 @@
          <span class="s1">&#39;forces&#39;</span><span class="p">:</span> <span class="n">Ry</span> <span class="o">/</span> <span class="n">eV</span> <span class="o">*</span> <span class="n">Angstrom</span> <span class="o">/</span> <span class="n">Bohr</span><span class="p">,</span> <span class="c1"># Ry / Bohr -&gt; eV / Angstrom</span>
          <span class="s1">&#39;stress&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="c1"># kbar -&gt; GPa</span>
         <span class="p">}</span> 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_alat</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<div class="viewcode-block" id="PwSCFOutputFile.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.parse.PwSCFOutputFile.html#pwtools.parse.PwSCFOutputFile.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_alat</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="n">StructureFileParser</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">timeaxis</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">Trajectory</span><span class="p">(</span><span class="n">set_all_auto</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">timeaxis</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span> <span class="o">=</span> <span class="p">[</span>\
@@ -707,7 +699,7 @@
             <span class="s1">&#39;scf_converged&#39;</span><span class="p">,</span>
             <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">use_alat</span> <span class="o">=</span> <span class="n">use_alat</span>            
-        <span class="bp">self</span><span class="o">.</span><span class="n">init_attr_lst</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_attr_lst</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="nf">_get_stress_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">verbose</span><span class="p">(</span><span class="s2">&quot;getting _stress_raw&quot;</span><span class="p">)</span>
@@ -914,7 +906,7 @@
 <span class="sd">    &gt;&gt;&gt; tr_md = io.read_pw_md(&#39;pw.out&#39;) # parse MD-like output: step=1...end</span>
 <span class="sd">    &gt;&gt;&gt; tr = crys.concatenate((st, tr_md))</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_alat</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<div class="viewcode-block" id="PwMDOutputFile.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.parse.PwMDOutputFile.html#pwtools.parse.PwMDOutputFile.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_alat</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="c1"># update default_units *before* calling base class&#39; __init__, where</span>
         <span class="c1"># self.units is assembled from default_units</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">default_units</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">constants</span><span class="o">.</span><span class="n">tryd</span> <span class="o">/</span> <span class="n">constants</span><span class="o">.</span><span class="n">fs</span><span class="p">})</span>
@@ -935,7 +927,7 @@
             <span class="s1">&#39;timestep&#39;</span><span class="p">,</span>
             <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">init_attr_lst</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">use_alat</span> <span class="o">=</span> <span class="n">use_alat</span>            
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_alat</span> <span class="o">=</span> <span class="n">use_alat</span>            </div>
     
     
     <span class="k">def</span> <span class="nf">_get_block_header_unit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
@@ -1175,9 +1167,9 @@
 
 <div class="viewcode-block" id="PwVCMDOutputFile"><a class="viewcode-back" href="../../generated/api/pwtools.parse.PwVCMDOutputFile.html#pwtools.parse.PwVCMDOutputFile">[docs]</a><span class="k">class</span> <span class="nc">PwVCMDOutputFile</span><span class="p">(</span><span class="n">PwMDOutputFile</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parse only calculation=&#39;vc-md&#39;.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<div class="viewcode-block" id="PwVCMDOutputFile.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.parse.PwVCMDOutputFile.html#pwtools.parse.PwVCMDOutputFile.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="n">PwMDOutputFile</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_attr_lst</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;econst&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_attr_lst</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;econst&#39;</span><span class="p">])</span></div>
 
     <span class="k">def</span> <span class="nf">_get_datadct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">verbose</span><span class="p">(</span><span class="s2">&quot;getting _datadct&quot;</span><span class="p">)</span>
@@ -1250,7 +1242,7 @@
          <span class="s1">&#39;forces&#39;</span><span class="p">:</span> <span class="n">Ha</span> <span class="o">/</span> <span class="n">eV</span> <span class="o">*</span> <span class="n">Angstrom</span> <span class="o">/</span> <span class="n">Bohr</span><span class="p">,</span> <span class="c1"># Ha / Bohr -&gt; eV / Angstrom</span>
          <span class="s1">&#39;stress&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="c1"># kbar -&gt; GPa</span>
         <span class="p">}</span> 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<div class="viewcode-block" id="CpmdSCFOutputFile.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.parse.CpmdSCFOutputFile.html#pwtools.parse.CpmdSCFOutputFile.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="n">StructureFileParser</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span> <span class="o">=</span> <span class="p">[</span>\
             <span class="s1">&#39;cell&#39;</span><span class="p">,</span>
@@ -1264,7 +1256,7 @@
             <span class="s1">&#39;nstep_scf&#39;</span><span class="p">,</span>
             <span class="s1">&#39;scf_converged&#39;</span><span class="p">,</span>
         <span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">init_attr_lst</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_attr_lst</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="nf">_get_coords_forces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Low precision cartesian coords [Bohr] + forces [Ha / Bohr] I guess.</span>
@@ -1795,7 +1787,7 @@
          <span class="s1">&#39;forces&#39;</span><span class="p">:</span> <span class="n">Ha</span> <span class="o">/</span> <span class="n">eV</span> <span class="o">*</span> <span class="n">Angstrom</span> <span class="o">/</span> <span class="n">Bohr</span><span class="p">,</span> <span class="c1"># Ha / Bohr -&gt; eV / Angstrom</span>
         <span class="p">}</span> 
     
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<div class="viewcode-block" id="Cp2kSCFOutputFile.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.parse.Cp2kSCFOutputFile.html#pwtools.parse.Cp2kSCFOutputFile.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="n">StructureFileParser</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span> <span class="o">=</span> <span class="p">[</span>\
             <span class="s1">&#39;natoms&#39;</span><span class="p">,</span>
@@ -1804,7 +1796,7 @@
             <span class="s1">&#39;stress&#39;</span><span class="p">,</span>
             <span class="s1">&#39;symbols&#39;</span><span class="p">,</span>
         <span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">init_attr_lst</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_attr_lst</span><span class="p">()</span></div>
     
     <span class="k">def</span> <span class="nf">_get_run_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">cmd</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;grep -m1 &#39;GLOBAL.*Run type&#39; </span><span class="si">{0}</span><span class="s2"> | sed </span><span class="se">\</span>
@@ -1862,7 +1854,7 @@
     <span class="sd">&quot;&quot;&quot;CP2K MD output parser. Tested with cp2k v2.4, &quot;global/run_type</span>
 <span class="sd">    md,print_level low&quot;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<div class="viewcode-block" id="Cp2kMDOutputFile.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.parse.Cp2kMDOutputFile.html#pwtools.parse.Cp2kMDOutputFile.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">default_units</span><span class="p">[</span><span class="s1">&#39;stress&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-4</span> <span class="c1"># bar -&gt; GPa</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">default_units</span><span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Bohr</span><span class="o">/</span><span class="n">thart</span> <span class="o">/</span> <span class="n">Ang</span><span class="o">*</span><span class="n">fs</span> <span class="c1"># Bohr/thart -&gt; Ang/fs</span>
         <span class="n">TrajectoryFileParser</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
@@ -1886,7 +1878,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_stress_file</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">pj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basedir</span><span class="p">,</span> <span class="s1">&#39;PROJECT-1.stress&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pos_file</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">pj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basedir</span><span class="p">,</span> <span class="s1">&#39;PROJECT-pos-1.xyz&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_frc_file</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">pj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basedir</span><span class="p">,</span> <span class="s1">&#39;PROJECT-frc-1.xyz&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_vel_file</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">pj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basedir</span><span class="p">,</span> <span class="s1">&#39;PROJECT-vel-1.xyz&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_vel_file</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">pj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basedir</span><span class="p">,</span> <span class="s1">&#39;PROJECT-vel-1.xyz&#39;</span><span class="p">)</span></div>
     
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_cp2k_repack_arr</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
@@ -2139,7 +2131,7 @@
     <span class="sd">&quot;&quot;&quot;Same as :class:`Cp2kMDOutputFile` (all ``PROJECT*`` files are text),</span>
 <span class="sd">    only that the coordinates file is a dcd format binary file</span>
 <span class="sd">    ``PROJECT-pos-1.dcd``.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<div class="viewcode-block" id="Cp2kDcdMDOutputFile.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.parse.Cp2kDcdMDOutputFile.html#pwtools.parse.Cp2kDcdMDOutputFile.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Cp2kDcdMDOutputFile</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dcdfilename</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">pj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basedir</span><span class="p">,</span> <span class="s1">&#39;PROJECT-pos-1.dcd&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_dcd_convang</span> <span class="o">=</span> <span class="kc">False</span>
@@ -2157,7 +2149,7 @@
             <span class="s1">&#39;timestep&#39;</span><span class="p">,</span>
             <span class="s1">&#39;velocity&#39;</span><span class="p">,</span>
         <span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">init_attr_lst</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_attr_lst</span><span class="p">()</span></div></div>
 
 
 <div class="viewcode-block" id="LammpsTextMDOutputFile"><a class="viewcode-back" href="../../generated/api/pwtools.parse.LammpsTextMDOutputFile.html#pwtools.parse.LammpsTextMDOutputFile">[docs]</a><span class="k">class</span> <span class="nc">LammpsTextMDOutputFile</span><span class="p">(</span><span class="n">TrajectoryFileParser</span><span class="p">):</span>
@@ -2523,7 +2515,7 @@
 <span class="sd">      :func:`~pwtools.io.read_lammps_md_txt()` must be identical up to</span>
 <span class="sd">      numerical noise (about 1e-6 for default lammps text printing precision).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<div class="viewcode-block" id="LammpsDcdMDOutputFile.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.parse.LammpsDcdMDOutputFile.html#pwtools.parse.LammpsDcdMDOutputFile.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">LammpsDcdMDOutputFile</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span> <span class="o">=</span> <span class="p">[</span>\
             <span class="s1">&#39;cryst_const&#39;</span><span class="p">,</span>
@@ -2539,7 +2531,7 @@
         <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">init_attr_lst</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_dcd_convang</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dcdfilename</span> <span class="o">=</span> <span class="n">pj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basedir</span><span class="p">,</span> <span class="s1">&#39;lmp.out.dcd&#39;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dcdfilename</span> <span class="o">=</span> <span class="n">pj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basedir</span><span class="p">,</span> <span class="s1">&#39;lmp.out.dcd&#39;</span><span class="p">)</span></div></div>
 </pre></div>
 
           </div>
@@ -2592,12 +2584,14 @@
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -2608,7 +2602,7 @@
       &copy;2018, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
     </div>

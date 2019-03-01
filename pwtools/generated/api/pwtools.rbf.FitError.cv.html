@@ -4,24 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>pwtools.rbf.FitError.cv &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.rbf.FitError.err_cv" href="pwtools.rbf.FitError.err_cv.html" />
@@ -31,8 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -46,15 +38,15 @@
 <dt id="pwtools.rbf.FitError.cv">
 <code class="descclassname">FitError.</code><code class="descname">cv</code><span class="sig-paren">(</span><em>params</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#FitError.cv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.FitError.cv" title="Permalink to this definition">¶</a></dt>
 <dd><p>K-fold repeated CV.</p>
-<p>Split data (points, values) randomly into K parts (“folds”, K = <code class="docutils literal"><span class="pre">ns</span></code>
-in <code class="docutils literal"><span class="pre">self.cv_kwds</span></code>) along axis 0 and use each part once as test set,
+<p>Split data (points, values) randomly into K parts (“folds”, K = <code class="docutils literal notranslate"><span class="pre">ns</span></code>
+in <code class="docutils literal notranslate"><span class="pre">self.cv_kwds</span></code>) along axis 0 and use each part once as test set,
 the rest as training set. For example <cite>ns=5</cite>: split in 5 parts at
 random indices, use 5 times 4/5 data for train, 1/5 for test (each of
-the folds), so 5 fits total -&gt; 5 fit errors. Optionally repeat <code class="docutils literal"><span class="pre">nr</span></code>
+the folds), so 5 fits total -&gt; 5 fit errors. Optionally repeat <code class="docutils literal notranslate"><span class="pre">nr</span></code>
 times with different random splits. So, <cite>nr</cite> * <cite>ns</cite> fit errors total.</p>
-<p>Each time, build an Rbf interpolator with <code class="docutils literal"><span class="pre">self.rbf_kwds</span></code>, fit,
+<p>Each time, build an Rbf interpolator with <code class="docutils literal notranslate"><span class="pre">self.rbf_kwds</span></code>, fit,
 return the fit error (scalar sum of squares from
-<a class="reference internal" href="pwtools.rbf.Rbf.fit_error.html#pwtools.rbf.Rbf.fit_error" title="pwtools.rbf.Rbf.fit_error"><code class="xref py py-meth docutils literal"><span class="pre">Rbf.fit_error()</span></code></a>).</p>
+<a class="reference internal" href="pwtools.rbf.Rbf.fit_error.html#pwtools.rbf.Rbf.fit_error" title="pwtools.rbf.Rbf.fit_error"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rbf.fit_error()</span></code></a>).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -137,12 +129,14 @@ return the fit error (scalar sum of squares from
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -153,7 +147,7 @@ return the fit error (scalar sum of squares from
       &copy;2018, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

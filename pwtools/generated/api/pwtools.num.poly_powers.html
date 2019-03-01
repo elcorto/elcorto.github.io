@@ -4,24 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>pwtools.num.poly_powers &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.num.poly_str" href="pwtools.num.poly_str.html" />
@@ -31,8 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -55,7 +47,7 @@ Vandermonde matrix.</p>
 <p><strong>deg</strong> : degree of the poly</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>powers</strong> : 2d array <code class="docutils literal"><span class="pre">((deg+1)**ndim,</span> <span class="pre">ndim)</span></code></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>powers</strong> : 2d array <code class="docutils literal notranslate"><span class="pre">((deg+1)**ndim,</span> <span class="pre">ndim)</span></code></p>
 </td>
 </tr>
 </tbody>
@@ -63,12 +55,12 @@ Vandermonde matrix.</p>
 <p class="rubric">Examples</p>
 <p>For one dim, we have data points (x_i,y_i) and the to-be-fitted poly of order
 k is:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">a0</span><span class="o">*</span><span class="n">x</span><span class="o">^</span><span class="mi">0</span> <span class="o">+</span> <span class="n">a1</span><span class="o">*</span><span class="n">x</span><span class="o">^</span><span class="mi">1</span> <span class="o">+</span> <span class="n">a2</span><span class="o">*</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="o">...</span> <span class="o">+</span> <span class="n">ak</span><span class="o">*</span><span class="n">x</span><span class="o">^</span><span class="n">k</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">a0</span><span class="o">*</span><span class="n">x</span><span class="o">^</span><span class="mi">0</span> <span class="o">+</span> <span class="n">a1</span><span class="o">*</span><span class="n">x</span><span class="o">^</span><span class="mi">1</span> <span class="o">+</span> <span class="n">a2</span><span class="o">*</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="o">...</span> <span class="o">+</span> <span class="n">ak</span><span class="o">*</span><span class="n">x</span><span class="o">^</span><span class="n">k</span>
 </pre></div>
 </div>
 <p>The Vandermonde matrix A consists of all powers of x (cols) for all data
 points (rows) and each row has the form of the poly:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="n">x_0</span><span class="o">^</span><span class="mi">0</span> <span class="n">x_0</span><span class="o">^</span><span class="mi">1</span> <span class="o">...</span> <span class="n">x_0</span><span class="o">^</span><span class="n">k</span><span class="p">],</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="n">x_0</span><span class="o">^</span><span class="mi">0</span> <span class="n">x_0</span><span class="o">^</span><span class="mi">1</span> <span class="o">...</span> <span class="n">x_0</span><span class="o">^</span><span class="n">k</span><span class="p">],</span>
  <span class="p">[</span><span class="n">x_1</span><span class="o">^</span><span class="mi">0</span> <span class="n">x_1</span><span class="o">^</span><span class="mi">1</span> <span class="o">...</span> <span class="n">x_1</span><span class="o">^</span><span class="n">k</span><span class="p">],</span>   
  <span class="o">...</span>
  <span class="p">[</span><span class="n">x_n</span><span class="o">^</span><span class="mi">0</span> <span class="n">x_n</span><span class="o">^</span><span class="mi">1</span> <span class="o">...</span> <span class="n">x_n</span><span class="o">^</span><span class="n">k</span><span class="p">]]</span>
@@ -77,14 +69,14 @@ points (rows) and each row has the form of the poly:</p>
 <p>To fit, we solve A . a = y, where a = [a0,…,ak].</p>
 <p>The returned array <cite>powers</cite> has k rows, where each row holds the powers for
 one term in the poly. For ndim=1 and poly order k, we have:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">0</span><span class="p">],</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">0</span><span class="p">],</span>
  <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
  <span class="o">...</span>
  <span class="p">[</span><span class="n">k</span><span class="p">]]</span>
 </pre></div>
 </div>
 <p>and:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">^</span><span class="mi">0</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">^</span><span class="mi">0</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">^</span><span class="mi">1</span>
 <span class="o">...</span>
 <span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">^</span><span class="n">k</span>
@@ -92,13 +84,13 @@ one term in the poly. For ndim=1 and poly order k, we have:</p>
 </div>
 <p>Now, suppose we have 2 dims, thus data points (x0_i,x1_i,y_i) and a poly
 of order 2:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span><span class="n">x1</span><span class="p">)</span> <span class="o">=</span> <span class="n">a0</span><span class="o">*</span><span class="n">x0</span><span class="o">^</span><span class="mi">0</span><span class="o">*</span><span class="n">x1</span><span class="o">^</span><span class="mi">0</span> <span class="o">+</span> <span class="n">a1</span><span class="o">*</span><span class="n">x0</span><span class="o">^</span><span class="mi">0</span><span class="o">*</span><span class="n">x1</span><span class="o">^</span><span class="mi">1</span> <span class="o">+</span> <span class="n">a2</span><span class="o">*</span><span class="n">x0</span><span class="o">^</span><span class="mi">0</span><span class="o">*</span><span class="n">x1</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">a3</span><span class="o">*</span><span class="n">x0</span><span class="o">^</span><span class="mi">1</span><span class="o">*</span><span class="n">x1</span><span class="o">^</span><span class="mi">0</span> <span class="o">+</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span><span class="n">x1</span><span class="p">)</span> <span class="o">=</span> <span class="n">a0</span><span class="o">*</span><span class="n">x0</span><span class="o">^</span><span class="mi">0</span><span class="o">*</span><span class="n">x1</span><span class="o">^</span><span class="mi">0</span> <span class="o">+</span> <span class="n">a1</span><span class="o">*</span><span class="n">x0</span><span class="o">^</span><span class="mi">0</span><span class="o">*</span><span class="n">x1</span><span class="o">^</span><span class="mi">1</span> <span class="o">+</span> <span class="n">a2</span><span class="o">*</span><span class="n">x0</span><span class="o">^</span><span class="mi">0</span><span class="o">*</span><span class="n">x1</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">a3</span><span class="o">*</span><span class="n">x0</span><span class="o">^</span><span class="mi">1</span><span class="o">*</span><span class="n">x1</span><span class="o">^</span><span class="mi">0</span> <span class="o">+</span>
            <span class="n">a4</span><span class="o">*</span><span class="n">x0</span><span class="o">^</span><span class="mi">1</span><span class="o">*</span><span class="n">x1</span><span class="o">^</span><span class="mi">1</span> <span class="o">+</span> <span class="n">a5</span><span class="o">*</span><span class="n">x0</span><span class="o">^</span><span class="mi">1</span><span class="o">*</span><span class="n">x1</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">a6</span><span class="o">*</span><span class="n">x0</span><span class="o">^</span><span class="mi">2</span><span class="o">*</span><span class="n">x1</span><span class="o">^</span><span class="mi">0</span> <span class="o">+</span> <span class="n">a7</span><span class="o">*</span><span class="n">x0</span><span class="o">^</span><span class="mi">2</span><span class="o">*</span><span class="n">x1</span><span class="o">^</span><span class="mi">1</span> <span class="o">+</span>
            <span class="n">a8</span><span class="o">*</span><span class="n">x0</span><span class="o">^</span><span class="mi">2</span><span class="o">*</span><span class="n">x1</span><span class="o">^</span><span class="mi">2</span>
 </pre></div>
 </div>
-<p>with 9 coeffs a = [a0,…,a8]. Therefore, <code class="docutils literal"><span class="pre">powers.shape</span> <span class="pre">=</span> <span class="pre">(9,2)</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<p>with 9 coeffs a = [a0,…,a8]. Therefore, <code class="docutils literal notranslate"><span class="pre">powers.shape</span> <span class="pre">=</span> <span class="pre">(9,2)</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
  <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
@@ -110,7 +102,7 @@ of order 2:</p>
 </pre></div>
 </div>
 <p>and:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">x0</span><span class="o">^</span><span class="mi">0</span><span class="o">*</span><span class="n">x1</span><span class="o">^</span><span class="mi">0</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">x0</span><span class="o">^</span><span class="mi">0</span><span class="o">*</span><span class="n">x1</span><span class="o">^</span><span class="mi">0</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">x0</span><span class="o">^</span><span class="mi">1</span><span class="o">*</span><span class="n">x1</span><span class="o">^</span><span class="mi">2</span>
 <span class="o">...</span>
 </pre></div>
@@ -174,12 +166,14 @@ of order 2:</p>
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -190,7 +184,7 @@ of order 2:</p>
       &copy;2018, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

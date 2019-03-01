@@ -4,24 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>pwtools.parse.CpmdMDOutputFile &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="prev" title="pwtools.parse.Cp2kSCFOutputFile.update_units" href="pwtools.parse.Cp2kSCFOutputFile.update_units.html" />
@@ -30,8 +23,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -44,19 +36,19 @@
 <dl class="class">
 <dt id="pwtools.parse.CpmdMDOutputFile">
 <em class="property">class </em><code class="descclassname">pwtools.parse.</code><code class="descname">CpmdMDOutputFile</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#CpmdMDOutputFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.CpmdMDOutputFile" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pwtools.parse.TrajectoryFileParser.html#pwtools.parse.TrajectoryFileParser" title="pwtools.parse.TrajectoryFileParser"><code class="xref py py-class docutils literal"><span class="pre">pwtools.parse.TrajectoryFileParser</span></code></a>, <a class="reference internal" href="pwtools.parse.CpmdSCFOutputFile.html#pwtools.parse.CpmdSCFOutputFile" title="pwtools.parse.CpmdSCFOutputFile"><code class="xref py py-class docutils literal"><span class="pre">pwtools.parse.CpmdSCFOutputFile</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="pwtools.parse.TrajectoryFileParser.html#pwtools.parse.TrajectoryFileParser" title="pwtools.parse.TrajectoryFileParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.parse.TrajectoryFileParser</span></code></a>, <a class="reference internal" href="pwtools.parse.CpmdSCFOutputFile.html#pwtools.parse.CpmdSCFOutputFile" title="pwtools.parse.CpmdSCFOutputFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.parse.CpmdSCFOutputFile</span></code></a></p>
 <p>Parse CPMD MD output.</p>
 <p>Works with BO-MD and CP-MD, fixed and variable cell. Some attrs may be None
 or have different shapes (2d va 3d arrays) depending on what type of MD is
 parsed and what info/files are available.</p>
 <p>Notes for the comments below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">}</span> <span class="o">=</span> <span class="n">A</span> <span class="ow">or</span> <span class="n">B</span> <span class="ow">or</span> <span class="n">C</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">}</span> <span class="o">=</span> <span class="n">A</span> <span class="ow">or</span> <span class="n">B</span> <span class="ow">or</span> <span class="n">C</span>
 <span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">=</span> <span class="n">A</span> <span class="ow">is</span> <span class="n">optional</span>
 <span class="p">(</span><span class="n">A</span> <span class="p">(</span><span class="n">B</span><span class="p">))</span> <span class="o">=</span> <span class="n">A</span> <span class="ow">is</span> <span class="n">optional</span><span class="p">,</span> <span class="n">but</span> <span class="n">only</span> <span class="k">if</span> <span class="n">present</span><span class="p">,</span> <span class="n">B</span> <span class="ow">is</span> <span class="n">optional</span>
 </pre></div>
 </div>
 <p>Extra files which will be parsed and MUST be present:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GEOMETRY</span><span class="o">.</span><span class="n">scale</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GEOMETRY</span><span class="o">.</span><span class="n">scale</span>
 <span class="n">GEOMETRY</span>
 <span class="n">TRAJECTORY</span>
 <span class="n">ENERGIES</span>
@@ -64,14 +56,14 @@ parsed and what info/files are available.</p>
 </div>
 <p>Extra files which will be parsed and MAY be present depending on the type
 of MD:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">FTRAJECTORY</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">FTRAJECTORY</span><span class="p">)</span>
 <span class="p">(</span><span class="n">CELL</span><span class="p">)</span> 
 <span class="p">(</span><span class="n">STRESS</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="rubric">Notes</p>
 <p>The input should look like that:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">CPMD</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">CPMD</span>
     <span class="n">MOLECULAR</span> <span class="n">DYNAMICS</span> <span class="p">{</span><span class="n">BO</span><span class="p">,</span><span class="n">CP</span><span class="p">}</span>
     <span class="p">(</span><span class="n">PARRINELLO</span><span class="o">-</span><span class="n">RAHMAN</span> <span class="p">(</span><span class="n">NPT</span><span class="p">))</span>
     <span class="n">PRINT</span> <span class="n">ON</span> <span class="n">FORCES</span> <span class="n">COORDINATES</span>
@@ -88,7 +80,7 @@ of MD:</p>
 </pre></div>
 </div>
 <p>Tested with CPMD 3.15.1, the following extra files are always written:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GEOMETRY</span><span class="o">.</span><span class="n">scale</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GEOMETRY</span><span class="o">.</span><span class="n">scale</span>
 <span class="n">GEOMETRY</span>
 <span class="n">TRAJECTORY</span>
 <span class="n">ENERGIES</span>
@@ -107,7 +99,7 @@ instead of subclassed for each case.</p>
 columns are always 0.0, but all are there (e.g. EKINC is there but 0.0 b/c
 not defined for BO, only CP). For BO-MD, we list the wf optimizer (xxx for
 CP b/c there is none):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>MOLECULAR DYNAMICS BO
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>MOLECULAR DYNAMICS BO
     +FTRAJECTORY
     -CELL
     -STRESS         # why!?
@@ -159,142 +151,142 @@ PARRINELLO-RAHMAN NPT
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">Container</span></code></td>
-<td>alias of <a class="reference internal" href="pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal"><span class="pre">pwtools.crys.Trajectory</span></code></a></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">Container</span></code></td>
+<td>alias of <a class="reference internal" href="pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.crys.Trajectory</span></code></a></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.apply_units.html#pwtools.parse.CpmdMDOutputFile.apply_units" title="pwtools.parse.CpmdMDOutputFile.apply_units"><code class="xref py py-obj docutils literal"><span class="pre">apply_units</span></code></a>()</td>
-<td></td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.apply_units.html#pwtools.parse.CpmdMDOutputFile.apply_units" title="pwtools.parse.CpmdMDOutputFile.apply_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_units</span></code></a>()</td>
+<td>Like _apply_units_raw(), make sure that units are only applied once.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.assert_attr.html#pwtools.parse.CpmdMDOutputFile.assert_attr" title="pwtools.parse.CpmdMDOutputFile.assert_attr"><code class="xref py py-obj docutils literal"><span class="pre">assert_attr</span></code></a>(attr)</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.assert_attr.html#pwtools.parse.CpmdMDOutputFile.assert_attr" title="pwtools.parse.CpmdMDOutputFile.assert_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_attr</span></code></a>(attr)</td>
 <td>Raise AssertionError if self.&lt;attr&gt; is not set (is_set_attr() returns False.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.assert_attr_lst.html#pwtools.parse.CpmdMDOutputFile.assert_attr_lst" title="pwtools.parse.CpmdMDOutputFile.assert_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">assert_attr_lst</span></code></a>(attr_lst)</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.assert_attr_lst.html#pwtools.parse.CpmdMDOutputFile.assert_attr_lst" title="pwtools.parse.CpmdMDOutputFile.assert_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_attr_lst</span></code></a>(attr_lst)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.assert_set_attr.html#pwtools.parse.CpmdMDOutputFile.assert_set_attr" title="pwtools.parse.CpmdMDOutputFile.assert_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">assert_set_attr</span></code></a>(attr)</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.assert_set_attr.html#pwtools.parse.CpmdMDOutputFile.assert_set_attr" title="pwtools.parse.CpmdMDOutputFile.assert_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_set_attr</span></code></a>(attr)</td>
 <td>Same as assert_attr(), but run try_set_attr() first.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.assert_set_attr_lst.html#pwtools.parse.CpmdMDOutputFile.assert_set_attr_lst" title="pwtools.parse.CpmdMDOutputFile.assert_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">assert_set_attr_lst</span></code></a>(attr_lst)</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.assert_set_attr_lst.html#pwtools.parse.CpmdMDOutputFile.assert_set_attr_lst" title="pwtools.parse.CpmdMDOutputFile.assert_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_set_attr_lst</span></code></a>(attr_lst)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.check_set_attr.html#pwtools.parse.CpmdMDOutputFile.check_set_attr" title="pwtools.parse.CpmdMDOutputFile.check_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">check_set_attr</span></code></a>(attr)</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.check_set_attr.html#pwtools.parse.CpmdMDOutputFile.check_set_attr" title="pwtools.parse.CpmdMDOutputFile.check_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_set_attr</span></code></a>(attr)</td>
 <td>Run try_set_attr() and return the result of is_set_attr(), i.e.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.check_set_attr_lst.html#pwtools.parse.CpmdMDOutputFile.check_set_attr_lst" title="pwtools.parse.CpmdMDOutputFile.check_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">check_set_attr_lst</span></code></a>(attr_lst)</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.check_set_attr_lst.html#pwtools.parse.CpmdMDOutputFile.check_set_attr_lst" title="pwtools.parse.CpmdMDOutputFile.check_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_set_attr_lst</span></code></a>(attr_lst)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.dump.html#pwtools.parse.CpmdMDOutputFile.dump" title="pwtools.parse.CpmdMDOutputFile.dump"><code class="xref py py-obj docutils literal"><span class="pre">dump</span></code></a>(dump_filename[,&nbsp;mkdir])</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.dump.html#pwtools.parse.CpmdMDOutputFile.dump" title="pwtools.parse.CpmdMDOutputFile.dump"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump</span></code></a>(dump_filename[,&nbsp;mkdir])</td>
 <td>Write object to binary file using pickle.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_cell.html#pwtools.parse.CpmdMDOutputFile.get_cell" title="pwtools.parse.CpmdMDOutputFile.get_cell"><code class="xref py py-obj docutils literal"><span class="pre">get_cell</span></code></a>()</td>
-<td></td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_cell.html#pwtools.parse.CpmdMDOutputFile.get_cell" title="pwtools.parse.CpmdMDOutputFile.get_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cell</span></code></a>()</td>
+<td>2d cell [Bohr]</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_cont.html#pwtools.parse.CpmdMDOutputFile.get_cont" title="pwtools.parse.CpmdMDOutputFile.get_cont"><code class="xref py py-obj docutils literal"><span class="pre">get_cont</span></code></a>([auto_calc])</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_cont.html#pwtools.parse.CpmdMDOutputFile.get_cont" title="pwtools.parse.CpmdMDOutputFile.get_cont"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cont</span></code></a>([auto_calc])</td>
 <td>Populate and return a Container object.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_coords.html#pwtools.parse.CpmdMDOutputFile.get_coords" title="pwtools.parse.CpmdMDOutputFile.get_coords"><code class="xref py py-obj docutils literal"><span class="pre">get_coords</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_coords.html#pwtools.parse.CpmdMDOutputFile.get_coords" title="pwtools.parse.CpmdMDOutputFile.get_coords"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_coords</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_coords_frac.html#pwtools.parse.CpmdMDOutputFile.get_coords_frac" title="pwtools.parse.CpmdMDOutputFile.get_coords_frac"><code class="xref py py-obj docutils literal"><span class="pre">get_coords_frac</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_coords_frac.html#pwtools.parse.CpmdMDOutputFile.get_coords_frac" title="pwtools.parse.CpmdMDOutputFile.get_coords_frac"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_coords_frac</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_econst.html#pwtools.parse.CpmdMDOutputFile.get_econst" title="pwtools.parse.CpmdMDOutputFile.get_econst"><code class="xref py py-obj docutils literal"><span class="pre">get_econst</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_econst.html#pwtools.parse.CpmdMDOutputFile.get_econst" title="pwtools.parse.CpmdMDOutputFile.get_econst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_econst</span></code></a>()</td>
 <td>[Ha]</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_ekin.html#pwtools.parse.CpmdMDOutputFile.get_ekin" title="pwtools.parse.CpmdMDOutputFile.get_ekin"><code class="xref py py-obj docutils literal"><span class="pre">get_ekin</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_ekin.html#pwtools.parse.CpmdMDOutputFile.get_ekin" title="pwtools.parse.CpmdMDOutputFile.get_ekin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ekin</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_ekin_cell.html#pwtools.parse.CpmdMDOutputFile.get_ekin_cell" title="pwtools.parse.CpmdMDOutputFile.get_ekin_cell"><code class="xref py py-obj docutils literal"><span class="pre">get_ekin_cell</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_ekin_cell.html#pwtools.parse.CpmdMDOutputFile.get_ekin_cell" title="pwtools.parse.CpmdMDOutputFile.get_ekin_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ekin_cell</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_ekin_elec.html#pwtools.parse.CpmdMDOutputFile.get_ekin_elec" title="pwtools.parse.CpmdMDOutputFile.get_ekin_elec"><code class="xref py py-obj docutils literal"><span class="pre">get_ekin_elec</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_ekin_elec.html#pwtools.parse.CpmdMDOutputFile.get_ekin_elec" title="pwtools.parse.CpmdMDOutputFile.get_ekin_elec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ekin_elec</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_ekinc.html#pwtools.parse.CpmdMDOutputFile.get_ekinc" title="pwtools.parse.CpmdMDOutputFile.get_ekinc"><code class="xref py py-obj docutils literal"><span class="pre">get_ekinc</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_ekinc.html#pwtools.parse.CpmdMDOutputFile.get_ekinc" title="pwtools.parse.CpmdMDOutputFile.get_ekinc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ekinc</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_ekinh.html#pwtools.parse.CpmdMDOutputFile.get_ekinh" title="pwtools.parse.CpmdMDOutputFile.get_ekinh"><code class="xref py py-obj docutils literal"><span class="pre">get_ekinh</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_ekinh.html#pwtools.parse.CpmdMDOutputFile.get_ekinh" title="pwtools.parse.CpmdMDOutputFile.get_ekinh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ekinh</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_etot.html#pwtools.parse.CpmdMDOutputFile.get_etot" title="pwtools.parse.CpmdMDOutputFile.get_etot"><code class="xref py py-obj docutils literal"><span class="pre">get_etot</span></code></a>()</td>
-<td></td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_etot.html#pwtools.parse.CpmdMDOutputFile.get_etot" title="pwtools.parse.CpmdMDOutputFile.get_etot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_etot</span></code></a>()</td>
+<td>[Ha]</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_forces.html#pwtools.parse.CpmdMDOutputFile.get_forces" title="pwtools.parse.CpmdMDOutputFile.get_forces"><code class="xref py py-obj docutils literal"><span class="pre">get_forces</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_forces.html#pwtools.parse.CpmdMDOutputFile.get_forces" title="pwtools.parse.CpmdMDOutputFile.get_forces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_forces</span></code></a>()</td>
 <td>Cartesian forces [Ha/Bohr].</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_natoms.html#pwtools.parse.CpmdMDOutputFile.get_natoms" title="pwtools.parse.CpmdMDOutputFile.get_natoms"><code class="xref py py-obj docutils literal"><span class="pre">get_natoms</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_natoms.html#pwtools.parse.CpmdMDOutputFile.get_natoms" title="pwtools.parse.CpmdMDOutputFile.get_natoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_natoms</span></code></a>()</td>
 <td>Number of atoms.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_nkpoints.html#pwtools.parse.CpmdMDOutputFile.get_nkpoints" title="pwtools.parse.CpmdMDOutputFile.get_nkpoints"><code class="xref py py-obj docutils literal"><span class="pre">get_nkpoints</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_nkpoints.html#pwtools.parse.CpmdMDOutputFile.get_nkpoints" title="pwtools.parse.CpmdMDOutputFile.get_nkpoints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_nkpoints</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_nstep_scf.html#pwtools.parse.CpmdMDOutputFile.get_nstep_scf" title="pwtools.parse.CpmdMDOutputFile.get_nstep_scf"><code class="xref py py-obj docutils literal"><span class="pre">get_nstep_scf</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_nstep_scf.html#pwtools.parse.CpmdMDOutputFile.get_nstep_scf" title="pwtools.parse.CpmdMDOutputFile.get_nstep_scf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_nstep_scf</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_return_attr.html#pwtools.parse.CpmdMDOutputFile.get_return_attr" title="pwtools.parse.CpmdMDOutputFile.get_return_attr"><code class="xref py py-obj docutils literal"><span class="pre">get_return_attr</span></code></a>(attr_name)</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_return_attr.html#pwtools.parse.CpmdMDOutputFile.get_return_attr" title="pwtools.parse.CpmdMDOutputFile.get_return_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_return_attr</span></code></a>(attr_name)</td>
 <td>Call try_set_attr() are return self.&lt;attr_name&gt; if set.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_scf_converged.html#pwtools.parse.CpmdMDOutputFile.get_scf_converged" title="pwtools.parse.CpmdMDOutputFile.get_scf_converged"><code class="xref py py-obj docutils literal"><span class="pre">get_scf_converged</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_scf_converged.html#pwtools.parse.CpmdMDOutputFile.get_scf_converged" title="pwtools.parse.CpmdMDOutputFile.get_scf_converged"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_scf_converged</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_stress.html#pwtools.parse.CpmdMDOutputFile.get_stress" title="pwtools.parse.CpmdMDOutputFile.get_stress"><code class="xref py py-obj docutils literal"><span class="pre">get_stress</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_stress.html#pwtools.parse.CpmdMDOutputFile.get_stress" title="pwtools.parse.CpmdMDOutputFile.get_stress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_stress</span></code></a>()</td>
 <td>Stress tensor from STRESS file if available [kbar]</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_struct.html#pwtools.parse.CpmdMDOutputFile.get_struct" title="pwtools.parse.CpmdMDOutputFile.get_struct"><code class="xref py py-obj docutils literal"><span class="pre">get_struct</span></code></a>(**kwds)</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_struct.html#pwtools.parse.CpmdMDOutputFile.get_struct" title="pwtools.parse.CpmdMDOutputFile.get_struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_struct</span></code></a>(**kwds)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_symbols.html#pwtools.parse.CpmdMDOutputFile.get_symbols" title="pwtools.parse.CpmdMDOutputFile.get_symbols"><code class="xref py py-obj docutils literal"><span class="pre">get_symbols</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_symbols.html#pwtools.parse.CpmdMDOutputFile.get_symbols" title="pwtools.parse.CpmdMDOutputFile.get_symbols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_symbols</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_temperature.html#pwtools.parse.CpmdMDOutputFile.get_temperature" title="pwtools.parse.CpmdMDOutputFile.get_temperature"><code class="xref py py-obj docutils literal"><span class="pre">get_temperature</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_temperature.html#pwtools.parse.CpmdMDOutputFile.get_temperature" title="pwtools.parse.CpmdMDOutputFile.get_temperature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_temperature</span></code></a>()</td>
 <td>[K]</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_temperature_cell.html#pwtools.parse.CpmdMDOutputFile.get_temperature_cell" title="pwtools.parse.CpmdMDOutputFile.get_temperature_cell"><code class="xref py py-obj docutils literal"><span class="pre">get_temperature_cell</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_temperature_cell.html#pwtools.parse.CpmdMDOutputFile.get_temperature_cell" title="pwtools.parse.CpmdMDOutputFile.get_temperature_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_temperature_cell</span></code></a>()</td>
 <td>[K]</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_timestep.html#pwtools.parse.CpmdMDOutputFile.get_timestep" title="pwtools.parse.CpmdMDOutputFile.get_timestep"><code class="xref py py-obj docutils literal"><span class="pre">get_timestep</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_timestep.html#pwtools.parse.CpmdMDOutputFile.get_timestep" title="pwtools.parse.CpmdMDOutputFile.get_timestep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_timestep</span></code></a>()</td>
 <td>Timestep [thart].</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_traj.html#pwtools.parse.CpmdMDOutputFile.get_traj" title="pwtools.parse.CpmdMDOutputFile.get_traj"><code class="xref py py-obj docutils literal"><span class="pre">get_traj</span></code></a>(**kwds)</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_traj.html#pwtools.parse.CpmdMDOutputFile.get_traj" title="pwtools.parse.CpmdMDOutputFile.get_traj"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_traj</span></code></a>(**kwds)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_velocity.html#pwtools.parse.CpmdMDOutputFile.get_velocity" title="pwtools.parse.CpmdMDOutputFile.get_velocity"><code class="xref py py-obj docutils literal"><span class="pre">get_velocity</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.get_velocity.html#pwtools.parse.CpmdMDOutputFile.get_velocity" title="pwtools.parse.CpmdMDOutputFile.get_velocity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_velocity</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.init_attr_lst.html#pwtools.parse.CpmdMDOutputFile.init_attr_lst" title="pwtools.parse.CpmdMDOutputFile.init_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">init_attr_lst</span></code></a>([attr_lst])</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.init_attr_lst.html#pwtools.parse.CpmdMDOutputFile.init_attr_lst" title="pwtools.parse.CpmdMDOutputFile.init_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_attr_lst</span></code></a>([attr_lst])</td>
 <td>Set each self.&lt;attr&gt; in <cite>attr_lst</cite> to None.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.is_set_attr.html#pwtools.parse.CpmdMDOutputFile.is_set_attr" title="pwtools.parse.CpmdMDOutputFile.is_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">is_set_attr</span></code></a>(attr)</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.is_set_attr.html#pwtools.parse.CpmdMDOutputFile.is_set_attr" title="pwtools.parse.CpmdMDOutputFile.is_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr</span></code></a>(attr)</td>
 <td>Check if self has the attribute self.&lt;attr&gt; and if it is _not_ None.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.is_set_attr_lst.html#pwtools.parse.CpmdMDOutputFile.is_set_attr_lst" title="pwtools.parse.CpmdMDOutputFile.is_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">is_set_attr_lst</span></code></a>(attr_lst)</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.is_set_attr_lst.html#pwtools.parse.CpmdMDOutputFile.is_set_attr_lst" title="pwtools.parse.CpmdMDOutputFile.is_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr_lst</span></code></a>(attr_lst)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.load.html#pwtools.parse.CpmdMDOutputFile.load" title="pwtools.parse.CpmdMDOutputFile.load"><code class="xref py py-obj docutils literal"><span class="pre">load</span></code></a>(dump_filename)</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.load.html#pwtools.parse.CpmdMDOutputFile.load" title="pwtools.parse.CpmdMDOutputFile.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(dump_filename)</td>
 <td>Load pickled object.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.parse.html#pwtools.parse.CpmdMDOutputFile.parse" title="pwtools.parse.CpmdMDOutputFile.parse"><code class="xref py py-obj docutils literal"><span class="pre">parse</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.parse.html#pwtools.parse.CpmdMDOutputFile.parse" title="pwtools.parse.CpmdMDOutputFile.parse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.raw_return.html#pwtools.parse.CpmdMDOutputFile.raw_return" title="pwtools.parse.CpmdMDOutputFile.raw_return"><code class="xref py py-obj docutils literal"><span class="pre">raw_return</span></code></a>(attr_name)</td>
-<td>Call <code class="docutils literal"><span class="pre">try_set_attr(_&lt;attr_name&gt;_raw)</span></code> and return it if set, else None.</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.raw_return.html#pwtools.parse.CpmdMDOutputFile.raw_return" title="pwtools.parse.CpmdMDOutputFile.raw_return"><code class="xref py py-obj docutils literal notranslate"><span class="pre">raw_return</span></code></a>(attr_name)</td>
+<td>Call <code class="docutils literal notranslate"><span class="pre">try_set_attr(_&lt;attr_name&gt;_raw)</span></code> and return it if set, else None.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.raw_slice_get.html#pwtools.parse.CpmdMDOutputFile.raw_slice_get" title="pwtools.parse.CpmdMDOutputFile.raw_slice_get"><code class="xref py py-obj docutils literal"><span class="pre">raw_slice_get</span></code></a>(attr_name,&nbsp;sl,&nbsp;axis)</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.raw_slice_get.html#pwtools.parse.CpmdMDOutputFile.raw_slice_get" title="pwtools.parse.CpmdMDOutputFile.raw_slice_get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">raw_slice_get</span></code></a>(attr_name,&nbsp;sl,&nbsp;axis)</td>
 <td>Shortcut method:</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.set_all.html#pwtools.parse.CpmdMDOutputFile.set_all" title="pwtools.parse.CpmdMDOutputFile.set_all"><code class="xref py py-obj docutils literal"><span class="pre">set_all</span></code></a>([attr_lst])</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.set_all.html#pwtools.parse.CpmdMDOutputFile.set_all" title="pwtools.parse.CpmdMDOutputFile.set_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_all</span></code></a>([attr_lst])</td>
 <td>Call getter for each attr name in <cite>attr_lst</cite>.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.set_attr_lst.html#pwtools.parse.CpmdMDOutputFile.set_attr_lst" title="pwtools.parse.CpmdMDOutputFile.set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">set_attr_lst</span></code></a>(attr_lst)</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.set_attr_lst.html#pwtools.parse.CpmdMDOutputFile.set_attr_lst" title="pwtools.parse.CpmdMDOutputFile.set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_attr_lst</span></code></a>(attr_lst)</td>
 <td>Set self.attr_lst and init each attr to None.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.try_set_attr.html#pwtools.parse.CpmdMDOutputFile.try_set_attr" title="pwtools.parse.CpmdMDOutputFile.try_set_attr"><code class="xref py py-obj docutils literal"><span class="pre">try_set_attr</span></code></a>(attr)</td>
-<td>If self.&lt;attr&gt; does not exist or is None, then invoke an</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.try_set_attr.html#pwtools.parse.CpmdMDOutputFile.try_set_attr" title="pwtools.parse.CpmdMDOutputFile.try_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_set_attr</span></code></a>(attr)</td>
+<td>If self.&lt;attr&gt; does not exist or is None, then invoke an appropirately named getter as if this command would be executed.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.try_set_attr_lst.html#pwtools.parse.CpmdMDOutputFile.try_set_attr_lst" title="pwtools.parse.CpmdMDOutputFile.try_set_attr_lst"><code class="xref py py-obj docutils literal"><span class="pre">try_set_attr_lst</span></code></a>(attr_lst)</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.try_set_attr_lst.html#pwtools.parse.CpmdMDOutputFile.try_set_attr_lst" title="pwtools.parse.CpmdMDOutputFile.try_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_set_attr_lst</span></code></a>(attr_lst)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.update_units.html#pwtools.parse.CpmdMDOutputFile.update_units" title="pwtools.parse.CpmdMDOutputFile.update_units"><code class="xref py py-obj docutils literal"><span class="pre">update_units</span></code></a>(units)</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.parse.CpmdMDOutputFile.update_units.html#pwtools.parse.CpmdMDOutputFile.update_units" title="pwtools.parse.CpmdMDOutputFile.update_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_units</span></code></a>(units)</td>
 <td>Update self.units dict from <cite>units</cite>.</td>
 </tr>
 </tbody>
@@ -313,8 +305,20 @@ PARRINELLO-RAHMAN NPT
 </dd></dl>
 
 <dl class="method">
+<dt id="pwtools.parse.CpmdMDOutputFile.get_cell">
+<code class="descname">get_cell</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#CpmdMDOutputFile.get_cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.CpmdMDOutputFile.get_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>2d cell [Bohr]</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="pwtools.parse.CpmdMDOutputFile.get_econst">
 <code class="descname">get_econst</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#CpmdMDOutputFile.get_econst"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.CpmdMDOutputFile.get_econst" title="Permalink to this definition">¶</a></dt>
+<dd><p>[Ha]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.parse.CpmdMDOutputFile.get_etot">
+<code class="descname">get_etot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#CpmdMDOutputFile.get_etot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.CpmdMDOutputFile.get_etot" title="Permalink to this definition">¶</a></dt>
 <dd><p>[Ha]</p>
 </dd></dl>
 
@@ -406,12 +410,14 @@ PARRINELLO-RAHMAN NPT
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -422,7 +428,7 @@ PARRINELLO-RAHMAN NPT
       &copy;2018, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

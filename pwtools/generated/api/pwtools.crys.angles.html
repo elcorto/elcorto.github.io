@@ -4,24 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>pwtools.crys.angles &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.crys.atoms2struct" href="pwtools.crys.atoms2struct.html" />
@@ -31,8 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -58,10 +50,10 @@ Calculate all angles between atom triples in <cite>struct</cite>.</p>
 </div></blockquote>
 <p><strong>mask_val</strong> : float</p>
 <blockquote>
-<div><p>Fill value for <code class="docutils literal"><span class="pre">anglesijk[ii,jj,kk]</span></code> where <code class="docutils literal"><span class="pre">ii==jj</span></code> or <code class="docutils literal"><span class="pre">ii==kk</span></code>
-or <code class="docutils literal"><span class="pre">jj==kk</span></code>, i.e. no angle defined. Can be used to create bool mask
-arrays in numpy. Should be outside of [-1,1] (<code class="docutils literal"><span class="pre">deg=False</span></code>) or [0,180]
-(<code class="docutils literal"><span class="pre">deg=True</span></code>).</p>
+<div><p>Fill value for <code class="docutils literal notranslate"><span class="pre">anglesijk[ii,jj,kk]</span></code> where <code class="docutils literal notranslate"><span class="pre">ii==jj</span></code> or <code class="docutils literal notranslate"><span class="pre">ii==kk</span></code>
+or <code class="docutils literal notranslate"><span class="pre">jj==kk</span></code>, i.e. no angle defined. Can be used to create bool mask
+arrays in numpy. Should be outside of [-1,1] (<code class="docutils literal notranslate"><span class="pre">deg=False</span></code>) or [0,180]
+(<code class="docutils literal notranslate"><span class="pre">deg=True</span></code>).</p>
 </div></blockquote>
 <p><strong>deg</strong> : bool</p>
 <blockquote>
@@ -78,7 +70,7 @@ arrays in numpy. Should be outside of [-1,1] (<code class="docutils literal"><sp
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">natoms</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">natoms</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">natoms</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">natoms</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mask_val</span> <span class="o">=</span> <span class="mi">999</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">anglesijk</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">angles</span><span class="p">(</span><span class="n">struct</span><span class="p">,</span> <span class="n">mask_val</span><span class="o">=</span><span class="n">mask_val</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># angleidx holds all ii,jj,kk triples which we would get from:</span>
@@ -160,12 +152,14 @@ arrays in numpy. Should be outside of [-1,1] (<code class="docutils literal"><sp
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -176,7 +170,7 @@ arrays in numpy. Should be outside of [-1,1] (<code class="docutils literal"><sp
       &copy;2018, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

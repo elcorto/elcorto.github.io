@@ -4,24 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>pwtools.common.permit_sigpipe &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.common.pop_from_list" href="pwtools.common.pop_from_list.html" />
@@ -31,8 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -48,7 +40,7 @@
 <dd><p>Helper for subprocess.Popen(). Handle SIGPIPE. To be used as preexec_fn.</p>
 <p class="rubric">Notes</p>
 <p>Things like:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cmd</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;grep pattern /path/to/very_big_file | head -n1&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cmd</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;grep pattern /path/to/very_big_file | head -n1&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> 
 <span class="gp">... </span>                      <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">out</span><span class="p">,</span><span class="n">err</span> <span class="o">=</span> <span class="n">pp</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
@@ -60,16 +52,16 @@ reason is that they actually “kind of” fail in the shell too, namely,
 SIGPIPE [1,2]. This can be seen by runing the call in strace “$ strace grep
 …”. Popen chokes on that. The solution is to ignore SIGPIPE.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r1819" rules="none">
+<table class="docutils citation" frame="void" id="r10" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R1819]</a></td><td><a class="reference external" href="http://mail.python.org/pipermail/tutor/2007-October/058042.html">http://mail.python.org/pipermail/tutor/2007-October/058042.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[R10]</a></td><td><a class="reference external" href="http://mail.python.org/pipermail/tutor/2007-October/058042.html">http://mail.python.org/pipermail/tutor/2007-October/058042.html</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r1919" rules="none">
+<table class="docutils citation" frame="void" id="r11" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[R1919]</a></td><td><a class="reference external" href="http://article.gmane.org/gmane.comp.python.devel/88798/">http://article.gmane.org/gmane.comp.python.devel/88798/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[R11]</a></td><td><a class="reference external" href="http://article.gmane.org/gmane.comp.python.devel/88798/">http://article.gmane.org/gmane.comp.python.devel/88798/</a></td></tr>
 </tbody>
 </table>
 </dd></dl>
@@ -131,12 +123,14 @@ SIGPIPE [1,2]. This can be seen by runing the call in strace “$ strace grep
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -147,7 +141,7 @@ SIGPIPE [1,2]. This can be seen by runing the call in strace “$ strace grep
       &copy;2018, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
