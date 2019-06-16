@@ -1,0 +1,379 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>imagecluster.io &#8212; imagecluster  documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/dendrogram.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">imagecluster</h1>
+    
+  </a>
+</p>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=imagecluster&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/methods.html">Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/stuff/index.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/stuff/index.html#contributions">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/stuff/index.html#related-projects">Related projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/stuff/index.html#tests">Tests</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for imagecluster.io</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="kn">from</span> <span class="nn">keras.preprocessing</span> <span class="k">import</span> <span class="n">image</span>
+<span class="kn">import</span> <span class="nn">PIL.Image</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">exceptions</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">calc</span> <span class="k">as</span> <span class="n">ic</span>
+
+<span class="n">pj</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span>
+
+<span class="n">ic_base_dir</span> <span class="o">=</span> <span class="s1">&#39;imagecluster&#39;</span>
+
+
+<div class="viewcode-block" id="read_pk"><a class="viewcode-back" href="../../generated/api/imagecluster.io.read_pk.html#imagecluster.io.read_pk">[docs]</a><span class="k">def</span> <span class="nf">read_pk</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Read pickled data from `filename`.&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fd</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ret</span></div>
+
+
+<div class="viewcode-block" id="write_pk"><a class="viewcode-back" href="../../generated/api/imagecluster.io.write_pk.html#imagecluster.io.write_pk">[docs]</a><span class="k">def</span> <span class="nf">write_pk</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Write object `obj` pickled to `filename`.&quot;&quot;&quot;</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">fd</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_files"><a class="viewcode-back" href="../../generated/api/imagecluster.io.get_files.html#imagecluster.io.get_files">[docs]</a><span class="k">def</span> <span class="nf">get_files</span><span class="p">(</span><span class="n">imagedir</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="s1">&#39;jpg|jpeg|bmp|png&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return all file names with extension matching the regex `ext` from dir</span>
+<span class="sd">    `imagedir`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    imagedir : str</span>
+<span class="sd">    ext : str</span>
+<span class="sd">        regex</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        list of file names</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^.*\.(</span><span class="si">{}</span><span class="s1">)$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ext</span><span class="p">),</span> <span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">imagedir</span><span class="p">,</span><span class="n">base</span><span class="p">)</span> <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">imagedir</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">rex</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">base</span><span class="p">)]</span></div>
+
+
+<div class="viewcode-block" id="exif_timestamp"><a class="viewcode-back" href="../../generated/api/imagecluster.io.exif_timestamp.html#imagecluster.io.exif_timestamp">[docs]</a><span class="k">def</span> <span class="nf">exif_timestamp</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Read timestamp from image in `filename` from EXIF tag.</span>
+
+<span class="sd">    This will probably work for most JPG files, but not for PNG, for instance.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    exceptions.ICExifReadError</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        timestamp, seconds since Epoch</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># PIL lazy-loads the image data, so this open and _getexif() is fast.</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;exif&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">img</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="s1">&#39;_getexif&#39;</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">ICExifReadError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;no EXIF data found in </span><span class="si">{filename}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># Avoid constucting the whole EXIF dict just to extract the DateTime field.</span>
+    <span class="c1"># DateTime -&gt; key 306 is in the EXIF standard, so let&#39;s use that directly.</span>
+    <span class="c1">## date_time = {TAGS[k] : v for k,v in exif.items()}[&#39;DateTime&#39;]</span>
+    <span class="n">exif</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">_getexif</span><span class="p">()</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="mi">306</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exif</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">ICExifReadError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;key 306 (DateTime) not found in &quot;</span>
+                                         <span class="n">f</span><span class="s2">&quot;EXIF data of file </span><span class="si">{filename}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># &#39;2019:03:10 22:42:42&#39;</span>
+    <span class="n">date_time</span> <span class="o">=</span> <span class="n">exif</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">date_time</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;unsupported EXIF DateTime format in &#39;</span><span class="si">{date_time}</span><span class="s2">&#39; of </span><span class="si">{filename}</span><span class="s2">&quot;</span>
+        <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">ICExifReadError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="c1"># &#39;2019:03:10 22:42:42&#39; -&gt; [&#39;2019&#39;, &#39;03&#39;, &#39;10&#39;, &#39;22&#39;, &#39;42&#39;, &#39;42&#39;]</span>
+    <span class="n">date_time_str</span> <span class="o">=</span> <span class="n">date_time</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">,</span> <span class="s1">&#39;second&#39;</span><span class="p">)</span>
+    <span class="n">stamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">nn</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="n">vv</span><span class="p">)</span> <span class="k">for</span> <span class="n">nn</span><span class="p">,</span><span class="n">vv</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">names</span><span class="p">,</span><span class="n">date_time_str</span><span class="p">)},</span>
+                              <span class="n">tzinfo</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">stamp</span></div>
+
+
+<div class="viewcode-block" id="stat_timestamp"><a class="viewcode-back" href="../../generated/api/imagecluster.io.stat_timestamp.html#imagecluster.io.stat_timestamp">[docs]</a><span class="k">def</span> <span class="nf">stat_timestamp</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;File timestamp from file stats (mtime).&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">st_mtime</span></div>
+
+
+<div class="viewcode-block" id="timestamp"><a class="viewcode-back" href="../../generated/api/imagecluster.io.timestamp.html#imagecluster.io.timestamp">[docs]</a><span class="k">def</span> <span class="nf">timestamp</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Read single timestamp for image in `filename`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">    source : {&#39;auto&#39;, &#39;stat&#39;, &#39;exif&#39;}</span>
+<span class="sd">        Read timestamps from file stats (&#39;stat&#39;), or EXIF tags (&#39;exif&#39;). If</span>
+<span class="sd">        &#39;auto&#39;, then try &#39;exif&#39; first.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        timestamp, seconds since Epoch</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">source</span> <span class="o">==</span> <span class="s1">&#39;auto&#39;</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">exif_timestamp</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">ICExifReadError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">stat_timestamp</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">source</span> <span class="o">==</span> <span class="s1">&#39;stat&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">stat_timestamp</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">source</span> <span class="o">==</span> <span class="s1">&#39;exif&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">exif_timestamp</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;source not in [&#39;stat&#39;, &#39;exif&#39;, &#39;auto&#39;]&quot;</span><span class="p">)</span></div>
+
+
+<span class="c1"># TODO some code dups below, fix later by fancy factory functions</span>
+
+<span class="c1"># keras.preprocessing.image.load_img() uses img.rezize(shape) with the default</span>
+<span class="c1"># interpolation of Image.resize() which is pretty bad (see</span>
+<span class="c1"># imagecluster/play/pil_resample_methods.py). Given that we are restricted to</span>
+<span class="c1"># small inputs of 224x224 by the VGG network, we should do our best to keep as</span>
+<span class="c1"># much information from the original image as possible. This is a gut feeling,</span>
+<span class="c1"># untested. But given that model.predict() is 10x slower than PIL image loading</span>
+<span class="c1"># and resizing .. who cares.</span>
+<span class="c1">#</span>
+<span class="c1"># (224, 224, 3)</span>
+<span class="c1">##img = image.load_img(filename, target_size=size)</span>
+<span class="c1">##... = image.img_to_array(img)</span>
+<div class="viewcode-block" id="_image_worker"><a class="viewcode-back" href="../../generated/api/imagecluster.io._image_worker.html#imagecluster.io._image_worker">[docs]</a><span class="k">def</span> <span class="nf">_image_worker</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+    <span class="c1"># Handle PIL error &quot;OSError: broken data stream when reading image file&quot;.</span>
+    <span class="c1"># See https://github.com/python-pillow/Pillow/issues/1510 . We have this</span>
+    <span class="c1"># issue with smartphone panorama JPG files. But instead of bluntly setting</span>
+    <span class="c1"># ImageFile.LOAD_TRUNCATED_IMAGES = True and hoping for the best (is the</span>
+    <span class="c1"># image read, and till the end?), we catch the OSError thrown by PIL and</span>
+    <span class="c1"># ignore the file completely. This is better than reading potentially</span>
+    <span class="c1"># undefined data and process it. A more specialized exception from PILs</span>
+    <span class="c1"># side would be good, but let&#39;s hope that an OSError doesn&#39;t cover too much</span>
+    <span class="c1"># ground when reading data from disk :-)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">resample</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">img_to_array</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">filename</span><span class="p">,</span> <span class="n">arr</span>
+    <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;skipping </span><span class="si">{filename}</span><span class="s2">: </span><span class="si">{ex}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">filename</span><span class="p">,</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="_timestamp_worker"><a class="viewcode-back" href="../../generated/api/imagecluster.io._timestamp_worker.html#imagecluster.io._timestamp_worker">[docs]</a><span class="k">def</span> <span class="nf">_timestamp_worker</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">source</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">filename</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">source</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;skipping </span><span class="si">{filename}</span><span class="s2">: </span><span class="si">{ex}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">filename</span><span class="p">,</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="read_images"><a class="viewcode-back" href="../../generated/api/imagecluster.io.read_images.html#imagecluster.io.read_images">[docs]</a><span class="k">def</span> <span class="nf">read_images</span><span class="p">(</span><span class="n">imagedir</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">ncores</span><span class="o">=</span><span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()):</span>
+    <span class="sd">&quot;&quot;&quot;Load images from `imagedir` and resize to `size`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    imagedir : str</span>
+<span class="sd">    size : sequence length 2</span>
+<span class="sd">        (width, height), used in ``Image.open(filename).resize(size)``</span>
+<span class="sd">    ncores : int</span>
+<span class="sd">        run that many parallel processes</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        {filename: 3d array (height, width, 3), ...}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_f</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">_image_worker</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">mp</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">ncores</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">_f</span><span class="p">,</span> <span class="n">get_files</span><span class="p">(</span><span class="n">imagedir</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">ret</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="read_timestamps"><a class="viewcode-back" href="../../generated/api/imagecluster.io.read_timestamps.html#imagecluster.io.read_timestamps">[docs]</a><span class="k">def</span> <span class="nf">read_timestamps</span><span class="p">(</span><span class="n">imagedir</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">ncores</span><span class="o">=</span><span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()):</span>
+    <span class="sd">&quot;&quot;&quot;Read timestamps of all images in `imagedir`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    imagedir : str</span>
+<span class="sd">    source : see :func:`~imagecluster.io.timestamp`</span>
+<span class="sd">    ncores : int</span>
+<span class="sd">        run that many parallel processes</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        {filename: timestamp (int, seconds since Epoch)}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_f</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">_timestamp_worker</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">mp</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">ncores</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">_f</span><span class="p">,</span> <span class="n">get_files</span><span class="p">(</span><span class="n">imagedir</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">ret</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span></div>
+
+
+<span class="c1"># TODO fingerprints and timestamps may have different images which have been</span>
+<span class="c1"># skipped -&gt; we need a data struct to hold all image data and mask out the</span>
+<span class="c1"># skipped ones. For now we have a check in calc.cluster()</span>
+<div class="viewcode-block" id="get_image_data"><a class="viewcode-back" href="../../generated/api/imagecluster.io.get_image_data.html#imagecluster.io.get_image_data">[docs]</a><span class="k">def</span> <span class="nf">get_image_data</span><span class="p">(</span><span class="n">imagedir</span><span class="p">,</span> <span class="n">model_kwds</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">layer</span><span class="o">=</span><span class="s1">&#39;fc2&#39;</span><span class="p">),</span>
+                   <span class="n">img_kwds</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span><span class="mi">224</span><span class="p">)),</span> <span class="n">timestamps_kwds</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">),</span>
+                   <span class="n">pca_kwds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convenience function to create `images`, `fingerprints`,</span>
+<span class="sd">    `timestamps`.</span>
+
+<span class="sd">    It checks for existing `images` and `fingerprints` database files on</span>
+<span class="sd">    disk and load them if present. Running this again only loads data from</span>
+<span class="sd">    disk, which is fast. Default locations::</span>
+
+<span class="sd">       fingerprints: &lt;imagedir&gt;/imagecluster/fingerprints.pk</span>
+<span class="sd">       images: &lt;imagedir&gt;/imagecluster/images.pk</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    imagedir : str</span>
+<span class="sd">    model_kwds : dict</span>
+<span class="sd">        passed to :func:`~imagecluster.calc.get_model`</span>
+<span class="sd">    img_kwds : dict</span>
+<span class="sd">        passed to :func:`~imagecluster.io.read_images`</span>
+<span class="sd">    timestamps_kwds : dict</span>
+<span class="sd">        passed to :func:`~imagecluster.io.read_timestamps`</span>
+<span class="sd">    pca_kwds : dict</span>
+<span class="sd">        passed to :func:`~imagecluster.calc.pca`, PCA is skipped if</span>
+<span class="sd">        ``pca_kwds=None``</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    images : see :func:`~imagecluster.io.read_images`</span>
+<span class="sd">    fingerprints : see :func:`~imagecluster.calc.fingerprints`</span>
+<span class="sd">    timestamps : see :func:`~imagecluster.io.read_timestamps`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fingerprints_fn</span> <span class="o">=</span> <span class="n">pj</span><span class="p">(</span><span class="n">imagedir</span><span class="p">,</span> <span class="n">ic_base_dir</span><span class="p">,</span> <span class="s1">&#39;fingerprints.pk&#39;</span><span class="p">)</span>
+    <span class="n">images_fn</span> <span class="o">=</span> <span class="n">pj</span><span class="p">(</span><span class="n">imagedir</span><span class="p">,</span> <span class="n">ic_base_dir</span><span class="p">,</span> <span class="s1">&#39;images.pk&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">images_fn</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;reading image arrays </span><span class="si">{images_fn}</span><span class="s2"> ...&quot;</span><span class="p">)</span>
+        <span class="n">images</span> <span class="o">=</span> <span class="n">read_pk</span><span class="p">(</span><span class="n">images_fn</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;create image arrays </span><span class="si">{images_fn}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">images</span> <span class="o">=</span> <span class="n">read_images</span><span class="p">(</span><span class="n">imagedir</span><span class="p">,</span> <span class="o">**</span><span class="n">img_kwds</span><span class="p">)</span>
+        <span class="n">write_pk</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">images_fn</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">fingerprints_fn</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;reading fingerprints </span><span class="si">{fingerprints_fn}</span><span class="s2"> ...&quot;</span><span class="p">)</span>
+        <span class="n">fingerprints</span> <span class="o">=</span> <span class="n">read_pk</span><span class="p">(</span><span class="n">fingerprints_fn</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;create fingerprints </span><span class="si">{fingerprints_fn}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">fingerprints</span> <span class="o">=</span> <span class="n">ic</span><span class="o">.</span><span class="n">fingerprints</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">ic</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="o">**</span><span class="n">model_kwds</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">pca_kwds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fingerprints</span> <span class="o">=</span> <span class="n">ic</span><span class="o">.</span><span class="n">pca</span><span class="p">(</span><span class="n">fingerprints</span><span class="p">,</span> <span class="o">**</span><span class="n">pca_kwds</span><span class="p">)</span>
+        <span class="n">write_pk</span><span class="p">(</span><span class="n">fingerprints</span><span class="p">,</span> <span class="n">fingerprints_fn</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;reading timestamps ...&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">timestamps_kwds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">timestamps</span> <span class="o">=</span> <span class="n">read_timestamps</span><span class="p">(</span><span class="n">imagedir</span><span class="p">,</span> <span class="o">**</span><span class="n">timestamps_kwds</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">images</span><span class="p">,</span> <span class="n">fingerprints</span><span class="p">,</span> <span class="n">timestamps</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2019, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

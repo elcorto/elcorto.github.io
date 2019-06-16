@@ -1,0 +1,176 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>imagecluster.io.get_image_data &#8212; imagecluster  documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="imagecluster.io.ic_base_dir" href="imagecluster.io.ic_base_dir.html" />
+    <link rel="prev" title="imagecluster.io.get_files" href="imagecluster.io.get_files.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/dendrogram.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">imagecluster</h1>
+    
+  </a>
+</p>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=imagecluster&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/methods.html">Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/stuff/index.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/stuff/index.html#contributions">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/stuff/index.html#related-projects">Related projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/stuff/index.html#tests">Tests</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="calc.html">calc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">exceptions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="io.html">io</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postproc.html">postproc</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="io.html">io</a><ul>
+      <li>Previous: <a href="imagecluster.io.get_files.html" title="previous chapter">imagecluster.io.get_files</a></li>
+      <li>Next: <a href="imagecluster.io.ic_base_dir.html" title="next chapter">imagecluster.io.ic_base_dir</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="imagecluster-io-get-image-data">
+<h1>imagecluster.io.get_image_data<a class="headerlink" href="#imagecluster-io-get-image-data" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="imagecluster.io.get_image_data">
+<code class="descclassname">imagecluster.io.</code><code class="descname">get_image_data</code><span class="sig-paren">(</span><em>imagedir</em>, <em>model_kwds={'layer': 'fc2'}</em>, <em>img_kwds={'size': (224</em>, <em>224)}</em>, <em>timestamps_kwds={'source': 'auto'}</em>, <em>pca_kwds=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/imagecluster/io.html#get_image_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagecluster.io.get_image_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience function to create <cite>images</cite>, <cite>fingerprints</cite>,
+<cite>timestamps</cite>.</p>
+<p>It checks for existing <cite>images</cite> and <cite>fingerprints</cite> database files on
+disk and load them if present. Running this again only loads data from
+disk, which is fast. Default locations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fingerprints</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">imagedir</span><span class="o">&gt;/</span><span class="n">imagecluster</span><span class="o">/</span><span class="n">fingerprints</span><span class="o">.</span><span class="n">pk</span>
+<span class="n">images</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">imagedir</span><span class="o">&gt;/</span><span class="n">imagecluster</span><span class="o">/</span><span class="n">images</span><span class="o">.</span><span class="n">pk</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>imagedir</strong> : str</p>
+<p><strong>model_kwds</strong> : dict</p>
+<blockquote>
+<div><p>passed to <a class="reference internal" href="imagecluster.calc.get_model.html#imagecluster.calc.get_model" title="imagecluster.calc.get_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_model()</span></code></a></p>
+</div></blockquote>
+<p><strong>img_kwds</strong> : dict</p>
+<blockquote>
+<div><p>passed to <a class="reference internal" href="imagecluster.io.read_images.html#imagecluster.io.read_images" title="imagecluster.io.read_images"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_images()</span></code></a></p>
+</div></blockquote>
+<p><strong>timestamps_kwds</strong> : dict</p>
+<blockquote>
+<div><p>passed to <a class="reference internal" href="imagecluster.io.read_timestamps.html#imagecluster.io.read_timestamps" title="imagecluster.io.read_timestamps"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_timestamps()</span></code></a></p>
+</div></blockquote>
+<p><strong>pca_kwds</strong> : dict</p>
+<blockquote>
+<div><p>passed to <a class="reference internal" href="imagecluster.calc.pca.html#imagecluster.calc.pca" title="imagecluster.calc.pca"><code class="xref py py-func docutils literal notranslate"><span class="pre">pca()</span></code></a>, PCA is skipped if
+<code class="docutils literal notranslate"><span class="pre">pca_kwds=None</span></code></p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>images</strong> : see <a class="reference internal" href="imagecluster.io.read_images.html#imagecluster.io.read_images" title="imagecluster.io.read_images"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_images()</span></code></a></p>
+<p><strong>fingerprints</strong> : see <a class="reference internal" href="imagecluster.calc.fingerprints.html#imagecluster.calc.fingerprints" title="imagecluster.calc.fingerprints"><code class="xref py py-func docutils literal notranslate"><span class="pre">fingerprints()</span></code></a></p>
+<p class="last"><strong>timestamps</strong> : see <a class="reference internal" href="imagecluster.io.read_timestamps.html#imagecluster.io.read_timestamps" title="imagecluster.io.read_timestamps"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_timestamps()</span></code></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2019, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/generated/api/imagecluster.io.get_image_data.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

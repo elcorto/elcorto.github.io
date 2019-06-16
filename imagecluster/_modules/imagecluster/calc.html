@@ -1,0 +1,406 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>imagecluster.calc &#8212; imagecluster  documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/dendrogram.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">imagecluster</h1>
+    
+  </a>
+</p>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=imagecluster&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/methods.html">Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/stuff/index.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/stuff/index.html#contributions">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/stuff/index.html#related-projects">Related projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/stuff/index.html#tests">Tests</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for imagecluster.calc</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="k">import</span> <span class="n">distance</span>
+<span class="kn">from</span> <span class="nn">scipy.cluster</span> <span class="k">import</span> <span class="n">hierarchy</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="k">import</span> <span class="n">PCA</span>
+
+<span class="kn">from</span> <span class="nn">keras.applications.vgg16</span> <span class="k">import</span> <span class="n">VGG16</span><span class="p">,</span> <span class="n">preprocess_input</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="k">import</span> <span class="n">Model</span>
+
+
+<span class="n">pj</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span>
+
+
+<div class="viewcode-block" id="get_model"><a class="viewcode-back" href="../../generated/api/imagecluster.calc.get_model.html#imagecluster.calc.get_model">[docs]</a><span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="n">layer</span><span class="o">=</span><span class="s1">&#39;fc2&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Keras Model of the VGG16 network, with the output layer set to `layer`.</span>
+
+<span class="sd">    The default layer is the second-to-last fully connected layer &#39;fc2&#39; of</span>
+<span class="sd">    shape (4096,).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    layer : str</span>
+<span class="sd">        which layer to extract (must be of shape (None, X)), e.g. &#39;fc2&#39;, &#39;fc1&#39;</span>
+<span class="sd">        or &#39;flatten&#39;</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    ::</span>
+
+<span class="sd">        base_model.summary()</span>
+<span class="sd">            ....</span>
+<span class="sd">            block5_conv4 (Conv2D)        (None, 15, 15, 512)       2359808</span>
+<span class="sd">            _________________________________________________________________</span>
+<span class="sd">            block5_pool (MaxPooling2D)   (None, 7, 7, 512)         0</span>
+<span class="sd">            _________________________________________________________________</span>
+<span class="sd">            flatten (Flatten)            (None, 25088)             0</span>
+<span class="sd">            _________________________________________________________________</span>
+<span class="sd">            fc1 (Dense)                  (None, 4096)              102764544</span>
+<span class="sd">            _________________________________________________________________</span>
+<span class="sd">            fc2 (Dense)                  (None, 4096)              16781312</span>
+<span class="sd">            _________________________________________________________________</span>
+<span class="sd">            predictions (Dense)          (None, 1000)              4097000</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">base_model</span> <span class="o">=</span> <span class="n">VGG16</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s1">&#39;imagenet&#39;</span><span class="p">,</span> <span class="n">include_top</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">base_model</span><span class="o">.</span><span class="n">input</span><span class="p">,</span>
+                  <span class="n">outputs</span><span class="o">=</span><span class="n">base_model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span></div>
+
+
+<div class="viewcode-block" id="fingerprint"><a class="viewcode-back" href="../../generated/api/imagecluster.calc.fingerprint.html#imagecluster.calc.fingerprint">[docs]</a><span class="k">def</span> <span class="nf">fingerprint</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Run image array (3d array) run through `model` (``keras.models.Model``).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    image : 3d array</span>
+<span class="sd">        (3,x,y) or (x,y,3), depending on</span>
+<span class="sd">        ``keras.preprocessing.image.img_to_array`` and ``image_data_format``</span>
+<span class="sd">        (``channels_{first,last}``) in ``~/.keras/keras.json``, see</span>
+<span class="sd">        :func:`~imagecluster.io.read_images`</span>
+<span class="sd">    model : ``keras.models.Model`` instance</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    fingerprint : 1d array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># (224, 224, 1) -&gt; (224, 224, 3)</span>
+    <span class="c1">#</span>
+    <span class="c1"># Simple hack to convert a grayscale image to fake RGB by replication of</span>
+    <span class="c1"># the image data to all 3 channels.</span>
+    <span class="c1">#</span>
+    <span class="c1"># Deep learning models may have learned color-specific filters, but the</span>
+    <span class="c1"># assumption is that structural image features (edges etc) contibute more to</span>
+    <span class="c1"># the image representation than color, such that this hack makes it possible</span>
+    <span class="c1"># to process gray-scale images with nets trained on color images (like</span>
+    <span class="c1"># VGG16).</span>
+    <span class="c1">#</span>
+    <span class="c1"># We assme channels_last here. Fix if needed.</span>
+    <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># (1, 224, 224, 3)</span>
+    <span class="n">arr4d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># (1, 224, 224, 3)</span>
+    <span class="n">arr4d_pp</span> <span class="o">=</span> <span class="n">preprocess_input</span><span class="p">(</span><span class="n">arr4d</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">arr4d_pp</span><span class="p">)[</span><span class="mi">0</span><span class="p">,:]</span></div>
+
+
+<span class="c1"># Cannot use multiprocessing (only tensorflow backend tested, rumor has it that</span>
+<span class="c1"># the TF computation graph is not built multiple times, i.e. pickling (what</span>
+<span class="c1"># multiprocessing does with _worker) doen&#39;t play nice with Keras models which</span>
+<span class="c1"># use Tf backend). The call to the parallel version of fingerprints() starts</span>
+<span class="c1"># but seems to hang forever. However, Keras with Tensorflow backend runs</span>
+<span class="c1"># multi-threaded (model.predict()), so we can sort of live with that. Even</span>
+<span class="c1"># though Tensorflow has not the best scaling on the CPU, on low core counts</span>
+<span class="c1"># (2-4), it won&#39;t matter that much. Also, TF was built to run on GPUs, not</span>
+<span class="c1"># scale out multi-core CPUs.</span>
+<span class="c1">#</span>
+<span class="c1">##def _worker(image, model):</span>
+<span class="c1">##    print(fn)</span>
+<span class="c1">##    return fn, fingerprint(image, model)</span>
+<span class="c1">##</span>
+<span class="c1">##</span>
+<span class="c1">##def fingerprints(images, model):</span>
+<span class="c1">##    _f = functools.partial(_worker, model=model)</span>
+<span class="c1">##    with mp.Pool(int(mp.cpu_count()/2)) as pool:</span>
+<span class="c1">##        ret = pool.map(_f, images.items())</span>
+<span class="c1">##    return dict(ret)</span>
+
+<div class="viewcode-block" id="fingerprints"><a class="viewcode-back" href="../../generated/api/imagecluster.calc.fingerprints.html#imagecluster.calc.fingerprints">[docs]</a><span class="k">def</span> <span class="nf">fingerprints</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate fingerprints for all image arrays in `images`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    images : see :func:`~imagecluster.io.read_images`</span>
+<span class="sd">    model : see :func:`fingerprint`</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    fingerprints : dict</span>
+<span class="sd">        {filename1: array([...]),</span>
+<span class="sd">         filename2: array([...]),</span>
+<span class="sd">         ...</span>
+<span class="sd">         }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fingerprints</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">fn</span><span class="p">,</span><span class="n">image</span> <span class="ow">in</span> <span class="n">images</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+        <span class="n">fingerprints</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span> <span class="o">=</span> <span class="n">fingerprint</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fingerprints</span></div>
+
+
+<div class="viewcode-block" id="pca"><a class="viewcode-back" href="../../generated/api/imagecluster.calc.pca.html#imagecluster.calc.pca">[docs]</a><span class="k">def</span> <span class="nf">pca</span><span class="p">(</span><span class="n">fingerprints</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;PCA of fingerprints for dimensionality reduction.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fingerprints : see :func:`fingerprints`</span>
+<span class="sd">    n_components, kwds : passed to :class:`sklearn.decomposition.PCA`</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        same format as in :func:`fingerprints`, compressed fingerprints, so</span>
+<span class="sd">        hopefully lower dim 1d arrays</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="s1">&#39;n_components&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwds</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">kwds</span><span class="p">[</span><span class="s1">&#39;n_components&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_components</span>
+    <span class="c1"># Yes in recent Pythons, dicts are ordered in CPython, but still.</span>
+    <span class="n">_fingerprints</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="n">fingerprints</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">_fingerprints</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+    <span class="n">Xp</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">_fingerprints</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">Xp</span><span class="p">)}</span></div>
+
+
+<div class="viewcode-block" id="cluster"><a class="viewcode-back" href="../../generated/api/imagecluster.calc.cluster.html#imagecluster.calc.cluster">[docs]</a><span class="k">def</span> <span class="nf">cluster</span><span class="p">(</span><span class="n">fingerprints</span><span class="p">,</span> <span class="n">sim</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">timestamps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;average&#39;</span><span class="p">,</span>
+            <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">extra_out</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">print_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_csize</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Hierarchical clustering of images based on image fingerprints,</span>
+<span class="sd">    optionally scaled by time distance (`alpha`).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fingerprints: dict</span>
+<span class="sd">        output of :func:`fingerprints`</span>
+<span class="sd">    sim : float 0..1</span>
+<span class="sd">        similarity index</span>
+<span class="sd">    timestamps: dict</span>
+<span class="sd">        output of :func:`~imagecluster.io.read_timestamps`</span>
+<span class="sd">    alpha : float</span>
+<span class="sd">        mixing parameter of image content distance and time distance, ignored</span>
+<span class="sd">        if timestamps is None</span>
+<span class="sd">    method : see :func:`scipy.cluster.hierarchy.linkage`, all except &#39;centroid&#39; produce</span>
+<span class="sd">        pretty much the same result</span>
+<span class="sd">    metric : see :func:`scipy.cluster.hierarchy.linkage`, make sure to use</span>
+<span class="sd">        &#39;euclidean&#39; in case of method=&#39;centroid&#39;, &#39;median&#39; or &#39;ward&#39;</span>
+<span class="sd">    extra_out : bool</span>
+<span class="sd">        additionally return internal variables for debugging</span>
+<span class="sd">    print_stats : bool</span>
+<span class="sd">    min_csize : int</span>
+<span class="sd">        return clusters with at least that many elements</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    clusters [, extra]</span>
+<span class="sd">    clusters : dict</span>
+<span class="sd">        We call a list of file names a &quot;cluster&quot;.</span>
+
+<span class="sd">        | keys = size of clusters (number of elements (images) `csize`)</span>
+<span class="sd">        | value = list of clusters with that size</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            {csize : [[filename, filename, ...],</span>
+<span class="sd">                      [filename, filename, ...],</span>
+<span class="sd">                      ...</span>
+<span class="sd">                      ],</span>
+<span class="sd">            csize : [...]}</span>
+<span class="sd">    extra : dict</span>
+<span class="sd">        if `extra_out` is True</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">sim</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;sim not 0..1&quot;</span>
+    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">alpha</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;alpha not 0..1&quot;</span>
+    <span class="k">assert</span> <span class="n">min_csize</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;min_csize must be &gt;= 1&quot;</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">fingerprints</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="c1"># array(list(...)): 2d array</span>
+    <span class="c1">#   [[... fingerprint of image1 (4096,) ...],</span>
+    <span class="c1">#    [... fingerprint of image2 (4096,) ...],</span>
+    <span class="c1">#    ...</span>
+    <span class="c1">#    ]</span>
+    <span class="n">dfps</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">pdist</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">fingerprints</span><span class="o">.</span><span class="n">values</span><span class="p">())),</span> <span class="n">metric</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">timestamps</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Sanity error check as long as we don&#39;t have a single data struct to</span>
+        <span class="c1"># keep fingerprints and timestamps, as well as image data. This is not</span>
+        <span class="c1"># pretty, but at least a safety hook.</span>
+        <span class="n">set_files</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+        <span class="n">set_tsfiles</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">timestamps</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">set_diff</span> <span class="o">=</span> <span class="n">set_files</span><span class="o">.</span><span class="n">symmetric_difference</span><span class="p">(</span><span class="n">set_tsfiles</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">set_diff</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">f</span><span class="s2">&quot;files in fingerprints and timestamps do &quot;</span>
+                                    <span class="n">f</span><span class="s2">&quot;not match: diff=</span><span class="si">{set_diff}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="c1"># use &#39;files&#39; to make sure we have the same order as in &#39;fingerprints&#39;</span>
+        <span class="n">tsarr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">timestamps</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">files</span><span class="p">])[:,</span><span class="kc">None</span><span class="p">]</span>
+        <span class="n">dts</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">pdist</span><span class="p">(</span><span class="n">tsarr</span><span class="p">,</span> <span class="n">metric</span><span class="p">)</span>
+        <span class="n">dts</span> <span class="o">=</span> <span class="n">dts</span> <span class="o">/</span> <span class="n">dts</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="n">dfps</span> <span class="o">=</span> <span class="n">dfps</span> <span class="o">/</span> <span class="n">dfps</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="n">dfps</span> <span class="o">=</span> <span class="n">dfps</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">+</span> <span class="n">dts</span> <span class="o">*</span> <span class="n">alpha</span>
+    <span class="c1"># hierarchical/agglomerative clustering (Z = linkage matrix, construct</span>
+    <span class="c1"># dendrogram), plot: scipy.cluster.hierarchy.dendrogram(Z)</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">dfps</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">)</span>
+    <span class="c1"># cut dendrogram, extract clusters</span>
+    <span class="c1"># cut=[12,  3, 29, 14, 28, 27,...]: image i belongs to cluster cut[i]</span>
+    <span class="n">cut</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">dfps</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">sim</span><span class="p">),</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;distance&#39;</span><span class="p">)</span>
+    <span class="n">cluster_dct</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">iclus</span><span class="p">,</span> <span class="p">[])</span> <span class="k">for</span> <span class="n">iclus</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">cut</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">iimg</span><span class="p">,</span><span class="n">iclus</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cut</span><span class="p">):</span>
+        <span class="n">cluster_dct</span><span class="p">[</span><span class="n">iclus</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="n">iimg</span><span class="p">])</span>
+    <span class="c1"># group all clusters (cluster = list_of_files) of equal size together</span>
+    <span class="c1"># {number_of_files1: [[list_of_files], [list_of_files],...],</span>
+    <span class="c1">#  number_of_files2: [[list_of_files],...],</span>
+    <span class="c1"># }</span>
+    <span class="n">clusters</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">cluster_dct</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">csize</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">csize</span> <span class="o">&gt;=</span> <span class="n">min_csize</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">csize</span> <span class="ow">in</span> <span class="n">clusters</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+                <span class="n">clusters</span><span class="p">[</span><span class="n">csize</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">cluster</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">clusters</span><span class="p">[</span><span class="n">csize</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">print_stats</span><span class="p">:</span>
+        <span class="n">print_cluster_stats</span><span class="p">(</span><span class="n">clusters</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">extra_out</span><span class="p">:</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Z&#39;</span><span class="p">:</span> <span class="n">Z</span><span class="p">,</span> <span class="s1">&#39;dfps&#39;</span><span class="p">:</span> <span class="n">dfps</span><span class="p">,</span> <span class="s1">&#39;cluster_dct&#39;</span><span class="p">:</span> <span class="n">cluster_dct</span><span class="p">,</span> <span class="s1">&#39;cut&#39;</span><span class="p">:</span> <span class="n">cut</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">clusters</span><span class="p">,</span> <span class="n">extra</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">clusters</span></div>
+
+
+<div class="viewcode-block" id="cluster_stats"><a class="viewcode-back" href="../../generated/api/imagecluster.calc.cluster_stats.html#imagecluster.calc.cluster_stats">[docs]</a><span class="k">def</span> <span class="nf">cluster_stats</span><span class="p">(</span><span class="n">clusters</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Count clusters of different sizes.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    2d array</span>
+<span class="sd">        Array with column 1 = csize sorted (number of images in the cluster)</span>
+<span class="sd">        and column 2 = cnum (number of clusters with that size).</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            [[csize, cnum],</span>
+<span class="sd">             [...],</span>
+<span class="sd">            ]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">k</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">clusters</span><span class="p">[</span><span class="n">k</span><span class="p">])]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">clusters</span><span class="o">.</span><span class="n">keys</span><span class="p">()))],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="print_cluster_stats"><a class="viewcode-back" href="../../generated/api/imagecluster.calc.print_cluster_stats.html#imagecluster.calc.print_cluster_stats">[docs]</a><span class="k">def</span> <span class="nf">print_cluster_stats</span><span class="p">(</span><span class="n">clusters</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Print cluster stats.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    clusters : see :func:`cluster`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#images : #clusters&quot;</span><span class="p">)</span>
+    <span class="n">stats</span> <span class="o">=</span> <span class="n">cluster_stats</span><span class="p">(</span><span class="n">clusters</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">csize</span><span class="p">,</span><span class="n">cnum</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{csize}</span><span class="s2"> : </span><span class="si">{cnum}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">stats</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">nimg</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">nimg</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#images in clusters total: &quot;</span><span class="p">,</span> <span class="n">nimg</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2019, Steve Schmerler.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
