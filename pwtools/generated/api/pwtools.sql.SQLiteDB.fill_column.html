@@ -25,62 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-sql-sqlitedb-fill-column">
-<h1>pwtools.sql.SQLiteDB.fill_column<a class="headerlink" href="#pwtools-sql-sqlitedb-fill-column" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.fill_column">
-<code class="descclassname">SQLiteDB.</code><code class="descname">fill_column</code><span class="sig-paren">(</span><em>col</em>, <em>values</em>, <em>start=1</em>, <em>extend=True</em>, <em>overwrite=False</em>, <em>table=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.fill_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.fill_column" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fill existing column <cite>col</cite> with values from <cite>values</cite>, starting from
-rowid <cite>start</cite>. “rowid” is a special sqlite column which is always
-present and which numbers all rows.</p>
-<p>The column must already exist. To add a new column and fill it, see
-<a class="reference internal" href="pwtools.sql.SQLiteDB.attach_column.html#pwtools.sql.SQLiteDB.attach_column" title="pwtools.sql.SQLiteDB.attach_column"><code class="xref py py-meth docutils literal notranslate"><span class="pre">attach_column()</span></code></a>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>col</strong> : str</p>
-<blockquote>
-<div><p>Column name.</p>
-</div></blockquote>
-<p><strong>values</strong> : sequence</p>
-<blockquote>
-<div><p>Values to be inserted.</p>
-</div></blockquote>
-<p><strong>start</strong> : int</p>
-<blockquote>
-<div><p>sqlite rowid value to start at (first row: start=1)</p>
-</div></blockquote>
-<p><strong>extend</strong> : bool</p>
-<blockquote>
-<div><p>If <cite>extend=True</cite> and <cite>len(values)</cite> extends the last row, then
-continue to add values. All other column entries will be NULL. If
-False, then we silently stop inserting at the last row.</p>
-</div></blockquote>
-<p><strong>overwrite</strong> : bool</p>
-<blockquote>
-<div><p>Whether to overwrite entries which are not NULL (None in Python).</p>
-</div></blockquote>
-<p class="last"><strong>table</strong> : str, optional</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -146,13 +92,66 @@ False, then we silently stop inserting at the last row.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-sql-sqlitedb-fill-column">
+<h1>pwtools.sql.SQLiteDB.fill_column<a class="headerlink" href="#pwtools-sql-sqlitedb-fill-column" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.sql.SQLiteDB.fill_column">
+<code class="descclassname">SQLiteDB.</code><code class="descname">fill_column</code><span class="sig-paren">(</span><em>col</em>, <em>values</em>, <em>start=1</em>, <em>extend=True</em>, <em>overwrite=False</em>, <em>table=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.fill_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.fill_column" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill existing column <cite>col</cite> with values from <cite>values</cite>, starting from
+rowid <cite>start</cite>. “rowid” is a special sqlite column which is always
+present and which numbers all rows.</p>
+<p>The column must already exist. To add a new column and fill it, see
+<a class="reference internal" href="pwtools.sql.SQLiteDB.attach_column.html#pwtools.sql.SQLiteDB.attach_column" title="pwtools.sql.SQLiteDB.attach_column"><code class="xref py py-meth docutils literal notranslate"><span class="pre">attach_column()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>col</strong> : str</p>
+<blockquote>
+<div><p>Column name.</p>
+</div></blockquote>
+<p><strong>values</strong> : sequence</p>
+<blockquote>
+<div><p>Values to be inserted.</p>
+</div></blockquote>
+<p><strong>start</strong> : int</p>
+<blockquote>
+<div><p>sqlite rowid value to start at (first row: start=1)</p>
+</div></blockquote>
+<p><strong>extend</strong> : bool</p>
+<blockquote>
+<div><p>If <cite>extend=True</cite> and <cite>len(values)</cite> extends the last row, then
+continue to add values. All other column entries will be NULL. If
+False, then we silently stop inserting at the last row.</p>
+</div></blockquote>
+<p><strong>overwrite</strong> : bool</p>
+<blockquote>
+<div><p>Whether to overwrite entries which are not NULL (None in Python).</p>
+</div></blockquote>
+<p class="last"><strong>table</strong> : str, optional</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

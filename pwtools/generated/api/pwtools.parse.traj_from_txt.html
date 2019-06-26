@@ -25,58 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-parse-traj-from-txt">
-<h1>pwtools.parse.traj_from_txt<a class="headerlink" href="#pwtools-parse-traj-from-txt" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.parse.traj_from_txt">
-<code class="descclassname">pwtools.parse.</code><code class="descname">traj_from_txt</code><span class="sig-paren">(</span><em>txt</em>, <em>shape</em>, <em>axis=0</em>, <em>dtype=&lt;class 'float'&gt;</em>, <em>sep=' '</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#traj_from_txt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.traj_from_txt" title="Permalink to this definition">¶</a></dt>
-<dd><p>Used for 3d trajectories where the exact shape of the array as written
-by the MD code must be known, e.g. (nstep,N,3) where N=3 (cell, stress) or
-N=natoms (coords, forces, …).</p>
-<p>We use np.fromstring for speed, so <cite>txt</cite> can only contain numbers and
-separators (white space), no comments (like “# this is the header”), which
-numpy.loadtxt() would handle.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>txt</strong> : string</p>
-<blockquote>
-<div><p>Text containing numbers (e.g. from <code class="docutils literal notranslate"><span class="pre">common.backtick(&quot;grep</span> <span class="pre">...&quot;)</span></code>)</p>
-</div></blockquote>
-<p><strong>shape</strong> : tuple</p>
-<blockquote>
-<div><p>The 3d shape of the array when written along <cite>axis</cite> (see also
-arrayio.writetxt()) to text as 2d chunks and read back in as 3d array.
-Used to reconstruct the array.</p>
-</div></blockquote>
-<p><strong>axis</strong> : int</p>
-<blockquote>
-<div><p>Axis along which the array was written in 2d chunks to text. (see
-also <cite>axis</cite> in arrayio.writetxt()).
-Used to reconstruct the array. 
-Only axis=0 implemented.</p>
-</div></blockquote>
-<p class="last"><strong>dtype, sep</strong> : passed to np.fromstring</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -140,13 +90,62 @@ Only axis=0 implemented.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-parse-traj-from-txt">
+<h1>pwtools.parse.traj_from_txt<a class="headerlink" href="#pwtools-parse-traj-from-txt" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.parse.traj_from_txt">
+<code class="descclassname">pwtools.parse.</code><code class="descname">traj_from_txt</code><span class="sig-paren">(</span><em>txt</em>, <em>shape</em>, <em>axis=0</em>, <em>dtype=&lt;class 'float'&gt;</em>, <em>sep=' '</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#traj_from_txt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.traj_from_txt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used for 3d trajectories where the exact shape of the array as written
+by the MD code must be known, e.g. (nstep,N,3) where N=3 (cell, stress) or
+N=natoms (coords, forces, …).</p>
+<p>We use np.fromstring for speed, so <cite>txt</cite> can only contain numbers and
+separators (white space), no comments (like “# this is the header”), which
+numpy.loadtxt() would handle.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>txt</strong> : string</p>
+<blockquote>
+<div><p>Text containing numbers (e.g. from <code class="docutils literal notranslate"><span class="pre">common.backtick(&quot;grep</span> <span class="pre">...&quot;)</span></code>)</p>
+</div></blockquote>
+<p><strong>shape</strong> : tuple</p>
+<blockquote>
+<div><p>The 3d shape of the array when written along <cite>axis</cite> (see also
+arrayio.writetxt()) to text as 2d chunks and read back in as 3d array.
+Used to reconstruct the array.</p>
+</div></blockquote>
+<p><strong>axis</strong> : int</p>
+<blockquote>
+<div><p>Axis along which the array was written in 2d chunks to text. (see
+also <cite>axis</cite> in arrayio.writetxt()).
+Used to reconstruct the array. 
+Only axis=0 implemented.</p>
+</div></blockquote>
+<p class="last"><strong>dtype, sep</strong> : passed to np.fromstring</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

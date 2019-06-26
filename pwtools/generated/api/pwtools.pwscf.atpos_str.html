@@ -25,64 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-pwscf-atpos-str">
-<h1>pwtools.pwscf.atpos_str<a class="headerlink" href="#pwtools-pwscf-atpos-str" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.pwscf.atpos_str">
-<code class="descclassname">pwtools.pwscf.</code><code class="descname">atpos_str</code><span class="sig-paren">(</span><em>symbols</em>, <em>coords</em>, <em>fmt='%.16e'</em>, <em>zero_eps=None</em>, <em>eps=2.220446049250313e-16</em>, <em>delim='    '</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#atpos_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.atpos_str" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convenience function to make a string for the ATOMIC_POSITIONS section
-of a pw.x input file.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>symbols</strong> : sequence</p>
-<blockquote>
-<div><p>strings with atom symbols, (natoms,), must match with the
-rows of coords</p>
-</div></blockquote>
-<p><strong>coords</strong> : array (natoms, 3)</p>
-<blockquote>
-<div><p>with atomic coords, can also be (natoms, &gt;3) to add constraints on
-atomic forces in PWscf</p>
-</div></blockquote>
-<p><strong>eps</strong> : float</p>
-<blockquote>
-<div><p>Print values as 0.0 where abs(coords[i,j]) &lt; eps. If eps &lt; 0.0, then
-disable this.</p>
-</div></blockquote>
-<p><strong>delim</strong> : str</p>
-<blockquote>
-<div><p>delimiter between columns</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">string</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">atpos_str</span><span class="p">([</span><span class="s1">&#39;Al&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.</span><span class="p">]]))</span>
-<span class="go">Al      0.0000000000    0.0000000000    0.0000000000</span>
-<span class="go">N       0.0000000000    0.0000000000    1.0000000000</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -146,13 +90,68 @@ disable this.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-pwscf-atpos-str">
+<h1>pwtools.pwscf.atpos_str<a class="headerlink" href="#pwtools-pwscf-atpos-str" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.pwscf.atpos_str">
+<code class="descclassname">pwtools.pwscf.</code><code class="descname">atpos_str</code><span class="sig-paren">(</span><em>symbols</em>, <em>coords</em>, <em>fmt='%.16e'</em>, <em>zero_eps=None</em>, <em>eps=2.220446049250313e-16</em>, <em>delim='    '</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#atpos_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.atpos_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience function to make a string for the ATOMIC_POSITIONS section
+of a pw.x input file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>symbols</strong> : sequence</p>
+<blockquote>
+<div><p>strings with atom symbols, (natoms,), must match with the
+rows of coords</p>
+</div></blockquote>
+<p><strong>coords</strong> : array (natoms, 3)</p>
+<blockquote>
+<div><p>with atomic coords, can also be (natoms, &gt;3) to add constraints on
+atomic forces in PWscf</p>
+</div></blockquote>
+<p><strong>eps</strong> : float</p>
+<blockquote>
+<div><p>Print values as 0.0 where abs(coords[i,j]) &lt; eps. If eps &lt; 0.0, then
+disable this.</p>
+</div></blockquote>
+<p><strong>delim</strong> : str</p>
+<blockquote>
+<div><p>delimiter between columns</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">atpos_str</span><span class="p">([</span><span class="s1">&#39;Al&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.</span><span class="p">]]))</span>
+<span class="go">Al      0.0000000000    0.0000000000    0.0000000000</span>
+<span class="go">N       0.0000000000    0.0000000000    1.0000000000</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

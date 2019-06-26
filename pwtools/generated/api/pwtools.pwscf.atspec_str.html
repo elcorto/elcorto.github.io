@@ -25,48 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-pwscf-atspec-str">
-<h1>pwtools.pwscf.atspec_str<a class="headerlink" href="#pwtools-pwscf-atspec-str" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.pwscf.atspec_str">
-<code class="descclassname">pwtools.pwscf.</code><code class="descname">atspec_str</code><span class="sig-paren">(</span><em>symbols</em>, <em>masses</em>, <em>pseudos</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#atspec_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.atspec_str" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convenience function to make a string for the ATOMIC_SPECIES section
-of a pw.x input file.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>symbols</strong> : sequence of strings with atom symbols, (natoms,)</p>
-<p><strong>masses</strong> : sequence if floats (natoms,) w/ atom masses</p>
-<p><strong>pseudos</strong> : sequence of strings (natoms,) w/ pseudopotential file names</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">string</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="nb">print</span> <span class="n">pwscf</span><span class="o">.</span><span class="n">atspec_str</span><span class="p">([</span><span class="s1">&#39;Al&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;1.23&#39;</span><span class="p">,</span> <span class="s1">&#39;2.34&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Al.UPF&#39;</span><span class="p">,</span> <span class="s1">&#39;N.UPF&#39;</span><span class="p">])</span>
-<span class="go">Al      1.23    Al.UPF</span>
-<span class="go">N       2.34    N.UPF</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -130,13 +90,52 @@ of a pw.x input file.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-pwscf-atspec-str">
+<h1>pwtools.pwscf.atspec_str<a class="headerlink" href="#pwtools-pwscf-atspec-str" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.pwscf.atspec_str">
+<code class="descclassname">pwtools.pwscf.</code><code class="descname">atspec_str</code><span class="sig-paren">(</span><em>symbols</em>, <em>masses</em>, <em>pseudos</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#atspec_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.atspec_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience function to make a string for the ATOMIC_SPECIES section
+of a pw.x input file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>symbols</strong> : sequence of strings with atom symbols, (natoms,)</p>
+<p><strong>masses</strong> : sequence if floats (natoms,) w/ atom masses</p>
+<p><strong>pseudos</strong> : sequence of strings (natoms,) w/ pseudopotential file names</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="nb">print</span> <span class="n">pwscf</span><span class="o">.</span><span class="n">atspec_str</span><span class="p">([</span><span class="s1">&#39;Al&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;1.23&#39;</span><span class="p">,</span> <span class="s1">&#39;2.34&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Al.UPF&#39;</span><span class="p">,</span> <span class="s1">&#39;N.UPF&#39;</span><span class="p">])</span>
+<span class="go">Al      1.23    Al.UPF</span>
+<span class="go">N       2.34    N.UPF</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

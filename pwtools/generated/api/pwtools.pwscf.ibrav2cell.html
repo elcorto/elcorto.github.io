@@ -25,70 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-pwscf-ibrav2cell">
-<h1>pwtools.pwscf.ibrav2cell<a class="headerlink" href="#pwtools-pwscf-ibrav2cell" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.pwscf.ibrav2cell">
-<code class="descclassname">pwtools.pwscf.</code><code class="descname">ibrav2cell</code><span class="sig-paren">(</span><em>ibrav</em>, <em>celldm</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#ibrav2cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.ibrav2cell" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert PWscf’s ibrav + celldm to cell. All formulas are taken straight
-from the PWscf homepage. Don’t blame me for errors. Use after testing.</p>
-<p>This function generates <em>primitive</em> cells. Note that in crys.py (and
-anywhere else in the package, for that matter) we do not have a distinction
-between conventional/primitive cell. We always think in primitive cells.
-Especially celldm in crys.py can be converted to/from <cite>cell</cite> and
-<cite>cryst_const</cite>. But here, <cite>celldm</cite> is the PWscf style celldm, which
-describes the <em>conventional</em> cell. For example, for an fcc cell (ibrav=2),
-celldm[0] == a == alat is the lattice constant “a” of the cubic
-conventional cell (cell=a*identity(3)), which is also found in a .cif file
-together with all symmetries. OTOH, for a hexagonal cell (ibrav=4)
-primitive == conventional cell.</p>
-<p><cite>celldm</cite> (a = celldm[0]) is assumed be in the unit that you want for
-<cite>cell</cite> (Bohr, Angstrom, etc).</p>
-<p>Note: There are some documentation &lt;-&gt; forluma errors / inconsistencies for
-ibrav=12,13. See test/test_ibrav.py. If you really need that, have a look
-at the PWscf source for how they do it there.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ibrav</strong> : int</p>
-<blockquote>
-<div><p>1 … 14</p>
-</div></blockquote>
-<p><strong>celldm</strong> : sequence of length 6</p>
-<blockquote>
-<div><p>This not the isame length 6 array <cite>celldm</cite> in crys.py. Here, the
-entries which are not needed can be None.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>array (3,3)</strong> : cell vectors as rows, unit is that of celldm[0], i.e. a</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Notes</p>
-<ul class="simple">
-<li>ibrav = 14 is actually the only case where all 6 entries of <cite>celldm</cite> are
-needed and therefore the same as crys.cc2cell(crys.celldm2cc(celldm)).
-The returned <cite>cell</cite> here has the same spatial orientation as the one
-returned from crys.cc2cell(): a along x, b in xy-plane.</li>
-</ul>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -152,13 +90,74 @@ returned from crys.cc2cell(): a along x, b in xy-plane.</li>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-pwscf-ibrav2cell">
+<h1>pwtools.pwscf.ibrav2cell<a class="headerlink" href="#pwtools-pwscf-ibrav2cell" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.pwscf.ibrav2cell">
+<code class="descclassname">pwtools.pwscf.</code><code class="descname">ibrav2cell</code><span class="sig-paren">(</span><em>ibrav</em>, <em>celldm</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#ibrav2cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.ibrav2cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert PWscf’s ibrav + celldm to cell. All formulas are taken straight
+from the PWscf homepage. Don’t blame me for errors. Use after testing.</p>
+<p>This function generates <em>primitive</em> cells. Note that in crys.py (and
+anywhere else in the package, for that matter) we do not have a distinction
+between conventional/primitive cell. We always think in primitive cells.
+Especially celldm in crys.py can be converted to/from <cite>cell</cite> and
+<cite>cryst_const</cite>. But here, <cite>celldm</cite> is the PWscf style celldm, which
+describes the <em>conventional</em> cell. For example, for an fcc cell (ibrav=2),
+celldm[0] == a == alat is the lattice constant “a” of the cubic
+conventional cell (cell=a*identity(3)), which is also found in a .cif file
+together with all symmetries. OTOH, for a hexagonal cell (ibrav=4)
+primitive == conventional cell.</p>
+<p><cite>celldm</cite> (a = celldm[0]) is assumed be in the unit that you want for
+<cite>cell</cite> (Bohr, Angstrom, etc).</p>
+<p>Note: There are some documentation &lt;-&gt; forluma errors / inconsistencies for
+ibrav=12,13. See test/test_ibrav.py. If you really need that, have a look
+at the PWscf source for how they do it there.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ibrav</strong> : int</p>
+<blockquote>
+<div><p>1 … 14</p>
+</div></blockquote>
+<p><strong>celldm</strong> : sequence of length 6</p>
+<blockquote>
+<div><p>This not the isame length 6 array <cite>celldm</cite> in crys.py. Here, the
+entries which are not needed can be None.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>array (3,3)</strong> : cell vectors as rows, unit is that of celldm[0], i.e. a</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li>ibrav = 14 is actually the only case where all 6 entries of <cite>celldm</cite> are
+needed and therefore the same as crys.cc2cell(crys.celldm2cc(celldm)).
+The returned <cite>cell</cite> here has the same spatial orientation as the one
+returned from crys.cc2cell(): a along x, b in xy-plane.</li>
+</ul>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

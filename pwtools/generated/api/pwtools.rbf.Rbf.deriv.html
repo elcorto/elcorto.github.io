@@ -25,48 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-rbf-rbf-deriv">
-<h1>pwtools.rbf.Rbf.deriv<a class="headerlink" href="#pwtools-rbf-rbf-deriv" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
-<dt id="pwtools.rbf.Rbf.deriv">
-<code class="descclassname">Rbf.</code><code class="descname">deriv</code><span class="sig-paren">(</span><em>points</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#Rbf.deriv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.Rbf.deriv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Matrix of partial first derivatives.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>points</strong> : see <a class="reference internal" href="pwtools.rbf.Rbf.__call__.html#pwtools.rbf.Rbf.__call__" title="pwtools.rbf.Rbf.__call__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__call__()</span></code></a></p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">2d array (L,N)</p>
-<blockquote class="last">
-<div><p>Each row holds the partial derivatives of one input point <code class="docutils literal notranslate"><span class="pre">points[i,:]</span> <span class="pre">=</span>
-<span class="pre">[x_0,</span> <span class="pre">...,</span> <span class="pre">x_N-1]</span></code>. For all points points: (L,N), we get the matrix:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="n">dz</span><span class="o">/</span><span class="n">dx0_0</span><span class="p">,</span>   <span class="n">dz</span><span class="o">/</span><span class="n">dx0_1</span><span class="p">,</span>   <span class="o">...</span><span class="p">,</span> <span class="n">dz</span><span class="o">/</span><span class="n">dx0_N</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
- <span class="p">[</span><span class="o">...</span><span class="p">],</span>
- <span class="p">[</span><span class="n">dz</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1_0</span><span class="p">,</span> <span class="n">dz</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1_1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">dz</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1</span><span class="n">_N</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
-</pre></div>
-</div>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -132,13 +92,52 @@
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-rbf-rbf-deriv">
+<h1>pwtools.rbf.Rbf.deriv<a class="headerlink" href="#pwtools-rbf-rbf-deriv" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.rbf.Rbf.deriv">
+<code class="descclassname">Rbf.</code><code class="descname">deriv</code><span class="sig-paren">(</span><em>points</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#Rbf.deriv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.Rbf.deriv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix of partial first derivatives.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>points</strong> : see <a class="reference internal" href="pwtools.rbf.Rbf.__call__.html#pwtools.rbf.Rbf.__call__" title="pwtools.rbf.Rbf.__call__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__call__()</span></code></a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">2d array (L,N)</p>
+<blockquote class="last">
+<div><p>Each row holds the partial derivatives of one input point <code class="docutils literal notranslate"><span class="pre">points[i,:]</span> <span class="pre">=</span>
+<span class="pre">[x_0,</span> <span class="pre">...,</span> <span class="pre">x_N-1]</span></code>. For all points points: (L,N), we get the matrix:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="n">dz</span><span class="o">/</span><span class="n">dx0_0</span><span class="p">,</span>   <span class="n">dz</span><span class="o">/</span><span class="n">dx0_1</span><span class="p">,</span>   <span class="o">...</span><span class="p">,</span> <span class="n">dz</span><span class="o">/</span><span class="n">dx0_N</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+ <span class="p">[</span><span class="o">...</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">dz</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1_0</span><span class="p">,</span> <span class="n">dz</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1_1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">dz</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1</span><span class="n">_N</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

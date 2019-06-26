@@ -25,31 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-parse-cpmdmdoutputfile-get-natoms">
-<h1>pwtools.parse.CpmdMDOutputFile.get_natoms<a class="headerlink" href="#pwtools-parse-cpmdmdoutputfile-get-natoms" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
-<dt id="pwtools.parse.CpmdMDOutputFile.get_natoms">
-<code class="descclassname">CpmdMDOutputFile.</code><code class="descname">get_natoms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pwtools.parse.CpmdMDOutputFile.get_natoms" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of atoms. Apparently only printed as “NUMBER OF ATOMS …” in
-the SCF case, not in MD. So we use “grep -c” on the GEOMETRY file, which
-has <cite>natoms</cite> lines (normally) and 6 colunms. Sometimes (so far seen in
-variable cell calcs) there are some additional lines w/ 3 columns,
-which we skip.</p>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -115,13 +92,35 @@ which we skip.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-parse-cpmdmdoutputfile-get-natoms">
+<h1>pwtools.parse.CpmdMDOutputFile.get_natoms<a class="headerlink" href="#pwtools-parse-cpmdmdoutputfile-get-natoms" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.parse.CpmdMDOutputFile.get_natoms">
+<code class="descclassname">CpmdMDOutputFile.</code><code class="descname">get_natoms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pwtools.parse.CpmdMDOutputFile.get_natoms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of atoms. Apparently only printed as “NUMBER OF ATOMS …” in
+the SCF case, not in MD. So we use “grep -c” on the GEOMETRY file, which
+has <cite>natoms</cite> lines (normally) and 6 colunms. Sometimes (so far seen in
+variable cell calcs) there are some additional lines w/ 3 columns,
+which we skip.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

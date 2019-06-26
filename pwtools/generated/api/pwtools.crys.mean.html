@@ -25,55 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-crys-mean">
-<h1>pwtools.crys.mean<a class="headerlink" href="#pwtools-crys-mean" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.crys.mean">
-<code class="descclassname">pwtools.crys.</code><code class="descname">mean</code><span class="sig-paren">(</span><em>traj</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#mean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.mean" title="Permalink to this definition">¶</a></dt>
-<dd><p>Mean of Trajectory along <cite>timeaxis</cite>, like numpy.mean(array,axis=0).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>traj</strong> : Trajectory</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Structure :</p>
-<blockquote class="last">
-<div><p>instance with extra velocity, temperature, ekin attrs which can hold
-the mean of the input <cite>traj</cite></p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#  a slice of the Trajectory</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="mi">200</span><span class="p">:</span><span class="mi">500</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Say we know that coords_frac is pbc-wrpapped for some reason but</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># coords is not. Make sure that we average only coords and force a</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># recalculation of coords_frac by setting it to None and calling</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># set_all() at the end.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">.</span><span class="n">coords_frac</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">tr</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">set_all</span><span class="p">()</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -137,13 +90,59 @@ the mean of the input <cite>traj</cite></p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-crys-mean">
+<h1>pwtools.crys.mean<a class="headerlink" href="#pwtools-crys-mean" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.crys.mean">
+<code class="descclassname">pwtools.crys.</code><code class="descname">mean</code><span class="sig-paren">(</span><em>traj</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#mean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mean of Trajectory along <cite>timeaxis</cite>, like numpy.mean(array,axis=0).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>traj</strong> : Trajectory</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Structure :</p>
+<blockquote class="last">
+<div><p>instance with extra velocity, temperature, ekin attrs which can hold
+the mean of the input <cite>traj</cite></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#  a slice of the Trajectory</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="mi">200</span><span class="p">:</span><span class="mi">500</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Say we know that coords_frac is pbc-wrpapped for some reason but</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># coords is not. Make sure that we average only coords and force a</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># recalculation of coords_frac by setting it to None and calling</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># set_all() at the end.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">.</span><span class="n">coords_frac</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">tr</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">set_all</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

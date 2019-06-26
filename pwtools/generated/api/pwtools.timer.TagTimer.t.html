@@ -25,49 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-timer-tagtimer-t">
-<h1>pwtools.timer.TagTimer.t<a class="headerlink" href="#pwtools-timer-tagtimer-t" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
-<dt id="pwtools.timer.TagTimer.t">
-<code class="descclassname">TagTimer.</code><code class="descname">t</code><span class="sig-paren">(</span><em>tag</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/timer.html#TagTimer.t"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.timer.TagTimer.t" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assign and save a numeric value (a time value) in a storage array
-associated with <cite>tag</cite>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>tag</strong> : anything hashable</p>
-<blockquote class="last">
-<div><p>a tag (most likely a string) associated with a storage array</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Notes</p>
-<p>After initialization, self.time_ar_dict[tag] == [None, None].</p>
-<div class="line-block">
-<div class="line">The 1st call assings self.time_ar_dict[tag][0] = &lt;time&gt;. </div>
-<div class="line">The 2nd call assings self.time_ar_dict[tag][1] = &lt;time&gt;. </div>
-<div class="line">The 3rd call resets self.time_ar_dict[tag] = [None, None]</div>
-<div class="line">and recursively calls t(), which then does the the same as the 1st.</div>
-<div class="line">…</div>
-</div>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -133,13 +92,53 @@ associated with <cite>tag</cite>.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-timer-tagtimer-t">
+<h1>pwtools.timer.TagTimer.t<a class="headerlink" href="#pwtools-timer-tagtimer-t" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.timer.TagTimer.t">
+<code class="descclassname">TagTimer.</code><code class="descname">t</code><span class="sig-paren">(</span><em>tag</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/timer.html#TagTimer.t"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.timer.TagTimer.t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign and save a numeric value (a time value) in a storage array
+associated with <cite>tag</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>tag</strong> : anything hashable</p>
+<blockquote class="last">
+<div><p>a tag (most likely a string) associated with a storage array</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>After initialization, self.time_ar_dict[tag] == [None, None].</p>
+<div class="line-block">
+<div class="line">The 1st call assings self.time_ar_dict[tag][0] = &lt;time&gt;. </div>
+<div class="line">The 2nd call assings self.time_ar_dict[tag][1] = &lt;time&gt;. </div>
+<div class="line">The 3rd call resets self.time_ar_dict[tag] = [None, None]</div>
+<div class="line">and recursively calls t(), which then does the the same as the 1st.</div>
+<div class="line">…</div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

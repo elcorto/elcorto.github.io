@@ -25,53 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-rbf-fit-opt">
-<h1>pwtools.rbf.fit_opt<a class="headerlink" href="#pwtools-rbf-fit-opt" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.rbf.fit_opt">
-<code class="descclassname">pwtools.rbf.</code><code class="descname">fit_opt</code><span class="sig-paren">(</span><em>points</em>, <em>values</em>, <em>method='de'</em>, <em>what='pr'</em>, <em>cv_kwds={'nr': 1</em>, <em>'ns': 5}</em>, <em>opt_kwds={}</em>, <em>rbf_kwds={}</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#fit_opt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.fit_opt" title="Permalink to this definition">¶</a></dt>
-<dd><p>Optimize <span class="math notranslate nohighlight">\(p\)</span> or <span class="math notranslate nohighlight">\((p,r)\)</span> using a cross validation error
-metric or the direct fit error if <cite>cv_kwds</cite> is None.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>points, values</strong> : see <a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a></p>
-<p><strong>method</strong> : str</p>
-<blockquote>
-<div><div class="line-block">
-<div class="line">‘de’ : scipy.optimize.differential_evolution</div>
-<div class="line">‘fmin’: scipy.optimize.fmin</div>
-</div>
-</div></blockquote>
-<p><strong>what</strong> : str</p>
-<blockquote>
-<div><p>‘p’ or ‘pr’</p>
-</div></blockquote>
-<p><strong>cv_kwds, rbf_kwds</strong> : see <a class="reference internal" href="pwtools.rbf.FitError.html#pwtools.rbf.FitError" title="pwtools.rbf.FitError"><code class="xref py py-class docutils literal notranslate"><span class="pre">FitError</span></code></a></p>
-<p><strong>opt_kwds</strong> : dict</p>
-<blockquote class="last">
-<div><p>kwds for the optimizer (see <cite>method</cite>)</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -135,13 +90,57 @@ metric or the direct fit error if <cite>cv_kwds</cite> is None.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-rbf-fit-opt">
+<h1>pwtools.rbf.fit_opt<a class="headerlink" href="#pwtools-rbf-fit-opt" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.rbf.fit_opt">
+<code class="descclassname">pwtools.rbf.</code><code class="descname">fit_opt</code><span class="sig-paren">(</span><em>points</em>, <em>values</em>, <em>method='de'</em>, <em>what='pr'</em>, <em>cv_kwds={'nr': 1</em>, <em>'ns': 5}</em>, <em>opt_kwds={}</em>, <em>rbf_kwds={}</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#fit_opt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.fit_opt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optimize <span class="math notranslate nohighlight">\(p\)</span> or <span class="math notranslate nohighlight">\((p,r)\)</span> using a cross validation error
+metric or the direct fit error if <cite>cv_kwds</cite> is None.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>points, values</strong> : see <a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a></p>
+<p><strong>method</strong> : str</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">‘de’ : <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.differential_evolution.html#scipy.optimize.differential_evolution" title="(in SciPy v1.3.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.differential_evolution()</span></code></a></div>
+<div class="line">‘fmin’: <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin.html#scipy.optimize.fmin" title="(in SciPy v1.3.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.fmin()</span></code></a></div>
+</div>
+</div></blockquote>
+<p><strong>what</strong> : str</p>
+<blockquote>
+<div><p>‘p’ or ‘pr’</p>
+</div></blockquote>
+<p><strong>cv_kwds, rbf_kwds</strong> : see <a class="reference internal" href="pwtools.rbf.FitError.html#pwtools.rbf.FitError" title="pwtools.rbf.FitError"><code class="xref py py-class docutils literal notranslate"><span class="pre">FitError</span></code></a></p>
+<p><strong>opt_kwds</strong> : dict</p>
+<blockquote class="last">
+<div><p>kwds for the optimizer (see <cite>method</cite>)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

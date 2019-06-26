@@ -25,61 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-crys-structure-get-ase-atoms">
-<h1>pwtools.crys.Structure.get_ase_atoms<a class="headerlink" href="#pwtools-crys-structure-get-ase-atoms" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
-<dt id="pwtools.crys.Structure.get_ase_atoms">
-<code class="descclassname">Structure.</code><code class="descname">get_ase_atoms</code><span class="sig-paren">(</span><em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_ase_atoms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_ase_atoms" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return ASE Atoms object.</p>
-<p>Obviously, you must have ASE installed. We use
-<code class="docutils literal notranslate"><span class="pre">scaled_positions=self.coords_frac</span></code>, so only <code class="docutils literal notranslate"><span class="pre">self.cell</span></code> must be in
-[Ang].</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>**kwds :</strong></p>
-<blockquote class="last">
-<div><p>additional keywords passed to the Atoms() constructor.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="pwtools.crys.Structure.get_fake_ase_atoms.html#pwtools.crys.Structure.get_fake_ase_atoms" title="pwtools.crys.Structure.get_fake_ase_atoms"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_fake_ase_atoms()</span></code></a></p>
-</div>
-<p class="rubric">Notes</p>
-<p>By default, we use <code class="docutils literal notranslate"><span class="pre">Atoms(...,pbc=False)</span></code> to avoid pbc-wrapping
-<code class="docutils literal notranslate"><span class="pre">atoms.scaled_positions</span></code> (we don’t want that for MD structures, for
-instance). If you need the pbc flag in your Atoms object, then use:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Note that the `pbc` flag is passed to ase.Atoms, so you can use</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># whatever that accepts, like pbc=[1,1,1] etc. </span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">atoms</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">get_ase_atoms</span><span class="p">(</span><span class="n">pbc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># or </span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">atoms</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">get_ase_atoms</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">atoms</span><span class="o">.</span><span class="n">set_pbc</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span> 
-</pre></div>
-</div>
-<p>but then, <code class="docutils literal notranslate"><span class="pre">scaled_positions</span></code> will be wrapped by ASE and I’m not sure
-if <code class="docutils literal notranslate"><span class="pre">atoms.positions</span></code> is updated in that case. Please test that – I
-don’t use ASE much.</p>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -145,13 +92,65 @@ don’t use ASE much.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-crys-structure-get-ase-atoms">
+<h1>pwtools.crys.Structure.get_ase_atoms<a class="headerlink" href="#pwtools-crys-structure-get-ase-atoms" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.crys.Structure.get_ase_atoms">
+<code class="descclassname">Structure.</code><code class="descname">get_ase_atoms</code><span class="sig-paren">(</span><em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_ase_atoms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_ase_atoms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return ASE Atoms object.</p>
+<p>Obviously, you must have ASE installed. We use
+<code class="docutils literal notranslate"><span class="pre">scaled_positions=self.coords_frac</span></code>, so only <code class="docutils literal notranslate"><span class="pre">self.cell</span></code> must be in
+[Ang].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>**kwds :</strong></p>
+<blockquote class="last">
+<div><p>additional keywords passed to the Atoms() constructor.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="pwtools.crys.Structure.get_fake_ase_atoms.html#pwtools.crys.Structure.get_fake_ase_atoms" title="pwtools.crys.Structure.get_fake_ase_atoms"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_fake_ase_atoms()</span></code></a></p>
+</div>
+<p class="rubric">Notes</p>
+<p>By default, we use <code class="docutils literal notranslate"><span class="pre">Atoms(...,pbc=False)</span></code> to avoid pbc-wrapping
+<code class="docutils literal notranslate"><span class="pre">atoms.scaled_positions</span></code> (we don’t want that for MD structures, for
+instance). If you need the pbc flag in your Atoms object, then use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Note that the `pbc` flag is passed to ase.Atoms, so you can use</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># whatever that accepts, like pbc=[1,1,1] etc. </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">atoms</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">get_ase_atoms</span><span class="p">(</span><span class="n">pbc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># or </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">atoms</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">get_ase_atoms</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">atoms</span><span class="o">.</span><span class="n">set_pbc</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span> 
+</pre></div>
+</div>
+<p>but then, <code class="docutils literal notranslate"><span class="pre">scaled_positions</span></code> will be wrapped by ASE and I’m not sure
+if <code class="docutils literal notranslate"><span class="pre">atoms.positions</span></code> is updated in that case. Please test that – I
+don’t use ASE much.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

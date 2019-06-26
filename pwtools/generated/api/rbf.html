@@ -25,54 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="rbf">
-<h1>rbf<a class="headerlink" href="#rbf" title="Permalink to this headline">¶</a></h1>
-<span class="target" id="module-pwtools.rbf"></span><p>Radial Basis Function N-dim fitting. See <a class="reference internal" href="../../written/background/rbf.html#rbf"><span class="std std-ref">Radial Basis Functions Networks for interpolation or fitting of N-dim data points</span></a> for details.</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.FitError.html#pwtools.rbf.FitError" title="pwtools.rbf.FitError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FitError</span></code></a>(points,&nbsp;values[,&nbsp;rbf_kwds,&nbsp;cv_kwds])</td>
-<td>Direct or cross-validation (CV) fit error of <a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a> for a parameter set <code class="docutils literal notranslate"><span class="pre">[p,r]</span></code> or just <code class="docutils literal notranslate"><span class="pre">[p]</span></code>.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rbf</span></code></a>(points,&nbsp;values[,&nbsp;centers,&nbsp;rbf,&nbsp;r,&nbsp;p,&nbsp;…])</td>
-<td>Radial basis function network interpolation and fitting.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.estimate_p.html#pwtools.rbf.estimate_p" title="pwtools.rbf.estimate_p"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_p</span></code></a>(points[,&nbsp;method])</td>
-<td>Estimate <span class="math notranslate nohighlight">\(p\)</span>.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.fit_opt.html#pwtools.rbf.fit_opt" title="pwtools.rbf.fit_opt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_opt</span></code></a>(points,&nbsp;values[,&nbsp;method,&nbsp;what,&nbsp;…])</td>
-<td>Optimize <span class="math notranslate nohighlight">\(p\)</span> or <span class="math notranslate nohighlight">\((p,r)\)</span> using a cross validation error metric or the direct fit error if <cite>cv_kwds</cite> is None.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.rbf_dct.html#pwtools.rbf.rbf_dct" title="pwtools.rbf.rbf_dct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rbf_dct</span></code></a></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.rbf_gauss.html#pwtools.rbf.rbf_gauss" title="pwtools.rbf.rbf_gauss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rbf_gauss</span></code></a>(rsq,&nbsp;p)</td>
-<td>Gaussian RBF <span class="math notranslate nohighlight">\(\exp\left(-\frac{r^2}{2\,p^2}\right)\)</span></td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.rbf_inv_multi.html#pwtools.rbf.rbf_inv_multi" title="pwtools.rbf.rbf_inv_multi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rbf_inv_multi</span></code></a>(rsq,&nbsp;p)</td>
-<td>Inverse Multiquadric RBF <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{r^2 + p^2}}\)</span></td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.rbf_multi.html#pwtools.rbf.rbf_multi" title="pwtools.rbf.rbf_multi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rbf_multi</span></code></a>(rsq,&nbsp;p)</td>
-<td>Multiquadric RBF <span class="math notranslate nohighlight">\(\sqrt{r^2 + p^2}\)</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -134,13 +88,58 @@
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="rbf">
+<h1>rbf<a class="headerlink" href="#rbf" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-pwtools.rbf"></span><p>Radial Basis Function N-dim fitting. See <a class="reference internal" href="../../written/background/rbf.html#rbf"><span class="std std-ref">Radial Basis Function Networks for interpolation or fitting of N-dim data</span></a> for details.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.FitError.html#pwtools.rbf.FitError" title="pwtools.rbf.FitError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FitError</span></code></a>(points,&nbsp;values[,&nbsp;rbf_kwds,&nbsp;cv_kwds])</td>
+<td>Direct or cross-validation (CV) fit error of <a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a> for a parameter set <code class="docutils literal notranslate"><span class="pre">[p,r]</span></code> or just <code class="docutils literal notranslate"><span class="pre">[p]</span></code>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rbf</span></code></a>(points,&nbsp;values[,&nbsp;centers,&nbsp;rbf,&nbsp;r,&nbsp;p,&nbsp;…])</td>
+<td>Radial basis function network interpolation and fitting.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.estimate_p.html#pwtools.rbf.estimate_p" title="pwtools.rbf.estimate_p"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_p</span></code></a>(points[,&nbsp;method])</td>
+<td>Estimate <span class="math notranslate nohighlight">\(p\)</span>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.fit_opt.html#pwtools.rbf.fit_opt" title="pwtools.rbf.fit_opt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_opt</span></code></a>(points,&nbsp;values[,&nbsp;method,&nbsp;what,&nbsp;…])</td>
+<td>Optimize <span class="math notranslate nohighlight">\(p\)</span> or <span class="math notranslate nohighlight">\((p,r)\)</span> using a cross validation error metric or the direct fit error if <cite>cv_kwds</cite> is None.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.rbf_dct.html#pwtools.rbf.rbf_dct" title="pwtools.rbf.rbf_dct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rbf_dct</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.rbf_gauss.html#pwtools.rbf.rbf_gauss" title="pwtools.rbf.rbf_gauss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rbf_gauss</span></code></a>(rsq,&nbsp;p)</td>
+<td>Gaussian RBF <span class="math notranslate nohighlight">\(\exp\left(-\frac{r^2}{2\,p^2}\right)\)</span></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.rbf.rbf_inv_multi.html#pwtools.rbf.rbf_inv_multi" title="pwtools.rbf.rbf_inv_multi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rbf_inv_multi</span></code></a>(rsq,&nbsp;p)</td>
+<td>Inverse Multiquadric RBF <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{r^2 + p^2}}\)</span></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.rbf.rbf_multi.html#pwtools.rbf.rbf_multi" title="pwtools.rbf.rbf_multi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rbf_multi</span></code></a>(rsq,&nbsp;p)</td>
+<td>Multiquadric RBF <span class="math notranslate nohighlight">\(\sqrt{r^2 + p^2}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

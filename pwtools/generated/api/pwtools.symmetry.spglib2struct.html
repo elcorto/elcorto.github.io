@@ -25,48 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-symmetry-spglib2struct">
-<h1>pwtools.symmetry.spglib2struct<a class="headerlink" href="#pwtools-symmetry-spglib2struct" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.symmetry.spglib2struct">
-<code class="descclassname">pwtools.symmetry.</code><code class="descname">spglib2struct</code><span class="sig-paren">(</span><em>tup</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/symmetry.html#spglib2struct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.symmetry.spglib2struct" title="Permalink to this definition">¶</a></dt>
-<dd><p>Transform returned tuple from various spglib functions to
-<a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a>.</p>
-<p>This applies to <code class="docutils literal notranslate"><span class="pre">spglib.find_primitive()</span></code> and probably some more. Their
-doc string says it returns an <code class="docutils literal notranslate"><span class="pre">ase.Atoms</span></code> object, but what it actually
-returns is a tuple <cite>(cell,coords_frac,znucl)</cite>. <cite>znucl</cite> is a
-list of integers with atomic core charge (e.g. 1 for H), see
-<a class="reference internal" href="pwtools.atomic_data.numbers.html#pwtools.atomic_data.numbers" title="pwtools.atomic_data.numbers"><code class="xref py py-data docutils literal notranslate"><span class="pre">pwtools.atomic_data.numbers</span></code></a>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>tup</strong> : tuple (3,)</p>
-<blockquote>
-<div><p>Return value from <code class="docutils literal notranslate"><span class="pre">spglib.find_primitive()</span></code> and maybe others.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -130,13 +90,52 @@ list of integers with atomic core charge (e.g. 1 for H), see
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-symmetry-spglib2struct">
+<h1>pwtools.symmetry.spglib2struct<a class="headerlink" href="#pwtools-symmetry-spglib2struct" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.symmetry.spglib2struct">
+<code class="descclassname">pwtools.symmetry.</code><code class="descname">spglib2struct</code><span class="sig-paren">(</span><em>tup</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/symmetry.html#spglib2struct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.symmetry.spglib2struct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform returned tuple from various spglib functions to
+<a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a>.</p>
+<p>This applies to <code class="docutils literal notranslate"><span class="pre">spglib.find_primitive()</span></code> and probably some more. Their
+doc string says it returns an <code class="docutils literal notranslate"><span class="pre">ase.Atoms</span></code> object, but what it actually
+returns is a tuple <cite>(cell,coords_frac,znucl)</cite>. <cite>znucl</cite> is a
+list of integers with atomic core charge (e.g. 1 for H), see
+<a class="reference internal" href="pwtools.atomic_data.numbers.html#pwtools.atomic_data.numbers" title="pwtools.atomic_data.numbers"><code class="xref py py-data docutils literal notranslate"><span class="pre">pwtools.atomic_data.numbers</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>tup</strong> : tuple (3,)</p>
+<blockquote>
+<div><p>Return value from <code class="docutils literal notranslate"><span class="pre">spglib.find_primitive()</span></code> and maybe others.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

@@ -25,61 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-crys-scell">
-<h1>pwtools.crys.scell<a class="headerlink" href="#pwtools-crys-scell" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.crys.scell">
-<code class="descclassname">pwtools.crys.</code><code class="descname">scell</code><span class="sig-paren">(</span><em>obj</em>, <em>dims</em>, <em>method=1</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#scell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.scell" title="Permalink to this definition">¶</a></dt>
-<dd><p>Build supercell based on <cite>dims</cite>.</p>
-<p>Uses coords_frac and cell.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>obj</strong> : Structure or Trajectory</p>
-<p><strong>dims</strong> : tuple (nx, ny, nz) for a N = nx * ny * nz supercell</p>
-<p><strong>method</strong> : int, optional</p>
-<blockquote>
-<div><p>Switch between numpy-ish (1) or loop (2) implementation. (2) should
-always produce correct results but is sublty slower. Only for
-Structure.</p>
-</div></blockquote>
-<p><strong>**kwds</strong> : see <a class="reference internal" href="pwtools.crys.scell_mask.html#pwtools.crys.scell_mask" title="pwtools.crys.scell_mask"><code class="xref py py-func docutils literal notranslate"><span class="pre">scell_mask()</span></code></a></p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>scell</strong> : Structure</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Notes</p>
-<p>The mask for the supercell is created by <a class="reference internal" href="pwtools.crys.scell_mask.html#pwtools.crys.scell_mask" title="pwtools.crys.scell_mask"><code class="xref py py-func docutils literal notranslate"><span class="pre">scell_mask()</span></code></a> and applied to
-each atom in <cite>obj</cite> one after another, i.e. each atom is repeated nx*ny*nz
-times according to the mask pattern, independently of how the pattern looks
-like (e.g. the <cite>direc</cite> parameter in <a class="reference internal" href="pwtools.crys.scell_mask.html#pwtools.crys.scell_mask" title="pwtools.crys.scell_mask"><code class="xref py py-func docutils literal notranslate"><span class="pre">scell_mask()</span></code></a>). So, just as rows
-in np.repeat(), we have:</p>
-<blockquote>
-<div><div class="line-block">
-<div class="line">original:     symbols=[A,B,C,D]</div>
-<div class="line">2 x 1 x 1:    symbols=[A,A,B,B,C,C,D,D]</div>
-<div class="line">nx x ny x nz: symbols=[(nx*ny*nz) x A, (nx*ny*nz) x B, …]</div>
-</div>
-</div></blockquote>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -143,13 +90,65 @@ in np.repeat(), we have:</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-crys-scell">
+<h1>pwtools.crys.scell<a class="headerlink" href="#pwtools-crys-scell" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.crys.scell">
+<code class="descclassname">pwtools.crys.</code><code class="descname">scell</code><span class="sig-paren">(</span><em>obj</em>, <em>dims</em>, <em>method=1</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#scell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.scell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build supercell based on <cite>dims</cite>.</p>
+<p>Uses coords_frac and cell.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>obj</strong> : Structure or Trajectory</p>
+<p><strong>dims</strong> : tuple (nx, ny, nz) for a N = nx * ny * nz supercell</p>
+<p><strong>method</strong> : int, optional</p>
+<blockquote>
+<div><p>Switch between numpy-ish (1) or loop (2) implementation. (2) should
+always produce correct results but is sublty slower. Only for
+Structure.</p>
+</div></blockquote>
+<p><strong>**kwds</strong> : see <a class="reference internal" href="pwtools.crys.scell_mask.html#pwtools.crys.scell_mask" title="pwtools.crys.scell_mask"><code class="xref py py-func docutils literal notranslate"><span class="pre">scell_mask()</span></code></a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>scell</strong> : Structure</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>The mask for the supercell is created by <a class="reference internal" href="pwtools.crys.scell_mask.html#pwtools.crys.scell_mask" title="pwtools.crys.scell_mask"><code class="xref py py-func docutils literal notranslate"><span class="pre">scell_mask()</span></code></a> and applied to
+each atom in <cite>obj</cite> one after another, i.e. each atom is repeated nx*ny*nz
+times according to the mask pattern, independently of how the pattern looks
+like (e.g. the <cite>direc</cite> parameter in <a class="reference internal" href="pwtools.crys.scell_mask.html#pwtools.crys.scell_mask" title="pwtools.crys.scell_mask"><code class="xref py py-func docutils literal notranslate"><span class="pre">scell_mask()</span></code></a>). So, just as rows
+in np.repeat(), we have:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">original:     symbols=[A,B,C,D]</div>
+<div class="line">2 x 1 x 1:    symbols=[A,A,B,B,C,C,D,D]</div>
+<div class="line">nx x ny x nz: symbols=[(nx*ny*nz) x A, (nx*ny*nz) x B, …]</div>
+</div>
+</div></blockquote>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

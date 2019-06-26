@@ -25,71 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-num-deriv-spl">
-<h1>pwtools.num.deriv_spl<a class="headerlink" href="#pwtools-num-deriv-spl" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.num.deriv_spl">
-<code class="descclassname">pwtools.num.</code><code class="descname">deriv_spl</code><span class="sig-paren">(</span><em>y</em>, <em>x=None</em>, <em>xnew=None</em>, <em>n=1</em>, <em>fullout=False</em>, <em>**splrep_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#deriv_spl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.deriv_spl" title="Permalink to this definition">¶</a></dt>
-<dd><p>n-th derivative for 1d arrays of possibly nonuniformly sampled data.
-Returns matching x-axis for plotting. Splines are used.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x,y</strong> : 1d arrays of same length</p>
-<blockquote>
-<div><p>if x=None, then x=arange(len(y)) is used</p>
-</div></blockquote>
-<p><strong>xnew</strong> : {None, 1d array)</p>
-<blockquote>
-<div><p>x-axis to evaluate the derivative, if None then xnew=x</p>
-</div></blockquote>
-<p><strong>n</strong> : int</p>
-<blockquote>
-<div><p>order of the derivative, can only be &lt;= k</p>
-</div></blockquote>
-<p><strong>fullout</strong> : bool</p>
-<blockquote>
-<div><p>return xd, yd or just yd</p>
-</div></blockquote>
-<p><strong>splrep_kwargs</strong> : keyword args to scipy.interpolate.splrep, default: k=3, s=0</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">if fullout:</p>
-<blockquote>
-<div><p>xd, yd</p>
-</div></blockquote>
-<p>else:</p>
-<blockquote>
-<div><p>yd</p>
-</div></blockquote>
-<p><strong>xd</strong> : 1d array, (len(x) or len(xnew),)</p>
-<p><strong>yd</strong> : 1d array, (len(x) or len(xnew),)</p>
-<blockquote class="last">
-<div><p>n-th derivative of y at points xd</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Notes</p>
-<p>xd is actually == x or xnew (if x is not None). xd can be returned to match
-the function signature of deriv_fd.</p>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -153,13 +90,75 @@ the function signature of deriv_fd.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-num-deriv-spl">
+<h1>pwtools.num.deriv_spl<a class="headerlink" href="#pwtools-num-deriv-spl" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.num.deriv_spl">
+<code class="descclassname">pwtools.num.</code><code class="descname">deriv_spl</code><span class="sig-paren">(</span><em>y</em>, <em>x=None</em>, <em>xnew=None</em>, <em>n=1</em>, <em>fullout=False</em>, <em>**splrep_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#deriv_spl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.deriv_spl" title="Permalink to this definition">¶</a></dt>
+<dd><p>n-th derivative for 1d arrays of possibly nonuniformly sampled data.
+Returns matching x-axis for plotting. Splines are used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x,y</strong> : 1d arrays of same length</p>
+<blockquote>
+<div><p>if x=None, then x=arange(len(y)) is used</p>
+</div></blockquote>
+<p><strong>xnew</strong> : {None, 1d array)</p>
+<blockquote>
+<div><p>x-axis to evaluate the derivative, if None then xnew=x</p>
+</div></blockquote>
+<p><strong>n</strong> : int</p>
+<blockquote>
+<div><p>order of the derivative, can only be &lt;= k</p>
+</div></blockquote>
+<p><strong>fullout</strong> : bool</p>
+<blockquote>
+<div><p>return xd, yd or just yd</p>
+</div></blockquote>
+<p><strong>splrep_kwargs</strong> : keyword args to scipy.interpolate.splrep, default: k=3, s=0</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">if fullout:</p>
+<blockquote>
+<div><p>xd, yd</p>
+</div></blockquote>
+<p>else:</p>
+<blockquote>
+<div><p>yd</p>
+</div></blockquote>
+<p><strong>xd</strong> : 1d array, (len(x) or len(xnew),)</p>
+<p><strong>yd</strong> : 1d array, (len(x) or len(xnew),)</p>
+<blockquote class="last">
+<div><p>n-th derivative of y at points xd</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>xd is actually == x or xnew (if x is not None). xd can be returned to match
+the function signature of deriv_fd.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

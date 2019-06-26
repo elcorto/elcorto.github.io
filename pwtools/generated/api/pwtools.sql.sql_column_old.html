@@ -25,37 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-sql-sql-column-old">
-<h1>pwtools.sql.sql_column_old<a class="headerlink" href="#pwtools-sql-sql-column-old" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.sql.sql_column_old">
-<code class="descclassname">pwtools.sql.</code><code class="descname">sql_column_old</code><span class="sig-paren">(</span><em>key</em>, <em>sqltype</em>, <em>lst</em>, <em>sqlval_func=&lt;function &lt;lambda&gt;&gt;</em>, <em>fileval_func=&lt;function &lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#sql_column_old"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.sql_column_old" title="Permalink to this definition">¶</a></dt>
-<dd><p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">_vals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">75</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vals</span> <span class="o">=</span> <span class="n">sql_column</span><span class="p">(</span><span class="s1">&#39;ecutfwc&#39;</span><span class="p">,</span> <span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="n">_vals</span><span class="p">,</span> 
-<span class="gp">... </span>                  <span class="n">fileval_func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;ecutfwc=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">x</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="nb">print</span> <span class="n">v</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">sqltype</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">sqlval</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">fileval</span>
-<span class="go">ecutfwc float 25 ecutfwc=25</span>
-<span class="go">ecutfwc float 50 ecutfwc=50</span>
-<span class="go">ecutfwc float 75 ecutfwc=75</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -119,13 +90,41 @@
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-sql-sql-column-old">
+<h1>pwtools.sql.sql_column_old<a class="headerlink" href="#pwtools-sql-sql-column-old" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.sql.sql_column_old">
+<code class="descclassname">pwtools.sql.</code><code class="descname">sql_column_old</code><span class="sig-paren">(</span><em>key</em>, <em>sqltype</em>, <em>lst</em>, <em>sqlval_func=&lt;function &lt;lambda&gt;&gt;</em>, <em>fileval_func=&lt;function &lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#sql_column_old"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.sql_column_old" title="Permalink to this definition">¶</a></dt>
+<dd><p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">_vals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">75</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vals</span> <span class="o">=</span> <span class="n">sql_column</span><span class="p">(</span><span class="s1">&#39;ecutfwc&#39;</span><span class="p">,</span> <span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="n">_vals</span><span class="p">,</span> 
+<span class="gp">... </span>                  <span class="n">fileval_func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;ecutfwc=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="n">v</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">sqltype</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">sqlval</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">fileval</span>
+<span class="go">ecutfwc float 25 ecutfwc=25</span>
+<span class="go">ecutfwc float 50 ecutfwc=50</span>
+<span class="go">ecutfwc float 75 ecutfwc=75</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

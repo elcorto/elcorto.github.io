@@ -25,69 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-common-str-arr">
-<h1>pwtools.common.str_arr<a class="headerlink" href="#pwtools-common-str-arr" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.common.str_arr">
-<code class="descclassname">pwtools.common.</code><code class="descname">str_arr</code><span class="sig-paren">(</span><em>arr</em>, <em>fmt='%.16e'</em>, <em>delim='    '</em>, <em>zero_eps=None</em>, <em>eps=2.220446049250313e-16</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/common.html#str_arr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.common.str_arr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert array <cite>arr</cite> to nice string representation for printing.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>arr</strong> : array_like</p>
-<blockquote>
-<div><p>1d or 2d array</p>
-</div></blockquote>
-<p><strong>fmt</strong> : str</p>
-<blockquote>
-<div><p>format specifier, all entries of arr are formatted with that</p>
-</div></blockquote>
-<p><strong>delim</strong> : str</p>
-<blockquote>
-<div><p>delimiter</p>
-</div></blockquote>
-<p><strong>eps</strong> : float</p>
-<blockquote>
-<div><p>Print values as 0.0 where abs(value) &lt; eps. If eps &lt; 0.0, then disable
-this.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">str</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Notes</p>
-<p>Essentially, we replicate the core part of np.savetxt.</p>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">str_arr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="go">&#39;0.26 0.35 0.97&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">str_arr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="go">&#39;0.13 0.75 0.39\n0.54 0.22 0.66&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">str_arr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="go">0.13 0.75 0.39</span>
-<span class="go">0.54 0.22 0.66</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -151,13 +90,73 @@ this.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-common-str-arr">
+<h1>pwtools.common.str_arr<a class="headerlink" href="#pwtools-common-str-arr" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.common.str_arr">
+<code class="descclassname">pwtools.common.</code><code class="descname">str_arr</code><span class="sig-paren">(</span><em>arr</em>, <em>fmt='%.16e'</em>, <em>delim='    '</em>, <em>zero_eps=None</em>, <em>eps=2.220446049250313e-16</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/common.html#str_arr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.common.str_arr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert array <cite>arr</cite> to nice string representation for printing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>arr</strong> : array_like</p>
+<blockquote>
+<div><p>1d or 2d array</p>
+</div></blockquote>
+<p><strong>fmt</strong> : str</p>
+<blockquote>
+<div><p>format specifier, all entries of arr are formatted with that</p>
+</div></blockquote>
+<p><strong>delim</strong> : str</p>
+<blockquote>
+<div><p>delimiter</p>
+</div></blockquote>
+<p><strong>eps</strong> : float</p>
+<blockquote>
+<div><p>Print values as 0.0 where abs(value) &lt; eps. If eps &lt; 0.0, then disable
+this.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Essentially, we replicate the core part of np.savetxt.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">str_arr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="go">&#39;0.26 0.35 0.97&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">str_arr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="go">&#39;0.13 0.75 0.39\n0.54 0.22 0.66&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">str_arr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="go">0.13 0.75 0.39</span>
+<span class="go">0.54 0.22 0.66</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

@@ -25,65 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-batch-case">
-<h1>pwtools.batch.Case<a class="headerlink" href="#pwtools-batch-case" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="pwtools.batch.Case">
-<em class="property">class </em><code class="descclassname">pwtools.batch.</code><code class="descname">Case</code><span class="sig-paren">(</span><em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Case"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Case" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>General purpose container class, supporting only keywords in the
-constructor. This is essentially the same as a dictionary, just with
-another syntax for attribute access, i.e. <code class="docutils literal notranslate"><span class="pre">case.foo</span></code> instead of
-<code class="docutils literal notranslate"><span class="pre">case['foo']</span></code>.</p>
-<p>Sometimes you want to do more than storing values. Then, you need to
-subclass Case and do stuff in <code class="docutils literal notranslate"><span class="pre">__init__</span></code>. But don’t call
-<code class="docutils literal notranslate"><span class="pre">Case.__init__</span></code> as in</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyCase</span><span class="p">(</span><span class="n">Case</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Case</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span>
-</pre></div>
-</div>
-<p>Instead, define a method called <code class="docutils literal notranslate"><span class="pre">init</span></code>, which is automatically called if
-it exists.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyCase</span><span class="p">(</span><span class="n">Case</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span>
-</pre></div>
-</div>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">case1</span> <span class="o">=</span> <span class="n">Case</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">case2</span> <span class="o">=</span> <span class="n">Case</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">case</span> <span class="ow">in</span> <span class="p">[</span><span class="n">case1</span><span class="p">,</span> <span class="n">case2</span><span class="p">]:</span> <span class="nb">print</span> <span class="n">case</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">case</span><span class="o">.</span><span class="n">y</span>
-</pre></div>
-</div>
-<dl class="method">
-<dt id="pwtools.batch.Case.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Case.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Case.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pwtools.batch.Case.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.batch.Case.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -147,13 +90,69 @@ it exists.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-batch-case">
+<h1>pwtools.batch.Case<a class="headerlink" href="#pwtools-batch-case" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.batch.Case">
+<em class="property">class </em><code class="descclassname">pwtools.batch.</code><code class="descname">Case</code><span class="sig-paren">(</span><em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Case"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Case" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>General purpose container class, supporting only keywords in the
+constructor. This is essentially the same as a dictionary, just with
+another syntax for attribute access, i.e. <code class="docutils literal notranslate"><span class="pre">case.foo</span></code> instead of
+<code class="docutils literal notranslate"><span class="pre">case['foo']</span></code>.</p>
+<p>Sometimes you want to do more than storing values. Then, you need to
+subclass Case and do stuff in <code class="docutils literal notranslate"><span class="pre">__init__</span></code>. But don’t call
+<code class="docutils literal notranslate"><span class="pre">Case.__init__</span></code> as in</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyCase</span><span class="p">(</span><span class="n">Case</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Case</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span>
+</pre></div>
+</div>
+<p>Instead, define a method called <code class="docutils literal notranslate"><span class="pre">init</span></code>, which is automatically called if
+it exists.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyCase</span><span class="p">(</span><span class="n">Case</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span>
+</pre></div>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">case1</span> <span class="o">=</span> <span class="n">Case</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">case2</span> <span class="o">=</span> <span class="n">Case</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">case</span> <span class="ow">in</span> <span class="p">[</span><span class="n">case1</span><span class="p">,</span> <span class="n">case2</span><span class="p">]:</span> <span class="nb">print</span> <span class="n">case</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">case</span><span class="o">.</span><span class="n">y</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="pwtools.batch.Case.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Case.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Case.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pwtools.batch.Case.__weakref__">
+<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.batch.Case.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

@@ -25,68 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-mpl-plot-legend">
-<h1>pwtools.mpl.Plot.legend<a class="headerlink" href="#pwtools-mpl-plot-legend" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
-<dt id="pwtools.mpl.Plot.legend">
-<code class="descclassname">Plot.</code><code class="descname">legend</code><span class="sig-paren">(</span><em>axnames=None</em>, <em>legaxname='ax'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#Plot.legend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.Plot.legend" title="Permalink to this definition">¶</a></dt>
-<dd><p>Collect legend entries from all axes in <cite>axnames</cite> and place legend on
-the axis named with <cite>legaxname</cite>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>axnames</strong> : None or list of axes names, optional</p>
-<blockquote>
-<div><p>e.g. [‘ax’] or [‘ax’, ‘ax2’]. If None (default) then ax.legend() is
-called directly (if legaxname=’ax’).</p>
-</div></blockquote>
-<p><strong>legaxname</strong> : string, optional</p>
-<blockquote class="last">
-<div><p>The name of the axis where the legend is placed on. If you use
-things like twinx(), then you may want to choose top most the axis,
-i.e. the one in the foreground. For example:
-&gt;&gt;&gt; pp = Plot(…)
-&gt;&gt;&gt; pp.ax.plot(…)
-&gt;&gt;&gt; pp.ax2 = pp.ax.twinx()
-&gt;&gt;&gt; pp.ax2.plot(…)
-&gt;&gt;&gt; pp.legend(axnames=[‘ax’, ‘ax2’], legaxname=’ax2’)</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Notes</p>
-<dl class="docutils">
-<dt>This is not completly transparent. This:</dt>
-<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span> <span class="o">=</span> <span class="n">Plot</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-<p>does only behave as ax.legend() if only kwargs are used. For anything
-else, use</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span> 
-</pre></div>
-</div>
-<p>directly.</p>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -152,13 +92,72 @@ else, use</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-mpl-plot-legend">
+<h1>pwtools.mpl.Plot.legend<a class="headerlink" href="#pwtools-mpl-plot-legend" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.mpl.Plot.legend">
+<code class="descclassname">Plot.</code><code class="descname">legend</code><span class="sig-paren">(</span><em>axnames=None</em>, <em>legaxname='ax'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#Plot.legend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.Plot.legend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect legend entries from all axes in <cite>axnames</cite> and place legend on
+the axis named with <cite>legaxname</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>axnames</strong> : None or list of axes names, optional</p>
+<blockquote>
+<div><p>e.g. [‘ax’] or [‘ax’, ‘ax2’]. If None (default) then ax.legend() is
+called directly (if legaxname=’ax’).</p>
+</div></blockquote>
+<p><strong>legaxname</strong> : string, optional</p>
+<blockquote class="last">
+<div><p>The name of the axis where the legend is placed on. If you use
+things like twinx(), then you may want to choose top most the axis,
+i.e. the one in the foreground. For example:
+&gt;&gt;&gt; pp = Plot(…)
+&gt;&gt;&gt; pp.ax.plot(…)
+&gt;&gt;&gt; pp.ax2 = pp.ax.twinx()
+&gt;&gt;&gt; pp.ax2.plot(…)
+&gt;&gt;&gt; pp.legend(axnames=[‘ax’, ‘ax2’], legaxname=’ax2’)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<dl class="docutils">
+<dt>This is not completly transparent. This:</dt>
+<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span> <span class="o">=</span> <span class="n">Plot</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>does only behave as ax.legend() if only kwargs are used. For anything
+else, use</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span> 
+</pre></div>
+</div>
+<p>directly.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

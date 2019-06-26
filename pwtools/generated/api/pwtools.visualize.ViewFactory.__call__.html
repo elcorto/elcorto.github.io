@@ -25,71 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-visualize-viewfactory-call">
-<h1>pwtools.visualize.ViewFactory.__call__<a class="headerlink" href="#pwtools-visualize-viewfactory-call" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
-<dt id="pwtools.visualize.ViewFactory.__call__">
-<code class="descclassname">ViewFactory.</code><code class="descname">__call__</code><span class="sig-paren">(</span><em>obj</em>, <em>logfile=None</em>, <em>structfile=None</em>, <em>disp=False</em>, <em>keepfiles=False</em>, <em>tmpdir='/tmp'</em>, <em>wait=True</em>, <em>bg=False</em>, <em>options=''</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/visualize.html#ViewFactory.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.visualize.ViewFactory.__call__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Call viewer.</p>
-<p>The executed shell command is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">cmd</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">options</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">structfile</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">logfile</span><span class="o">&gt;</span>
-</pre></div>
-</div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>obj</strong> : Structure or Trajectory</p>
-<p><strong>logfile</strong> : str, optional</p>
-<blockquote>
-<div><p>Filename of a logfile for the viewer’s text output.</p>
-</div></blockquote>
-<p><strong>structfile</strong> : str, optional</p>
-<blockquote>
-<div><p>Filename of a file to write the structure to.</p>
-</div></blockquote>
-<p><strong>disp</strong> : bool</p>
-<blockquote>
-<div><p>Display text output (i.e. <cite>logfile</cite>’s content).</p>
-</div></blockquote>
-<p><strong>keepfiles</strong> : bool</p>
-<blockquote>
-<div><p>Keep <cite>structfile</cite> and <cite>logfile</cite> on disk.</p>
-</div></blockquote>
-<p><strong>tmpdir</strong> : str, optional</p>
-<blockquote>
-<div><p>Directory where temp files are written to.</p>
-</div></blockquote>
-<p><strong>wait</strong> : bool, optional</p>
-<blockquote>
-<div><p><cite>wait</cite> passed to common.system(), wait (or not) for command to exit</p>
-</div></blockquote>
-<p><strong>bg</strong> : bool</p>
-<blockquote class="last">
-<div><p>Background mode. If True then this is an alias for <cite>wait=False</cite> +
-<cite>keepfiles=True</cite>. The latter is needed b/c with just <cite>wait=False</cite>,
-temp files will be deleted right after the shell call and the
-viewer program may complain.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -155,13 +92,75 @@ viewer program may complain.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-visualize-viewfactory-call">
+<h1>pwtools.visualize.ViewFactory.__call__<a class="headerlink" href="#pwtools-visualize-viewfactory-call" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.visualize.ViewFactory.__call__">
+<code class="descclassname">ViewFactory.</code><code class="descname">__call__</code><span class="sig-paren">(</span><em>obj</em>, <em>logfile=None</em>, <em>structfile=None</em>, <em>disp=False</em>, <em>keepfiles=False</em>, <em>tmpdir='/tmp'</em>, <em>wait=True</em>, <em>bg=False</em>, <em>options=''</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/visualize.html#ViewFactory.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.visualize.ViewFactory.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call viewer.</p>
+<p>The executed shell command is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">cmd</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">options</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">structfile</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">logfile</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>obj</strong> : Structure or Trajectory</p>
+<p><strong>logfile</strong> : str, optional</p>
+<blockquote>
+<div><p>Filename of a logfile for the viewer’s text output.</p>
+</div></blockquote>
+<p><strong>structfile</strong> : str, optional</p>
+<blockquote>
+<div><p>Filename of a file to write the structure to.</p>
+</div></blockquote>
+<p><strong>disp</strong> : bool</p>
+<blockquote>
+<div><p>Display text output (i.e. <cite>logfile</cite>’s content).</p>
+</div></blockquote>
+<p><strong>keepfiles</strong> : bool</p>
+<blockquote>
+<div><p>Keep <cite>structfile</cite> and <cite>logfile</cite> on disk.</p>
+</div></blockquote>
+<p><strong>tmpdir</strong> : str, optional</p>
+<blockquote>
+<div><p>Directory where temp files are written to.</p>
+</div></blockquote>
+<p><strong>wait</strong> : bool, optional</p>
+<blockquote>
+<div><p><cite>wait</cite> passed to common.system(), wait (or not) for command to exit</p>
+</div></blockquote>
+<p><strong>bg</strong> : bool</p>
+<blockquote class="last">
+<div><p>Background mode. If True then this is an alias for <cite>wait=False</cite> +
+<cite>keepfiles=True</cite>. The latter is needed b/c with just <cite>wait=False</cite>,
+temp files will be deleted right after the shell call and the
+viewer program may complain.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

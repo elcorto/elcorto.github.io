@@ -25,9 +25,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">pwtools</h1>
+    
+  </a>
+</p>
 
-    <div class="document">
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=pwtools&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-ase">Using ASE?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parse-scf-relax-or-md-output">Parse SCF, relax or MD output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#binary-io">Binary IO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#view-a-structure-or-trajectory">View a structure or trajectory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#find-monkhorst-pack-k-grid-sampling-for-a-given-unit-cell">Find Monkhorst-Pack k-grid sampling for a given unit cell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#find-spacegroup">Find spacegroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smoothing-a-signal-or-a-trajectory">Smoothing a signal or a Trajectory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interpolation-and-fitting">Interpolation and fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#avoid-auto-calculation-for-big-md-data">Avoid auto-calculation for big MD data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#work-with-sqlite-databases">Work with SQLite databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#more">More</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="background/index.html">Background, details, special topics</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">&lt;no title&gt;</a><ul>
+      <li>Previous: <a href="install.html" title="previous chapter">Installation</a></li>
+      <li>Next: <a href="background/index.html" title="next chapter">Background, details, special topics</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
@@ -236,11 +309,11 @@ Trajectory, which is just a “time series” of Structures. See
 <img alt="../_images/rbf_1d_opt_False.png" src="../_images/rbf_1d_opt_False.png" />
 <p>2D interpolation of samples of a “mexican hat” function <span class="math notranslate nohighlight">\(\sin(r)/r\)</span>
 (<code class="docutils literal notranslate"><span class="pre">examples/rbf/surface.py</span></code>), also using <a class="reference internal" href="../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a>. See
-<a class="reference internal" href="background/rbf.html#rbf"><span class="std std-ref">Radial Basis Functions Networks for interpolation or fitting of N-dim data points</span></a> for more. Similar to the <a class="reference internal" href="../generated/api/pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolyFit</span></code></a> example above:</p>
+<a class="reference internal" href="background/rbf.html#rbf"><span class="std std-ref">Radial Basis Function Networks for interpolation or fitting of N-dim data</span></a> for more. Similar to the <a class="reference internal" href="../generated/api/pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolyFit</span></code></a> example above:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># same as</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#   num.Interpol2D(dd=dd, what=&#39;rbf_multi&#39;)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#   num.Interpol2D(dd.XZ, dd.zz, what=&#39;rbf_multi&#39;)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">=</span><span class="n">rbf</span><span class="o">.</span><span class="n">Rbf</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">XZ</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">zz</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#   num.Interpol2D(dd.XY, dd.zz, what=&#39;rbf_multi&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">=</span><span class="n">rbf</span><span class="o">.</span><span class="n">Rbf</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">XY</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">zz</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/rbf_2d_surface_opt_False.png" src="../_images/rbf_2d_surface_opt_False.png" />
@@ -299,87 +372,13 @@ implements (mind also base classes, best is to use Tab completion in ipython:
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<p class="logo">
-  <a href="../index.html">
-    <img class="logo" src="../_static/logo.png" alt="Logo"/>
-    
-    <h1 class="logo logo-name">pwtools</h1>
-    
-  </a>
-</p>
-
-
-
-
-
-
-<p>
-<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=pwtools&type=watch&count=true&size=large&v=2"
-  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
-</p>
-
-
-
-
-
-<h3>Navigation</h3>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../generated/api/index.html">API Reference</a></li>
-</ul>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#using-ase">Using ASE?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#parse-scf-relax-or-md-output">Parse SCF, relax or MD output</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#binary-io">Binary IO</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#view-a-structure-or-trajectory">View a structure or trajectory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#find-monkhorst-pack-k-grid-sampling-for-a-given-unit-cell">Find Monkhorst-Pack k-grid sampling for a given unit cell</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#find-spacegroup">Find spacegroup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#smoothing-a-signal-or-a-trajectory">Smoothing a signal or a Trajectory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#interpolation-and-fitting">Interpolation and fitting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#avoid-auto-calculation-for-big-md-data">Avoid auto-calculation for big MD data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#work-with-sqlite-databases">Work with SQLite databases</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#more">More</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="background/index.html">Background, details, special topics</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">&lt;no title&gt;</a><ul>
-      <li>Previous: <a href="install.html" title="previous chapter">Installation</a></li>
-      <li>Next: <a href="background/index.html" title="next chapter">Background, details, special topics</a></li>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

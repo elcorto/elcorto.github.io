@@ -25,68 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-num-sliceput">
-<h1>pwtools.num.sliceput<a class="headerlink" href="#pwtools-num-sliceput" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.num.sliceput">
-<code class="descclassname">pwtools.num.</code><code class="descname">sliceput</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>sl</em>, <em>axis=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#sliceput"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.sliceput" title="Permalink to this definition">¶</a></dt>
-<dd><p>The equivalent of a[&lt;slice or index&gt;]=b, but accepts slices objects
-instead of array indices or fancy indexing (e.g. a[:,1:]).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : numpy ndarray</p>
-<p><strong>sl</strong> : slice object, list or tuple of slice objects</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>axis=&lt;int&gt;</dt>
-<dd><p class="first last">one slice object for <em>that</em> axis</p>
-</dd>
-<dt>axis=None </dt>
-<dd><p class="first last"><cite>sl</cite> is a list or tuple of slice objects, one for each axis. 
-It must index the whole array, i.e. len(sl) == len(a.shape).</p>
-</dd>
-</dl>
-</div></blockquote>
-<p><strong>axis</strong> : {None, int}</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The modified <cite>a</cite>.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">s_</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
-<span class="go">array([[  0, 100, 100,   3,   4,   5],</span>
-<span class="go">       [  6, 100, 100,   9,  10,  11]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sliceput</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="n">s_</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="go">array([[  0, 200, 200,   3,   4,   5],</span>
-<span class="go">       [  6, 200, 200,   9,  10,  11]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sliceput</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="n">s_</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
-<span class="go">array([[  0, 300, 300,   3,   4,   5],</span>
-<span class="go">       [  6, 300, 300,   9,  10,  11]])</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -150,13 +90,72 @@ It must index the whole array, i.e. len(sl) == len(a.shape).</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-num-sliceput">
+<h1>pwtools.num.sliceput<a class="headerlink" href="#pwtools-num-sliceput" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.num.sliceput">
+<code class="descclassname">pwtools.num.</code><code class="descname">sliceput</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>sl</em>, <em>axis=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#sliceput"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.sliceput" title="Permalink to this definition">¶</a></dt>
+<dd><p>The equivalent of a[&lt;slice or index&gt;]=b, but accepts slices objects
+instead of array indices or fancy indexing (e.g. a[:,1:]).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : numpy ndarray</p>
+<p><strong>sl</strong> : slice object, list or tuple of slice objects</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>axis=&lt;int&gt;</dt>
+<dd><p class="first last">one slice object for <em>that</em> axis</p>
+</dd>
+<dt>axis=None </dt>
+<dd><p class="first last"><cite>sl</cite> is a list or tuple of slice objects, one for each axis. 
+It must index the whole array, i.e. len(sl) == len(a.shape).</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>axis</strong> : {None, int}</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The modified <cite>a</cite>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">s_</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([[  0, 100, 100,   3,   4,   5],</span>
+<span class="go">       [  6, 100, 100,   9,  10,  11]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sliceput</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="n">s_</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">array([[  0, 200, 200,   3,   4,   5],</span>
+<span class="go">       [  6, 200, 200,   9,  10,  11]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sliceput</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="n">s_</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+<span class="go">array([[  0, 300, 300,   3,   4,   5],</span>
+<span class="go">       [  6, 300, 300,   9,  10,  11]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

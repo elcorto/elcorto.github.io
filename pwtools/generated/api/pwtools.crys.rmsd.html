@@ -25,58 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-crys-rmsd">
-<h1>pwtools.crys.rmsd<a class="headerlink" href="#pwtools-crys-rmsd" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.crys.rmsd">
-<code class="descclassname">pwtools.crys.</code><code class="descname">rmsd</code><span class="sig-paren">(</span><em>traj</em>, <em>ref_idx=0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#rmsd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.rmsd" title="Permalink to this definition">¶</a></dt>
-<dd><p>Root mean square distance over an MD trajectory.</p>
-<p>The normalization constant is the number of atoms. Takes the RMS of the
-difference of <em>cartesian</em> coords at each time step. Only meaningful if
-<code class="docutils literal notranslate"><span class="pre">tr.coords</span></code> are <em>not</em> pbc-wrapped.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>traj</strong> : Trajectory object</p>
-<p><strong>ref_idx</strong> : int, optional</p>
-<blockquote>
-<div><p>time index of the reference structure (i.e. 0 to compare with the
-start structure, -1 for the last along <cite>axis</cite>).</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>rmsd</strong> : 1d array (traj.nstep,)</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># We only need traj.{coords,nstep,timeaxis}, no symbols, cell, ...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">traj</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">Trajectory</span><span class="p">(</span><span class="n">coords</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The RMSD w.r.t. the start structure. See when the structure starts to</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># &quot;converge&quot; to a stable mean configuration during an MD.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rmsd</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">ref_idx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># For a relaxation run, the RMSD w.r.t. the final converged structure. The</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># RMSD should converge to zero here.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rmsd</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">ref_idx</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -140,13 +90,62 @@ start structure, -1 for the last along <cite>axis</cite>).</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-crys-rmsd">
+<h1>pwtools.crys.rmsd<a class="headerlink" href="#pwtools-crys-rmsd" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.crys.rmsd">
+<code class="descclassname">pwtools.crys.</code><code class="descname">rmsd</code><span class="sig-paren">(</span><em>traj</em>, <em>ref_idx=0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#rmsd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.rmsd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Root mean square distance over an MD trajectory.</p>
+<p>The normalization constant is the number of atoms. Takes the RMS of the
+difference of <em>cartesian</em> coords at each time step. Only meaningful if
+<code class="docutils literal notranslate"><span class="pre">tr.coords</span></code> are <em>not</em> pbc-wrapped.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>traj</strong> : Trajectory object</p>
+<p><strong>ref_idx</strong> : int, optional</p>
+<blockquote>
+<div><p>time index of the reference structure (i.e. 0 to compare with the
+start structure, -1 for the last along <cite>axis</cite>).</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>rmsd</strong> : 1d array (traj.nstep,)</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># We only need traj.{coords,nstep,timeaxis}, no symbols, cell, ...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">traj</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">Trajectory</span><span class="p">(</span><span class="n">coords</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The RMSD w.r.t. the start structure. See when the structure starts to</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># &quot;converge&quot; to a stable mean configuration during an MD.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmsd</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">ref_idx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># For a relaxation run, the RMSD w.r.t. the final converged structure. The</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># RMSD should converge to zero here.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmsd</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">ref_idx</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

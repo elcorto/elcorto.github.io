@@ -25,65 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-decorators-open-and-close">
-<h1>pwtools.decorators.open_and_close<a class="headerlink" href="#pwtools-decorators-open-and-close" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.decorators.open_and_close">
-<code class="descclassname">pwtools.decorators.</code><code class="descname">open_and_close</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/decorators.html#open_and_close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.decorators.open_and_close" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorator for all parsing functions that originally got a file name and
-went thru the whole file b/c the things that they search can occur in
-arbitrary order.
-These functions did</p>
-<blockquote>
-<div><ul class="simple">
-<li>open the file</li>
-<li>go thru</li>
-<li>close file</li>
-</ul>
-</div></blockquote>
-<p>Now, they all expect file objects, as first argument. This decorator
-assures that the first arg to <cite>func</cite> is a file object.</p>
-<p>Cases:</p>
-<ul class="simple">
-<li>1st arg is a fileobject: do nothig, just call function</li>
-<li><dl class="first docutils">
-<dt>1st arg is a file name:</dt>
-<dd><ul class="first last">
-<li>open file</li>
-<li>call func</li>
-<li>close file</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@open_and_close</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">file_txt_content</span><span class="p">(</span><span class="n">fh</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="c1"># fh is a file object</span>
-<span class="gp">... </span>    <span class="k">return</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fh</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;my_file.txt&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">file_txt_content</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">file_txt_content</span><span class="p">(</span><span class="s1">&#39;my_file.txt&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -147,13 +90,69 @@ assures that the first arg to <cite>func</cite> is a file object.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-decorators-open-and-close">
+<h1>pwtools.decorators.open_and_close<a class="headerlink" href="#pwtools-decorators-open-and-close" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.decorators.open_and_close">
+<code class="descclassname">pwtools.decorators.</code><code class="descname">open_and_close</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/decorators.html#open_and_close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.decorators.open_and_close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator for all parsing functions that originally got a file name and
+went thru the whole file b/c the things that they search can occur in
+arbitrary order.
+These functions did</p>
+<blockquote>
+<div><ul class="simple">
+<li>open the file</li>
+<li>go thru</li>
+<li>close file</li>
+</ul>
+</div></blockquote>
+<p>Now, they all expect file objects, as first argument. This decorator
+assures that the first arg to <cite>func</cite> is a file object.</p>
+<p>Cases:</p>
+<ul class="simple">
+<li>1st arg is a fileobject: do nothig, just call function</li>
+<li><dl class="first docutils">
+<dt>1st arg is a file name:</dt>
+<dd><ul class="first last">
+<li>open file</li>
+<li>call func</li>
+<li>close file</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@open_and_close</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">file_txt_content</span><span class="p">(</span><span class="n">fh</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="c1"># fh is a file object</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fh</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;my_file.txt&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">file_txt_content</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">file_txt_content</span><span class="p">(</span><span class="s1">&#39;my_file.txt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

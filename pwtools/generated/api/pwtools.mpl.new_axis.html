@@ -25,67 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-mpl-new-axis">
-<h1>pwtools.mpl.new_axis<a class="headerlink" href="#pwtools-mpl-new-axis" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.mpl.new_axis">
-<code class="descclassname">pwtools.mpl.</code><code class="descname">new_axis</code><span class="sig-paren">(</span><em>fig</em>, <em>hostax</em>, <em>off=50</em>, <em>loc='bottom'</em>, <em>ticks=None</em>, <em>wsadd=0.1</em>, <em>label=''</em>, <em>sharex=False</em>, <em>sharey=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#new_axis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.new_axis" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make a new axis line using mpl_toolkits.axes_grid’s SubplotHost and
-ParasiteAxes. The new axis line will be an instance of ParasiteAxes
-attached to <cite>hostax</cite>. You can do twinx()/twiny() type axis (off=0) or
-completely free-standing axis lines (off &gt; 0).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>fig</strong> : mpl Figure</p>
-<p><strong>hostax</strong> : Instance of matplotlib.axes.HostAxesSubplot. This is the subplot</p>
-<blockquote>
-<div><p>of the figure <cite>fig</cite> w.r.t which all new axis lines are placed. See
-make_axes_grid_fig().</p>
-</div></blockquote>
-<p><strong>off</strong> : offset in points, used with parax.get_grid_helper().new_fixed_axis</p>
-<p><strong>loc</strong> : one of ‘left’, ‘right’, ‘top’, ‘bottom’, where to place the new axis</p>
-<blockquote>
-<div><p>line</p>
-</div></blockquote>
-<p><strong>ticks</strong> : sequence of ticks (numbers)</p>
-<p><strong>wsadd</strong> : Whitespace to add at the location <cite>loc</cite> to make space for the new</p>
-<blockquote>
-<div><p>axis line (only useful if off &gt; 0). The number is a relative unit
-and is used to change the bounding box: hostax.get_position().</p>
-</div></blockquote>
-<p><strong>label</strong> : str, xlabel (ylabel) for ‘top’,’bottom’ (‘left’, ‘right’)</p>
-<p><strong>sharex, sharey</strong> : bool, share xaxis (yaxis) with <cite>hostax</cite></p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">(fig, hostax, parax)</p>
-<p><strong>fig</strong> : the Figure</p>
-<p><strong>hostax</strong> : the hostax</p>
-<p class="last"><strong>parax</strong> : the new ParasiteAxes instance</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Notes</p>
-<ul class="simple">
-<li>The sharex/sharey thing may not work correctly.</li>
-</ul>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -149,13 +90,71 @@ and is used to change the bounding box: hostax.get_position().</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-mpl-new-axis">
+<h1>pwtools.mpl.new_axis<a class="headerlink" href="#pwtools-mpl-new-axis" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.mpl.new_axis">
+<code class="descclassname">pwtools.mpl.</code><code class="descname">new_axis</code><span class="sig-paren">(</span><em>fig</em>, <em>hostax</em>, <em>off=50</em>, <em>loc='bottom'</em>, <em>ticks=None</em>, <em>wsadd=0.1</em>, <em>label=''</em>, <em>sharex=False</em>, <em>sharey=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#new_axis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.new_axis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a new axis line using mpl_toolkits.axes_grid’s SubplotHost and
+ParasiteAxes. The new axis line will be an instance of ParasiteAxes
+attached to <cite>hostax</cite>. You can do twinx()/twiny() type axis (off=0) or
+completely free-standing axis lines (off &gt; 0).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>fig</strong> : mpl Figure</p>
+<p><strong>hostax</strong> : Instance of matplotlib.axes.HostAxesSubplot. This is the subplot</p>
+<blockquote>
+<div><p>of the figure <cite>fig</cite> w.r.t which all new axis lines are placed. See
+make_axes_grid_fig().</p>
+</div></blockquote>
+<p><strong>off</strong> : offset in points, used with parax.get_grid_helper().new_fixed_axis</p>
+<p><strong>loc</strong> : one of ‘left’, ‘right’, ‘top’, ‘bottom’, where to place the new axis</p>
+<blockquote>
+<div><p>line</p>
+</div></blockquote>
+<p><strong>ticks</strong> : sequence of ticks (numbers)</p>
+<p><strong>wsadd</strong> : Whitespace to add at the location <cite>loc</cite> to make space for the new</p>
+<blockquote>
+<div><p>axis line (only useful if off &gt; 0). The number is a relative unit
+and is used to change the bounding box: hostax.get_position().</p>
+</div></blockquote>
+<p><strong>label</strong> : str, xlabel (ylabel) for ‘top’,’bottom’ (‘left’, ‘right’)</p>
+<p><strong>sharex, sharey</strong> : bool, share xaxis (yaxis) with <cite>hostax</cite></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">(fig, hostax, parax)</p>
+<p><strong>fig</strong> : the Figure</p>
+<p><strong>hostax</strong> : the hostax</p>
+<p class="last"><strong>parax</strong> : the new ParasiteAxes instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li>The sharex/sharey thing may not work correctly.</li>
+</ul>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

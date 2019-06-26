@@ -25,57 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-thermo-gibbs-calc-g">
-<h1>pwtools.thermo.Gibbs.calc_G<a class="headerlink" href="#pwtools-thermo-gibbs-calc-g" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
-<dt id="pwtools.thermo.Gibbs.calc_G">
-<code class="descclassname">Gibbs.</code><code class="descname">calc_G</code><span class="sig-paren">(</span><em>ret=None</em>, <em>calc_all=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#Gibbs.calc_G"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.Gibbs.calc_G" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gibbs free energy and related properties on T-P grid. 
-Uses self.fitfunc.</p>
-<p>Needs <a class="reference internal" href="pwtools.thermo.Gibbs.calc_F.html#pwtools.thermo.Gibbs.calc_F" title="pwtools.thermo.Gibbs.calc_F"><code class="xref py py-meth docutils literal notranslate"><span class="pre">calc_F()</span></code></a> results. Called here if not provided.
-Also calls <a class="reference internal" href="pwtools.thermo.Gibbs.calc_H.html#pwtools.thermo.Gibbs.calc_H" title="pwtools.thermo.Gibbs.calc_H"><code class="xref py py-meth docutils literal notranslate"><span class="pre">calc_H()</span></code></a> if <cite>calc_all</cite> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, i.e. this is the
-you-get-it-all method and the only one you sould really use.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ret</strong> : dict, optional</p>
-<blockquote>
-<div><p>Result from calc_F(). If None then calc_F() is called here. Can be
-used to add additional contributions to F, such as electronic
-entropy.</p>
-</div></blockquote>
-<p><strong>calc_all</strong> : bool</p>
-<blockquote>
-<div><p>Calcluate thermal properties from G(ax0,ax1,ax2,T,P): Cp,
-alpha_x, B. If False, then calculate and store only G.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ret</strong> : dict</p>
-<blockquote class="last">
-<div><p>All keys starting with the <code class="docutils literal notranslate"><span class="pre">/#opt</span></code> prefix are values obtained
-from minimizing G(ax0,ax1,ax2,T,P) w.r.t. (ax0,ax1,ax2).</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -141,13 +92,61 @@ from minimizing G(ax0,ax1,ax2,T,P) w.r.t. (ax0,ax1,ax2).</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-thermo-gibbs-calc-g">
+<h1>pwtools.thermo.Gibbs.calc_G<a class="headerlink" href="#pwtools-thermo-gibbs-calc-g" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.thermo.Gibbs.calc_G">
+<code class="descclassname">Gibbs.</code><code class="descname">calc_G</code><span class="sig-paren">(</span><em>ret=None</em>, <em>calc_all=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#Gibbs.calc_G"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.Gibbs.calc_G" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gibbs free energy and related properties on T-P grid. 
+Uses self.fitfunc.</p>
+<p>Needs <a class="reference internal" href="pwtools.thermo.Gibbs.calc_F.html#pwtools.thermo.Gibbs.calc_F" title="pwtools.thermo.Gibbs.calc_F"><code class="xref py py-meth docutils literal notranslate"><span class="pre">calc_F()</span></code></a> results. Called here if not provided.
+Also calls <a class="reference internal" href="pwtools.thermo.Gibbs.calc_H.html#pwtools.thermo.Gibbs.calc_H" title="pwtools.thermo.Gibbs.calc_H"><code class="xref py py-meth docutils literal notranslate"><span class="pre">calc_H()</span></code></a> if <cite>calc_all</cite> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, i.e. this is the
+you-get-it-all method and the only one you sould really use.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ret</strong> : dict, optional</p>
+<blockquote>
+<div><p>Result from calc_F(). If None then calc_F() is called here. Can be
+used to add additional contributions to F, such as electronic
+entropy.</p>
+</div></blockquote>
+<p><strong>calc_all</strong> : bool</p>
+<blockquote>
+<div><p>Calcluate thermal properties from G(ax0,ax1,ax2,T,P): Cp,
+alpha_x, B. If False, then calculate and store only G.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ret</strong> : dict</p>
+<blockquote class="last">
+<div><p>All keys starting with the <code class="docutils literal notranslate"><span class="pre">/#opt</span></code> prefix are values obtained
+from minimizing G(ax0,ax1,ax2,T,P) w.r.t. (ax0,ax1,ax2).</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

@@ -25,50 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-eos-externeos-get-min">
-<h1>pwtools.eos.ExternEOS.get_min<a class="headerlink" href="#pwtools-eos-externeos-get-min" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
-<dt id="pwtools.eos.ExternEOS.get_min">
-<code class="descclassname">ExternEOS.</code><code class="descname">get_min</code><span class="sig-paren">(</span><em>behave='new'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/eos.html#ExternEOS.get_min"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.eos.ExternEOS.get_min" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate properites at energy minimum of E(V).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>behave</strong> : str, optional, {‘new’, ‘old’}</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>behave = ‘new’</strong> : return a dict {v0, e0, p0, b0}</p>
-<blockquote>
-<div><p>volume, energy, pressure, bulk modulus at energy min</p>
-</div></blockquote>
-<p class="last"><strong>behave = ‘old’</strong> : array of length 4 [v0, e0, b0, p0]</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Notes</p>
-<p>We have two sources for pressure: (a) The code which calculated E(V),
-i.e. usually some ab initio code (PWscf, …). (b) Calculated pressure
-P=-dE/dV from the EOS fit to E(V). If the (a) pressure at the E(V)
-minimum is not very close to zero (say ~ 1e-10), then your E-V data is
-incorrect. Usually, this is because of poorly converged calculations
-(low cufoff / bad basis set, too few k-points).</p>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -134,13 +92,54 @@ incorrect. Usually, this is because of poorly converged calculations
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-eos-externeos-get-min">
+<h1>pwtools.eos.ExternEOS.get_min<a class="headerlink" href="#pwtools-eos-externeos-get-min" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.eos.ExternEOS.get_min">
+<code class="descclassname">ExternEOS.</code><code class="descname">get_min</code><span class="sig-paren">(</span><em>behave='new'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/eos.html#ExternEOS.get_min"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.eos.ExternEOS.get_min" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate properites at energy minimum of E(V).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>behave</strong> : str, optional, {‘new’, ‘old’}</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>behave = ‘new’</strong> : return a dict {v0, e0, p0, b0}</p>
+<blockquote>
+<div><p>volume, energy, pressure, bulk modulus at energy min</p>
+</div></blockquote>
+<p class="last"><strong>behave = ‘old’</strong> : array of length 4 [v0, e0, b0, p0]</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>We have two sources for pressure: (a) The code which calculated E(V),
+i.e. usually some ab initio code (PWscf, …). (b) Calculated pressure
+P=-dE/dV from the EOS fit to E(V). If the (a) pressure at the E(V)
+minimum is not very close to zero (say ~ 1e-10), then your E-V data is
+incorrect. Usually, this is because of poorly converged calculations
+(low cufoff / bad basis set, too few k-points).</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

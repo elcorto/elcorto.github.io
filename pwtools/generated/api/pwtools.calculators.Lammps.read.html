@@ -25,42 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-calculators-lammps-read">
-<h1>pwtools.calculators.Lammps.read<a class="headerlink" href="#pwtools-calculators-lammps-read" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
-<dt id="pwtools.calculators.Lammps.read">
-<code class="descclassname">Lammps.</code><code class="descname">read</code><span class="sig-paren">(</span><em>label</em><span class="sig-paren">)</span><a class="headerlink" href="#pwtools.calculators.Lammps.read" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read atoms, parameters and calculated properties from output file.</p>
-<p>Read result from self.label file.  Raise ReadError if the file
-is not there.  If the file is corrupted or contains an error
-message from the calculation, a ReadError should also be
-raised.  In case of succes, these attributes must set:</p>
-<dl class="docutils">
-<dt>atoms: Atoms object</dt>
-<dd>The state of the atoms from last calculation.</dd>
-<dt>parameters: Parameters object</dt>
-<dd>The parameter dictionary.</dd>
-<dt>results: dict</dt>
-<dd>Calculated properties like energy and forces.</dd>
-</dl>
-<p>The FileIOCalculator.read() method will typically read atoms
-and parameters and get the results dict by calling the
-read_results() method.</p>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -126,13 +92,46 @@ read_results() method.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-calculators-lammps-read">
+<h1>pwtools.calculators.Lammps.read<a class="headerlink" href="#pwtools-calculators-lammps-read" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.calculators.Lammps.read">
+<code class="descclassname">Lammps.</code><code class="descname">read</code><span class="sig-paren">(</span><em>label</em><span class="sig-paren">)</span><a class="headerlink" href="#pwtools.calculators.Lammps.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read atoms, parameters and calculated properties from output file.</p>
+<p>Read result from self.label file.  Raise ReadError if the file
+is not there.  If the file is corrupted or contains an error
+message from the calculation, a ReadError should also be
+raised.  In case of succes, these attributes must set:</p>
+<dl class="docutils">
+<dt>atoms: Atoms object</dt>
+<dd>The state of the atoms from last calculation.</dd>
+<dt>parameters: Parameters object</dt>
+<dd>The parameter dictionary.</dd>
+<dt>results: dict</dt>
+<dd>Calculated properties like energy and forces.</dd>
+</dl>
+<p>The FileIOCalculator.read() method will typically read atoms
+and parameters and get the results dict by calling the
+read_results() method.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

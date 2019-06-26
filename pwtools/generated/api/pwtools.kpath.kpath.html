@@ -25,56 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-kpath-kpath">
-<h1>pwtools.kpath.kpath<a class="headerlink" href="#pwtools-kpath-kpath" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.kpath.kpath">
-<code class="descclassname">pwtools.kpath.</code><code class="descname">kpath</code><span class="sig-paren">(</span><em>vecs</em>, <em>N=10</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/kpath.html#kpath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.kpath.kpath" title="Permalink to this definition">¶</a></dt>
-<dd><p>Simple k-path. Given a set of K vectors (special points in the BZ),
-generate a “fine path” of N*(K-1)+1 vectors along the path defined by the
-vectors in <cite>vecs</cite>. The K vectors are the “vertices” of the k-path and we
-construct the fine path by connecting the vertices by their distance
-vectors and placing N points on each connection edge.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>vecs</strong> : array (K,M)</p>
-<blockquote>
-<div><p>Array with K vectors of the Brillouin zone (so M = 3 usually :)</p>
-</div></blockquote>
-<p><strong>N</strong> : int</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>new_vecs</strong> : array (N*(K-1)+1,M)</p>
-<blockquote class="last">
-<div><p>Array with a fine grid of vectors along the path 
-defined by <cite>vecs</cite>.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Notes</p>
-<p>This is the simplest method one can think of. Points on the “fine path” are
-not equally distributed. The distance between 2 vertices (k-points) doesn’t
-matter, you will always get N points between them. For a smooth dispersion
-plot, you need N=20 or more.</p>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -138,13 +90,60 @@ plot, you need N=20 or more.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-kpath-kpath">
+<h1>pwtools.kpath.kpath<a class="headerlink" href="#pwtools-kpath-kpath" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.kpath.kpath">
+<code class="descclassname">pwtools.kpath.</code><code class="descname">kpath</code><span class="sig-paren">(</span><em>vecs</em>, <em>N=10</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/kpath.html#kpath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.kpath.kpath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple k-path. Given a set of K vectors (special points in the BZ),
+generate a “fine path” of N*(K-1)+1 vectors along the path defined by the
+vectors in <cite>vecs</cite>. The K vectors are the “vertices” of the k-path and we
+construct the fine path by connecting the vertices by their distance
+vectors and placing N points on each connection edge.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>vecs</strong> : array (K,M)</p>
+<blockquote>
+<div><p>Array with K vectors of the Brillouin zone (so M = 3 usually :)</p>
+</div></blockquote>
+<p><strong>N</strong> : int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>new_vecs</strong> : array (N*(K-1)+1,M)</p>
+<blockquote class="last">
+<div><p>Array with a fine grid of vectors along the path 
+defined by <cite>vecs</cite>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>This is the simplest method one can think of. Points on the “fine path” are
+not equally distributed. The distance between 2 vertices (k-points) doesn’t
+matter, you will always get N points between them. For a smooth dispersion
+plot, you need N=20 or more.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

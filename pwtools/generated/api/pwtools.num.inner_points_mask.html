@@ -25,45 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-num-inner-points-mask">
-<h1>pwtools.num.inner_points_mask<a class="headerlink" href="#pwtools-num-inner-points-mask" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.num.inner_points_mask">
-<code class="descclassname">pwtools.num.</code><code class="descname">inner_points_mask</code><span class="sig-paren">(</span><em>points</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#inner_points_mask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.inner_points_mask" title="Permalink to this definition">¶</a></dt>
-<dd><p>Mask array into <cite>points</cite> where <code class="docutils literal notranslate"><span class="pre">points[msk]</span></code> are all “inner” points,
-i.e. <cite>points</cite> with one level of edge points removed. For 1D, this is simply
-points[1:-1,:] (assuming ordered points). For ND, we calculate and remove
-the convex hull.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>points</strong> : nd array (npoints, ndim)</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>msk</strong> : (npoints, ndim)</p>
-<blockquote class="last">
-<div><p>Bool array.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -127,13 +90,49 @@ the convex hull.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-num-inner-points-mask">
+<h1>pwtools.num.inner_points_mask<a class="headerlink" href="#pwtools-num-inner-points-mask" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.num.inner_points_mask">
+<code class="descclassname">pwtools.num.</code><code class="descname">inner_points_mask</code><span class="sig-paren">(</span><em>points</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#inner_points_mask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.inner_points_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mask array into <cite>points</cite> where <code class="docutils literal notranslate"><span class="pre">points[msk]</span></code> are all “inner” points,
+i.e. <cite>points</cite> with one level of edge points removed. For 1D, this is simply
+points[1:-1,:] (assuming ordered points). For ND, we calculate and remove
+the convex hull.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>points</strong> : nd array (npoints, ndim)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>msk</strong> : (npoints, ndim)</p>
+<blockquote class="last">
+<div><p>Bool array.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

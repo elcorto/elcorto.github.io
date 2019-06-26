@@ -25,60 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-pwscf-read-dyn">
-<h1>pwtools.pwscf.read_dyn<a class="headerlink" href="#pwtools-pwscf-read-dyn" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.pwscf.read_dyn">
-<code class="descclassname">pwtools.pwscf.</code><code class="descname">read_dyn</code><span class="sig-paren">(</span><em>filename</em>, <em>natoms=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#read_dyn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.read_dyn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read one dynamical matrix file (for 1 qpoint) produced by <code class="docutils literal notranslate"><span class="pre">ph.x</span></code> and
-extract the same as <a class="reference internal" href="pwtools.pwscf.read_matdyn_modes.html#pwtools.pwscf.read_matdyn_modes" title="pwtools.pwscf.read_matdyn_modes"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_matdyn_modes()</span></code></a> for this qpoint only.</p>
-<p>All arrays have one dim less compared to <a class="reference internal" href="pwtools.pwscf.read_matdyn_modes.html#pwtools.pwscf.read_matdyn_modes" title="pwtools.pwscf.read_matdyn_modes"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_matdyn_modes()</span></code></a>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>filename</strong> : str</p>
-<blockquote>
-<div><p>Name of dyn file. Example: “ph.dyn3” for qpoint 3.</p>
-</div></blockquote>
-<p><strong>natoms</strong> : int</p>
-<blockquote>
-<div><p>number of atoms in the cell (used for nmodes=3*natoms only)</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">qpoints, freqs, vecs</p>
-<p><strong>qpoints</strong> : 1d array (3,)</p>
-<blockquote>
-<div><p>The qpoint of the dyn file.</p>
-</div></blockquote>
-<p><strong>freqs</strong> : 1d array, (nmodes,) where nmodes = 3*natoms</p>
-<blockquote>
-<div><p>3*natoms phonon frequencies in [cm^-1] at the q-point.</p>
-</div></blockquote>
-<p><strong>vecs</strong> : 3d complex array (nmodes, natoms, 3)</p>
-<blockquote class="last">
-<div><p>Complex eigenvectors of the dynamical matrix for the q-point.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -142,13 +90,64 @@ extract the same as <a class="reference internal" href="pwtools.pwscf.read_matdy
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-pwscf-read-dyn">
+<h1>pwtools.pwscf.read_dyn<a class="headerlink" href="#pwtools-pwscf-read-dyn" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.pwscf.read_dyn">
+<code class="descclassname">pwtools.pwscf.</code><code class="descname">read_dyn</code><span class="sig-paren">(</span><em>filename</em>, <em>natoms=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#read_dyn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.read_dyn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read one dynamical matrix file (for 1 qpoint) produced by <code class="docutils literal notranslate"><span class="pre">ph.x</span></code> and
+extract the same as <a class="reference internal" href="pwtools.pwscf.read_matdyn_modes.html#pwtools.pwscf.read_matdyn_modes" title="pwtools.pwscf.read_matdyn_modes"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_matdyn_modes()</span></code></a> for this qpoint only.</p>
+<p>All arrays have one dim less compared to <a class="reference internal" href="pwtools.pwscf.read_matdyn_modes.html#pwtools.pwscf.read_matdyn_modes" title="pwtools.pwscf.read_matdyn_modes"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_matdyn_modes()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>filename</strong> : str</p>
+<blockquote>
+<div><p>Name of dyn file. Example: “ph.dyn3” for qpoint 3.</p>
+</div></blockquote>
+<p><strong>natoms</strong> : int</p>
+<blockquote>
+<div><p>number of atoms in the cell (used for nmodes=3*natoms only)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">qpoints, freqs, vecs</p>
+<p><strong>qpoints</strong> : 1d array (3,)</p>
+<blockquote>
+<div><p>The qpoint of the dyn file.</p>
+</div></blockquote>
+<p><strong>freqs</strong> : 1d array, (nmodes,) where nmodes = 3*natoms</p>
+<blockquote>
+<div><p>3*natoms phonon frequencies in [cm^-1] at the q-point.</p>
+</div></blockquote>
+<p><strong>vecs</strong> : 3d complex array (nmodes, natoms, 3)</p>
+<blockquote class="last">
+<div><p>Complex eigenvectors of the dynamical matrix for the q-point.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

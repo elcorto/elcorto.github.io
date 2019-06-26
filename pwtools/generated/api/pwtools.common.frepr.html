@@ -25,52 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-common-frepr">
-<h1>pwtools.common.frepr<a class="headerlink" href="#pwtools-common-frepr" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.common.frepr">
-<code class="descclassname">pwtools.common.</code><code class="descname">frepr</code><span class="sig-paren">(</span><em>var</em>, <em>ffmt='%.16e'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/common.html#frepr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.common.frepr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Similar to Python’s repr(), but return floats formated with <cite>ffmt</cite> if
-<cite>var</cite> is a float.</p>
-<p>If <cite>var</cite> is a string, e.g. ‘lala’, it returns ‘lala’ not “‘lala’” as
-Python’s repr() does.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>var</strong> : almost anything (str, None, int, float)</p>
-<p class="last"><strong>ffmt</strong> : format specifier for float values</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">frepr</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="go">&#39;1&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">frepr</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span> 
-<span class="go">&#39;1.000000000000000e+00&#39; </span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">frepr</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-<span class="go">&#39;None&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Python&#39;s repr() does: &#39;abc&#39; -&gt; &quot;&#39;abc&#39;&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">frepr</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>
-<span class="go">&#39;abc&#39; </span>
-</pre></div>
-</div>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -134,13 +90,56 @@ Python’s repr() does.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-common-frepr">
+<h1>pwtools.common.frepr<a class="headerlink" href="#pwtools-common-frepr" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.common.frepr">
+<code class="descclassname">pwtools.common.</code><code class="descname">frepr</code><span class="sig-paren">(</span><em>var</em>, <em>ffmt='%.16e'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/common.html#frepr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.common.frepr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Similar to Python’s repr(), but return floats formated with <cite>ffmt</cite> if
+<cite>var</cite> is a float.</p>
+<p>If <cite>var</cite> is a string, e.g. ‘lala’, it returns ‘lala’ not “‘lala’” as
+Python’s repr() does.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>var</strong> : almost anything (str, None, int, float)</p>
+<p class="last"><strong>ffmt</strong> : format specifier for float values</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">frepr</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">&#39;1&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frepr</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span> 
+<span class="go">&#39;1.000000000000000e+00&#39; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frepr</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="go">&#39;None&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Python&#39;s repr() does: &#39;abc&#39; -&gt; &quot;&#39;abc&#39;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frepr</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>
+<span class="go">&#39;abc&#39; </span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

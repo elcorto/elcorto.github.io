@@ -25,70 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-comb-nested-loops">
-<h1>pwtools.comb.nested_loops<a class="headerlink" href="#pwtools-comb-nested-loops" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.comb.nested_loops">
-<code class="descclassname">pwtools.comb.</code><code class="descname">nested_loops</code><span class="sig-paren">(</span><em>lists</em>, <em>flatten=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/comb.html#nested_loops"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.comb.nested_loops" title="Permalink to this definition">¶</a></dt>
-<dd><p>Nested loops, optional flattening.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>lists</strong> : list of sequences</p>
-<blockquote>
-<div><p>The objects to permute. len(lists) == the depth (nesting levels) of the
-equivalent nested loops. Individual lists may contain a mix of
-different types/objects, e.g. [[‘a’, ‘b’], [Foo(), Bar(), Baz()],
-[1,2,3,4,5,6,7]].</p>
-</div></blockquote>
-<p><strong>flatten</strong> : bool</p>
-<blockquote>
-<div><p>Flatten each entry in returned list.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>list</strong> : nested lists</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">comb</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">comb</span><span class="o">.</span><span class="n">nested_loops</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">]])</span>
-<span class="go">[[1, &#39;a&#39;], [1, &#39;b&#39;], [2, &#39;a&#39;], [2, &#39;b&#39;]]</span>
-</pre></div>
-</div>
-<p># If values of different lists should be varied together, use zip(). Note
-# that you get nested lists back. Use flatten=True to get flattened lists.
-&gt;&gt;&gt; comb.nested_loops([(1,2), zip([‘a’,’b’],(np.sin,np.cos))])
-[[1, [‘a’, &lt;ufunc ‘sin’&gt;]],</p>
-<blockquote>
-<div>[1, [‘b’, &lt;ufunc ‘cos’&gt;]],
-[2, [‘a’, &lt;ufunc ‘sin’&gt;]],
-[2, [‘b’, &lt;ufunc ‘cos’&gt;]]]</div></blockquote>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">comb</span><span class="o">.</span><span class="n">nested_loops</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">],(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">))],</span> <span class="n">flatten</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="go">[[1, &#39;a&#39;, &lt;ufunc &#39;sin&#39;&gt;],</span>
-<span class="go"> [1, &#39;b&#39;, &lt;ufunc &#39;cos&#39;&gt;],</span>
-<span class="go"> [2, &#39;a&#39;, &lt;ufunc &#39;sin&#39;&gt;],</span>
-<span class="go"> [2, &#39;b&#39;, &lt;ufunc &#39;cos&#39;&gt;]]</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -152,13 +90,74 @@ different types/objects, e.g. [[‘a’, ‘b’], [Foo(), Bar(), Baz()],
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-comb-nested-loops">
+<h1>pwtools.comb.nested_loops<a class="headerlink" href="#pwtools-comb-nested-loops" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.comb.nested_loops">
+<code class="descclassname">pwtools.comb.</code><code class="descname">nested_loops</code><span class="sig-paren">(</span><em>lists</em>, <em>flatten=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/comb.html#nested_loops"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.comb.nested_loops" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nested loops, optional flattening.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>lists</strong> : list of sequences</p>
+<blockquote>
+<div><p>The objects to permute. len(lists) == the depth (nesting levels) of the
+equivalent nested loops. Individual lists may contain a mix of
+different types/objects, e.g. [[‘a’, ‘b’], [Foo(), Bar(), Baz()],
+[1,2,3,4,5,6,7]].</p>
+</div></blockquote>
+<p><strong>flatten</strong> : bool</p>
+<blockquote>
+<div><p>Flatten each entry in returned list.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>list</strong> : nested lists</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">comb</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">comb</span><span class="o">.</span><span class="n">nested_loops</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">]])</span>
+<span class="go">[[1, &#39;a&#39;], [1, &#39;b&#39;], [2, &#39;a&#39;], [2, &#39;b&#39;]]</span>
+</pre></div>
+</div>
+<p># If values of different lists should be varied together, use zip(). Note
+# that you get nested lists back. Use flatten=True to get flattened lists.
+&gt;&gt;&gt; comb.nested_loops([(1,2), zip([‘a’,’b’],(np.sin,np.cos))])
+[[1, [‘a’, &lt;ufunc ‘sin’&gt;]],</p>
+<blockquote>
+<div>[1, [‘b’, &lt;ufunc ‘cos’&gt;]],
+[2, [‘a’, &lt;ufunc ‘sin’&gt;]],
+[2, [‘b’, &lt;ufunc ‘cos’&gt;]]]</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">comb</span><span class="o">.</span><span class="n">nested_loops</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">],(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">))],</span> <span class="n">flatten</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">[[1, &#39;a&#39;, &lt;ufunc &#39;sin&#39;&gt;],</span>
+<span class="go"> [1, &#39;b&#39;, &lt;ufunc &#39;cos&#39;&gt;],</span>
+<span class="go"> [2, &#39;a&#39;, &lt;ufunc &#39;sin&#39;&gt;],</span>
+<span class="go"> [2, &#39;b&#39;, &lt;ufunc &#39;cos&#39;&gt;]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

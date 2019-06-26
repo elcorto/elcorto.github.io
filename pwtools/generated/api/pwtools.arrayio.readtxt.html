@@ -25,55 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-arrayio-readtxt">
-<h1>pwtools.arrayio.readtxt<a class="headerlink" href="#pwtools-arrayio-readtxt" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.arrayio.readtxt">
-<code class="descclassname">pwtools.arrayio.</code><code class="descname">readtxt</code><span class="sig-paren">(</span><em>fh</em>, <em>axis=None</em>, <em>shape=None</em>, <em>header_maxlines=20</em>, <em>header_comment='#'</em>, <em>maxdim=3</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/arrayio.html#readtxt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.arrayio.readtxt" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read arrays from .txt file using np.loadtxt().</p>
-<p>If the file stores a 3d array as consecutive 2d arrays (e.g. output from
-molecular dynamics code) the file header (see writetxt()) is used to
-determine the shape of the original 3d array and the array is reshaped
-accordingly.</p>
-<p>If <cite>axis</cite> or <cite>shape</cite> is not None, then these are used instead and 
-the header, if existing, will be ignored. This has the potential to shoot
-yourself in the foot. Use with care.</p>
-<p>If <cite>axis</cite> and <cite>shape</cite> are None, then this function does not work with
-normal text files which have no special header. Use np.loadtxt() in this
-case.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>fh</strong> : file_like</p>
-<p><strong>axis</strong> : int</p>
-<p><strong>shape</strong> : tuple</p>
-<p><strong>**kwargs</strong> : keyword args passed to numpy.loadtxt(), e.g. comments=’&#64;&#64;’ to</p>
-<blockquote>
-<div><p>ignore weird lines etc.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">nd array</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -137,13 +90,59 @@ case.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-arrayio-readtxt">
+<h1>pwtools.arrayio.readtxt<a class="headerlink" href="#pwtools-arrayio-readtxt" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.arrayio.readtxt">
+<code class="descclassname">pwtools.arrayio.</code><code class="descname">readtxt</code><span class="sig-paren">(</span><em>fh</em>, <em>axis=None</em>, <em>shape=None</em>, <em>header_maxlines=20</em>, <em>header_comment='#'</em>, <em>maxdim=3</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/arrayio.html#readtxt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.arrayio.readtxt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read arrays from .txt file using np.loadtxt().</p>
+<p>If the file stores a 3d array as consecutive 2d arrays (e.g. output from
+molecular dynamics code) the file header (see writetxt()) is used to
+determine the shape of the original 3d array and the array is reshaped
+accordingly.</p>
+<p>If <cite>axis</cite> or <cite>shape</cite> is not None, then these are used instead and 
+the header, if existing, will be ignored. This has the potential to shoot
+yourself in the foot. Use with care.</p>
+<p>If <cite>axis</cite> and <cite>shape</cite> are None, then this function does not work with
+normal text files which have no special header. Use np.loadtxt() in this
+case.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>fh</strong> : file_like</p>
+<p><strong>axis</strong> : int</p>
+<p><strong>shape</strong> : tuple</p>
+<p><strong>**kwargs</strong> : keyword args passed to numpy.loadtxt(), e.g. comments=’&#64;&#64;’ to</p>
+<blockquote>
+<div><p>ignore weird lines etc.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">nd array</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

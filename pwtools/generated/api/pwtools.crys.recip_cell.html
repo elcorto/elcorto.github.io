@@ -25,60 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-crys-recip-cell">
-<h1>pwtools.crys.recip_cell<a class="headerlink" href="#pwtools-crys-recip-cell" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.crys.recip_cell">
-<code class="descclassname">pwtools.crys.</code><code class="descname">recip_cell</code><span class="sig-paren">(</span><em>cell</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#recip_cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.recip_cell" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reciprocal lattice vectors <code class="docutils literal notranslate"><span class="pre">{a,b,c}*</span> <span class="pre">=</span> <span class="pre">2*pi</span> <span class="pre">/</span> <span class="pre">V</span> <span class="pre">*</span> <span class="pre">{b,c,a}</span> <span class="pre">x</span> <span class="pre">{c,a,b}</span></code>.</p>
-<p>The reciprocal volume is <code class="docutils literal notranslate"><span class="pre">(2*pi)**3/V</span></code>. The length unit of the reciprocal
-vectors is 1/(length unit of <cite>cell</cite>), e.g. 1/Angstrom.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>cell</strong> : array, shape (3,3)</p>
-<blockquote>
-<div><p>Matrix with basis vectors as rows.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>rcell</strong> : array (3,3)</p>
-<blockquote class="last">
-<div><p>Reciprocal vectors as rows.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># the length of recip. cell vectors for a cubic cell of 1 Ang side</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># length is 2*pi -&gt; reciprocal length unit is 1/Ang</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">crys</span><span class="o">.</span><span class="n">recip_cell</span><span class="p">(</span><span class="n">identity</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">pi</span>
-<span class="go">array([[ 1.,  0.,  0.],</span>
-<span class="go">       [ 0.,  1.,  0.],</span>
-<span class="go">       [ 0.,  0.,  1.]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">crys</span><span class="o">.</span><span class="n">recip_cell</span><span class="p">(</span><span class="n">identity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">pi</span>
-<span class="go">array([[ 0.5,  0. ,  0. ],</span>
-<span class="go">       [ 0. ,  0.5,  0. ],</span>
-<span class="go">       [ 0. ,  0. ,  0.5]])</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -142,13 +90,64 @@ vectors is 1/(length unit of <cite>cell</cite>), e.g. 1/Angstrom.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-crys-recip-cell">
+<h1>pwtools.crys.recip_cell<a class="headerlink" href="#pwtools-crys-recip-cell" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.crys.recip_cell">
+<code class="descclassname">pwtools.crys.</code><code class="descname">recip_cell</code><span class="sig-paren">(</span><em>cell</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#recip_cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.recip_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reciprocal lattice vectors <code class="docutils literal notranslate"><span class="pre">{a,b,c}*</span> <span class="pre">=</span> <span class="pre">2*pi</span> <span class="pre">/</span> <span class="pre">V</span> <span class="pre">*</span> <span class="pre">{b,c,a}</span> <span class="pre">x</span> <span class="pre">{c,a,b}</span></code>.</p>
+<p>The reciprocal volume is <code class="docutils literal notranslate"><span class="pre">(2*pi)**3/V</span></code>. The length unit of the reciprocal
+vectors is 1/(length unit of <cite>cell</cite>), e.g. 1/Angstrom.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>cell</strong> : array, shape (3,3)</p>
+<blockquote>
+<div><p>Matrix with basis vectors as rows.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>rcell</strong> : array (3,3)</p>
+<blockquote class="last">
+<div><p>Reciprocal vectors as rows.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># the length of recip. cell vectors for a cubic cell of 1 Ang side</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># length is 2*pi -&gt; reciprocal length unit is 1/Ang</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">crys</span><span class="o">.</span><span class="n">recip_cell</span><span class="p">(</span><span class="n">identity</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">pi</span>
+<span class="go">array([[ 1.,  0.,  0.],</span>
+<span class="go">       [ 0.,  1.,  0.],</span>
+<span class="go">       [ 0.,  0.,  1.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">crys</span><span class="o">.</span><span class="n">recip_cell</span><span class="p">(</span><span class="n">identity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">pi</span>
+<span class="go">array([[ 0.5,  0. ,  0. ],</span>
+<span class="go">       [ 0. ,  0.5,  0. ],</span>
+<span class="go">       [ 0. ,  0. ,  0.5]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

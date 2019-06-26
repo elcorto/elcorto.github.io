@@ -23,9 +23,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">pwtools</h1>
+    
+  </a>
+</p>
 
-    <div class="document">
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=pwtools&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background, details, special topics</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
@@ -147,18 +205,18 @@
 <span class="sd">        &gt;&gt;&gt; ddi = mpl.Data2D(x=xi, y=xi)</span>
 <span class="sd">        &gt;&gt;&gt; fig1,ax1 = mpl.fig_ax3d()</span>
 <span class="sd">        &gt;&gt;&gt; ax1.scatter(dd.xx, dd.yy, dd.zz, label=&#39;data&#39;, color=&#39;r&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; ax1.plot_wireframe(ddi.X, ddi.Y, rbfi(ddi.XY).reshape(50,50), </span>
+<span class="sd">        &gt;&gt;&gt; ax1.plot_wireframe(ddi.X, ddi.Y, rbfi(ddi.XY).reshape(50,50),</span>
 <span class="sd">        ...                    label=&#39;rbf&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; ax1.set_xlabel(&#39;x&#39;); ax1.set_ylabel(&#39;y&#39;);</span>
 <span class="sd">        &gt;&gt;&gt; ax1.legend()</span>
 <span class="sd">        &gt;&gt;&gt; fig2,ax2 = mpl.fig_ax3d()</span>
 <span class="sd">        &gt;&gt;&gt; offset=2</span>
-<span class="sd">        &gt;&gt;&gt; ax2.plot_wireframe(ddi.X, ddi.Y, rbfi(ddi.XY).reshape(50,50), </span>
+<span class="sd">        &gt;&gt;&gt; ax2.plot_wireframe(ddi.X, ddi.Y, rbfi(ddi.XY).reshape(50,50),</span>
 <span class="sd">        ...                    label=&#39;rbf&#39;, color=&#39;b&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; ax2.plot_wireframe(ddi.X, ddi.Y, </span>
+<span class="sd">        &gt;&gt;&gt; ax2.plot_wireframe(ddi.X, ddi.Y,</span>
 <span class="sd">        ...                    rbfi(ddi.XY, der=1)[:,0].reshape(50,50)+offset,</span>
 <span class="sd">        ...                    color=&#39;g&#39;, label=&#39;d(rbf)/dx&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; ax2.plot_wireframe(ddi.X, ddi.Y, </span>
+<span class="sd">        &gt;&gt;&gt; ax2.plot_wireframe(ddi.X, ddi.Y,</span>
 <span class="sd">        ...                    rbfi(ddi.XY, der=1)[:,1].reshape(50,50)+2*offset,</span>
 <span class="sd">        ...                    color=&#39;r&#39;, label=&#39;d(rbf)/dy&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; ax2.set_xlabel(&#39;x&#39;); ax2.set_ylabel(&#39;y&#39;);</span>
@@ -200,7 +258,7 @@
 <div class="viewcode-block" id="Rbf.get_distsq"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.Rbf.get_distsq.html#pwtools.rbf.Rbf.get_distsq">[docs]</a>    <span class="k">def</span> <span class="nf">get_distsq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Matrix of distance values :math:`R_{ij} = |\mathbf x_i - \mathbf</span>
 <span class="sd">        c_j|`.</span>
-<span class="sd">        </span>
+
 <span class="sd">            | :math:`\mathbf x_i` : points[i,:]</span>
 <span class="sd">            | :math:`\mathbf c_i` : centers[i,:]</span>
 
@@ -208,7 +266,7 @@
 <span class="sd">        ----------</span>
 <span class="sd">        points : array (M,N) with N-dim points, optional</span>
 <span class="sd">            If None then ``self.points`` is used (training points).</span>
-<span class="sd">        </span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        distsq : (M,K), where K = M usually for training</span>
@@ -238,31 +296,33 @@
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">distsq</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">num</span><span class="o">.</span><span class="n">distsq</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">centers</span><span class="p">)</span></div>
-    
+
 <div class="viewcode-block" id="Rbf.get_params"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.Rbf.get_params.html#pwtools.rbf.Rbf.get_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span></div>
 
 <div class="viewcode-block" id="Rbf.fit"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.Rbf.fit.html#pwtools.rbf.Rbf.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Solve linear system for the weights.</span>
-<span class="sd">        </span>
+
 <span class="sd">        The weights  `self.w` (:math:`\mathbf w`) are found from: :math:`\mathbf</span>
 <span class="sd">        G\,\mathbf w = \mathbf z` or if :math:`r` is given :math:`(\mathbf G +</span>
 <span class="sd">        r\,\mathbf I)\,\mathbf w = \mathbf z`.</span>
-<span class="sd">        </span>
+
 <span class="sd">        with centers == points (center vectors are all data points). Then G is</span>
 <span class="sd">        quadratic. Updates ``self.w``.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
 <span class="sd">        ``self.r != None`` : linear system solver</span>
-<span class="sd">            Use ``scipy.linalg.solve()``. By definition, this always yields</span>
+<span class="sd">            Use :func:`scipy.linalg.solve`. For :math:`r=0`, this always yields</span>
 <span class="sd">            perfect interpolation at the data points. May be numerically</span>
-<span class="sd">            unstable in that case. Use `r` to increase stability and create</span>
-<span class="sd">            smooth fitting (generate more stiff functions), similar to</span>
-<span class="sd">            ``lstsq`` but appears to be numerically more stable (no small noise</span>
-<span class="sd">            in solution) .. but it is another parameter that needs to be tuned.</span>
+<span class="sd">            unstable in that case. Use :math:`r&gt;0` to increase stability (try</span>
+<span class="sd">            small values such as ``1e-10`` first) or create smooth fitting (generate</span>
+<span class="sd">            more stiff functions with higher `r`). Behaves similar to ``lstsq``</span>
+<span class="sd">            but appears to be numerically more stable (no small noise in</span>
+<span class="sd">            solution) .. but `r` it is another parameter that needs to be</span>
+<span class="sd">            tuned.</span>
 <span class="sd">        ``self.r = None`` : least squares solver</span>
-<span class="sd">            Use ``scipy.linalg.lstsq()``. Numerically more stable than</span>
+<span class="sd">            Use :func:`scipy.linalg.lstsq`. Numerically more stable than</span>
 <span class="sd">            direct solver w/o regularization. Will mostly be the same as</span>
 <span class="sd">            the interpolation result, but will not go thru all points for</span>
 <span class="sd">            very noisy data. May create small noise in solution (plot fit</span>
@@ -424,7 +484,7 @@
 <span class="sd">        | &#39;scipy&#39; : mean nearest neighbor distance</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;mean&#39;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="n">distsq</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">points</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> 
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="n">distsq</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">points</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
     <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;scipy&#39;</span><span class="p">:</span>
         <span class="n">xi</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">T</span>
         <span class="n">ximax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -439,17 +499,17 @@
 <div class="viewcode-block" id="FitError"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.FitError.html#pwtools.rbf.FitError">[docs]</a><span class="k">class</span> <span class="nc">FitError</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Direct or cross-validation (CV) fit error of :class:`Rbf` for a</span>
 <span class="sd">    parameter set ``[p,r]`` or just ``[p]``.</span>
-<span class="sd">    </span>
+
 <span class="sd">    All methods accept a sequence `params` with either only `p` (length 1) or</span>
-<span class="sd">    `p` and `r` (length 2) to build a :class:`Rbf` model and fit it. </span>
-<span class="sd">    </span>
+<span class="sd">    `p` and `r` (length 2) to build a :class:`Rbf` model and fit it.</span>
+
 <span class="sd">    examples:</span>
-<span class="sd">    </span>
-<span class="sd">        | r = None (default in :class:`Rbf`) -&gt; scipy.linalg.lstsq</span>
+
+<span class="sd">        | r = None (default in :class:`Rbf`) -&gt; :func:`scipy.linalg.lstsq`</span>
 <span class="sd">        |     params = [1.5]</span>
 <span class="sd">        |     params = [1.5, None]</span>
 
-<span class="sd">        | r != None -&gt; scipy.linalg.solve</span>
+<span class="sd">        | r != None -&gt; :func:`scipy.linalg.solve`</span>
 <span class="sd">        |     params = [1.5, 0]       -&gt; no regularization (r=0)</span>
 <span class="sd">        |     params = [1.5, 1e-8]    -&gt; with regularization</span>
 
@@ -487,7 +547,7 @@
 
 <div class="viewcode-block" id="FitError.cv"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.FitError.cv.html#pwtools.rbf.FitError.cv">[docs]</a>    <span class="k">def</span> <span class="nf">cv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;K-fold repeated CV.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Split data (points, values) randomly into K parts (&quot;folds&quot;, K = ``ns``</span>
 <span class="sd">        in ``self.cv_kwds``) along axis 0 and use each part once as test set,</span>
 <span class="sd">        the rest as training set. For example `ns=5`: split in 5 parts at</span>
@@ -497,14 +557,14 @@
 
 <span class="sd">        Each time, build an Rbf interpolator with ``self.rbf_kwds``, fit,</span>
 <span class="sd">        return the fit error (scalar sum of squares from</span>
-<span class="sd">        :meth:`Rbf.fit_error`). </span>
+<span class="sd">        :meth:`Rbf.fit_error`).</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        params : seq length 1 or 2</span>
 <span class="sd">            | params[0] = p</span>
 <span class="sd">            | params[1] = r (optional)</span>
-<span class="sd">            </span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        errs : 1d array (nr*ns,)</span>
@@ -513,42 +573,42 @@
         <span class="n">ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cv_kwds</span><span class="p">[</span><span class="s1">&#39;ns&#39;</span><span class="p">]</span>
         <span class="n">nr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cv_kwds</span><span class="p">[</span><span class="s1">&#39;nr&#39;</span><span class="p">]</span>
         <span class="n">errs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">ns</span><span class="o">*</span><span class="n">nr</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-        <span class="n">folds</span> <span class="o">=</span> <span class="n">RepeatedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">ns</span><span class="p">,</span> 
+        <span class="n">folds</span> <span class="o">=</span> <span class="n">RepeatedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">ns</span><span class="p">,</span>
                               <span class="n">n_repeats</span><span class="o">=</span><span class="n">nr</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">tup</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">folds</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">)):</span>
             <span class="n">idxs_train</span><span class="p">,</span> <span class="n">idxs_test</span> <span class="o">=</span> <span class="n">tup</span>
-            <span class="n">rbfi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_rbfi</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> 
+            <span class="n">rbfi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_rbfi</span><span class="p">(</span><span class="n">params</span><span class="p">,</span>
                                   <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">idxs_train</span><span class="p">,</span><span class="o">...</span><span class="p">],</span>
                                   <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">idxs_train</span><span class="p">,</span><span class="o">...</span><span class="p">])</span>
             <span class="n">errs</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="n">rbfi</span><span class="o">.</span><span class="n">fit_error</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">idxs_test</span><span class="p">,</span><span class="o">...</span><span class="p">],</span>
                                       <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">idxs_test</span><span class="p">,</span><span class="o">...</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">errs</span></div>
-    
+
 <div class="viewcode-block" id="FitError.err_cv"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.FitError.err_cv.html#pwtools.rbf.FitError.err_cv">[docs]</a>    <span class="k">def</span> <span class="nf">err_cv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Median of :meth:`cv`.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cv</span><span class="p">(</span><span class="n">params</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="FitError.err_direct"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.FitError.err_direct.html#pwtools.rbf.FitError.err_direct">[docs]</a>    <span class="k">def</span> <span class="nf">err_direct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Normal fit error w/o CV. Uses :meth:`Rbf.fit_error`.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Build and Rbf interpolator with ``self.rbf_kwds``, fit, return the fit</span>
 <span class="sd">        error (scalar, sum of squares). Should be zero for interpolation, i.e. no</span>
-<span class="sd">        regularization ``r=0``.  </span>
+<span class="sd">        regularization ``r=0``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_rbfi</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">fit_error</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="fit_opt"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.fit_opt.html#pwtools.rbf.fit_opt">[docs]</a><span class="k">def</span> <span class="nf">fit_opt</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;de&#39;</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="s1">&#39;pr&#39;</span><span class="p">,</span> <span class="n">cv_kwds</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">ns</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">nr</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> 
+<div class="viewcode-block" id="fit_opt"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.fit_opt.html#pwtools.rbf.fit_opt">[docs]</a><span class="k">def</span> <span class="nf">fit_opt</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;de&#39;</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="s1">&#39;pr&#39;</span><span class="p">,</span> <span class="n">cv_kwds</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">ns</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">nr</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
             <span class="n">opt_kwds</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span> <span class="n">rbf_kwds</span><span class="o">=</span><span class="nb">dict</span><span class="p">()):</span>
     <span class="sd">&quot;&quot;&quot;Optimize :math:`p` or :math:`(p,r)` using a cross validation error</span>
-<span class="sd">    metric or the direct fit error if `cv_kwds` is None. </span>
+<span class="sd">    metric or the direct fit error if `cv_kwds` is None.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    points, values : see :class:`Rbf`</span>
 <span class="sd">    method : str</span>
-<span class="sd">        | &#39;de&#39; : scipy.optimize.differential_evolution</span>
-<span class="sd">        | &#39;fmin&#39;: scipy.optimize.fmin</span>
+<span class="sd">        | &#39;de&#39; : :func:`scipy.optimize.differential_evolution`</span>
+<span class="sd">        | &#39;fmin&#39;: :func:`scipy.optimize.fmin`</span>
 <span class="sd">    what : str</span>
 <span class="sd">        &#39;p&#39; or &#39;pr&#39;</span>
 <span class="sd">    cv_kwds, rbf_kwds : see :class:`FitError`</span>
@@ -578,8 +638,8 @@
         <span class="k">elif</span> <span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;pr&#39;</span><span class="p">:</span>
             <span class="n">bounds</span> <span class="o">=</span> <span class="n">opt_kwds</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;bounds&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="o">*</span><span class="n">p0</span><span class="p">),</span> <span class="p">(</span><span class="mf">1e-12</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">)])</span>
             <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;len(bounds) != 2&quot;</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">differential_evolution</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> 
-                                              <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> 
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">differential_evolution</span><span class="p">(</span><span class="n">func</span><span class="p">,</span>
+                                              <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
                                               <span class="n">disp</span><span class="o">=</span><span class="n">disp</span><span class="p">,</span>
                                               <span class="o">**</span><span class="n">opt_kwds</span><span class="p">)</span>
         <span class="n">xopt</span> <span class="o">=</span> <span class="n">ret</span><span class="o">.</span><span class="n">x</span>
@@ -593,72 +653,13 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<p class="logo">
-  <a href="../../index.html">
-    <img class="logo" src="../../_static/logo.png" alt="Logo"/>
-    
-    <h1 class="logo logo-name">pwtools</h1>
-    
-  </a>
-</p>
-
-
-
-
-
-
-<p>
-<iframe src="https://ghbtns.com/github-btn.html?user=elcorto&repo=pwtools&type=watch&count=true&size=large&v=2"
-  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
-</p>
-
-
-
-
-
-<h3>Navigation</h3>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../written/tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../written/background/index.html">Background, details, special topics</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="../index.html">Module code</a><ul>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
     </div>

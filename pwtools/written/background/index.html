@@ -17,6 +17,7 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Relation to ASE" href="ase.html" />
     <link rel="prev" title="Tutorial" href="../tutorial.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -24,873 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="background-details-special-topics">
-<h1>Background, details, special topics<a class="headerlink" href="#background-details-special-topics" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="relation-to-ase">
-<h2>Relation to ASE<a class="headerlink" href="#relation-to-ase" title="Permalink to this headline">¶</a></h2>
-<p>The very nice <a class="reference external" href="https://wiki.fysik.dtu.dk/ase">ASE</a> project is in some way related. It also stores atomic
-structure data in Python objects for further manipulation. If needed, one can
-convert a <a class="reference internal" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a> to an ASE Atoms object. The design
-goal of ASE is, however, different from pwtools. ASE provides interfaces to a
-large pile of ab initio codes (“calculators”). MD and structure optimization in
-ASE is coded in Python, using only the calculator’s SCF engine in every step to
-get energy and forces. This is a very good idea, but only structure
-optimization is really developed and tested, as it seems. MD not so much.
-Better use a special MD code here. I’m not sure if ASE provides wave function
-extrapolation for Born-Oppenheimer MD [*]. Phonon calculations based on density
-functional perturbation theory like PWscf/PH or Abinit are not implemented
-(maybe in <a class="reference external" href="https://wiki.fysik.dtu.dk/gpaw/">GPAW</a>?). However, the supercell method can be used with the related
-<a class="reference external" href="http://phonopy.sourceforge.net">phonopy</a> package. The focus of the pwtools package is to be a handy pre- and
-postprocessor providing pythonic access to all input and output quantities of
-the used ab initio codes. In ASE, the calculator abtracts the backend code’s
-input away. With pwtools, you need to know the input file syntax of your
-backend code. Once you know that, you use only template files to set up
-calculations. Regarding visualization, ASE has some kind of GUI. We have
-<a class="reference internal" href="../../generated/api/visualize.html#module-pwtools.visualize" title="pwtools.visualize"><code class="xref py py-mod docutils literal notranslate"><span class="pre">visualize</span></code></a>, which is best used in an interactive Ipython
-session.</p>
-<p>In fact, appart from <a class="reference internal" href="../../generated/api/parse.html#module-pwtools.parse" title="pwtools.parse"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parse</span></code></a>, which implements parsers for ab
-initio code output and <a class="reference internal" href="../../generated/api/pwscf.html#module-pwtools.pwscf" title="pwtools.pwscf"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pwscf</span></code></a>, all other parts of the package
-are completely independent from any external simulation code’s output.
-Especially the parameter study tools in <a class="reference internal" href="../../generated/api/batch.html#module-pwtools.batch" title="pwtools.batch"><code class="xref py py-mod docutils literal notranslate"><span class="pre">batch</span></code></a> can be used for
-any kind of (computational) study, since only user-supplied template files are
-used.</p>
-<p>[*] Last time I checked, I stumbled over a <a class="reference external" href="https://listserv.fysik.dtu.dk/pipermail/gpaw-users/2013-April/002044.html">mailing list thread</a> where they said
-that in LCAO mode, the density would be re-used between steps.</p>
-</div>
-<div class="section" id="coordinate-transformation">
-<h2>Coordinate transformation<a class="headerlink" href="#coordinate-transformation" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="notation">
-<h3>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h3>
-<p><span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> are square matrices with basis vectors as <em>rows</em></p>
-<div class="line-block">
-<div class="line"><span class="math notranslate nohighlight">\(X\)</span> … old, shape: (3,3) .. or (M,M) in general</div>
-<div class="line"><span class="math notranslate nohighlight">\(Y\)</span> … new, shape: (3,3)</div>
-<div class="line"><span class="math notranslate nohighlight">\(I\)</span> … identity matrix, basis vecs of cartesian system, shape: (3,3)</div>
-<div class="line"><span class="math notranslate nohighlight">\(C\)</span> … transformation matrix, shape(3,3)</div>
-<div class="line"><span class="math notranslate nohighlight">\(v_X\)</span> … row vector v in basis X, shape: (1,3)</div>
-<div class="line"><span class="math notranslate nohighlight">\(v_Y\)</span> … row vector v in basis Y, shape: (1,3)</div>
-<div class="line"><span class="math notranslate nohighlight">\(v_I\)</span> … row vector v in basis I, shape: (1,3)</div>
-</div>
-</div>
-<div class="section" id="row-vs-column-form">
-<h3>Row vs. column form<a class="headerlink" href="#row-vs-column-form" title="Permalink to this headline">¶</a></h3>
-<p>In the math literature you find a column oriented form, where matrix <span class="math notranslate nohighlight">\(A\)</span>
-has the basis vectors as columns and <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(b\)</span> are column vectors
-(M,1), such that a linear system is written as <span class="math notranslate nohighlight">\(A x = b\)</span>.</p>
-<p>We use a row oriented form of all relations such that <span class="math notranslate nohighlight">\(x A = b\)</span>, where
-<span class="math notranslate nohighlight">\(x\)</span> are <span class="math notranslate nohighlight">\(b\)</span> are row vectors (1,M) and <span class="math notranslate nohighlight">\(A\)</span> has basis vectors
-as rows. This is optimal for direct translation to numpy code, where we can use
-broadcasting.</p>
-<p>All formulas here translate by <span class="math notranslate nohighlight">\((A x)^\top = x^\top A^\top\)</span> and <span class="math notranslate nohighlight">\((A^{-1})^\top
-= (A^\top)^{-1}\)</span>.</p>
-<p>Tools like <code class="docutils literal notranslate"><span class="pre">linalg.solve</span></code> and Lapack solvers assume the column oriented form,
-so you need to use <code class="docutils literal notranslate"><span class="pre">linalg.solve(A.T,</span> <span class="pre">b.T)</span></code>.</p>
-</div>
-<div class="section" id="theory">
-<h3>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h3>
-<p>We have</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}v_Y Y = v_X X = v_I I = v_I\\v_Y = v_X X Y^{-1} = v_X C\end{aligned}\end{align} \]</div>
-<p>where we call <span class="math notranslate nohighlight">\(C = X Y^{-1}\)</span> the transformation matrix.</p>
-<p>Every product <span class="math notranslate nohighlight">\(v_X X; v_Y Y; v_I I\)</span> is actually an expansion of
-<span class="math notranslate nohighlight">\(v_{X,Y,...}\)</span> in the basis vectors contained in <span class="math notranslate nohighlight">\(X,Y,...\)</span> . If the
-dot product is computed, we always get <span class="math notranslate nohighlight">\(v\)</span> in cartesian coords.</p>
-<div class="section" id="notes-for-the-special-case-fractional-cartesian">
-<h4>Notes for the special case fractional &lt;-&gt; cartesian<a class="headerlink" href="#notes-for-the-special-case-fractional-cartesian" title="Permalink to this headline">¶</a></h4>
-<p>With <span class="math notranslate nohighlight">\(v_I\)</span> cartesian and <span class="math notranslate nohighlight">\(v_Y\)</span> fractional
-coordinates, the transform fractional -&gt; cartesian is the dot product</p>
-<div class="math notranslate nohighlight">
-\[v_Y Y = v_I\]</div>
-<p>from above. Cartesian -&gt; fractional is</p>
-<div class="math notranslate nohighlight">
-\[v_Y = v_X Y^{-1}\]</div>
-<p>which is the solution of the linear system <span class="math notranslate nohighlight">\(v_Y Y = v_I\)</span>. It cannot get
-more simple.</p>
-</div>
-</div>
-<div class="section" id="implementation">
-<h3>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h3>
-<p>We now switch to code examples, where <span class="math notranslate nohighlight">\(v_X\)</span> == <code class="docutils literal notranslate"><span class="pre">v_X</span></code>.</p>
-<p>In general, we don’t have one vector <code class="docutils literal notranslate"><span class="pre">v_X</span></code> but an array <code class="docutils literal notranslate"><span class="pre">R_X</span></code> of shape
-(N,M) of row vectors:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R_X</span> <span class="o">=</span> <span class="p">[[</span><span class="o">---</span> <span class="n">v_X0</span> <span class="o">---</span><span class="p">],</span>
-       <span class="p">[</span><span class="o">---</span> <span class="n">v_X1</span> <span class="o">---</span><span class="p">],</span>
-       <span class="o">...</span>
-       <span class="p">[</span><span class="o">--</span> <span class="n">v_XN</span><span class="o">-</span><span class="mi">1</span> <span class="o">--</span><span class="p">]]</span>
-</pre></div>
-</div>
-<p>We want to use fast numpy array broadcasting to transform all the <code class="docutils literal notranslate"><span class="pre">v_X</span></code>
-vectors at once.
-The shape of <code class="docutils literal notranslate"><span class="pre">R_X</span></code> doesn’t matter, as long as the last dimension matches the
-dimensions of <code class="docutils literal notranslate"><span class="pre">C</span></code>, for example <code class="docutils literal notranslate"><span class="pre">R_X:</span> <span class="pre">(N,M,3),</span> <span class="pre">C:</span> <span class="pre">(3,3),</span> <span class="pre">dot(R_X,C):</span> <span class="pre">(N,M,3))</span></code>.</p>
-<p>Examples:</p>
-<p>1d: <code class="docutils literal notranslate"><span class="pre">R_X.shape</span> <span class="pre">=</span> <span class="pre">(3,)</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># R_X == v_X = [x,y,z]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># R_Y == v_Y = [x&#39;,y&#39;,z&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">R_X</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="n">Y</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">C</span><span class="o">=</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">inv</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y1</span><span class="o">=</span><span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y2</span><span class="o">=</span><span class="n">dot</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">,</span> <span class="n">X</span><span class="p">),</span> <span class="n">inv</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y3</span><span class="o">=</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">allclose</span><span class="p">(</span><span class="n">R_Y1</span><span class="p">,</span> <span class="n">R_Y2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">allclose</span><span class="p">(</span><span class="n">R_Y1</span><span class="p">,</span> <span class="n">R_Y3</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>2d: <code class="docutils literal notranslate"><span class="pre">R_X.shape</span> <span class="pre">=</span> <span class="pre">(N,3)</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Array of coords of N atoms, R_X[i,:] = coord of i-th atom. The dot</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># product is broadcast along the first axis of R_X (i.e. *each* row of R_X is</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># dot()&#39;ed with C)::</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># R_X = [[x0,       y0,     z0],</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#        [x1,       y1,     z1],</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#         ...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#        [x(N-1),   y(N-1), z(N-1)]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># R_Y = [[x0&#39;,     y0&#39;,     z0&#39;],</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#        [x1&#39;,     y1&#39;,     z1&#39;],</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#         ...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#        [x(N-1)&#39;, y(N-1)&#39;, z(N-1)&#39;]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">R_X</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">Y</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">C</span><span class="o">=</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">inv</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y1</span><span class="o">=</span><span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y2</span><span class="o">=</span><span class="n">dot</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">,</span> <span class="n">X</span><span class="p">),</span> <span class="n">inv</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y3</span><span class="o">=</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">allclose</span><span class="p">(</span><span class="n">R_Y1</span><span class="p">,</span> <span class="n">R_Y2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">allclose</span><span class="p">(</span><span class="n">R_Y1</span><span class="p">,</span> <span class="n">R_Y3</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Here we used the fact that <code class="docutils literal notranslate"><span class="pre">linalg.solve</span></code> can solve for many rhs’s at the
-same time (<code class="docutils literal notranslate"><span class="pre">Ax=b,</span> <span class="pre">A:(M,M),</span> <span class="pre">b:(M,N)</span></code> where the rhs’s are the columns of
-<code class="docutils literal notranslate"><span class="pre">b</span></code>). The result from <code class="docutils literal notranslate"><span class="pre">linalg.solve</span></code> has the same shape as <code class="docutils literal notranslate"><span class="pre">b</span></code>:
-<code class="docutils literal notranslate"><span class="pre">(M,N)</span></code>, i.e. each result vector is a column. That’s why we need the last
-transpose.</p>
-<p>3d: <code class="docutils literal notranslate"><span class="pre">R_X.shape</span> <span class="pre">=</span> <span class="pre">(nstep,</span> <span class="pre">natoms,</span> <span class="pre">3)</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># R_X[istep, iatom,:] is the shape (3,) vec of coords for atom `iatom` at</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># time step `istep`.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># R_X[istep,...] is a (nstep,3) array for this time step. Then we can use</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># the methods for the 2d array above.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">R_X</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">Y</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">C</span><span class="o">=</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">inv</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y1</span><span class="o">=</span><span class="n">empty_like</span><span class="p">(</span><span class="n">R_X</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y2</span><span class="o">=</span><span class="n">empty_like</span><span class="p">(</span><span class="n">R_X</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">R_Y3</span><span class="o">=</span><span class="n">empty_like</span><span class="p">(</span><span class="n">R_X</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">istep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">R_X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">R_Y1</span><span class="p">[</span><span class="n">istep</span><span class="p">,</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">[</span><span class="n">istep</span><span class="p">,</span><span class="o">...</span><span class="p">],</span> <span class="n">C</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">R_Y2</span><span class="p">[</span><span class="n">istep</span><span class="p">,</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">[</span><span class="n">istep</span><span class="p">,</span><span class="o">...</span><span class="p">],</span> <span class="n">X</span><span class="p">),</span> <span class="n">inv</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">R_Y3</span><span class="p">[</span><span class="n">istep</span><span class="p">,</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dot</span><span class="p">(</span><span class="n">R_X</span><span class="p">[</span><span class="n">istep</span><span class="p">,</span><span class="o">...</span><span class="p">],</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">allclose</span><span class="p">(</span><span class="n">R_Y1</span><span class="p">,</span> <span class="n">R_Y2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">allclose</span><span class="p">(</span><span class="n">R_Y1</span><span class="p">,</span> <span class="n">R_Y3</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Here, <code class="docutils literal notranslate"><span class="pre">linalg.solve</span></code> cannot be used b/c <code class="docutils literal notranslate"><span class="pre">R_X</span></code> is a 3d array and not a
-matrix. Direct dot products (<code class="docutils literal notranslate"><span class="pre">R_Y1</span></code> and <code class="docutils literal notranslate"><span class="pre">R_Y2</span></code>) involve calculating the
-inverse, which is unpleasant. Hence, the numerically most stable method is to
-loop over <code class="docutils literal notranslate"><span class="pre">nstep</span></code> and use the 2d array method using <code class="docutils literal notranslate"><span class="pre">linalg.solve</span></code>
-(<code class="docutils literal notranslate"><span class="pre">R_Y3</span></code>).</p>
-<p>The above loops are implemented in <code class="docutils literal notranslate"><span class="pre">flib.f90</span></code> for the special case fractional
-&lt;-&gt; cartesian, using only dot products and linear system solvers from Lapack
-in each loop.</p>
-</div>
-</div>
-<div class="section" id="parameter-studies">
-<h2>Parameter studies<a class="headerlink" href="#parameter-studies" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="../../generated/api/batch.html#module-pwtools.batch" title="pwtools.batch"><code class="xref py py-mod docutils literal notranslate"><span class="pre">batch</span></code></a> has tools for setting up parameter studies: automatic
-input generation, database tools (see also <a class="reference internal" href="../../generated/api/sql.html#module-pwtools.sql" title="pwtools.sql"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sql</span></code></a>), …</p>
-<p>See <code class="docutils literal notranslate"><span class="pre">examples/parameter_study</span></code> for examples which you can copy and run.
-Here is just one of the input files:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
-
-<span class="c1"># Write PWscf input files for a convergence study: vary ecutwfc.</span>
-
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">common</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">sql</span><span class="p">,</span> <span class="n">crys</span><span class="p">,</span> <span class="n">pwscf</span>
-
-<span class="n">theo</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">Machine</span><span class="p">(</span><span class="n">hostname</span><span class="o">=</span><span class="s1">&#39;theo&#39;</span><span class="p">,</span>
-                     <span class="n">subcmd</span><span class="o">=</span><span class="s1">&#39;qsub&#39;</span><span class="p">,</span>
-                     <span class="n">scratch</span><span class="o">=</span><span class="s1">&#39;/scratch/schmerler&#39;</span><span class="p">,</span>
-                     <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;calc.templ/job.pbs.theo&#39;</span><span class="p">,</span>
-                     <span class="n">home</span><span class="o">=</span><span class="s1">&#39;/home/schmerler&#39;</span><span class="p">)</span>
-
-<span class="n">templates</span> <span class="o">=</span> <span class="p">[</span><span class="n">batch</span><span class="o">.</span><span class="n">FileTemplate</span><span class="p">(</span><span class="n">basename</span><span class="o">=</span><span class="s1">&#39;pw.in&#39;</span><span class="p">)]</span>
-
-<span class="c1"># rs-AlN</span>
-<span class="n">st</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">Structure</span><span class="p">(</span><span class="n">coords_frac</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">]),</span>
-                    <span class="n">symbols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Al&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">],</span>
-                    <span class="n">cryst_const</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.76</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span> <span class="o">+</span> <span class="p">[</span><span class="mi">60</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">))</span>
-
-<span class="n">params_lst</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">ecutwfc</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">8</span><span class="p">):</span>
-    <span class="n">params_lst</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">sql</span><span class="o">.</span><span class="n">SQLEntry</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;ecutwfc&#39;</span><span class="p">,</span> <span class="n">sqlval</span><span class="o">=</span><span class="n">ecutwfc</span><span class="p">),</span>
-                       <span class="n">sql</span><span class="o">.</span><span class="n">SQLEntry</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;ecutrho&#39;</span><span class="p">,</span> <span class="n">sqlval</span><span class="o">=</span><span class="mf">4.0</span><span class="o">*</span><span class="n">ecutwfc</span><span class="p">),</span>
-                       <span class="n">sql</span><span class="o">.</span><span class="n">SQLEntry</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;cell&#39;</span><span class="p">,</span> <span class="n">sqlval</span><span class="o">=</span><span class="n">common</span><span class="o">.</span><span class="n">str_arr</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">cell</span><span class="p">)),</span>
-                       <span class="n">sql</span><span class="o">.</span><span class="n">SQLEntry</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;natoms&#39;</span><span class="p">,</span> <span class="n">sqlval</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">natoms</span><span class="p">),</span>
-                       <span class="n">sql</span><span class="o">.</span><span class="n">SQLEntry</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;atpos&#39;</span><span class="p">,</span>
-                                    <span class="n">sqlval</span><span class="o">=</span><span class="n">pwscf</span><span class="o">.</span><span class="n">atpos_str</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">symbols</span><span class="p">,</span>
-                                                           <span class="n">st</span><span class="o">.</span><span class="n">coords_frac</span><span class="p">)),</span>
-                      <span class="p">])</span>
-
-<span class="n">calc</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">ParameterStudy</span><span class="p">(</span><span class="n">machines</span><span class="o">=</span><span class="n">theo</span><span class="p">,</span>
-                            <span class="n">templates</span><span class="o">=</span><span class="n">templates</span><span class="p">,</span>
-                            <span class="n">params_lst</span><span class="o">=</span><span class="n">params_lst</span><span class="p">,</span> 
-                            <span class="n">study_name</span><span class="o">=</span><span class="s1">&#39;convergence_test_cutoff&#39;</span><span class="p">,</span>
-                            <span class="p">)</span>
-<span class="n">calc</span><span class="o">.</span><span class="n">write_input</span><span class="p">(</span><span class="n">sleep</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">backup</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;calc&#39;</span><span class="p">):</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">symlink</span><span class="p">(</span><span class="s1">&#39;calc_theo&#39;</span><span class="p">,</span> <span class="s1">&#39;calc&#39;</span><span class="p">)</span>
-
-<span class="n">common</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;cp -r ../../../test/files/qe_pseudos calc_theo/pseudo; gunzip calc_theo/pseudo/*&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="parsing-code-output-and-using-containers">
-<h2>Parsing code output and using containers<a class="headerlink" href="#parsing-code-output-and-using-containers" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="available-parsers">
-<span id="parser-classes"></span><h3>Available parsers<a class="headerlink" href="#available-parsers" title="Permalink to this headline">¶</a></h3>
-<p>A core feature of pwtools is a set of parsers for commonly used atomistic
-simulation codes. The parsers are located in <a class="reference internal" href="../../generated/api/parse.html#module-pwtools.parse" title="pwtools.parse"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parse</span></code></a>. These
-parsers are available:</p>
-<blockquote>
-<div><div class="line-block">
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.CifFile.html#pwtools.parse.CifFile" title="pwtools.parse.CifFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">CifFile</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.PDBFile.html#pwtools.parse.PDBFile" title="pwtools.parse.PDBFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">PDBFile</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.PwSCFOutputFile.html#pwtools.parse.PwSCFOutputFile" title="pwtools.parse.PwSCFOutputFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">PwSCFOutputFile</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.PwMDOutputFile.html#pwtools.parse.PwMDOutputFile" title="pwtools.parse.PwMDOutputFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">PwMDOutputFile</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.PwVCMDOutputFile.html#pwtools.parse.PwVCMDOutputFile" title="pwtools.parse.PwVCMDOutputFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">PwVCMDOutputFile</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.CpmdSCFOutputFile.html#pwtools.parse.CpmdSCFOutputFile" title="pwtools.parse.CpmdSCFOutputFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">CpmdSCFOutputFile</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.CpmdMDOutputFile.html#pwtools.parse.CpmdMDOutputFile" title="pwtools.parse.CpmdMDOutputFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">CpmdMDOutputFile</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.Cp2kSCFOutputFile.html#pwtools.parse.Cp2kSCFOutputFile" title="pwtools.parse.Cp2kSCFOutputFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cp2kSCFOutputFile</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.Cp2kMDOutputFile.html#pwtools.parse.Cp2kMDOutputFile" title="pwtools.parse.Cp2kMDOutputFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cp2kMDOutputFile</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.Cp2kDcdMDOutputFile.html#pwtools.parse.Cp2kDcdMDOutputFile" title="pwtools.parse.Cp2kDcdMDOutputFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cp2kDcdMDOutputFile</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.Cp2kRelaxOutputFile.html#pwtools.parse.Cp2kRelaxOutputFile" title="pwtools.parse.Cp2kRelaxOutputFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cp2kRelaxOutputFile</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.LammpsTextMDOutputFile.html#pwtools.parse.LammpsTextMDOutputFile" title="pwtools.parse.LammpsTextMDOutputFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">LammpsTextMDOutputFile</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.parse.LammpsDcdMDOutputFile.html#pwtools.parse.LammpsDcdMDOutputFile" title="pwtools.parse.LammpsDcdMDOutputFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">LammpsDcdMDOutputFile</span></code></a></div>
-</div>
-</div></blockquote>
-<p>The parsers called <code class="docutils literal notranslate"><span class="pre">*OutputFile</span></code> are for parsing simulation code output. The
-others parse structure files (cif and pdb).</p>
-<p>All parsers have a common API and can be used like</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span> <span class="o">=</span> <span class="n">PwSCFOutputFile</span><span class="p">(</span><span class="s1">&#39;pw.out&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span><span class="o">.</span><span class="n">get_cell</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># or call all get_*() methods at once and access attributes</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span><span class="o">.</span><span class="n">cell</span>
-</pre></div>
-</div>
-<p>The problem with using the parsers directly is that there are of course
-differences between the codes. For instance, each one uses different units
-(Bohr, Angstrom, Ry, Ha, eV, …). Also, not all structure attributes are
-contained in the output of all codes. For example,
-<a class="reference internal" href="../../generated/api/pwtools.parse.PwSCFOutputFile.html#pwtools.parse.PwSCFOutputFile" title="pwtools.parse.PwSCFOutputFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">PwSCFOutputFile</span></code></a> will parse Cartesian atomic coordinates into
-<code class="docutils literal notranslate"><span class="pre">pp.coords</span></code> and the unit cell into <code class="docutils literal notranslate"><span class="pre">pp.cell</span></code>. However, often we need to use
-the fractional coordinates <code class="docutils literal notranslate"><span class="pre">pp.coords_frac</span></code>. This quantity is not present in
-the PWscf output and thus <code class="docutils literal notranslate"><span class="pre">pp.coords_frac</span></code> will be None. However, we know
-that we can manually calculate it from <code class="docutils literal notranslate"><span class="pre">coords</span></code> and <code class="docutils literal notranslate"><span class="pre">cell</span></code>.</p>
-</div>
-<div class="section" id="container-classes-structure-and-trajectory">
-<span id="container-classes"></span><h3>Container classes <a class="reference internal" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a> and <a class="reference internal" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trajectory</span></code></a><a class="headerlink" href="#container-classes-structure-and-trajectory" title="Permalink to this headline">¶</a></h3>
-<p>In order to abstract away the differences between codes as much as possible, we
-have implemented unified container classes. These classes are
-<a class="reference internal" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a> and <a class="reference internal" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trajectory</span></code></a>. The
-former is used to represent a single crystal structure (unit cell, atom
-coordinates, total energy, stress tensor, …). The latter represents a
-sequence of structures, for instance an MD or relaxation run.</p>
-<p>They have two important features:</p>
-<ul class="simple">
-<li>A defined set of units
-(eV, Angstrom,…), to which all quantities are converted.</li>
-<li>Calculate all missing
-attributes automatically and thus provide a unified API.</li>
-</ul>
-<p>Note that the latter is a convenience feature and will also produce some
-redundant data. You may want to <a class="reference internal" href="../tutorial.html#avoid-auto-calc"><span class="std std-ref">turn it off</span></a>
-for parsing/storing big data.</p>
-<p>The auto-calculation of missing properties in <a class="reference internal" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trajectory</span></code></a>
-and <a class="reference internal" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a> is done by trying to calculate all
-properties for which there is a <code class="docutils literal notranslate"><span class="pre">get_*</span></code> method. For example, if a parser
-finds <code class="docutils literal notranslate"><span class="pre">coords</span></code> and <code class="docutils literal notranslate"><span class="pre">cell</span></code> in the MD data, then in
-<a class="reference internal" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trajectory</span></code></a> <code class="docutils literal notranslate"><span class="pre">coords_frac</span></code> is calculated from that.</p>
-<p>You can of course use these classes to build new structures and trajectories by
-hand (just as with <code class="docutils literal notranslate"><span class="pre">ase.Atoms</span></code>, or you use <a class="reference internal" href="../../generated/api/pwtools.crys.atoms2struct.html#pwtools.crys.atoms2struct" title="pwtools.crys.atoms2struct"><code class="xref py py-func docutils literal notranslate"><span class="pre">atoms2struct()</span></code></a>):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">st</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">Structure</span><span class="p">(</span><span class="n">coords_frac</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="o">.</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">]),</span>
-<span class="go">                        cryst_const=np.array([3.0]*3 + [60]*3),</span>
-<span class="go">                        symbols=[&#39;Al&#39;,&#39;N&#39;])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">Trajectory</span><span class="p">(</span><span class="n">coords_frac</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>
-<span class="go">                         cell=rand(1000,3,3),</span>
-<span class="go">                         symbols=[&#39;H&#39;]*20)</span>
-</pre></div>
-</div>
-<p>By doing this, the <a class="reference internal" href="../../generated/api/pwtools.crys.Structure.set_all.html#pwtools.crys.Structure.set_all" title="pwtools.crys.Structure.set_all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_all()</span></code></a> method is
-automatically called, which will calculate all possible attributes from the
-input data (for example <code class="docutils literal notranslate"><span class="pre">st.coords</span></code>, <code class="docutils literal notranslate"><span class="pre">st.cell</span></code>).</p>
-<p>However, some attributes may be undefined. For example, the <code class="docutils literal notranslate"><span class="pre">st</span></code> above will
-have no <code class="docutils literal notranslate"><span class="pre">etot</span></code> or <code class="docutils literal notranslate"><span class="pre">stress</span></code> attribute (they are None), since that was not
-defined in the input and there is no ways to calculate it, of course, whereas a
-Structure returned by <a class="reference internal" href="../../generated/api/pwtools.io.read_pw_scf.html#pwtools.io.read_pw_scf" title="pwtools.io.read_pw_scf"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_pw_scf()</span></code></a> will have that.</p>
-<p>By using the <a class="reference internal" href="../../generated/api/pwtools.base.FlexibleGetters.dump.html#pwtools.base.FlexibleGetters.dump" title="pwtools.base.FlexibleGetters.dump"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dump()</span></code></a> method, you can store
-the object as binary file [using Python’s <code class="docutils literal notranslate"><span class="pre">pickle</span></code> module] for fast
-re-loading later:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="s1">&#39;struck.pk&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st_loaded</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;struck.pk&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>A Trajectory object can be viewed a list of Structure instances [even though it
-is implemented differently due to efficiency: we use 3d numpy arrays], it
-supports iteration and slicing, for example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># extract first and last Structure objects</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st_first</span> <span class="o">=</span> <span class="n">tr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st_last</span> <span class="o">=</span> <span class="n">tr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># slice out a part of the trajectory</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tr_middle</span> <span class="o">=</span> <span class="n">tr</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">500</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># use every 5th step</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="p">[::</span><span class="mi">5</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>Structure and Trajectory objects can also be freely concatenated into a new
-Trajectory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tr_new</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">st1</span><span class="p">,</span> <span class="n">st2</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tr_new</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">st</span><span class="p">,</span> <span class="n">tr</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tr_new</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">tr1</span><span class="p">,</span> <span class="n">tr2</span><span class="p">,</span> <span class="n">st</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="high-level-parsing-functions">
-<span id="high-level-parsing"></span><h3>High-level parsing functions<a class="headerlink" href="#high-level-parsing-functions" title="Permalink to this headline">¶</a></h3>
-<p>The most simple way to parse code output and get a container class is to use
-the high-level functions in <a class="reference internal" href="../../generated/api/io.html#module-pwtools.io" title="pwtools.io"><code class="xref py py-mod docutils literal notranslate"><span class="pre">io</span></code></a>.</p>
-<dl class="docutils">
-<dt>These return a <a class="reference internal" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a>:</dt>
-<dd><div class="first last line-block">
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_cif.html#pwtools.io.read_cif" title="pwtools.io.read_cif"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_cif()</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_pdb.html#pwtools.io.read_pdb" title="pwtools.io.read_pdb"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_pdb()</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_pw_scf.html#pwtools.io.read_pw_scf" title="pwtools.io.read_pw_scf"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_pw_scf()</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_cpmd_scf.html#pwtools.io.read_cpmd_scf" title="pwtools.io.read_cpmd_scf"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_cpmd_scf()</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_cp2k_scf.html#pwtools.io.read_cp2k_scf" title="pwtools.io.read_cp2k_scf"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_cp2k_scf()</span></code></a></div>
-</div>
-</dd>
-<dt>These return a <a class="reference internal" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trajectory</span></code></a>:</dt>
-<dd><div class="first last line-block">
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_pw_md.html#pwtools.io.read_pw_md" title="pwtools.io.read_pw_md"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_pw_md()</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_pw_vcmd.html#pwtools.io.read_pw_vcmd" title="pwtools.io.read_pw_vcmd"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_pw_vcmd()</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_cpmd_md.html#pwtools.io.read_cpmd_md" title="pwtools.io.read_cpmd_md"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_cpmd_md()</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_cp2k_md.html#pwtools.io.read_cp2k_md" title="pwtools.io.read_cp2k_md"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_cp2k_md()</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_cp2k_md_dcd.html#pwtools.io.read_cp2k_md_dcd" title="pwtools.io.read_cp2k_md_dcd"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_cp2k_md_dcd()</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_cp2k_relax.html#pwtools.io.read_cp2k_relax" title="pwtools.io.read_cp2k_relax"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_cp2k_relax()</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_lammps_md_txt.html#pwtools.io.read_lammps_md_txt" title="pwtools.io.read_lammps_md_txt"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_lammps_md_txt()</span></code></a></div>
-<div class="line"><a class="reference internal" href="../../generated/api/pwtools.io.read_lammps_md_dcd.html#pwtools.io.read_lammps_md_dcd" title="pwtools.io.read_lammps_md_dcd"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_lammps_md_dcd()</span></code></a></div>
-</div>
-</dd>
-</dl>
-<p>For example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">st</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_pw_scf</span><span class="p">(</span><span class="s1">&#39;pw.out&#39;</span><span class="p">)</span> <span class="c1"># SCF run</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">etot</span>
-<span class="go">-258.58148870118305</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">cell</span>
-<span class="go">array([[-2.71536701,  0.        ,  2.71536701],</span>
-<span class="go">       [ 0.        ,  2.71536701,  2.71536701],</span>
-<span class="go">       [-2.71536701,  2.71536701,  0.        ]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_pw_md</span><span class="p">(</span><span class="s1">&#39;pw.out&#39;</span><span class="p">)</span> <span class="c1"># MD/relax run</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">.</span><span class="n">etot</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">17812.03671913</span><span class="p">,</span> <span class="o">-</span><span class="mf">17810.74831561</span><span class="p">,</span> <span class="o">-</span><span class="mf">17811.38315829</span><span class="p">,</span>
-<span class="go">           -17808.90413645, -17807.96259264])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">etot</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>These functions use the appropriate parser class and transform the result of
-the parsing to a <a class="reference internal" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a> or
-<a class="reference internal" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trajectory</span></code></a>. For example, what is essentially done is
-simply:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># same as tr=io.read_pw_md(&#39;pw.out&#39;)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">PwMDOutputFile</span><span class="p">(</span><span class="s1">&#39;pw.out&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">pp</span><span class="o">.</span><span class="n">get_traj</span><span class="p">()</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># same as st=io.read_cp2k_scf(&#39;cp2k.out&#39;)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">Cp2kSCFOutputFile</span><span class="p">(</span><span class="s1">&#39;cp2k.out&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span> <span class="o">=</span> <span class="n">pp</span><span class="o">.</span><span class="n">get_struct</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>It is important to note that Structure and Trajectory instances built by hand
-can be used in exactly the same way as those obtained by using one of the
-<code class="docutils literal notranslate"><span class="pre">io.read_*()</span></code> functions.</p>
-</div>
-<div class="section" id="units">
-<h3>Units<a class="headerlink" href="#units" title="Permalink to this headline">¶</a></h3>
-<p>Each parser will (try to) return the “natural” units of each code:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="15%" />
-<col width="12%" />
-<col width="21%" />
-<col width="25%" />
-<col width="27%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">property</th>
-<th class="head">PWscf</th>
-<th class="head">CPMD</th>
-<th class="head">CP2K</th>
-<th class="head">LAMMPS (metal units)</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>length</td>
-<td>Bohr</td>
-<td>Bohr</td>
-<td>Angstrom</td>
-<td>Angstrom</td>
-</tr>
-<tr class="row-odd"><td>energy</td>
-<td>Ry</td>
-<td>Ha</td>
-<td>Ha</td>
-<td>eV</td>
-</tr>
-<tr class="row-even"><td>forces</td>
-<td>Ry/Bohr</td>
-<td>Ha/Bohr</td>
-<td>Ha/Bohr</td>
-<td>eV/Angstrom</td>
-</tr>
-<tr class="row-odd"><td>stress</td>
-<td>kbar</td>
-<td>kbar</td>
-<td>bar[MD], GPa[SCF]</td>
-<td>bar</td>
-</tr>
-<tr class="row-even"><td>temperature</td>
-<td>K</td>
-<td>K</td>
-<td>K</td>
-<td>K</td>
-</tr>
-<tr class="row-odd"><td>velocity</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Bohr/thart (?)</td>
-<td>Bohr/thart</td>
-<td>Angstrom/ps</td>
-</tr>
-<tr class="row-even"><td>time</td>
-<td>tryd</td>
-<td>thart</td>
-<td>thart</td>
-<td>ps</td>
-</tr>
-</tbody>
-</table>
-<p>See <a class="reference internal" href="../../generated/api/constants.html#module-pwtools.constants" title="pwtools.constants"><code class="xref py py-mod docutils literal notranslate"><span class="pre">constants</span></code></a> for <cite>thart</cite> and <cite>tryd</cite>.</p>
-<p>For PWscf, we also detect things like “ATOMIC_POSITIONS crystal | alat | bohr”
-and transform accordingly. Nevertheless, <em>always</em> verify that the units you get
-are the ones you expect!</p>
-<p>In <a class="reference internal" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a> and <a class="reference internal" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trajectory</span></code></a>, we have
-units eV, Angstrom,…</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="20%" />
-<col width="25%" />
-<col width="55%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">property</th>
-<th class="head">unit</th>
-<th class="head">SI</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>length</td>
-<td>Angstrom</td>
-<td>(1e-10 m)</td>
-</tr>
-<tr class="row-odd"><td>energy</td>
-<td>eV</td>
-<td>(1.602176487e-19 J)</td>
-</tr>
-<tr class="row-even"><td>forces</td>
-<td>eV / Angstrom</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-odd"><td>stress</td>
-<td>GPa</td>
-<td>(not eV/Angstrom**3)</td>
-</tr>
-<tr class="row-even"><td>temperature</td>
-<td>K</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-odd"><td>velocity</td>
-<td>Angstrom / fs</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-even"><td>time</td>
-<td>fs</td>
-<td>(1e-15 s)</td>
-</tr>
-<tr class="row-odd"><td>mass</td>
-<td>amu</td>
-<td>(1.6605387820000001e-27 kg)</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="section" id="velocity-autocorrelation-function-and-phonon-dos">
-<h2>Velocity autocorrelation function and phonon DOS<a class="headerlink" href="#velocity-autocorrelation-function-and-phonon-dos" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="correlation-and-power-spectrum">
-<h3>Correlation and power spectrum<a class="headerlink" href="#correlation-and-power-spectrum" title="Permalink to this headline">¶</a></h3>
-<p>Here are some (textbook) notes about correlation, which you should read in
-order to understand how the phonon DOS (= vibrational density of states =
-power spectrum of the atomic velocities) is calculated in pwtools (see
-<a class="reference internal" href="../../generated/api/pydos.html#module-pwtools.pydos" title="pwtools.pydos"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pydos</span></code></a>).</p>
-<p>The cross-correlation theorem for the two-sided correlation:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">corr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="n">ifft</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">fft</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span>
-</pre></div>
-</div>
-<p>If a == b, then this reduces to the special case of the Wiener-Khinchin theorem
-(autocorrelation of <cite>a</cite>):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">corr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="p">)</span> <span class="o">=</span> <span class="n">ifft</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">a</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>where the power spectrum of <cite>a</cite> is simply:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fft</span><span class="p">(</span><span class="n">corr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="p">))</span> <span class="o">==</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">a</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
-</pre></div>
-</div>
-<p>Both theorems assume <em>periodic</em> data, i.e. <cite>a</cite> and <cite>b</cite> repeat after <cite>nstep</cite>
-points. To deal with non-periodic data, we use zero-padding with <code class="docutils literal notranslate"><span class="pre">nstep-1</span></code>
-points at the end of <cite>a</cite> before <code class="docutils literal notranslate"><span class="pre">fft</span></code>. Therefore, the correlated signal is
-<code class="docutils literal notranslate"><span class="pre">2*nstep-1</span></code> points long (“two-sided correlation”) and contains the correlations for positive and
-negative lags. Since the autocorrelation function is symmetric around lag=0, we
-return 0 … +lag in <a class="reference internal" href="../../generated/api/pwtools.signal.acorr.html#pwtools.signal.acorr" title="pwtools.signal.acorr"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.signal.acorr()</span></code></a>. To compare that with
-<code class="docutils literal notranslate"><span class="pre">scipy.signal.correlate(a,a,'full')</span></code>, we need to mirror the result at lag=0
-again.</p>
-<p>Here are these equalities with discrete data. Note that due to the
-way in which fft/ifft packs the data in the returned array, we need
-to do some slicing + mirror tricks to get it right. In each example,
-the arrays c1,c2,c3 and p1,p2 are the same and for <code class="docutils literal notranslate"><span class="pre">corr(v,v)</span></code> we use
-<code class="docutils literal notranslate"><span class="pre">acorr(v)</span></code> here.</p>
-<p>Two-sided correlation for -lag…0…+lag:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.signal</span> <span class="k">import</span> <span class="n">pad_zeros</span><span class="p">,</span> <span class="n">welch</span><span class="p">,</span> <span class="n">mirror</span><span class="p">,</span> <span class="n">acorr</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="k">import</span> <span class="n">correlate</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="k">import</span> <span class="n">fft</span><span class="p">,</span><span class="n">ifft</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pad</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pad_zeros</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nadd</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="o">=</span><span class="mi">500</span><span class="p">;</span> <span class="n">w</span><span class="o">=</span><span class="n">welch</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">);</span> <span class="n">dt</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="n">rand</span><span class="p">()</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dt</span><span class="p">)[:</span><span class="n">n</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">figure</span><span class="p">();</span> <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">v</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;signal&#39;</span><span class="p">)</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="n">c1</span><span class="o">=</span><span class="n">mirror</span><span class="p">(</span><span class="n">ifft</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">pad</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)[:</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">c2</span><span class="o">=</span><span class="n">correlate</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">c3</span><span class="o">=</span><span class="n">mirror</span><span class="p">(</span><span class="n">acorr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">norm</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">figure</span><span class="p">();</span> <span class="n">plot</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;fft&#39;</span><span class="p">);</span> <span class="n">plot</span><span class="p">(</span><span class="n">c2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;scipy&#39;</span><span class="p">);</span> \
-<span class="gp">... </span><span class="n">plot</span><span class="p">(</span><span class="n">c3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;acorr&#39;</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;corr&#39;</span><span class="p">);</span> <span class="n">legend</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>and the power spectra as <code class="docutils literal notranslate"><span class="pre">fft(corr(v,v))</span></code>, now one-sided:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span><span class="o">=</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">pad</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)[:</span><span class="n">n</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span><span class="o">=</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">mirror</span><span class="p">(</span><span class="n">acorr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)))))[:</span><span class="n">n</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">figure</span><span class="p">();</span> <span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;fft&#39;</span><span class="p">);</span> <span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;acorr&#39;</span><span class="p">);</span> \
-<span class="gp">... </span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;spectrum&#39;</span><span class="p">);</span> <span class="n">legend</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>also with a Welch window:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span><span class="o">=</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">pad</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="n">w</span><span class="p">)))</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)[:</span><span class="n">n</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span><span class="o">=</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">mirror</span><span class="p">(</span><span class="n">acorr</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="n">w</span><span class="p">,</span><span class="n">norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)))))[:</span><span class="n">n</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">figure</span><span class="p">();</span> <span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;fft&#39;</span><span class="p">);</span> <span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;acorr&#39;</span><span class="p">);</span> \
-<span class="gp">... </span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;spectrum welch&#39;</span><span class="p">);</span> <span class="n">legend</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>The zero-padding before <code class="docutils literal notranslate"><span class="pre">fft</span></code> is manadatory! It is also done inside
-<code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.signal.correlate()</span></code>.</p>
-<p>The 1D reference implementation is <a class="reference internal" href="../../generated/api/pwtools.signal.acorr.html#pwtools.signal.acorr" title="pwtools.signal.acorr"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.signal.acorr()</span></code></a>, which contains the
-fft-based correlation (Wiener-Khinchin) along with other methods.</p>
-</div>
-<div class="section" id="padding-and-smoothing">
-<h3>Padding and smoothing<a class="headerlink" href="#padding-and-smoothing" title="Permalink to this headline">¶</a></h3>
-<p>There is <a class="reference external" href="http://www.timteatro.net/2010/09/29/velocity-autocorrelation-and-vibrational-spectrum-calculation">another code</a> out there (appart from <code class="docutils literal notranslate"><span class="pre">fourier.x</span></code> from CPMD)
-which calculates the phonon DOS from MD data. What they do is padding the
-<cite>correlation</cite> function, i.e. something like <code class="docutils literal notranslate"><span class="pre">fft(pad(acorr(v)))</span></code>, which is
-<cite>not</cite> the same as <code class="docutils literal notranslate"><span class="pre">fft(mirror(acorr(v)))</span></code>. They also use smoothing (convolution
-with a gaussian, i.e. <code class="docutils literal notranslate"><span class="pre">fft(smooth(pad(acorr(v))))</span></code>) after padding, which is
-less effective than using a Welch (or any other) window function. But we
-haven’t tested the code, so all this may work just fine.</p>
-<p>For smoothing the spectrum (e.g. <code class="docutils literal notranslate"><span class="pre">p1=(abs(fft(pad(v)))**2.0)[:n]</span></code>) using our
-implementation, use <a class="reference internal" href="../../generated/api/pwtools.signal.smooth.html#pwtools.signal.smooth" title="pwtools.signal.smooth"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.signal.smooth()</span></code></a>, i.e. <code class="docutils literal notranslate"><span class="pre">smooth(p1)</span></code>. For
-increasing the interpolation, use more padding <cite>of the time series</cite>, for
-instance <code class="docutils literal notranslate"><span class="pre">pad_zeros(v,</span> <span class="pre">nadd=(len(v)-1)*5)</span></code> instead of <cite>len(v)-1</cite>.</p>
-</div>
-<div class="section" id="calculation-of-the-phonon-dos-from-md-data">
-<h3>Calculation of the phonon DOS from MD data<a class="headerlink" href="#calculation-of-the-phonon-dos-from-md-data" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference internal" href="../../generated/api/pydos.html#module-pwtools.pydos" title="pwtools.pydos"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pydos</span></code></a> module containes many helper and reference
-implementations, but the the main function to be used is
-<a class="reference internal" href="../../generated/api/pwtools.pydos.pdos.html#pwtools.pydos.pdos" title="pwtools.pydos.pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">pdos()</span></code></a>.</p>
-<p>There are two ways of computing the phonon density of states (PDOS) from an MD
-trajectory. <code class="docutils literal notranslate"><span class="pre">v</span></code> is the 3d array of atomic velocities with shape (nstep,natoms,3),
-i.e. <code class="docutils literal notranslate"><span class="pre">Trajectory.velocity</span></code>, see <a class="reference internal" href="../../generated/api/pwtools.crys.velocity_traj.html#pwtools.crys.velocity_traj" title="pwtools.crys.velocity_traj"><code class="xref py py-func docutils literal notranslate"><span class="pre">velocity_traj()</span></code></a>.</p>
-<ul class="simple">
-<li><dl class="first docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">method='vacf'</span></code>: <code class="docutils literal notranslate"><span class="pre">fft</span></code> of the velocity autocorrelation function (<code class="docutils literal notranslate"><span class="pre">vacf</span></code>):</dt>
-<dd><code class="docutils literal notranslate"><span class="pre">v</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">vacf</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">fft(vacf)</span></code> = PDOS, see <a class="reference internal" href="../../generated/api/pwtools.pydos.vacf_pdos.html#pwtools.pydos.vacf_pdos" title="pwtools.pydos.vacf_pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">vacf_pdos()</span></code></a></dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">method='direct'</span></code>:  <code class="docutils literal notranslate"><span class="pre">abs(fft(v))**2</span></code> = PDOS, see <a class="reference internal" href="../../generated/api/pwtools.pydos.direct_pdos.html#pwtools.pydos.direct_pdos" title="pwtools.pydos.direct_pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">direct_pdos()</span></code></a>,</dt>
-<dd>This is much faster and mathematically exactly the same, see
-<code class="docutils literal notranslate"><span class="pre">examples/examples/phonon_dos</span></code> and <code class="docutils literal notranslate"><span class="pre">test/test_pdos.py</span></code> .</dd>
-</dl>
-</li>
-</ul>
-<p>Both methods are implemented but actually only method ‘direct’ is worth using.
-Method ‘vacf’ still exists for historical reasons and as reference.</p>
-<p>The actual implementation is in <a class="reference internal" href="../../generated/api/pwtools.pydos.pdos.html#pwtools.pydos.pdos" title="pwtools.pydos.pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">pdos()</span></code></a> and the above two
-functions are convenience wrappers.</p>
-<ul class="simple">
-<li>In method ‘vacf’, if we mirror the <code class="docutils literal notranslate"><span class="pre">vacf</span></code> at t=0 before the <code class="docutils literal notranslate"><span class="pre">fft</span></code>, then we get
-double frequency resolution.</li>
-<li>By default, <a class="reference internal" href="../../generated/api/pwtools.pydos.direct_pdos.html#pwtools.pydos.direct_pdos" title="pwtools.pydos.direct_pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">direct_pdos()</span></code></a> uses zero-padding of <code class="docutils literal notranslate"><span class="pre">v</span></code> to
-get the same frequency resolution as we would get with mirroring the signal
-(<code class="docutils literal notranslate"><span class="pre">mirr=True</span></code>) <a class="reference internal" href="../../generated/api/pwtools.pydos.vacf_pdos.html#pwtools.pydos.vacf_pdos" title="pwtools.pydos.vacf_pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">vacf_pdos()</span></code></a>. Also, padding is necessary
-b/c of the arguments outlined above for the 1d case.</li>
-<li>Both methods use Welch windowing by default to reduce “leakage” from
-neighboring peaks.</li>
-<li>Both methods must produce exactly the same results (up to numerical noise).</li>
-<li>The frequency axis of the PDOS is in Hz. It is “f”, NOT the angular frequency
-2*pi*f. See also <code class="docutils literal notranslate"><span class="pre">examples/pdos_methods.py</span></code>.</li>
-<li><dl class="first docutils">
-<dt>The difference to the 1d case:</dt>
-<dd><ul class="first last">
-<li>mass weighting: this affects only the relative peak <cite>heights</cite> in the
-PDOS, not the peak positions</li>
-<li>averaging over <cite>natoms</cite> to get a 1d array (time series)</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</div>
-</div>
-<div class="section" id="pwscf">
-<h2>Pwscf<a class="headerlink" href="#pwscf" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id24">
-<h3>Units<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
-<p>From <a class="reference external" href="http://www.quantum-espresso.org/input-syntax/INPUT_PW.html">http://www.quantum-espresso.org/input-syntax/INPUT_PW.html</a>:
-“All quantities whose dimensions are not explicitly specified are in
-RYDBERG ATOMIC UNITS”. See also <code class="docutils literal notranslate"><span class="pre">constants.py</span></code>.</p>
-<dl class="docutils">
-<dt>matdyn.x and phonon dos:</dt>
-<dd>With dos=.true., matdyn.x calculates the phonon density of states. The
-frequency axis in the output file is f in cm^-1. Note that THIS IS NOT THE
-ANGULAR FREQUENCY omega = 2*pi*f!!! Therefore, if you calculate with this
-frequency as in “hbar*omega”, then use f*2*pi!</dd>
-</dl>
-</div>
-<div class="section" id="atomic-coordinates">
-<h3>Atomic coordinates<a class="headerlink" href="#atomic-coordinates" title="Permalink to this headline">¶</a></h3>
-<p>In PWscf terms, alat = celldm(1) = lattice constant “a” in a.u. . A length in
-a.u. means a unit or Bohr = a0 = 0.52917720859 Angstrom.</p>
-<p>To calculate the PDOS, atomic coordinates from MD trajectories have to be in
-cartesian coordinates. You may have to transform them <em>before</em> using them to
-calculate the PDOS. See</p>
-<p><code class="docutils literal notranslate"><span class="pre">test/test_pdos.py</span></code>
-<code class="docutils literal notranslate"><span class="pre">test/test_pdos_coord_trans.py</span></code></p>
-<p>This is necessary if you have “ATOMIC_POSITIONS crystal”.</p>
-<p>The scale (or unit: Bohr, Angstrom, …, defined by celldm(1) or
-CELL_PARAMETERS) does not matter, b/c currently the integral area under the
-PDOS curve is normalized in pydos.*_pdos(). But coords MUST be cartesian!</p>
-<p>For your convenience, here is a list of all possible formats (from the Pwscf
-help):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">allowed</span> <span class="n">ATOMIC_POSITIONS</span> <span class="n">units</span><span class="p">:</span>
-   <span class="n">alat</span>    <span class="p">:</span> <span class="n">atomic</span> <span class="n">positions</span> <span class="n">are</span> <span class="ow">in</span> <span class="n">cartesian</span> <span class="n">coordinates</span><span class="p">,</span>
-             <span class="ow">in</span> <span class="n">units</span> <span class="n">of</span> <span class="n">the</span> <span class="n">lattice</span> <span class="n">parameter</span> <span class="s2">&quot;a&quot;</span> <span class="p">(</span><span class="n">default</span><span class="p">)</span>
-
-   <span class="n">bohr</span>    <span class="p">:</span> <span class="n">atomic</span> <span class="n">positions</span> <span class="n">are</span> <span class="ow">in</span> <span class="n">cartesian</span> <span class="n">coordinate</span><span class="p">,</span>
-             <span class="ow">in</span> <span class="n">atomic</span> <span class="n">units</span> <span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">e</span><span class="o">.</span> <span class="n">Bohr</span><span class="p">)</span>
-
-   <span class="n">angstrom</span><span class="p">:</span> <span class="n">atomic</span> <span class="n">positions</span> <span class="n">are</span> <span class="ow">in</span> <span class="n">cartesian</span> <span class="n">coordinates</span><span class="p">,</span>
-             <span class="ow">in</span> <span class="n">Angstrom</span>
-
-   <span class="n">crystal</span> <span class="p">:</span> <span class="n">atomic</span> <span class="n">positions</span> <span class="n">are</span> <span class="ow">in</span> <span class="n">crystal</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">e</span><span class="o">.</span>
-             <span class="ow">in</span> <span class="n">relative</span> <span class="n">coordinates</span> <span class="n">of</span> <span class="n">the</span> <span class="n">primitive</span> <span class="n">lattice</span> <span class="n">vectors</span>
-</pre></div>
-</div>
-<p>Note: crystal coords are also called fractional coordinates (e.g. in Cif
-files).</p>
-<p>summary:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ATOMIC_POSITIONS</span> <span class="n">angstrom</span>  <span class="o">-&gt;</span> <span class="n">cartesian</span> <span class="n">angstrom</span>
-<span class="n">ATOMIC_POSITIONS</span> <span class="n">bohr</span>      <span class="o">-&gt;</span> <span class="n">cartesian</span> <span class="n">a</span><span class="o">.</span><span class="n">u</span><span class="o">.</span>
-<span class="n">ATOMIC_POSITIONS</span>           <span class="o">-&gt;</span> <span class="n">cartesian</span> <span class="n">alat</span>
-<span class="n">ATOMIC_POSITIONS</span> <span class="n">alat</span>      <span class="o">-&gt;</span> <span class="n">cartesian</span> <span class="n">alat</span>
-<span class="n">ATOMIC_POSITIONS</span> <span class="n">crystal</span>   <span class="o">-&gt;</span> <span class="n">crystal</span> <span class="n">alat</span> <span class="ow">or</span> <span class="n">crystal</span> <span class="n">a</span><span class="o">.</span><span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">see</span> <span class="n">below</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>The unit of CELL_PARAMETERS is only important for ATOMIC_POSITIONS crystal:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">celldm</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">present</span>  <span class="o">-&gt;</span> <span class="n">CELL_PARAMETERS</span> <span class="ow">in</span> <span class="n">alat</span> <span class="o">-&gt;</span> <span class="n">crystal</span> <span class="n">alat</span>
-    <span class="o">=&gt;</span> <span class="n">CELL_PARAMETERS</span> <span class="o">=</span> <span class="n">real</span> <span class="n">cell</span> <span class="n">parameter</span> <span class="n">divided</span> <span class="n">by</span> <span class="n">alat</span>
-<span class="k">if</span> <span class="ow">not</span>                <span class="o">-&gt;</span> <span class="n">CELL_PARAMETERS</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">u</span><span class="o">.</span> <span class="o">-&gt;</span> <span class="n">crystal</span> <span class="n">a</span><span class="o">.</span><span class="n">u</span><span class="o">.</span>
-    <span class="o">=&gt;</span> <span class="n">CELL_PARAMETERS</span> <span class="n">are</span> <span class="ow">in</span> <span class="n">Rydberg</span> <span class="n">atomic</span> <span class="n">units</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">e</span><span class="o">.</span> <span class="ow">in</span> <span class="n">Bohr</span><span class="o">.</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="total-force-on-atoms">
-<h3>Total force on atoms<a class="headerlink" href="#total-force-on-atoms" title="Permalink to this headline">¶</a></h3>
-<p>Pwscf writes a “Total Force” after the “Forces acting on atoms” section . This
-value is kind of an RMS of the force matrix (f_ij, i=1,natoms j=1,2,3) printed.
-According to …/PW/forces.f90, variable “sumfor”, the “Total Force” is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_ij</span> <span class="n">f_ij</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>But this is not normalized to the number of atoms. Use crys.rms() or
-crys.rms3d() for MD runs where the RMS of each (f_ij) is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sqrt</span><span class="p">(</span> <span class="p">(</span><span class="n">sum_ij</span> <span class="n">f_ij</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span> <span class="p">)</span>
-</pre></div>
-</div>
-<p>with N = 3*natoms or N=natoms.</p>
-</div>
-</div>
-<div class="section" id="radial-basis-functions-networks-for-interpolation-or-fitting-of-n-dim-data-points">
-<span id="rbf"></span><h2>Radial Basis Functions Networks for interpolation or fitting of N-dim data points<a class="headerlink" href="#radial-basis-functions-networks-for-interpolation-or-fitting-of-n-dim-data-points" title="Permalink to this headline">¶</a></h2>
-<p>Some background information on the method implemented in <a class="reference internal" href="../../generated/api/rbf.html#module-pwtools.rbf" title="pwtools.rbf"><code class="xref py py-mod docutils literal notranslate"><span class="pre">rbf</span></code></a>.
-For code examples, see the doc string of <a class="reference internal" href="../../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a>. See
-<code class="docutils literal notranslate"><span class="pre">examples/rbf/</span></code> for advanced topics such as cross-validation error
-convergence, avoidance of overfitting, error landscape analysis and
-optimization of the RBF parameter <span class="math notranslate nohighlight">\(p\)</span> (and regularization strength
-<span class="math notranslate nohighlight">\(r\)</span>).</p>
-<p>Refs:</p>
-<table class="docutils footnote" frame="void" id="id25" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[1]</td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Radial_basis_function_network">http://en.wikipedia.org/wiki/Radial_basis_function_network</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id26" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[2]</td><td>Numerical Recipes, 3rd ed., ch 3.7</td></tr>
-</tbody>
-</table>
-<div class="section" id="id27">
-<h3>Theory<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
-<p>The goal is to interpolate or fit an unordered set of <span class="math notranslate nohighlight">\(M\)</span> ND data points
-<span class="math notranslate nohighlight">\(\mathbf x_i\)</span> and values <span class="math notranslate nohighlight">\(z_i\)</span> so as to obtain <span class="math notranslate nohighlight">\(z=f(\mathbf
-x)\)</span>. In radial basis function (RBF) interpolation, the interpolating function
-<span class="math notranslate nohighlight">\(f(\mathbf x)\)</span> is a linear combination of RBFs <span class="math notranslate nohighlight">\(\phi(r)\)</span></p>
-<div class="math notranslate nohighlight">
-\[f(\mathbf x) = \sum_j w_j\,\phi(|\mathbf x - \mathbf c_j|)\]</div>
-<p>with the weights <span class="math notranslate nohighlight">\(w_j\)</span> and the center points <span class="math notranslate nohighlight">\(\mathbf c_j\)</span>. An RBF
-<span class="math notranslate nohighlight">\(\phi(r)\)</span> is thus a function of the distance <span class="math notranslate nohighlight">\(r=|\mathbf x -
-\mathbf c_j|\)</span> between <span class="math notranslate nohighlight">\(\mathbf x\)</span> and a center point. Common functions
-include</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align}
-    &amp; \phi(r) = \exp\left(-\frac{r^2}{2\,p^2}\right) &amp;&amp; \text{Gaussian}\\
-    &amp; \phi(r) = \sqrt{r^2 + p^2} &amp;&amp; \text{multiquadric}\\
-    &amp; \phi(r) = \frac{1}{\sqrt{r^2 + p^2}} &amp;&amp; \text{inverse multiquadric}
-\end{align}\end{split}\]</div>
-<p>All RBFs contain a single parameter <span class="math notranslate nohighlight">\(p\)</span> which defines the width of the
-function. The function <span class="math notranslate nohighlight">\(f(\mathbf x)\)</span> can be also thought of as a neural
-network with one hidden layer and activation functions <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
-<p>In interpolation the center points <span class="math notranslate nohighlight">\(\mathbf c_j\)</span> are equal to the data points
-<span class="math notranslate nohighlight">\(\mathbf x_j\)</span> such that</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{gather}
-    z_i = f(\mathbf x_i) = \sum_j w_j\,\phi(|\mathbf x_i - \mathbf x_j|) = \sum_j w_j\,G_{ij}\\
-    \mathbf G\,\mathbf w = \mathbf z\\
-\end{gather}\end{split}\]</div>
-<p>with <span class="math notranslate nohighlight">\(\mathbf G\)</span> the <span class="math notranslate nohighlight">\(M\times M\)</span> matrix of RBF function values. The
-weights <span class="math notranslate nohighlight">\(\mathbf w = (w_j)\)</span> are found by solving the linear system
-<span class="math notranslate nohighlight">\(\mathbf G\,\mathbf w = \mathbf z\)</span>.</p>
-<p>Thus, the applicability of the method is limited by the number of points
-<span class="math notranslate nohighlight">\(M\)</span> in the sense that a dense linear system <span class="math notranslate nohighlight">\(M\times M\)</span> must be
-stored and solved. For large point sets, the calculation of the distance matrix
-<span class="math notranslate nohighlight">\(R_{ij} = |\mathbf x_i - \mathbf x_j|\)</span> is one of the bottlenecks. In
-pwtools, this is coded in Fortran (see <a class="reference internal" href="../../generated/api/pwtools.num.distsq.html#pwtools.num.distsq" title="pwtools.num.distsq"><code class="xref py py-func docutils literal notranslate"><span class="pre">distsq()</span></code></a>).</p>
-</div>
-<div class="section" id="rbf-parameter-p">
-<h3>RBF parameter <span class="math notranslate nohighlight">\(p\)</span><a class="headerlink" href="#rbf-parameter-p" title="Permalink to this headline">¶</a></h3>
-<p>Each RBF has a single “width” parameter <span class="math notranslate nohighlight">\(p\)</span>, which can be tuned
-(attribute <code class="docutils literal notranslate"><span class="pre">Rbf.p</span></code> in the code). While <span class="math notranslate nohighlight">\(f(\mathbf x)\)</span> goes through all
-data points <span class="math notranslate nohighlight">\(\mathbf x_i\)</span> by definition (in interpolation, regularization
-<span class="math notranslate nohighlight">\(r\rightarrow 0\)</span>), the behavior of the interpolation between points is
-determined by <span class="math notranslate nohighlight">\(p\)</span>. For instance, too narrow functions <span class="math notranslate nohighlight">\(\phi\)</span> can
-lead to oscillations between points. Therefore <span class="math notranslate nohighlight">\(p\)</span> must be tuned for the
-specific data set. The scipy implementation <span class="math notranslate nohighlight">\(p_{\text{scipy}}\)</span> in
-<code class="docutils literal notranslate"><span class="pre">scipy.interpolate.Rbf</span></code> uses something like the mean nearest neighbor
-distance. We provide this as <code class="docutils literal notranslate"><span class="pre">Rbf(points,</span> <span class="pre">values,</span> <span class="pre">p='scipy')</span></code> or
-<code class="docutils literal notranslate"><span class="pre">rbf.estimate_p(points,</span> <span class="pre">'scipy')</span></code>. The default in <a class="reference internal" href="../../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.rbf.Rbf</span></code></a>
-however is the mean distance of all points
-<span class="math notranslate nohighlight">\(p_{\text{pwtools}}=1/M^2\,\sum_{ij} R_{ij}\)</span> (<code class="docutils literal notranslate"><span class="pre">Rbf(points,</span> <span class="pre">values,</span>
-<span class="pre">p='mean')</span></code> or <code class="docutils literal notranslate"><span class="pre">rbf.estimate_p(points,</span> <span class="pre">'mean')</span></code>). This is always bigger than
-<span class="math notranslate nohighlight">\(p_{\text{scipy}}\)</span>, and yes this will change with the min-max span of the
-data, while the mean nearest neighbor
-distance stays constant. However it is usually the better
-start guess for <span class="math notranslate nohighlight">\(p\)</span> since it is less prone to overfitting in case of
-noisy data, where the smaller scipy <span class="math notranslate nohighlight">\(p\)</span> will often still interpolate all
-points. However, there is no ad-hoc best choice for <span class="math notranslate nohighlight">\(p\)</span>. In general,
-<span class="math notranslate nohighlight">\(p\)</span> must be determined by methods such as K-fold cross validation. Use
-<a class="reference internal" href="../../generated/api/pwtools.rbf.FitError.html#pwtools.rbf.FitError" title="pwtools.rbf.FitError"><code class="xref py py-class docutils literal notranslate"><span class="pre">FitError</span></code></a>, esp. <a class="reference internal" href="../../generated/api/pwtools.rbf.FitError.err_cv.html#pwtools.rbf.FitError.err_cv" title="pwtools.rbf.FitError.err_cv"><code class="xref py py-meth docutils literal notranslate"><span class="pre">err_cv()</span></code></a> or
-other tools from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> which are outside of the scope of pwtools.
-See <code class="docutils literal notranslate"><span class="pre">examples/rbf/overfit.py</span></code>.</p>
-</div>
-<div class="section" id="interpolation-vs-fitting-and-regularization">
-<h3>Interpolation vs. fitting and regularization<a class="headerlink" href="#interpolation-vs-fitting-and-regularization" title="Permalink to this headline">¶</a></h3>
-<p>For smooth noise-free data, RBF provides nice interpolation. But for noisy
-data, we would like to do a fit instead, similar to “s” parameter of
-<code class="docutils literal notranslate"><span class="pre">scipy.interpolate.bisplrep</span></code>. <code class="docutils literal notranslate"><span class="pre">scipy.interpolate.Rbf</span></code> has a “smooth”
-parameter for regularization. Here we can do the same (<code class="docutils literal notranslate"><span class="pre">Rbf.r</span></code>, <code class="docutils literal notranslate"><span class="pre">Rbf(points,</span>
-<span class="pre">values,</span> <span class="pre">r=1e-8)</span></code>) and solve</p>
-<div class="math notranslate nohighlight">
-\[(\mathbf G + r\,\mathbf I)\,\mathbf w = \mathbf z\]</div>
-<p>which creates a more “stiff” (low curvature) function <span class="math notranslate nohighlight">\(f(\mathbf x)\)</span>
-which does not necessarily interpolate all points. The regularization also
-deals with the numerical instability of <span class="math notranslate nohighlight">\(\mathbf G\,\mathbf w = \mathbf
-z\)</span>, which results in <code class="docutils literal notranslate"><span class="pre">scipy.linalg.solve</span></code> often issuing an ill-conditioned
-matrix warning and very bad interpolation results.</p>
-<p>See <code class="docutils literal notranslate"><span class="pre">examples/rbf/</span></code> for how to investigate the <span class="math notranslate nohighlight">\((p,r)\)</span> fit error
-landscape and to calculate optimal <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(r\)</span> for
-a given data set:</p>
-<img alt="../../_images/crossval_pr_gauss.png" src="../../_images/crossval_pr_gauss.png" />
-<p>One can also switch from <code class="docutils literal notranslate"><span class="pre">scipy.linalg.solve</span></code> to <code class="docutils literal notranslate"><span class="pre">scipy.linalg.lstsq</span></code> and
-solve the system in a least squares sense without regularization. In that case
-we also get much more stable solutions. The advantage [*] of using least
-squares is that we have the smoothness by construction no smoothness parameter
-needs to be tuned. If the noise is low relative to the point distance, we get
-interpolation-like results, which cannot be distinguished from the solutions
-obtained with a normal linear system solver. The method will try its best to do
-interpolation, but will smoothly transition to fitting as noise increases.</p>
-<dl class="docutils">
-<dt>[*] However, we found that <code class="docutils literal notranslate"><span class="pre">lstsq</span></code> can introduce small numerical noise in the</dt>
-<dd>solution, so test before using (as always!).</dd>
-</dl>
-</div>
-<div class="section" id="other-codes">
-<h3>Other codes<a class="headerlink" href="#other-codes" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">scipy.interpolate.Rbf</span></code></li>
-<li><a class="reference external" href="http://pypi.python.org/pypi/PyRadbas/0.1.0">http://pypi.python.org/pypi/PyRadbas/0.1.0</a></li>
-<li><a class="reference external" href="http://code.google.com/p/pyrbf/">http://code.google.com/p/pyrbf/</a></li>
-</ul>
-</div>
-<div class="section" id="input-data">
-<h3>Input data<a class="headerlink" href="#input-data" title="Permalink to this headline">¶</a></h3>
-<p>It usually helps if all data ranges (points X and values Y) are in the same
-order of magnitude, e.g. all have a maximum close to unity or so. If, for
-example, X and Y have very different scales (say X -0.1 .. 0.1 and Y
-0…1e4), you may get bad interpolation between points. This is b/c the RBFs
-also live on more or less equal x-y scales.</p>
-</div>
-</div>
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -925,13 +61,13 @@ also live on more or less equal x-y scales.</p>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Background, details, special topics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#relation-to-ase">Relation to ASE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#coordinate-transformation">Coordinate transformation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#parameter-studies">Parameter studies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#parsing-code-output-and-using-containers">Parsing code output and using containers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#velocity-autocorrelation-function-and-phonon-dos">Velocity autocorrelation function and phonon DOS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pwscf">Pwscf</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#radial-basis-functions-networks-for-interpolation-or-fitting-of-n-dim-data-points">Radial Basis Functions Networks for interpolation or fitting of N-dim data points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ase.html">Relation to ASE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coord_trans.html">Coordinate transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="param_study.html">Parameter studies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html">Parsing code output and using containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="phonon_dos.html">Velocity autocorrelation function and phonon DOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pwscf.html">Pwscf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rbf.html">Radial Basis Function Networks for interpolation or fitting of N-dim data</a></li>
 </ul>
 </li>
 </ul>
@@ -942,6 +78,7 @@ also live on more or less equal x-y scales.</p>
   <li><a href="../../index.html">Documentation overview</a><ul>
   <li><a href="../index.html">&lt;no title&gt;</a><ul>
       <li>Previous: <a href="../tutorial.html" title="previous chapter">Tutorial</a></li>
+      <li>Next: <a href="ase.html" title="next chapter">Relation to ASE</a></li>
   </ul></li>
   </ul></li>
 </ul>
@@ -960,13 +97,69 @@ also live on more or less equal x-y scales.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="background-details-special-topics">
+<h1>Background, details, special topics<a class="headerlink" href="#background-details-special-topics" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ase.html">Relation to ASE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coord_trans.html">Coordinate transformation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="coord_trans.html#notation">Notation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coord_trans.html#row-vs-column-form">Row vs. column form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coord_trans.html#theory">Theory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="coord_trans.html#notes-for-the-special-case-fractional-cartesian">Notes for the special case fractional &lt;-&gt; cartesian</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="coord_trans.html#implementation">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="param_study.html">Parameter studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parsing.html">Parsing code output and using containers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#available-parsers">Available parsers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#container-classes-structure-and-trajectory">Container classes <code class="docutils literal notranslate"><span class="pre">Structure</span></code> and <code class="docutils literal notranslate"><span class="pre">Trajectory</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#high-level-parsing-functions">High-level parsing functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#units">Units</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="phonon_dos.html">Velocity autocorrelation function and phonon DOS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="phonon_dos.html#correlation-and-power-spectrum">Correlation and power spectrum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="phonon_dos.html#padding-and-smoothing">Padding and smoothing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="phonon_dos.html#calculation-of-the-phonon-dos-from-md-data">Calculation of the phonon DOS from MD data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pwscf.html">Pwscf</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pwscf.html#units">Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pwscf.html#atomic-coordinates">Atomic coordinates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pwscf.html#total-force-on-atoms">Total force on atoms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rbf.html">Radial Basis Function Networks for interpolation or fitting of N-dim data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rbf.html#theory">Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rbf.html#rbf-parameter-p">RBF parameter <span class="math notranslate nohighlight">\(p\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rbf.html#interpolation-vs-fitting-regularization-and-numerical-stability">Interpolation vs. fitting, regularization and numerical stability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rbf.html#how-to-determine-p-and-r">How to determine <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(r\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rbf.html#data-scaling">Data scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rbf.html#other-implementations">Other implementations</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

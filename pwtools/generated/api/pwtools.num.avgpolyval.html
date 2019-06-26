@@ -25,60 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-num-avgpolyval">
-<h1>pwtools.num.avgpolyval<a class="headerlink" href="#pwtools-num-avgpolyval" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.num.avgpolyval">
-<code class="descclassname">pwtools.num.</code><code class="descname">avgpolyval</code><span class="sig-paren">(</span><em>fit</em>, <em>points</em>, <em>der=0</em>, <em>weight_type=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#avgpolyval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.avgpolyval" title="Permalink to this definition">¶</a></dt>
-<dd><p>Use poly fits from <a class="reference internal" href="pwtools.num.avgpolyfit.html#pwtools.num.avgpolyfit" title="pwtools.num.avgpolyfit"><code class="xref py py-func docutils literal notranslate"><span class="pre">avgpolyfit()</span></code></a> and average them according to their RMS
-error.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>fit</strong> : tuple</p>
-<blockquote>
-<div><p>Result of avgpolyfit().</p>
-</div></blockquote>
-<p><strong>points</strong> : see polyfit()</p>
-<p><strong>der</strong> : see polyval()</p>
-<p><strong>weight_type</strong> : int</p>
-<blockquote class="last">
-<div><p>1 : without poly degree
-2 : with poly degree as in <a class="reference internal" href="#r15" id="id1">[R15]</a></p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Notes</p>
-<p>The weighting and averaging is due to <a class="reference internal" href="#r15" id="id2">[R15]</a>, but by default we don’t include
-the polynomial’s degree in the weight as this produces worse fits
-sometimes.</p>
-<table class="docutils citation" frame="void" id="r15" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[R15]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Blanco, M.; Francisco, E. &amp; Luana, V., 
-“GIBBS: isothermal-isobaric thermodynamics of solids from energy
-curves using a quasi-harmonic Debye model”, Computer Physics
-Communications, 2004, 158, 57-72</td></tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -142,13 +90,64 @@ Communications, 2004, 158, 57-72</td></tr>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-num-avgpolyval">
+<h1>pwtools.num.avgpolyval<a class="headerlink" href="#pwtools-num-avgpolyval" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.num.avgpolyval">
+<code class="descclassname">pwtools.num.</code><code class="descname">avgpolyval</code><span class="sig-paren">(</span><em>fit</em>, <em>points</em>, <em>der=0</em>, <em>weight_type=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#avgpolyval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.avgpolyval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use poly fits from <a class="reference internal" href="pwtools.num.avgpolyfit.html#pwtools.num.avgpolyfit" title="pwtools.num.avgpolyfit"><code class="xref py py-func docutils literal notranslate"><span class="pre">avgpolyfit()</span></code></a> and average them according to their RMS
+error.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>fit</strong> : tuple</p>
+<blockquote>
+<div><p>Result of avgpolyfit().</p>
+</div></blockquote>
+<p><strong>points</strong> : see polyfit()</p>
+<p><strong>der</strong> : see polyval()</p>
+<p><strong>weight_type</strong> : int</p>
+<blockquote class="last">
+<div><p>1 : without poly degree
+2 : with poly degree as in <a class="reference internal" href="#r15" id="id1">[R15]</a></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>The weighting and averaging is due to <a class="reference internal" href="#r15" id="id2">[R15]</a>, but by default we don’t include
+the polynomial’s degree in the weight as this produces worse fits
+sometimes.</p>
+<table class="docutils citation" frame="void" id="r15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R15]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Blanco, M.; Francisco, E. &amp; Luana, V., 
+“GIBBS: isothermal-isobaric thermodynamics of solids from energy
+curves using a quasi-harmonic Debye model”, Computer Physics
+Communications, 2004, 158, 57-72</td></tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

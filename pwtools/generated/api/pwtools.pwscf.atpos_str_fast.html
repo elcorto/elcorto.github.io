@@ -25,58 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-pwscf-atpos-str-fast">
-<h1>pwtools.pwscf.atpos_str_fast<a class="headerlink" href="#pwtools-pwscf-atpos-str-fast" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.pwscf.atpos_str_fast">
-<code class="descclassname">pwtools.pwscf.</code><code class="descname">atpos_str_fast</code><span class="sig-paren">(</span><em>symbols</em>, <em>coords</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#atpos_str_fast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.atpos_str_fast" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fast version of atpos_str() for usage in loops. We use a fixed string
-dtype <code class="docutils literal notranslate"><span class="pre">U32</span></code> to convert the array <cite>coords</cite> to string form. We also avoid
-all asserts for speed.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>symbols</strong> : list of strings with atom symbols, (natoms,), must match with the</p>
-<blockquote>
-<div><p>rows of coords</p>
-</div></blockquote>
-<p><strong>coords</strong> : array (natoms, 3) with atomic coords, can also be (natoms, &gt;3) to</p>
-<blockquote>
-<div><p>add constraints on atomic forces in PWscf</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">string</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Notes</p>
-<p>The string dtype + flatten trick used here is the fastest way to convert a
-numpy array to string. However the number of digits is limited to 32 chars.
-We use 32 b/c</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">array</span><span class="p">([</span><span class="n">pi</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">)</span>
-<span class="go">array([&#39;3.141592653589793&#39;, &#39;3.141592653589793&#39;], dtype=&#39;&lt;U32&#39;)</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code> means little endian and is based on the machine arch automatically.</p>
-<p>Needs about 1/3 of the time of <a class="reference internal" href="pwtools.pwscf.atpos_str.html#pwtools.pwscf.atpos_str" title="pwtools.pwscf.atpos_str"><code class="xref py py-func docutils literal notranslate"><span class="pre">atpos_str()</span></code></a>.</p>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -140,13 +90,62 @@ We use 32 b/c</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-pwscf-atpos-str-fast">
+<h1>pwtools.pwscf.atpos_str_fast<a class="headerlink" href="#pwtools-pwscf-atpos-str-fast" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.pwscf.atpos_str_fast">
+<code class="descclassname">pwtools.pwscf.</code><code class="descname">atpos_str_fast</code><span class="sig-paren">(</span><em>symbols</em>, <em>coords</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#atpos_str_fast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.atpos_str_fast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fast version of atpos_str() for usage in loops. We use a fixed string
+dtype <code class="docutils literal notranslate"><span class="pre">U32</span></code> to convert the array <cite>coords</cite> to string form. We also avoid
+all asserts for speed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>symbols</strong> : list of strings with atom symbols, (natoms,), must match with the</p>
+<blockquote>
+<div><p>rows of coords</p>
+</div></blockquote>
+<p><strong>coords</strong> : array (natoms, 3) with atomic coords, can also be (natoms, &gt;3) to</p>
+<blockquote>
+<div><p>add constraints on atomic forces in PWscf</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>The string dtype + flatten trick used here is the fastest way to convert a
+numpy array to string. However the number of digits is limited to 32 chars.
+We use 32 b/c</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">array</span><span class="p">([</span><span class="n">pi</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">)</span>
+<span class="go">array([&#39;3.141592653589793&#39;, &#39;3.141592653589793&#39;], dtype=&#39;&lt;U32&#39;)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code> means little endian and is based on the machine arch automatically.</p>
+<p>Needs about 1/3 of the time of <a class="reference internal" href="pwtools.pwscf.atpos_str.html#pwtools.pwscf.atpos_str" title="pwtools.pwscf.atpos_str"><code class="xref py py-func docutils literal notranslate"><span class="pre">atpos_str()</span></code></a>.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

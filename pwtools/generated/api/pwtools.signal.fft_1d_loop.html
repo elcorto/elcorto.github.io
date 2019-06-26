@@ -25,33 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-signal-fft-1d-loop">
-<h1>pwtools.signal.fft_1d_loop<a class="headerlink" href="#pwtools-signal-fft-1d-loop" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.signal.fft_1d_loop">
-<code class="descclassname">pwtools.signal.</code><code class="descname">fft_1d_loop</code><span class="sig-paren">(</span><em>arr</em>, <em>axis=-1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#fft_1d_loop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.fft_1d_loop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Like scipy.fft.pack.fft and numpy.fft.fft, perform fft along an axis.
-Here do this by looping over remaining axes and perform 1D FFTs.</p>
-<p>This was implemented as a low-memory version like
-<a class="reference internal" href="pwtools.crys.smooth.html#pwtools.crys.smooth" title="pwtools.crys.smooth"><code class="xref py py-func docutils literal notranslate"><span class="pre">smooth()</span></code></a> to be used in <a class="reference internal" href="pwtools.pydos.pdos.html#pwtools.pydos.pdos" title="pwtools.pydos.pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">pdos()</span></code></a>,
-which fills up the memory for big MD data. But actually it has the same
-memory footprint as the plain scipy fft routine. Keep it here anyway as a
-nice reference for how to loop over remaining axes in the ndarray case.</p>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -115,13 +90,37 @@ nice reference for how to loop over remaining axes in the ndarray case.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-signal-fft-1d-loop">
+<h1>pwtools.signal.fft_1d_loop<a class="headerlink" href="#pwtools-signal-fft-1d-loop" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.signal.fft_1d_loop">
+<code class="descclassname">pwtools.signal.</code><code class="descname">fft_1d_loop</code><span class="sig-paren">(</span><em>arr</em>, <em>axis=-1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#fft_1d_loop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.fft_1d_loop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like scipy.fft.pack.fft and numpy.fft.fft, perform fft along an axis.
+Here do this by looping over remaining axes and perform 1D FFTs.</p>
+<p>This was implemented as a low-memory version like
+<a class="reference internal" href="pwtools.crys.smooth.html#pwtools.crys.smooth" title="pwtools.crys.smooth"><code class="xref py py-func docutils literal notranslate"><span class="pre">smooth()</span></code></a> to be used in <a class="reference internal" href="pwtools.pydos.pdos.html#pwtools.pydos.pdos" title="pwtools.pydos.pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">pdos()</span></code></a>,
+which fills up the memory for big MD data. But actually it has the same
+memory footprint as the plain scipy fft routine. Keep it here anyway as a
+nice reference for how to loop over remaining axes in the ndarray case.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

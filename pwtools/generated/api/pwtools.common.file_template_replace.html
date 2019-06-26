@@ -25,55 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-common-file-template-replace">
-<h1>pwtools.common.file_template_replace<a class="headerlink" href="#pwtools-common-file-template-replace" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.common.file_template_replace">
-<code class="descclassname">pwtools.common.</code><code class="descname">file_template_replace</code><span class="sig-paren">(</span><em>fn</em>, <em>dct</em>, <em>bak=''</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/common.html#file_template_replace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.common.file_template_replace" title="Permalink to this definition">¶</a></dt>
-<dd><p>Replace placeholders in file <cite>fn</cite>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>fn</strong> : str</p>
-<blockquote>
-<div><p>Filename</p>
-</div></blockquote>
-<p><strong>dct</strong> : dict</p>
-<blockquote>
-<div><p>Replacement rules</p>
-</div></blockquote>
-<p><strong>bak</strong> : str</p>
-<blockquote>
-<div><p>‘’ : no backup is done
-‘&lt;str&gt;’ : <cite>fn</cite> is backed up to “fn&lt;str&gt;”</p>
-</div></blockquote>
-<p class="last"><strong>kwargs</strong> : kwargs to template_replace()</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<p>dct = {‘xxx’: ‘foo’, ‘yyy’: ‘bar’}
-fn = ‘bla.txt’
-file_template_replace(fn, dct, ‘.bak’, mode=’txt’)</p>
-<p>This the same as:
-shell$ sed -i.bak -r -e ‘s/xxx/foo/g -e ‘s/yyy/bar/g’ bla.txt</p>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -137,13 +90,59 @@ shell$ sed -i.bak -r -e ‘s/xxx/foo/g -e ‘s/yyy/bar/g’ bla.txt</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-common-file-template-replace">
+<h1>pwtools.common.file_template_replace<a class="headerlink" href="#pwtools-common-file-template-replace" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.common.file_template_replace">
+<code class="descclassname">pwtools.common.</code><code class="descname">file_template_replace</code><span class="sig-paren">(</span><em>fn</em>, <em>dct</em>, <em>bak=''</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/common.html#file_template_replace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.common.file_template_replace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace placeholders in file <cite>fn</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>fn</strong> : str</p>
+<blockquote>
+<div><p>Filename</p>
+</div></blockquote>
+<p><strong>dct</strong> : dict</p>
+<blockquote>
+<div><p>Replacement rules</p>
+</div></blockquote>
+<p><strong>bak</strong> : str</p>
+<blockquote>
+<div><p>‘’ : no backup is done
+‘&lt;str&gt;’ : <cite>fn</cite> is backed up to “fn&lt;str&gt;”</p>
+</div></blockquote>
+<p class="last"><strong>kwargs</strong> : kwargs to template_replace()</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>dct = {‘xxx’: ‘foo’, ‘yyy’: ‘bar’}
+fn = ‘bla.txt’
+file_template_replace(fn, dct, ‘.bak’, mode=’txt’)</p>
+<p>This the same as:
+shell$ sed -i.bak -r -e ‘s/xxx/foo/g -e ‘s/yyy/bar/g’ bla.txt</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

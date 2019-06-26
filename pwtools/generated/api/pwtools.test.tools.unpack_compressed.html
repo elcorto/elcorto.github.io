@@ -25,64 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-test-tools-unpack-compressed">
-<h1>pwtools.test.tools.unpack_compressed<a class="headerlink" href="#pwtools-test-tools-unpack-compressed" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.test.tools.unpack_compressed">
-<code class="descclassname">pwtools.test.tools.</code><code class="descname">unpack_compressed</code><span class="sig-paren">(</span><em>src</em>, <em>prefix='tmp'</em>, <em>testdir='/tmp'</em>, <em>ext=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/test/tools.html#unpack_compressed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.test.tools.unpack_compressed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convenience function to uncompress files/some_file.out.gz into a random
-location. Return the filename “path/to/random_location/some_file.out”
-without “.gz”, which can be used in subsequent commands.</p>
-<dl class="docutils">
-<dt>Supported file types: gz, tgz, tar.gz</dt>
-<dd>gunzip path/to/random_location/some_file.out.gz
-tar -C path/to/random_location -xzf path/to/random_location/some_file.out.tgz</dd>
-</dl>
-<p>Other compress formats may be implemented as needed.</p>
-<p>Can also be used for slightly more complex unpack business, see for
-example test_cpmd_md.py.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>src</strong> : str</p>
-<blockquote>
-<div><p>path to the compressed file, i.e. files/some_file.out.gz</p>
-</div></blockquote>
-<p><strong>prefix</strong> : str, optional</p>
-<blockquote>
-<div><p>prefix for mkdtemp(), usually __file__ of the test script
-to identify which test script created the random dir</p>
-</div></blockquote>
-<p><strong>testdir</strong> : str, optional</p>
-<blockquote>
-<div><p>‘path/to’ in the example above, usually
-<code class="docutils literal notranslate"><span class="pre">pwtools.test.testenv.testdir</span></code></p>
-</div></blockquote>
-<p><strong>ext</strong> : str, optional</p>
-<blockquote class="last">
-<div><p>file extension of compressed file (‘gz’, ‘tgz’, ‘tar.gz’), if None then
-it will be guessed from <cite>src</cite></p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -146,13 +90,68 @@ it will be guessed from <cite>src</cite></p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-test-tools-unpack-compressed">
+<h1>pwtools.test.tools.unpack_compressed<a class="headerlink" href="#pwtools-test-tools-unpack-compressed" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.test.tools.unpack_compressed">
+<code class="descclassname">pwtools.test.tools.</code><code class="descname">unpack_compressed</code><span class="sig-paren">(</span><em>src</em>, <em>prefix='tmp'</em>, <em>testdir='/tmp'</em>, <em>ext=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/test/tools.html#unpack_compressed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.test.tools.unpack_compressed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience function to uncompress files/some_file.out.gz into a random
+location. Return the filename “path/to/random_location/some_file.out”
+without “.gz”, which can be used in subsequent commands.</p>
+<dl class="docutils">
+<dt>Supported file types: gz, tgz, tar.gz</dt>
+<dd>gunzip path/to/random_location/some_file.out.gz
+tar -C path/to/random_location -xzf path/to/random_location/some_file.out.tgz</dd>
+</dl>
+<p>Other compress formats may be implemented as needed.</p>
+<p>Can also be used for slightly more complex unpack business, see for
+example test_cpmd_md.py.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>src</strong> : str</p>
+<blockquote>
+<div><p>path to the compressed file, i.e. files/some_file.out.gz</p>
+</div></blockquote>
+<p><strong>prefix</strong> : str, optional</p>
+<blockquote>
+<div><p>prefix for mkdtemp(), usually __file__ of the test script
+to identify which test script created the random dir</p>
+</div></blockquote>
+<p><strong>testdir</strong> : str, optional</p>
+<blockquote>
+<div><p>‘path/to’ in the example above, usually
+<code class="docutils literal notranslate"><span class="pre">pwtools.test.testenv.testdir</span></code></p>
+</div></blockquote>
+<p><strong>ext</strong> : str, optional</p>
+<blockquote class="last">
+<div><p>file extension of compressed file (‘gz’, ‘tgz’, ‘tar.gz’), if None then
+it will be guessed from <cite>src</cite></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

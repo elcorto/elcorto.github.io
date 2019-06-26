@@ -25,53 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-common-permit-sigpipe">
-<h1>pwtools.common.permit_sigpipe<a class="headerlink" href="#pwtools-common-permit-sigpipe" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.common.permit_sigpipe">
-<code class="descclassname">pwtools.common.</code><code class="descname">permit_sigpipe</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/common.html#permit_sigpipe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.common.permit_sigpipe" title="Permalink to this definition">¶</a></dt>
-<dd><p>Helper for subprocess.Popen(). Handle SIGPIPE. To be used as preexec_fn.</p>
-<p class="rubric">Notes</p>
-<p>Things like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cmd</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;grep pattern /path/to/very_big_file | head -n1&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> 
-<span class="gp">... </span>                      <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">out</span><span class="p">,</span><span class="n">err</span> <span class="o">=</span> <span class="n">pp</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>sometimes end with a broken pipe error: “grep: writing output: Broken
-pipe”. They run fine at the bash prompt, while failing with Popen. The
-reason is that they actually “kind of” fail in the shell too, namely,
-SIGPIPE [1,2]. This can be seen by runing the call in strace “$ strace grep
-…”. Popen chokes on that. The solution is to ignore SIGPIPE.</p>
-<p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r10" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R10]</a></td><td><a class="reference external" href="http://mail.python.org/pipermail/tutor/2007-October/058042.html">http://mail.python.org/pipermail/tutor/2007-October/058042.html</a></td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="r11" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[R11]</a></td><td><a class="reference external" href="http://article.gmane.org/gmane.comp.python.devel/88798/">http://article.gmane.org/gmane.comp.python.devel/88798/</a></td></tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -135,13 +90,57 @@ SIGPIPE [1,2]. This can be seen by runing the call in strace “$ strace grep
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-common-permit-sigpipe">
+<h1>pwtools.common.permit_sigpipe<a class="headerlink" href="#pwtools-common-permit-sigpipe" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.common.permit_sigpipe">
+<code class="descclassname">pwtools.common.</code><code class="descname">permit_sigpipe</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/common.html#permit_sigpipe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.common.permit_sigpipe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper for subprocess.Popen(). Handle SIGPIPE. To be used as preexec_fn.</p>
+<p class="rubric">Notes</p>
+<p>Things like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cmd</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;grep pattern /path/to/very_big_file | head -n1&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> 
+<span class="gp">... </span>                      <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">out</span><span class="p">,</span><span class="n">err</span> <span class="o">=</span> <span class="n">pp</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>sometimes end with a broken pipe error: “grep: writing output: Broken
+pipe”. They run fine at the bash prompt, while failing with Popen. The
+reason is that they actually “kind of” fail in the shell too, namely,
+SIGPIPE [1,2]. This can be seen by runing the call in strace “$ strace grep
+…”. Popen chokes on that. The solution is to ignore SIGPIPE.</p>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[R10]</a></td><td><a class="reference external" href="http://mail.python.org/pipermail/tutor/2007-October/058042.html">http://mail.python.org/pipermail/tutor/2007-October/058042.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="r11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[R11]</a></td><td><a class="reference external" href="http://article.gmane.org/gmane.comp.python.devel/88798/">http://article.gmane.org/gmane.comp.python.devel/88798/</a></td></tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

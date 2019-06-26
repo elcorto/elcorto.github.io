@@ -25,57 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-sql-sqlitedb-attach-column">
-<h1>pwtools.sql.SQLiteDB.attach_column<a class="headerlink" href="#pwtools-sql-sqlitedb-attach-column" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.attach_column">
-<code class="descclassname">SQLiteDB.</code><code class="descname">attach_column</code><span class="sig-paren">(</span><em>col</em>, <em>values</em>, <em>sqltype=None</em>, <em>table=None</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.attach_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.attach_column" title="Permalink to this definition">¶</a></dt>
-<dd><p>Attach (add) a new column named <cite>col</cite> of <cite>sqltype</cite> and fill it with
-<cite>values</cite>. With overwrite=True, allow writing into existing columns,
-i.e. behave like <a class="reference internal" href="pwtools.sql.SQLiteDB.fill_column.html#pwtools.sql.SQLiteDB.fill_column" title="pwtools.sql.SQLiteDB.fill_column"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fill_column()</span></code></a>.</p>
-<p>This is a short-cut method which essentially does 
-<code class="docutils literal notranslate"><span class="pre">add_column(...);</span> <span class="pre">fill_column(...)</span></code></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>col</strong> : str</p>
-<blockquote>
-<div><p>Column name.</p>
-</div></blockquote>
-<p><strong>values</strong> : sequence</p>
-<blockquote>
-<div><p>Values to be inserted.</p>
-</div></blockquote>
-<p><strong>sqltype</strong> : str, optional</p>
-<blockquote>
-<div><p>sqlite type of values in <cite>values</cite>, obtained from values[0] if None</p>
-</div></blockquote>
-<p><strong>table</strong> : str, optional</p>
-<p><strong>**kwds :</strong></p>
-<blockquote class="last">
-<div><p>additional keywords passed to <a class="reference internal" href="pwtools.sql.SQLiteDB.fill_column.html#pwtools.sql.SQLiteDB.fill_column" title="pwtools.sql.SQLiteDB.fill_column"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fill_column()</span></code></a>,
-default: <cite>start=1, extend=True, overwrite=False</cite></p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -141,13 +92,61 @@ default: <cite>start=1, extend=True, overwrite=False</cite></p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-sql-sqlitedb-attach-column">
+<h1>pwtools.sql.SQLiteDB.attach_column<a class="headerlink" href="#pwtools-sql-sqlitedb-attach-column" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.sql.SQLiteDB.attach_column">
+<code class="descclassname">SQLiteDB.</code><code class="descname">attach_column</code><span class="sig-paren">(</span><em>col</em>, <em>values</em>, <em>sqltype=None</em>, <em>table=None</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.attach_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.attach_column" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attach (add) a new column named <cite>col</cite> of <cite>sqltype</cite> and fill it with
+<cite>values</cite>. With overwrite=True, allow writing into existing columns,
+i.e. behave like <a class="reference internal" href="pwtools.sql.SQLiteDB.fill_column.html#pwtools.sql.SQLiteDB.fill_column" title="pwtools.sql.SQLiteDB.fill_column"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fill_column()</span></code></a>.</p>
+<p>This is a short-cut method which essentially does 
+<code class="docutils literal notranslate"><span class="pre">add_column(...);</span> <span class="pre">fill_column(...)</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>col</strong> : str</p>
+<blockquote>
+<div><p>Column name.</p>
+</div></blockquote>
+<p><strong>values</strong> : sequence</p>
+<blockquote>
+<div><p>Values to be inserted.</p>
+</div></blockquote>
+<p><strong>sqltype</strong> : str, optional</p>
+<blockquote>
+<div><p>sqlite type of values in <cite>values</cite>, obtained from values[0] if None</p>
+</div></blockquote>
+<p><strong>table</strong> : str, optional</p>
+<p><strong>**kwds :</strong></p>
+<blockquote class="last">
+<div><p>additional keywords passed to <a class="reference internal" href="pwtools.sql.SQLiteDB.fill_column.html#pwtools.sql.SQLiteDB.fill_column" title="pwtools.sql.SQLiteDB.fill_column"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fill_column()</span></code></a>,
+default: <cite>start=1, extend=True, overwrite=False</cite></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

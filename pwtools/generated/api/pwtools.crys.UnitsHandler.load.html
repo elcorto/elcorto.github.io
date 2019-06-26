@@ -25,41 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-crys-unitshandler-load">
-<h1>pwtools.crys.UnitsHandler.load<a class="headerlink" href="#pwtools-crys-unitshandler-load" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
-<dt id="pwtools.crys.UnitsHandler.load">
-<code class="descclassname">UnitsHandler.</code><code class="descname">load</code><span class="sig-paren">(</span><em>dump_filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pwtools.crys.UnitsHandler.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load pickled object.</p>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># save</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">FileParser</span><span class="p">(</span><span class="s1">&#39;foo.txt&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="s1">&#39;foo.pk&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># load: method 1 - recommended</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">xx</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;foo.pk&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># or </span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">xx</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;foo.pk&#39;</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># load: method 2, not used / tested much</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">xx</span> <span class="o">=</span> <span class="n">FileParser</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">xx</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;foo.pk&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -125,13 +92,45 @@
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-crys-unitshandler-load">
+<h1>pwtools.crys.UnitsHandler.load<a class="headerlink" href="#pwtools-crys-unitshandler-load" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.crys.UnitsHandler.load">
+<code class="descclassname">UnitsHandler.</code><code class="descname">load</code><span class="sig-paren">(</span><em>dump_filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pwtools.crys.UnitsHandler.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load pickled object.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># save</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">FileParser</span><span class="p">(</span><span class="s1">&#39;foo.txt&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="s1">&#39;foo.pk&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># load: method 1 - recommended</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xx</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;foo.pk&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># or </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xx</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;foo.pk&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># load: method 2, not used / tested much</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xx</span> <span class="o">=</span> <span class="n">FileParser</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xx</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;foo.pk&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

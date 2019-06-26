@@ -25,69 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-thermo-gibbs-calc-f">
-<h1>pwtools.thermo.Gibbs.calc_F<a class="headerlink" href="#pwtools-thermo-gibbs-calc-f" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
-<dt id="pwtools.thermo.Gibbs.calc_F">
-<code class="descclassname">Gibbs.</code><code class="descname">calc_F</code><span class="sig-paren">(</span><em>calc_all=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#Gibbs.calc_F"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.Gibbs.calc_F" title="Permalink to this definition">¶</a></dt>
-<dd><p>Free energy properties along T axis for each axes grid point
-(ax0,ax1,ax2) in <cite>self.axes_flat</cite>. Also used by <a class="reference internal" href="pwtools.thermo.Gibbs.calc_G.html#pwtools.thermo.Gibbs.calc_G" title="pwtools.thermo.Gibbs.calc_G"><code class="xref py py-meth docutils literal notranslate"><span class="pre">calc_G()</span></code></a>. Uses
-<a class="reference internal" href="pwtools.thermo.HarmonicThermo.html#pwtools.thermo.HarmonicThermo" title="pwtools.thermo.HarmonicThermo"><code class="xref py py-class docutils literal notranslate"><span class="pre">HarmonicThermo</span></code></a>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>calc_all</strong> : bool</p>
-<blockquote>
-<div><p>Calculate only F, Fvib or all (F, Fvib, Evib, Svib, Cv)</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ret</strong> : dict</p>
-<blockquote class="last">
-<div><dl class="docutils">
-<dt>Keys for 1d: </dt>
-<dd><div class="first line-block">
-<div class="line">‘/ax0/T/F’</div>
-<div class="line">‘/ax0/T/Fvib’</div>
-</div>
-<p class="last">…</p>
-</dd>
-<dt>Keys for 2d: </dt>
-<dd><div class="first last line-block">
-<div class="line">‘/ax0-ax1/T/F’</div>
-<div class="line">‘/ax0-ax1/T/Fvib’</div>
-<div class="line">…</div>
-</div>
-</dd>
-<dt>Keys for 3d: </dt>
-<dd><div class="first last line-block">
-<div class="line">‘/ax0-ax1-ax2/T/F’</div>
-<div class="line">‘/ax0-ax1-ax2/T/Fvib’</div>
-<div class="line">…</div>
-</div>
-</dd>
-</dl>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -153,13 +92,73 @@
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-thermo-gibbs-calc-f">
+<h1>pwtools.thermo.Gibbs.calc_F<a class="headerlink" href="#pwtools-thermo-gibbs-calc-f" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.thermo.Gibbs.calc_F">
+<code class="descclassname">Gibbs.</code><code class="descname">calc_F</code><span class="sig-paren">(</span><em>calc_all=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#Gibbs.calc_F"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.Gibbs.calc_F" title="Permalink to this definition">¶</a></dt>
+<dd><p>Free energy properties along T axis for each axes grid point
+(ax0,ax1,ax2) in <cite>self.axes_flat</cite>. Also used by <a class="reference internal" href="pwtools.thermo.Gibbs.calc_G.html#pwtools.thermo.Gibbs.calc_G" title="pwtools.thermo.Gibbs.calc_G"><code class="xref py py-meth docutils literal notranslate"><span class="pre">calc_G()</span></code></a>. Uses
+<a class="reference internal" href="pwtools.thermo.HarmonicThermo.html#pwtools.thermo.HarmonicThermo" title="pwtools.thermo.HarmonicThermo"><code class="xref py py-class docutils literal notranslate"><span class="pre">HarmonicThermo</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>calc_all</strong> : bool</p>
+<blockquote>
+<div><p>Calculate only F, Fvib or all (F, Fvib, Evib, Svib, Cv)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ret</strong> : dict</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>Keys for 1d: </dt>
+<dd><div class="first line-block">
+<div class="line">‘/ax0/T/F’</div>
+<div class="line">‘/ax0/T/Fvib’</div>
+</div>
+<p class="last">…</p>
+</dd>
+<dt>Keys for 2d: </dt>
+<dd><div class="first last line-block">
+<div class="line">‘/ax0-ax1/T/F’</div>
+<div class="line">‘/ax0-ax1/T/Fvib’</div>
+<div class="line">…</div>
+</div>
+</dd>
+<dt>Keys for 3d: </dt>
+<dd><div class="first last line-block">
+<div class="line">‘/ax0-ax1-ax2/T/F’</div>
+<div class="line">‘/ax0-ax1-ax2/T/Fvib’</div>
+<div class="line">…</div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

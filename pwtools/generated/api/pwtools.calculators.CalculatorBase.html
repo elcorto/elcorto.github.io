@@ -25,65 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-calculators-calculatorbase">
-<h1>pwtools.calculators.CalculatorBase<a class="headerlink" href="#pwtools-calculators-calculatorbase" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="pwtools.calculators.CalculatorBase">
-<em class="property">class </em><code class="descclassname">pwtools.calculators.</code><code class="descname">CalculatorBase</code><a class="reference internal" href="../../_modules/pwtools/calculators.html#CalculatorBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.calculators.CalculatorBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Base class for creating calculators.</p>
-<p>Provides methods to automatically dispatch constructor input keywords.</p>
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.CalculatorBase.fill_infile_templ.html#pwtools.calculators.CalculatorBase.fill_infile_templ" title="pwtools.calculators.CalculatorBase.fill_infile_templ"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fill_infile_templ</span></code></a>()</td>
-<td>Replace all placeholders in <code class="docutils literal notranslate"><span class="pre">self.infile_templ</span></code>.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.CalculatorBase.init_params_from_input.html#pwtools.calculators.CalculatorBase.init_params_from_input" title="pwtools.calculators.CalculatorBase.init_params_from_input"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_params_from_input</span></code></a>(kwds)</td>
-<td>Set <code class="docutils literal notranslate"><span class="pre">self.parameters</span> <span class="pre">=</span> <span class="pre">self.default_parameters</span></code> and update with input keyword arguments <cite>kwds</cite>.</td>
-</tr>
-</tbody>
-</table>
-<dl class="attribute">
-<dt id="pwtools.calculators.CalculatorBase.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.calculators.CalculatorBase.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.calculators.CalculatorBase.fill_infile_templ">
-<code class="descname">fill_infile_templ</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/calculators.html#CalculatorBase.fill_infile_templ"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.calculators.CalculatorBase.fill_infile_templ" title="Permalink to this definition">¶</a></dt>
-<dd><p>Replace all placeholders in <code class="docutils literal notranslate"><span class="pre">self.infile_templ</span></code>. Use all keys in
-<code class="docutils literal notranslate"><span class="pre">self.infile_templ_keys</span></code> as possible placeholders.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.calculators.CalculatorBase.init_params_from_input">
-<code class="descname">init_params_from_input</code><span class="sig-paren">(</span><em>kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/calculators.html#CalculatorBase.init_params_from_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.calculators.CalculatorBase.init_params_from_input" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set <code class="docutils literal notranslate"><span class="pre">self.parameters</span> <span class="pre">=</span> <span class="pre">self.default_parameters</span></code> and update with input
-keyword arguments <cite>kwds</cite>. For each key in self.parameters, set
-<code class="docutils literal notranslate"><span class="pre">self.&lt;key&gt;</span> <span class="pre">=</span> <span class="pre">&lt;value&gt;</span></code>.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -147,13 +90,69 @@ keyword arguments <cite>kwds</cite>. For each key in self.parameters, set
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-calculators-calculatorbase">
+<h1>pwtools.calculators.CalculatorBase<a class="headerlink" href="#pwtools-calculators-calculatorbase" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pwtools.calculators.CalculatorBase">
+<em class="property">class </em><code class="descclassname">pwtools.calculators.</code><code class="descname">CalculatorBase</code><a class="reference internal" href="../../_modules/pwtools/calculators.html#CalculatorBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.calculators.CalculatorBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for creating calculators.</p>
+<p>Provides methods to automatically dispatch constructor input keywords.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.calculators.CalculatorBase.fill_infile_templ.html#pwtools.calculators.CalculatorBase.fill_infile_templ" title="pwtools.calculators.CalculatorBase.fill_infile_templ"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fill_infile_templ</span></code></a>()</td>
+<td>Replace all placeholders in <code class="docutils literal notranslate"><span class="pre">self.infile_templ</span></code>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.calculators.CalculatorBase.init_params_from_input.html#pwtools.calculators.CalculatorBase.init_params_from_input" title="pwtools.calculators.CalculatorBase.init_params_from_input"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_params_from_input</span></code></a>(kwds)</td>
+<td>Set <code class="docutils literal notranslate"><span class="pre">self.parameters</span> <span class="pre">=</span> <span class="pre">self.default_parameters</span></code> and update with input keyword arguments <cite>kwds</cite>.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="pwtools.calculators.CalculatorBase.__weakref__">
+<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.calculators.CalculatorBase.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.calculators.CalculatorBase.fill_infile_templ">
+<code class="descname">fill_infile_templ</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/calculators.html#CalculatorBase.fill_infile_templ"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.calculators.CalculatorBase.fill_infile_templ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace all placeholders in <code class="docutils literal notranslate"><span class="pre">self.infile_templ</span></code>. Use all keys in
+<code class="docutils literal notranslate"><span class="pre">self.infile_templ_keys</span></code> as possible placeholders.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pwtools.calculators.CalculatorBase.init_params_from_input">
+<code class="descname">init_params_from_input</code><span class="sig-paren">(</span><em>kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/calculators.html#CalculatorBase.init_params_from_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.calculators.CalculatorBase.init_params_from_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set <code class="docutils literal notranslate"><span class="pre">self.parameters</span> <span class="pre">=</span> <span class="pre">self.default_parameters</span></code> and update with input
+keyword arguments <cite>kwds</cite>. For each key in self.parameters, set
+<code class="docutils literal notranslate"><span class="pre">self.&lt;key&gt;</span> <span class="pre">=</span> <span class="pre">&lt;value&gt;</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

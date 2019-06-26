@@ -25,48 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-rbf-rbf-fit">
-<h1>pwtools.rbf.Rbf.fit<a class="headerlink" href="#pwtools-rbf-rbf-fit" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
-<dt id="pwtools.rbf.Rbf.fit">
-<code class="descclassname">Rbf.</code><code class="descname">fit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#Rbf.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.Rbf.fit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Solve linear system for the weights.</p>
-<p>The weights  <cite>self.w</cite> (<span class="math notranslate nohighlight">\(\mathbf w\)</span>) are found from: <span class="math notranslate nohighlight">\(\mathbf
-G\,\mathbf w = \mathbf z\)</span> or if <span class="math notranslate nohighlight">\(r\)</span> is given <span class="math notranslate nohighlight">\((\mathbf G +
-r\,\mathbf I)\,\mathbf w = \mathbf z\)</span>.</p>
-<p>with centers == points (center vectors are all data points). Then G is
-quadratic. Updates <code class="docutils literal notranslate"><span class="pre">self.w</span></code>.</p>
-<p class="rubric">Notes</p>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">self.r</span> <span class="pre">!=</span> <span class="pre">None</span></code> <span class="classifier-delimiter">:</span> <span class="classifier">linear system solver</span></dt>
-<dd>Use <code class="docutils literal notranslate"><span class="pre">scipy.linalg.solve()</span></code>. By definition, this always yields
-perfect interpolation at the data points. May be numerically
-unstable in that case. Use <cite>r</cite> to increase stability and create
-smooth fitting (generate more stiff functions), similar to
-<code class="docutils literal notranslate"><span class="pre">lstsq</span></code> but appears to be numerically more stable (no small noise
-in solution) .. but it is another parameter that needs to be tuned.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">self.r</span> <span class="pre">=</span> <span class="pre">None</span></code> <span class="classifier-delimiter">:</span> <span class="classifier">least squares solver</span></dt>
-<dd>Use <code class="docutils literal notranslate"><span class="pre">scipy.linalg.lstsq()</span></code>. Numerically more stable than
-direct solver w/o regularization. Will mostly be the same as
-the interpolation result, but will not go thru all points for
-very noisy data. May create small noise in solution (plot fit
-with high point density).</dd>
-</dl>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -132,13 +92,54 @@ with high point density).</dd>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-rbf-rbf-fit">
+<h1>pwtools.rbf.Rbf.fit<a class="headerlink" href="#pwtools-rbf-rbf-fit" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.rbf.Rbf.fit">
+<code class="descclassname">Rbf.</code><code class="descname">fit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#Rbf.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.Rbf.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve linear system for the weights.</p>
+<p>The weights  <cite>self.w</cite> (<span class="math notranslate nohighlight">\(\mathbf w\)</span>) are found from: <span class="math notranslate nohighlight">\(\mathbf
+G\,\mathbf w = \mathbf z\)</span> or if <span class="math notranslate nohighlight">\(r\)</span> is given <span class="math notranslate nohighlight">\((\mathbf G +
+r\,\mathbf I)\,\mathbf w = \mathbf z\)</span>.</p>
+<p>with centers == points (center vectors are all data points). Then G is
+quadratic. Updates <code class="docutils literal notranslate"><span class="pre">self.w</span></code>.</p>
+<p class="rubric">Notes</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">self.r</span> <span class="pre">!=</span> <span class="pre">None</span></code> <span class="classifier-delimiter">:</span> <span class="classifier">linear system solver</span></dt>
+<dd>Use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.solve.html#scipy.linalg.solve" title="(in SciPy v1.3.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve()</span></code></a>. For <span class="math notranslate nohighlight">\(r=0\)</span>, this always yields
+perfect interpolation at the data points. May be numerically
+unstable in that case. Use <span class="math notranslate nohighlight">\(r&gt;0\)</span> to increase stability (try
+small values such as <code class="docutils literal notranslate"><span class="pre">1e-10</span></code> first) or create smooth fitting (generate
+more stiff functions with higher <cite>r</cite>). Behaves similar to <code class="docutils literal notranslate"><span class="pre">lstsq</span></code>
+but appears to be numerically more stable (no small noise in
+solution) .. but <cite>r</cite> it is another parameter that needs to be
+tuned.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">self.r</span> <span class="pre">=</span> <span class="pre">None</span></code> <span class="classifier-delimiter">:</span> <span class="classifier">least squares solver</span></dt>
+<dd>Use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lstsq.html#scipy.linalg.lstsq" title="(in SciPy v1.3.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.lstsq()</span></code></a>. Numerically more stable than
+direct solver w/o regularization. Will mostly be the same as
+the interpolation result, but will not go thru all points for
+very noisy data. May create small noise in solution (plot fit
+with high point density).</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

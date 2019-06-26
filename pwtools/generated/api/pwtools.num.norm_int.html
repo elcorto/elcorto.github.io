@@ -25,54 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-num-norm-int">
-<h1>pwtools.num.norm_int<a class="headerlink" href="#pwtools-num-norm-int" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.num.norm_int">
-<code class="descclassname">pwtools.num.</code><code class="descname">norm_int</code><span class="sig-paren">(</span><em>y</em>, <em>x</em>, <em>area=1.0</em>, <em>scale=True</em>, <em>func=&lt;function simps&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#norm_int"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.norm_int" title="Permalink to this definition">¶</a></dt>
-<dd><p>Normalize integral area of y(x) to <cite>area</cite>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x,y</strong> : numpy 1d arrays</p>
-<p><strong>area</strong> : float</p>
-<p><strong>scale</strong> : bool, optional</p>
-<blockquote>
-<div><p>Scale x and y to the same order of magnitude before integration.
-This may be necessary to avoid numerical trouble if x and y have very
-different scales.</p>
-</div></blockquote>
-<p><strong>func</strong> : callable</p>
-<blockquote>
-<div><p>Function to do integration (like scipy.integrate.{simps,trapz,…}
-Called as <code class="docutils literal notranslate"><span class="pre">func(y,x)</span></code>. Default: simps</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">scaled y</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Notes</p>
-<p>The argument order y,x might be confusing. x,y would be more natural but we
-stick to the order used in the scipy.integrate routines.</p>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -136,13 +90,58 @@ stick to the order used in the scipy.integrate routines.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-num-norm-int">
+<h1>pwtools.num.norm_int<a class="headerlink" href="#pwtools-num-norm-int" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.num.norm_int">
+<code class="descclassname">pwtools.num.</code><code class="descname">norm_int</code><span class="sig-paren">(</span><em>y</em>, <em>x</em>, <em>area=1.0</em>, <em>scale=True</em>, <em>func=&lt;function simps&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#norm_int"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.norm_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize integral area of y(x) to <cite>area</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x,y</strong> : numpy 1d arrays</p>
+<p><strong>area</strong> : float</p>
+<p><strong>scale</strong> : bool, optional</p>
+<blockquote>
+<div><p>Scale x and y to the same order of magnitude before integration.
+This may be necessary to avoid numerical trouble if x and y have very
+different scales.</p>
+</div></blockquote>
+<p><strong>func</strong> : callable</p>
+<blockquote>
+<div><p>Function to do integration (like scipy.integrate.{simps,trapz,…}
+Called as <code class="docutils literal notranslate"><span class="pre">func(y,x)</span></code>. Default: simps</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">scaled y</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>The argument order y,x might be confusing. x,y would be more natural but we
+stick to the order used in the scipy.integrate routines.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

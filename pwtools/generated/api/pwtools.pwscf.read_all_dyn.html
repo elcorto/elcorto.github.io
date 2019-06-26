@@ -25,57 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-pwscf-read-all-dyn">
-<h1>pwtools.pwscf.read_all_dyn<a class="headerlink" href="#pwtools-pwscf-read-all-dyn" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.pwscf.read_all_dyn">
-<code class="descclassname">pwtools.pwscf.</code><code class="descname">read_all_dyn</code><span class="sig-paren">(</span><em>path</em>, <em>nqpoints=None</em>, <em>natoms=None</em>, <em>base='ph.dyn'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#read_all_dyn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.read_all_dyn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Same as <a class="reference internal" href="pwtools.pwscf.read_matdyn_modes.html#pwtools.pwscf.read_matdyn_modes" title="pwtools.pwscf.read_matdyn_modes"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_matdyn_modes()</span></code></a>, but instead of the file
-<code class="docutils literal notranslate"><span class="pre">matdyn.modes</span></code> which contains freqs,vecs for all qpoints, we read all
-dynamical matrix files in <cite>path</cite>, one per qpoint.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>path</strong> : str</p>
-<blockquote>
-<div><p>Path where dyn files live.</p>
-</div></blockquote>
-<p><strong>nqpoints</strong> : int</p>
-<blockquote>
-<div><p>number of dyn files (e.g. 5 for “ph.dyn1”, …, “ph.dyn5” if
-<code class="docutils literal notranslate"><span class="pre">base='ph.dyn'</span></code>)</p>
-</div></blockquote>
-<p><strong>natoms</strong> : int</p>
-<p><strong>base</strong> : str</p>
-<blockquote>
-<div><p>Basename of the dyn files.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">(qpoint,freqs,vecs)</p>
-<blockquote class="last">
-<div><p>Same as <a class="reference internal" href="pwtools.pwscf.read_matdyn_modes.html#pwtools.pwscf.read_matdyn_modes" title="pwtools.pwscf.read_matdyn_modes"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_matdyn_modes()</span></code></a></p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -139,13 +90,61 @@ dynamical matrix files in <cite>path</cite>, one per qpoint.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-pwscf-read-all-dyn">
+<h1>pwtools.pwscf.read_all_dyn<a class="headerlink" href="#pwtools-pwscf-read-all-dyn" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.pwscf.read_all_dyn">
+<code class="descclassname">pwtools.pwscf.</code><code class="descname">read_all_dyn</code><span class="sig-paren">(</span><em>path</em>, <em>nqpoints=None</em>, <em>natoms=None</em>, <em>base='ph.dyn'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#read_all_dyn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.read_all_dyn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as <a class="reference internal" href="pwtools.pwscf.read_matdyn_modes.html#pwtools.pwscf.read_matdyn_modes" title="pwtools.pwscf.read_matdyn_modes"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_matdyn_modes()</span></code></a>, but instead of the file
+<code class="docutils literal notranslate"><span class="pre">matdyn.modes</span></code> which contains freqs,vecs for all qpoints, we read all
+dynamical matrix files in <cite>path</cite>, one per qpoint.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>path</strong> : str</p>
+<blockquote>
+<div><p>Path where dyn files live.</p>
+</div></blockquote>
+<p><strong>nqpoints</strong> : int</p>
+<blockquote>
+<div><p>number of dyn files (e.g. 5 for “ph.dyn1”, …, “ph.dyn5” if
+<code class="docutils literal notranslate"><span class="pre">base='ph.dyn'</span></code>)</p>
+</div></blockquote>
+<p><strong>natoms</strong> : int</p>
+<p><strong>base</strong> : str</p>
+<blockquote>
+<div><p>Basename of the dyn files.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">(qpoint,freqs,vecs)</p>
+<blockquote class="last">
+<div><p>Same as <a class="reference internal" href="pwtools.pwscf.read_matdyn_modes.html#pwtools.pwscf.read_matdyn_modes" title="pwtools.pwscf.read_matdyn_modes"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_matdyn_modes()</span></code></a></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

@@ -25,48 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-crys-min-image-convention">
-<h1>pwtools.crys.min_image_convention<a class="headerlink" href="#pwtools-crys-min-image-convention" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.crys.min_image_convention">
-<code class="descclassname">pwtools.crys.</code><code class="descname">min_image_convention</code><span class="sig-paren">(</span><em>sij</em>, <em>copy=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#min_image_convention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.min_image_convention" title="Permalink to this definition">¶</a></dt>
-<dd><p>Apply minimum image convention to differences of fractional coords.</p>
-<p>Handles also cases where coordinates are separated by an arbitrary number
-of periodic images.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>sij</strong> : ndarray</p>
-<blockquote>
-<div><p>Differences of fractional coordinates, usually (natoms, natoms, 3),
-i.e. a, “matrix” of distance vectors, obtained by smth like
-<code class="docutils literal notranslate"><span class="pre">sij</span> <span class="pre">=</span> <span class="pre">coords_frac[:,None,:]</span> <span class="pre">-</span> <span class="pre">coords_frac[None,:,:]</span></code> where
-<code class="docutils literal notranslate"><span class="pre">coords_frac.shape</span> <span class="pre">=</span> <span class="pre">(natoms,3)</span></code>.</p>
-</div></blockquote>
-<p><strong>copy</strong> : bool, optional</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">sij in-place modified or copy</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -130,13 +90,52 @@ i.e. a, “matrix” of distance vectors, obtained by smth like
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-crys-min-image-convention">
+<h1>pwtools.crys.min_image_convention<a class="headerlink" href="#pwtools-crys-min-image-convention" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.crys.min_image_convention">
+<code class="descclassname">pwtools.crys.</code><code class="descname">min_image_convention</code><span class="sig-paren">(</span><em>sij</em>, <em>copy=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#min_image_convention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.min_image_convention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply minimum image convention to differences of fractional coords.</p>
+<p>Handles also cases where coordinates are separated by an arbitrary number
+of periodic images.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>sij</strong> : ndarray</p>
+<blockquote>
+<div><p>Differences of fractional coordinates, usually (natoms, natoms, 3),
+i.e. a, “matrix” of distance vectors, obtained by smth like
+<code class="docutils literal notranslate"><span class="pre">sij</span> <span class="pre">=</span> <span class="pre">coords_frac[:,None,:]</span> <span class="pre">-</span> <span class="pre">coords_frac[None,:,:]</span></code> where
+<code class="docutils literal notranslate"><span class="pre">coords_frac.shape</span> <span class="pre">=</span> <span class="pre">(natoms,3)</span></code>.</p>
+</div></blockquote>
+<p><strong>copy</strong> : bool, optional</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">sij in-place modified or copy</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

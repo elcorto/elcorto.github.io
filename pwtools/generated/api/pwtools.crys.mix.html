@@ -25,53 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-crys-mix">
-<h1>pwtools.crys.mix<a class="headerlink" href="#pwtools-crys-mix" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.crys.mix">
-<code class="descclassname">pwtools.crys.</code><code class="descname">mix</code><span class="sig-paren">(</span><em>st1</em>, <em>st2</em>, <em>alpha</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#mix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.mix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Linear interpolation between two Structures based on the numbers in
-<cite>alpha</cite>. Returns a <a class="reference internal" href="pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trajectory</span></code></a>.</p>
-<p>Mix two structures as (1-alpha)*st1 + alpha*st2. <cite>coords</cite> and <cite>cell</cite> are
-used, as well as <cite>forces</cite> if present.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>st1, st2</strong> : Structures</p>
-<p><strong>alpha</strong> : 1d sequence</p>
-<blockquote>
-<div><p>parameter values for mixing</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>tr</strong> : Trajectory</p>
-<blockquote class="last">
-<div><p>tr.nstep == len(alpha)</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mix</span><span class="p">(</span><span class="n">st1</span><span class="p">,</span> <span class="n">st2</span><span class="p">,</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -135,13 +90,57 @@ used, as well as <cite>forces</cite> if present.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-crys-mix">
+<h1>pwtools.crys.mix<a class="headerlink" href="#pwtools-crys-mix" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.crys.mix">
+<code class="descclassname">pwtools.crys.</code><code class="descname">mix</code><span class="sig-paren">(</span><em>st1</em>, <em>st2</em>, <em>alpha</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#mix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.mix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Linear interpolation between two Structures based on the numbers in
+<cite>alpha</cite>. Returns a <a class="reference internal" href="pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trajectory</span></code></a>.</p>
+<p>Mix two structures as (1-alpha)*st1 + alpha*st2. <cite>coords</cite> and <cite>cell</cite> are
+used, as well as <cite>forces</cite> if present.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>st1, st2</strong> : Structures</p>
+<p><strong>alpha</strong> : 1d sequence</p>
+<blockquote>
+<div><p>parameter values for mixing</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>tr</strong> : Trajectory</p>
+<blockquote class="last">
+<div><p>tr.nstep == len(alpha)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mix</span><span class="p">(</span><span class="n">st1</span><span class="p">,</span> <span class="n">st2</span><span class="p">,</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

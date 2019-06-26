@@ -25,63 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="pwtools-io-wien-sgroup-input">
-<h1>pwtools.io.wien_sgroup_input<a class="headerlink" href="#pwtools-io-wien-sgroup-input" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.io.wien_sgroup_input">
-<code class="descclassname">pwtools.io.</code><code class="descname">wien_sgroup_input</code><span class="sig-paren">(</span><em>struct</em>, <em>lat_symbol='P'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/io.html#wien_sgroup_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.io.wien_sgroup_input" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generate input for WIEN2K’s <code class="docutils literal notranslate"><span class="pre">sgroup</span></code> symmetry analysis tool.</p>
-<p>length: can be any</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>struct</strong> : Structure instance</p>
-<p class="last"><strong>lat_symbol</strong> : str, e.g. ‘P’</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Notes</p>
-<p>From sgroup’s README:</p>
-<p>/ ————————————————————
-/ in input file symbol “/” means a comment
-/ and trailing characters are ignored by the program</p>
-<p>/ empty lines are allowed</p>
-<p>P  /type of lattice; choices are P,F,I,C,A</p>
-<p>/  parameters of cell:
-/  lengths of the basis vectors and
-/  angles (degree unit is used)  alpha=b^c  beta=a^c  gamma=a^b
-/   <a href="#id1"><span class="problematic" id="id2">|a|</span></a>  <a href="#id3"><span class="problematic" id="id4">|b|</span></a>   <a href="#id5"><span class="problematic" id="id6">|c|</span></a>               alpha  beta  gamma</p>
-<blockquote>
-<div>1.0   1.1   1.2                90.   91.    92.</div></blockquote>
-<p>/Number of atoms in the cell
-4</p>
-<p>/List of atoms
-0.1 0.2 0.3  / &lt;– Atom positions in units of the vectors a b c
-Al           / &lt;– name of this atom</p>
-<p>0.1 0.2 0.4  /….
-Al1</p>
-<p>0.2 0.2 0.3
-Fe</p>
-<p>0.1 0.3 0.3
-Fe</p>
-<p>/ ——————————————————————</p>
-</dd></dl>
-
-</div>
-
-
-          </div>
-        </div>
-      </div>
+  <div class="document">
+    
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
@@ -145,13 +90,67 @@ Fe</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pwtools-io-wien-sgroup-input">
+<h1>pwtools.io.wien_sgroup_input<a class="headerlink" href="#pwtools-io-wien-sgroup-input" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pwtools.io.wien_sgroup_input">
+<code class="descclassname">pwtools.io.</code><code class="descname">wien_sgroup_input</code><span class="sig-paren">(</span><em>struct</em>, <em>lat_symbol='P'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/io.html#wien_sgroup_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.io.wien_sgroup_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate input for WIEN2K’s <code class="docutils literal notranslate"><span class="pre">sgroup</span></code> symmetry analysis tool.</p>
+<p>length: can be any</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>struct</strong> : Structure instance</p>
+<p class="last"><strong>lat_symbol</strong> : str, e.g. ‘P’</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>From sgroup’s README:</p>
+<p>/ ————————————————————
+/ in input file symbol “/” means a comment
+/ and trailing characters are ignored by the program</p>
+<p>/ empty lines are allowed</p>
+<p>P  /type of lattice; choices are P,F,I,C,A</p>
+<p>/  parameters of cell:
+/  lengths of the basis vectors and
+/  angles (degree unit is used)  alpha=b^c  beta=a^c  gamma=a^b
+/   <a href="#id1"><span class="problematic" id="id2">|a|</span></a>  <a href="#id3"><span class="problematic" id="id4">|b|</span></a>   <a href="#id5"><span class="problematic" id="id6">|c|</span></a>               alpha  beta  gamma</p>
+<blockquote>
+<div>1.0   1.1   1.2                90.   91.    92.</div></blockquote>
+<p>/Number of atoms in the cell
+4</p>
+<p>/List of atoms
+0.1 0.2 0.3  / &lt;– Atom positions in units of the vectors a b c
+Al           / &lt;– name of this atom</p>
+<p>0.1 0.2 0.4  /….
+Al1</p>
+<p>0.2 0.2 0.3
+Fe</p>
+<p>0.1 0.3 0.3
+Fe</p>
+<p>/ ——————————————————————</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      &copy;2018, Steve Schmerler.
+      &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
