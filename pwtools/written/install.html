@@ -100,31 +100,40 @@
             
   <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>To build the extension modules and install all Python dependencies via pip in
-one go, use:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip3 install .
+<p>To build the extension modules and install all Python dependencies via
+<code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install .
 </pre></div>
 </div>
 <p>or the setuptools “development install” (no copy of files):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip3 install -e .
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd src &amp;&amp; make clean &amp;&amp; make &amp;&amp; cd ..
+$ pip install -e .
 </pre></div>
 </div>
+<p>Note that in this case you need to build the extensions first, which will live
+in <code class="docutils literal notranslate"><span class="pre">pwtools/*.so</span></code>, since <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code> only sets a link to this repo.
+See <a class="reference external" href="https://github.com/elcorto/samplepkg">samplepkg</a> for details.</p>
 <p>If all dependencies are installed, e.g. by a package manager such as <code class="docutils literal notranslate"><span class="pre">apt</span></code>,
-then use a virtual environment that uses the system site-packages (here we use
+then recent <code class="docutils literal notranslate"><span class="pre">pip</span></code> versions should pick those up. Alternatively force <code class="docutils literal notranslate"><span class="pre">pip</span></code>
+to install only the package without installing dependencies from pypi:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install --no-deps .
+</pre></div>
+</div>
+<p>When using a virtual environment, you can map in the system site-packages (here we use
 <a class="reference external" href="https://virtualenvwrapper.readthedocs.io">virtualenvwrapper</a>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkvirtualenv --system-site-packages -p /usr/bin/python3 pwtools
-(pwtools) $ pip3 install -e .
+(pwtools) $ pip install .
 </pre></div>
 </div>
 <p>Alternatively, you may also simply build the extensions and set <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd src &amp;&amp; make &amp;&amp; cd ..
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd src &amp;&amp; make clean &amp;&amp; make &amp;&amp; cd ..
 $ [ -n &quot;$PYTHONPATH&quot; ] &amp;&amp; pp=$(pwd):$PYTHONPATH || pp=$(pwd)
 $ export PYTHONPATH=$pp
 </pre></div>
 </div>
 <div class="section" id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
-<p>See <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> for packages installable by pip. On a Debian-ish system,
+<p>See <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> for packages installable by <code class="docutils literal notranslate"><span class="pre">pip</span></code>. On a Debian-ish system,
 you may install:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># apt</span>
 <span class="n">python3</span><span class="o">-</span><span class="n">numpy</span>
@@ -183,8 +192,10 @@ use of eos.x in pwtools anymore.</p>
 </div>
 <div class="section" id="python-versions">
 <h2>Python versions<a class="headerlink" href="#python-versions" title="Permalink to this headline">¶</a></h2>
-<p>Only Python3, tested: Python 3.6</p>
-<p>The package was developed mostly with Python 2.5..2.7 and ported using 2to3.</p>
+<p>Only Python3 is supported, tested: Python 3.6, 3.7</p>
+<p>The package was developed mostly with Python 2.5..2.7 and ported using 2to3 +
+manual changes. Therefore, you might find some crufty Python 2 style code
+fragments in lesser used parts of the codebase.</p>
 </div>
 <div class="section" id="compiling-fortran-extensions-and-openmp-notes">
 <h2>Compiling Fortran extensions and OpenMP notes<a class="headerlink" href="#compiling-fortran-extensions-and-openmp-notes" title="Permalink to this headline">¶</a></h2>
@@ -283,7 +294,7 @@ $ ./runtests.sh --nobuild
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
