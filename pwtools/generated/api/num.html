@@ -113,19 +113,13 @@
 <td>Common 2D interpolator API.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PolyFit</span></code></a>(points,&nbsp;values,&nbsp;*args,&nbsp;**kwds)</td>
-<td>High level interface to [avg]poly{fit,val}, similar to <a class="reference internal" href="pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Spline</span></code></a> and <a class="reference internal" href="pwtools.num.Interpol2D.html#pwtools.num.Interpol2D" title="pwtools.num.Interpol2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interpol2D</span></code></a>.</td>
+<td>High level interface to poly{fit,val}, similar to <a class="reference internal" href="pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Spline</span></code></a> and <a class="reference internal" href="pwtools.num.Interpol2D.html#pwtools.num.Interpol2D" title="pwtools.num.Interpol2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interpol2D</span></code></a>.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.num.PolyFit1D.html#pwtools.num.PolyFit1D" title="pwtools.num.PolyFit1D"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PolyFit1D</span></code></a>(*args,&nbsp;**kwds)</td>
 <td>1D special case version of <a class="reference internal" href="pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolyFit</span></code></a> which handles 1d and scalar <cite>points</cite> Also <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_min()</span></code> uses the root of the poly’s 1st derivative instead of <code class="docutils literal notranslate"><span class="pre">fmin()</span></code>.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Spline</span></code></a>(x,&nbsp;y[,&nbsp;eps,&nbsp;checkeps])</td>
 <td><a class="reference internal" href="pwtools.num.Fit1D.html#pwtools.num.Fit1D" title="pwtools.num.Fit1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fit1D</span></code></a>-based spline interpolator.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.num.avgpolyfit.html#pwtools.num.avgpolyfit" title="pwtools.num.avgpolyfit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">avgpolyfit</span></code></a>(points,&nbsp;values[,&nbsp;deg,&nbsp;degmin,&nbsp;…])</td>
-<td>Same as <a class="reference internal" href="pwtools.num.polyfit.html#pwtools.num.polyfit" title="pwtools.num.polyfit"><code class="xref py py-func docutils literal notranslate"><span class="pre">polyfit()</span></code></a>, but fit multiple polys.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.avgpolyval.html#pwtools.num.avgpolyval" title="pwtools.num.avgpolyval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">avgpolyval</span></code></a>(fit,&nbsp;points[,&nbsp;der,&nbsp;weight_type])</td>
-<td>Use poly fits from <a class="reference internal" href="pwtools.num.avgpolyfit.html#pwtools.num.avgpolyfit" title="pwtools.num.avgpolyfit"><code class="xref py py-func docutils literal notranslate"><span class="pre">avgpolyfit()</span></code></a> and average them according to their RMS error.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.num.deriv_spl.html#pwtools.num.deriv_spl" title="pwtools.num.deriv_spl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deriv_spl</span></code></a>(y[,&nbsp;x,&nbsp;xnew,&nbsp;n,&nbsp;fullout])</td>
 <td>n-th derivative for 1d arrays of possibly nonuniformly sampled data.</td>
@@ -178,10 +172,10 @@
 <tr class="row-even"><td><a class="reference internal" href="pwtools.num.poly_str.html#pwtools.num.poly_str" title="pwtools.num.poly_str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">poly_str</span></code></a>(ndim,&nbsp;deg)</td>
 <td>String representation of a <cite>ndim</cite>-poly of degree <cite>deg</cite>.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.polyfit.html#pwtools.num.polyfit" title="pwtools.num.polyfit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">polyfit</span></code></a>(points,&nbsp;values,&nbsp;deg[,&nbsp;scale])</td>
+<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.polyfit.html#pwtools.num.polyfit" title="pwtools.num.polyfit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">polyfit</span></code></a>(points,&nbsp;values,&nbsp;deg[,&nbsp;scale,&nbsp;scale_vand])</td>
 <td>Fit nd polynomial of dregree <cite>deg</cite>.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.num.polyval.html#pwtools.num.polyval" title="pwtools.num.polyval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">polyval</span></code></a>(fit,&nbsp;points[,&nbsp;der,&nbsp;avg])</td>
+<tr class="row-even"><td><a class="reference internal" href="pwtools.num.polyval.html#pwtools.num.polyval" title="pwtools.num.polyval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">polyval</span></code></a>(fit,&nbsp;points[,&nbsp;der])</td>
 <td>Evaluate polynomial generated by <a class="reference internal" href="pwtools.num.polyfit.html#pwtools.num.polyfit" title="pwtools.num.polyfit"><code class="xref py py-func docutils literal notranslate"><span class="pre">polyfit()</span></code></a> on <cite>points</cite>.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.num.rms.html#pwtools.num.rms" title="pwtools.num.rms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rms</span></code></a>(arr[,&nbsp;nitems])</td>

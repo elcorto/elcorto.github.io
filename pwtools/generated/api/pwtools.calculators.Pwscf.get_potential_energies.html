@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>pwtools.num.avgpolyval &#8212; pwtools  documentation</title>
+    <title>pwtools.calculators.Pwscf.get_potential_energies &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -17,8 +17,8 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.num.deriv_spl" href="pwtools.num.deriv_spl.html" />
-    <link rel="prev" title="pwtools.num.avgpolyfit" href="pwtools.num.avgpolyfit.html" />
+    <link rel="next" title="pwtools.calculators.Pwscf.get_potential_energy" href="pwtools.calculators.Pwscf.get_potential_energy.html" />
+    <link rel="prev" title="pwtools.calculators.Pwscf.get_magnetic_moments" href="pwtools.calculators.Pwscf.get_magnetic_moments.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -68,9 +68,11 @@
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
   <li><a href="index.html">API Reference</a><ul>
-  <li><a href="num.html">num</a><ul>
-      <li>Previous: <a href="pwtools.num.avgpolyfit.html" title="previous chapter">pwtools.num.avgpolyfit</a></li>
-      <li>Next: <a href="pwtools.num.deriv_spl.html" title="next chapter">pwtools.num.deriv_spl</a></li>
+  <li><a href="calculators.html">calculators</a><ul>
+  <li><a href="pwtools.calculators.Pwscf.html">pwtools.calculators.Pwscf</a><ul>
+      <li>Previous: <a href="pwtools.calculators.Pwscf.get_magnetic_moments.html" title="previous chapter">pwtools.calculators.Pwscf.get_magnetic_moments</a></li>
+      <li>Next: <a href="pwtools.calculators.Pwscf.get_potential_energy.html" title="next chapter">pwtools.calculators.Pwscf.get_potential_energy</a></li>
+  </ul></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -94,46 +96,12 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="pwtools-num-avgpolyval">
-<h1>pwtools.num.avgpolyval<a class="headerlink" href="#pwtools-num-avgpolyval" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pwtools.num.avgpolyval">
-<code class="descclassname">pwtools.num.</code><code class="descname">avgpolyval</code><span class="sig-paren">(</span><em>fit</em>, <em>points</em>, <em>der=0</em>, <em>weight_type=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#avgpolyval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.avgpolyval" title="Permalink to this definition">¶</a></dt>
-<dd><p>Use poly fits from <a class="reference internal" href="pwtools.num.avgpolyfit.html#pwtools.num.avgpolyfit" title="pwtools.num.avgpolyfit"><code class="xref py py-func docutils literal notranslate"><span class="pre">avgpolyfit()</span></code></a> and average them according to their RMS
-error.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>fit</strong> : tuple</p>
-<blockquote>
-<div><p>Result of avgpolyfit().</p>
-</div></blockquote>
-<p><strong>points</strong> : see polyfit()</p>
-<p><strong>der</strong> : see polyval()</p>
-<p><strong>weight_type</strong> : int</p>
-<blockquote class="last">
-<div><p>1 : without poly degree
-2 : with poly degree as in <a class="reference internal" href="#r15" id="id1">[R15]</a></p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Notes</p>
-<p>The weighting and averaging is due to <a class="reference internal" href="#r15" id="id2">[R15]</a>, but by default we don’t include
-the polynomial’s degree in the weight as this produces worse fits
-sometimes.</p>
-<table class="docutils citation" frame="void" id="r15" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[R15]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Blanco, M.; Francisco, E. &amp; Luana, V., 
-“GIBBS: isothermal-isobaric thermodynamics of solids from energy
-curves using a quasi-harmonic Debye model”, Computer Physics
-Communications, 2004, 158, 57-72</td></tr>
-</tbody>
-</table>
-</dd></dl>
+  <div class="section" id="pwtools-calculators-pwscf-get-potential-energies">
+<h1>pwtools.calculators.Pwscf.get_potential_energies<a class="headerlink" href="#pwtools-calculators-pwscf-get-potential-energies" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pwtools.calculators.Pwscf.get_potential_energies">
+<code class="descclassname">Pwscf.</code><code class="descname">get_potential_energies</code><span class="sig-paren">(</span><em>atoms=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pwtools.calculators.Pwscf.get_potential_energies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 
@@ -151,7 +119,7 @@ Communications, 2004, 158, 57-72</td></tr>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
-      <a href="../../_sources/generated/api/pwtools.num.avgpolyval.rst.txt"
+      <a href="../../_sources/generated/api/pwtools.calculators.Pwscf.get_potential_energies.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

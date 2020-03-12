@@ -297,7 +297,7 @@ quadratic. Updates <code class="docutils literal notranslate"><span class="pre">
 <p class="rubric">Notes</p>
 <dl class="docutils">
 <dt><code class="docutils literal notranslate"><span class="pre">self.r</span> <span class="pre">!=</span> <span class="pre">None</span></code> <span class="classifier-delimiter">:</span> <span class="classifier">linear system solver</span></dt>
-<dd>Use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.solve.html#scipy.linalg.solve" title="(in SciPy v1.3.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve()</span></code></a>. For <span class="math notranslate nohighlight">\(r=0\)</span>, this always yields
+<dd>Use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.solve.html#scipy.linalg.solve" title="(in SciPy v1.4.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve()</span></code></a>. For <span class="math notranslate nohighlight">\(r=0\)</span>, this always yields
 perfect interpolation at the data points. May be numerically
 unstable in that case. Use <span class="math notranslate nohighlight">\(r&gt;0\)</span> to increase stability (try
 small values such as <code class="docutils literal notranslate"><span class="pre">1e-10</span></code> first) or create smooth fitting (generate
@@ -306,7 +306,7 @@ but appears to be numerically more stable (no small noise in
 solution) .. but <cite>r</cite> it is another parameter that needs to be
 tuned.</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">self.r</span> <span class="pre">=</span> <span class="pre">None</span></code> <span class="classifier-delimiter">:</span> <span class="classifier">least squares solver</span></dt>
-<dd>Use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lstsq.html#scipy.linalg.lstsq" title="(in SciPy v1.3.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.lstsq()</span></code></a>. Numerically more stable than
+<dd>Use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lstsq.html#scipy.linalg.lstsq" title="(in SciPy v1.4.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.lstsq()</span></code></a>. Numerically more stable than
 direct solver w/o regularization. Will mostly be the same as
 the interpolation result, but will not go thru all points for
 very noisy data. May create small noise in solution (plot fit

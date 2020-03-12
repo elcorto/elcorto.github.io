@@ -126,33 +126,33 @@
 <p>N = len(a)
 sqrt(complex(-1)) = np.sqrt(-1 + 0*j) = 1j</p>
 <dl class="docutils">
-<dt>Forward DFT, see <a class="reference internal" href="#r25" id="id1">[R25]</a> and <a class="reference internal" href="#r26" id="id2">[R26]</a> , scipy.fftpack.fft():</dt>
+<dt>Forward DFT, see <a class="reference internal" href="#r23" id="id1">[R23]</a> and <a class="reference internal" href="#r24" id="id2">[R24]</a> , scipy.fftpack.fft():</dt>
 <dd>y[k] = sum(n=0…N-1) a[n] * exp(-2*pi*n*k*j/N)
 k = 0 … N-1</dd>
-<dt>Backward DFT, see <a class="reference internal" href="#r24" id="id3">[R24]</a> eq. 12.1.6, 12.2.2:</dt>
+<dt>Backward DFT, see <a class="reference internal" href="#r22" id="id3">[R22]</a> eq. 12.1.6, 12.2.2:</dt>
 <dd>y[k] = sum(n=0…N-1) a[n] * exp(2*pi*n*k*j/N)
 k = 0 … N-1</dd>
 </dl>
-<p>The algo for method==’matmul’ is the matrix mult from <a class="reference internal" href="#r24" id="id4">[R24]</a>, but as Forward
+<p>The algo for method==’matmul’ is the matrix mult from <a class="reference internal" href="#r22" id="id4">[R22]</a>, but as Forward
 DFT for comparison with scipy. The difference between FW and BW DFT is that
 the imaginary parts are mirrored at y=0.</p>
 <p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r22" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R22]</td><td><em>(<a class="fn-backref" href="#id3">1</a>, <a class="fn-backref" href="#id4">2</a>, <a class="fn-backref" href="#id5">3</a>)</em> Numerical Recipes in Fortran, Second Edition, 1992</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="r23" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R23]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id6">2</a>)</em> <a class="reference external" href="http://www.fftw.org/doc/The-1d-Real_002ddata-DFT.html">http://www.fftw.org/doc/The-1d-Real_002ddata-DFT.html</a></td></tr>
+</tbody>
+</table>
 <table class="docutils citation" frame="void" id="r24" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R24]</td><td><em>(<a class="fn-backref" href="#id3">1</a>, <a class="fn-backref" href="#id4">2</a>, <a class="fn-backref" href="#id5">3</a>)</em> Numerical Recipes in Fortran, Second Edition, 1992</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="r25" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[R25]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id6">2</a>)</em> <a class="reference external" href="http://www.fftw.org/doc/The-1d-Real_002ddata-DFT.html">http://www.fftw.org/doc/The-1d-Real_002ddata-DFT.html</a></td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="r26" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[R26]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id7">2</a>)</em> <a class="reference external" href="http://mathworld.wolfram.com/FourierTransform.html">http://mathworld.wolfram.com/FourierTransform.html</a></td></tr>
+<tr><td class="label">[R24]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id7">2</a>)</em> <a class="reference external" href="http://mathworld.wolfram.com/FourierTransform.html">http://mathworld.wolfram.com/FourierTransform.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>

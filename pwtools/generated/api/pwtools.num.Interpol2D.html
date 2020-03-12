@@ -178,7 +178,7 @@ which is given as an unordered set of points.</p>
 <div class="line">‘rbf_inv_multi’ : RBFN w/ inverse multiquadric rbf</div>
 <div class="line">‘rbf_gauss’ : RBFN w/ gaussian rbf</div>
 <div class="line">‘poly’      : <a class="reference internal" href="pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolyFit</span></code></a></div>
-<div class="line">‘bispl’     : scipy.interpolate.bispl{rep,ev} </div>
+<div class="line">‘bispl’     : scipy.interpolate.bispl{rep,ev}</div>
 <div class="line">‘ct’        : scipy.interpolate.CloughTocher2DInterpolator</div>
 <div class="line">‘linear’    : scipy.interpolate.LinearNDInterpolator</div>
 <div class="line">‘nearest’   : scipy.interpolate.NearestNDInterpolator</div>
@@ -208,7 +208,7 @@ does <a class="reference internal" href="pwtools.num.Interpol2D.get_min.html#pwt
 <div class="line">rbf :</div>
 <div class="line-block">
 <div class="line">p=’mean’ [,r=None] (default)    # linalg.lstsq</div>
-<div class="line">p=’scipy’, r=1e-8               # linalg.solve w/ regularization </div>
+<div class="line">p=’scipy’, r=1e-8               # linalg.solve w/ regularization</div>
 <div class="line">p=3.5, r=0                      # linalg.solve w/o regularization</div>
 </div>
 <div class="line">ct :</div>
@@ -217,7 +217,7 @@ does <a class="reference internal" href="pwtools.num.Interpol2D.get_min.html#pwt
 </div>
 <div class="line">bispl :</div>
 <div class="line-block">
-<div class="line">s = 1e-4 </div>
+<div class="line">s = 1e-4</div>
 <div class="line">kx = 3, ky = 3 (default)</div>
 <div class="line">nxest, nyest</div>
 </div>
@@ -228,14 +228,14 @@ does <a class="reference internal" href="pwtools.num.Interpol2D.get_min.html#pwt
 </div>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">num</span><span class="p">,</span> <span class="n">mpl</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span> 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="o">=</span><span class="n">x</span> 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">;</span> <span class="n">Y</span><span class="o">=</span><span class="n">Y</span><span class="o">.</span><span class="n">T</span> 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Z</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">Y</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="o">=</span><span class="n">x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">;</span> <span class="n">Y</span><span class="o">=</span><span class="n">Y</span><span class="o">.</span><span class="n">T</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Z</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">Y</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dd</span><span class="o">=</span><span class="n">mpl</span><span class="o">.</span><span class="n">Data2D</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="o">=</span><span class="n">Y</span><span class="p">,</span><span class="n">Z</span><span class="o">=</span><span class="n">Z</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;what: </span><span class="si">{:15}</span><span class="s2"> target: [5,30] result: </span><span class="si">{}</span><span class="s2">&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;rbf_multi&#39;</span><span class="p">,</span> <span class="s1">&#39;rbf_inv_multi&#39;</span><span class="p">,</span>
-<span class="gp">... </span>               <span class="s1">&#39;rbf_gauss&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;deg&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}),</span> 
+<span class="gp">... </span>               <span class="s1">&#39;rbf_gauss&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;deg&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}),</span>
 <span class="gp">... </span>               <span class="s1">&#39;ct&#39;</span><span class="p">,</span> <span class="s1">&#39;bispl&#39;</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;nearest&#39;</span><span class="p">]:</span>
 <span class="gp">... </span>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="n">what</span> <span class="o">=</span> <span class="n">method</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -243,7 +243,7 @@ does <a class="reference internal" href="pwtools.num.Interpol2D.get_min.html#pwt
 <span class="gp">... </span>    <span class="k">else</span><span class="p">:</span>
 <span class="gp">... </span>        <span class="n">what</span> <span class="o">=</span> <span class="n">method</span>
 <span class="gp">... </span>        <span class="n">kwds</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="gp">... </span>    <span class="n">inter</span><span class="o">=</span><span class="n">num</span><span class="o">.</span><span class="n">Interpol2D</span><span class="p">(</span><span class="n">dd</span><span class="o">=</span><span class="n">dd</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="n">what</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>   
+<span class="gp">... </span>    <span class="n">inter</span><span class="o">=</span><span class="n">num</span><span class="o">.</span><span class="n">Interpol2D</span><span class="p">(</span><span class="n">dd</span><span class="o">=</span><span class="n">dd</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="n">what</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
 <span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">what</span><span class="p">,</span> <span class="n">inter</span><span class="p">([[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])))</span>
 <span class="go">what: rbf_multi       target: [5,30] result: [  5.00000005  29.99999959]</span>
 <span class="go">what: rbf_inv_multi   target: [5,30] result: [  4.99999808  29.99999798]</span>

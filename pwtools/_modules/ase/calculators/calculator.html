@@ -97,7 +97,8 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">ase.utils</span> <span class="k">import</span> <span class="n">jsonable</span>
-<span class="kn">from</span> <span class="nn">ase.dft.kpoints</span> <span class="k">import</span> <span class="n">bandpath</span><span class="p">,</span> <span class="n">monkhorst_pack</span>
+<span class="kn">from</span> <span class="nn">ase.dft.kpoints</span> <span class="k">import</span> <span class="n">monkhorst_pack</span>
+<span class="kn">from</span> <span class="nn">ase.cell</span> <span class="k">import</span> <span class="n">Cell</span>
 
 
 <span class="k">class</span> <span class="nc">CalculatorError</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">):</span>
@@ -162,32 +163,47 @@
 <span class="sd">    with the rest of the results, without being a fatal ReadError.&quot;&quot;&quot;</span>
 
 
-<span class="k">def</span> <span class="nf">compare_atoms</span><span class="p">(</span><span class="n">atoms1</span><span class="p">,</span> <span class="n">atoms2</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-15</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check for system changes since last calculation.&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">compare_atoms</span><span class="p">(</span><span class="n">atoms1</span><span class="p">,</span> <span class="n">atoms2</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-15</span><span class="p">,</span> <span class="n">excluded_properties</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check for system changes since last calculation.  Properties in</span>
+<span class="sd">    ``excluded_properties`` are not checked.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">atoms1</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">system_changes</span> <span class="o">=</span> <span class="n">all_changes</span><span class="p">[:]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">system_changes</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">equal</span><span class="p">(</span><span class="n">atoms1</span><span class="o">.</span><span class="n">positions</span><span class="p">,</span> <span class="n">atoms2</span><span class="o">.</span><span class="n">positions</span><span class="p">,</span> <span class="n">tol</span><span class="p">):</span>
-            <span class="n">system_changes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;positions&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">equal</span><span class="p">(</span><span class="n">atoms1</span><span class="o">.</span><span class="n">numbers</span><span class="p">,</span> <span class="n">atoms2</span><span class="o">.</span><span class="n">numbers</span><span class="p">):</span>
-            <span class="n">system_changes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;numbers&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">equal</span><span class="p">(</span><span class="n">atoms1</span><span class="o">.</span><span class="n">cell</span><span class="p">,</span> <span class="n">atoms2</span><span class="o">.</span><span class="n">cell</span><span class="p">,</span> <span class="n">tol</span><span class="p">):</span>
-            <span class="n">system_changes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;cell&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">equal</span><span class="p">(</span><span class="n">atoms1</span><span class="o">.</span><span class="n">pbc</span><span class="p">,</span> <span class="n">atoms2</span><span class="o">.</span><span class="n">pbc</span><span class="p">):</span>
-            <span class="n">system_changes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;pbc&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">equal</span><span class="p">(</span><span class="n">atoms1</span><span class="o">.</span><span class="n">get_initial_magnetic_moments</span><span class="p">(),</span>
-                     <span class="n">atoms2</span><span class="o">.</span><span class="n">get_initial_magnetic_moments</span><span class="p">(),</span> <span class="n">tol</span><span class="p">):</span>
-            <span class="n">system_changes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;initial_magmoms&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">equal</span><span class="p">(</span><span class="n">atoms1</span><span class="o">.</span><span class="n">get_initial_charges</span><span class="p">(),</span>
-                     <span class="n">atoms2</span><span class="o">.</span><span class="n">get_initial_charges</span><span class="p">(),</span> <span class="n">tol</span><span class="p">):</span>
-            <span class="n">system_changes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;initial_charges&#39;</span><span class="p">)</span>
+
+        <span class="n">properties_to_check</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">all_changes</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">excluded_properties</span><span class="p">:</span>
+             <span class="n">properties_to_check</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="n">excluded_properties</span><span class="p">)</span>
+
+        <span class="c1"># Check properties that aren&#39;t in Atoms.arrays but are attributes of</span>
+        <span class="c1"># Atoms objects</span>
+        <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;cell&#39;</span><span class="p">,</span> <span class="s1">&#39;pbc&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">properties_to_check</span><span class="p">:</span>
+                <span class="n">properties_to_check</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">equal</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">atoms1</span><span class="p">,</span> <span class="n">prop</span><span class="p">),</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">atoms2</span><span class="p">,</span> <span class="n">prop</span><span class="p">),</span> <span class="n">tol</span><span class="p">):</span>
+                    <span class="n">system_changes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+
+        <span class="n">arrays1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">atoms1</span><span class="o">.</span><span class="n">arrays</span><span class="p">)</span>
+        <span class="n">arrays2</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">atoms2</span><span class="o">.</span><span class="n">arrays</span><span class="p">)</span>
+
+        <span class="c1"># Add any properties that are only in atoms1.arrays or only in</span>
+        <span class="c1"># atoms2.arrays (and aren&#39;t excluded).  Note that if, e.g. arrays1 has</span>
+        <span class="c1"># `initial_charges` which is merely zeros and arrays2 does not have</span>
+        <span class="c1"># this array, we&#39;ll still assume that the system has changed.  However,</span>
+        <span class="c1"># this should only occur rarely.</span>
+        <span class="n">system_changes</span> <span class="o">+=</span> <span class="n">properties_to_check</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">arrays1</span> <span class="o">^</span> <span class="n">arrays2</span><span class="p">)</span>
+
+        <span class="c1"># Finally, check all of the non-excluded properties shared by the atoms</span>
+        <span class="c1"># arrays</span>
+        <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">properties_to_check</span> <span class="o">&amp;</span> <span class="n">arrays1</span> <span class="o">&amp;</span> <span class="n">arrays2</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">equal</span><span class="p">(</span><span class="n">atoms1</span><span class="o">.</span><span class="n">arrays</span><span class="p">[</span><span class="n">prop</span><span class="p">],</span> <span class="n">atoms2</span><span class="o">.</span><span class="n">arrays</span><span class="p">[</span><span class="n">prop</span><span class="p">],</span> <span class="n">tol</span><span class="p">):</span>
+                    <span class="n">system_changes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">system_changes</span>
 
 
 <span class="n">all_properties</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="s1">&#39;forces&#39;</span><span class="p">,</span> <span class="s1">&#39;stress&#39;</span><span class="p">,</span> <span class="s1">&#39;stresses&#39;</span><span class="p">,</span> <span class="s1">&#39;dipole&#39;</span><span class="p">,</span>
-                  <span class="s1">&#39;charges&#39;</span><span class="p">,</span> <span class="s1">&#39;magmom&#39;</span><span class="p">,</span> <span class="s1">&#39;magmoms&#39;</span><span class="p">,</span> <span class="s1">&#39;free_energy&#39;</span><span class="p">]</span>
+                  <span class="s1">&#39;charges&#39;</span><span class="p">,</span> <span class="s1">&#39;magmom&#39;</span><span class="p">,</span> <span class="s1">&#39;magmoms&#39;</span><span class="p">,</span> <span class="s1">&#39;free_energy&#39;</span><span class="p">,</span> <span class="s1">&#39;energies&#39;</span><span class="p">]</span>
 
 
 <span class="n">all_changes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">,</span> <span class="s1">&#39;numbers&#39;</span><span class="p">,</span> <span class="s1">&#39;cell&#39;</span><span class="p">,</span> <span class="s1">&#39;pbc&#39;</span><span class="p">,</span>
@@ -195,23 +211,27 @@
 
 
 <span class="c1"># Recognized names of calculators sorted alphabetically:</span>
-<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;abinit&#39;</span><span class="p">,</span> <span class="s1">&#39;ace&#39;</span><span class="p">,</span> <span class="s1">&#39;aims&#39;</span><span class="p">,</span> <span class="s1">&#39;amber&#39;</span><span class="p">,</span> <span class="s1">&#39;asap&#39;</span><span class="p">,</span> <span class="s1">&#39;castep&#39;</span><span class="p">,</span> <span class="s1">&#39;cp2k&#39;</span><span class="p">,</span> <span class="s1">&#39;crystal&#39;</span><span class="p">,</span>
-         <span class="s1">&#39;demon&#39;</span><span class="p">,</span> <span class="s1">&#39;dftb&#39;</span><span class="p">,</span> <span class="s1">&#39;dftd3&#39;</span><span class="p">,</span> <span class="s1">&#39;dmol&#39;</span><span class="p">,</span> <span class="s1">&#39;eam&#39;</span><span class="p">,</span> <span class="s1">&#39;elk&#39;</span><span class="p">,</span> <span class="s1">&#39;emt&#39;</span><span class="p">,</span> <span class="s1">&#39;espresso&#39;</span><span class="p">,</span>
-         <span class="s1">&#39;exciting&#39;</span><span class="p">,</span> <span class="s1">&#39;fleur&#39;</span><span class="p">,</span> <span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="s1">&#39;gpaw&#39;</span><span class="p">,</span> <span class="s1">&#39;gromacs&#39;</span><span class="p">,</span> <span class="s1">&#39;gulp&#39;</span><span class="p">,</span>
-         <span class="s1">&#39;hotbit&#39;</span><span class="p">,</span> <span class="s1">&#39;jacapo&#39;</span><span class="p">,</span> <span class="s1">&#39;lammpsrun&#39;</span><span class="p">,</span>
-         <span class="s1">&#39;lammpslib&#39;</span><span class="p">,</span> <span class="s1">&#39;lj&#39;</span><span class="p">,</span> <span class="s1">&#39;mopac&#39;</span><span class="p">,</span> <span class="s1">&#39;morse&#39;</span><span class="p">,</span> <span class="s1">&#39;nwchem&#39;</span><span class="p">,</span> <span class="s1">&#39;octopus&#39;</span><span class="p">,</span> <span class="s1">&#39;onetep&#39;</span><span class="p">,</span>
-         <span class="s1">&#39;openmx&#39;</span><span class="p">,</span> <span class="s1">&#39;siesta&#39;</span><span class="p">,</span> <span class="s1">&#39;tip3p&#39;</span><span class="p">,</span> <span class="s1">&#39;turbomole&#39;</span><span class="p">,</span> <span class="s1">&#39;vasp&#39;</span><span class="p">]</span>
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;abinit&#39;</span><span class="p">,</span> <span class="s1">&#39;ace&#39;</span><span class="p">,</span> <span class="s1">&#39;aims&#39;</span><span class="p">,</span> <span class="s1">&#39;amber&#39;</span><span class="p">,</span> <span class="s1">&#39;asap&#39;</span><span class="p">,</span> <span class="s1">&#39;castep&#39;</span><span class="p">,</span> <span class="s1">&#39;cp2k&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;crystal&#39;</span><span class="p">,</span> <span class="s1">&#39;demon&#39;</span><span class="p">,</span> <span class="s1">&#39;demonnano&#39;</span><span class="p">,</span> <span class="s1">&#39;dftb&#39;</span><span class="p">,</span> <span class="s1">&#39;dftd3&#39;</span><span class="p">,</span> <span class="s1">&#39;dmol&#39;</span><span class="p">,</span> <span class="s1">&#39;eam&#39;</span><span class="p">,</span> <span class="s1">&#39;elk&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;emt&#39;</span><span class="p">,</span> <span class="s1">&#39;espresso&#39;</span><span class="p">,</span> <span class="s1">&#39;exciting&#39;</span><span class="p">,</span> <span class="s1">&#39;ff&#39;</span><span class="p">,</span> <span class="s1">&#39;fleur&#39;</span><span class="p">,</span> <span class="s1">&#39;gaussian&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;gpaw&#39;</span><span class="p">,</span> <span class="s1">&#39;gromacs&#39;</span><span class="p">,</span> <span class="s1">&#39;gulp&#39;</span><span class="p">,</span> <span class="s1">&#39;hotbit&#39;</span><span class="p">,</span> <span class="s1">&#39;jacapo&#39;</span><span class="p">,</span> <span class="s1">&#39;kim&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;lammpslib&#39;</span><span class="p">,</span> <span class="s1">&#39;lammpsrun&#39;</span><span class="p">,</span> <span class="s1">&#39;lj&#39;</span><span class="p">,</span> <span class="s1">&#39;mopac&#39;</span><span class="p">,</span> <span class="s1">&#39;morse&#39;</span><span class="p">,</span> <span class="s1">&#39;nwchem&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;octopus&#39;</span><span class="p">,</span> <span class="s1">&#39;onetep&#39;</span><span class="p">,</span> <span class="s1">&#39;openmx&#39;</span><span class="p">,</span> <span class="s1">&#39;psi4&#39;</span><span class="p">,</span> <span class="s1">&#39;qchem&#39;</span><span class="p">,</span> <span class="s1">&#39;siesta&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;tip3p&#39;</span><span class="p">,</span> <span class="s1">&#39;tip4p&#39;</span><span class="p">,</span> <span class="s1">&#39;turbomole&#39;</span><span class="p">,</span> <span class="s1">&#39;vasp&#39;</span><span class="p">]</span>
 
 
 <span class="n">special</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cp2k&#39;</span><span class="p">:</span> <span class="s1">&#39;CP2K&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;demonnano&#39;</span><span class="p">:</span> <span class="s1">&#39;DemonNano&#39;</span><span class="p">,</span>
            <span class="s1">&#39;dftd3&#39;</span><span class="p">:</span> <span class="s1">&#39;DFTD3&#39;</span><span class="p">,</span>
            <span class="s1">&#39;dmol&#39;</span><span class="p">:</span> <span class="s1">&#39;DMol3&#39;</span><span class="p">,</span>
            <span class="s1">&#39;eam&#39;</span><span class="p">:</span> <span class="s1">&#39;EAM&#39;</span><span class="p">,</span>
            <span class="s1">&#39;elk&#39;</span><span class="p">:</span> <span class="s1">&#39;ELK&#39;</span><span class="p">,</span>
            <span class="s1">&#39;emt&#39;</span><span class="p">:</span> <span class="s1">&#39;EMT&#39;</span><span class="p">,</span>
            <span class="s1">&#39;crystal&#39;</span><span class="p">:</span> <span class="s1">&#39;CRYSTAL&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;ff&#39;</span><span class="p">:</span> <span class="s1">&#39;ForceField&#39;</span><span class="p">,</span>
            <span class="s1">&#39;fleur&#39;</span><span class="p">:</span> <span class="s1">&#39;FLEUR&#39;</span><span class="p">,</span>
            <span class="s1">&#39;gulp&#39;</span><span class="p">:</span> <span class="s1">&#39;GULP&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;kim&#39;</span><span class="p">:</span> <span class="s1">&#39;KIM&#39;</span><span class="p">,</span>
            <span class="s1">&#39;lammpsrun&#39;</span><span class="p">:</span> <span class="s1">&#39;LAMMPS&#39;</span><span class="p">,</span>
            <span class="s1">&#39;lammpslib&#39;</span><span class="p">:</span> <span class="s1">&#39;LAMMPSlib&#39;</span><span class="p">,</span>
            <span class="s1">&#39;lj&#39;</span><span class="p">:</span> <span class="s1">&#39;LennardJones&#39;</span><span class="p">,</span>
@@ -219,7 +239,9 @@
            <span class="s1">&#39;morse&#39;</span><span class="p">:</span> <span class="s1">&#39;MorsePotential&#39;</span><span class="p">,</span>
            <span class="s1">&#39;nwchem&#39;</span><span class="p">:</span> <span class="s1">&#39;NWChem&#39;</span><span class="p">,</span>
            <span class="s1">&#39;openmx&#39;</span><span class="p">:</span> <span class="s1">&#39;OpenMX&#39;</span><span class="p">,</span>
-           <span class="s1">&#39;tip3p&#39;</span><span class="p">:</span> <span class="s1">&#39;TIP3P&#39;</span><span class="p">}</span>
+           <span class="s1">&#39;qchem&#39;</span><span class="p">:</span> <span class="s1">&#39;QChem&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;tip3p&#39;</span><span class="p">:</span> <span class="s1">&#39;TIP3P&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;tip4p&#39;</span><span class="p">:</span> <span class="s1">&#39;TIP4P&#39;</span><span class="p">}</span>
 
 
 <span class="n">external_calculators</span> <span class="o">=</span> <span class="p">{}</span>
@@ -245,6 +267,8 @@
         <span class="kn">from</span> <span class="nn">ase.calculators.vasp</span> <span class="k">import</span> <span class="n">Vasp2</span> <span class="k">as</span> <span class="n">Calculator</span>
     <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;ace&#39;</span><span class="p">:</span>
         <span class="kn">from</span> <span class="nn">ase.calculators.acemolecule</span> <span class="k">import</span> <span class="n">ACE</span> <span class="k">as</span> <span class="n">Calculator</span>
+    <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;Psi4&#39;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">ase.calculators.psi4</span> <span class="k">import</span> <span class="n">Psi4</span> <span class="k">as</span> <span class="n">Calculator</span>
     <span class="k">elif</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">external_calculators</span><span class="p">:</span>
         <span class="n">Calculator</span> <span class="o">=</span> <span class="n">external_calculators</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
@@ -390,8 +414,8 @@
         <span class="k">if</span> <span class="s1">&#39;kpts&#39;</span> <span class="ow">in</span> <span class="n">kpts</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">KPoints</span><span class="p">(</span><span class="n">kpts</span><span class="p">[</span><span class="s1">&#39;kpts&#39;</span><span class="p">])</span>
         <span class="k">if</span> <span class="s1">&#39;path&#39;</span> <span class="ow">in</span> <span class="n">kpts</span><span class="p">:</span>
-            <span class="n">path</span> <span class="o">=</span> <span class="n">bandpath</span><span class="p">(</span><span class="n">cell</span><span class="o">=</span><span class="n">atoms</span><span class="o">.</span><span class="n">cell</span><span class="p">,</span> <span class="o">**</span><span class="n">kpts</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">path</span>
+            <span class="n">cell</span> <span class="o">=</span> <span class="n">Cell</span><span class="o">.</span><span class="n">ascell</span><span class="p">(</span><span class="n">atoms</span><span class="o">.</span><span class="n">cell</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">cell</span><span class="o">.</span><span class="n">bandpath</span><span class="p">(</span><span class="n">pbc</span><span class="o">=</span><span class="n">atoms</span><span class="o">.</span><span class="n">pbc</span><span class="p">,</span> <span class="o">**</span><span class="n">kpts</span><span class="p">)</span>
         <span class="n">size</span><span class="p">,</span> <span class="n">offsets</span> <span class="o">=</span> <span class="n">kpts2sizeandoffsets</span><span class="p">(</span><span class="n">atoms</span><span class="o">=</span><span class="n">atoms</span><span class="p">,</span> <span class="o">**</span><span class="n">kpts</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">KPoints</span><span class="p">(</span><span class="n">monkhorst_pack</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="o">+</span> <span class="n">offsets</span><span class="p">)</span>
 
@@ -702,7 +726,7 @@
         <span class="k">return</span> <span class="n">changed_parameters</span>
 
     <span class="k">def</span> <span class="nf">check_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-15</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Check for system changes since last calculation.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Check for any system changes since last calculation.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">compare_atoms</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">tol</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_potential_energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">force_consistent</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -718,6 +742,9 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;free_energy&#39;</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">energy</span>
+
+    <span class="k">def</span> <span class="nf">get_potential_energies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s1">&#39;energies&#39;</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_forces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s1">&#39;forces&#39;</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span>
@@ -917,12 +944,26 @@
         <span class="n">command</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">command</span>
         <span class="k">if</span> <span class="s1">&#39;PREFIX&#39;</span> <span class="ow">in</span> <span class="n">command</span><span class="p">:</span>
             <span class="n">command</span> <span class="o">=</span> <span class="n">command</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;PREFIX&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="p">)</span>
-        <span class="n">errorcode</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="c1"># Actually this may never happen with shell=True, since</span>
+            <span class="c1"># probably the shell launches successfully.  But we soon want</span>
+            <span class="c1"># to allow calling the subprocess directly, and then this</span>
+            <span class="c1"># distinction (failed to launch vs failed to run) is useful.</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Failed to execute &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">EnvironmentError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
+
+        <span class="n">errorcode</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">errorcode</span><span class="p">:</span>
             <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="n">CalculationFailed</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> in </span><span class="si">{}</span><span class="s1"> returned an error: </span><span class="si">{}</span><span class="s1">&#39;</span>
-                                    <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">errorcode</span><span class="p">))</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Calculator &quot;</span><span class="si">{}</span><span class="s1">&quot; failed with command &quot;</span><span class="si">{}</span><span class="s1">&quot; failed in &#39;</span>
+                   <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> with error code </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span>
+                                                  <span class="n">path</span><span class="p">,</span> <span class="n">errorcode</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="n">CalculationFailed</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">read_results</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">write_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">properties</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">system_changes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
