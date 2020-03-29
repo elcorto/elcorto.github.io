@@ -110,10 +110,10 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">kpath</span><span class="p">,</span> <span class="n">common</span><span class="p">,</span> <span class="n">pwscf</span><span class="p">,</span> <span class="n">io</span><span class="p">,</span> <span class="n">crys</span><span class="p">,</span> <span class="n">mpl</span>
 
-<span class="n">sp_symbols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$\Gamma$&#39;</span><span class="p">,</span> 
+<span class="n">sp_symbols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$\Gamma$&#39;</span><span class="p">,</span>
               <span class="s1">&#39;M&#39;</span><span class="p">,</span>
-              <span class="s1">&#39;K&#39;</span><span class="p">,</span> 
-              <span class="s1">&#39;$\Gamma$&#39;</span><span class="p">,</span> 
+              <span class="s1">&#39;K&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;$\Gamma$&#39;</span><span class="p">,</span>
               <span class="s1">&#39;A&#39;</span><span class="p">,</span>
               <span class="p">]</span>
 <span class="c1"># fractional k-space coords for special points</span>
@@ -132,14 +132,14 @@
 <span class="n">sp_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">sp_points_frac</span><span class="p">,</span> <span class="n">rcell_reduced</span><span class="p">)</span>
 
 <span class="c1"># fine path: use N=500 for nice LO-TO split jumps [see below for more comments</span>
-<span class="c1"># on that] </span>
+<span class="c1"># on that]</span>
 <span class="n">ks_path</span> <span class="o">=</span> <span class="n">kpath</span><span class="o">.</span><span class="n">kpath</span><span class="p">(</span><span class="n">sp_points</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 
 <span class="c1"># call matdyn.x</span>
 <span class="n">templ_txt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">&amp;input</span>
 <span class="s2">    asr=&#39;crystal&#39;,</span>
-<span class="s2">XXXMASS    </span>
+<span class="s2">XXXMASS</span>
 <span class="s2">    flfrc=&#39;q2r.fc&#39;,</span>
 <span class="s2">    flfrq=&#39;XXXFNFREQ&#39;</span>
 <span class="s2">/</span>
@@ -171,11 +171,11 @@
 
 <span class="c1"># QE 4.x, 5.x</span>
 <span class="n">ks</span><span class="p">,</span> <span class="n">freqs</span> <span class="o">=</span> <span class="n">pwscf</span><span class="o">.</span><span class="n">read_matdyn_freq</span><span class="p">(</span><span class="n">matdyn_freq_fn</span><span class="p">)</span>
-<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">kpath</span><span class="o">.</span><span class="n">plot_dis</span><span class="p">(</span><span class="n">kpath</span><span class="o">.</span><span class="n">get_path_norm</span><span class="p">(</span><span class="n">ks_path</span><span class="p">),</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">sp</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span> 
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">kpath</span><span class="o">.</span><span class="n">plot_dis</span><span class="p">(</span><span class="n">kpath</span><span class="o">.</span><span class="n">get_path_norm</span><span class="p">(</span><span class="n">ks_path</span><span class="p">),</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">sp</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 
 <span class="c1"># QE 5.x</span>
 <span class="c1">##d = np.loadtxt(matdyn_freq_fn + &#39;.gp&#39;)</span>
-<span class="c1">##fig,ax = kpath.plot_dis(d[:,0], d[:,1:], sp, marker=&#39;&#39;, ls=&#39;-&#39;, color=&#39;k&#39;) </span>
+<span class="c1">##fig,ax = kpath.plot_dis(d[:,0], d[:,1:], sp, marker=&#39;&#39;, ls=&#39;-&#39;, color=&#39;k&#39;)</span>
 
 <span class="c1"># if needed</span>
 <span class="c1">#ax.set_ylim(...)</span>

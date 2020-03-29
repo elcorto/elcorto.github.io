@@ -105,12 +105,12 @@
 <div class="viewcode-block" id="HarmonicThermo"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.HarmonicThermo.html#pwtools.thermo.HarmonicThermo">[docs]</a><span class="k">class</span> <span class="nc">HarmonicThermo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Calculate vibrational internal energy (Evib [eV]), free energy (Fvib</span>
 <span class="sd">    [eV]), entropy (Svib [R,kb]) and isochoric heat capacity (Cv [R,kb]) in the</span>
-<span class="sd">    harmonic approximation from a phonon density of states. </span>
-<span class="sd">    &quot;&quot;&quot;</span>    
-<div class="viewcode-block" id="HarmonicThermo.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.HarmonicThermo.html#pwtools.thermo.HarmonicThermo.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">dos</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skipfreq</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+<span class="sd">    harmonic approximation from a phonon density of states.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="HarmonicThermo.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.HarmonicThermo.html#pwtools.thermo.HarmonicThermo.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">dos</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skipfreq</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">eps</span><span class="o">=</span><span class="mf">1.5</span><span class="o">*</span><span class="n">num</span><span class="o">.</span><span class="n">EPS</span><span class="p">,</span> <span class="n">fixnan</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nanfill</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
                  <span class="n">dosarea</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">integrator</span><span class="o">=</span><span class="n">trapz</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;                 </span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        freq : 1d array</span>
@@ -126,7 +126,7 @@
 <span class="sd">            `eps`. The number and rms of the skipped values is printed if</span>
 <span class="sd">            `verbose=True`.</span>
 <span class="sd">        eps : float, optional</span>
-<span class="sd">            Threshold for `skipfreq`. Default is ~1.5*2.2e-16 . </span>
+<span class="sd">            Threshold for `skipfreq`. Default is ~1.5*2.2e-16 .</span>
 <span class="sd">        fixnan : bool, optional</span>
 <span class="sd">            Use if YKWYAD, test before using! Currently, set all NaNs occuring</span>
 <span class="sd">            during integration to `nanfill`. This is a HACK b/c we must assume</span>
@@ -178,12 +178,12 @@
         <span class="c1"># Let Z = hbar*w/(2*kb*T), D(w) = phonon dos.</span>
         <span class="c1"># Cv(T) = kb * Z**2 * Int(w) [w**2 * D(w) / sinh(z))**2]</span>
         <span class="c1">#</span>
-        <span class="c1"># Cv is in J/K. To get Cv in R[J/(mol*K)], one would have to do </span>
+        <span class="c1"># Cv is in J/K. To get Cv in R[J/(mol*K)], one would have to do</span>
         <span class="c1">#   Cv[J/K] * Navo[1/mol] / R = Cv[J/K] / kb[J/K]</span>
-        <span class="c1"># since kb = R/Navo, with </span>
+        <span class="c1"># since kb = R/Navo, with</span>
         <span class="c1">#   R = gas constant = 8.314 J/(mol*K)</span>
         <span class="c1">#   Navo = Avogadro&#39;s number = 6e23</span>
-        <span class="c1"># </span>
+        <span class="c1">#</span>
         <span class="c1"># So, Cv [R] == Cv [kb]. The same holds for the entropy Svib.</span>
         <span class="c1">#</span>
         <span class="c1"># We save the division by &quot;kb&quot; by dropping the &quot;kb&quot; prefactor:</span>
@@ -215,12 +215,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">nanfill</span> <span class="o">=</span> <span class="n">nanfill</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dosarea</span> <span class="o">=</span> <span class="n">dosarea</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span> <span class="o">=</span> <span class="n">integrator</span>
-        
+
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dos</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;freq and dos don&#39;t have &quot;</span>
                                              <span class="s2">&quot;equal length&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;HarmonicThermo: number of dos points: </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">))</span>
-        
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">skipfreq</span><span class="p">:</span>
             <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
@@ -233,10 +233,10 @@
                         <span class="s2">&quot;rms(f)=</span><span class="si">%e</span><span class="s2">, rms(dos)=</span><span class="si">%e</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">nskip</span><span class="p">,</span> <span class="n">frms</span><span class="p">,</span> <span class="n">drms</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dos</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
-        
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dosarea</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_norm_int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dos</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dosarea</span><span class="p">))</span></div>
-    
+
     <span class="k">def</span> <span class="nf">_norm_int</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">area</span><span class="p">):</span>
         <span class="n">fx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
         <span class="n">fy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
@@ -244,7 +244,7 @@
         <span class="n">sy</span> <span class="o">=</span> <span class="n">y</span> <span class="o">/</span> <span class="n">fy</span>
         <span class="n">_area</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="p">(</span><span class="n">sy</span><span class="p">,</span> <span class="n">sx</span><span class="p">)</span> <span class="o">*</span> <span class="n">fx</span> <span class="o">*</span> <span class="n">fy</span>
         <span class="k">return</span> <span class="n">y</span><span class="o">*</span><span class="n">area</span><span class="o">/</span><span class="n">_area</span>
-        
+
     <span class="k">def</span> <span class="nf">_printwarn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
@@ -271,12 +271,12 @@
                                 <span class="s2">&quot;fixing </span><span class="si">%i</span><span class="s2"> NaNs in y!&quot;</span> <span class="o">%</span><span class="nb">len</span><span class="p">(</span><span class="n">mask</span><span class="p">))</span>
                 <span class="n">y</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nanfill</span>
         <span class="c1"># this call signature works for scipy.integrate,{trapz,simps}</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
-    
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">_get_temp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temp</span><span class="p">):</span>
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">T</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">temp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;temp input and self.T are None&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">T</span> <span class="k">if</span> <span class="n">temp</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">temp</span>       
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">T</span> <span class="k">if</span> <span class="n">temp</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">temp</span>
 
 <div class="viewcode-block" id="HarmonicThermo.vibrational_internal_energy"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.HarmonicThermo.vibrational_internal_energy.html#pwtools.thermo.HarmonicThermo.vibrational_internal_energy">[docs]</a>    <span class="k">def</span> <span class="nf">vibrational_internal_energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Evib [eV]&quot;&quot;&quot;</span>
@@ -284,9 +284,9 @@
         <span class="n">T</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_temp</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
         <span class="n">arg</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span> <span class="o">/</span> <span class="p">(</span><span class="n">kb</span><span class="o">*</span><span class="n">T</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">dos</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">))</span>
-        <span class="n">eint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integrate</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> 
+        <span class="n">eint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integrate</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">eint</span> <span class="o">*</span> <span class="p">(</span><span class="n">h</span><span class="o">/</span><span class="n">eV</span><span class="p">)</span></div>
-        
+
 <div class="viewcode-block" id="HarmonicThermo.isochoric_heat_capacity"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.HarmonicThermo.isochoric_heat_capacity.html#pwtools.thermo.HarmonicThermo.isochoric_heat_capacity">[docs]</a>    <span class="k">def</span> <span class="nf">isochoric_heat_capacity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Cv [R, kb]&quot;&quot;&quot;</span>
         <span class="n">h</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">kb</span><span class="p">,</span> <span class="n">dos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kb</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dos</span>
@@ -296,7 +296,7 @@
         <span class="n">fac</span> <span class="o">=</span> <span class="p">(</span><span class="n">h</span> <span class="o">/</span> <span class="p">(</span><span class="n">kb</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">T</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
         <span class="n">cv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integrate</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="o">*</span> <span class="n">fac</span>
         <span class="k">return</span> <span class="n">cv</span></div>
-    
+
 <div class="viewcode-block" id="HarmonicThermo.vibrational_free_energy"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.HarmonicThermo.vibrational_free_energy.html#pwtools.thermo.HarmonicThermo.vibrational_free_energy">[docs]</a>    <span class="k">def</span> <span class="nf">vibrational_free_energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fvib [eV]&quot;&quot;&quot;</span>
         <span class="n">h</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">kb</span><span class="p">,</span> <span class="n">dos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kb</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dos</span>
@@ -305,18 +305,18 @@
         <span class="n">y</span> <span class="o">=</span> <span class="n">dos</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sinh</span><span class="p">(</span><span class="n">arg</span><span class="o">/</span><span class="mf">2.0</span><span class="p">))</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integrate</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">f</span><span class="p">)</span> <span class="o">*</span> <span class="n">T</span>
         <span class="k">return</span> <span class="n">ret</span> <span class="o">*</span> <span class="p">(</span><span class="n">kb</span> <span class="o">/</span> <span class="n">eV</span><span class="p">)</span></div>
-    
+
 <div class="viewcode-block" id="HarmonicThermo.vibrational_entropy"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.HarmonicThermo.vibrational_entropy.html#pwtools.thermo.HarmonicThermo.vibrational_entropy">[docs]</a>    <span class="k">def</span> <span class="nf">vibrational_entropy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Svib [R, kb]&quot;&quot;&quot;</span>
         <span class="n">h</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">kb</span><span class="p">,</span> <span class="n">dos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kb</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dos</span>
         <span class="n">T</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_temp</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
         <span class="n">arg</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span> <span class="o">/</span> <span class="p">(</span><span class="n">kb</span><span class="o">*</span><span class="n">T</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">dos</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.5</span><span class="o">/</span><span class="n">T</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">h</span> <span class="o">/</span> <span class="n">kb</span><span class="p">)</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">coth</span><span class="p">(</span><span class="n">arg</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span> <span class="o">-</span> 
+        <span class="n">y</span> <span class="o">=</span> <span class="n">dos</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.5</span><span class="o">/</span><span class="n">T</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">h</span> <span class="o">/</span> <span class="n">kb</span><span class="p">)</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">coth</span><span class="p">(</span><span class="n">arg</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span> <span class="o">-</span>
                    <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sinh</span><span class="p">(</span><span class="n">arg</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)))</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integrate</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div>
-    
-    <span class="c1"># aliases </span>
+
+    <span class="c1"># aliases</span>
 <div class="viewcode-block" id="HarmonicThermo.evib"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.HarmonicThermo.evib.html#pwtools.thermo.HarmonicThermo.evib">[docs]</a>    <span class="k">def</span> <span class="nf">evib</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Same as vibrational_internal_energy().&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vibrational_internal_energy</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
@@ -324,11 +324,11 @@
 <div class="viewcode-block" id="HarmonicThermo.cv"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.HarmonicThermo.cv.html#pwtools.thermo.HarmonicThermo.cv">[docs]</a>    <span class="k">def</span> <span class="nf">cv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Same as isochoric_heat_capacity().&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">isochoric_heat_capacity</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
-    
+
 <div class="viewcode-block" id="HarmonicThermo.fvib"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.HarmonicThermo.fvib.html#pwtools.thermo.HarmonicThermo.fvib">[docs]</a>    <span class="k">def</span> <span class="nf">fvib</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Same as vibrational_free_energy().&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vibrational_free_energy</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
-    
+
 <div class="viewcode-block" id="HarmonicThermo.svib"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.HarmonicThermo.svib.html#pwtools.thermo.HarmonicThermo.svib">[docs]</a>    <span class="k">def</span> <span class="nf">svib</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Same as vibrational_entropy().&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vibrational_entropy</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
@@ -339,25 +339,25 @@
 <span class="sd">    Calculate thermodynamic properties on a T-P grid in the quasiharmonic</span>
 <span class="sd">    approximation, given some variation grid of unit cell axes (`axes_flat`) and</span>
 <span class="sd">    corresponding phonon DOS data for each grid point.</span>
-<span class="sd">    </span>
+
 <span class="sd">    We have 3 cases for how unit cell axis can be be varied.</span>
 
 <span class="sd">    ==== ===============  ========================  ==============   ============</span>
 <span class="sd">    case axes_flat.shape  cell parameter grid       fitfunc          bulk modulus</span>
 <span class="sd">    ==== ===============  ========================  ==============   ============</span>
-<span class="sd">    1d   (N,) or (N,1)    ax0 = a (-&gt; V)            G(V), thus any   V*d^2G/dV^2 </span>
-<span class="sd">                          (cubic)                   EOS will do      </span>
+<span class="sd">    1d   (N,) or (N,1)    ax0 = a (-&gt; V)            G(V), thus any   V*d^2G/dV^2</span>
+<span class="sd">                          (cubic)                   EOS will do</span>
 
 <span class="sd">    2d   (N,2)            (ax0,ax1) = (a,b), (a,c)  G(ax0, ax1)      not</span>
 <span class="sd">                          or (b,c)                                   implemented</span>
-<span class="sd">                          (e.g. hexaonal: (a,c)) </span>
-<span class="sd">    </span>
-<span class="sd">    3d   not implemented                                  </span>
+<span class="sd">                          (e.g. hexaonal: (a,c))</span>
+
+<span class="sd">    3d   not implemented</span>
 <span class="sd">    ==== ===============  ========================  ==============   ============</span>
-<span class="sd">    </span>
+
 <span class="sd">    Internally, we only deal with `ax0` (1d), `ax0` + `ax1` (2d) and</span>
 <span class="sd">    `ax0` + `ax1` + `ax2` (3d), thus for 2d and 3d it doesn&#39;t matter which cell</span>
-<span class="sd">    axes is which, you just have to remember :) </span>
+<span class="sd">    axes is which, you just have to remember :)</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
@@ -371,13 +371,13 @@
 <span class="sd">    :class:`~pwtools.num.PolyFit1D`, for 2d: :class:`~pwtools.num.PolyFit` or</span>
 <span class="sd">    :class:`~pwtools.num.Interpol2D`. See also ``scipy.interpolate``. Use</span>
 <span class="sd">    :meth:`~pwtools.thermo.Gibbs.set_fitfunc` to change. This can (and should!)</span>
-<span class="sd">    be used to tune fitting methods. See examples below for how to change fit </span>
+<span class="sd">    be used to tune fitting methods. See examples below for how to change fit</span>
 <span class="sd">    functions.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Here is a list of all valid `fitfunc` keys and what they do:</span>
 
 <span class="sd">    ========  ==========================================================</span>
-<span class="sd">    key       value  </span>
+<span class="sd">    key       value</span>
 <span class="sd">    ========  ==========================================================</span>
 <span class="sd">    &#39;1d-G&#39;    fit G(V), ``__call__(V,der=2)`` for B(V) =</span>
 <span class="sd">              V*d^2G/dV^2</span>
@@ -385,10 +385,10 @@
 <span class="sd">    &#39;1d-ax&#39;   fit V(ax0)</span>
 <span class="sd">    &#39;alpha&#39;   fit x_opt(T), x=ax0,ax1,ax2,V,</span>
 <span class="sd">              ``__call__(T,der=1)`` for alpha_x = 1/x * dx/dT</span>
-<span class="sd">    &#39;C&#39;       fit G_opt(T), ``__call__(T,der=2)`` for </span>
+<span class="sd">    &#39;C&#39;       fit G_opt(T), ``__call__(T,der=2)`` for</span>
 <span class="sd">              Cp = -T * d^G_opt(T,P)/dT^2</span>
 <span class="sd">    ========  ==========================================================</span>
-<span class="sd">    </span>
+
 <span class="sd">    Hints for which fitfuncs to choose: The defaults are pretty good, but</span>
 <span class="sd">    nevertheless tessting is mandatory! Good choices are</span>
 <span class="sd">    :class:`~pwtools.num.PolyFit` / :class:`~pwtools.num.PolyFit1D` for all</span>
@@ -398,7 +398,7 @@
 <span class="sd">    before fitting to the same order of magnitude! For T grids, choose a very</span>
 <span class="sd">    fine T-axis (e.g. ``T=linspace(.., num=300)`` and use a</span>
 <span class="sd">    :class:`~pwtools.num.Spline`. Needed to resolve details of alpha(T) and</span>
-<span class="sd">    C(T). </span>
+<span class="sd">    C(T).</span>
 
 <span class="sd">    The methods :meth:`calc_F`, :meth:`calc_H` and :meth:`calc_G` return dicts</span>
 <span class="sd">    with nd-arrays holding calculated thermodynamic properites. Naming</span>
@@ -406,10 +406,10 @@
 <span class="sd">    path names, e.g. ``/group0/group1/array``, thus the last name in the path</span>
 <span class="sd">    is the name of the array (`z` in the examples below). All previous names</span>
 <span class="sd">    define the grid and thus the dimension of the array. A group name starting</span>
-<span class="sd">    with &quot;#&quot; is just a prefix. Below, `na=len(a)`, etc. </span>
-<span class="sd">    </span>
+<span class="sd">    with &quot;#&quot; is just a prefix. Below, `na=len(a)`, etc.</span>
+
 <span class="sd">    ==============  ====  ================   ================================</span>
-<span class="sd">    key             ndim  shape              description   </span>
+<span class="sd">    key             ndim  shape              description</span>
 <span class="sd">    ==============  ====  ================   ================================</span>
 <span class="sd">    ``/a/z``        1d    (na,)              z on 1d a-grid</span>
 <span class="sd">    ``/a/b/z``      2d    (na,nb)            z on 2d a-b grid</span>
@@ -418,7 +418,7 @@
 <span class="sd">    ``/a-b-c/z``    1d    (na*nb*nc,)        z on flattened a-b-c grid</span>
 <span class="sd">    ``/#opt/a/z``   1d    (na,)              optimized z on a-grid</span>
 <span class="sd">    ==============  ====  ================   ================================</span>
-<span class="sd">    </span>
+
 <span class="sd">    `axes_flat` : Usually, flat grids like &quot;ax0-ax1&quot; or &quot;ax0-ax1-ax2&quot; are</span>
 <span class="sd">    created by nested loops ``[(ax0_i,ax1_i) for ax0_i in ax0 for ax1_i in</span>
 <span class="sd">    ax1]`` and therefore have shape (nax0*nax1,2) or (nax0*nax1*nax2,3) . But</span>
@@ -427,7 +427,7 @@
 <span class="sd">    to handle that.</span>
 
 <span class="sd">    Units</span>
-<span class="sd">    </span>
+
 <span class="sd">    =================== =====================</span>
 <span class="sd">    B,P                 GPa</span>
 <span class="sd">    T                   K</span>
@@ -436,10 +436,10 @@
 <span class="sd">    Cv,Cp               R (8.4314 J/(mol*K))</span>
 <span class="sd">    alpha_{V,ax{0,1,2}} 1/K</span>
 <span class="sd">    =================== =====================</span>
-<span class="sd">    </span>
+
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    </span>
+
 <span class="sd">    See also ``test/test_gibbs.py`` for worked examples using fake data.</span>
 <span class="sd">    Really, go there and have a look. Now!</span>
 
@@ -447,7 +447,7 @@
 <span class="sd">    &gt;&gt;&gt; # isotropic cell</span>
 <span class="sd">    &gt;&gt;&gt; volfunc_ax = lambda x: crys.volume_cc(np.array([[x[0]]*3 + [90]*3]))</span>
 <span class="sd">    &gt;&gt;&gt; gibbs=Gibbs(axes_flat=..., etot=..., phdos=...,</span>
-<span class="sd">    ...             T=linspace(5,2500,100), P=linspace(0,20,5), </span>
+<span class="sd">    ...             T=linspace(5,2500,100), P=linspace(0,20,5),</span>
 <span class="sd">    ...             volfunc_ax=volfunc_ax)</span>
 <span class="sd">    &gt;&gt;&gt; # EOS fit for G(V), polynomial for heat capacity (default is Spline)</span>
 <span class="sd">    &gt;&gt;&gt; gibbs.set_fitfunc(&#39;C&#39;, lambda x,y: num.PolyFit1D(x,y,deg=5,scale=True))</span>
@@ -469,7 +469,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        T : 1d array </span>
+<span class="sd">        T : 1d array</span>
 <span class="sd">            temperature [K]</span>
 <span class="sd">        P : 1d array</span>
 <span class="sd">            pressure [GPa]</span>
@@ -489,7 +489,7 @@
 <span class="sd">                | 3d: (N,3) -&gt; vary a,b,c (general triclinic)</span>
 <span class="sd">                |     example: ``itertools.product(ax0, ax1, ax2)``</span>
 <span class="sd">        volfunc_ax : callable</span>
-<span class="sd">            calculate cell volume based on cell axes, </span>
+<span class="sd">            calculate cell volume based on cell axes,</span>
 <span class="sd">            V[i] = volfunc_ax(axes_flat[i,...]) where axes_flat[i,...]:</span>
 <span class="sd">                | 1d: [a0]</span>
 <span class="sd">                | 2d: [a0, a1]</span>
@@ -499,14 +499,14 @@
 <span class="sd">            &#39;1d&#39;, &#39;2d&#39;, &#39;3d&#39; or None. If None then it will be determined from</span>
 <span class="sd">            axes_flat.shape[1]. Can be used to evaluate &quot;fake&quot; 1d data: set</span>
 <span class="sd">            case=&#39;1d&#39; but let `axes_flat` be (N,2) or (N,3)</span>
-<span class="sd">        **kwds: keywords </span>
+<span class="sd">        **kwds: keywords</span>
 <span class="sd">            passed to HarmonicThermo and added here as `self.&lt;key&gt;=&lt;value&gt;`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="n">axes_flat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">phdos</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;axes_flat and phdos &quot;</span>
             <span class="s2">&quot;not equally long&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kwds</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fixnan</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">skipfreq</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                          <span class="n">dosarea</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds</span><span class="p">)</span>                         
+        <span class="bp">self</span><span class="o">.</span><span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwds</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">T</span> <span class="o">=</span> <span class="n">T</span>
@@ -546,7 +546,7 @@
             <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_fit_alpha</span><span class="p">,</span>
             <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_fit_C</span><span class="p">,</span>
             <span class="p">}</span></div>
-    
+
 <div class="viewcode-block" id="Gibbs.set_fitfunc"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.Gibbs.set_fitfunc.html#pwtools.thermo.Gibbs.set_fitfunc">[docs]</a>    <span class="k">def</span> <span class="nf">set_fitfunc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">what</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Update dict with fitting fucntions: ``self.fitfunc[what] = func``.</span>
 
@@ -554,21 +554,21 @@
 <span class="sd">        ----------</span>
 <span class="sd">        what : str</span>
 <span class="sd">            One of ``self.fitfunc.keys()``</span>
-<span class="sd">        func : callable </span>
+<span class="sd">        func : callable</span>
 <span class="sd">            function with signature ``func(x,y)`` which returns a</span>
 <span class="sd">            :class:`~pwtools.num.Spline`-like object, e.g. ``Spline(x,y,k=5)``</span>
-<span class="sd">        &quot;&quot;&quot;</span>            
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="n">what</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitfunc</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;unknown key: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span><span class="n">what</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fitfunc</span><span class="p">[</span><span class="n">what</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span></div>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_default_fit_1d_G</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">num</span><span class="o">.</span><span class="n">PolyFit1D</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    
+
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_default_fit_2d_G</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>    
+    <span class="k">def</span> <span class="nf">_default_fit_2d_G</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">num</span><span class="o">.</span><span class="n">PolyFit</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    
+
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_default_fit_1d_ax</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">num</span><span class="o">.</span><span class="n">PolyFit1D</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -584,11 +584,11 @@
     <span class="k">def</span> <span class="nf">_fit_opt_store</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">gg</span><span class="p">,</span> <span class="n">prfx</span><span class="o">=</span><span class="s1">&#39;/T/P&#39;</span><span class="p">,</span> <span class="n">ghsym</span><span class="o">=</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="n">tpidx</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;For each (T,P) or (P,), fit G(ax0,...) or H(ax0,...) minimize and store</span>
 <span class="sd">        properties in `ret`. Used in /T/P loop in calc_G and /P loop in calc_H.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        ret : dict</span>
-<span class="sd">        gg : G(ax0,...) or H(ax0,...) </span>
+<span class="sd">        gg : G(ax0,...) or H(ax0,...)</span>
 <span class="sd">        prfx : str</span>
 <span class="sd">            &#39;/P&#39; for H in :meth:`calc_H`, &#39;/T/P&#39; for G in :meth:`calc_G`</span>
 <span class="sd">        ghsym : str</span>
@@ -625,7 +625,7 @@
                 <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;/#opt</span><span class="si">%s</span><span class="s1">/V&#39;</span> <span class="o">%</span><span class="n">prfx</span><span class="p">][</span><span class="n">tpsl</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">volfunc_ax</span><span class="p">(</span><span class="n">xopt</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unknown case: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">case</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="nf">_set_not_calc_none</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">prfx</span><span class="o">=</span><span class="s1">&#39;/T/P&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;We know that the stuff below was not calculated, so set them to</span>
 <span class="sd">        None. Needs to be done since all arrays are inited to be np.empty().</span>
@@ -635,7 +635,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nax</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;/#opt</span><span class="si">%s</span><span class="s1">/ax1&#39;</span> <span class="o">%</span><span class="n">prfx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;/#opt</span><span class="si">%s</span><span class="s1">/ax2&#39;</span> <span class="o">%</span><span class="n">prfx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">nax</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> 
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">nax</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;/#opt</span><span class="si">%s</span><span class="s1">/ax2&#39;</span> <span class="o">%</span><span class="n">prfx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">case</span> <span class="o">!=</span> <span class="s1">&#39;1d&#39;</span><span class="p">:</span>
                 <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;/#opt</span><span class="si">%s</span><span class="s1">/B&#39;</span> <span class="o">%</span><span class="n">prfx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -648,12 +648,12 @@
             <span class="k">for</span> <span class="n">iax</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nax</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">fitax</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fitfunc</span><span class="p">[</span><span class="s1">&#39;1d-ax&#39;</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">,</span>
                                                         <span class="bp">self</span><span class="o">.</span><span class="n">axes_flat</span><span class="p">[:,</span><span class="n">iax</span><span class="p">]))</span>
-    
+
 <div class="viewcode-block" id="Gibbs.calc_F"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.Gibbs.calc_F.html#pwtools.thermo.Gibbs.calc_F">[docs]</a>    <span class="k">def</span> <span class="nf">calc_F</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calc_all</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Free energy properties along T axis for each axes grid point</span>
 <span class="sd">        (ax0,ax1,ax2) in `self.axes_flat`. Also used by :meth:`calc_G`. Uses</span>
 <span class="sd">        :class:`~pwtools.thermo.HarmonicThermo`.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        calc_all : bool</span>
@@ -662,15 +662,15 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        ret : dict</span>
-<span class="sd">            Keys for 1d: </span>
+<span class="sd">            Keys for 1d:</span>
 <span class="sd">                | &#39;/ax0/T/F&#39;</span>
 <span class="sd">                | &#39;/ax0/T/Fvib&#39;</span>
 <span class="sd">                ...</span>
-<span class="sd">            Keys for 2d: </span>
+<span class="sd">            Keys for 2d:</span>
 <span class="sd">                | &#39;/ax0-ax1/T/F&#39;</span>
 <span class="sd">                | &#39;/ax0-ax1/T/Fvib&#39;</span>
 <span class="sd">                | ...</span>
-<span class="sd">            Keys for 3d: </span>
+<span class="sd">            Keys for 3d:</span>
 <span class="sd">                | &#39;/ax0-ax1-ax2/T/F&#39;</span>
 <span class="sd">                | &#39;/ax0-ax1-ax2/T/Fvib&#39;</span>
 <span class="sd">                | ...</span>
@@ -680,19 +680,19 @@
             <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;Fvib&#39;</span><span class="p">,</span> <span class="s1">&#39;Evib&#39;</span><span class="p">,</span> <span class="s1">&#39;Svib&#39;</span><span class="p">,</span> <span class="s1">&#39;Cv&#39;</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;Fvib&#39;</span><span class="p">]</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">axes_prefix</span> <span class="o">+</span> <span class="s1">&#39;/T/</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">name</span><span class="p">,</span> 
+        <span class="n">ret</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">axes_prefix</span> <span class="o">+</span> <span class="s1">&#39;/T/</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">name</span><span class="p">,</span>
                     <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">npoints</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nT</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span> \
                     <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">npoints</span><span class="p">):</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;calc_F: axes_flat idx = </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">idx</span><span class="p">)</span>
-            <span class="n">ha</span> <span class="o">=</span> <span class="n">HarmonicThermo</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">phdos</span><span class="p">[</span><span class="n">idx</span><span class="p">][:,</span><span class="mi">0</span><span class="p">],</span> 
+            <span class="n">ha</span> <span class="o">=</span> <span class="n">HarmonicThermo</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">phdos</span><span class="p">[</span><span class="n">idx</span><span class="p">][:,</span><span class="mi">0</span><span class="p">],</span>
                                 <span class="n">dos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">phdos</span><span class="p">[</span><span class="n">idx</span><span class="p">][:,</span><span class="mi">1</span><span class="p">],</span>
-                                <span class="n">temp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> 
+                                <span class="n">temp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
                                 <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwds</span><span class="p">)</span>
             <span class="n">fvib</span> <span class="o">=</span> <span class="n">ha</span><span class="o">.</span><span class="n">fvib</span><span class="p">()</span>
-            <span class="n">ret</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">axes_prefix</span> <span class="o">+</span> <span class="s1">&#39;/T/F&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">,:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">etot</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">fvib</span>                            
-            <span class="n">ret</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">axes_prefix</span> <span class="o">+</span> <span class="s1">&#39;/T/Fvib&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">fvib</span> 
+            <span class="n">ret</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">axes_prefix</span> <span class="o">+</span> <span class="s1">&#39;/T/F&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">,:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">etot</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">fvib</span>
+            <span class="n">ret</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">axes_prefix</span> <span class="o">+</span> <span class="s1">&#39;/T/Fvib&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">fvib</span>
             <span class="k">if</span> <span class="n">calc_all</span><span class="p">:</span>
                 <span class="n">svib</span> <span class="o">=</span> <span class="n">ha</span><span class="o">.</span><span class="n">svib</span><span class="p">()</span>
                 <span class="n">cv</span> <span class="o">=</span> <span class="n">ha</span><span class="o">.</span><span class="n">cv</span><span class="p">()</span>
@@ -700,14 +700,14 @@
                 <span class="n">ret</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">axes_prefix</span> <span class="o">+</span> <span class="s1">&#39;/T/Svib&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">svib</span>
                 <span class="n">ret</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">axes_prefix</span> <span class="o">+</span> <span class="s1">&#39;/T/Evib&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">evib</span>
                 <span class="n">ret</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">axes_prefix</span> <span class="o">+</span> <span class="s1">&#39;/T/Cv&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">cv</span>
-        <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ret</span><span class="p">)</span>        
+        <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ret</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div>
-    
+
 <div class="viewcode-block" id="Gibbs.calc_H"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.Gibbs.calc_H.html#pwtools.thermo.Gibbs.calc_H">[docs]</a>    <span class="k">def</span> <span class="nf">calc_H</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calc_all</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enthalpy H=E+P*V, B and related properties on P grid</span>
 <span class="sd">        without zero-point contributions. Doesn&#39;t need any other method&#39;s</span>
 <span class="sd">        results.</span>
-<span class="sd">        </span>
+
 <span class="sd">        The results of :meth:`calc_G` will in general be _different_ from those</span>
 <span class="sd">        calculated here in the limit T-&gt;0 (typical use case: T=5K) because of</span>
 <span class="sd">        zero-point contributions. Check the bulk modulus, for example.</span>
@@ -730,13 +730,13 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_fit_opt_store</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">gg</span><span class="p">,</span> <span class="n">prfx</span><span class="o">=</span><span class="s1">&#39;/P&#39;</span><span class="p">,</span>
                                     <span class="n">tpidx</span><span class="o">=</span><span class="p">[</span><span class="n">pidx</span><span class="p">],</span> <span class="n">ghsym</span><span class="o">=</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_not_calc_none</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">prfx</span><span class="o">=</span><span class="s1">&#39;/P&#39;</span><span class="p">)</span>
-        <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ret</span><span class="p">)</span>        
+        <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ret</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div>
-    
+
 <div class="viewcode-block" id="Gibbs.calc_G"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.Gibbs.calc_G.html#pwtools.thermo.Gibbs.calc_G">[docs]</a>    <span class="k">def</span> <span class="nf">calc_G</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">calc_all</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Gibbs free energy and related properties on T-P grid. </span>
+        <span class="sd">&quot;&quot;&quot;Gibbs free energy and related properties on T-P grid.</span>
 <span class="sd">        Uses self.fitfunc.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Needs :meth:`calc_F` results. Called here if not provided.</span>
 <span class="sd">        Also calls :meth:`calc_H` if `calc_all` is ``True``, i.e. this is the</span>
 <span class="sd">        you-get-it-all method and the only one you sould really use.</span>
@@ -755,7 +755,7 @@
 <span class="sd">        -------</span>
 <span class="sd">        ret : dict</span>
 <span class="sd">            All keys starting with the ``/#opt`` prefix are values obtained</span>
-<span class="sd">            from minimizing G(ax0,ax1,ax2,T,P) w.r.t. (ax0,ax1,ax2).         </span>
+<span class="sd">            from minimizing G(ax0,ax1,ax2,T,P) w.r.t. (ax0,ax1,ax2).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_fitax</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">ret</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -780,9 +780,9 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">_fit_opt_store</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">gg</span><span class="p">,</span> <span class="n">prfx</span><span class="o">=</span><span class="s1">&#39;/T/P&#39;</span><span class="p">,</span>
                                         <span class="n">tpidx</span><span class="o">=</span><span class="p">[</span><span class="n">tidx</span><span class="p">,</span><span class="n">pidx</span><span class="p">],</span> <span class="n">ghsym</span><span class="o">=</span><span class="s1">&#39;G&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_set_not_calc_none</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">prfx</span><span class="o">=</span><span class="s1">&#39;/T/P&#39;</span><span class="p">)</span>
-            
+
             <span class="n">alpha_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ax0&#39;</span><span class="p">,</span> <span class="s1">&#39;ax1&#39;</span><span class="p">,</span> <span class="s1">&#39;ax2&#39;</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">]</span>
-            <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">((</span><span class="s1">&#39;/#opt/T/P/alpha_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">name</span><span class="p">,</span> 
+            <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">((</span><span class="s1">&#39;/#opt/T/P/alpha_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">name</span><span class="p">,</span>
                              <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">nT</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">nP</span><span class="p">)))</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> \
                              <span class="n">alpha_names</span><span class="p">))</span>
             <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">alpha_names</span><span class="p">:</span>
@@ -794,20 +794,20 @@
                         <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;/#opt/T/P/alpha_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">name</span><span class="p">][:,</span><span class="n">pidx</span><span class="p">]</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">x</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;/#opt/T/P/alpha_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-                            
+
             <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;/#opt/T/P/Cp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">nT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nP</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">pidx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nP</span><span class="p">):</span>
                 <span class="n">fit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitfunc</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;/#opt/T/P/G&#39;</span><span class="p">][:,</span><span class="n">pidx</span><span class="p">]</span><span class="o">*</span><span class="n">eV</span><span class="o">/</span><span class="n">kb</span><span class="p">)</span>
                 <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;/#opt/T/P/Cp&#39;</span><span class="p">][:,</span><span class="n">pidx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ret</span><span class="p">)</span>        
-        <span class="k">return</span> <span class="n">ret</span>                </div></div>
+        <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ret</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div></div>
 
 
 <div class="viewcode-block" id="debye_func"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.debye_func.html#pwtools.thermo.debye_func">[docs]</a><span class="k">def</span> <span class="nf">debye_func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nstep</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Debye function</span>
 
 <span class="sd">    :math:`f(x) = 3 \int_0^1 t^3 / [\exp(t x) - 1] dt`</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    x : float or 1d array</span>
@@ -815,7 +815,7 @@
 <span class="sd">        number of points for integration</span>
 <span class="sd">    zero : float</span>
 <span class="sd">        approximate the 0 in the integral by this (small!) number</span>
-<span class="sd">    &quot;&quot;&quot;</span>    
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span>
@@ -826,10 +826,10 @@
 
 
 <div class="viewcode-block" id="einstein_func"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.einstein_func.html#pwtools.thermo.einstein_func">[docs]</a><span class="k">def</span> <span class="nf">einstein_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Einstein function </span>
-<span class="sd">    </span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Einstein function</span>
+
 <span class="sd">    :math:`f(x) = 1 / [ \exp(x) - 1 ]`</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    x : float or 1d array</span>
@@ -840,10 +840,10 @@
 
 <div class="viewcode-block" id="expansion"><a class="viewcode-back" href="../../generated/api/pwtools.thermo.expansion.html#pwtools.thermo.expansion">[docs]</a><span class="k">def</span> <span class="nf">expansion</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">debye_func</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Calculate thermal expansion according to the model in `func`.</span>
-<span class="sd">     </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    temp : array_like </span>
+<span class="sd">    temp : array_like</span>
 <span class="sd">        temperature</span>
 <span class="sd">    alpha : float</span>
 <span class="sd">        high-T limit expansion coeff</span>
@@ -853,7 +853,7 @@
 <span class="sd">        axis length at T=0</span>
 <span class="sd">    func : callable</span>
 <span class="sd">        Usually :func:`debye_func` or :func:`einstein_func`</span>
-<span class="sd">    </span>
+
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; # thermal expansion coeff alpha_x = 1/x(T) * dx/dT</span>
@@ -861,11 +861,11 @@
 <span class="sd">    &gt;&gt;&gt; from pwtools import num</span>
 <span class="sd">    &gt;&gt;&gt; T=linspace(5,2500,100)</span>
 <span class="sd">    &gt;&gt;&gt; for zero in [1e-3, 1e-8]:</span>
-<span class="sd">    &gt;&gt;&gt;     x = expansion(T, 5e-6, 1200, 3, lambda x: debye_func(x,zero=zero)) </span>
+<span class="sd">    &gt;&gt;&gt;     x = expansion(T, 5e-6, 1200, 3, lambda x: debye_func(x,zero=zero))</span>
 <span class="sd">    &gt;&gt;&gt;     plot(T, num.deriv_spl(x, T, n=1)/x)</span>
-<span class="sd">    &gt;&gt;&gt; x = expansion(T, 5e-6, 1200, 3, einstein_func) </span>
+<span class="sd">    &gt;&gt;&gt; x = expansion(T, 5e-6, 1200, 3, einstein_func)</span>
 <span class="sd">    &gt;&gt;&gt; plot(T, num.deriv_spl(x, T, n=1)/x)</span>
-<span class="sd">    </span>
+
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
 <span class="sd">    [1] Figge et al., Appl. Phys. Lett. 94, 101915 (2009)</span>

@@ -106,7 +106,7 @@ structure optimization (<code class="docutils literal notranslate"><span class="
 <dl class="docutils">
 <dt>Currently hardcoded file names:</dt>
 <dd><div class="first last line-block">
-<div class="line"><cite>dumpfilename</cite> = <code class="docutils literal notranslate"><span class="pre">basedir/lmp.out.dump</span></code> </div>
+<div class="line"><cite>dumpfilename</cite> = <code class="docutils literal notranslate"><span class="pre">basedir/lmp.out.dump</span></code></div>
 <div class="line"><cite>symbolsfilename</cite> = <code class="docutils literal notranslate"><span class="pre">basedir/lmp.struct.symbols</span></code></div>
 </div>
 </dd>
@@ -141,22 +141,22 @@ to use the <code class="docutils literal notranslate"><span class="pre">type</sp
 <p class="rubric">Examples</p>
 <p>Example lammps input:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clear</span>
-<span class="n">units</span> <span class="n">metal</span> 
-<span class="n">boundary</span> <span class="n">p</span> <span class="n">p</span> <span class="n">p</span> 
+<span class="n">units</span> <span class="n">metal</span>
+<span class="n">boundary</span> <span class="n">p</span> <span class="n">p</span> <span class="n">p</span>
 <span class="n">atom_style</span> <span class="n">atomic</span>
 
 <span class="n">read_data</span> <span class="n">lmp</span><span class="o">.</span><span class="n">struct</span>
 
-<span class="c1">### interactions </span>
-<span class="n">pair_style</span> <span class="n">tersoff</span> 
+<span class="c1">### interactions</span>
+<span class="n">pair_style</span> <span class="n">tersoff</span>
 <span class="n">pair_coeff</span> <span class="o">*</span> <span class="o">*</span> <span class="n">AlN</span><span class="o">.</span><span class="n">tersoff</span> <span class="n">Al</span> <span class="n">N</span>
 
 <span class="c1">### IO</span>
 <span class="n">dump</span> <span class="n">dump_txt</span> <span class="nb">all</span> <span class="n">custom</span> <span class="mi">1</span> <span class="n">lmp</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">dump</span> <span class="nb">id</span> <span class="nb">type</span> <span class="n">xsu</span> <span class="n">ysu</span> <span class="n">zsu</span> <span class="n">xu</span> <span class="n">yu</span> <span class="n">zu</span> <span class="n">fx</span> <span class="n">fy</span> <span class="n">fz</span> <span class="n">vx</span> <span class="n">vy</span> <span class="n">vz</span>
 <span class="n">dump</span> <span class="n">dump_dcd</span> <span class="nb">all</span> <span class="n">dcd</span> <span class="mi">1</span> <span class="n">lmp</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">dcd</span>
 <span class="c1">##dump dump_xyz all xyz 1 lmp.out.xyz</span>
-<span class="c1">##dump_modify dump_xyz element Al N </span>
-<span class="n">dump_modify</span> <span class="n">dump_txt</span> <span class="n">sort</span> <span class="nb">id</span> 
+<span class="c1">##dump_modify dump_xyz element Al N</span>
+<span class="n">dump_modify</span> <span class="n">dump_txt</span> <span class="n">sort</span> <span class="nb">id</span>
 <span class="n">dump_modify</span> <span class="n">dump_dcd</span> <span class="n">sort</span> <span class="nb">id</span> <span class="n">unwrap</span> <span class="n">yes</span>
 <span class="n">thermo_style</span> <span class="n">custom</span> <span class="n">step</span> <span class="n">temp</span> <span class="n">vol</span> <span class="n">cella</span> <span class="n">cellb</span> <span class="n">cellc</span> <span class="n">cellalpha</span> <span class="n">cellbeta</span> <span class="n">cellgamma</span> <span class="o">&amp;</span>
                     <span class="n">ke</span> <span class="n">pe</span> <span class="n">etotal</span> <span class="o">&amp;</span>

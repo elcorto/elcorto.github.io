@@ -95,15 +95,15 @@
 
 
 <div class="viewcode-block" id="struct_str"><a class="viewcode-back" href="../../generated/api/pwtools.lammps.struct_str.html#pwtools.lammps.struct_str">[docs]</a><span class="k">def</span> <span class="nf">struct_str</span><span class="p">(</span><span class="n">struct</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Convert Structure object to lammps format. </span>
-<span class="sd">    </span>
+    <span class="sd">&quot;&quot;&quot;Convert Structure object to lammps format.</span>
+
 <span class="sd">    The returned string can be written to a file and read in a lammps input</span>
 <span class="sd">    file by ``read_data``.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    struct : Structure</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    str : string</span>
@@ -118,12 +118,12 @@
     <span class="n">st</span><span class="o">.</span><span class="n">coords</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">st</span><span class="o">.</span><span class="n">cell</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">st</span><span class="o">.</span><span class="n">set_all</span><span class="p">()</span>
-    <span class="n">head_str</span> <span class="o">=</span> <span class="s2">&quot;structure written by pwtools </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">asctime</span><span class="p">())</span>        
+    <span class="n">head_str</span> <span class="o">=</span> <span class="s2">&quot;structure written by pwtools </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">asctime</span><span class="p">())</span>
     <span class="n">info_str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%i</span><span class="s1"> atoms</span><span class="se">\n</span><span class="si">%i</span><span class="s1"> atom types&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">natoms</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">symbols_unique</span><span class="p">))</span>
     <span class="n">cell_str</span> <span class="o">=</span> <span class="s2">&quot;0.0 </span><span class="si">{x:.14g}</span><span class="s2"> xlo xhi</span><span class="se">\n</span><span class="s2">0.0 </span><span class="si">{y:.14g}</span><span class="s2"> ylo yhi</span><span class="se">\n</span><span class="s2">0.0 </span><span class="si">{z:.14g}</span><span class="s2"> zlo zhi</span><span class="se">\n</span><span class="s2">&quot;</span>
     <span class="n">cell_str</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">{tilts}</span><span class="s2"> xy xz yz</span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="n">cell_str</span> <span class="o">=</span> <span class="n">cell_str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> 
-                               <span class="n">y</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> 
+    <span class="n">cell_str</span> <span class="o">=</span> <span class="n">cell_str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+                               <span class="n">y</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
                                <span class="n">z</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
                                <span class="n">tilts</span><span class="o">=</span><span class="n">common</span><span class="o">.</span><span class="n">str_arr</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">st</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
                                                               <span class="n">st</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
@@ -133,7 +133,7 @@
     <span class="n">atoms_str</span> <span class="o">=</span> <span class="s2">&quot;Atoms</span><span class="se">\n\n</span><span class="s2">&quot;</span>
     <span class="k">for</span> <span class="n">iatom</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">natoms</span><span class="p">):</span>
         <span class="n">atoms_str</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">{iatom}</span><span class="s2"> </span><span class="si">{ispec}</span><span class="s2"> </span><span class="si">{xyz}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="n">iatom</span><span class="o">=</span><span class="n">iatom</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> 
+            <span class="n">iatom</span><span class="o">=</span><span class="n">iatom</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span>
             <span class="n">ispec</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">order</span><span class="p">[</span><span class="n">st</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="n">iatom</span><span class="p">]],</span>
             <span class="n">xyz</span><span class="o">=</span><span class="n">common</span><span class="o">.</span><span class="n">str_arr</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">iatom</span><span class="p">,:],</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-13</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%23.16e</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">mass_str</span> <span class="o">=</span> <span class="s2">&quot;Masses</span><span class="se">\n\n</span><span class="s2">&quot;</span>

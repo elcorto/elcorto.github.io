@@ -107,13 +107,13 @@ simple SCF runs for now.</p>
 <p class="rubric">Examples</p>
 <p>Define a calculator object:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">calc</span><span class="o">=</span><span class="n">Pwscf</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;/path/to/calculation/dir/pw&#39;</span><span class="p">,</span>
-<span class="gp">... </span>           <span class="n">kpts</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mf">0.35</span><span class="p">,</span> 
+<span class="gp">... </span>           <span class="n">kpts</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mf">0.35</span><span class="p">,</span>
 <span class="gp">... </span>           <span class="n">ecutwfc</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
 <span class="gp">... </span>           <span class="n">conv_thr</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span>
 <span class="gp">... </span>           <span class="n">pp</span><span class="o">=</span><span class="s1">&#39;pbe-n-kjpaw_psl.0.1.UPF&#39;</span><span class="p">,</span>
 <span class="gp">... </span>           <span class="n">pseudo_dir</span><span class="o">=</span><span class="s1">&#39;/home/schmerler/soft/share/espresso/pseudo/espresso/&#39;</span><span class="p">,</span>
-<span class="gp">... </span>           <span class="n">calc_name</span><span class="o">=</span><span class="s1">&#39;my_calc&#39;</span><span class="p">,</span> 
-<span class="gp">... </span>           <span class="n">outdir</span><span class="o">=</span><span class="s1">&#39;/scratch/schmerler/&#39;</span><span class="p">,</span> 
+<span class="gp">... </span>           <span class="n">calc_name</span><span class="o">=</span><span class="s1">&#39;my_calc&#39;</span><span class="p">,</span>
+<span class="gp">... </span>           <span class="n">outdir</span><span class="o">=</span><span class="s1">&#39;/scratch/schmerler/&#39;</span><span class="p">,</span>
 <span class="gp">... </span>           <span class="n">command</span><span class="o">=</span><span class="s1">&#39;mpirun -np 16 pw.x &lt; pw.in &gt; pw.out&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">at</span><span class="o">=</span><span class="n">crys</span><span class="o">.</span><span class="n">Structure</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">get_ase_atoms</span><span class="p">(</span><span class="n">pbc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">at</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">calc</span><span class="p">)</span>
@@ -121,12 +121,12 @@ simple SCF runs for now.</p>
 </pre></div>
 </div>
 <p>Relation to ASE k-grid tools:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>    
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ase.calculators.calculator</span> <span class="k">import</span> <span class="n">kpts2mp</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.crys</span> <span class="k">import</span> <span class="n">kgrid</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">=</span><span class="n">crys</span><span class="o">.</span><span class="n">Structure</span><span class="p">(</span><span class="n">cell</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">=</span><span class="n">crys</span><span class="o">.</span><span class="n">Structure</span><span class="p">(</span><span class="n">cell</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span>
 <span class="gp">... </span>                  <span class="n">coords</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>
-<span class="gp">... </span>                  <span class="n">symbols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span> 
+<span class="gp">... </span>                  <span class="n">symbols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">at</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">get_ase_atoms</span><span class="p">(</span><span class="n">pbc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">crys</span><span class="o">.</span><span class="n">kgrid</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">cell</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
 <span class="go">array([4, 6, 6])</span>
@@ -272,7 +272,7 @@ directory=’/path/to’ and prefix=’pw’). In <code class="docutils literal 
 <blockquote>
 <div><p>Examples: <code class="docutils literal notranslate"><span class="pre">3.5</span></code>, <code class="docutils literal notranslate"><span class="pre">[6,6,4]</span></code>.
 If a float <code class="docutils literal notranslate"><span class="pre">x</span></code> is used, then it is the inverse of the
-k-grid spacing <cite>h</cite> per reciprocal axis 
+k-grid spacing <cite>h</cite> per reciprocal axis
 as in <code class="docutils literal notranslate"><span class="pre">kpts=pwtools.crys.kgrid(struct.cell,</span> <span class="pre">h=1/x)</span></code></p>
 </div></blockquote>
 <p><strong>calc_name</strong> : str</p>

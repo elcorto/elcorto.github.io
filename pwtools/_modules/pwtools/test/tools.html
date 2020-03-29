@@ -98,7 +98,7 @@
 <span class="sd">    | :func:`all_types_no_dict_equal`</span>
 <span class="sd">    | :func:`dict_with_all_types_equal`</span>
 <span class="sd">    | :func:`all_types_equal`</span>
-<span class="sd">    | </span>
+<span class="sd">    |</span>
 <span class="sd">    | :func:`array_almost_equal`</span>
 <span class="sd">    | :func:`all_types_no_dict_almost_equal`</span>
 <span class="sd">    | :func:`dict_with_all_types_almost_equal`</span>
@@ -174,8 +174,8 @@
 <span class="c1">#-----------------------------------------------------------------------------</span>
 
 <div class="viewcode-block" id="AllTypesFactory"><a class="viewcode-back" href="../../../generated/api/pwtools.test.tools.AllTypesFactory.html#pwtools.test.tools.AllTypesFactory">[docs]</a><span class="k">class</span> <span class="nc">AllTypesFactory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Factory for creating functions which compare &quot;any&quot; type. </span>
-<span class="sd">    </span>
+    <span class="sd">&quot;&quot;&quot;Factory for creating functions which compare &quot;any&quot; type.</span>
+
 <span class="sd">    We need a dict `comp_map` which maps types (result of ``type(foo)``) to a</span>
 <span class="sd">    comparison function for that type which returns True or False and is called</span>
 <span class="sd">    like ``comp_map[&lt;type&gt;](a,b)``. Also a ``comp_map[&#39;default&#39;]`` entry is</span>
@@ -188,12 +188,12 @@
 <span class="sd">        ----------</span>
 <span class="sd">        comp_map : dict</span>
 <span class="sd">            Dict with types and comparison fucntions.</span>
-<span class="sd">            Example: ``{type(np.array([1.0])): np.allclose, </span>
+<span class="sd">            Example: ``{type(np.array([1.0])): np.allclose,</span>
 <span class="sd">                        type(1): lambda x,y: x==y,</span>
 <span class="sd">                        &#39;default&#39;: lambda x,y: x==y}``</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">comp_map</span> <span class="o">=</span> <span class="n">comp_map</span></div>
-    
+
 <div class="viewcode-block" id="AllTypesFactory.__call__"><a class="viewcode-back" href="../../../generated/api/pwtools.test.tools.AllTypesFactory.__call__.html#pwtools.test.tools.AllTypesFactory.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -210,10 +210,10 @@
         <span class="n">d1_t</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span>
         <span class="n">d2_t</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">strict</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">d1_t</span> <span class="o">!=</span> <span class="n">d2_t</span><span class="p">:</span> 
+            <span class="k">if</span> <span class="n">d1_t</span> <span class="o">!=</span> <span class="n">d2_t</span><span class="p">:</span>
                 <span class="n">err</span><span class="p">(</span><span class="s2">&quot;AllTypesFactory: d1 (</span><span class="si">%s</span><span class="s2">) and d2 (</span><span class="si">%s</span><span class="s2">) are not the &quot;</span>
                       <span class="s2">&quot;same type&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">d1_t</span><span class="p">,</span> <span class="n">d2_t</span><span class="p">))</span>
-                <span class="k">return</span> <span class="kc">False</span>       
+                <span class="k">return</span> <span class="kc">False</span>
         <span class="k">for</span> <span class="n">typ</span><span class="p">,</span> <span class="n">comp_func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">comp_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">d1_t</span> <span class="o">==</span> <span class="n">typ</span><span class="p">:</span>
                 <span class="n">msg</span><span class="p">(</span><span class="s2">&quot;AllTypesFactory: type=</span><span class="si">%s</span><span class="s2">, comp_func=</span><span class="si">%s</span><span class="s2">&quot;</span> \
@@ -226,7 +226,7 @@
                 <span class="s2">&quot;cannot process type=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">d1_t</span><span class="p">))</span>
         <span class="n">msg</span><span class="p">(</span><span class="s2">&quot;AllTypesFactory: type=default, comp_func=</span><span class="si">%s</span><span class="s2">&quot;</span> \
               <span class="o">%</span><span class="nb">str</span><span class="p">(</span><span class="n">comp_func</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">comp_func</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>          </div></div>
+        <span class="k">return</span> <span class="n">comp_func</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="DictWithAllTypesFactory"><a class="viewcode-back" href="../../../generated/api/pwtools.test.tools.DictWithAllTypesFactory.html#pwtools.test.tools.DictWithAllTypesFactory">[docs]</a><span class="k">class</span> <span class="nc">DictWithAllTypesFactory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -234,7 +234,7 @@
 <span class="sd">    &quot;any&quot; type, also numpy arrays. Nested dicts are possible.&quot;&quot;&quot;</span>
 <div class="viewcode-block" id="DictWithAllTypesFactory.__init__"><a class="viewcode-back" href="../../../generated/api/pwtools.test.tools.DictWithAllTypesFactory.html#pwtools.test.tools.DictWithAllTypesFactory.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp_func</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">comp_func</span> <span class="o">=</span> <span class="n">comp_func</span></div>
-    
+
 <div class="viewcode-block" id="DictWithAllTypesFactory.__call__"><a class="viewcode-back" href="../../../generated/api/pwtools.test.tools.DictWithAllTypesFactory.__call__.html#pwtools.test.tools.DictWithAllTypesFactory.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">attr_lst</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -254,9 +254,9 @@
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&#39;attr_lst&#39; keyword deprecated. Use &#39;keys&#39; instead.&quot;</span><span class="p">,</span>
                           <span class="ne">DeprecationWarning</span><span class="p">)</span>
             <span class="n">keys</span> <span class="o">=</span> <span class="n">attr_lst</span>
-        <span class="c1"># Test equal keys only if user doesn&#39;t provide them.            </span>
-        <span class="k">if</span> <span class="n">keys</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>            
-            <span class="n">d1_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">d1</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>    
+        <span class="c1"># Test equal keys only if user doesn&#39;t provide them.</span>
+        <span class="k">if</span> <span class="n">keys</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">d1_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">d1</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
             <span class="n">d2_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">d2</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">d1_keys</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">d2_keys</span><span class="p">):</span>
                 <span class="n">err</span><span class="p">(</span><span class="s2">&quot;DictWithAllTypesFactory: key list not equally long&quot;</span><span class="p">)</span>
@@ -264,14 +264,14 @@
             <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">d1_keys</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">set</span><span class="p">(</span><span class="n">d2_keys</span><span class="p">):</span>
                 <span class="n">err</span><span class="p">(</span><span class="s2">&quot;DictWithAllTypesFactory: keys not equal&quot;</span><span class="p">)</span>
                 <span class="k">return</span> <span class="kc">False</span>
-        <span class="n">_keys</span> <span class="o">=</span> <span class="n">d1_keys</span> <span class="k">if</span> <span class="n">keys</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">keys</span>    
+        <span class="n">_keys</span> <span class="o">=</span> <span class="n">d1_keys</span> <span class="k">if</span> <span class="n">keys</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">keys</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">_keys</span><span class="p">:</span>
             <span class="n">msg</span><span class="p">(</span><span class="s2">&quot;DictWithAllTypesFactory: testing key=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">key</span><span class="p">)</span>
             <span class="n">d1_t</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">d1</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
             <span class="n">d2_t</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">d2</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
             <span class="k">if</span> <span class="n">strict</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">d1_t</span> <span class="o">!=</span> <span class="n">d2_t</span><span class="p">:</span> 
+                <span class="k">if</span> <span class="n">d1_t</span> <span class="o">!=</span> <span class="n">d2_t</span><span class="p">:</span>
                     <span class="n">err</span><span class="p">(</span><span class="s2">&quot;DictWithAllTypesFactory: d1[</span><span class="si">%s</span><span class="s2">] (</span><span class="si">%s</span><span class="s2">) and d2[</span><span class="si">%s</span><span class="s2">] (</span><span class="si">%s</span><span class="s2">) are not &quot;</span>
                           <span class="s2">&quot;the same type&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">d1_t</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">d2_t</span><span class="p">))</span>
                     <span class="k">return</span> <span class="kc">False</span>
@@ -290,7 +290,7 @@
 <span class="sd">    comp_func(*args, **kwds)``.&quot;&quot;&quot;</span>
 <div class="viewcode-block" id="AssertFactory.__init__"><a class="viewcode-back" href="../../../generated/api/pwtools.test.tools.AssertFactory.html#pwtools.test.tools.AssertFactory.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp_func</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">comp_func</span> <span class="o">=</span> <span class="n">comp_func</span></div>
-    
+
 <div class="viewcode-block" id="AssertFactory.__call__"><a class="viewcode-back" href="../../../generated/api/pwtools.test.tools.AssertFactory.__call__.html#pwtools.test.tools.AssertFactory.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">comp_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span></div></div>
 
@@ -402,15 +402,15 @@
     <span class="sd">&quot;&quot;&quot;Convenience function to uncompress files/some_file.out.gz into a random</span>
 <span class="sd">    location. Return the filename &quot;path/to/random_location/some_file.out&quot;</span>
 <span class="sd">    without &quot;.gz&quot;, which can be used in subsequent commands.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Supported file types: gz, tgz, tar.gz</span>
 <span class="sd">        gunzip path/to/random_location/some_file.out.gz</span>
 <span class="sd">        tar -C path/to/random_location -xzf path/to/random_location/some_file.out.tgz</span>
-<span class="sd">    </span>
+
 <span class="sd">    Other compress formats may be implemented as needed.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Can also be used for slightly more complex unpack business, see for</span>
-<span class="sd">    example test_cpmd_md.py. </span>
+<span class="sd">    example test_cpmd_md.py.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -452,18 +452,18 @@
 <span class="sd">    nose.plugins.skip.SkipTest and makes the test be skipped. Doesn&#39;t work as a</span>
 <span class="sd">    decorator. If you need a decorator to temporarily disable a test function,</span>
 <span class="sd">    then use unitest.skip(). The latter is supposed to work on test functions</span>
-<span class="sd">    and classes (probably unittest.TestCase and derivatives, untested). </span>
+<span class="sd">    and classes (probably unittest.TestCase and derivatives, untested).</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    </span>
+
 <span class="sd">    from pwtools.test.tools import skip</span>
 <span class="sd">    import unitest</span>
-<span class="sd">    </span>
+
 <span class="sd">    def test_foo():</span>
 <span class="sd">        if some_error_condition:</span>
 <span class="sd">            skip(&quot;skipping this test b/c of foo&quot;)</span>
-<span class="sd">    </span>
+
 <span class="sd">    def test_bar():</span>
 <span class="sd">        skip(&quot;we&#39;re not at the bar, skip ordering beer&quot;)</span>
 <span class="sd">        normal_test_code_here()</span>

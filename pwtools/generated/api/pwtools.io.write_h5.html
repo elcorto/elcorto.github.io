@@ -101,7 +101,8 @@
 <code class="descclassname">pwtools.io.</code><code class="descname">write_h5</code><span class="sig-paren">(</span><em>fn</em>, <em>dct</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/io.html#write_h5"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.io.write_h5" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write dictionary with arrays (or whatever HDF5 handles) to h5 file.</p>
 <p>Dict keys are supposed to be HDF group + dataset names like <cite>/a/b/c/dset</cite>.
-The leading slash can be skipped.</p>
+The leading slash can be skipped. Default file mode is ‘a’ (see below for
+details).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -120,12 +121,12 @@ The leading slash can be skipped.</p>
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>The file opening mode is the <code class="docutils literal notranslate"><span class="pre">h5py.File</span></code> default value, which is
-<code class="docutils literal notranslate"><span class="pre">mode='a'</span></code>, i.e. read+append mode. In this mode, existing keys cannot be
-reused (overwritten), only new ones can be appended. The file is created if
-nonexistent. To overwrite, use <code class="docutils literal notranslate"><span class="pre">mode='w'</span></code>, but this is the same as
-deleting the file and writing a new one! If you want to overwrite some or
-all existing keys and add new ones, use smth like:</p>
+<p>The default file opening mode is the (old?) <code class="docutils literal notranslate"><span class="pre">h5py.File</span></code> default value,
+which is <code class="docutils literal notranslate"><span class="pre">mode='a'</span></code>, i.e. read+append mode. In this mode, existing keys
+cannot be reused (overwritten), only new ones can be appended. The file is
+created if nonexistent. To overwrite, use <code class="docutils literal notranslate"><span class="pre">mode='w'</span></code>, but this is the
+same as deleting the file and writing a new one! If you want to overwrite
+some or all existing keys and add new ones, use smth like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">old</span> <span class="o">=</span> <span class="n">read_h5</span><span class="p">(</span><span class="s1">&#39;file.h5&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">old</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;/old/key&#39;</span><span class="p">:</span> <span class="n">new_value</span><span class="p">,</span> <span class="s1">&#39;/new/key&#39;</span><span class="p">:</span> <span class="n">some_more_data</span><span class="p">})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">write_h5</span><span class="p">(</span><span class="s1">&#39;file.h5&#39;</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>

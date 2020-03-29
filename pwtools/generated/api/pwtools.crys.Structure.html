@@ -164,8 +164,8 @@ You can use <a class="reference internal" href="pwtools.crys.Structure.get_ase_a
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">symbols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="s1">&#39;Al&#39;</span><span class="p">,</span> <span class="s1">&#39;Al&#39;</span><span class="p">,</span> <span class="s1">&#39;Al&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="s1">&#39;Al&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">coords_frac</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cryst_const</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mf">90.0</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">=</span><span class="n">Structure</span><span class="p">(</span><span class="n">coords_frac</span><span class="o">=</span><span class="n">coords_frac</span><span class="p">,</span> 
-<span class="gp">... </span>             <span class="n">cryst_const</span><span class="o">=</span><span class="n">cryst_const</span><span class="p">,</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">=</span><span class="n">Structure</span><span class="p">(</span><span class="n">coords_frac</span><span class="o">=</span><span class="n">coords_frac</span><span class="p">,</span>
+<span class="gp">... </span>             <span class="n">cryst_const</span><span class="o">=</span><span class="n">cryst_const</span><span class="p">,</span>
 <span class="gp">... </span>             <span class="n">symbols</span><span class="o">=</span><span class="n">symbols</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">symbols</span>
 <span class="go">[&#39;N&#39;, &#39;Al&#39;, &#39;Al&#39;, &#39;Al&#39;, &#39;N&#39;, &#39;N&#39;, &#39;Al&#39;]</span>
@@ -523,11 +523,11 @@ for MD data.</p>
 <code class="docutils literal notranslate"><span class="pre">atoms.scaled_positions</span></code> (we don’t want that for MD structures, for
 instance). If you need the pbc flag in your Atoms object, then use:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Note that the `pbc` flag is passed to ase.Atoms, so you can use</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># whatever that accepts, like pbc=[1,1,1] etc. </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># whatever that accepts, like pbc=[1,1,1] etc.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">atoms</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">get_ase_atoms</span><span class="p">(</span><span class="n">pbc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># or </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># or</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">atoms</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">get_ase_atoms</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">atoms</span><span class="o">.</span><span class="n">set_pbc</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">atoms</span><span class="o">.</span><span class="n">set_pbc</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>but then, <code class="docutils literal notranslate"><span class="pre">scaled_positions</span></code> will be wrapped by ASE and I’m not sure

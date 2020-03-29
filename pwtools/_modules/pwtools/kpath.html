@@ -92,7 +92,7 @@
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">num</span><span class="p">,</span> <span class="n">pwscf</span><span class="p">,</span> <span class="n">common</span><span class="p">,</span> <span class="n">mpl</span>
 
-<div class="viewcode-block" id="kpath"><a class="viewcode-back" href="../../generated/api/pwtools.kpath.kpath.html#pwtools.kpath.kpath">[docs]</a><span class="k">def</span> <span class="nf">kpath</span><span class="p">(</span><span class="n">vecs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>    
+<div class="viewcode-block" id="kpath"><a class="viewcode-back" href="../../generated/api/pwtools.kpath.kpath.html#pwtools.kpath.kpath">[docs]</a><span class="k">def</span> <span class="nf">kpath</span><span class="p">(</span><span class="n">vecs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Simple k-path. Given a set of K vectors (special points in the BZ),</span>
 <span class="sd">    generate a &quot;fine path&quot; of N*(K-1)+1 vectors along the path defined by the</span>
 <span class="sd">    vectors in `vecs`. The K vectors are the &quot;vertices&quot; of the k-path and we</span>
@@ -101,16 +101,16 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    vecs : array (K,M) </span>
+<span class="sd">    vecs : array (K,M)</span>
 <span class="sd">        Array with K vectors of the Brillouin zone (so M = 3 usually :)</span>
 <span class="sd">    N : int</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    new_vecs : array (N*(K-1)+1,M) </span>
-<span class="sd">        Array with a fine grid of vectors along the path </span>
+<span class="sd">    new_vecs : array (N*(K-1)+1,M)</span>
+<span class="sd">        Array with a fine grid of vectors along the path</span>
 <span class="sd">        defined by `vecs`.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    This is the simplest method one can think of. Points on the &quot;fine path&quot; are</span>
@@ -124,7 +124,7 @@
         <span class="n">new_vecs</span><span class="p">[(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">N</span><span class="p">:</span><span class="n">i</span><span class="o">*</span><span class="n">N</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">vlinspace</span><span class="p">(</span><span class="n">vecs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">vecs</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">N</span><span class="p">,</span>
                                                  <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-    <span class="n">new_vecs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">vecs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span>            
+    <span class="n">new_vecs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">vecs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span>
     <span class="k">return</span> <span class="n">new_vecs</span></div>
 
 
@@ -135,7 +135,7 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    ks : array (nks, 3) </span>
+<span class="sd">    ks : array (nks, 3)</span>
 <span class="sd">        array with `nks` k-points on the path</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">dnorms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">ks</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
@@ -159,7 +159,7 @@
 <span class="sd">        ks_frac : (nks,3), optional</span>
 <span class="sd">            fractional k-points, used only in :func:`plot_dis`, not for path</span>
 <span class="sd">            norm calculation</span>
-<span class="sd">        symbols : sequence of strings (nks,), optional    </span>
+<span class="sd">        symbols : sequence of strings (nks,), optional</span>
 <span class="sd">            special point symbol each point in `ks`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="p">(</span><span class="n">ks</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">ks_frac</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;use either ks or ks_frac&quot;</span><span class="p">)</span>
@@ -167,17 +167,17 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ks_frac</span> <span class="o">=</span> <span class="n">ks_frac</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span> <span class="o">=</span> <span class="n">symbols</span>
         <span class="c1"># 1d array (nks,) of cumulative norms</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">path_norm</span> <span class="o">=</span> <span class="n">get_path_norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ks</span><span class="p">)</span> </div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path_norm</span> <span class="o">=</span> <span class="n">get_path_norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ks</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="plot_dis"><a class="viewcode-back" href="../../generated/api/pwtools.kpath.plot_dis.html#pwtools.kpath.plot_dis">[docs]</a><span class="k">def</span> <span class="nf">plot_dis</span><span class="p">(</span><span class="n">path_norm</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">special_points_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
              <span class="n">show_coords</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dos</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Plot dispersion. </span>
-<span class="sd">    </span>
+    <span class="sd">&quot;&quot;&quot;Plot dispersion.</span>
+
 <span class="sd">    See ``bin/plot_dispersion.py`` for a usage example. This lives here (and not in</span>
 <span class="sd">    :mod:`~pwtools.pwscf`) b/c it is not PWscf-specific. It can be used for any</span>
 <span class="sd">    dispersion data (band structure).</span>
-<span class="sd">    </span>
+
 <span class="sd">    See :func:`~pwtools.pwscf.read_matdyn_freq` for how to get `freqs` in the</span>
 <span class="sd">    case of phonon dispersions.</span>
 
@@ -186,7 +186,7 @@
 <span class="sd">    your plot much, then operate on the returned `fig`, `ax` (dispersion) and</span>
 <span class="sd">    `axdos` (dos), or copy and hack the function, which might be actually the easiest</span>
 <span class="sd">    way.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    path_norm : array (nks,)</span>
@@ -207,20 +207,20 @@
 <span class="sd">        frequency axis limits</span>
 <span class="sd">    **kwargs : keywords</span>
 <span class="sd">        passed to plot()</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    fig, ax, axdos</span>
 <span class="sd">    fig : matplotlib Figure to ax</span>
 <span class="sd">    ax : matplotlib AxesSubplot with dispersion</span>
-<span class="sd">    axdos : matplotlib AxesSubplot with dos, or None if `dos=None` </span>
+<span class="sd">    axdos : matplotlib AxesSubplot with dos, or None if `dos=None`</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; spp = kpath.SpecialPointsPath(ks=np.array([[0,0,0], [1.5,0,0], [2.3,0,0]]),</span>
 <span class="sd">                                      symbols=[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;])</span>
 <span class="sd">    &gt;&gt;&gt; path_norm = np.linspace(0,2.5,100)</span>
-<span class="sd">    &gt;&gt;&gt; freqs = np.random.rand(100,5)*500 </span>
+<span class="sd">    &gt;&gt;&gt; freqs = np.random.rand(100,5)*500</span>
 <span class="sd">    &gt;&gt;&gt; # create fig,ax inside, returned axdos=None</span>
 <span class="sd">    &gt;&gt;&gt; fig,ax,axdos = kpath.plot_dis(path_norm, freqs, spp)</span>
 <span class="sd">    &gt;&gt;&gt; # pass ax from outside, returns fig,ax but we don&#39;t use that b/c ax</span>
@@ -254,9 +254,9 @@
         <span class="n">fmtfunc</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%.2g</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">x</span>
         <span class="k">if</span> <span class="n">show_coords</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">labels</span> <span class="o">=</span> <span class="n">symbols</span>
-        <span class="k">else</span><span class="p">:</span>            
+        <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">show_coords</span> <span class="o">==</span> <span class="s1">&#39;cart&#39;</span><span class="p">:</span>
-                <span class="n">ks_plot</span> <span class="o">=</span> <span class="n">ks</span> 
+                <span class="n">ks_plot</span> <span class="o">=</span> <span class="n">ks</span>
             <span class="k">elif</span> <span class="n">show_coords</span> <span class="o">==</span> <span class="s1">&#39;frac&#39;</span><span class="p">:</span>
                 <span class="n">ks_plot</span> <span class="o">=</span> <span class="n">ks_frac</span>
             <span class="k">else</span><span class="p">:</span>
@@ -279,7 +279,7 @@
             <span class="n">axdos</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_tick_params</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">axdos</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">axdos</span>        </div>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">axdos</span></div>
 </pre></div>
 
           </div>

@@ -104,18 +104,18 @@
 <span class="sd">        * open the file</span>
 <span class="sd">        * go thru</span>
 <span class="sd">        * close file</span>
-<span class="sd">    </span>
+
 <span class="sd">    Now, they all expect file objects, as first argument. This decorator</span>
-<span class="sd">    assures that the first arg to `func` is a file object. </span>
-<span class="sd">    </span>
+<span class="sd">    assures that the first arg to `func` is a file object.</span>
+
 <span class="sd">    Cases:</span>
-<span class="sd">    </span>
+
 <span class="sd">    * 1st arg is a fileobject: do nothig, just call function</span>
 <span class="sd">    * 1st arg is a file name:</span>
 <span class="sd">        * open file</span>
 <span class="sd">        * call func</span>
 <span class="sd">        * close file</span>
-<span class="sd">    </span>
+
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; @open_and_close</span>
@@ -148,15 +148,15 @@
             <span class="k">return</span> <span class="n">ret</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># File object case. Don&#39;t explicitly test for types.FileType b/c</span>
-            <span class="c1"># that does not if largs[0] is actually a [c]StringIO.StringIO </span>
-            <span class="c1"># instances. </span>
+            <span class="c1"># that does not if largs[0] is actually a [c]StringIO.StringIO</span>
+            <span class="c1"># instances.</span>
             <span class="c1">#</span>
             <span class="c1"># Also, the &#39;name&#39; attribute can be set (largs[0].name = ...) for</span>
             <span class="c1"># StringIO.StringIO, but NOT for cStringIO.StringIO. We don&#39;t even</span>
             <span class="c1"># try fiddling with try-except here. There just won&#39;t be any</span>
             <span class="c1"># filename.</span>
             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">wrapper</span>        </div>
+    <span class="k">return</span> <span class="n">wrapper</span></div>
 
 
 <div class="viewcode-block" id="crys_add_doc"><a class="viewcode-back" href="../../generated/api/pwtools.decorators.crys_add_doc.html#pwtools.decorators.crys_add_doc">[docs]</a><span class="k">def</span> <span class="nf">crys_add_doc</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
@@ -181,14 +181,14 @@
     <span class="c1"># Use dictionary string replacement:</span>
     <span class="c1"># &gt;&gt;&gt; &#39;%(lala)i %(xxx)s&#39; %{&#39;lala&#39;: 3, &#39;xxx&#39;: &#39;grrr&#39;}</span>
     <span class="c1"># &#39;3 grrr&#39;</span>
-    <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">%</span> <span class="n">dct</span> 
+    <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">%</span> <span class="n">dct</span>
     <span class="k">return</span> <span class="n">func</span></div>
 
 
 <div class="viewcode-block" id="lazyprop"><a class="viewcode-back" href="../../generated/api/pwtools.decorators.lazyprop.html#pwtools.decorators.lazyprop">[docs]</a><span class="k">class</span> <span class="nc">lazyprop</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Decorator for creating lazy evaluated properties.</span>
 <span class="sd">    The property should represent non-mutable data, as it replaces itself.</span>
-<span class="sd">    </span>
+
 <span class="sd">    kudos: Cyclone over at stackoverflow!</span>
 <span class="sd">    http://stackoverflow.com/questions/3012421/python-lazy-property-decorator</span>
 <span class="sd">    &quot;&quot;&quot;</span>

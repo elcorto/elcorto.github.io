@@ -112,9 +112,10 @@
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="k">pass</span>
 
+
 <div class="viewcode-block" id="wien_sgroup_input"><a class="viewcode-back" href="../../generated/api/pwtools.io.wien_sgroup_input.html#pwtools.io.wien_sgroup_input">[docs]</a><span class="k">def</span> <span class="nf">wien_sgroup_input</span><span class="p">(</span><span class="n">struct</span><span class="p">,</span> <span class="n">lat_symbol</span><span class="o">=</span><span class="s1">&#39;P&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Generate input for WIEN2K&#39;s ``sgroup`` symmetry analysis tool.</span>
-<span class="sd">    </span>
+
 <span class="sd">    length: can be any</span>
 
 <span class="sd">    Parameters</span>
@@ -192,14 +193,14 @@
 
 <div class="viewcode-block" id="write_cif"><a class="viewcode-back" href="../../generated/api/pwtools.io.write_cif.html#pwtools.io.write_cif">[docs]</a><span class="k">def</span> <span class="nf">write_cif</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">struct</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Q&#39;n&#39;D Cif writer. Uses PyCifRW.</span>
-<span class="sd">    </span>
+
 <span class="sd">    length: Angstrom</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    filename : str</span>
 <span class="sd">        name of output .cif file</span>
-<span class="sd">    struct : Structure, length units Angstrom assumed        </span>
+<span class="sd">    struct : Structure, length units Angstrom assumed</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">ffmt</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%.16e</span><span class="s2">&quot;</span>
     <span class="n">cf</span> <span class="o">=</span> <span class="n">pycifrw_CifFile</span><span class="o">.</span><span class="n">CifFile</span><span class="p">()</span>
@@ -215,25 +216,25 @@
     <span class="n">block</span><span class="p">[</span><span class="s1">&#39;_symmetry_Int_Tables_number&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="c1"># assigning a list produces a &quot;loop_&quot;</span>
     <span class="n">block</span><span class="p">[</span><span class="s1">&#39;_symmetry_equiv_pos_as_xyz&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x,y,z&#39;</span><span class="p">]</span>
-    
+
     <span class="c1"># atoms</span>
     <span class="c1">#</span>
     <span class="c1"># _atom_site_label: We just use symbols, which is then =</span>
     <span class="c1">#   _atom_site_type_symbol, but we *could* use that to number atoms of each</span>
     <span class="c1">#   specie, e.g. Si1, Si2, ..., Al1, Al2, ...</span>
-    <span class="n">data_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_atom_site_label&#39;</span><span class="p">,</span> 
+    <span class="n">data_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_atom_site_label&#39;</span><span class="p">,</span>
                   <span class="s1">&#39;_atom_site_fract_x&#39;</span><span class="p">,</span>
                   <span class="s1">&#39;_atom_site_fract_y&#39;</span><span class="p">,</span>
                   <span class="s1">&#39;_atom_site_fract_z&#39;</span><span class="p">,</span>
                   <span class="s1">&#39;_atom_site_type_symbol&#39;</span><span class="p">]</span>
     <span class="n">_xyz2str</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">arr</span><span class="p">:</span> <span class="p">[</span><span class="n">ffmt</span> <span class="o">%</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">]</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">struct</span><span class="o">.</span><span class="n">symbols</span><span class="p">,</span> 
-            <span class="n">_xyz2str</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">coords_frac</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]),</span> 
-            <span class="n">_xyz2str</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">coords_frac</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]),</span> 
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">struct</span><span class="o">.</span><span class="n">symbols</span><span class="p">,</span>
+            <span class="n">_xyz2str</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">coords_frac</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]),</span>
+            <span class="n">_xyz2str</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">coords_frac</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]),</span>
             <span class="n">_xyz2str</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">coords_frac</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]),</span>
             <span class="n">struct</span><span class="o">.</span><span class="n">symbols</span><span class="p">]</span>
-    <span class="c1"># &quot;loop_&quot; with multiple columns            </span>
-    <span class="n">block</span><span class="o">.</span><span class="n">AddCifItem</span><span class="p">([[</span><span class="n">data_names</span><span class="p">],</span> <span class="p">[</span><span class="n">data</span><span class="p">]])</span>                
+    <span class="c1"># &quot;loop_&quot; with multiple columns</span>
+    <span class="n">block</span><span class="o">.</span><span class="n">AddCifItem</span><span class="p">([[</span><span class="n">data_names</span><span class="p">],</span> <span class="p">[</span><span class="n">data</span><span class="p">]])</span>
     <span class="n">cf</span><span class="p">[</span><span class="s1">&#39;pwtools&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">block</span>
     <span class="c1"># maxoutlength = 2048 is default for cif 1.1 standard (which is default in</span>
     <span class="c1"># pycifrw 3.x). Reset default wraplength=80 b/c ASE&#39;s cif reader cannot</span>
@@ -243,9 +244,9 @@
 
 <div class="viewcode-block" id="write_xyz"><a class="viewcode-back" href="../../generated/api/pwtools.io.write_xyz.html#pwtools.io.write_xyz">[docs]</a><span class="k">def</span> <span class="nf">write_xyz</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pwtools_dummy_mol_name&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Write VMD-style [VMD] XYZ file.</span>
-<span class="sd">    </span>
+
 <span class="sd">    length: Angstrom</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    filename : target file name</span>
@@ -262,7 +263,7 @@
     <span class="k">for</span> <span class="n">istep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">nstep</span><span class="p">):</span>
         <span class="n">xyz_str</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">%i</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">natoms</span><span class="p">,</span>
                                   <span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;.</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">istep</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
-                                  <span class="n">pwscf</span><span class="o">.</span><span class="n">atpos_str_fast</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">symbols</span><span class="p">,</span> 
+                                  <span class="n">pwscf</span><span class="o">.</span><span class="n">atpos_str_fast</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">symbols</span><span class="p">,</span>
                                                        <span class="n">traj</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">istep</span><span class="p">,</span><span class="o">...</span><span class="p">]),</span>
                                   <span class="p">)</span>
     <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">xyz_str</span><span class="p">)</span></div>
@@ -272,7 +273,7 @@
     <span class="sd">&quot;&quot;&quot;Write animated XSF file for Structure (only 1 step) or Trajectory.</span>
 
 <span class="sd">    Note that forces are converted eV / Ang -&gt; Ha / Ang.</span>
-<span class="sd">    </span>
+
 <span class="sd">    length: Angstrom</span>
 <span class="sd">    forces: Ha / Angstrom</span>
 
@@ -308,7 +309,7 @@
                                          <span class="n">common</span><span class="o">.</span><span class="n">str_arr</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="n">istep</span><span class="p">,</span><span class="o">...</span><span class="p">]))</span>
         <span class="n">axsf_str</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">PRIMCOORD </span><span class="si">%i</span><span class="se">\n</span><span class="si">%i</span><span class="s2"> 1</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">istep</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span>
                                                  <span class="n">traj</span><span class="o">.</span><span class="n">natoms</span><span class="p">,</span>
-                                                 <span class="n">pwscf</span><span class="o">.</span><span class="n">atpos_str_fast</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">symbols</span><span class="p">,</span> 
+                                                 <span class="n">pwscf</span><span class="o">.</span><span class="n">atpos_str_fast</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">symbols</span><span class="p">,</span>
                                                                       <span class="n">ccf</span><span class="p">[</span><span class="n">istep</span><span class="p">,</span><span class="o">...</span><span class="p">]))</span>
     <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">axsf_str</span><span class="p">)</span></div>
 
@@ -317,10 +318,10 @@
     <span class="sd">&quot;&quot;&quot;Write Structure object to lammps format. That file can be read in a</span>
 <span class="sd">    lammps input file by ``read_data``. Write file ``lmp.struct.symbols`` with</span>
 <span class="sd">    atom symbols.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    filename : str </span>
+<span class="sd">    filename : str</span>
 <span class="sd">        name of file to write</span>
 <span class="sd">    symbolsbasename : str, optional</span>
 <span class="sd">        file for atom symbols</span>
@@ -332,38 +333,40 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">dr</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
     <span class="n">fn</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dr</span><span class="p">,</span> <span class="n">symbolsbasename</span><span class="p">)</span>
-    <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">symbols</span><span class="p">))</span>        
+    <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">symbols</span><span class="p">))</span>
     <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">lammps</span><span class="o">.</span><span class="n">struct_str</span><span class="p">(</span><span class="n">struct</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="write_h5"><a class="viewcode-back" href="../../generated/api/pwtools.io.write_h5.html#pwtools.io.write_h5">[docs]</a><span class="k">def</span> <span class="nf">write_h5</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">dct</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Write dictionary with arrays (or whatever HDF5 handles) to h5 file.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Dict keys are supposed to be HDF group + dataset names like `/a/b/c/dset`.</span>
-<span class="sd">    The leading slash can be skipped.</span>
-<span class="sd">    </span>
+<span class="sd">    The leading slash can be skipped. Default file mode is &#39;a&#39; (see below for</span>
+<span class="sd">    details).</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    fn : str</span>
 <span class="sd">        filename (e.g. &#39;foo.h5&#39;, &#39;bar.hdf&#39;)</span>
 <span class="sd">    dct : dict</span>
-<span class="sd">    **kwds : </span>
+<span class="sd">    **kwds :</span>
 <span class="sd">        keywords to ``h5py.File`` (e.g. ``mode=&#39;w&#39;``)</span>
-<span class="sd">    </span>
+
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    The file opening mode is the ``h5py.File`` default value, which is</span>
-<span class="sd">    ``mode=&#39;a&#39;``, i.e. read+append mode. In this mode, existing keys cannot be</span>
-<span class="sd">    reused (overwritten), only new ones can be appended. The file is created if</span>
-<span class="sd">    nonexistent. To overwrite, use ``mode=&#39;w&#39;``, but this is the same as</span>
-<span class="sd">    deleting the file and writing a new one! If you want to overwrite some or</span>
-<span class="sd">    all existing keys and add new ones, use smth like::</span>
+<span class="sd">    The default file opening mode is the (old?) ``h5py.File`` default value,</span>
+<span class="sd">    which is ``mode=&#39;a&#39;``, i.e. read+append mode. In this mode, existing keys</span>
+<span class="sd">    cannot be reused (overwritten), only new ones can be appended. The file is</span>
+<span class="sd">    created if nonexistent. To overwrite, use ``mode=&#39;w&#39;``, but this is the</span>
+<span class="sd">    same as deleting the file and writing a new one! If you want to overwrite</span>
+<span class="sd">    some or all existing keys and add new ones, use smth like::</span>
 
 <span class="sd">    &gt;&gt;&gt; old = read_h5(&#39;file.h5&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; old.update({&#39;/old/key&#39;: new_value, &#39;/new/key&#39;: some_more_data})</span>
 <span class="sd">    &gt;&gt;&gt; write_h5(&#39;file.h5&#39;, old, mode=&#39;w&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">fh</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+    <span class="n">mode</span> <span class="o">=</span> <span class="n">kwds</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;mode&#39;</span> <span class="ow">in</span> <span class="n">kwds</span> <span class="k">else</span> <span class="s1">&#39;a&#39;</span>
+    <span class="n">fh</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="n">dct</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">fh</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
     <span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
@@ -371,7 +374,7 @@
 
 <div class="viewcode-block" id="read_h5"><a class="viewcode-back" href="../../generated/api/pwtools.io.read_h5.html#pwtools.io.read_h5">[docs]</a><span class="k">def</span> <span class="nf">read_h5</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Read h5 file into dict.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Dict keys are the group + dataset names, e.g. &#39;/a/b/c/dset&#39;. All keys start</span>
 <span class="sd">    with a leading slash even if written without (see :func:`write_h5`).</span>
 
@@ -379,19 +382,19 @@
 <span class="sd">    ----------</span>
 <span class="sd">    fn : str</span>
 <span class="sd">        filename</span>
-<span class="sd">    </span>
+
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; read_h5(&#39;foo.h5&#39;).keys()</span>
 <span class="sd">    [&#39;/a/b/d1&#39;, &#39;/a/b/d2&#39;, &#39;/a/c/d3&#39;, &#39;/x/y/z&#39;]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">fh</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> 
+    <span class="n">fh</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
     <span class="n">dct</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">dct</span><span class="o">=</span><span class="n">dct</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">h5py</span><span class="o">.</span><span class="n">Dataset</span><span class="p">):</span>
             <span class="n">_name</span> <span class="o">=</span> <span class="n">name</span> <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">name</span>
-            <span class="n">dct</span><span class="p">[</span><span class="n">_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">value</span>
-    <span class="n">fh</span><span class="o">.</span><span class="n">visititems</span><span class="p">(</span><span class="n">get</span><span class="p">)</span>            
+            <span class="n">dct</span><span class="p">[</span><span class="n">_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[()]</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">visititems</span><span class="p">(</span><span class="n">get</span><span class="p">)</span>
     <span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">dct</span></div>
 
@@ -421,7 +424,7 @@
 <span class="sd">            Whether the callables should return parser.get_{struct,traj}()&#39;s</span>
 <span class="sd">            return value.</span>
 <span class="sd">        doc : str</span>
-<span class="sd">            docstring header </span>
+<span class="sd">            docstring header</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">parser</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">struct_or_traj</span> <span class="o">=</span> <span class="n">struct_or_traj</span>
@@ -432,20 +435,20 @@
         <span class="c1"># is perfectly right from sphinx&#39; point of view. We would need to add</span>
         <span class="c1"># `doc` to __call__.__doc__, but how? Fancy decorator magic!</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">doc</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        </span>
+
 <span class="s2">        Parameters</span>
 <span class="s2">        ----------</span>
 <span class="s2">        filename : str</span>
 <span class="s2">            Name of the file to parse.</span>
 <span class="s2">        **kwds : keywords args</span>
 <span class="s2">            passed to the parser class (e.g. units=...)</span>
-<span class="s2">        </span>
+
 <span class="s2">        Returns</span>
 <span class="s2">        -------</span>
 <span class="s2">        ret : :class:`~pwtools.crys.Structure` (SCF runs) or </span><span class="se">\</span>
 <span class="s2">              :class:`~pwtools.crys.Trajectory` (MD-like runs)</span>
 <span class="s2">        &quot;&quot;&quot;</span></div>
-    
+
 <div class="viewcode-block" id="ReadFactory.__call__"><a class="viewcode-back" href="../../generated/api/pwtools.io.ReadFactory.__call__.html#pwtools.io.ReadFactory.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -463,56 +466,56 @@
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unknown struct_or_traj: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">struct_or_traj</span><span class="p">)</span></div></div>
 
 
-<span class="n">read_cif</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">CifFile</span><span class="p">,</span> 
+<span class="n">read_cif</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">CifFile</span><span class="p">,</span>
                        <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;struct&#39;</span><span class="p">,</span>
                        <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Read Cif files.&quot;</span>
                        <span class="p">)</span>
-<span class="n">read_pdb</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">PDBFile</span><span class="p">,</span> 
+<span class="n">read_pdb</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">PDBFile</span><span class="p">,</span>
                        <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;struct&#39;</span><span class="p">,</span>
                        <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Read PDB files.&quot;</span>
                        <span class="p">)</span>
-<span class="n">read_pw_scf</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">PwSCFOutputFile</span><span class="p">,</span> 
-                          <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;struct&#39;</span><span class="p">,</span> 
+<span class="n">read_pw_scf</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">PwSCFOutputFile</span><span class="p">,</span>
+                          <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;struct&#39;</span><span class="p">,</span>
                           <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Read Pwscf SCF run ouput.&quot;</span>
                           <span class="p">)</span>
-<span class="n">read_pw_md</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">PwMDOutputFile</span><span class="p">,</span> 
-                         <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;traj&#39;</span><span class="p">,</span> 
+<span class="n">read_pw_md</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">PwMDOutputFile</span><span class="p">,</span>
+                         <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;traj&#39;</span><span class="p">,</span>
                          <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Read Pwscf md/relax/vc-relax run ouput.&quot;</span>
                          <span class="p">)</span>
-<span class="n">read_pw_vcmd</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">PwVCMDOutputFile</span><span class="p">,</span> 
-                           <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;traj&#39;</span><span class="p">,</span> 
+<span class="n">read_pw_vcmd</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">PwVCMDOutputFile</span><span class="p">,</span>
+                           <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;traj&#39;</span><span class="p">,</span>
                            <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Read Pwscf vc-md run ouput.&quot;</span>
                            <span class="p">)</span>
 <span class="n">read_cpmd_scf</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">CpmdSCFOutputFile</span><span class="p">,</span>
-                            <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;struct&#39;</span><span class="p">,</span> 
+                            <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;struct&#39;</span><span class="p">,</span>
                             <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Read CPMD SCF (single point) run ouput.&quot;</span>
                             <span class="p">)</span>
-<span class="n">read_cpmd_md</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">CpmdMDOutputFile</span><span class="p">,</span> 
-                           <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;traj&#39;</span><span class="p">,</span> 
+<span class="n">read_cpmd_md</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">CpmdMDOutputFile</span><span class="p">,</span>
+                           <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;traj&#39;</span><span class="p">,</span>
                            <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Read CPMD MD (fixed and variable cell, BO and CP) run ouput.&quot;</span>
                            <span class="p">)</span>
-<span class="n">read_cp2k_scf</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">Cp2kSCFOutputFile</span><span class="p">,</span> 
-                           <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;struct&#39;</span><span class="p">,</span> 
+<span class="n">read_cp2k_scf</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">Cp2kSCFOutputFile</span><span class="p">,</span>
+                           <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;struct&#39;</span><span class="p">,</span>
                            <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Read CP2K SCF (single point) run ouput.&quot;</span>
                            <span class="p">)</span>
-<span class="n">read_cp2k_md</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">Cp2kMDOutputFile</span><span class="p">,</span> 
-                           <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;traj&#39;</span><span class="p">,</span> 
+<span class="n">read_cp2k_md</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">Cp2kMDOutputFile</span><span class="p">,</span>
+                           <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;traj&#39;</span><span class="p">,</span>
                            <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Read CP2K MD run ouput (all text).&quot;</span>
                            <span class="p">)</span>
-<span class="n">read_cp2k_md_dcd</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">Cp2kDcdMDOutputFile</span><span class="p">,</span> 
-                               <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;traj&#39;</span><span class="p">,</span> 
+<span class="n">read_cp2k_md_dcd</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">Cp2kDcdMDOutputFile</span><span class="p">,</span>
+                               <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;traj&#39;</span><span class="p">,</span>
                                <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Read CP2K MD run ouput (coordinates in dcd binary format).&quot;</span>
                                <span class="p">)</span>
-<span class="n">read_cp2k_relax</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">Cp2kRelaxOutputFile</span><span class="p">,</span> 
-                              <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;traj&#39;</span><span class="p">,</span> 
+<span class="n">read_cp2k_relax</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">Cp2kRelaxOutputFile</span><span class="p">,</span>
+                              <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;traj&#39;</span><span class="p">,</span>
                               <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Read CP2K relaxation run ouput (all text).&quot;</span>
                               <span class="p">)</span>
-<span class="n">read_lammps_md_txt</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">LammpsTextMDOutputFile</span><span class="p">,</span> 
-                                 <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;traj&#39;</span><span class="p">,</span> 
+<span class="n">read_lammps_md_txt</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">LammpsTextMDOutputFile</span><span class="p">,</span>
+                                 <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;traj&#39;</span><span class="p">,</span>
                                  <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Read LAMMPS MD run ouput (all text).&quot;</span>
                                  <span class="p">)</span>
-<span class="n">read_lammps_md_dcd</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">LammpsDcdMDOutputFile</span><span class="p">,</span> 
-                                 <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;traj&#39;</span><span class="p">,</span> 
+<span class="n">read_lammps_md_dcd</span> <span class="o">=</span> <span class="n">ReadFactory</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parse</span><span class="o">.</span><span class="n">LammpsDcdMDOutputFile</span><span class="p">,</span>
+                                 <span class="n">struct_or_traj</span><span class="o">=</span><span class="s1">&#39;traj&#39;</span><span class="p">,</span>
                                  <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Read LAMMPS MD run ouput (coordinates in dcd format).&quot;</span>
                                  <span class="p">)</span>
 

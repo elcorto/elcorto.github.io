@@ -99,7 +99,7 @@
 <dl class="function">
 <dt id="pwtools.crys.angles">
 <code class="descclassname">pwtools.crys.</code><code class="descname">angles</code><span class="sig-paren">(</span><em>struct</em>, <em>pbc=False</em>, <em>mask_val=999.0</em>, <em>deg=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#angles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.angles" title="Permalink to this definition">¶</a></dt>
-<dd><p>Wrapper for _flib.angles(), which accepts a Structure. 
+<dd><p>Wrapper for _flib.angles(), which accepts a Structure.
 Calculate all angles between atom triples in <cite>struct</cite>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -144,7 +144,7 @@ arrays in numpy. Should be outside of [-1,1] (<code class="docutils literal notr
 <span class="gp">... </span>                <span class="n">angleidx</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">,</span><span class="n">kk</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># which is the same as</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">angleidx2</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">natoms</span><span class="p">),</span><span class="mi">3</span><span class="p">)]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># or </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># or</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">angleidx3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">anglesijk</span> <span class="o">!=</span> <span class="n">mask_val</span><span class="p">)</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># the number of valid angles</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">angleidx</span><span class="p">)</span> <span class="o">==</span> <span class="n">natoms</span> <span class="o">*</span> <span class="p">(</span><span class="n">natoms</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">natoms</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>

@@ -130,14 +130,14 @@
     <span class="c1"># Use dictionary string replacement:</span>
     <span class="c1"># &gt;&gt;&gt; &#39;%(lala)i %(xxx)s&#39; %{&#39;lala&#39;: 3, &#39;xxx&#39;: &#39;grrr&#39;}</span>
     <span class="c1"># &#39;3 grrr&#39;</span>
-    <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">%</span> <span class="n">dct</span> 
+    <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">%</span> <span class="n">dct</span>
     <span class="k">return</span> <span class="n">func</span></div>
 
 
 <div class="viewcode-block" id="particle_nhc_masses"><a class="viewcode-back" href="../../generated/api/pwtools.mttk.particle_nhc_masses.html#pwtools.mttk.particle_nhc_masses">[docs]</a><span class="nd">@add_doc</span>
 <span class="k">def</span> <span class="nf">particle_nhc_masses</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">nf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nnos</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Fictitious masses Q_p for the particle NHC to thermostat the atoms.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Abinit: qmass for ionmov 13.</span>
 
 <span class="sd">    Parameters</span>
@@ -162,7 +162,7 @@
 <div class="viewcode-block" id="barostat_nhc_masses"><a class="viewcode-back" href="../../generated/api/pwtools.mttk.barostat_nhc_masses.html#pwtools.mttk.barostat_nhc_masses">[docs]</a><span class="nd">@add_doc</span>
 <span class="k">def</span> <span class="nf">barostat_nhc_masses</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">nnos</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Fictitious masses Q_b for the barostat NHC to thermostat the barostat.</span>
-<span class="sd">    </span>
+
 <span class="sd">    There is NO equivalent in Abinit. I think they use the particle NHC also</span>
 <span class="sd">    for the barostat.</span>
 
@@ -189,7 +189,7 @@
 <span class="k">def</span> <span class="nf">barostat_mass_w</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">nf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Fictitious mass W for the barostat itself for isotropic cell</span>
 <span class="sd">    fluctuations.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Abinit: bmass for ionmov 13 + optcell 1.</span>
 
 <span class="sd">    Parameters</span>
@@ -209,7 +209,7 @@
 <div class="viewcode-block" id="barostat_mass_wg"><a class="viewcode-back" href="../../generated/api/pwtools.mttk.barostat_mass_wg.html#pwtools.mttk.barostat_mass_wg">[docs]</a><span class="nd">@add_doc</span>
 <span class="k">def</span> <span class="nf">barostat_mass_wg</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">nf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Fictitious mass W_g for the barostat itself for full cell fluctuations.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Abinit: bmass for ionmov 13 + optcell 2.</span>
 
 <span class="sd">    Parameters</span>

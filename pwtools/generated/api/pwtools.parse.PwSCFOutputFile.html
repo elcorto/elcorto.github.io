@@ -129,7 +129,7 @@ from pw.out automatically.</p>
 which are “in alat units” are returned exactly as found in the file, which
 is the same behavior as in all other parsers. Unit conversion happens only
 when we pass things to Structure / Trajectory using self.units.</p>
-<p>If you need/want to use another alat (i.e. a value with more precision), 
+<p>If you need/want to use another alat (i.e. a value with more precision),
 then you need to explicitly provide that value and use <code class="docutils literal notranslate"><span class="pre">use_alat=False</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">alat</span> <span class="o">=</span> <span class="mf">1.23456789</span> <span class="c1"># high precision value in Bohr</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pp</span> <span class="o">=</span> <span class="n">PwSCFOutputFile</span><span class="p">(</span><span class="s1">&#39;pw.out&#39;</span><span class="p">,</span> <span class="n">use_alat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="n">alat</span><span class="o">*</span><span class="n">Bohr</span><span class="o">/</span><span class="n">Ang</span><span class="p">})</span>

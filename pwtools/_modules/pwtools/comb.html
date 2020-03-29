@@ -104,7 +104,7 @@
 <span class="sd">    arr : 2d-like</span>
 <span class="sd">    what : str</span>
 <span class="sd">        {&#39;row&#39;, &#39;col&#39;}</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    numpy 2d array</span>
@@ -131,9 +131,9 @@
                 <span class="k">break</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">is_in</span><span class="p">:</span>
             <span class="n">uniq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row_a</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;row&#39;</span><span class="p">:</span>            
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">uniq</span><span class="p">)</span>            
-    <span class="k">else</span><span class="p">:</span>        
+    <span class="k">if</span> <span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;row&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">uniq</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">uniq</span><span class="p">)</span><span class="o">.</span><span class="n">T</span></div>
 
 
@@ -148,7 +148,7 @@
 <span class="c1"># legacy, we keep it for now b/c it is used in batch.py</span>
 <div class="viewcode-block" id="nested_loops"><a class="viewcode-back" href="../../generated/api/pwtools.comb.nested_loops.html#pwtools.comb.nested_loops">[docs]</a><span class="k">def</span> <span class="nf">nested_loops</span><span class="p">(</span><span class="n">lists</span><span class="p">,</span> <span class="n">flatten</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Nested loops, optional flattening.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    lists : list of sequences</span>
@@ -157,11 +157,11 @@
 <span class="sd">        different types/objects, e.g. [[&#39;a&#39;, &#39;b&#39;], [Foo(), Bar(), Baz()],</span>
 <span class="sd">        [1,2,3,4,5,6,7]].</span>
 <span class="sd">    flatten : bool</span>
-<span class="sd">        Flatten each entry in returned list. </span>
-<span class="sd">    </span>
+<span class="sd">        Flatten each entry in returned list.</span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    list : nested lists </span>
+<span class="sd">    list : nested lists</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>

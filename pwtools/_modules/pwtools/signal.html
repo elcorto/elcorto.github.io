@@ -104,14 +104,14 @@
 
 <div class="viewcode-block" id="fftsample"><a class="viewcode-back" href="../../generated/api/pwtools.signal.fftsample.html#pwtools.signal.fftsample">[docs]</a><span class="k">def</span> <span class="nf">fftsample</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="n">mirr</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert size and resolution between frequency and time domain.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Convert between maximal frequency to sample (fmax) + desired frequency</span>
 <span class="sd">    resolution (df) and the needed number of sample points (N) + time</span>
 <span class="sd">    step (dt).</span>
-<span class="sd">    </span>
+
 <span class="sd">    The maximal frequency is also called the Nyquist frequency and is</span>
 <span class="sd">    1/2*samplerate.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    a, b: float</span>
@@ -120,18 +120,18 @@
 <span class="sd">    mode : string, {&#39;f&#39;, &#39;t&#39;}</span>
 <span class="sd">        | f : frequency mode</span>
 <span class="sd">        | t : time mode</span>
-<span class="sd">    mirr: bool </span>
+<span class="sd">    mirr: bool</span>
 <span class="sd">        consider mirroring of the signal at t=0 before Fourier transform</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    mode=&#39;f&#39;: array([dt,   N])</span>
 <span class="sd">    mode=&#39;t&#39;: array([fmax, df])</span>
-<span class="sd">    </span>
+
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; # fmax = 100 Hz, df = 1 Hz -&gt; you need 200 steps with dt=0.005 sec</span>
-<span class="sd">    &gt;&gt;&gt; fftsample(100, 1, mode=&#39;f&#39;) </span>
+<span class="sd">    &gt;&gt;&gt; fftsample(100, 1, mode=&#39;f&#39;)</span>
 <span class="sd">    array([  5.00000000e-03,   2.00000000e+03])</span>
 <span class="sd">    &gt;&gt;&gt; fftsample(5e-3, 2e3, mode=&#39;t&#39;)</span>
 <span class="sd">    array([ 100. ,    1.])</span>
@@ -142,14 +142,14 @@
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    These relations hold:</span>
-<span class="sd">    </span>
+
 <span class="sd">    ===========         ===========</span>
 <span class="sd">    size                resolution</span>
 <span class="sd">    ===========         ===========</span>
 <span class="sd">    N [t] up            df [f] down</span>
 <span class="sd">    fmax [f] up         dt [t] down</span>
 <span class="sd">    ===========         ===========</span>
-<span class="sd">    </span>
+
 <span class="sd">    If you know that the signal in the time domain will be mirrored before FFT</span>
 <span class="sd">    (N -&gt; 2*N), you will get 1/2*df (double fine resolution), so 1/2*N is</span>
 <span class="sd">    sufficient to get the desired df.</span>
@@ -176,13 +176,13 @@
 
 
 <div class="viewcode-block" id="dft"><a class="viewcode-back" href="../../generated/api/pwtools.signal.dft.html#pwtools.signal.dft">[docs]</a><span class="k">def</span> <span class="nf">dft</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;loop&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Simple straightforward complex DFT algo. </span>
-<span class="sd">    </span>
+    <span class="sd">&quot;&quot;&quot;Simple straightforward complex DFT algo.</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    a : numpy 1d array</span>
 <span class="sd">    method : string, {&#39;matmul&#39;, &#39;loop&#39;}</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    (len(a),) array</span>
@@ -210,15 +210,15 @@
 <span class="sd">    Forward DFT, see [2]_ and [3]_ , scipy.fftpack.fft():</span>
 <span class="sd">        y[k] = sum(n=0...N-1) a[n] * exp(-2*pi*n*k*j/N)</span>
 <span class="sd">        k = 0 ... N-1</span>
-<span class="sd">    </span>
+
 <span class="sd">    Backward DFT, see [1]_ eq. 12.1.6, 12.2.2:</span>
 <span class="sd">        y[k] = sum(n=0...N-1) a[n] * exp(2*pi*n*k*j/N)</span>
 <span class="sd">        k = 0 ... N-1</span>
 
 <span class="sd">    The algo for method==&#39;matmul&#39; is the matrix mult from [1]_, but as Forward</span>
 <span class="sd">    DFT for comparison with scipy. The difference between FW and BW DFT is that</span>
-<span class="sd">    the imaginary parts are mirrored at y=0. </span>
-<span class="sd">    </span>
+<span class="sd">    the imaginary parts are mirrored at y=0.</span>
+
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
 <span class="sd">    .. [1] Numerical Recipes in Fortran, Second Edition, 1992</span>
@@ -241,7 +241,7 @@
         <span class="n">fta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;illegal method &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span><span class="n">method</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">fta</span>            </div>
+    <span class="k">return</span> <span class="n">fta</span></div>
 
 
 <div class="viewcode-block" id="ezfft"><a class="viewcode-back" href="../../generated/api/pwtools.signal.ezfft.html#pwtools.signal.ezfft">[docs]</a><span class="k">def</span> <span class="nf">ezfft</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
@@ -252,14 +252,14 @@
 <span class="sd">    y : 1d array to fft</span>
 <span class="sd">    dt : float</span>
 <span class="sd">        time step</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    faxis, fft(y)</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; t = linspace(0,1,200) </span>
+<span class="sd">    &gt;&gt;&gt; t = linspace(0,1,200)</span>
 <span class="sd">    &gt;&gt;&gt; x = sin(2*pi*10*t) + sin(2*pi*20*t)</span>
 <span class="sd">    &gt;&gt;&gt; f,d = signal.ezfft(x, dt=t[1]-t[0])</span>
 <span class="sd">    &gt;&gt;&gt; plot(f,abs(d))</span>
@@ -273,7 +273,7 @@
 <div class="viewcode-block" id="fft_1d_loop"><a class="viewcode-back" href="../../generated/api/pwtools.signal.fft_1d_loop.html#pwtools.signal.fft_1d_loop">[docs]</a><span class="k">def</span> <span class="nf">fft_1d_loop</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Like scipy.fft.pack.fft and numpy.fft.fft, perform fft along an axis.</span>
 <span class="sd">    Here do this by looping over remaining axes and perform 1D FFTs.</span>
-<span class="sd">    </span>
+
 <span class="sd">    This was implemented as a low-memory version like</span>
 <span class="sd">    :func:`~pwtools.crys.smooth` to be used in :func:`~pwtools.pydos.pdos`,</span>
 <span class="sd">    which fills up the memory for big MD data. But actually it has the same</span>
@@ -284,47 +284,48 @@
         <span class="n">axis</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ax</span> <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span> <span class="k">if</span> <span class="n">ax</span> <span class="o">!=</span> <span class="n">axis</span><span class="p">]</span>
     <span class="c1"># tuple here is 3x faster than generator expression</span>
-    <span class="c1">#   idxs = (range(arr.shape[ax]) for ax in axes)  </span>
+    <span class="c1">#   idxs = (range(arr.shape[ax]) for ax in axes)</span>
     <span class="n">idxs</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">ax</span><span class="p">])</span> <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">)</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">idx_tup</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">idxs</span><span class="p">):</span>
         <span class="n">sl</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span> <span class="o">*</span> <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span>
         <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">idx_tup</span><span class="p">,</span> <span class="n">axes</span><span class="p">):</span>
             <span class="n">sl</span><span class="p">[</span><span class="n">ax</span><span class="p">]</span> <span class="o">=</span> <span class="n">idx</span>
-        <span class="n">out</span><span class="p">[</span><span class="n">sl</span><span class="p">]</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">sl</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">out</span>        </div>
+        <span class="n">tsl</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">sl</span><span class="p">)</span>
+        <span class="n">out</span><span class="p">[</span><span class="n">tsl</span><span class="p">]</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">tsl</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">out</span></div>
 
 
 
 <div class="viewcode-block" id="pad_zeros"><a class="viewcode-back" href="../../generated/api/pwtools.signal.pad_zeros.html#pwtools.signal.pad_zeros">[docs]</a><span class="k">def</span> <span class="nf">pad_zeros</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="n">nadd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">upto</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tonext</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
               <span class="n">tonext_min</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Pad an nd-array with zeros. Default is to append an array of zeros of </span>
+    <span class="sd">&quot;&quot;&quot;Pad an nd-array with zeros. Default is to append an array of zeros of</span>
 <span class="sd">    the same shape as `arr` to arr&#39;s end along `axis`.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    arr :  nd array</span>
 <span class="sd">    axis : the axis along which to pad</span>
-<span class="sd">    where : string {&#39;end&#39;, &#39;start&#39;}, pad at the end (&quot;append to array&quot;) or </span>
+<span class="sd">    where : string {&#39;end&#39;, &#39;start&#39;}, pad at the end (&quot;append to array&quot;) or</span>
 <span class="sd">        start (&quot;prepend to array&quot;) of `axis`</span>
 <span class="sd">    nadd : number of items to padd (i.e. nadd=3 means padd w/ 3 zeros in case</span>
 <span class="sd">        of an 1d array)</span>
 <span class="sd">    upto : pad until arr.shape[axis] == upto</span>
-<span class="sd">    tonext : bool, pad up to the next power of two (pad so that the padded </span>
+<span class="sd">    tonext : bool, pad up to the next power of two (pad so that the padded</span>
 <span class="sd">        array has a length of power of two)</span>
 <span class="sd">    tonext_min : int, when using `tonext`, pad the array to the next possible</span>
 <span class="sd">        power of two for which the resulting array length along `axis` is at</span>
 <span class="sd">        least `tonext_min`; the default is tonext_min = arr.shape[axis]</span>
 
 <span class="sd">    Use only one of nadd, upto, tonext.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    padded array</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; # 1d </span>
+<span class="sd">    &gt;&gt;&gt; # 1d</span>
 <span class="sd">    &gt;&gt;&gt; pad_zeros(a)</span>
 <span class="sd">    array([1, 2, 3, 0, 0, 0])</span>
 <span class="sd">    &gt;&gt;&gt; pad_zeros(a, nadd=3)</span>
@@ -346,7 +347,7 @@
 <span class="sd">    array([[0, 1, 2, 0],</span>
 <span class="sd">           [3, 4, 5, 0],</span>
 <span class="sd">           [6, 7, 8, 0]])</span>
-<span class="sd">    &gt;&gt;&gt; # up to next power of two           </span>
+<span class="sd">    &gt;&gt;&gt; # up to next power of two</span>
 <span class="sd">    &gt;&gt;&gt; 2**arange(10)</span>
 <span class="sd">    array([  1,   2,   4,   8,  16,  32,  64, 128, 256, 512])</span>
 <span class="sd">    &gt;&gt;&gt; pydos.pad_zeros(arange(9), tonext=True).shape</span>
@@ -372,7 +373,7 @@
                     <span class="s2">&quot;max power of 2&quot;</span><span class="p">)</span>
                 <span class="n">power</span> <span class="o">=</span> <span class="n">two_powers</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">two_powers</span><span class="p">,</span>
                                                   <span class="n">tonext_min</span><span class="p">)]</span>
-                <span class="n">nadd</span> <span class="o">=</span> <span class="n">power</span> <span class="o">-</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>                                                       
+                <span class="n">nadd</span> <span class="o">=</span> <span class="n">power</span> <span class="o">-</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">nadd</span> <span class="o">=</span> <span class="n">upto</span> <span class="o">-</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">nadd</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -382,7 +383,7 @@
     <span class="n">add_shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">add_shape</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">where</span> <span class="o">==</span> <span class="s1">&#39;end&#39;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">arr</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">add_shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">arr</span><span class="o">.</span><span class="n">dtype</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">where</span> <span class="o">==</span> <span class="s1">&#39;start&#39;</span><span class="p">:</span>        
+    <span class="k">elif</span> <span class="n">where</span> <span class="o">==</span> <span class="s1">&#39;start&#39;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">add_shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">arr</span><span class="o">.</span><span class="n">dtype</span><span class="p">),</span> <span class="n">arr</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;illegal `where` arg: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">where</span><span class="p">)</span></div>
@@ -407,13 +408,13 @@
 <div class="viewcode-block" id="lorentz"><a class="viewcode-back" href="../../generated/api/pwtools.signal.lorentz.html#pwtools.signal.lorentz">[docs]</a><span class="k">def</span> <span class="nf">lorentz</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sym</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Lorentz window (same as Cauchy function). Function skeleton stolen from</span>
 <span class="sd">    scipy.signal.gaussian().</span>
-<span class="sd">    </span>
+
 <span class="sd">    The Lorentz function is</span>
-<span class="sd">    </span>
+
 <span class="sd">    .. math::</span>
 
 <span class="sd">        L(x) = \frac{\Gamma}{(x-x_0)^2 + \Gamma^2}</span>
-<span class="sd">    </span>
+
 <span class="sd">    Here :math:`x_0 = 0` and `std` = :math:`\Gamma`.</span>
 <span class="sd">    Some definitions use :math:`1/2\,\Gamma` instead of :math:`\Gamma`, but</span>
 <span class="sd">    without 1/2 we get comparable peak width to Gaussians when using this</span>
@@ -424,10 +425,10 @@
 <span class="sd">    ----------</span>
 <span class="sd">    M : int</span>
 <span class="sd">        number of points</span>
-<span class="sd">    std : float </span>
+<span class="sd">    std : float</span>
 <span class="sd">        spread parameter :math:`\Gamma`</span>
 <span class="sd">    sym : bool</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    w : (M,)</span>
@@ -450,36 +451,36 @@
 
 
 <div class="viewcode-block" id="mirror"><a class="viewcode-back" href="../../generated/api/pwtools.signal.mirror.html#pwtools.signal.mirror">[docs]</a><span class="k">def</span> <span class="nf">mirror</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Mirror array `arr` at index 0 along `axis`. </span>
+    <span class="sd">&quot;&quot;&quot;Mirror array `arr` at index 0 along `axis`.</span>
 <span class="sd">    The length of the returned array is 2*arr.shape[axis]-1 .&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">arr</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span></div>
 
 <span class="c1"># XXX</span>
 <span class="c1"># Check f2py wrapper of _flib.acorr(): The signature is:</span>
-<span class="c1"># 	In [13]: num._flib.acorr?</span>
-<span class="c1"># 	Type:           fortran</span>
-<span class="c1"># 	String form:    &lt;fortran object&gt;</span>
-<span class="c1"># 	Docstring:     </span>
-<span class="c1"># 	c = acorr(v,c,method,norm,[nstep])</span>
-<span class="c1"># 	</span>
-<span class="c1"># 	Wrapper for ``acorr``.</span>
-<span class="c1"># 	</span>
-<span class="c1"># 	Parameters</span>
-<span class="c1"># 	----------</span>
-<span class="c1"># 	v : input rank-1 array(&#39;d&#39;) with bounds (nstep)</span>
-<span class="c1"># 	c : input rank-1 array(&#39;d&#39;) with bounds (nstep)</span>
-<span class="c1"># 	method : input int</span>
-<span class="c1"># 	norm : input int</span>
-<span class="c1"># 	</span>
-<span class="c1"># 	Other Parameters</span>
-<span class="c1"># 	----------------</span>
-<span class="c1"># 	nstep : input int, optional</span>
-<span class="c1"># 	    Default: len(v)</span>
-<span class="c1"># 	</span>
-<span class="c1"># 	Returns</span>
-<span class="c1"># 	-------</span>
-<span class="c1"># 	c : rank-1 array(&#39;d&#39;) with bounds (nstep)</span>
-<span class="c1"># </span>
+<span class="c1">#       In [13]: num._flib.acorr?</span>
+<span class="c1">#       Type:           fortran</span>
+<span class="c1">#       String form:    &lt;fortran object&gt;</span>
+<span class="c1">#       Docstring:</span>
+<span class="c1">#       c = acorr(v,c,method,norm,[nstep])</span>
+<span class="c1">#</span>
+<span class="c1">#       Wrapper for ``acorr``.</span>
+<span class="c1">#</span>
+<span class="c1">#       Parameters</span>
+<span class="c1">#       ----------</span>
+<span class="c1">#       v : input rank-1 array(&#39;d&#39;) with bounds (nstep)</span>
+<span class="c1">#       c : input rank-1 array(&#39;d&#39;) with bounds (nstep)</span>
+<span class="c1">#       method : input int</span>
+<span class="c1">#       norm : input int</span>
+<span class="c1">#</span>
+<span class="c1">#       Other Parameters</span>
+<span class="c1">#       ----------------</span>
+<span class="c1">#       nstep : input int, optional</span>
+<span class="c1">#           Default: len(v)</span>
+<span class="c1">#</span>
+<span class="c1">#       Returns</span>
+<span class="c1">#       -------</span>
+<span class="c1">#       c : rank-1 array(&#39;d&#39;) with bounds (nstep)</span>
+<span class="c1">#</span>
 <span class="c1"># We need to pass in a result array &#39;c&#39; which gets overwritten, but this also</span>
 <span class="c1"># gets returned. Check f2py docs for wrapping such that c generated on the</span>
 <span class="c1"># Fortran side.</span>
@@ -491,13 +492,13 @@
 <span class="sd">        c(t) = &lt;v(0) v(t)&gt;</span>
 <span class="sd">    and with</span>
 <span class="sd">        c(t) = &lt;v(0) v(t)&gt; / &lt;v(0)**2&gt;</span>
-<span class="sd">            </span>
+
 <span class="sd">    The x-axis is the offset &quot;t&quot; (or &quot;lag&quot; in Digital Signal Processing lit.).</span>
 <span class="sd">    Since the ACF is symmetric around t=0, we return only t=0...len(v)-1 .</span>
 
 <span class="sd">    Several Python and Fortran implememtations. The Python versions are mostly</span>
 <span class="sd">    for reference and are slow, except for fft-based, which is by far the</span>
-<span class="sd">    fastet. </span>
+<span class="sd">    fastet.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -518,7 +519,7 @@
 <span class="sd">    c : numpy 1d array</span>
 <span class="sd">        | c[0]  &lt;=&gt; lag = 0</span>
 <span class="sd">        | c[-1] &lt;=&gt; lag = len(v)</span>
-<span class="sd">    </span>
+
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    Generalization of this function to correlation corr(v,w) should be</span>
@@ -528,7 +529,7 @@
 <span class="sd">        methods 1 ...  are loosely ordered slow ... fast</span>
 <span class="sd">    methods:</span>
 <span class="sd">       All methods, besides the FFT, are &quot;exact&quot;, they use variations of loops</span>
-<span class="sd">       in the time domain, i.e. norm(acorr(v,1) - acorr(v,6)) = 0.0. </span>
+<span class="sd">       in the time domain, i.e. norm(acorr(v,1) - acorr(v,6)) = 0.0.</span>
 <span class="sd">       The FFT method introduces small numerical noise, norm(acorr(v,1) -</span>
 <span class="sd">       acorr(v,4)) = O(1e-16) or so.</span>
 
@@ -544,7 +545,7 @@
 <span class="sd">          nstep := len(v) input int</span>
 <span class="sd">        Return objects:</span>
 <span class="sd">          c : rank-1 array(&#39;d&#39;) with bounds (nstep)</span>
-<span class="sd">    </span>
+
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
 <span class="sd">    .. [1] Numerical Recipes in Fortran, 2nd ed., ch. 13.2</span>
@@ -557,31 +558,31 @@
     <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nstep</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">_norm</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">norm</span> <span class="k">else</span> <span class="mi">0</span>
     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>    
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="o">-</span><span class="n">t</span><span class="p">):</span>
-                <span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+=</span> <span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="n">t</span><span class="p">]</span> 
+                <span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+=</span> <span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="n">t</span><span class="p">]</span>
     <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
         <span class="n">vv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">v</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nstep</span><span class="p">,),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)))</span>
-        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>    
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>
-                <span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+=</span> <span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">vv</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="n">t</span><span class="p">]</span> 
-    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span> 
+                <span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+=</span> <span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">vv</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="n">t</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="p">):</span>
             <span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="p">[:(</span><span class="n">nstep</span><span class="o">-</span><span class="n">t</span><span class="p">)]</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="n">t</span><span class="p">:])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span> 
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
         <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)[</span><span class="n">nstep</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span>
-    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span> 
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_flib</span><span class="o">.</span><span class="n">acorr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">_norm</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span> 
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_flib</span><span class="o">.</span><span class="n">acorr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">_norm</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span> 
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
         <span class="c1"># Correlation via fft. After ifft, the imaginary part is (in theory) =</span>
         <span class="c1"># 0, in practise &lt; 1e-16, so we are safe to return the real part only.</span>
         <span class="n">vv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">v</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nstep</span><span class="p">,),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)))</span>
         <span class="n">c</span> <span class="o">=</span> <span class="n">ifft</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">vv</span><span class="p">))</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)[:</span><span class="n">nstep</span><span class="p">]</span><span class="o">.</span><span class="n">real</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;unknown method: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">method</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">norm</span><span class="p">:</span>        
+    <span class="k">if</span> <span class="n">norm</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">c</span> <span class="o">/</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">c</span></div>
@@ -589,7 +590,7 @@
 
 <div class="viewcode-block" id="gauss"><a class="viewcode-back" href="../../generated/api/pwtools.signal.gauss.html#pwtools.signal.gauss">[docs]</a><span class="k">def</span> <span class="nf">gauss</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Gaussian function.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    x : 1d array</span>
@@ -598,7 +599,7 @@
 <span class="sd">    norm : bool</span>
 <span class="sd">        Norm such that integrate(gauss(x),x=-inf,inf) = 1, i.e. normalize and</span>
 <span class="sd">        return a PDF.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    array_like(x)</span>
@@ -611,11 +612,11 @@
 
 <div class="viewcode-block" id="find_peaks"><a class="viewcode-back" href="../../generated/api/pwtools.signal.find_peaks.html#pwtools.signal.find_peaks">[docs]</a><span class="k">def</span> <span class="nf">find_peaks</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">spread</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Simple peak finding algorithm.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Find all peaks where ``y &gt; ymin``. If `x` given, also extract peak maxima</span>
 <span class="sd">    positions by fitting a spline of order `k` to each found peak. To find</span>
 <span class="sd">    minima, just use ``-y``.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    y : 1d array_like</span>
@@ -623,7 +624,7 @@
 <span class="sd">    x : 1d array_like, optional, len(y)</span>
 <span class="sd">        x axis</span>
 <span class="sd">    k : int</span>
-<span class="sd">        order of spline </span>
+<span class="sd">        order of spline</span>
 <span class="sd">    spread : int</span>
 <span class="sd">        Use ``2*spread+1`` points around each peak to fit a spline. Note that</span>
 <span class="sd">        we need ``2*spread+1 &gt; k``.</span>
@@ -673,10 +674,10 @@
 
 
 <div class="viewcode-block" id="smooth"><a class="viewcode-back" href="../../generated/api/pwtools.signal.smooth.html#pwtools.signal.smooth">[docs]</a><span class="k">def</span> <span class="nf">smooth</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">kern</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">edge</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Smooth N-dim `data` by convolution with a kernel `kern`. </span>
-<span class="sd">    </span>
-<span class="sd">    Uses scipy.signal.fftconvolve(). </span>
-<span class="sd">    </span>
+    <span class="sd">&quot;&quot;&quot;Smooth N-dim `data` by convolution with a kernel `kern`.</span>
+
+<span class="sd">    Uses scipy.signal.fftconvolve().</span>
+
 <span class="sd">    Note that due to edge effect handling (padding) and kernal normalization,</span>
 <span class="sd">    the convolution identity convolve(data,kern) == convolve(kern,data) doesn&#39;t</span>
 <span class="sd">    apply here. We always return an array of ``data.shape``.</span>
@@ -703,7 +704,7 @@
 <span class="sd">        signal lies within the data. Note that this is not True for kernels</span>
 <span class="sd">        with very big spread (i.e. ``hann(N*10)`` or ``gaussian(N/2,</span>
 <span class="sd">        std=N*10)``. Then the kernel is effectively a constant.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    ret : data.shape</span>
@@ -713,7 +714,7 @@
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; from pwtools.signal import welch</span>
 <span class="sd">    &gt;&gt;&gt; from numpy.random import rand</span>
-<span class="sd">    &gt;&gt;&gt; x = linspace(0,2*pi,500); a=cos(x)+rand(500) </span>
+<span class="sd">    &gt;&gt;&gt; x = linspace(0,2*pi,500); a=cos(x)+rand(500)</span>
 <span class="sd">    &gt;&gt;&gt; plot(a, color=&#39;0.7&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; k=scipy.signal.hann(21)</span>
 <span class="sd">    &gt;&gt;&gt; plot(signal.smooth(a,k), &#39;r&#39;, label=&#39;hann&#39;)</span>
@@ -731,13 +732,13 @@
 <span class="sd">    &gt;&gt;&gt; legend()</span>
 <span class="sd">    &gt;&gt;&gt; # edge effects with normal convolution</span>
 <span class="sd">    &gt;&gt;&gt; figure(); title(&#39;edge effects&#39;)</span>
-<span class="sd">    &gt;&gt;&gt; x=rand(20)+10; k=scipy.signal.hann(11); </span>
+<span class="sd">    &gt;&gt;&gt; x=rand(20)+10; k=scipy.signal.hann(11);</span>
 <span class="sd">    &gt;&gt;&gt; plot(x); plot(signal.smooth(x,k),label=&quot;smooth&quot;);</span>
 <span class="sd">    &gt;&gt;&gt; plot(scipy.signal.convolve(x,k/k.sum(),&#39;same&#39;), label=&#39;convolve&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; legend()</span>
 <span class="sd">    &gt;&gt;&gt; # edge effect methods</span>
 <span class="sd">    &gt;&gt;&gt; figure(); title(&#39;edge effect methods&#39;)</span>
-<span class="sd">    &gt;&gt;&gt; x=rand(20)+10; k=scipy.signal.hann(20); </span>
+<span class="sd">    &gt;&gt;&gt; x=rand(20)+10; k=scipy.signal.hann(20);</span>
 <span class="sd">    &gt;&gt;&gt; plot(x); plot(signal.smooth(x,k,edge=&#39;m&#39;),label=&quot;edge=&#39;m&#39;&quot;);</span>
 <span class="sd">    &gt;&gt;&gt; plot(signal.smooth(x,k,edge=&#39;c&#39;),label=&quot;edge=&#39;c&#39;&quot;);</span>
 <span class="sd">    &gt;&gt;&gt; legend()</span>
@@ -758,7 +759,7 @@
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
 <span class="sd">    [1] http://wiki.scipy.org/Cookbook/SignalSmooth</span>
-<span class="sd">    </span>
+
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
 <span class="sd">    :func:`welch`</span>
@@ -766,12 +767,12 @@
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    </span>
+
 <span class="sd">    Kernels:</span>
 
 <span class="sd">    Even kernels result in shifted signals, odd kernels are better.</span>
 <span class="sd">    However, for N &gt;&gt; M, it doesn&#39;t make a difference really.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Usual kernels (window functions) are created by e.g.</span>
 <span class="sd">    ``scipy.signal.hann(M)``. For ``kern=scipy.signal.gaussian(M,</span>
 <span class="sd">    std)``, two values are needed, namely `M` and `std`, where  `M`</span>
@@ -786,7 +787,7 @@
 <span class="sd">    with increasing `M`. Good values are `M=6*std` and bigger. For</span>
 <span class="sd">    :func:`lorentz`, much wider kernels are needed such as `M=100*std` b/c</span>
 <span class="sd">    of the long tails of the Lorentz function. Testing is mandatory!</span>
-<span class="sd">    </span>
+
 <span class="sd">    Edge effects:</span>
 
 <span class="sd">    We use padding of the signal with ``M=len(kern)`` values at both ends such</span>
@@ -806,37 +807,37 @@
 
 <span class="sd">    For big data, fftconvolve() can easily eat up all your memory, for</span>
 <span class="sd">    example::</span>
-<span class="sd">    </span>
+
 <span class="sd">    &gt;&gt;&gt; # assume axis=0 is the axis along which to convolve</span>
-<span class="sd">    &gt;&gt;&gt; arr = ones((1e5,200,3)) </span>
+<span class="sd">    &gt;&gt;&gt; arr = ones((1e5,200,3))</span>
 <span class="sd">    &gt;&gt;&gt; kern = scipy.signal.hann(101)</span>
 <span class="sd">    &gt;&gt;&gt; ret = scipy.signal.fftconvolve(arr, kern[:,None,None])</span>
-<span class="sd">    </span>
+
 <span class="sd">    Then it is better to loop over some or all of the remaing dimensions::</span>
 
 <span class="sd">    &gt;&gt;&gt; ret = np.empty_like(arr)</span>
 <span class="sd">    &gt;&gt;&gt; for jj in range(arr.shape[1]):</span>
 <span class="sd">    &gt;&gt;&gt;     ret[:,jj,:] = smooth(arr[:,jj,:], kern[:,None])</span>
-<span class="sd">    </span>
+
 <span class="sd">    or::</span>
-<span class="sd">    </span>
+
 <span class="sd">    &gt;&gt;&gt; for jj in range(arr.shape[1]):</span>
 <span class="sd">    &gt;&gt;&gt;     for kk in range(arr.shape[2]):</span>
-<span class="sd">    &gt;&gt;&gt;         ret[:,jj,kk] = smooth(arr[:,jj,kk], kern) </span>
-<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt;         ret[:,jj,kk] = smooth(arr[:,jj,kk], kern)</span>
+
 <span class="sd">    The size of the chunk over which you explicitely loop depends on the data</span>
 <span class="sd">    of course. We do exactly this in :func:`pwtools.crys.smooth`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># edge = &#39;m&#39;</span>
     <span class="c1"># ----------</span>
-    <span class="c1"># </span>
+    <span class="c1">#</span>
     <span class="c1"># Add mirror of the signal left and right to handle edge effects, up to</span>
     <span class="c1"># signal length N on both ends. If M &gt; N then fill padding regions up with</span>
     <span class="c1"># zeros until we have sig = [(M,), (N,), (M,)]. fftconvolve(..., &#39;valid&#39;)</span>
     <span class="c1"># always returns only the signal length where sig and kern overlap</span>
     <span class="c1"># completely. Therefore, data at the far end doesn&#39;t influence the edge and</span>
     <span class="c1"># we can safely put zeros (or anything else) there. The returned length is</span>
-    <span class="c1"># always N+M+1. </span>
+    <span class="c1"># always N+M+1.</span>
     <span class="c1">#</span>
     <span class="c1"># example (M &lt; N), add M=3 data parts left and right</span>
     <span class="c1"># npad   = 3</span>
@@ -857,8 +858,8 @@
     <span class="n">M</span> <span class="o">=</span> <span class="n">kern</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">edge</span> <span class="o">==</span> <span class="s1">&#39;m&#39;</span><span class="p">:</span>
         <span class="n">npad</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
-        <span class="n">sleft</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">npad</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>        
-        <span class="n">sright</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">npad</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> 
+        <span class="n">sleft</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">npad</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">sright</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">npad</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">dleft</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">slicetake</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sl</span><span class="o">=</span><span class="n">sleft</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
         <span class="n">dright</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">slicetake</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sl</span><span class="o">=</span><span class="n">sright</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">dleft</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">dright</span><span class="o">.</span><span class="n">shape</span>
@@ -869,8 +870,9 @@
     <span class="k">elif</span> <span class="n">edge</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span>
         <span class="n">sl</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span><span class="o">*</span><span class="n">data</span><span class="o">.</span><span class="n">ndim</span>
         <span class="n">sl</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">dleft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="n">slicetake</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sl</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)[</span><span class="n">sl</span><span class="p">],</span> <span class="n">M</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
-        <span class="n">dright</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="n">slicetake</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sl</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)[</span><span class="n">sl</span><span class="p">],</span> <span class="n">M</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+        <span class="n">tsl</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">sl</span><span class="p">)</span>
+        <span class="n">dleft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="n">slicetake</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sl</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)[</span><span class="n">tsl</span><span class="p">],</span> <span class="n">M</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+        <span class="n">dright</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="n">slicetake</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sl</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)[</span><span class="n">tsl</span><span class="p">],</span> <span class="n">M</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">dleft</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">dright</span><span class="o">.</span><span class="n">shape</span>
         <span class="c1"># 1d special case: (M,1) -&gt; (M,)</span>
         <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">dleft</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">dleft</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -886,10 +888,10 @@
     <span class="k">if</span> <span class="n">M</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="c1">##sl = slice(M//2+1,-(M//2)) # even kernel, shift result to left</span>
         <span class="n">sl</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">M</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">M</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># even kernel, shift result to right</span>
-    <span class="k">else</span><span class="p">:</span>        
+    <span class="k">else</span><span class="p">:</span>
         <span class="n">sl</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">M</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">M</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">slicetake</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">sl</span><span class="o">=</span><span class="n">sl</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>        
-    <span class="k">assert</span> <span class="n">ret</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;ups, ret.shape (</span><span class="si">%s</span><span class="s2">)!= data.shape (</span><span class="si">%s</span><span class="s2">)&quot;</span> \
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">slicetake</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">sl</span><span class="o">=</span><span class="n">sl</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">ret</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;ups, ret.shape (</span><span class="si">%s</span><span class="s2">)!= data.shape (</span><span class="si">%s</span><span class="s2">)&quot;</span>
                                       <span class="o">%</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">ret</span></div>
 
@@ -933,16 +935,16 @@
 <div class="viewcode-block" id="FIRFilter"><a class="viewcode-back" href="../../generated/api/pwtools.signal.FIRFilter.html#pwtools.signal.FIRFilter">[docs]</a><span class="k">class</span> <span class="nc">FIRFilter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Build and apply a digital FIR filter (low-, high-, band-pass,</span>
 <span class="sd">    band-stop). Uses firwin() and in some cases kaiserord().</span>
-<span class="sd">    </span>
+
 <span class="sd">    Doc strings stolen from scipy.signal.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    To plot the frequency response (the frequency bands), use::</span>
 
 <span class="sd">        &gt;&gt;&gt; f = Filter(...)</span>
 <span class="sd">        &gt;&gt;&gt; plot(f.w, abs(f.h))</span>
-<span class="sd">    </span>
+
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    .. literalinclude:: ../../../../examples/filter_example.py</span>
@@ -993,9 +995,9 @@
             <span class="n">window</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;kaiser&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ntaps</span> <span class="o">=</span> <span class="n">ntaps</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">window</span>               
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">window</span>
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;lowpass&#39;</span><span class="p">:</span>
-            <span class="n">pass_zero</span> <span class="o">=</span> <span class="kc">True</span>    
+            <span class="n">pass_zero</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;highpass&#39;</span><span class="p">:</span>
             <span class="n">pass_zero</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;bandpass&#39;</span><span class="p">:</span>

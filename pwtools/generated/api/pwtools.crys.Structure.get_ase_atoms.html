@@ -126,11 +126,11 @@
 <code class="docutils literal notranslate"><span class="pre">atoms.scaled_positions</span></code> (we don’t want that for MD structures, for
 instance). If you need the pbc flag in your Atoms object, then use:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Note that the `pbc` flag is passed to ase.Atoms, so you can use</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># whatever that accepts, like pbc=[1,1,1] etc. </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># whatever that accepts, like pbc=[1,1,1] etc.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">atoms</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">get_ase_atoms</span><span class="p">(</span><span class="n">pbc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># or </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># or</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">atoms</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">get_ase_atoms</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">atoms</span><span class="o">.</span><span class="n">set_pbc</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">atoms</span><span class="o">.</span><span class="n">set_pbc</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>but then, <code class="docutils literal notranslate"><span class="pre">scaled_positions</span></code> will be wrapped by ASE and I’m not sure

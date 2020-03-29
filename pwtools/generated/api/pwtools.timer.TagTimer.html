@@ -105,7 +105,7 @@ code.</p>
 <p class="rubric">Examples</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tt</span> <span class="o">=</span> <span class="n">TagTimer</span><span class="p">()</span>
 
-<span class="c1"># print some message </span>
+<span class="c1"># print some message</span>
 <span class="n">tt</span><span class="o">.</span><span class="n">p</span><span class="p">(</span><span class="s1">&#39;start profiling part 1&#39;</span><span class="p">)</span>
 <span class="c1"># set start time for tag &#39;outer-loop&#39;</span>
 <span class="n">tt</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="s1">&#39;outer-loop&#39;</span><span class="p">)</span>
@@ -115,8 +115,8 @@ code.</p>
     <span class="n">tt</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="s1">&#39;inner-loop&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">j</span> <span class="o">...</span>
         <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span>
-    <span class="c1"># use case 1: get stop time and print timing (stop - start) for tag </span>
-    <span class="c1"># &#39;inner-loop&#39; immediately           </span>
+    <span class="c1"># use case 1: get stop time and print timing (stop - start) for tag</span>
+    <span class="c1"># &#39;inner-loop&#39; immediately</span>
     <span class="n">tt</span><span class="o">.</span><span class="n">pt</span><span class="p">(</span><span class="s1">&#39;inner-loop&#39;</span><span class="p">)</span>
 <span class="c1"># use case 2: get stop time and store it</span>
 <span class="n">tt</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="s1">&#39;outer-loop&#39;</span><span class="p">)</span>
@@ -145,7 +145,7 @@ code.</p>
 <td>Simply print <cite>msg</cite>.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="pwtools.timer.TagTimer.pt.html#pwtools.timer.TagTimer.pt" title="pwtools.timer.TagTimer.pt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pt</span></code></a>(tag[,&nbsp;msg])</td>
-<td>Print time difference since last <code class="docutils literal notranslate"><span class="pre">t(tag)</span></code> call for <cite>tag</cite>, which is  <code class="docutils literal notranslate"><span class="pre">self.time_ar_dict[tag][1]</span> <span class="pre">-</span> <span class="pre">self.time_ar_dict[tag][0]</span></code>.</td>
+<td>Print time difference since last <code class="docutils literal notranslate"><span class="pre">t(tag)</span></code> call for <cite>tag</cite>, which is <code class="docutils literal notranslate"><span class="pre">self.time_ar_dict[tag][1]</span> <span class="pre">-</span> <span class="pre">self.time_ar_dict[tag][0]</span></code>.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="pwtools.timer.TagTimer.t.html#pwtools.timer.TagTimer.t" title="pwtools.timer.TagTimer.t"><code class="xref py py-obj docutils literal notranslate"><span class="pre">t</span></code></a>(tag)</td>
 <td>Assign and save a numeric value (a time value) in a storage array associated with <cite>tag</cite>.</td>
@@ -173,7 +173,7 @@ code.</p>
 <dl class="method">
 <dt id="pwtools.timer.TagTimer.pt">
 <code class="descname">pt</code><span class="sig-paren">(</span><em>tag</em>, <em>msg=''</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/timer.html#TagTimer.pt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.timer.TagTimer.pt" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print time difference since last <code class="docutils literal notranslate"><span class="pre">t(tag)</span></code> call for <cite>tag</cite>, which is 
+<dd><p>Print time difference since last <code class="docutils literal notranslate"><span class="pre">t(tag)</span></code> call for <cite>tag</cite>, which is
 <code class="docutils literal notranslate"><span class="pre">self.time_ar_dict[tag][1]</span> <span class="pre">-</span> <span class="pre">self.time_ar_dict[tag][0]</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -213,8 +213,8 @@ associated with <cite>tag</cite>.</p>
 <p class="rubric">Notes</p>
 <p>After initialization, self.time_ar_dict[tag] == [None, None].</p>
 <div class="line-block">
-<div class="line">The 1st call assings self.time_ar_dict[tag][0] = &lt;time&gt;. </div>
-<div class="line">The 2nd call assings self.time_ar_dict[tag][1] = &lt;time&gt;. </div>
+<div class="line">The 1st call assings self.time_ar_dict[tag][0] = &lt;time&gt;.</div>
+<div class="line">The 2nd call assings self.time_ar_dict[tag][1] = &lt;time&gt;.</div>
 <div class="line">The 3rd call resets self.time_ar_dict[tag] = [None, None]</div>
 <div class="line">and recursively calls t(), which then does the the same as the 1st.</div>
 <div class="line">…</div>

@@ -109,19 +109,19 @@
 <span class="sd">    ----------</span>
 <span class="sd">    pwstress : (3,3)</span>
 <span class="sd">        symmetric stress tensor (GPa)</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    [Pxx, Pyy, Pzz, Pyz, Pxz, Pxy] in eV/Ang^3</span>
-<span class="sd">    &quot;&quot;&quot;</span>    
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="o">-</span><span class="n">crys</span><span class="o">.</span><span class="n">tensor2voigt</span><span class="p">(</span><span class="n">pwstress</span><span class="p">)</span> <span class="o">/</span> <span class="n">constants</span><span class="o">.</span><span class="n">eV_by_Ang3_to_GPa</span></div>
 
 
 <span class="c1"># Have an idea for an even more useless name for this class? Then send me a</span>
 <span class="c1"># mail. Or a patch! :)</span>
 <div class="viewcode-block" id="CalculatorBase"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.CalculatorBase.html#pwtools.calculators.CalculatorBase">[docs]</a><span class="k">class</span> <span class="nc">CalculatorBase</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Base class for creating calculators. </span>
-<span class="sd">    </span>
+    <span class="sd">&quot;&quot;&quot;Base class for creating calculators.</span>
+
 <span class="sd">    Provides methods to automatically dispatch constructor input keywords.&quot;&quot;&quot;</span>
 <div class="viewcode-block" id="CalculatorBase.init_params_from_input"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.CalculatorBase.init_params_from_input.html#pwtools.calculators.CalculatorBase.init_params_from_input">[docs]</a>    <span class="k">def</span> <span class="nf">init_params_from_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kwds</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set ``self.parameters = self.default_parameters`` and update with input</span>
@@ -150,64 +150,64 @@
 <span class="sd">    ATM, we don&#39;t write a ``ase.calculators.calculator.Parameters`` class</span>
 <span class="sd">    (dict) and have no read() method so I guess that restarts don&#39;t work. Only</span>
 <span class="sd">    simple SCF runs for now.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    Define a calculator object::</span>
 
 <span class="sd">        &gt;&gt;&gt; calc=Pwscf(label=&#39;/path/to/calculation/dir/pw&#39;,</span>
-<span class="sd">        ...            kpts=1/0.35, </span>
+<span class="sd">        ...            kpts=1/0.35,</span>
 <span class="sd">        ...            ecutwfc=80,</span>
 <span class="sd">        ...            conv_thr=1e-8,</span>
 <span class="sd">        ...            pp=&#39;pbe-n-kjpaw_psl.0.1.UPF&#39;,</span>
 <span class="sd">        ...            pseudo_dir=&#39;/home/schmerler/soft/share/espresso/pseudo/espresso/&#39;,</span>
-<span class="sd">        ...            calc_name=&#39;my_calc&#39;, </span>
-<span class="sd">        ...            outdir=&#39;/scratch/schmerler/&#39;, </span>
+<span class="sd">        ...            calc_name=&#39;my_calc&#39;,</span>
+<span class="sd">        ...            outdir=&#39;/scratch/schmerler/&#39;,</span>
 <span class="sd">        ...            command=&#39;mpirun -np 16 pw.x &lt; pw.in &gt; pw.out&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; at=crys.Structure(...).get_ase_atoms(pbc=True)</span>
 <span class="sd">        &gt;&gt;&gt; at.set_calculator(calc)</span>
 <span class="sd">        &gt;&gt;&gt; at.get_potential_energy()</span>
-<span class="sd">    </span>
+
 <span class="sd">    Relation to ASE k-grid tools::</span>
 
-<span class="sd">        &gt;&gt;&gt; import numpy as np    </span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">        &gt;&gt;&gt; from ase.calculators.calculator import kpts2mp</span>
 <span class="sd">        &gt;&gt;&gt; from pwtools.crys import kgrid</span>
-<span class="sd">        &gt;&gt;&gt; st=crys.Structure(cell=np.diag([5,3,3]), </span>
+<span class="sd">        &gt;&gt;&gt; st=crys.Structure(cell=np.diag([5,3,3]),</span>
 <span class="sd">        ...                   coords=rand(5,3),</span>
-<span class="sd">        ...                   symbols=[&#39;H&#39;]*5) </span>
+<span class="sd">        ...                   symbols=[&#39;H&#39;]*5)</span>
 <span class="sd">        &gt;&gt;&gt; at=st.get_ase_atoms(pbc=True)</span>
 <span class="sd">        &gt;&gt;&gt; crys.kgrid(st.cell, h=0.35)</span>
 <span class="sd">        array([4, 6, 6])</span>
 <span class="sd">        &gt;&gt;&gt; kpts2mp(at, kpts=1/0.35)</span>
 <span class="sd">        array([4, 6, 6])</span>
-<span class="sd">    </span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">default_parameters</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">restart</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">ignore_bad_restart_file</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">atoms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">backup</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
-        <span class="n">calc_name</span><span class="o">=</span><span class="s1">&#39;pwscf&#39;</span><span class="p">,</span> 
+        <span class="n">backup</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">calc_name</span><span class="o">=</span><span class="s1">&#39;pwscf&#39;</span><span class="p">,</span>
         <span class="n">charge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
         <span class="n">conv_thr</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span>
-        <span class="n">diagonalization</span><span class="o">=</span><span class="s1">&#39;david&#39;</span><span class="p">,</span> 
+        <span class="n">diagonalization</span><span class="o">=</span><span class="s1">&#39;david&#39;</span><span class="p">,</span>
         <span class="n">ecutrho</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">ecutwfc</span><span class="o">=</span><span class="mf">80.0</span><span class="p">,</span>
-        <span class="n">electron_maxstep</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> 
+        <span class="n">electron_maxstep</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
         <span class="n">kpts</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;pw&#39;</span><span class="p">,</span>
-        <span class="n">mixing_beta</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> 
+        <span class="n">mixing_beta</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
         <span class="n">mixing_mode</span><span class="o">=</span><span class="s1">&#39;plain&#39;</span><span class="p">,</span>
-        <span class="n">outdir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-        <span class="n">pp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-        <span class="n">pseudo_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+        <span class="n">outdir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">pp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">pseudo_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">smearing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">xc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;pw.x -input pw.in | tee pw.out&quot;</span><span class="p">,</span>
         <span class="p">)</span>
-    
+
     <span class="n">implemented_properties</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="s1">&#39;forces&#39;</span><span class="p">,</span> <span class="s1">&#39;stress&#39;</span><span class="p">]</span>
 
     <span class="n">infile_templ</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
@@ -223,7 +223,7 @@
 <span class="s2">/</span>
 <span class="s2">&amp;system</span>
 <span class="s2">    ibrav = 0,</span>
-<span class="s2">    nat = </span><span class="si">{natoms}</span><span class="s2">, </span>
+<span class="s2">    nat = </span><span class="si">{natoms}</span><span class="s2">,</span>
 <span class="s2">    ntyp = </span><span class="si">{ntyp}</span><span class="s2">,</span>
 <span class="s2">    ecutwfc = </span><span class="si">{ecutwfc}</span><span class="s2">,</span>
 <span class="s2">    ecutrho = </span><span class="si">{ecutrho}</span><span class="s2">,</span>
@@ -234,7 +234,7 @@
 <span class="s2">    degauss = 0.005</span>
 
 <span class="s2">&amp;electrons</span>
-<span class="s2">    electron_maxstep = </span><span class="si">{electron_maxstep}</span><span class="s2">   </span>
+<span class="s2">    electron_maxstep = </span><span class="si">{electron_maxstep}</span><span class="s2"></span>
 <span class="s2">    diagonalization = &#39;</span><span class="si">{diagonalization}</span><span class="s2">&#39;</span>
 <span class="s2">    mixing_mode = &#39;</span><span class="si">{mixing_mode}</span><span class="s2">&#39;</span>
 <span class="s2">    mixing_beta = </span><span class="si">{mixing_beta}</span><span class="s2"></span>
@@ -262,11 +262,11 @@
 <span class="sd">        kpts : ASE k-points description</span>
 <span class="sd">            Examples: ``3.5``, ``[6,6,4]``.</span>
 <span class="sd">            If a float ``x`` is used, then it is the inverse of the</span>
-<span class="sd">            k-grid spacing `h` per reciprocal axis </span>
+<span class="sd">            k-grid spacing `h` per reciprocal axis</span>
 <span class="sd">            as in ``kpts=pwtools.crys.kgrid(struct.cell, h=1/x)``</span>
 <span class="sd">        calc_name : str</span>
 <span class="sd">            &#39;prefix&#39; in PWscf</span>
-<span class="sd">        pp : str or sequence </span>
+<span class="sd">        pp : str or sequence</span>
 <span class="sd">            Definition of the pseudopotential file and thus `xc`. If `pp` is a</span>
 <span class="sd">            string (e.g. &#39;pbe-n-kjpaw_psl.0.1.UPF&#39;), then the atom symbols are</span>
 <span class="sd">            used to build the PP file name</span>
@@ -283,19 +283,19 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">init_params_from_input</span><span class="p">(</span><span class="n">kwds</span><span class="p">)</span>
         <span class="n">FileIOCalculator</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-        
+
         <span class="c1"># ASE keywords</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">smearing</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;smearing not implemented&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">xc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;please use the `pp` keyword instead of `xc`&quot;</span><span class="p">)</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">ecutrho</span> <span class="o">=</span> <span class="mf">4.0</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">ecutwfc</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ecutrho</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">ecutrho</span>
 
         <span class="c1"># hard-coded &lt;label&gt;.(in|out) == &lt;directory&gt;/&lt;prefix&gt;.(in|out)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">infile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;.in&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">outfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;.out&#39;</span><span class="p">)</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">infile_templ_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;natoms&#39;</span><span class="p">,</span> <span class="s1">&#39;ntyp&#39;</span><span class="p">,</span> <span class="s1">&#39;atpos&#39;</span><span class="p">,</span>
             <span class="s1">&#39;atspec&#39;</span><span class="p">,</span> <span class="s1">&#39;cell&#39;</span><span class="p">,</span> <span class="s1">&#39;kpoints&#39;</span><span class="p">]</span>
 
@@ -312,7 +312,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">kpoints</span> <span class="o">=</span> <span class="n">pwscf</span><span class="o">.</span><span class="n">kpoints_str_pwin</span><span class="p">(</span><span class="n">kpts2mp</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kpts</span><span class="p">))</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pp</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
             <span class="n">pseudos</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pp</span><span class="p">)</span> <span class="k">for</span> <span class="n">sym</span> <span class="ow">in</span> <span class="n">struct</span><span class="o">.</span><span class="n">symbols_unique</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span> 
+        <span class="k">else</span><span class="p">:</span>
             <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pp</span><span class="p">)</span> <span class="o">==</span> <span class="n">struct</span><span class="o">.</span><span class="n">ntypat</span>
             <span class="n">pseudos</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">sym</span> <span class="ow">in</span> <span class="n">struct</span><span class="o">.</span><span class="n">symbols_unique</span><span class="p">:</span>
@@ -328,13 +328,13 @@
                                      <span class="n">coords</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">coords_frac</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">natoms</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">natoms</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ntyp</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">ntypat</span>
-        
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">backup</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">infile</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">outfile</span><span class="p">]:</span>
                 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
                     <span class="n">common</span><span class="o">.</span><span class="n">backup</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
         <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">infile</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fill_infile_templ</span><span class="p">())</span></div>
-    
+
 <div class="viewcode-block" id="Pwscf.read_results"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.Pwscf.read_results.html#pwtools.calculators.Pwscf.read_results">[docs]</a>    <span class="k">def</span> <span class="nf">read_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">outfile</span><span class="p">),</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> missing&quot;</span> <span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">outfile</span>
@@ -356,12 +356,12 @@
 <span class="sd">        ...               pair_style=&#39;tersoff&#39;,</span>
 <span class="sd">        ...               pair_coeff=&#39;* * /path/to/potential/dir/AlN.tersoff Al N&#39;,</span>
 <span class="sd">        ...               command=&#39;lammps &lt; lmp.in &gt; lmp.out 2&gt;&amp;1&#39;,</span>
-<span class="sd">        ...               ) </span>
+<span class="sd">        ...               )</span>
 <span class="sd">        &gt;&gt;&gt; at=crys.Structure(...).get_ase_atoms(pbc=True)</span>
 <span class="sd">        &gt;&gt;&gt; at.set_calculator(calc)</span>
 <span class="sd">        &gt;&gt;&gt; at.get_potential_energy()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-       
+
     <span class="n">default_parameters</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">restart</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">ignore_bad_restart_file</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -376,24 +376,24 @@
 
     <span class="n">infile_templ</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">clear</span>
-<span class="s2">units metal </span>
-<span class="s2">boundary p p p </span>
+<span class="s2">units metal</span>
+<span class="s2">boundary p p p</span>
 <span class="s2">atom_style atomic</span>
 
 <span class="s2"># lmp.struct written by pwtools</span>
 <span class="s2">read_data </span><span class="si">{structfile}</span><span class="s2"></span>
 
-<span class="s2"># interactions </span>
+<span class="s2"># interactions</span>
 <span class="s2">pair_style </span><span class="si">{pair_style}</span><span class="s2"></span>
 <span class="s2">pair_coeff </span><span class="si">{pair_coeff}</span><span class="s2"></span>
 
 <span class="s2"># IO</span>
 <span class="s2">dump dump_txt all custom 1 </span><span class="si">{dumpfile}</span><span class="s2"> id type xu yu zu fx fy fz</span>
-<span class="s2">dump_modify dump_txt sort id </span>
+<span class="s2">dump_modify dump_txt sort id</span>
 
 <span class="s2">thermo_style custom step temp vol cella cellb cellc cellalpha cellbeta cellgamma &amp;</span>
 <span class="s2">                    pe pxx pyy pzz pxy pxz pyz</span>
-<span class="s2">run 0    </span>
+<span class="s2">run 0</span>
 <span class="s2">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Lammps.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.Lammps.html#pwtools.calculators.Lammps.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
@@ -402,10 +402,10 @@
 <span class="sd">        ----------</span>
 <span class="sd">        All parameters: ``self.parameters.keys()``</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">init_params_from_input</span><span class="p">(</span><span class="n">kwds</span><span class="p">)</span>
         <span class="n">FileIOCalculator</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">infile_templ_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> \
             <span class="p">[</span><span class="s1">&#39;prefix&#39;</span><span class="p">,</span> <span class="s1">&#39;dumpfile&#39;</span><span class="p">,</span> <span class="s1">&#39;structfile&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">infile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;.in&#39;</span><span class="p">)</span>
@@ -414,7 +414,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">structfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;.struct&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;log.lammps&#39;</span><span class="p">)</span></div>
 
-        
+
 <div class="viewcode-block" id="Lammps.write_input"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.Lammps.write_input.html#pwtools.calculators.Lammps.write_input">[docs]</a>    <span class="k">def</span> <span class="nf">write_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">properties</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">system_changes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">FileIOCalculator</span><span class="o">.</span><span class="n">write_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">properties</span><span class="p">,</span>
                                      <span class="n">system_changes</span><span class="p">)</span>
@@ -424,11 +424,11 @@
                 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
                     <span class="n">common</span><span class="o">.</span><span class="n">backup</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
         <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">infile</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fill_infile_templ</span><span class="p">())</span>
-        <span class="n">io</span><span class="o">.</span><span class="n">write_lammps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">structfile</span><span class="p">,</span> 
-                        <span class="n">crys</span><span class="o">.</span><span class="n">atoms2struct</span><span class="p">(</span><span class="n">atoms</span><span class="p">),</span> 
+        <span class="n">io</span><span class="o">.</span><span class="n">write_lammps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">structfile</span><span class="p">,</span>
+                        <span class="n">crys</span><span class="o">.</span><span class="n">atoms2struct</span><span class="p">(</span><span class="n">atoms</span><span class="p">),</span>
                         <span class="n">symbolsbasename</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">structfile</span><span class="p">)</span> <span class="o">+</span> \
                             <span class="s1">&#39;.symbols&#39;</span><span class="p">)</span></div>
-    
+
 <div class="viewcode-block" id="Lammps.read_results"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.Lammps.read_results.html#pwtools.calculators.Lammps.read_results">[docs]</a>    <span class="k">def</span> <span class="nf">read_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">outfile</span><span class="p">),</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> missing&quot;</span> <span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">outfile</span>

@@ -90,7 +90,7 @@
 <h1>pwtools.calculators.Lammps.infile_templ<a class="headerlink" href="#pwtools-calculators-lammps-infile-templ" title="Permalink to this headline">¶</a></h1>
 <dl class="attribute">
 <dt id="pwtools.calculators.Lammps.infile_templ">
-<code class="descclassname">Lammps.</code><code class="descname">infile_templ</code><em class="property"> = '\nclear\nunits metal \nboundary p p p \natom_style atomic\n\n# lmp.struct written by pwtools\nread_data {structfile}\n\n# interactions \npair_style {pair_style}\npair_coeff {pair_coeff}\n\n# IO\ndump dump_txt all custom 1 {dumpfile} id type xu yu zu fx fy fz\ndump_modify dump_txt sort id \n\nthermo_style custom step temp vol cella cellb cellc cellalpha cellbeta cellgamma &amp;\n                    pe pxx pyy pzz pxy pxz pyz\nrun 0    \n    '</em><a class="headerlink" href="#pwtools.calculators.Lammps.infile_templ" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Lammps.</code><code class="descname">infile_templ</code><em class="property"> = '\nclear\nunits metal\nboundary p p p\natom_style atomic\n\n# lmp.struct written by pwtools\nread_data {structfile}\n\n# interactions\npair_style {pair_style}\npair_coeff {pair_coeff}\n\n# IO\ndump dump_txt all custom 1 {dumpfile} id type xu yu zu fx fy fz\ndump_modify dump_txt sort id\n\nthermo_style custom step temp vol cella cellb cellc cellalpha cellbeta cellgamma &amp;\n                    pe pxx pyy pzz pxy pxz pyz\nrun 0\n    '</em><a class="headerlink" href="#pwtools.calculators.Lammps.infile_templ" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>

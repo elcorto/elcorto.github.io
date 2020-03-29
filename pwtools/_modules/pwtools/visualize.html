@@ -149,7 +149,7 @@
 <span class="sd">        writer : callable</span>
 <span class="sd">            Called as ``writer(obj, structfile)``. Write struct file to read by</span>
 <span class="sd">            viewer.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; viewer = ViewFactory(...)</span>
@@ -163,17 +163,17 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assert_cmd</span> <span class="o">=</span> <span class="n">assert_cmd</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">suffix</span> <span class="o">=</span> <span class="n">suffix</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">writer</span> <span class="o">=</span> <span class="n">writer</span></div>
-    
+
 <div class="viewcode-block" id="ViewFactory.__call__"><a class="viewcode-back" href="../../generated/api/visualize.html#pwtools.visualize.ViewFactory.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">logfile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">structfile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">disp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">keepfiles</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">tmpdir</span><span class="o">=</span><span class="s1">&#39;/tmp&#39;</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">options</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Call viewer. </span>
-<span class="sd">        </span>
+<span class="sd">        Call viewer.</span>
+
 <span class="sd">        The executed shell command is::</span>
-<span class="sd">            </span>
+
 <span class="sd">            &lt;cmd&gt; &lt;options&gt; &lt;structfile&gt; &gt; &lt;logfile&gt;</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        obj : Structure or Trajectory</span>
@@ -194,12 +194,12 @@
 <span class="sd">            `keepfiles=True`. The latter is needed b/c with just `wait=False`,</span>
 <span class="sd">            temp files will be deleted right after the shell call and the</span>
 <span class="sd">            viewer program may complain.</span>
-<span class="sd">        &quot;&quot;&quot;</span>        
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">bg</span><span class="p">:</span>
             <span class="n">wait</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="n">keepfiles</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">assert_cmd</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">assert_cmd</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>    
+            <span class="bp">self</span><span class="o">.</span><span class="n">assert_cmd</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_dummy_symbols</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">structfile</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">fd1</span><span class="p">,</span><span class="n">structfile</span> <span class="o">=</span> <span class="n">mkstemp</span><span class="p">(</span><span class="nb">dir</span><span class="o">=</span><span class="n">tmpdir</span><span class="p">,</span>
@@ -207,12 +207,12 @@
                                      <span class="n">suffix</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">suffix</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">logfile</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">fd2</span><span class="p">,</span><span class="n">logfile</span> <span class="o">=</span> <span class="n">mkstemp</span><span class="p">(</span><span class="nb">dir</span><span class="o">=</span><span class="n">tmpdir</span><span class="p">,</span> 
+            <span class="n">fd2</span><span class="p">,</span><span class="n">logfile</span> <span class="o">=</span> <span class="n">mkstemp</span><span class="p">(</span><span class="nb">dir</span><span class="o">=</span><span class="n">tmpdir</span><span class="p">,</span>
                                   <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;pwtools_view_log_&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">structfile</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">disp</span><span class="p">:</span>
             <span class="n">cmd_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> 2&gt;&amp;1 | tee </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">structfile</span><span class="p">,</span> <span class="n">logfile</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>       
+        <span class="k">else</span><span class="p">:</span>
             <span class="n">cmd_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> &gt; </span><span class="si">%s</span><span class="s2"> 2&gt;&amp;1&quot;</span> <span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">structfile</span><span class="p">,</span> <span class="n">logfile</span><span class="p">)</span>
         <span class="n">common</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd_str</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">wait</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">keepfiles</span><span class="p">:</span>

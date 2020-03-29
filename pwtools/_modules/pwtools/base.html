@@ -97,29 +97,29 @@
 
 <span class="c1"># Most of this class can probably be replaced by decorators.lazyprop .</span>
 <div class="viewcode-block" id="FlexibleGetters"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.html#pwtools.base.FlexibleGetters">[docs]</a><span class="k">class</span> <span class="nc">FlexibleGetters</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;The most basic base class -- the mothership! </span>
-<span class="sd">    </span>
+    <span class="sd">&quot;&quot;&quot;The most basic base class -- the mothership!</span>
+
 <span class="sd">    Implements a mechanism which allows to call getters in</span>
 <span class="sd">    arbitrary order, even if they depend on each other. The mechanism also</span>
 <span class="sd">    assured that the code in each getter is only executed once (by using checks</span>
 <span class="sd">    with self.is_set_attr()).</span>
-<span class="sd">    </span>
+
 <span class="sd">    For each attr, there must exist a getter. We define the convention::</span>
-<span class="sd">      </span>
-<span class="sd">      self.foo  -&gt; self.get_foo() </span>
-<span class="sd">      self.bar  -&gt; self.get_bar()  </span>
+
+<span class="sd">      self.foo  -&gt; self.get_foo()</span>
+<span class="sd">      self.bar  -&gt; self.get_bar()</span>
 <span class="sd">      self._baz -&gt; self._get_baz() # note the underscores</span>
-<span class="sd">      ... </span>
-<span class="sd">    </span>
+<span class="sd">      ...</span>
+
 <span class="sd">    self.attr_lst is an *optional* list of strings, each is the name of a data</span>
-<span class="sd">    attribute, e.g. [&#39;foo&#39;, &#39;bar&#39;, &#39;_baz&#39;, ...].       </span>
+<span class="sd">    attribute, e.g. [&#39;foo&#39;, &#39;bar&#39;, &#39;_baz&#39;, ...].</span>
 <span class="sd">    Derived classes can override self.attr_lst by using self.set_attr_lst().</span>
-<span class="sd">    </span>
+
 <span class="sd">    This model is extremely powerful and allows the construction of very</span>
 <span class="sd">    general code (see parse.py). One drawback: Beware of cyclic dependencies</span>
 <span class="sd">    (i.e. get_bar -&gt; get_foo -&gt; get_bar -&gt; ..., max. recursion limit error).</span>
 <span class="sd">    Always test! This corner case danger is outweight by usefullness.</span>
-<span class="sd">   </span>
+
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    ::</span>
@@ -128,17 +128,17 @@
 <span class="sd">            def __init__(self):</span>
 <span class="sd">                self.set_attr_lst([&#39;foo&#39;, &#39;bar&#39;, &#39;_baz&#39;])</span>
 <span class="sd">                self.set_all()</span>
-<span class="sd">            </span>
+
 <span class="sd">            def set_all(self):</span>
 <span class="sd">                &quot;Sets self.foo, self.bar and self._baz by calling their</span>
 <span class="sd">                getters&quot;</span>
 <span class="sd">                for attr in self.attr_lst:</span>
 <span class="sd">                    self.try_set_attr(attr)</span>
-<span class="sd">            </span>
+
 <span class="sd">            # Getters call each other</span>
 <span class="sd">            def _get_baz(self):</span>
 <span class="sd">                return self.calc_baz()</span>
-<span class="sd">            </span>
+
 <span class="sd">            def get_bar(self):</span>
 <span class="sd">                if self.check_set_attr(&#39;_baz&#39;):</span>
 <span class="sd">                    return self.calc_stuff(self._baz)**2.0</span>
@@ -151,10 +151,10 @@
 <span class="sd">                    return do_stuff(self._baz, self.bar)</span>
 <span class="sd">                else:</span>
 <span class="sd">                    return None</span>
-<span class="sd">    </span>
+
 <span class="sd">    Setting self.attr_lst is optional. It is supposed to be used only in</span>
-<span class="sd">    set_all(). The try_set_attr() - method works without it, too. </span>
-<span class="sd">    &quot;&quot;&quot;</span> 
+<span class="sd">    set_all(). The try_set_attr() - method works without it, too.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Notes for derived classes (long explaination):</span>
     <span class="c1">#</span>
     <span class="c1"># In this class we define a number of members (self.foo, self.bar,</span>
@@ -162,9 +162,9 @@
     <span class="c1">#</span>
     <span class="c1"># There are 3 ways of doing it:</span>
     <span class="c1">#</span>
-    <span class="c1"># 1) Put all code in set_all(). </span>
+    <span class="c1"># 1) Put all code in set_all().</span>
     <span class="c1">#    Con: One might forget to implement the setting of a member.</span>
-    <span class="c1"># </span>
+    <span class="c1">#</span>
     <span class="c1"># 2) Implement set_all() so that for each data member of the API, we have</span>
     <span class="c1">#       self.foo = self.get_foo()</span>
     <span class="c1">#       self.bar = self.get_bar()</span>
@@ -175,31 +175,31 @@
     <span class="c1">#    self.get_bar(). This means that in general the calling order</span>
     <span class="c1">#    of the getters is important and is different in each set_all() of each</span>
     <span class="c1">#    derived class.</span>
-    <span class="c1">#    Con: One might forget to call a getter in set_all() and/or in the wrong </span>
+    <span class="c1">#    Con: One might forget to call a getter in set_all() and/or in the wrong</span>
     <span class="c1">#         order.</span>
-    <span class="c1"># </span>
+    <span class="c1">#</span>
     <span class="c1"># 3) Implement all getters such that they can be called in arbitrary order.</span>
     <span class="c1">#    Then in each set_all(), one does exactly the same:</span>
     <span class="c1">#</span>
     <span class="c1">#        attr_lst = [&#39;foo&#39;, &#39;bar&#39;, ...]</span>
     <span class="c1">#        for attr in attr_lst:</span>
     <span class="c1">#            self.try_set_attr(attr)</span>
-    <span class="c1">#    </span>
+    <span class="c1">#</span>
     <span class="c1">#    This code (the &quot;getting&quot; of all API members) can then be moved to the</span>
     <span class="c1">#    *base* class&#39;s set_all() and thereby forcing all derived classes to</span>
-    <span class="c1">#    conform to the API. </span>
+    <span class="c1">#    conform to the API.</span>
     <span class="c1">#</span>
     <span class="c1">#    If again one getter needs a return value of another getter, one has to</span>
     <span class="c1">#    transform</span>
-    <span class="c1">#    </span>
+    <span class="c1">#</span>
     <span class="c1">#       def get_foo(self):</span>
     <span class="c1">#           return do_stuff(self.bar)</span>
-    <span class="c1">#    to </span>
-    <span class="c1">#       </span>
+    <span class="c1">#    to</span>
+    <span class="c1">#</span>
     <span class="c1">#       def get_foo(self):</span>
     <span class="c1">#           if self.check_set_attr(&#39;bar&#39;):</span>
     <span class="c1">#               return do_stuff(self.bar)</span>
-    <span class="c1">#           else:               </span>
+    <span class="c1">#           else:</span>
     <span class="c1">#               return None</span>
     <span class="c1">#</span>
     <span class="c1">#    If one does</span>
@@ -210,21 +210,21 @@
     <span class="c1">#    already been called inside get_bar(). There is NO big overhead in</span>
     <span class="c1">#    this approach b/c in each getter we test with try_set_attr() if a</span>
     <span class="c1">#    needed other member is already set.</span>
-    <span class="c1">#    </span>
+    <span class="c1">#</span>
     <span class="c1">#    This way we get a flexible and easily extensible framework to</span>
     <span class="c1">#    implement new parsers and modify existing ones (just implement another</span>
     <span class="c1">#    getter get_newmember() in each class and extend the list of API</span>
     <span class="c1">#    members by &#39;newmember&#39;).</span>
     <span class="c1">#</span>
-    
+
 <div class="viewcode-block" id="FlexibleGetters.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.html#pwtools.base.FlexibleGetters.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_attr_lst</span><span class="p">([])</span></div>
-    
+
     <span class="k">def</span> <span class="nf">_debug_attrs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: None&quot;</span> <span class="o">%</span><span class="n">attr</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>                
+            <span class="k">else</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: ok&quot;</span> <span class="o">%</span><span class="n">attr</span><span class="p">)</span>
 
 <div class="viewcode-block" id="FlexibleGetters.set_all"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.set_all.html#pwtools.base.FlexibleGetters.set_all">[docs]</a>    <span class="k">def</span> <span class="nf">set_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_lst</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -232,7 +232,7 @@
         <span class="n">attr_lst</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span> <span class="k">if</span> <span class="n">attr_lst</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">attr_lst</span>
         <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attr_lst</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">try_set_attr</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span></div>
-    
+
 <div class="viewcode-block" id="FlexibleGetters.set_attr_lst"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.set_attr_lst.html#pwtools.base.FlexibleGetters.set_attr_lst">[docs]</a>    <span class="k">def</span> <span class="nf">set_attr_lst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_lst</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set self.attr_lst and init each attr to None.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">attr_lst</span> <span class="o">=</span> <span class="n">attr_lst</span>
@@ -257,7 +257,7 @@
 
 <div class="viewcode-block" id="FlexibleGetters.load"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.load.html#pwtools.base.FlexibleGetters.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dump_filename</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load pickled object.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; # save</span>
@@ -266,7 +266,7 @@
 <span class="sd">        &gt;&gt;&gt; x.dump(&#39;foo.pk&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; # load: method 1 - recommended</span>
 <span class="sd">        &gt;&gt;&gt; xx = io.read_pickle(&#39;foo.pk&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; # or </span>
+<span class="sd">        &gt;&gt;&gt; # or</span>
 <span class="sd">        &gt;&gt;&gt; xx = pickle.load(open(&#39;foo.pk&#39;))</span>
 <span class="sd">        &gt;&gt;&gt; # load: method 2, not used / tested much</span>
 <span class="sd">        &gt;&gt;&gt; xx = FileParser()</span>
@@ -277,7 +277,7 @@
         <span class="c1"># this does not work:</span>
         <span class="c1">#   self = pickle.load(...)</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">dump_filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span></div>
-    
+
 <div class="viewcode-block" id="FlexibleGetters.is_set_attr"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.is_set_attr.html#pwtools.base.FlexibleGetters.is_set_attr">[docs]</a>    <span class="k">def</span> <span class="nf">is_set_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check if self has the attribute self.&lt;attr&gt; and if it is _not_ None.</span>
 
@@ -285,28 +285,28 @@
 <span class="sd">        ----------</span>
 <span class="sd">        attr : str</span>
 <span class="sd">            Attrubiute name, e.g. &#39;foo&#39; for self.foo</span>
-<span class="sd">        </span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        True : `attr` is defined and not None</span>
 <span class="sd">        False : not defined or None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span> 
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
             <span class="k">return</span> <span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span></div>
-    
+
 <div class="viewcode-block" id="FlexibleGetters.is_set_attr_lst"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.is_set_attr_lst.html#pwtools.base.FlexibleGetters.is_set_attr_lst">[docs]</a>    <span class="k">def</span> <span class="nf">is_set_attr_lst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_lst</span><span class="p">):</span>
         <span class="k">assert</span> <span class="n">common</span><span class="o">.</span><span class="n">is_seq</span><span class="p">(</span><span class="n">attr_lst</span><span class="p">),</span> <span class="s2">&quot;attr_lst must be a sequence&quot;</span>
         <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attr_lst</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_set_attr</span><span class="p">(</span><span class="n">attr</span><span class="p">):</span>
                 <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">return</span> <span class="kc">True</span>                </div>
+        <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="FlexibleGetters.try_set_attr"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.try_set_attr.html#pwtools.base.FlexibleGetters.try_set_attr">[docs]</a>    <span class="k">def</span> <span class="nf">try_set_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;If self.&lt;attr&gt; does not exist or is None, then invoke an</span>
 <span class="sd">        appropirately named getter as if this command would be executed::</span>
-<span class="sd">        </span>
+
 <span class="sd">            self.foo = self.get_foo()</span>
 <span class="sd">            self._foo = self._get_foo()</span>
 
@@ -319,26 +319,26 @@
                 <span class="n">get</span> <span class="o">=</span> <span class="s1">&#39;_get&#39;</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">get</span> <span class="o">=</span> <span class="s1">&#39;get_&#39;</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;self.</span><span class="si">%s%s</span><span class="s1">()&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">get</span><span class="p">,</span> <span class="n">attr</span><span class="p">)))</span> </div>
-    
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;self.</span><span class="si">%s%s</span><span class="s1">()&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">get</span><span class="p">,</span> <span class="n">attr</span><span class="p">)))</span></div>
+
 <div class="viewcode-block" id="FlexibleGetters.try_set_attr_lst"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.try_set_attr_lst.html#pwtools.base.FlexibleGetters.try_set_attr_lst">[docs]</a>    <span class="k">def</span> <span class="nf">try_set_attr_lst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_lst</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attr_lst</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">try_set_attr</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span></div>
-    
+
 <div class="viewcode-block" id="FlexibleGetters.check_set_attr"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.check_set_attr.html#pwtools.base.FlexibleGetters.check_set_attr">[docs]</a>    <span class="k">def</span> <span class="nf">check_set_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Run try_set_attr() and return the result of is_set_attr(), i.e. True</span>
 <span class="sd">        or False. Most important shortcut method.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        ::</span>
-<span class="sd">            </span>
+
 <span class="sd">            def get_foo(self):</span>
 <span class="sd">                if self.check_set_attr(&#39;bar&#39;):</span>
 <span class="sd">                    return self.bar * 2</span>
 <span class="sd">                else:</span>
 <span class="sd">                    return None</span>
-<span class="sd">        </span>
+
 <span class="sd">        which is the same as ::</span>
 
 <span class="sd">            def get_foo(self):</span>
@@ -347,10 +347,10 @@
 <span class="sd">                    return self.bar * 2</span>
 <span class="sd">                else:</span>
 <span class="sd">                    return None</span>
-<span class="sd">        </span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">try_set_attr</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_set_attr</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span> </div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_set_attr</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="FlexibleGetters.check_set_attr_lst"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.check_set_attr_lst.html#pwtools.base.FlexibleGetters.check_set_attr_lst">[docs]</a>    <span class="k">def</span> <span class="nf">check_set_attr_lst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_lst</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attr_lst</span><span class="p">:</span>
@@ -362,11 +362,11 @@
 <span class="sd">        returns False.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_set_attr</span><span class="p">(</span><span class="n">attr</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;attr &#39;</span><span class="si">%s</span><span class="s2">&#39; is not set&quot;</span> <span class="o">%</span><span class="n">attr</span><span class="p">)</span></div>
-    
+
 <div class="viewcode-block" id="FlexibleGetters.assert_attr_lst"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.assert_attr_lst.html#pwtools.base.FlexibleGetters.assert_attr_lst">[docs]</a>    <span class="k">def</span> <span class="nf">assert_attr_lst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_lst</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attr_lst</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">assert_attr</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span></div>
-    
+
 <div class="viewcode-block" id="FlexibleGetters.assert_set_attr"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.assert_set_attr.html#pwtools.base.FlexibleGetters.assert_set_attr">[docs]</a>    <span class="k">def</span> <span class="nf">assert_set_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Same as assert_attr(), but run try_set_attr() first.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">try_set_attr</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
@@ -375,7 +375,7 @@
 <div class="viewcode-block" id="FlexibleGetters.assert_set_attr_lst"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.assert_set_attr_lst.html#pwtools.base.FlexibleGetters.assert_set_attr_lst">[docs]</a>    <span class="k">def</span> <span class="nf">assert_set_attr_lst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_lst</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attr_lst</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">assert_set_attr</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span></div>
-    
+
 <div class="viewcode-block" id="FlexibleGetters.raw_slice_get"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.raw_slice_get.html#pwtools.base.FlexibleGetters.raw_slice_get">[docs]</a>    <span class="k">def</span> <span class="nf">raw_slice_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">sl</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Shortcut method:</span>
 
@@ -387,7 +387,7 @@
         <span class="n">raw_attr_name</span> <span class="o">=</span> <span class="s1">&#39;_</span><span class="si">%s</span><span class="s1">_raw&#39;</span> <span class="o">%</span><span class="n">attr_name</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_set_attr</span><span class="p">(</span><span class="n">raw_attr_name</span><span class="p">):</span>
             <span class="n">arr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_attr_name</span><span class="p">)</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">slicetake</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">sl</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span> 
+            <span class="n">ret</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">slicetake</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">sl</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
             <span class="c1"># slicetake always returns an array, return scalar if ret =</span>
             <span class="c1"># array([10]) etc</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
@@ -396,7 +396,7 @@
                 <span class="k">return</span> <span class="n">ret</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span></div>
-    
+
 <div class="viewcode-block" id="FlexibleGetters.raw_return"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.raw_return.html#pwtools.base.FlexibleGetters.raw_return">[docs]</a>    <span class="k">def</span> <span class="nf">raw_return</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Call ``try_set_attr(_&lt;attr_name&gt;_raw)`` and return it if set, else</span>
 <span class="sd">        None. This is faster but the same the same as</span>
@@ -409,7 +409,7 @@
             <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_attr_name</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span></div>
-   
+
 <div class="viewcode-block" id="FlexibleGetters.get_return_attr"><a class="viewcode-back" href="../../generated/api/pwtools.base.FlexibleGetters.get_return_attr.html#pwtools.base.FlexibleGetters.get_return_attr">[docs]</a>    <span class="k">def</span> <span class="nf">get_return_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Call try_set_attr() are return self.&lt;attr_name&gt; if set.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">try_set_attr</span><span class="p">(</span><span class="n">attr_name</span><span class="p">)</span>

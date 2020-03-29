@@ -131,14 +131,14 @@ added which numbers each addition.</p>
 </div>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Here are some examples for constructing `params_lst`.</span>
-<span class="gp">&gt;&gt;&gt; </span>
+<span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Vary two (three, ...) parameters on a 2d (3d, ...) grid: In fact, the</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># way you are constructing params_lst is only a matter of zip() and</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># comb.nested_loops()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">par1</span> <span class="o">=</span> <span class="n">sql</span><span class="o">.</span><span class="n">sql_column</span><span class="p">(</span><span class="s1">&#39;par1&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">par2</span> <span class="o">=</span> <span class="n">sql</span><span class="o">.</span><span class="n">sql_column</span><span class="p">(</span><span class="s1">&#39;par2&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">par3</span> <span class="o">=</span> <span class="o">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 3d grid   </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 3d grid</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">params_lst</span> <span class="o">=</span> <span class="n">comb</span><span class="o">.</span><span class="n">nested_loops</span><span class="p">([</span><span class="n">par1</span><span class="p">,</span> <span class="n">par2</span><span class="p">,</span> <span class="n">par3</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># which is the same as:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">params_lst</span> <span class="o">=</span> <span class="p">[]</span>
@@ -188,7 +188,7 @@ parameters as SQLEntry instances:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="n">SQLEntry</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="n">SQLEntry</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="o">...</span><span class="p">],</span> <span class="c1"># calc_foo/0</span>
  <span class="p">[</span><span class="n">SQLEntry</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="n">SQLEntry</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="o">...</span><span class="p">],</span> <span class="c1"># calc_foo/1</span>
  <span class="o">...</span>
-<span class="p">]</span> 
+<span class="p">]</span>
 </pre></div>
 </div>
 <p>For each sublist, a separate calculation dir is created and

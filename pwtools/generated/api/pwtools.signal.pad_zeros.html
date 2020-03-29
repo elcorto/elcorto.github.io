@@ -99,7 +99,7 @@
 <dl class="function">
 <dt id="pwtools.signal.pad_zeros">
 <code class="descclassname">pwtools.signal.</code><code class="descname">pad_zeros</code><span class="sig-paren">(</span><em>arr</em>, <em>axis=0</em>, <em>where='end'</em>, <em>nadd=None</em>, <em>upto=None</em>, <em>tonext=None</em>, <em>tonext_min=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#pad_zeros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.pad_zeros" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pad an nd-array with zeros. Default is to append an array of zeros of 
+<dd><p>Pad an nd-array with zeros. Default is to append an array of zeros of
 the same shape as <cite>arr</cite> to arr’s end along <cite>axis</cite>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -134,7 +134,7 @@ least <cite>tonext_min</cite>; the default is tonext_min = arr.shape[axis]</p>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 1d </span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 1d</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pad_zeros</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="go">array([1, 2, 3, 0, 0, 0])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pad_zeros</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">nadd</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
@@ -156,7 +156,7 @@ least <cite>tonext_min</cite>; the default is tonext_min = arr.shape[axis]</p>
 <span class="go">array([[0, 1, 2, 0],</span>
 <span class="go">       [3, 4, 5, 0],</span>
 <span class="go">       [6, 7, 8, 0]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># up to next power of two           </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># up to next power of two</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span><span class="o">**</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="go">array([  1,   2,   4,   8,  16,  32,  64, 128, 256, 512])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pydos</span><span class="o">.</span><span class="n">pad_zeros</span><span class="p">(</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">),</span> <span class="n">tonext</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
