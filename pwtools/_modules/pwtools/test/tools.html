@@ -451,14 +451,14 @@
     <span class="sd">&quot;&quot;&quot;Use inside a test function or class. This raises</span>
 <span class="sd">    nose.plugins.skip.SkipTest and makes the test be skipped. Doesn&#39;t work as a</span>
 <span class="sd">    decorator. If you need a decorator to temporarily disable a test function,</span>
-<span class="sd">    then use unitest.skip(). The latter is supposed to work on test functions</span>
+<span class="sd">    then use unittest.skip(). The latter is supposed to work on test functions</span>
 <span class="sd">    and classes (probably unittest.TestCase and derivatives, untested).</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 
 <span class="sd">    from pwtools.test.tools import skip</span>
-<span class="sd">    import unitest</span>
+<span class="sd">    import unittest</span>
 
 <span class="sd">    def test_foo():</span>
 <span class="sd">        if some_error_condition:</span>
@@ -468,7 +468,7 @@
 <span class="sd">        skip(&quot;we&#39;re not at the bar, skip ordering beer&quot;)</span>
 <span class="sd">        normal_test_code_here()</span>
 
-<span class="sd">    @unitest.skip(&quot;disable test b/c we&#39;re all out of zonk!&quot;)</span>
+<span class="sd">    @unittest.skip(&quot;disable test b/c we&#39;re all out of zonk!&quot;)</span>
 <span class="sd">    def test_baz():</span>
 <span class="sd">        assert baz == zonk</span>
 <span class="sd">    &quot;&quot;&quot;</span>
