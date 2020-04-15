@@ -730,19 +730,19 @@
 <span class="sd">    &gt;&gt;&gt; kpoints = [&#39;2 2 2&#39;, &#39;4 4 4&#39;, &#39;8 8 8&#39;]</span>
 <span class="sd">    &gt;&gt;&gt; etot = [-300.0, -310.0, -312.0]</span>
 <span class="sd">    &gt;&gt;&gt; forces_rms = [0.3, 0.2, 0.1]</span>
-<span class="sd">    &gt;&gt;&gt; print batch.conv_table(kpoints, etot, mode=&#39;last&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; print(batch.conv_table(kpoints, etot, mode=&#39;last&#39;))</span>
 <span class="sd">          2 2 2       -12.0000</span>
 <span class="sd">          4 4 4        -2.0000</span>
 <span class="sd">          8 8 8         0.0000</span>
-<span class="sd">    &gt;&gt;&gt; print batch.conv_table(kpoints, [etot,forces_rms], mode=&#39;last&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; print(batch.conv_table(kpoints, [etot,forces_rms], mode=&#39;last&#39;))</span>
 <span class="sd">          2 2 2       -12.0000        -0.2000</span>
 <span class="sd">          4 4 4        -2.0000        -0.1000</span>
 <span class="sd">          8 8 8         0.0000         0.0000</span>
-<span class="sd">    &gt;&gt;&gt; print batch.conv_table(kpoints, [etot,forces_rms], mode=&#39;last&#39;, orig=True)</span>
+<span class="sd">    &gt;&gt;&gt; print(batch.conv_table(kpoints, [etot,forces_rms], mode=&#39;last&#39;, orig=True))</span>
 <span class="sd">          2 2 2       -12.0000      -300.0000        -0.2000         0.3000</span>
 <span class="sd">          4 4 4        -2.0000      -310.0000        -0.1000         0.2000</span>
 <span class="sd">          8 8 8         0.0000      -312.0000         0.0000         0.1000</span>
-<span class="sd">    &gt;&gt;&gt; print batch.conv_table(kpoints, np.array([etot,forces_rms]), mode=&#39;next&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; print(batch.conv_table(kpoints, np.array([etot,forces_rms]), mode=&#39;next&#39;))</span>
 <span class="sd">          2 2 2       -10.0000        -0.1000</span>
 <span class="sd">          4 4 4        -2.0000        -0.1000</span>
 <span class="sd">          8 8 8         0.0000         0.0000</span>
@@ -844,9 +844,10 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from pwtools.batch import Case</span>
 <span class="sd">    &gt;&gt;&gt; case1 = Case(x=1, y=2)</span>
 <span class="sd">    &gt;&gt;&gt; case2 = Case(x=11, y=22)</span>
-<span class="sd">    &gt;&gt;&gt; for case in [case1, case2]: print case.x, case.y</span>
+<span class="sd">    &gt;&gt;&gt; for case in [case1, case2]: print(case.x, case.y)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="Case.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Case.html#pwtools.batch.Case.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">kwds</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>

@@ -222,12 +222,12 @@
 <span class="sd">    &gt;&gt;&gt; vv = linspace(V.min(), V.max(), 200)</span>
 <span class="sd">    &gt;&gt;&gt; plot(vv, f(vv), &#39;r-&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; v0 = f.params[&#39;v0&#39;]</span>
-<span class="sd">    &gt;&gt;&gt; print &quot;compare fit params and values obtained from methods:&quot;</span>
-<span class="sd">    &gt;&gt;&gt; print &quot;V0: %f Ang^3 (%f)&quot; %(v0, f.get_min())</span>
-<span class="sd">    &gt;&gt;&gt; print &quot;B0: %f GPa   (%f)&quot; %(f.params[&#39;b0&#39;]*eV_by_Ang3_to_GPa, f.bulkmod(v0))</span>
-<span class="sd">    &gt;&gt;&gt; print &quot;B1: %f           &quot; %f.params[&#39;b1&#39;]</span>
-<span class="sd">    &gt;&gt;&gt; print &quot;E0: %f  eV   (%f)&quot; %(f.params[&#39;e0&#39;], f(v0))</span>
-<span class="sd">    &gt;&gt;&gt; print &quot;P0: %f GPa       &quot; %f.pressure(v0)</span>
+<span class="sd">    &gt;&gt;&gt; print(&quot;compare fit params and values obtained from methods:&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; print(&quot;V0: %f Ang^3 (%f)&quot; %(v0, f.get_min()))</span>
+<span class="sd">    &gt;&gt;&gt; print(&quot;B0: %f GPa   (%f)&quot; %(f.params[&#39;b0&#39;]*eV_by_Ang3_to_GPa, f.bulkmod(v0)))</span>
+<span class="sd">    &gt;&gt;&gt; print(&quot;B1: %f           &quot; %f.params[&#39;b1&#39;])</span>
+<span class="sd">    &gt;&gt;&gt; print(&quot;E0: %f  eV   (%f)&quot; %(f.params[&#39;e0&#39;], f(v0)))</span>
+<span class="sd">    &gt;&gt;&gt; print(&quot;P0: %f GPa       &quot; %f.pressure(v0))</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="EosFit.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.eos.EosFit.html#pwtools.eos.EosFit.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">Vinet</span><span class="p">(),</span> <span class="n">splpoints</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>

@@ -134,11 +134,11 @@ less precision!</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;insert into </span><span class="si">%s</span><span class="s2"> (&#39;a&#39;, &#39;b&#39;) values (?,?)&quot;</span> <span class="o">%</span><span class="n">db</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="s1">&#39;huhu&#39;</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># iterator</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select * from calc&quot;</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="nb">print</span> <span class="n">record</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
 <span class="go">(1.0, u&#39;lala&#39;)</span>
 <span class="go">(2.0, u&#39;huhu&#39;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># list</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select * from calc&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select * from calc&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span>
 <span class="go">[(1.0, u&#39;lala&#39;), (2.0, u&#39;huhu&#39;)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_list1d</span><span class="p">(</span><span class="s2">&quot;select a from calc&quot;</span><span class="p">)</span>
 <span class="go">[1.0, 2.0]</span>

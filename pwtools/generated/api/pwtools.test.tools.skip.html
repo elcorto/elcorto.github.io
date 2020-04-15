@@ -102,11 +102,11 @@
 <dd><p>Use inside a test function or class. This raises
 nose.plugins.skip.SkipTest and makes the test be skipped. Doesn’t work as a
 decorator. If you need a decorator to temporarily disable a test function,
-then use unitest.skip(). The latter is supposed to work on test functions
+then use unittest.skip(). The latter is supposed to work on test functions
 and classes (probably unittest.TestCase and derivatives, untested).</p>
 <p class="rubric">Examples</p>
 <p>from pwtools.test.tools import skip
-import unitest</p>
+import unittest</p>
 <dl class="docutils">
 <dt>def test_foo():</dt>
 <dd><dl class="first last docutils">
@@ -118,7 +118,7 @@ import unitest</p>
 <dd>skip(“we’re not at the bar, skip ordering beer”)
 normal_test_code_here()</dd>
 </dl>
-<p>&#64;unitest.skip(“disable test b/c we’re all out of zonk!”)
+<p>&#64;unittest.skip(“disable test b/c we’re all out of zonk!”)
 def test_baz():</p>
 <blockquote>
 <div>assert baz == zonk</div></blockquote>
