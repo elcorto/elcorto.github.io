@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.crys &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -71,17 +69,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -90,7 +86,11 @@
             
   <h1>Source code for pwtools.crys</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">acos</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sqrt</span>
-<span class="kn">import</span> <span class="nn">textwrap</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">tempfile</span><span class="o">,</span> <span class="nn">copy</span><span class="o">,</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="k">import</span> <span class="n">inv</span>
@@ -2969,7 +2969,11 @@
         <span class="c1"># re-calculate nstep</span>
         <span class="n">tr</span><span class="o">.</span><span class="n">nstep</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">tr</span><span class="o">.</span><span class="n">set_all</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">tr</span></div></div>
+        <span class="k">return</span> <span class="n">tr</span></div>
+
+<div class="viewcode-block" id="Structure.get_spglib"><a class="viewcode-back" href="../../generated/api/pwtools.crys.Structure.get_spglib.html#pwtools.crys.Structure.get_spglib">[docs]</a>    <span class="k">def</span> <span class="nf">get_spglib</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return spglib input tuple (cell, coords_frac, znucl).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coords_frac</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">znucl</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="Trajectory"><a class="viewcode-back" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory">[docs]</a><span class="k">class</span> <span class="nc">Trajectory</span><span class="p">(</span><span class="n">Structure</span><span class="p">):</span>
@@ -3067,6 +3071,9 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;only in Structure&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Trajectory.get_traj"><a class="viewcode-back" href="../../generated/api/pwtools.crys.Trajectory.get_traj.html#pwtools.crys.Trajectory.get_traj">[docs]</a>    <span class="k">def</span> <span class="nf">get_traj</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;only in Structure&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Trajectory.get_spglib"><a class="viewcode-back" href="../../generated/api/pwtools.crys.Trajectory.get_spglib.html#pwtools.crys.Trajectory.get_spglib">[docs]</a>    <span class="k">def</span> <span class="nf">get_spglib</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;only in Structure&quot;</span><span class="p">)</span></div></div>
 
 
@@ -3116,7 +3123,8 @@
 <div class="viewcode-block" id="FakeASEAtoms"><a class="viewcode-back" href="../../generated/api/pwtools.crys.FakeASEAtoms.html#pwtools.crys.FakeASEAtoms">[docs]</a><span class="k">class</span> <span class="nc">FakeASEAtoms</span><span class="p">(</span><span class="n">Structure</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Mimic the basic behavior of ``ase.Atoms``.</span>
 
-<span class="sd">    Used for ``spglib``.</span>
+<span class="sd">    Used to be used as input for ``spglib`` in symmetry.py, but not anymore as</span>
+<span class="sd">    of spglib 1.9.x. Now, we use :meth:`Structure.get_spglib`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="FakeASEAtoms.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.crys.FakeASEAtoms.html#pwtools.crys.FakeASEAtoms.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scaled_positions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cell</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">FakeASEAtoms</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">coords_frac</span><span class="o">=</span><span class="n">scaled_positions</span><span class="p">,</span>
@@ -3533,7 +3541,7 @@
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
     </div>

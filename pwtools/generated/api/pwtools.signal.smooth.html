@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.signal.smooth &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.signal.welch" href="pwtools.signal.welch.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,17 +94,15 @@
 <h1>pwtools.signal.smooth<a class="headerlink" href="#pwtools-signal-smooth" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="pwtools.signal.smooth">
-<code class="descclassname">pwtools.signal.</code><code class="descname">smooth</code><span class="sig-paren">(</span><em>data</em>, <em>kern</em>, <em>axis=0</em>, <em>edge='m'</em>, <em>norm=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#smooth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.smooth" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.signal.</code><code class="sig-name descname">smooth</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">kern</em>, <em class="sig-param">axis=0</em>, <em class="sig-param">edge='m'</em>, <em class="sig-param">norm=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#smooth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.smooth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Smooth N-dim <cite>data</cite> by convolution with a kernel <cite>kern</cite>.</p>
 <p>Uses scipy.signal.fftconvolve().</p>
 <p>Note that due to edge effect handling (padding) and kernal normalization,
 the convolution identity convolve(data,kern) == convolve(kern,data) doesn’t
 apply here. We always return an array of <code class="docutils literal notranslate"><span class="pre">data.shape</span></code>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : nd array</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> : nd array</p>
 <blockquote>
 <div><p>The data to smooth. Example: 1d (N,) or (N,K,3)
 for trajectory</p>
@@ -126,9 +120,8 @@ data along <cite>axis</cite> to handle edge effects before convolution.</p>
 </div></blockquote>
 <p><strong>edge</strong> : str</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>Method for edge effect handling.</dt>
-<dd><div class="first last line-block">
+<div><dl>
+<dt>Method for edge effect handling.</dt><dd><div class="line-block">
 <div class="line">‘m’ : pad with mirror signal</div>
 <div class="line">‘c’ : pad with constant values (i.e. <code class="docutils literal notranslate"><span class="pre">data[0]</span></code> and</div>
 <div class="line-block">
@@ -145,19 +138,17 @@ signal lies within the data. Note that this is not True for kernels
 with very big spread (i.e. <code class="docutils literal notranslate"><span class="pre">hann(N*10)</span></code> or <code class="docutils literal notranslate"><span class="pre">gaussian(N/2,</span>
 <span class="pre">std=N*10)</span></code>. Then the kernel is effectively a constant.</p>
 </div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ret</strong> : data.shape</p>
-<blockquote class="last">
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ret</strong> : data.shape</p>
+<blockquote>
 <div><p>Convolved signal.</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="pwtools.signal.welch.html#pwtools.signal.welch" title="pwtools.signal.welch"><code class="xref py py-func docutils literal notranslate"><span class="pre">welch()</span></code></a>, <a class="reference internal" href="pwtools.signal.lorentz.html#pwtools.signal.lorentz" title="pwtools.signal.lorentz"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorentz()</span></code></a></p>
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="pwtools.signal.welch.html#pwtools.signal.welch" title="pwtools.signal.welch"><code class="xref py py-func docutils literal notranslate"><span class="pre">welch()</span></code></a>, <a class="reference internal" href="pwtools.signal.lorentz.html#pwtools.signal.lorentz" title="pwtools.signal.lorentz"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorentz()</span></code></a></p>
 </div>
 <p class="rubric">Notes</p>
 <p>Kernels:</p>
@@ -216,7 +207,7 @@ of course. We do exactly this in <a class="reference internal" href="pwtools.cry
 <p class="rubric">References</p>
 <p>[1] <a class="reference external" href="http://wiki.scipy.org/Cookbook/SignalSmooth">http://wiki.scipy.org/Cookbook/SignalSmooth</a></p>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.signal</span> <span class="k">import</span> <span class="n">welch</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.signal</span> <span class="k">import</span> <span class="n">welch</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">numpy.random</span> <span class="k">import</span> <span class="n">rand</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">,</span><span class="mi">500</span><span class="p">);</span> <span class="n">a</span><span class="o">=</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">rand</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;0.7&#39;</span><span class="p">)</span>
@@ -275,7 +266,7 @@ of course. We do exactly this in <a class="reference internal" href="pwtools.cry
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

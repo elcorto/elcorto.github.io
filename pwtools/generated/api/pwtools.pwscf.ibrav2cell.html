@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.pwscf.ibrav2cell &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.pwscf.kpoints_str" href="pwtools.pwscf.kpoints_str.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,7 +94,7 @@
 <h1>pwtools.pwscf.ibrav2cell<a class="headerlink" href="#pwtools-pwscf-ibrav2cell" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="pwtools.pwscf.ibrav2cell">
-<code class="descclassname">pwtools.pwscf.</code><code class="descname">ibrav2cell</code><span class="sig-paren">(</span><em>ibrav</em>, <em>celldm</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#ibrav2cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.ibrav2cell" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.pwscf.</code><code class="sig-name descname">ibrav2cell</code><span class="sig-paren">(</span><em class="sig-param">ibrav</em>, <em class="sig-param">celldm</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#ibrav2cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.ibrav2cell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert PWscf’s ibrav + celldm to cell. All formulas are taken straight
 from the PWscf homepage. Don’t blame me for errors. Use after testing.</p>
 <p>This function generates <em>primitive</em> cells. Note that in crys.py (and
@@ -116,11 +112,9 @@ primitive == conventional cell.</p>
 <p>Note: There are some documentation &lt;-&gt; forluma errors / inconsistencies for
 ibrav=12,13. See test/test_ibrav.py. If you really need that, have a look
 at the PWscf source for how they do it there.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ibrav</strong> : int</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ibrav</strong> : int</p>
 <blockquote>
 <div><p>1 … 14</p>
 </div></blockquote>
@@ -129,19 +123,17 @@ at the PWscf source for how they do it there.</p>
 <div><p>This not the isame length 6 array <cite>celldm</cite> in crys.py. Here, the
 entries which are not needed can be None.</p>
 </div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>array (3,3)</strong> : cell vectors as rows, unit is that of celldm[0], i.e. a</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>array (3,3)</strong> : cell vectors as rows, unit is that of celldm[0], i.e. a</p>
+</dd>
+</dl>
 <p class="rubric">Notes</p>
 <ul class="simple">
-<li>ibrav = 14 is actually the only case where all 6 entries of <cite>celldm</cite> are
+<li><p>ibrav = 14 is actually the only case where all 6 entries of <cite>celldm</cite> are
 needed and therefore the same as crys.cc2cell(crys.celldm2cc(celldm)).
 The returned <cite>cell</cite> here has the same spatial orientation as the one
-returned from crys.cc2cell(): a along x, b in xy-plane.</li>
+returned from crys.cc2cell(): a along x, b in xy-plane.</p></li>
 </ul>
 </dd></dl>
 
@@ -157,7 +149,7 @@ returned from crys.cc2cell(): a along x, b in xy-plane.</li>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

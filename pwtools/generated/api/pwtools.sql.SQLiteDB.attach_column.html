@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.sql.SQLiteDB.attach_column &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.sql.SQLiteDB.commit" href="pwtools.sql.SQLiteDB.commit.html" />
@@ -79,17 +77,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -100,17 +96,15 @@
 <h1>pwtools.sql.SQLiteDB.attach_column<a class="headerlink" href="#pwtools-sql-sqlitedb-attach-column" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="pwtools.sql.SQLiteDB.attach_column">
-<code class="descclassname">SQLiteDB.</code><code class="descname">attach_column</code><span class="sig-paren">(</span><em>col</em>, <em>values</em>, <em>sqltype=None</em>, <em>table=None</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.attach_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.attach_column" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">SQLiteDB.</code><code class="sig-name descname">attach_column</code><span class="sig-paren">(</span><em class="sig-param">col</em>, <em class="sig-param">values</em>, <em class="sig-param">sqltype=None</em>, <em class="sig-param">table=None</em>, <em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.attach_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.attach_column" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attach (add) a new column named <cite>col</cite> of <cite>sqltype</cite> and fill it with
 <cite>values</cite>. With overwrite=True, allow writing into existing columns,
 i.e. behave like <a class="reference internal" href="pwtools.sql.SQLiteDB.fill_column.html#pwtools.sql.SQLiteDB.fill_column" title="pwtools.sql.SQLiteDB.fill_column"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fill_column()</span></code></a>.</p>
 <p>This is a short-cut method which essentially does
 <code class="docutils literal notranslate"><span class="pre">add_column(...);</span> <span class="pre">fill_column(...)</span></code></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>col</strong> : str</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>col</strong> : str</p>
 <blockquote>
 <div><p>Column name.</p>
 </div></blockquote>
@@ -124,14 +118,12 @@ i.e. behave like <a class="reference internal" href="pwtools.sql.SQLiteDB.fill_c
 </div></blockquote>
 <p><strong>table</strong> : str, optional</p>
 <p><strong>**kwds :</strong></p>
-<blockquote class="last">
+<blockquote>
 <div><p>additional keywords passed to <a class="reference internal" href="pwtools.sql.SQLiteDB.fill_column.html#pwtools.sql.SQLiteDB.fill_column" title="pwtools.sql.SQLiteDB.fill_column"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fill_column()</span></code></a>,
 default: <cite>start=1, extend=True, overwrite=False</cite></p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -146,7 +138,7 @@ default: <cite>start=1, extend=True, overwrite=False</cite></p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

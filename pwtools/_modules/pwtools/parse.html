@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.parse &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -71,17 +69,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -367,7 +363,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">set_all</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parse_called</span> <span class="o">=</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="StructureFileParser.get_cont"><a class="viewcode-back" href="../../generated/api/pwtools.parse.StructureFileParser.get_cont.html#pwtools.parse.StructureFileParser.get_cont">[docs]</a>    <span class="k">def</span> <span class="nf">get_cont</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auto_calc</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="StructureFileParser.get_cont"><a class="viewcode-back" href="../../generated/api/pwtools.parse.StructureFileParser.html#pwtools.parse.StructureFileParser.get_cont">[docs]</a>    <span class="k">def</span> <span class="nf">get_cont</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auto_calc</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Populate and return a Container object.</span>
 
 <span class="sd">        Parameters</span>
@@ -392,7 +388,7 @@
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">cont</span><span class="o">.</span><span class="n">units_applied</span><span class="p">,</span> <span class="s2">&quot;Container units not applied&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cont</span></div>
 
-<div class="viewcode-block" id="StructureFileParser.apply_units"><a class="viewcode-back" href="../../generated/api/pwtools.parse.StructureFileParser.apply_units.html#pwtools.parse.StructureFileParser.apply_units">[docs]</a>    <span class="k">def</span> <span class="nf">apply_units</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StructureFileParser.apply_units"><a class="viewcode-back" href="../../generated/api/pwtools.parse.StructureFileParser.html#pwtools.parse.StructureFileParser.apply_units">[docs]</a>    <span class="k">def</span> <span class="nf">apply_units</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;don&#39;t use that in parsers&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="StructureFileParser.get_struct"><a class="viewcode-back" href="../../generated/api/pwtools.parse.StructureFileParser.get_struct.html#pwtools.parse.StructureFileParser.get_struct">[docs]</a>    <span class="k">def</span> <span class="nf">get_struct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
@@ -2134,7 +2130,7 @@
             <span class="k">return</span> <span class="kc">None</span></div></div>
 
 
-<div class="viewcode-block" id="DcdOutputFile"><a class="viewcode-back" href="../../generated/api/pwtools.parse.DcdOutputFile.html#pwtools.parse.DcdOutputFile">[docs]</a><span class="k">class</span> <span class="nc">DcdOutputFile</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="DcdOutputFile"><a class="viewcode-back" href="../../generated/api/pwtools.parse.DcdOutputFile.html#pwtools.parse.DcdOutputFile">[docs]</a><span class="k">class</span> <span class="nc">DcdOutputFile</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Base class which implements dcd file reading. Used only for</span>
 <span class="sd">    inheritance.&quot;&quot;&quot;</span>
     <span class="n">_dcd_convang</span> <span class="o">=</span> <span class="kc">False</span>
@@ -2601,7 +2597,7 @@
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
     </div>

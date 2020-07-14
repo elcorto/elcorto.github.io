@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.pwscf.atpos_str &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.pwscf.atpos_str_fast" href="pwtools.pwscf.atpos_str_fast.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,14 +94,12 @@
 <h1>pwtools.pwscf.atpos_str<a class="headerlink" href="#pwtools-pwscf-atpos-str" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="pwtools.pwscf.atpos_str">
-<code class="descclassname">pwtools.pwscf.</code><code class="descname">atpos_str</code><span class="sig-paren">(</span><em>symbols</em>, <em>coords</em>, <em>fmt='%.16e'</em>, <em>zero_eps=None</em>, <em>eps=2.220446049250313e-16</em>, <em>delim='    '</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#atpos_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.atpos_str" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.pwscf.</code><code class="sig-name descname">atpos_str</code><span class="sig-paren">(</span><em class="sig-param">symbols</em>, <em class="sig-param">coords</em>, <em class="sig-param">fmt='%.16e'</em>, <em class="sig-param">zero_eps=None</em>, <em class="sig-param">eps=2.220446049250313e-16</em>, <em class="sig-param">delim='    '</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#atpos_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.atpos_str" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convenience function to make a string for the ATOMIC_POSITIONS section
 of a pw.x input file.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>symbols</strong> : sequence</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>symbols</strong> : sequence</p>
 <blockquote>
 <div><p>strings with atom symbols, (natoms,), must match with the
 rows of coords</p>
@@ -124,15 +118,13 @@ disable this.</p>
 <blockquote>
 <div><p>delimiter between columns</p>
 </div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">string</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">atpos_str</span><span class="p">([</span><span class="s1">&#39;Al&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.</span><span class="p">]]))</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">atpos_str</span><span class="p">([</span><span class="s1">&#39;Al&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.</span><span class="p">]]))</span>
 <span class="go">Al      0.0000000000    0.0000000000    0.0000000000</span>
 <span class="go">N       0.0000000000    0.0000000000    1.0000000000</span>
 </pre></div>
@@ -151,7 +143,7 @@ disable this.</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

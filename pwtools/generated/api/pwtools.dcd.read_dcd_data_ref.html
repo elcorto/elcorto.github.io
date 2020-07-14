@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.dcd.read_dcd_data_ref &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.dcd.read_dcd_header" href="pwtools.dcd.read_dcd_header.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,14 +94,12 @@
 <h1>pwtools.dcd.read_dcd_data_ref<a class="headerlink" href="#pwtools-dcd-read-dcd-data-ref" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="pwtools.dcd.read_dcd_data_ref">
-<code class="descclassname">pwtools.dcd.</code><code class="descname">read_dcd_data_ref</code><span class="sig-paren">(</span><em>fn</em>, <em>convang=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/dcd.html#read_dcd_data_ref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.dcd.read_dcd_data_ref" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.dcd.</code><code class="sig-name descname">read_dcd_data_ref</code><span class="sig-paren">(</span><em class="sig-param">fn</em>, <em class="sig-param">convang=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/dcd.html#read_dcd_data_ref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.dcd.read_dcd_data_ref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read dcd file. Pure Python version. Slow, only reference implementation.
 Use <a class="reference internal" href="pwtools.dcd.read_dcd_data.html#pwtools.dcd.read_dcd_data" title="pwtools.dcd.read_dcd_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_dcd_data()</span></code></a> instead.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>fn</strong> : str</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fn</strong> : str</p>
 <blockquote>
 <div><p>filename</p>
 </div></blockquote>
@@ -114,10 +108,10 @@ Use <a class="reference internal" href="pwtools.dcd.read_dcd_data.html#pwtools.d
 <div><p>convert angles from cosine to degree (only useful for lammps style dcd
 files)</p>
 </div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ret</strong> : (cryst_const, coords)</p>
-<blockquote class="last">
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ret</strong> : (cryst_const, coords)</p>
+<blockquote>
 <div><div class="line-block">
 <div class="line">cryst_const : (nstep,6) float64 array, (a,b,c,alpha,beta,gamma),</div>
 <div class="line-block">
@@ -126,12 +120,10 @@ files)</p>
 <div class="line">coords : (nstep, natoms, 3) float32 array, cartesian coords Angstrom</div>
 </div>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># default settings read cp2k files</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># default settings read cp2k files</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cc</span><span class="p">,</span><span class="n">co</span> <span class="o">=</span> <span class="n">read_dcd_data_ref</span><span class="p">(</span><span class="s1">&#39;cp2k.dcd&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cc</span><span class="p">,</span><span class="n">co</span> <span class="o">=</span> <span class="n">read_dcd_data_ref</span><span class="p">(</span><span class="s1">&#39;cp2k.dcd&#39;</span><span class="p">,</span> <span class="n">convang</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cc</span><span class="p">,</span><span class="n">co</span> <span class="o">=</span> <span class="n">read_dcd_data_ref</span><span class="p">(</span><span class="s1">&#39;lammps.dcd&#39;</span><span class="p">,</span> <span class="n">convang</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -151,7 +143,7 @@ files)</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.batch.Machine &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.batch.Machine.get_jobfile_basename" href="pwtools.batch.Machine.get_jobfile_basename.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,7 +94,7 @@
 <h1>pwtools.batch.Machine<a class="headerlink" href="#pwtools-batch-machine" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pwtools.batch.Machine">
-<em class="property">class </em><code class="descclassname">pwtools.batch.</code><code class="descname">Machine</code><span class="sig-paren">(</span><em>hostname=None</em>, <em>subcmd=None</em>, <em>scratch=None</em>, <em>home=None</em>, <em>template=None</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Machine" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.batch.</code><code class="sig-name descname">Machine</code><span class="sig-paren">(</span><em class="sig-param">hostname=None</em>, <em class="sig-param">subcmd=None</em>, <em class="sig-param">scratch=None</em>, <em class="sig-param">home=None</em>, <em class="sig-param">template=None</em>, <em class="sig-param">filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Machine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Container for machine-specific stuff.</p>
 <p>Most of the machine-specific settings can (and should) be placed in the
@@ -106,28 +102,26 @@ corresponding job template file. But some settings need to be in sync
 between files like the scratch dir, the $HOME etc.</p>
 <p>Useful to predefine commonly used machines.</p>
 <p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.batch.Machine.get_jobfile_basename.html#pwtools.batch.Machine.get_jobfile_basename" title="pwtools.batch.Machine.get_jobfile_basename"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_jobfile_basename</span></code></a>()</td>
-<td></td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.batch.Machine.get_jobfile_basename.html#pwtools.batch.Machine.get_jobfile_basename" title="pwtools.batch.Machine.get_jobfile_basename"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_jobfile_basename</span></code></a>()</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.batch.Machine.get_sql_record.html#pwtools.batch.Machine.get_sql_record" title="pwtools.batch.Machine.get_sql_record"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_sql_record</span></code></a>()</td>
-<td>Return a dict of SQLEntry instances.</td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.batch.Machine.get_sql_record.html#pwtools.batch.Machine.get_sql_record" title="pwtools.batch.Machine.get_sql_record"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_sql_record</span></code></a>()</p></td>
+<td><p>Return a dict of SQLEntry instances.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
 <dt id="pwtools.batch.Machine.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>hostname=None</em>, <em>subcmd=None</em>, <em>scratch=None</em>, <em>home=None</em>, <em>template=None</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Machine.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Machine.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>hostname</strong> : st</p>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">hostname=None</em>, <em class="sig-param">subcmd=None</em>, <em class="sig-param">scratch=None</em>, <em class="sig-param">home=None</em>, <em class="sig-param">template=None</em>, <em class="sig-param">filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Machine.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Machine.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>hostname</strong> : st</p>
 <blockquote>
 <div><p>machine name (‘mars’, ‘local’, …)</p>
 </div></blockquote>
@@ -145,25 +139,23 @@ between files like the scratch dir, the $HOME etc.</p>
 </div></blockquote>
 <p><strong>template</strong> : FileTemplate</p>
 <p><strong>filename</strong> : str</p>
-<blockquote class="last">
+<blockquote>
 <div><p>full jobfile name for FileTemplate (e.g.
 ‘calc.templ/job.local’), use either this or <cite>template</cite></p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="pwtools.batch.Machine.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.batch.Machine.__weakref__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#pwtools.batch.Machine.__weakref__" title="Permalink to this definition">¶</a></dt>
 <dd><p>list of weak references to the object (if defined)</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pwtools.batch.Machine.get_sql_record">
-<code class="descname">get_sql_record</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Machine.get_sql_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Machine.get_sql_record" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_sql_record</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Machine.get_sql_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Machine.get_sql_record" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a dict of SQLEntry instances. Each key is a attr name from
 self.attr_lst.</p>
 </dd></dl>
@@ -182,7 +174,7 @@ self.attr_lst.</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

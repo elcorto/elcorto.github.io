@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.test.tools.unpack_compressed &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="thermo" href="thermo.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,23 +94,21 @@
 <h1>pwtools.test.tools.unpack_compressed<a class="headerlink" href="#pwtools-test-tools-unpack-compressed" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="pwtools.test.tools.unpack_compressed">
-<code class="descclassname">pwtools.test.tools.</code><code class="descname">unpack_compressed</code><span class="sig-paren">(</span><em>src</em>, <em>prefix='tmp'</em>, <em>testdir='/tmp'</em>, <em>ext=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/test/tools.html#unpack_compressed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.test.tools.unpack_compressed" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.test.tools.</code><code class="sig-name descname">unpack_compressed</code><span class="sig-paren">(</span><em class="sig-param">src</em>, <em class="sig-param">prefix='tmp'</em>, <em class="sig-param">testdir='/tmp'</em>, <em class="sig-param">ext=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/test/tools.html#unpack_compressed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.test.tools.unpack_compressed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convenience function to uncompress files/some_file.out.gz into a random
 location. Return the filename “path/to/random_location/some_file.out”
 without “.gz”, which can be used in subsequent commands.</p>
-<dl class="docutils">
-<dt>Supported file types: gz, tgz, tar.gz</dt>
-<dd>gunzip path/to/random_location/some_file.out.gz
-tar -C path/to/random_location -xzf path/to/random_location/some_file.out.tgz</dd>
+<dl class="simple">
+<dt>Supported file types: gz, tgz, tar.gz</dt><dd><p>gunzip path/to/random_location/some_file.out.gz
+tar -C path/to/random_location -xzf path/to/random_location/some_file.out.tgz</p>
+</dd>
 </dl>
 <p>Other compress formats may be implemented as needed.</p>
 <p>Can also be used for slightly more complex unpack business, see for
 example test_cpmd_md.py.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>src</strong> : str</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>src</strong> : str</p>
 <blockquote>
 <div><p>path to the compressed file, i.e. files/some_file.out.gz</p>
 </div></blockquote>
@@ -129,14 +123,12 @@ to identify which test script created the random dir</p>
 <code class="docutils literal notranslate"><span class="pre">pwtools.test.testenv.testdir</span></code></p>
 </div></blockquote>
 <p><strong>ext</strong> : str, optional</p>
-<blockquote class="last">
+<blockquote>
 <div><p>file extension of compressed file (‘gz’, ‘tgz’, ‘tar.gz’), if None then
 it will be guessed from <cite>src</cite></p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -151,7 +143,7 @@ it will be guessed from <cite>src</cite></p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

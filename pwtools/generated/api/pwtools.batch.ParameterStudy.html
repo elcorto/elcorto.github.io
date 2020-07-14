@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.batch.ParameterStudy &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.batch.ParameterStudy.write_input" href="pwtools.batch.ParameterStudy.write_input.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,7 +94,7 @@
 <h1>pwtools.batch.ParameterStudy<a class="headerlink" href="#pwtools-batch-parameterstudy" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pwtools.batch.ParameterStudy">
-<em class="property">class </em><code class="descclassname">pwtools.batch.</code><code class="descname">ParameterStudy</code><span class="sig-paren">(</span><em>machines=[]</em>, <em>templates=[]</em>, <em>params_lst=[]</em>, <em>study_name='calc'</em>, <em>db_name='calc.db'</em>, <em>db_table='calc'</em>, <em>calc_root='.'</em>, <em>calc_dir_prefix='calc'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#ParameterStudy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.ParameterStudy" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.batch.</code><code class="sig-name descname">ParameterStudy</code><span class="sig-paren">(</span><em class="sig-param">machines=[]</em>, <em class="sig-param">templates=[]</em>, <em class="sig-param">params_lst=[]</em>, <em class="sig-param">study_name='calc'</em>, <em class="sig-param">db_name='calc.db'</em>, <em class="sig-param">db_table='calc'</em>, <em class="sig-param">calc_root='.'</em>, <em class="sig-param">calc_dir_prefix='calc'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#ParameterStudy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.ParameterStudy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class to represent a parameter study (a number of Calculations,
 based on template files).</p>
@@ -108,8 +104,9 @@ outside (<cite>params_lst</cite>) and pass these to this class along with a list
 the parameter sets is done and input files are written.</p>
 <p>Calculation dirs are numbered automatically. The default is</p>
 <blockquote>
-<div><code class="docutils literal notranslate"><span class="pre">calc_dir</span> <span class="pre">=</span> <span class="pre">&lt;calc_root&gt;/&lt;calc_dir_prefix&gt;_&lt;machine.hostname&gt;</span></code>, e.g.
-<code class="docutils literal notranslate"><span class="pre">./calc_foo</span></code></div></blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">calc_dir</span> <span class="pre">=</span> <span class="pre">&lt;calc_root&gt;/&lt;calc_dir_prefix&gt;_&lt;machine.hostname&gt;</span></code>, e.g.
+<code class="docutils literal notranslate"><span class="pre">./calc_foo</span></code></p>
+</div></blockquote>
 <p>and each calculation for each parameter set</p>
 <blockquote>
 <div><div class="line-block">
@@ -126,11 +123,11 @@ continues at the end. This can be changed with the <cite>mode</cite> kwarg of
 <a class="reference internal" href="pwtools.batch.ParameterStudy.write_input.html#pwtools.batch.ParameterStudy.write_input" title="pwtools.batch.ParameterStudy.write_input"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write_input()</span></code></a>. By default, a sql column “revision” is
 added which numbers each addition.</p>
 <div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">itertools.product</span></code>, <a class="reference internal" href="pwtools.comb.nested_loops.html#pwtools.comb.nested_loops" title="pwtools.comb.nested_loops"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.comb.nested_loops()</span></code></a>, <a class="reference internal" href="pwtools.sql.sql_column.html#pwtools.sql.sql_column" title="pwtools.sql.sql_column"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.sql.sql_column()</span></code></a></p>
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">itertools.product</span></code>, <a class="reference internal" href="pwtools.comb.nested_loops.html#pwtools.comb.nested_loops" title="pwtools.comb.nested_loops"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.comb.nested_loops()</span></code></a>, <a class="reference internal" href="pwtools.sql.sql_column.html#pwtools.sql.sql_column" title="pwtools.sql.sql_column"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.sql.sql_column()</span></code></a></p>
 </div>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Here are some examples for constructing `params_lst`.</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Here are some examples for constructing `params_lst`.</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Vary two (three, ...) parameters on a 2d (3d, ...) grid: In fact, the</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># way you are constructing params_lst is only a matter of zip() and</span>
@@ -158,25 +155,23 @@ added which numbers each addition.</p>
 <p>See <code class="docutils literal notranslate"><span class="pre">examples/parameter_study/</span></code> for complete examples, as well as
 <code class="docutils literal notranslate"><span class="pre">test/test_parameter_study.py</span></code>.</p>
 <p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.batch.ParameterStudy.write_input.html#pwtools.batch.ParameterStudy.write_input" title="pwtools.batch.ParameterStudy.write_input"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_input</span></code></a>([mode,&nbsp;backup,&nbsp;sleep,&nbsp;excl])</td>
-<td>Create calculation dir(s) for each parameter set and write input files based on <code class="docutils literal notranslate"><span class="pre">templates</span></code>.</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.batch.ParameterStudy.write_input.html#pwtools.batch.ParameterStudy.write_input" title="pwtools.batch.ParameterStudy.write_input"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_input</span></code></a>([mode, backup, sleep, excl])</p></td>
+<td><p>Create calculation dir(s) for each parameter set and write input files based on <code class="docutils literal notranslate"><span class="pre">templates</span></code>.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
 <dt id="pwtools.batch.ParameterStudy.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>machines=[]</em>, <em>templates=[]</em>, <em>params_lst=[]</em>, <em>study_name='calc'</em>, <em>db_name='calc.db'</em>, <em>db_table='calc'</em>, <em>calc_root='.'</em>, <em>calc_dir_prefix='calc'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#ParameterStudy.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.ParameterStudy.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>machines</strong> : sequence or Machine</p>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">machines=[]</em>, <em class="sig-param">templates=[]</em>, <em class="sig-param">params_lst=[]</em>, <em class="sig-param">study_name='calc'</em>, <em class="sig-param">db_name='calc.db'</em>, <em class="sig-param">db_table='calc'</em>, <em class="sig-param">calc_root='.'</em>, <em class="sig-param">calc_dir_prefix='calc'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#ParameterStudy.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.ParameterStudy.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>machines</strong> : sequence or Machine</p>
 <blockquote>
 <div><p>List of Machine instances or a single Machine</p>
 </div></blockquote>
@@ -223,33 +218,29 @@ files and job name etc. will be built. By default, a string
 <div><p>Root of all calc dirs.</p>
 </div></blockquote>
 <p><strong>calc_dir_prefix</strong> : str, optional</p>
-<blockquote class="last">
+<blockquote>
 <div><p>Prefix for the top calculation dir (e.g. ‘calc’ for ‘calc_foo’).</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="pwtools.batch.ParameterStudy.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.batch.ParameterStudy.__weakref__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#pwtools.batch.ParameterStudy.__weakref__" title="Permalink to this definition">¶</a></dt>
 <dd><p>list of weak references to the object (if defined)</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pwtools.batch.ParameterStudy.write_input">
-<code class="descname">write_input</code><span class="sig-paren">(</span><em>mode='a'</em>, <em>backup=True</em>, <em>sleep=0</em>, <em>excl=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#ParameterStudy.write_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.ParameterStudy.write_input" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">write_input</code><span class="sig-paren">(</span><em class="sig-param">mode='a'</em>, <em class="sig-param">backup=True</em>, <em class="sig-param">sleep=0</em>, <em class="sig-param">excl=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#ParameterStudy.write_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.ParameterStudy.write_input" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create calculation dir(s) for each parameter set and write input files
 based on <code class="docutils literal notranslate"><span class="pre">templates</span></code>. Write sqlite database storing all relevant
 parameters. Write (bash) shell script to start all calculations (run
 locally or submitt batch job file, depending on <code class="docutils literal notranslate"><span class="pre">machine.subcmd</span></code>).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>mode</strong> : str, optional</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mode</strong> : str, optional</p>
 <blockquote>
 <div><p>Fine tune how to write input files (based on <code class="docutils literal notranslate"><span class="pre">templates</span></code>) to calc
 dirs calc_foo/0/, calc_foo/1/, … . Note that this doesn’t change
@@ -285,16 +276,14 @@ exists.</p>
 shell sleep(1) commmand.</p>
 </div></blockquote>
 <p><strong>excl</strong> : bool</p>
-<blockquote class="last">
+<blockquote>
 <div><p>If in append mode, a file &lt;calc_root&gt;/excl_push with all indices of
 calculations from old revisions is written. Can be used with
 <code class="docutils literal notranslate"><span class="pre">rsync</span> <span class="pre">--exclude-from=excl_push</span></code> when pushing appended new
 calculations to a cluster.</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -311,7 +300,7 @@ calculations to a cluster.</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

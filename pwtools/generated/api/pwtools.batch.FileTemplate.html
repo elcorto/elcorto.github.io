@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.batch.FileTemplate &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.batch.FileTemplate.write" href="pwtools.batch.FileTemplate.write.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,7 +94,7 @@
 <h1>pwtools.batch.FileTemplate<a class="headerlink" href="#pwtools-batch-filetemplate" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pwtools.batch.FileTemplate">
-<em class="property">class </em><code class="descclassname">pwtools.batch.</code><code class="descname">FileTemplate</code><span class="sig-paren">(</span><em>basename=None</em>, <em>txt=None</em>, <em>keys=None</em>, <em>templ_dir='calc.templ'</em>, <em>filename=None</em>, <em>func=&lt;function FileTemplate.&lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#FileTemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.FileTemplate" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.batch.</code><code class="sig-name descname">FileTemplate</code><span class="sig-paren">(</span><em class="sig-param">basename=None</em>, <em class="sig-param">txt=None</em>, <em class="sig-param">keys=None</em>, <em class="sig-param">templ_dir='calc.templ'</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">func=&lt;function FileTemplate.&lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#FileTemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.FileTemplate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class to represent a template file in parameter studies.</p>
 <p>Each template file is supposed to contain a number of placeholder strings
@@ -147,28 +143,26 @@ dictionary keys with <cite>func</cite>. In the example, this will be:</p>
 </pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.batch.FileTemplate.write.html#pwtools.batch.FileTemplate.write" title="pwtools.batch.FileTemplate.write"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write</span></code></a>(dct[,&nbsp;calc_dir,&nbsp;mode])</td>
-<td>Write file self.filename (e.g.</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.batch.FileTemplate.write.html#pwtools.batch.FileTemplate.write" title="pwtools.batch.FileTemplate.write"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write</span></code></a>(dct[, calc_dir, mode])</p></td>
+<td><p>Write file self.filename (e.g.</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.batch.FileTemplate.writesql.html#pwtools.batch.FileTemplate.writesql" title="pwtools.batch.FileTemplate.writesql"><code class="xref py py-obj docutils literal notranslate"><span class="pre">writesql</span></code></a>(sql_record[,&nbsp;calc_dir])</td>
-<td></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.batch.FileTemplate.writesql.html#pwtools.batch.FileTemplate.writesql" title="pwtools.batch.FileTemplate.writesql"><code class="xref py py-obj docutils literal notranslate"><span class="pre">writesql</span></code></a>(sql_record[, calc_dir])</p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
 <dt id="pwtools.batch.FileTemplate.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>basename=None</em>, <em>txt=None</em>, <em>keys=None</em>, <em>templ_dir='calc.templ'</em>, <em>filename=None</em>, <em>func=&lt;function FileTemplate.&lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#FileTemplate.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.FileTemplate.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>basename</strong> : string</p>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">basename=None</em>, <em class="sig-param">txt=None</em>, <em class="sig-param">keys=None</em>, <em class="sig-param">templ_dir='calc.templ'</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">func=&lt;function FileTemplate.&lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#FileTemplate.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.FileTemplate.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>basename</strong> : string</p>
 <blockquote>
 <div><div class="line-block">
 <div class="line">The name of the template file and target file.</div>
@@ -212,7 +206,7 @@ dictionary keys with <cite>func</cite>. In the example, this will be:</p>
 and basename=os.path.basename(filename)</p>
 </div></blockquote>
 <p><strong>func</strong> : callable</p>
-<blockquote class="last">
+<blockquote>
 <div><div class="line-block">
 <div class="line">A function which takes a string (key) and returns a string, which</div>
 <div class="line">is the placeholder corresponding to that key.</div>
@@ -224,28 +218,24 @@ and basename=os.path.basename(filename)</p>
 </div>
 </div>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="pwtools.batch.FileTemplate.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.batch.FileTemplate.__weakref__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#pwtools.batch.FileTemplate.__weakref__" title="Permalink to this definition">¶</a></dt>
 <dd><p>list of weak references to the object (if defined)</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pwtools.batch.FileTemplate.write">
-<code class="descname">write</code><span class="sig-paren">(</span><em>dct</em>, <em>calc_dir='calc'</em>, <em>mode='dct'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#FileTemplate.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.FileTemplate.write" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param">dct</em>, <em class="sig-param">calc_dir='calc'</em>, <em class="sig-param">mode='dct'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#FileTemplate.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.FileTemplate.write" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write file self.filename (e.g. calc/0/pw.in) by replacing
 placeholders in the template (e.g. calc.templ/pw.in).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dct</strong> : dict</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dct</strong> : dict</p>
 <blockquote>
 <div><p>key-value pairs, dct.keys() are converted to placeholders with
 self.func()</p>
@@ -255,7 +245,7 @@ self.func()</p>
 <div><p>the dir where to write the target file to</p>
 </div></blockquote>
 <p><strong>mode</strong> : str, {‘dct’, ‘sql’}</p>
-<blockquote class="last">
+<blockquote>
 <div><div class="line-block">
 <div class="line">mode=’dct’: replacement values are dct[&lt;key&gt;]</div>
 <div class="line">mode=’sql’: replacement values are dct[&lt;key&gt;].fileval and every</div>
@@ -264,10 +254,8 @@ self.func()</p>
 </div>
 </div>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -284,7 +272,7 @@ self.func()</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

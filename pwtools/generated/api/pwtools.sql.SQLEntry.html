@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.sql.SQLEntry &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.sql.SQLiteDB" href="pwtools.sql.SQLiteDB.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,7 +94,7 @@
 <h1>pwtools.sql.SQLEntry<a class="headerlink" href="#pwtools-sql-sqlentry" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pwtools.sql.SQLEntry">
-<em class="property">class </em><code class="descclassname">pwtools.sql.</code><code class="descname">SQLEntry</code><span class="sig-paren">(</span><em>sqlval=None</em>, <em>sqltype=None</em>, <em>fileval=None</em>, <em>key=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLEntry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLEntry" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.sql.</code><code class="sig-name descname">SQLEntry</code><span class="sig-paren">(</span><em class="sig-param">sqlval=None</em>, <em class="sig-param">sqltype=None</em>, <em class="sig-param">fileval=None</em>, <em class="sig-param">key=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLEntry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLEntry" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Represent an entry in a SQLite database. An entry is one single
 value of one column and record (record = row).</p>
@@ -109,12 +105,10 @@ SQLite database.</p>
 in the db and in the actual input file. See fileval.</p>
 <dl class="method">
 <dt id="pwtools.sql.SQLEntry.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>sqlval=None</em>, <em>sqltype=None</em>, <em>fileval=None</em>, <em>key=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLEntry.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLEntry.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>sqlval</strong> : Any Python type (str, unicode, float, integer, …)</p>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">sqlval=None</em>, <em class="sig-param">sqltype=None</em>, <em class="sig-param">fileval=None</em>, <em class="sig-param">key=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLEntry.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLEntry.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sqlval</strong> : Any Python type (str, unicode, float, integer, …)</p>
 <blockquote>
 <div><p>The value of the entry which is entered into the database.</p>
 </div></blockquote>
@@ -140,7 +134,7 @@ Example: K_POINTS in pw.x input file:</p>
 </div>
 </div></blockquote>
 <p><strong>key</strong> : optional, {None, str}, optional</p>
-<blockquote class="last">
+<blockquote>
 <div><p>An optional key. This key should refer to the column name in the
 database table, as in:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">create</span> <span class="n">table</span> <span class="n">calc</span> <span class="p">(</span><span class="n">key1</span> <span class="n">sqltype1</span><span class="p">,</span> <span class="n">key2</span> <span class="n">sqltype2</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
@@ -151,10 +145,8 @@ database table, as in:</p>
 </pre></div>
 </div>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Notes</p>
 <p>SQLite types from the Python docs of sqlite3:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="nb">type</span>     <span class="n">SQLite</span> <span class="nb">type</span>
@@ -172,7 +164,7 @@ database table, as in:</p>
 
 <dl class="attribute">
 <dt id="pwtools.sql.SQLEntry.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.sql.SQLEntry.__weakref__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#pwtools.sql.SQLEntry.__weakref__" title="Permalink to this definition">¶</a></dt>
 <dd><p>list of weak references to the object (if defined)</p>
 </dd></dl>
 
@@ -190,7 +182,7 @@ database table, as in:</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.batch &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -71,17 +69,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -89,18 +85,21 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.batch</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">copy</span><span class="o">,</span> <span class="nn">shutil</span><span class="o">,</span> <span class="nn">warnings</span>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="k">import</span> <span class="n">Callable</span>
+
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
 <span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">common</span>
 <span class="kn">from</span> <span class="nn">pwtools.sql</span> <span class="k">import</span> <span class="n">SQLEntry</span><span class="p">,</span> <span class="n">SQLiteDB</span>
 <span class="kn">from</span> <span class="nn">pwtools.verbose</span> <span class="k">import</span> <span class="n">verbose</span>
-<span class="kn">import</span> <span class="nn">collections</span>
+
 <span class="n">pj</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span>
 
-<span class="c1"># backwd compat</span>
-<span class="kn">from</span> <span class="nn">pwtools.sql</span> <span class="k">import</span> <span class="n">sql_column</span><span class="p">,</span> <span class="n">sql_matrix</span>
 
-<div class="viewcode-block" id="Machine"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Machine.html#pwtools.batch.Machine">[docs]</a><span class="k">class</span> <span class="nc">Machine</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Machine"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Machine.html#pwtools.batch.Machine">[docs]</a><span class="k">class</span> <span class="nc">Machine</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Container for machine-specific stuff.</span>
 
 <span class="sd">    Most of the machine-specific settings can (and should) be placed in the</span>
@@ -158,7 +157,7 @@
         <span class="k">return</span> <span class="n">dct</span></div></div>
 
 
-<div class="viewcode-block" id="FileTemplate"><a class="viewcode-back" href="../../generated/api/pwtools.batch.FileTemplate.html#pwtools.batch.FileTemplate">[docs]</a><span class="k">class</span> <span class="nc">FileTemplate</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="FileTemplate"><a class="viewcode-back" href="../../generated/api/pwtools.batch.FileTemplate.html#pwtools.batch.FileTemplate">[docs]</a><span class="k">class</span> <span class="nc">FileTemplate</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Class to represent a template file in parameter studies.</span>
 
 <span class="sd">    Each template file is supposed to contain a number of placeholder strings</span>
@@ -339,7 +338,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sql_record</span><span class="p">,</span> <span class="n">calc_dir</span><span class="o">=</span><span class="n">calc_dir</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;sql&#39;</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="Calculation"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Calculation.html#pwtools.batch.Calculation">[docs]</a><span class="k">class</span> <span class="nc">Calculation</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Calculation"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Calculation.html#pwtools.batch.Calculation">[docs]</a><span class="k">class</span> <span class="nc">Calculation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Represent a single calculation.</span>
 
 <span class="sd">    The calculation data will be placed, e.g., in dir calc_foo/0/. A</span>
@@ -415,7 +414,7 @@
             <span class="n">templ</span><span class="o">.</span><span class="n">writesql</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql_record_write</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_dir</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="ParameterStudy"><a class="viewcode-back" href="../../generated/api/pwtools.batch.ParameterStudy.html#pwtools.batch.ParameterStudy">[docs]</a><span class="k">class</span> <span class="nc">ParameterStudy</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="ParameterStudy"><a class="viewcode-back" href="../../generated/api/pwtools.batch.ParameterStudy.html#pwtools.batch.ParameterStudy">[docs]</a><span class="k">class</span> <span class="nc">ParameterStudy</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Class to represent a parameter study (a number of Calculations,</span>
 <span class="sd">    based on template files).</span>
 
@@ -820,7 +819,7 @@
     <span class="k">return</span> <span class="n">ret</span></div>
 
 
-<div class="viewcode-block" id="Case"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Case.html#pwtools.batch.Case">[docs]</a><span class="k">class</span> <span class="nc">Case</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Case"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Case.html#pwtools.batch.Case">[docs]</a><span class="k">class</span> <span class="nc">Case</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;General purpose container class, supporting only keywords in the</span>
 <span class="sd">    constructor. This is essentially the same as a dictionary, just with</span>
 <span class="sd">    another syntax for attribute access, i.e. ``case.foo`` instead of</span>
@@ -853,7 +852,7 @@
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">kwds</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;init&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">Callable</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;init&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">,</span> <span class="n">Callable</span><span class="p">):</span>
             <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;self.init()&#39;</span><span class="p">)</span></div></div>
 </pre></div>
 
@@ -866,7 +865,7 @@
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
     </div>

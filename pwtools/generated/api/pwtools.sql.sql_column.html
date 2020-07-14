@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.sql.sql_column &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.sql.sql_column_old" href="pwtools.sql.sql_column_old.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,16 +94,14 @@
 <h1>pwtools.sql.sql_column<a class="headerlink" href="#pwtools-sql-sql-column" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="pwtools.sql.sql_column">
-<code class="descclassname">pwtools.sql.</code><code class="descname">sql_column</code><span class="sig-paren">(</span><em>key</em>, <em>lst</em>, <em>sqltype=None</em>, <em>sqlval_func=&lt;function &lt;lambda&gt;&gt;</em>, <em>fileval_func=&lt;function &lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#sql_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.sql_column" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.sql.</code><code class="sig-name descname">sql_column</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">lst</em>, <em class="sig-param">sqltype=None</em>, <em class="sig-param">sqlval_func=&lt;function &lt;lambda&gt;&gt;</em>, <em class="sig-param">fileval_func=&lt;function &lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#sql_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.sql_column" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a list <cite>lst</cite> of values of the same type (i.e. all floats) to a
 list of SQLEntry instances of the same column name <cite>key</cite> and <cite>sqltype</cite>
 (e.g. ‘float’).</p>
 <p>See ParameterStudy for applications.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>key</strong> : str</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> : str</p>
 <blockquote>
 <div><p>sql column name</p>
 </div></blockquote>
@@ -123,7 +117,7 @@ list of SQLEntry instances of the same column name <cite>key</cite> and <cite>sq
 Default is sqlval = lst[i].</p>
 </div></blockquote>
 <p><strong>fileval_func</strong> : callable, optional</p>
-<blockquote class="last">
+<blockquote>
 <div><p>Function to transform each entry lst[i] to SQLEntry.fileval
 Default is fileval = lst[i].
 example:</p>
@@ -133,12 +127,10 @@ fileval = ‘value = 23’
 fileval_func = lambda x: “value = %s” %str(x)</p>
 </div></blockquote>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vals</span> <span class="o">=</span> <span class="n">sql_column</span><span class="p">(</span><span class="s1">&#39;ecutfwc&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">25.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mf">75.0</span><span class="p">],</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vals</span> <span class="o">=</span> <span class="n">sql_column</span><span class="p">(</span><span class="s1">&#39;ecutfwc&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">25.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mf">75.0</span><span class="p">],</span>
 <span class="gp">... </span>                  <span class="n">fileval_func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;ecutfwc=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">x</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">sqltype</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">sqlval</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">fileval</span><span class="p">)</span>
@@ -161,7 +153,7 @@ fileval_func = lambda x: “value = %s” %str(x)</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

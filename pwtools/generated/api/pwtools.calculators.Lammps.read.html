@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.calculators.Lammps.read &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.calculators.Lammps.read_atoms" href="pwtools.calculators.Lammps.read_atoms.html" />
@@ -79,17 +77,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -100,19 +96,19 @@
 <h1>pwtools.calculators.Lammps.read<a class="headerlink" href="#pwtools-calculators-lammps-read" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="pwtools.calculators.Lammps.read">
-<code class="descclassname">Lammps.</code><code class="descname">read</code><span class="sig-paren">(</span><em>label</em><span class="sig-paren">)</span><a class="headerlink" href="#pwtools.calculators.Lammps.read" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">Lammps.</code><code class="sig-name descname">read</code><span class="sig-paren">(</span><em class="sig-param">label</em><span class="sig-paren">)</span><a class="headerlink" href="#pwtools.calculators.Lammps.read" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read atoms, parameters and calculated properties from output file.</p>
 <p>Read result from self.label file.  Raise ReadError if the file
 is not there.  If the file is corrupted or contains an error
 message from the calculation, a ReadError should also be
 raised.  In case of succes, these attributes must set:</p>
-<dl class="docutils">
-<dt>atoms: Atoms object</dt>
-<dd>The state of the atoms from last calculation.</dd>
-<dt>parameters: Parameters object</dt>
-<dd>The parameter dictionary.</dd>
-<dt>results: dict</dt>
-<dd>Calculated properties like energy and forces.</dd>
+<dl class="simple">
+<dt>atoms: Atoms object</dt><dd><p>The state of the atoms from last calculation.</p>
+</dd>
+<dt>parameters: Parameters object</dt><dd><p>The parameter dictionary.</p>
+</dd>
+<dt>results: dict</dt><dd><p>Calculated properties like energy and forces.</p>
+</dd>
 </dl>
 <p>The FileIOCalculator.read() method will typically read atoms
 and parameters and get the results dict by calling the
@@ -131,7 +127,7 @@ read_results() method.</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

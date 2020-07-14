@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.num.Interpol2D &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.num.Interpol2D.__call__" href="pwtools.num.Interpol2D.__call__.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,72 +94,62 @@
 <h1>pwtools.num.Interpol2D<a class="headerlink" href="#pwtools-num-interpol2d" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pwtools.num.Interpol2D">
-<em class="property">class </em><code class="descclassname">pwtools.num.</code><code class="descname">Interpol2D</code><span class="sig-paren">(</span><em>points=None</em>, <em>values=None</em>, <em>xx=None</em>, <em>yy=None</em>, <em>dd=None</em>, <em>what='rbf_inv_multi'</em>, <em>**initkwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Interpol2D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Interpol2D" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.num.</code><code class="sig-name descname">Interpol2D</code><span class="sig-paren">(</span><em class="sig-param">points=None</em>, <em class="sig-param">values=None</em>, <em class="sig-param">xx=None</em>, <em class="sig-param">yy=None</em>, <em class="sig-param">dd=None</em>, <em class="sig-param">what='rbf_inv_multi'</em>, <em class="sig-param">**initkwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Interpol2D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Interpol2D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Common 2D interpolator API.</p>
 <p>The API is the same as in <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code>, e.g.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">inter</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">interpolate</span><span class="o">.</span><span class="n">SomeInterpolatorClass</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">inter</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">interpolate</span><span class="o">.</span><span class="n">SomeInterpolatorClass</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">new_values</span> <span class="o">=</span> <span class="n">inter</span><span class="p">(</span><span class="n">new_points</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This is for easy testing of multiple interpolators on a surface z = f(x,y),
 which is given as an unordered set of points.</p>
 <p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.num.Interpol2D.__call__.html#pwtools.num.Interpol2D.__call__" title="pwtools.num.Interpol2D.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(points,&nbsp;**callkwds)</td>
-<td><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.num.Interpol2D.__call__.html#pwtools.num.Interpol2D.__call__" title="pwtools.num.Interpol2D.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(points, **callkwds)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
 </tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.num.Interpol2D.get_min.html#pwtools.num.Interpol2D.get_min" title="pwtools.num.Interpol2D.get_min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_min</span></code></a>([x0])</td>
-<td>Return [x,y] where z(x,y) = min(z) by minimizing z(x,y) w/ scipy.optimize.fmin().</td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.num.Interpol2D.get_min.html#pwtools.num.Interpol2D.get_min" title="pwtools.num.Interpol2D.get_min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_min</span></code></a>([x0])</p></td>
+<td><p>Return [x,y] where z(x,y) = min(z) by minimizing z(x,y) w/ scipy.optimize.fmin().</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
 <dt id="pwtools.num.Interpol2D.__call__">
-<code class="descname">__call__</code><span class="sig-paren">(</span><em>points</em>, <em>**callkwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Interpol2D.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Interpol2D.__call__" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>points</strong> : 2d (M,2) or 1d (N,)</p>
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">points</em>, <em class="sig-param">**callkwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Interpol2D.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Interpol2D.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>points</strong> : 2d (M,2) or 1d (N,)</p>
 <blockquote>
 <div><p>M points in 2-dim space where to evalutae the interpolator
 (only one in 1d case)</p>
 </div></blockquote>
 <p><strong>**callkwds</strong> : keywords passed to the interpolator’s __call__ method</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>Y</strong> : 1d array (M,)</p>
-<blockquote class="last">
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Y</strong> : 1d array (M,)</p>
+<blockquote>
 <div><p>interpolated values</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="pwtools.num.Interpol2D.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>points=None</em>, <em>values=None</em>, <em>xx=None</em>, <em>yy=None</em>, <em>dd=None</em>, <em>what='rbf_inv_multi'</em>, <em>**initkwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Interpol2D.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Interpol2D.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>points</strong> : (npoints, 2)</p>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">points=None</em>, <em class="sig-param">values=None</em>, <em class="sig-param">xx=None</em>, <em class="sig-param">yy=None</em>, <em class="sig-param">dd=None</em>, <em class="sig-param">what='rbf_inv_multi'</em>, <em class="sig-param">**initkwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Interpol2D.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Interpol2D.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>points</strong> : (npoints, 2)</p>
 <p><strong>values</strong> : (npoints, 1)</p>
 <p><strong>xx,yy</strong> : (npoints, 1)</p>
 <blockquote>
@@ -185,13 +171,11 @@ which is given as an unordered set of points.</p>
 </div>
 </div></blockquote>
 <p><strong>**initkwds</strong> : keywords passed on to the interpolator’s constructor or</p>
-<blockquote class="last">
+<blockquote>
 <div><p>fit() method (RBF case)</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Notes</p>
 <p>Despite the name “Interpol2D”, the RBF methods ‘rbf_*’ as well as ‘poly’ are
 actually fits (least squares regression). You can force interpolation with
@@ -227,7 +211,7 @@ does <a class="reference internal" href="pwtools.num.Interpol2D.get_min.html#pwt
 </div>
 </div>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">num</span><span class="p">,</span> <span class="n">mpl</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">num</span><span class="p">,</span> <span class="n">mpl</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="o">=</span><span class="n">x</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">;</span> <span class="n">Y</span><span class="o">=</span><span class="n">Y</span><span class="o">.</span><span class="n">T</span>
@@ -259,31 +243,27 @@ does <a class="reference internal" href="pwtools.num.Interpol2D.get_min.html#pwt
 
 <dl class="attribute">
 <dt id="pwtools.num.Interpol2D.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.num.Interpol2D.__weakref__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#pwtools.num.Interpol2D.__weakref__" title="Permalink to this definition">¶</a></dt>
 <dd><p>list of weak references to the object (if defined)</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pwtools.num.Interpol2D.get_min">
-<code class="descname">get_min</code><span class="sig-paren">(</span><em>x0=None</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Interpol2D.get_min"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Interpol2D.get_min" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_min</code><span class="sig-paren">(</span><em class="sig-param">x0=None</em>, <em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Interpol2D.get_min"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Interpol2D.get_min" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return [x,y] where z(x,y) = min(z) by minimizing z(x,y) w/
 scipy.optimize.fmin().</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x0</strong> : sequence, length (2,), optional</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x0</strong> : sequence, length (2,), optional</p>
 <blockquote>
 <div><p>Initial guess. If None then use the data grid point with the
 smallest <cite>z</cite> value.</p>
 </div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">[xmin, ymin]: 1d array (2,)</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[xmin, ymin]: 1d array (2,)</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -300,7 +280,7 @@ smallest <cite>z</cite> value.</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

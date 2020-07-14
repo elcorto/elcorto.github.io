@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.sql.makedb &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.sql.sql_column" href="pwtools.sql.sql_column.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,7 +94,7 @@
 <h1>pwtools.sql.makedb<a class="headerlink" href="#pwtools-sql-makedb" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="pwtools.sql.makedb">
-<code class="descclassname">pwtools.sql.</code><code class="descname">makedb</code><span class="sig-paren">(</span><em>filename</em>, <em>lists</em>, <em>colnames</em>, <em>table=None</em>, <em>mode='a'</em>, <em>close=True</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#makedb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.makedb" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.sql.</code><code class="sig-name descname">makedb</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">lists</em>, <em class="sig-param">colnames</em>, <em class="sig-param">table=None</em>, <em class="sig-param">mode='a'</em>, <em class="sig-param">close=True</em>, <em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#makedb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.makedb" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create sqlite db <cite>filename</cite> (mode=’w’) or append to existing db
 (mode=’a’). The database is build up from <cite>lists</cite> and <cite>colnames</cite>, see
 sql_matrix().</p>
@@ -110,11 +106,9 @@ other entries are NULL by default.</p>
 <p>By default <cite>close=True</cite>, i.e. a db with a closed connection is returned.
 For interactive use, <cite>close=False</cite> is what you want. That gives you a db
 which can be used right away.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>lists</strong> : list of lists, see sql_matrix()</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>lists</strong> : list of lists, see sql_matrix()</p>
 <p><strong>colnames</strong> : list of column names, see sql_matrix()</p>
 <p><strong>table</strong> : str, optional</p>
 <blockquote>
@@ -130,15 +124,13 @@ on <cite>filename</cite>.</p>
 <div><p>Close cursor after db has been filled with values.</p>
 </div></blockquote>
 <p><strong>**kwds</strong> : passed to sql_matrix()</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>db</strong> : SQLiteDB instance</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>db</strong> : SQLiteDB instance</p>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lists</span><span class="o">=</span><span class="nb">zip</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lists</span><span class="o">=</span><span class="nb">zip</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">=</span><span class="n">sql</span><span class="o">.</span><span class="n">makedb</span><span class="p">(</span><span class="s1">&#39;/tmp/foo.db&#39;</span><span class="p">,</span> <span class="n">lists</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;col0&#39;</span><span class="p">,</span> <span class="s1">&#39;col1&#39;</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
 <span class="gp">... </span>              <span class="n">table</span><span class="o">=</span><span class="s1">&#39;calc&#39;</span><span class="p">,</span> <span class="n">close</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_dict</span><span class="p">(</span><span class="s1">&#39;select * from calc&#39;</span><span class="p">)</span>
@@ -159,7 +151,7 @@ on <cite>filename</cite>.</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

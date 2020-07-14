@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.crys.Structure.get_ase_atoms &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.crys.Structure.get_cell" href="pwtools.crys.Structure.get_cell.html" />
@@ -79,17 +77,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -100,26 +96,22 @@
 <h1>pwtools.crys.Structure.get_ase_atoms<a class="headerlink" href="#pwtools-crys-structure-get-ase-atoms" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="pwtools.crys.Structure.get_ase_atoms">
-<code class="descclassname">Structure.</code><code class="descname">get_ase_atoms</code><span class="sig-paren">(</span><em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_ase_atoms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_ase_atoms" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">Structure.</code><code class="sig-name descname">get_ase_atoms</code><span class="sig-paren">(</span><em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Structure.get_ase_atoms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Structure.get_ase_atoms" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return ASE Atoms object.</p>
 <p>Obviously, you must have ASE installed. We use
 <code class="docutils literal notranslate"><span class="pre">scaled_positions=self.coords_frac</span></code>, so only <code class="docutils literal notranslate"><span class="pre">self.cell</span></code> must be in
 [Ang].</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>**kwds :</strong></p>
-<blockquote class="last">
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>**kwds :</strong></p>
+<blockquote>
 <div><p>additional keywords passed to the Atoms() constructor.</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="pwtools.crys.Structure.get_fake_ase_atoms.html#pwtools.crys.Structure.get_fake_ase_atoms" title="pwtools.crys.Structure.get_fake_ase_atoms"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_fake_ase_atoms()</span></code></a></p>
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="pwtools.crys.Structure.get_fake_ase_atoms.html#pwtools.crys.Structure.get_fake_ase_atoms" title="pwtools.crys.Structure.get_fake_ase_atoms"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_fake_ase_atoms()</span></code></a></p>
 </div>
 <p class="rubric">Notes</p>
 <p>By default, we use <code class="docutils literal notranslate"><span class="pre">Atoms(...,pbc=False)</span></code> to avoid pbc-wrapping
@@ -150,7 +142,7 @@ don’t use ASE much.</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

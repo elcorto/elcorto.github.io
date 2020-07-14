@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.num.sliceput &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.num.slicetake" href="pwtools.num.slicetake.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,36 +94,30 @@
 <h1>pwtools.num.sliceput<a class="headerlink" href="#pwtools-num-sliceput" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="pwtools.num.sliceput">
-<code class="descclassname">pwtools.num.</code><code class="descname">sliceput</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>sl</em>, <em>axis=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#sliceput"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.sliceput" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.num.</code><code class="sig-name descname">sliceput</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">b</em>, <em class="sig-param">sl</em>, <em class="sig-param">axis=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#sliceput"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.sliceput" title="Permalink to this definition">¶</a></dt>
 <dd><p>The equivalent of a[&lt;slice or index&gt;]=b, but accepts slices objects
 instead of array indices or fancy indexing (e.g. a[:,1:]).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : numpy ndarray</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> : numpy ndarray</p>
 <p><strong>sl</strong> : slice object, list or tuple of slice objects</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>axis=&lt;int&gt;</dt>
-<dd><p class="first last">one slice object for <em>that</em> axis</p>
+<div><dl class="simple">
+<dt>axis=&lt;int&gt;</dt><dd><p>one slice object for <em>that</em> axis</p>
 </dd>
-<dt>axis=None</dt>
-<dd><p class="first last"><cite>sl</cite> is a list or tuple of slice objects, one for each axis.
+<dt>axis=None</dt><dd><p><cite>sl</cite> is a list or tuple of slice objects, one for each axis.
 It must index the whole array, i.e. len(sl) == len(a.shape).</p>
 </dd>
 </dl>
 </div></blockquote>
 <p><strong>axis</strong> : {None, int}</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The modified <cite>a</cite>.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The modified <cite>a</cite>.</p>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">s_</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">s_</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
@@ -155,7 +145,7 @@ It must index the whole array, i.e. len(sl) == len(a.shape).</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

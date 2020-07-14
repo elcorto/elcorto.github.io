@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.visualize.ViewFactory &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.visualize.ViewFactory.__call__" href="pwtools.visualize.ViewFactory.__call__.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,35 +94,33 @@
 <h1>pwtools.visualize.ViewFactory<a class="headerlink" href="#pwtools-visualize-viewfactory" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pwtools.visualize.ViewFactory">
-<em class="property">class </em><code class="descclassname">pwtools.visualize.</code><code class="descname">ViewFactory</code><span class="sig-paren">(</span><em>cmd=None</em>, <em>assert_cmd=None</em>, <em>suffix='.axsf'</em>, <em>writer=&lt;function write_axsf&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/visualize.html#ViewFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.visualize.ViewFactory" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.visualize.</code><code class="sig-name descname">ViewFactory</code><span class="sig-paren">(</span><em class="sig-param">cmd=None</em>, <em class="sig-param">assert_cmd=None</em>, <em class="sig-param">suffix='.axsf'</em>, <em class="sig-param">writer=&lt;function write_axsf&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/visualize.html#ViewFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.visualize.ViewFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Factory for creating interface functions to external molecular
 viewers.</p>
 <p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="visualize.html#pwtools.visualize.ViewFactory.__call__" title="pwtools.visualize.ViewFactory.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(obj[,&nbsp;logfile,&nbsp;structfile,&nbsp;disp,&nbsp;…])</td>
-<td>Call viewer.</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="visualize.html#pwtools.visualize.ViewFactory.__call__" title="pwtools.visualize.ViewFactory.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(obj[, logfile, structfile, disp, …])</p></td>
+<td><p>Call viewer.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
 <dt id="pwtools.visualize.ViewFactory.__call__">
-<code class="descname">__call__</code><span class="sig-paren">(</span><em>obj</em>, <em>logfile=None</em>, <em>structfile=None</em>, <em>disp=False</em>, <em>keepfiles=False</em>, <em>tmpdir='/tmp'</em>, <em>wait=True</em>, <em>bg=False</em>, <em>options=''</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/visualize.html#ViewFactory.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.visualize.ViewFactory.__call__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">obj</em>, <em class="sig-param">logfile=None</em>, <em class="sig-param">structfile=None</em>, <em class="sig-param">disp=False</em>, <em class="sig-param">keepfiles=False</em>, <em class="sig-param">tmpdir='/tmp'</em>, <em class="sig-param">wait=True</em>, <em class="sig-param">bg=False</em>, <em class="sig-param">options=''</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/visualize.html#ViewFactory.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.visualize.ViewFactory.__call__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call viewer.</p>
 <p>The executed shell command is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">cmd</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">options</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">structfile</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">logfile</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>obj</strong> : Structure or Trajectory</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>obj</strong> : Structure or Trajectory</p>
 <p><strong>logfile</strong> : str, optional</p>
 <blockquote>
 <div><p>Filename of a logfile for the viewer’s text output.</p>
@@ -152,26 +146,22 @@ viewers.</p>
 <div><p><cite>wait</cite> passed to common.system(), wait (or not) for command to exit</p>
 </div></blockquote>
 <p><strong>bg</strong> : bool</p>
-<blockquote class="last">
+<blockquote>
 <div><p>Background mode. If True then this is an alias for <cite>wait=False</cite> +
 <cite>keepfiles=True</cite>. The latter is needed b/c with just <cite>wait=False</cite>,
 temp files will be deleted right after the shell call and the
 viewer program may complain.</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="pwtools.visualize.ViewFactory.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>cmd=None</em>, <em>assert_cmd=None</em>, <em>suffix='.axsf'</em>, <em>writer=&lt;function write_axsf&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/visualize.html#ViewFactory.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.visualize.ViewFactory.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>cmd</strong> : str</p>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">cmd=None</em>, <em class="sig-param">assert_cmd=None</em>, <em class="sig-param">suffix='.axsf'</em>, <em class="sig-param">writer=&lt;function write_axsf&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/visualize.html#ViewFactory.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.visualize.ViewFactory.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cmd</strong> : str</p>
 <blockquote>
 <div><p>Shell command to call the viewer. Used as <code class="docutils literal notranslate"><span class="pre">&lt;cmd&gt;</span>
 <span class="pre">&lt;structfile&gt;</span></code>. Example: ‘jmol’, ‘xcrysden –axsf’.</p>
@@ -187,16 +177,14 @@ called early. Use to make additional tests on <cite>obj</cite>.</p>
 <div><p>File end for written structure file.</p>
 </div></blockquote>
 <p><strong>writer</strong> : callable</p>
-<blockquote class="last">
+<blockquote>
 <div><p>Called as <code class="docutils literal notranslate"><span class="pre">writer(obj,</span> <span class="pre">structfile)</span></code>. Write struct file to read by
 viewer.</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">ViewFactory</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">ViewFactory</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span><span class="p">(</span><span class="n">struct</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># To start more than one viewer, use bg=True to send the spawned</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># process to the background. Will leave temp files on disk.</span>
@@ -208,7 +196,7 @@ viewer.</p>
 
 <dl class="attribute">
 <dt id="pwtools.visualize.ViewFactory.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#pwtools.visualize.ViewFactory.__weakref__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#pwtools.visualize.ViewFactory.__weakref__" title="Permalink to this definition">¶</a></dt>
 <dd><p>list of weak references to the object (if defined)</p>
 </dd></dl>
 
@@ -226,7 +214,7 @@ viewer.</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

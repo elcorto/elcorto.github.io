@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.decorators.open_and_close &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="eos" href="eos.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,36 +94,35 @@
 <h1>pwtools.decorators.open_and_close<a class="headerlink" href="#pwtools-decorators-open-and-close" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="pwtools.decorators.open_and_close">
-<code class="descclassname">pwtools.decorators.</code><code class="descname">open_and_close</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/decorators.html#open_and_close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.decorators.open_and_close" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.decorators.</code><code class="sig-name descname">open_and_close</code><span class="sig-paren">(</span><em class="sig-param">func</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/decorators.html#open_and_close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.decorators.open_and_close" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator for all parsing functions that originally got a file name and
 went thru the whole file b/c the things that they search can occur in
 arbitrary order.
 These functions did</p>
 <blockquote>
 <div><ul class="simple">
-<li>open the file</li>
-<li>go thru</li>
-<li>close file</li>
+<li><p>open the file</p></li>
+<li><p>go thru</p></li>
+<li><p>close file</p></li>
 </ul>
 </div></blockquote>
 <p>Now, they all expect file objects, as first argument. This decorator
 assures that the first arg to <cite>func</cite> is a file object.</p>
 <p>Cases:</p>
 <ul class="simple">
-<li>1st arg is a fileobject: do nothig, just call function</li>
-<li><dl class="first docutils">
-<dt>1st arg is a file name:</dt>
-<dd><ul class="first last">
-<li>open file</li>
-<li>call func</li>
-<li>close file</li>
+<li><p>1st arg is a fileobject: do nothig, just call function</p></li>
+<li><dl class="simple">
+<dt>1st arg is a file name:</dt><dd><ul>
+<li><p>open file</p></li>
+<li><p>call func</p></li>
+<li><p>close file</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@open_and_close</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@open_and_close</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">file_txt_content</span><span class="p">(</span><span class="n">fh</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="c1"># fh is a file object</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
@@ -152,7 +147,7 @@ assures that the first arg to <cite>func</cite> is a file object.</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

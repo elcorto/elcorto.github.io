@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.eos.EosFit &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.eos.EosFit.__call__" href="pwtools.eos.EosFit.__call__.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,11 +94,11 @@
 <h1>pwtools.eos.EosFit<a class="headerlink" href="#pwtools-eos-eosfit" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pwtools.eos.EosFit">
-<em class="property">class </em><code class="descclassname">pwtools.eos.</code><code class="descname">EosFit</code><span class="sig-paren">(</span><em>volume</em>, <em>energy</em>, <em>func=&lt;pwtools.eos.Vinet object&gt;</em>, <em>splpoints=500</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/eos.html#EosFit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.eos.EosFit" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.eos.</code><code class="sig-name descname">EosFit</code><span class="sig-paren">(</span><em class="sig-param">volume</em>, <em class="sig-param">energy</em>, <em class="sig-param">func=&lt;pwtools.eos.Vinet object&gt;</em>, <em class="sig-param">splpoints=500</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/eos.html#EosFit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.eos.EosFit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pwtools.num.Fit1D.html#pwtools.num.Fit1D" title="pwtools.num.Fit1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.num.Fit1D</span></code></a></p>
 <p>E(V) fit class.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.eos</span> <span class="k">import</span> <span class="n">EosFit</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.eos</span> <span class="k">import</span> <span class="n">EosFit</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.constants</span> <span class="k">import</span> <span class="n">eV_by_Ang3_to_GPa</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">V</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">E</span> <span class="o">=</span> <span class="p">(</span><span class="n">V</span><span class="o">-</span><span class="mi">40</span><span class="p">)</span><span class="o">**</span><span class="mf">2.0</span> <span class="o">/</span> <span class="mf">50.0</span> <span class="o">+</span> <span class="mi">30</span> <span class="o">+</span> <span class="n">rand</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">V</span><span class="p">))</span> <span class="o">/</span> <span class="mf">5.0</span>
@@ -120,87 +116,77 @@
 </pre></div>
 </div>
 <p class="rubric">Attributes</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="41%" />
-<col width="59%" />
+<col style="width: 41%" />
+<col style="width: 59%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><strong>spl</strong></td>
-<td>&#160;</td>
+<tbody>
+<tr class="row-odd"><td><p><strong>spl</strong></p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.eos.EosFit.__call__.html#pwtools.eos.EosFit.__call__" title="pwtools.eos.EosFit.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(volume[,&nbsp;der])</td>
-<td><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.eos.EosFit.__call__.html#pwtools.eos.EosFit.__call__" title="pwtools.eos.EosFit.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(volume[, der])</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
 </tr>
-</tbody>
-</table>
-</td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.eos.EosFit.bulkmod.html#pwtools.eos.EosFit.bulkmod" title="pwtools.eos.EosFit.bulkmod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bulkmod</span></code></a>(volume)</p></td>
+<td><p>B(V) [GPa]</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.eos.EosFit.bulkmod.html#pwtools.eos.EosFit.bulkmod" title="pwtools.eos.EosFit.bulkmod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bulkmod</span></code></a>(volume)</td>
-<td>B(V) [GPa]</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.eos.EosFit.fit.html#pwtools.eos.EosFit.fit" title="pwtools.eos.EosFit.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>()</p></td>
+<td><p>Fit E(V) model, fill <code class="docutils literal notranslate"><span class="pre">self.params</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.eos.EosFit.fit.html#pwtools.eos.EosFit.fit" title="pwtools.eos.EosFit.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>()</td>
-<td>Fit E(V) model, fill <code class="docutils literal notranslate"><span class="pre">self.params</span></code>.</td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.eos.EosFit.get_max.html#pwtools.eos.EosFit.get_max" title="pwtools.eos.EosFit.get_max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_max</span></code></a>([x0, xab])</p></td>
+<td><p>Convenience method.</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.eos.EosFit.get_max.html#pwtools.eos.EosFit.get_max" title="pwtools.eos.EosFit.get_max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_max</span></code></a>([x0,&nbsp;xab])</td>
-<td>Convenience method.</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.eos.EosFit.get_min.html#pwtools.eos.EosFit.get_min" title="pwtools.eos.EosFit.get_min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_min</span></code></a>()</p></td>
+<td><p>V0 [Ang^3]</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.eos.EosFit.get_min.html#pwtools.eos.EosFit.get_min" title="pwtools.eos.EosFit.get_min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_min</span></code></a>()</td>
-<td>V0 [Ang^3]</td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.eos.EosFit.get_root.html#pwtools.eos.EosFit.get_root" title="pwtools.eos.EosFit.get_root"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_root</span></code></a>([x0, xab])</p></td>
+<td><p>Return x where y(x) = 0 by calculating the root of the fit function.</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.eos.EosFit.get_root.html#pwtools.eos.EosFit.get_root" title="pwtools.eos.EosFit.get_root"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_root</span></code></a>([x0,&nbsp;xab])</td>
-<td>Return x where y(x) = 0 by calculating the root of the fit function.</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.eos.EosFit.is_mono.html#pwtools.eos.EosFit.is_mono" title="pwtools.eos.EosFit.is_mono"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_mono</span></code></a>()</p></td>
+<td><p>Return True if the curve described by the fit function f(x) is monotonic.</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="pwtools.eos.EosFit.is_mono.html#pwtools.eos.EosFit.is_mono" title="pwtools.eos.EosFit.is_mono"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_mono</span></code></a>()</td>
-<td>Return True if the curve described by the fit function f(x) is monotonic.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="pwtools.eos.EosFit.pressure.html#pwtools.eos.EosFit.pressure" title="pwtools.eos.EosFit.pressure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pressure</span></code></a>(volume)</td>
-<td>P(V) [GPa]</td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.eos.EosFit.pressure.html#pwtools.eos.EosFit.pressure" title="pwtools.eos.EosFit.pressure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pressure</span></code></a>(volume)</p></td>
+<td><p>P(V) [GPa]</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
 <dt id="pwtools.eos.EosFit.__call__">
-<code class="descname">__call__</code><span class="sig-paren">(</span><em>volume</em>, <em>der=0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/eos.html#EosFit.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.eos.EosFit.__call__" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>volume</strong> : scalar, 1d array</p>
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">volume</em>, <em class="sig-param">der=0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/eos.html#EosFit.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.eos.EosFit.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>volume</strong> : scalar, 1d array</p>
 <blockquote>
 <div><p>volume per atom [Ang^3]</p>
 </div></blockquote>
 <p><strong>der</strong> : int</p>
-<blockquote class="last">
+<blockquote>
 <div><p>derivative order</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="pwtools.eos.EosFit.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>volume</em>, <em>energy</em>, <em>func=&lt;pwtools.eos.Vinet object&gt;</em>, <em>splpoints=500</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/eos.html#EosFit.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.eos.EosFit.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>volume</strong> : 1d array</p>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">volume</em>, <em class="sig-param">energy</em>, <em class="sig-param">func=&lt;pwtools.eos.Vinet object&gt;</em>, <em class="sig-param">splpoints=500</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/eos.html#EosFit.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.eos.EosFit.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>volume</strong> : 1d array</p>
 <blockquote>
 <div><p>volume per atom [Ang^3]</p>
 </div></blockquote>
@@ -210,61 +196,51 @@
 </div></blockquote>
 <p><strong>func</strong> : EVFunction instance</p>
 <p><strong>splpoints</strong> : int</p>
-<blockquote class="last">
+<blockquote>
 <div><p>number of spline points for fallback derivative calculation</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="pwtools.eos.EosFit.bulkmod">
-<code class="descname">bulkmod</code><span class="sig-paren">(</span><em>volume</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/eos.html#EosFit.bulkmod"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.eos.EosFit.bulkmod" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">bulkmod</code><span class="sig-paren">(</span><em class="sig-param">volume</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/eos.html#EosFit.bulkmod"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.eos.EosFit.bulkmod" title="Permalink to this definition">¶</a></dt>
 <dd><p>B(V) [GPa]</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>volume</strong> : scalar, 1d array</p>
-<blockquote class="last">
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>volume</strong> : scalar, 1d array</p>
+<blockquote>
 <div><p>volume per atom [Ang^3]</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="pwtools.eos.EosFit.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/eos.html#EosFit.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.eos.EosFit.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/eos.html#EosFit.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.eos.EosFit.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit E(V) model, fill <code class="docutils literal notranslate"><span class="pre">self.params</span></code>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pwtools.eos.EosFit.get_min">
-<code class="descname">get_min</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/eos.html#EosFit.get_min"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.eos.EosFit.get_min" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_min</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/eos.html#EosFit.get_min"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.eos.EosFit.get_min" title="Permalink to this definition">¶</a></dt>
 <dd><p>V0 [Ang^3]</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pwtools.eos.EosFit.pressure">
-<code class="descname">pressure</code><span class="sig-paren">(</span><em>volume</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/eos.html#EosFit.pressure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.eos.EosFit.pressure" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">pressure</code><span class="sig-paren">(</span><em class="sig-param">volume</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/eos.html#EosFit.pressure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.eos.EosFit.pressure" title="Permalink to this definition">¶</a></dt>
 <dd><p>P(V) [GPa]</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>volume</strong> : scalar, 1d array</p>
-<blockquote class="last">
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>volume</strong> : scalar, 1d array</p>
+<blockquote>
 <div><p>volume per atom [Ang^3]</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -281,7 +257,7 @@
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

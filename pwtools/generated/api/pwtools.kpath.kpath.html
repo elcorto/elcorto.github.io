@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.kpath.kpath &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.kpath.plot_dis" href="pwtools.kpath.plot_dis.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,32 +94,28 @@
 <h1>pwtools.kpath.kpath<a class="headerlink" href="#pwtools-kpath-kpath" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="pwtools.kpath.kpath">
-<code class="descclassname">pwtools.kpath.</code><code class="descname">kpath</code><span class="sig-paren">(</span><em>vecs</em>, <em>N=10</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/kpath.html#kpath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.kpath.kpath" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.kpath.</code><code class="sig-name descname">kpath</code><span class="sig-paren">(</span><em class="sig-param">vecs</em>, <em class="sig-param">N=10</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/kpath.html#kpath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.kpath.kpath" title="Permalink to this definition">¶</a></dt>
 <dd><p>Simple k-path. Given a set of K vectors (special points in the BZ),
 generate a “fine path” of N*(K-1)+1 vectors along the path defined by the
 vectors in <cite>vecs</cite>. The K vectors are the “vertices” of the k-path and we
 construct the fine path by connecting the vertices by their distance
 vectors and placing N points on each connection edge.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>vecs</strong> : array (K,M)</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>vecs</strong> : array (K,M)</p>
 <blockquote>
 <div><p>Array with K vectors of the Brillouin zone (so M = 3 usually :)</p>
 </div></blockquote>
 <p><strong>N</strong> : int</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>new_vecs</strong> : array (N*(K-1)+1,M)</p>
-<blockquote class="last">
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>new_vecs</strong> : array (N*(K-1)+1,M)</p>
+<blockquote>
 <div><p>Array with a fine grid of vectors along the path
 defined by <cite>vecs</cite>.</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Notes</p>
 <p>This is the simplest method one can think of. Points on the “fine path” are
 not equally distributed. The distance between 2 vertices (k-points) doesn’t
@@ -143,7 +135,7 @@ plot, you need N=20 or more.</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

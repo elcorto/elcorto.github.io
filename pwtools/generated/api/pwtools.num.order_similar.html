@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.num.order_similar &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.num.pi" href="pwtools.num.pi.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,15 +94,13 @@
 <h1>pwtools.num.order_similar<a class="headerlink" href="#pwtools-num-order-similar" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="pwtools.num.order_similar">
-<code class="descclassname">pwtools.num.</code><code class="descname">order_similar</code><span class="sig-paren">(</span><em>arr</em>, <em>repeat=1</em>, <em>order=2</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#order_similar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.order_similar" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.num.</code><code class="sig-name descname">order_similar</code><span class="sig-paren">(</span><em class="sig-param">arr</em>, <em class="sig-param">repeat=1</em>, <em class="sig-param">order=2</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#order_similar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.order_similar" title="Permalink to this definition">¶</a></dt>
 <dd><p>Band ordering algorithm. Uses up to quadradic extrapolation. Handles
 crossing points.</p>
 <p>This can be used to order dispersion plots, for instance.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>arr</strong> : 2d array (npoints, ndim)</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>arr</strong> : 2d array (npoints, ndim)</p>
 <blockquote>
 <div><p><cite>ndim</cite> 1d data streams with <cite>npoints</cite> each.</p>
 </div></blockquote>
@@ -119,16 +113,14 @@ crossing points.</p>
 <div><p>Order of extrapolation: 0 = next similar point, 1 = linear using the
 two last points, 2 = quadratic using the 3 last points</p>
 </div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>arr2</strong> : like <cite>arr</cite></p>
-<blockquote class="last">
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>arr2</strong> : like <cite>arr</cite></p>
+<blockquote>
 <div><p>Array with ordered data series.</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Notes</p>
 <p>The more points, the better. The first 1-2 steps should start smoothly or
 the algo will get confused. If you don’t get all crossing points resolved,
@@ -136,7 +128,7 @@ try <code class="docutils literal notranslate"><span class="pre">repeat</span> <
 streams into one, you are lost. Then you can only use more points to make
 the extrapolation more precise.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">mpl</span><span class="p">,</span> <span class="n">num</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">plt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
@@ -170,7 +162,7 @@ the extrapolation more precise.</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

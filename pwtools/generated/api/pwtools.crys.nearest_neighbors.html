@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.crys.nearest_neighbors &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.crys.nearest_neighbors_from_dists" href="pwtools.crys.nearest_neighbors_from_dists.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,14 +94,12 @@
 <h1>pwtools.crys.nearest_neighbors<a class="headerlink" href="#pwtools-crys-nearest-neighbors" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="pwtools.crys.nearest_neighbors">
-<code class="descclassname">pwtools.crys.</code><code class="descname">nearest_neighbors</code><span class="sig-paren">(</span><em>struct</em>, <em>idx=None</em>, <em>skip=None</em>, <em>cutoff=None</em>, <em>num=None</em>, <em>pbc=True</em>, <em>sort=True</em>, <em>fullout=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#nearest_neighbors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.nearest_neighbors" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">nearest_neighbors</code><span class="sig-paren">(</span><em class="sig-param">struct</em>, <em class="sig-param">idx=None</em>, <em class="sig-param">skip=None</em>, <em class="sig-param">cutoff=None</em>, <em class="sig-param">num=None</em>, <em class="sig-param">pbc=True</em>, <em class="sig-param">sort=True</em>, <em class="sig-param">fullout=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#nearest_neighbors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.nearest_neighbors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indices of the nearest neighbor atoms to atom <cite>idx</cite>, skipping atoms
 whose symbols are <cite>skip</cite>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>struct</strong> : Structure</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>struct</strong> : Structure</p>
 <p><strong>idx</strong> : int</p>
 <blockquote>
 <div><p>Atom index of the central atom.</p>
@@ -135,25 +129,23 @@ neighbors within that radius. Use either <cite>num</cite> of <cite>cutoff</cite>
 <blockquote>
 <div><p>See below.</p>
 </div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>nn_idx</strong> : fullout=False</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>nn_idx</strong> : fullout=False</p>
 <p><strong>nn_idx,nn_dist</strong> : fullout=True</p>
 <p><strong>nn_idx</strong> : 1d array</p>
 <blockquote>
 <div><p>Indices into struct.symbols / coords.</p>
 </div></blockquote>
 <p><strong>nn_dist</strong> : 1d array</p>
-<blockquote class="last">
+<blockquote>
 <div><p>Distances ordered as in <cite>nn_idx</cite>.</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">num.match_mask</span></code></p>
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">num.match_mask</span></code></p>
 </div>
 <p class="rubric">Notes</p>
 <p><cite>num</cite> : Depending on <cite>struct</cite>, there may not be <cite>num</cite> nearest neighbors,
@@ -167,7 +159,7 @@ nearest neighbors have the same distance from the central atom, the
 ordering of depends on how <code class="docutils literal notranslate"><span class="pre">numpy.argsort</span></code> sorts equal values in an
 array.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ni</span><span class="o">=</span><span class="n">nearest_neighbors</span><span class="p">(</span><span class="n">struct</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;Ca&#39;</span><span class="p">),</span> <span class="n">num</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ni</span><span class="o">=</span><span class="n">nearest_neighbors</span><span class="p">(</span><span class="n">struct</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;Ca&#39;</span><span class="p">),</span> <span class="n">num</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ni</span><span class="o">=</span><span class="n">nearest_neighbors</span><span class="p">(</span><span class="n">struct</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="mi">23</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">5.3</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span><span class="s1">&#39;Cl&#39;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># simple rock salt example (used ASE to build dummy struct)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ase</span> <span class="k">import</span> <span class="n">lattice</span>
@@ -206,7 +198,7 @@ array.</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>pwtools.pydos.pdos &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.pydos.pyvacf" href="pwtools.pydos.pyvacf.html" />
@@ -77,17 +75,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -98,15 +94,13 @@
 <h1>pwtools.pydos.pdos<a class="headerlink" href="#pwtools-pydos-pdos" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="pwtools.pydos.pdos">
-<code class="descclassname">pwtools.pydos.</code><code class="descname">pdos</code><span class="sig-paren">(</span><em>vel</em>, <em>dt=1.0</em>, <em>m=None</em>, <em>full_out=False</em>, <em>area=1.0</em>, <em>window=True</em>, <em>npad=None</em>, <em>tonext=False</em>, <em>mirr=False</em>, <em>method='direct'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pydos.html#pdos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pydos.pdos" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.pydos.</code><code class="sig-name descname">pdos</code><span class="sig-paren">(</span><em class="sig-param">vel</em>, <em class="sig-param">dt=1.0</em>, <em class="sig-param">m=None</em>, <em class="sig-param">full_out=False</em>, <em class="sig-param">area=1.0</em>, <em class="sig-param">window=True</em>, <em class="sig-param">npad=None</em>, <em class="sig-param">tonext=False</em>, <em class="sig-param">mirr=False</em>, <em class="sig-param">method='direct'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pydos.html#pdos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pydos.pdos" title="Permalink to this definition">¶</a></dt>
 <dd><p>Phonon DOS by FFT of the VACF or direct FFT of atomic velocities.</p>
 <p>Integral area is normalized to <cite>area</cite>. It is possible (and recommended) to
 zero-padd the velocities (see <cite>npad</cite>).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>vel</strong> : 3d array (nstep, natoms, 3)</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>vel</strong> : 3d array (nstep, natoms, 3)</p>
 <blockquote>
 <div><p>atomic velocities</p>
 </div></blockquote>
@@ -141,9 +135,9 @@ you speed, but variable (better) frequency resolution.</p>
 <blockquote>
 <div><p>method=’vacf’ only: mirror one-sided VACF at t=0 before fft</p>
 </div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">if full_out = False</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>if full_out = False</p>
 <blockquote>
 <div><div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">(faxis,</span> <span class="pre">pdos)</span></code></div>
@@ -152,7 +146,7 @@ you speed, but variable (better) frequency resolution.</p>
 </div>
 </div></blockquote>
 <p>if full_out = True</p>
-<blockquote class="last">
+<blockquote>
 <div><div class="line-block">
 <div class="line">if method == ‘direct’:</div>
 <div class="line-block">
@@ -166,13 +160,11 @@ you speed, but variable (better) frequency resolution.</p>
 </div>
 </div>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="pwtools.signal.fftsample.html#pwtools.signal.fftsample" title="pwtools.signal.fftsample"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.signal.fftsample()</span></code></a>, <a class="reference internal" href="pwtools.signal.acorr.html#pwtools.signal.acorr" title="pwtools.signal.acorr"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.signal.acorr()</span></code></a>, <a class="reference internal" href="pwtools.pydos.direct_pdos.html#pwtools.pydos.direct_pdos" title="pwtools.pydos.direct_pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">direct_pdos()</span></code></a>, <a class="reference internal" href="pwtools.pydos.vacf_pdos.html#pwtools.pydos.vacf_pdos" title="pwtools.pydos.vacf_pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">vacf_pdos()</span></code></a></p>
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="pwtools.signal.fftsample.html#pwtools.signal.fftsample" title="pwtools.signal.fftsample"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.signal.fftsample()</span></code></a>, <a class="reference internal" href="pwtools.signal.acorr.html#pwtools.signal.acorr" title="pwtools.signal.acorr"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.signal.acorr()</span></code></a>, <a class="reference internal" href="pwtools.pydos.direct_pdos.html#pwtools.pydos.direct_pdos" title="pwtools.pydos.direct_pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">direct_pdos()</span></code></a>, <a class="reference internal" href="pwtools.pydos.vacf_pdos.html#pwtools.pydos.vacf_pdos" title="pwtools.pydos.vacf_pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">vacf_pdos()</span></code></a></p>
 </div>
 <p class="rubric">Notes</p>
 <p>padding (only method=’direct’): With <cite>npad</cite> we pad the velocities <cite>vel</cite>
@@ -190,7 +182,7 @@ resolution.</p>
 <p class="rubric">References</p>
 <p>[1] Phys Rev B 47(9) 4863, 1993</p>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.constants</span> <span class="k">import</span> <span class="n">fs</span><span class="p">,</span><span class="n">rcm_to_Hz</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.constants</span> <span class="k">import</span> <span class="n">fs</span><span class="p">,</span><span class="n">rcm_to_Hz</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">Trajectory</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># freq in [Hz] if timestep in [s]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">freq</span><span class="p">,</span><span class="n">dos</span> <span class="o">=</span> <span class="n">pdos</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">velocity</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="n">tr</span><span class="o">.</span><span class="n">mass</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">tr</span><span class="o">.</span><span class="n">timestep</span><span class="o">*</span><span class="n">fs</span><span class="p">,</span>
@@ -213,7 +205,7 @@ resolution.</p>
       &copy;2019, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
