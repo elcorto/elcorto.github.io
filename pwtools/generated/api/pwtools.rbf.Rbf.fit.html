@@ -105,7 +105,7 @@ r\,\mathbf I)\,\mathbf w = \mathbf z\)</span>.</p>
 quadratic. Updates <code class="docutils literal notranslate"><span class="pre">self.w</span></code>.</p>
 <p class="rubric">Notes</p>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">self.r</span> <span class="pre">!=</span> <span class="pre">None</span></code><span class="classifier">linear system solver</span></dt><dd><p>Use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.solve.html#scipy.linalg.solve" title="(in SciPy v1.5.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve()</span></code></a>. For <span class="math notranslate nohighlight">\(r=0\)</span>, this always yields
+<dt><code class="docutils literal notranslate"><span class="pre">self.r</span> <span class="pre">!=</span> <span class="pre">None</span></code><span class="classifier">linear system solver</span></dt><dd><p>Use <cite>lin_solver</cite>. For <span class="math notranslate nohighlight">\(r=0\)</span>, this always yields
 perfect interpolation at the data points. May be numerically
 unstable in that case. Use <span class="math notranslate nohighlight">\(r&gt;0\)</span> to increase stability (try
 small values such as <code class="docutils literal notranslate"><span class="pre">1e-10</span></code> first) or create smooth fitting (generate
@@ -118,7 +118,7 @@ tuned.</p>
 direct solver w/o regularization. Will mostly be the same as
 the interpolation result, but will not go thru all points for
 very noisy data. May create small noise in solution (plot fit
-with high point density).</p>
+with high point density). Also slower that e.g. <code class="docutils literal notranslate"><span class="pre">dsysv</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -132,7 +132,7 @@ with high point density).</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2019, Steve Schmerler.
+      &copy;2020, Steve Schmerler.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>

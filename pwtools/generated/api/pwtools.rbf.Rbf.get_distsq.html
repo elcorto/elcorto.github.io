@@ -101,19 +101,19 @@
 c_j|\)</span>.</p>
 <blockquote>
 <div><div class="line-block">
-<div class="line"><span class="math notranslate nohighlight">\(\mathbf x_i\)</span> : points[i,:]</div>
-<div class="line"><span class="math notranslate nohighlight">\(\mathbf c_i\)</span> : centers[i,:]</div>
+<div class="line"><span class="math notranslate nohighlight">\(\mathbf x_i\)</span> : <code class="docutils literal notranslate"><span class="pre">points[i,:]</span></code>      (points)</div>
+<div class="line"><span class="math notranslate nohighlight">\(\mathbf c_j\)</span> : <code class="docutils literal notranslate"><span class="pre">self.points[j,:]</span></code> (centers)</div>
 </div>
 </div></blockquote>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>points</strong> : array (M,N) with N-dim points, optional</p>
+<dd class="field-odd"><p><strong>points</strong> : array (K,N) with N-dim points, optional</p>
 <blockquote>
 <div><p>If None then <code class="docutils literal notranslate"><span class="pre">self.points</span></code> is used (training points).</p>
 </div></blockquote>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>distsq</strong> : (M,K), where K = M usually for training</p>
+<dd class="field-even"><p><strong>distsq</strong> : (M,K), where K = M for training</p>
 </dd>
 </dl>
 </dd></dl>
@@ -127,7 +127,7 @@ c_j|\)</span>.</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2019, Steve Schmerler.
+      &copy;2020, Steve Schmerler.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>

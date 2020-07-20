@@ -94,9 +94,10 @@
 <h1>pwtools.rbf.fit_opt<a class="headerlink" href="#pwtools-rbf-fit-opt" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="pwtools.rbf.fit_opt">
-<code class="sig-prename descclassname">pwtools.rbf.</code><code class="sig-name descname">fit_opt</code><span class="sig-paren">(</span><em class="sig-param">points</em>, <em class="sig-param">values</em>, <em class="sig-param">method='de'</em>, <em class="sig-param">what='pr'</em>, <em class="sig-param">cv_kwds={'nr': 1</em>, <em class="sig-param">'ns': 5}</em>, <em class="sig-param">opt_kwds={}</em>, <em class="sig-param">rbf_kwds={}</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#fit_opt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.fit_opt" title="Permalink to this definition">¶</a></dt>
-<dd><p>Optimize <span class="math notranslate nohighlight">\(p\)</span> or <span class="math notranslate nohighlight">\((p,r)\)</span> using a cross validation error
-metric or the direct fit error if <cite>cv_kwds</cite> is None.</p>
+<code class="sig-prename descclassname">pwtools.rbf.</code><code class="sig-name descname">fit_opt</code><span class="sig-paren">(</span><em class="sig-param">points</em>, <em class="sig-param">values</em>, <em class="sig-param">method='de'</em>, <em class="sig-param">what='pr'</em>, <em class="sig-param">cv_kwds={'n_repeats': 1</em>, <em class="sig-param">'n_splits': 5}</em>, <em class="sig-param">opt_kwds={}</em>, <em class="sig-param">rbf_kwds={}</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#fit_opt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.fit_opt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optimize <a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a>’s hyper-parameter <span class="math notranslate nohighlight">\(p\)</span> or both <span class="math notranslate nohighlight">\((p,r)\)</span>.</p>
+<p>Use a cross validation error metric or the direct fit error if <cite>cv_kwds</cite> is
+None. Uses <a class="reference internal" href="pwtools.rbf.FitError.html#pwtools.rbf.FitError" title="pwtools.rbf.FitError"><code class="xref py py-class docutils literal notranslate"><span class="pre">FitError</span></code></a>.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>points, values</strong> : see <a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a></p>
@@ -105,16 +106,23 @@ metric or the direct fit error if <cite>cv_kwds</cite> is None.</p>
 <div><div class="line-block">
 <div class="line">‘de’ : <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.differential_evolution.html#scipy.optimize.differential_evolution" title="(in SciPy v1.5.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.differential_evolution()</span></code></a></div>
 <div class="line">‘fmin’: <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin.html#scipy.optimize.fmin" title="(in SciPy v1.5.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.fmin()</span></code></a></div>
+<div class="line">‘brute’: <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.brute.html#scipy.optimize.brute" title="(in SciPy v1.5.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.brute()</span></code></a></div>
 </div>
 </div></blockquote>
 <p><strong>what</strong> : str</p>
 <blockquote>
-<div><p>‘p’ or ‘pr’</p>
+<div><p>‘p’ (optimize only <cite>p</cite> and set <cite>r=None</cite>) or ‘pr’ (optimize <cite>p</cite> and <cite>r</cite>)</p>
 </div></blockquote>
 <p><strong>cv_kwds, rbf_kwds</strong> : see <a class="reference internal" href="pwtools.rbf.FitError.html#pwtools.rbf.FitError" title="pwtools.rbf.FitError"><code class="xref py py-class docutils literal notranslate"><span class="pre">FitError</span></code></a></p>
 <p><strong>opt_kwds</strong> : dict</p>
 <blockquote>
 <div><p>kwds for the optimizer (see <cite>method</cite>)</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>rbfi</strong> : <a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a></p>
+<blockquote>
+<div><p>Rbf instance initialized with <cite>points</cite>, <cite>values</cite> and found optimal <cite>p</cite> (and <cite>r</cite>).</p>
 </div></blockquote>
 </dd>
 </dl>
@@ -129,7 +137,7 @@ metric or the direct fit error if <cite>cv_kwds</cite> is None.</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2019, Steve Schmerler.
+      &copy;2020, Steve Schmerler.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>

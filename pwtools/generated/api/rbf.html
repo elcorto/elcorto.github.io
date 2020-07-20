@@ -100,14 +100,14 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.rbf.FitError.html#pwtools.rbf.FitError" title="pwtools.rbf.FitError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FitError</span></code></a>(points, values[, rbf_kwds, cv_kwds])</p></td>
 <td><p>Direct or cross-validation (CV) fit error of <a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a> for a parameter set <code class="docutils literal notranslate"><span class="pre">[p,r]</span></code> or just <code class="docutils literal notranslate"><span class="pre">[p]</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rbf</span></code></a>(points, values[, centers, rbf, r, p, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rbf</span></code></a>(points, values[, rbf, r, p, fit, lin_solver])</p></td>
 <td><p>Radial basis function network interpolation and fitting.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.rbf.estimate_p.html#pwtools.rbf.estimate_p" title="pwtools.rbf.estimate_p"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_p</span></code></a>(points[, method])</p></td>
 <td><p>Estimate <span class="math notranslate nohighlight">\(p\)</span>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.rbf.fit_opt.html#pwtools.rbf.fit_opt" title="pwtools.rbf.fit_opt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_opt</span></code></a>(points, values[, method, what, …])</p></td>
-<td><p>Optimize <span class="math notranslate nohighlight">\(p\)</span> or <span class="math notranslate nohighlight">\((p,r)\)</span> using a cross validation error metric or the direct fit error if <cite>cv_kwds</cite> is None.</p></td>
+<td><p>Optimize <a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a>’s hyper-parameter <span class="math notranslate nohighlight">\(p\)</span> or both <span class="math notranslate nohighlight">\((p,r)\)</span>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.rbf.rbf_dct.html#pwtools.rbf.rbf_dct" title="pwtools.rbf.rbf_dct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rbf_dct</span></code></a></p></td>
 <td><p></p></td>
@@ -132,7 +132,7 @@
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2019, Steve Schmerler.
+      &copy;2020, Steve Schmerler.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>

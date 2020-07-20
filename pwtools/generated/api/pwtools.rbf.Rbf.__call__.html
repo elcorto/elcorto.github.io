@@ -100,15 +100,13 @@
 <dd><p>Call <a class="reference internal" href="pwtools.rbf.Rbf.interpolate.html#pwtools.rbf.Rbf.interpolate" title="pwtools.rbf.Rbf.interpolate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">interpolate()</span></code></a> or <a class="reference internal" href="pwtools.rbf.Rbf.deriv.html#pwtools.rbf.Rbf.deriv" title="pwtools.rbf.Rbf.deriv"><code class="xref py py-meth docutils literal notranslate"><span class="pre">deriv()</span></code></a>.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>points</strong> : 2d array (L,N) or 1d array (N,) or None</p>
+<dd class="field-odd"><p><strong>points</strong> : 2d array (L,N)</p>
 <blockquote>
-<div><p>L data points in N-dim space. If None, then points = self.points, i.e. just
-evaluate the training set. If 1d, then this is just 1 point, which
-will be converted to shape (1,N) internally.</p>
+<div><p>L N-dim points to evaluate the interpolant on.</p>
 </div></blockquote>
 <p><strong>der</strong> : int</p>
 <blockquote>
-<div><p>If == 1 return matrix of partial derivatives (see :meth”<cite>deriv</cite>), else
+<div><p>If == 1 return matrix of partial derivatives (see <a class="reference internal" href="pwtools.rbf.Rbf.deriv.html#pwtools.rbf.Rbf.deriv" title="pwtools.rbf.Rbf.deriv"><code class="xref py py-meth docutils literal notranslate"><span class="pre">deriv()</span></code></a>), else
 interpolated values values (default).</p>
 </div></blockquote>
 </dd>
@@ -135,7 +133,7 @@ interpolated values values (default).</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2019, Steve Schmerler.
+      &copy;2020, Steve Schmerler.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>

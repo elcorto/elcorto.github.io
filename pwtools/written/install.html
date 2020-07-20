@@ -115,8 +115,8 @@ to install only the package without installing dependencies from pypi:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install --no-deps .
 </pre></div>
 </div>
-<p>When using a virtual environment, you can map in the system site-packages (here we use
-<a class="reference external" href="https://virtualenvwrapper.readthedocs.io">virtualenvwrapper</a>):</p>
+<p>When using a virtual environment, you can map in the system site-packages (here
+we use <a class="reference external" href="https://virtualenvwrapper.readthedocs.io">virtualenvwrapper</a>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkvirtualenv --system-site-packages -p /usr/bin/python3 pwtools
 (pwtools) $ pip install .
 </pre></div>
@@ -129,28 +129,58 @@ $ export PYTHONPATH=$pp
 </div>
 <div class="section" id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
-<p>See <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> for packages installable by <code class="docutils literal notranslate"><span class="pre">pip</span></code>. On a Debian-ish system,
-you may install:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># apt</span>
-<span class="n">python3</span><span class="o">-</span><span class="n">numpy</span>
-<span class="n">python3</span><span class="o">-</span><span class="n">scipy</span>
-<span class="n">python3</span><span class="o">-</span><span class="n">nose</span>
-<span class="n">python3</span><span class="o">-</span><span class="n">dev</span>     <span class="c1"># for compiling extensions</span>
-<span class="n">python3</span><span class="o">-</span><span class="n">h5py</span>
-<span class="n">python3</span><span class="o">-</span><span class="n">matplotlib</span>
-<span class="n">python3</span><span class="o">-</span><span class="n">ase</span>
-<span class="n">python3</span><span class="o">-</span><span class="n">numpydoc</span>
-<span class="n">python3</span><span class="o">-</span><span class="n">sphinx</span>
-<span class="n">gfortran</span>        <span class="c1"># or ifort, see src/Makefile</span>
-<span class="n">liblapack</span><span class="o">-</span><span class="n">dev</span>
-
-<span class="c1"># pip</span>
-<span class="n">PyCifRW</span>
-<span class="n">spglib</span>
+<p>Python dependencies: see <code class="docutils literal notranslate"><span class="pre">requirements*.txt</span></code>. You can use
+<code class="docutils literal notranslate"><span class="pre">test/check_dependencies.py</span></code> to find out what your system has installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./check_dependencies.py
+requirements_test.txt
+  pytest               ... ok (import)
+  pytest-xdist         ... ok (pip list)
+  pytest-timeout       ... ok (pip list)
+requirements.txt
+  PyCifRW              ... ok (pip list)
+  h5py                 ... ok (import)
+  matplotlib           ... ok (import)
+  numpy                ... ok (import)
+  scipy                ... ok (import)
+  spglib               ... ok (import)
+requirements_optional.txt
+  ase                  ... ok (import)
+  sklearn              ... ok (import)
+requirements_doc.txt
+  numpydoc             ... ok (import)
+  sphinx               ... ok (import)
+optional executables:
+  eos.x                ... NOT FOUND
 </pre></div>
 </div>
-<p>You can use <code class="docutils literal notranslate"><span class="pre">test/check_dependencies.py</span></code> to find out what your system has
-installed.</p>
+<p>Optional packages (<code class="docutils literal notranslate"><span class="pre">ase</span></code>, <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>) are only used in corner cases and
+therefore not hard dependencies. Importing modules that use them (e.g. <code class="docutils literal notranslate"><span class="pre">crys</span></code>
+might use <code class="docutils literal notranslate"><span class="pre">ase</span></code>) won’t fail at import time, but later at runtime when e.g.
+<code class="docutils literal notranslate"><span class="pre">crys.Structure.get_ase_atoms()</span></code> is called. What packages are optional might
+change depending on usage.</p>
+<p>You also need the following to compile extensions. On a Debian-ish system:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># apt</span>
+<span class="n">python3</span><span class="o">-</span><span class="n">dev</span>     <span class="c1"># for compiling extensions</span>
+<span class="n">gfortran</span>        <span class="c1"># or ifort, see src/Makefile</span>
+<span class="n">liblapack</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+<p>Also note that you can get may Python packages via your system’s package
+manager:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span><span class="o">-</span><span class="n">ase</span>
+<span class="n">python3</span><span class="o">-</span><span class="n">h5py</span>
+<span class="n">python3</span><span class="o">-</span><span class="n">matplotlib</span>
+<span class="n">python3</span><span class="o">-</span><span class="n">numpy</span>
+<span class="n">python3</span><span class="o">-</span><span class="n">numpydoc</span>
+<span class="n">python3</span><span class="o">-</span><span class="n">pytest</span>
+<span class="n">python3</span><span class="o">-</span><span class="n">pytest</span><span class="o">-</span><span class="n">timeout</span>
+<span class="n">python3</span><span class="o">-</span><span class="n">pytest</span><span class="o">-</span><span class="n">xdist</span>
+<span class="n">python3</span><span class="o">-</span><span class="n">scipy</span>
+<span class="n">python3</span><span class="o">-</span><span class="n">sklearn</span>
+<span class="n">python3</span><span class="o">-</span><span class="n">sphinx</span>
+</pre></div>
+</div>
+<p>But usually not <code class="docutils literal notranslate"><span class="pre">PyCifRW</span></code> and <code class="docutils literal notranslate"><span class="pre">spglib</span></code>.</p>
 <div class="section" id="optional-dependencies">
 <h3>Optional dependencies<a class="headerlink" href="#optional-dependencies" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -177,7 +207,7 @@ somewhere in PATH.</p>
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="../generated/api/pwtools.eos.ElkEOSFit.html#pwtools.eos.ElkEOSFit" title="pwtools.eos.ElkEOSFit"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElkEOSFit</span></code></a> is deprecated now, and so you don’t
 really need the Elk code’s eos tool anymore. It was used for generating
-refernce EOS fit data once, which is stored in test/files/, but there is no
+reference EOS fit data once, which is stored in test/files/, but there is no
 use of eos.x in pwtools anymore.</p>
 </div>
 </div>
@@ -188,10 +218,10 @@ use of eos.x in pwtools anymore.</p>
 </div>
 <div class="section" id="python-versions">
 <h2>Python versions<a class="headerlink" href="#python-versions" title="Permalink to this headline">¶</a></h2>
-<p>Only Python3 is supported, tested: Python 3.6, 3.7</p>
+<p>Only Python3 is supported, tested: Python 3.6, 3.7, 3.8</p>
 <p>The package was developed mostly with Python 2.5..2.7 and ported using 2to3 +
 manual changes. Therefore, you might find some crufty Python 2 style code
-fragments in lesser used parts of the codebase.</p>
+fragments in lesser used parts of the code base.</p>
 </div>
 <div class="section" id="compiling-fortran-extensions-and-openmp-notes">
 <h2>Compiling Fortran extensions and OpenMP notes<a class="headerlink" href="#compiling-fortran-extensions-and-openmp-notes" title="Permalink to this headline">¶</a></h2>
@@ -287,7 +317,7 @@ $ ./runtests.sh --nobuild
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2019, Steve Schmerler.
+      &copy;2020, Steve Schmerler.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>

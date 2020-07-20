@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pwtools.rbf.FitError.err_cv" href="pwtools.rbf.FitError.err_cv.html" />
-    <link rel="prev" title="pwtools.rbf.FitError" href="pwtools.rbf.FitError.html" />
+    <link rel="prev" title="pwtools.rbf.FitError.__call__" href="pwtools.rbf.FitError.__call__.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -68,7 +68,7 @@
   <li><a href="index.html">API Reference</a><ul>
   <li><a href="rbf.html">rbf</a><ul>
   <li><a href="pwtools.rbf.FitError.html">pwtools.rbf.FitError</a><ul>
-      <li>Previous: <a href="pwtools.rbf.FitError.html" title="previous chapter">pwtools.rbf.FitError</a></li>
+      <li>Previous: <a href="pwtools.rbf.FitError.__call__.html" title="previous chapter">pwtools.rbf.FitError.__call__</a></li>
       <li>Next: <a href="pwtools.rbf.FitError.err_cv.html" title="next chapter">pwtools.rbf.FitError.err_cv</a></li>
   </ul></li>
   </ul></li>
@@ -98,12 +98,13 @@
 <dt id="pwtools.rbf.FitError.cv">
 <code class="sig-prename descclassname">FitError.</code><code class="sig-name descname">cv</code><span class="sig-paren">(</span><em class="sig-param">params</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#FitError.cv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.FitError.cv" title="Permalink to this definition">¶</a></dt>
 <dd><p>K-fold repeated CV.</p>
-<p>Split data (points, values) randomly into K parts (“folds”, K = <code class="docutils literal notranslate"><span class="pre">ns</span></code>
-in <code class="docutils literal notranslate"><span class="pre">self.cv_kwds</span></code>) along axis 0 and use each part once as test set,
-the rest as training set. For example <cite>ns=5</cite>: split in 5 parts at
-random indices, use 5 times 4/5 data for train, 1/5 for test (each of
-the folds), so 5 fits total -&gt; 5 fit errors. Optionally repeat <code class="docutils literal notranslate"><span class="pre">nr</span></code>
-times with different random splits. So, <cite>nr</cite> * <cite>ns</cite> fit errors total.</p>
+<p>Split data (points, values) randomly into K parts (“folds”, K =
+<code class="docutils literal notranslate"><span class="pre">n_splits</span></code> in <code class="docutils literal notranslate"><span class="pre">self.cv_kwds</span></code>) along axis 0 and use each part once
+as test set, the rest as training set. For example <cite>ns=5</cite>: split in 5
+parts at random indices, use 5 times 4/5 data for train, 1/5 for test
+(each of the folds), so 5 fits total -&gt; 5 fit errors. Optionally repeat
+<code class="docutils literal notranslate"><span class="pre">n_repeats</span></code> times with different random splits. So, <cite>n_repeats</cite> *
+<cite>n_splits</cite> fit errors total.</p>
 <p>Each time, build an Rbf interpolator with <code class="docutils literal notranslate"><span class="pre">self.rbf_kwds</span></code>, fit,
 return the fit error (scalar sum of squares from
 <a class="reference internal" href="pwtools.rbf.Rbf.fit_error.html#pwtools.rbf.Rbf.fit_error" title="pwtools.rbf.Rbf.fit_error"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rbf.fit_error()</span></code></a>).</p>
@@ -118,7 +119,7 @@ return the fit error (scalar sum of squares from
 </div></blockquote>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>errs</strong> : 1d array (nr*ns,)</p>
+<dd class="field-even"><p><strong>errs</strong> : 1d array (n_repeats * n_splits,)</p>
 <blockquote>
 <div><p>direct fit error from each fold</p>
 </div></blockquote>
@@ -135,7 +136,7 @@ return the fit error (scalar sum of squares from
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2019, Steve Schmerler.
+      &copy;2020, Steve Schmerler.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>

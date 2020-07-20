@@ -97,21 +97,13 @@
 <dl class="method">
 <dt id="pwtools.rbf.Rbf.interpolate">
 <code class="sig-prename descclassname">Rbf.</code><code class="sig-name descname">interpolate</code><span class="sig-paren">(</span><em class="sig-param">points</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#Rbf.interpolate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.Rbf.interpolate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Actually do interpolation. Return interpolated values at each
-point in points.</p>
+<dd><p>Evaluate interpolant at <cite>points</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>points</strong> : see <a class="reference internal" href="pwtools.rbf.Rbf.__call__.html#pwtools.rbf.Rbf.__call__" title="pwtools.rbf.Rbf.__call__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__call__()</span></code></a></p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>vals</strong> : 1d array (points.shape[0],)</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<dl class="simple">
-<dt>Calculates</dt><dd><p>distsq = (points - centers)**2  # squared distance matrix
-G = rbf(distsq)                 # RBF values
-zi = dot(G, w)                  # interpolation z_i = Sum_j g_ij w_j</p>
 </dd>
 </dl>
 </dd></dl>
@@ -125,7 +117,7 @@ zi = dot(G, w)                  # interpolation z_i = Sum_j g_ij w_j</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2019, Steve Schmerler.
+      &copy;2020, Steve Schmerler.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>

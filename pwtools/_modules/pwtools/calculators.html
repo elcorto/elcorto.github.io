@@ -85,15 +85,27 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.calculators</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">types</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">parse</span><span class="p">,</span> <span class="n">common</span><span class="p">,</span> <span class="n">pwscf</span><span class="p">,</span> <span class="n">crys</span><span class="p">,</span> <span class="n">io</span><span class="p">,</span> <span class="n">constants</span>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
 
-<span class="c1"># silently fail if ase is missing b/c it is not a dependency</span>
+<span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">common</span><span class="p">,</span> <span class="n">pwscf</span><span class="p">,</span> <span class="n">crys</span><span class="p">,</span> <span class="n">io</span><span class="p">,</span> <span class="n">constants</span>
+
+
+<span class="c1"># silently fail at immport if ase is missing b/c it is not a dependency, fail</span>
+<span class="c1"># later only when actually used</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">ase.calculators.calculator</span> <span class="k">import</span> <span class="n">FileIOCalculator</span><span class="p">,</span> <span class="n">kpts2mp</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="k">pass</span>
+    <span class="k">def</span> <span class="nf">_ase_missing</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Failed to import FileIOCalculator, kpts2mp &quot;</span>
+                                  <span class="s2">&quot;from ase, not installed?&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">kpts2mp</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+        <span class="n">_ase_missing</span><span class="p">()</span>
+
+    <span class="k">class</span> <span class="nc">FileIOCalculator</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+            <span class="n">_ase_missing</span><span class="p">()</span>
+
 
 <div class="viewcode-block" id="stress_pwtools2ase"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.stress_pwtools2ase.html#pwtools.calculators.stress_pwtools2ase">[docs]</a><span class="k">def</span> <span class="nf">stress_pwtools2ase</span><span class="p">(</span><span class="n">pwstress</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -128,7 +140,7 @@
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">input_keys</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed_keys</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;key &#39;</span><span class="si">%s</span><span class="s2">&#39; not allowed, only: </span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">k</span><span class="p">,</span>
-                                    <span class="nb">str</span><span class="p">(</span><span class="n">allowed_keys</span><span class="p">)))</span>
+                                <span class="nb">str</span><span class="p">(</span><span class="n">allowed_keys</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span></div>
@@ -136,7 +148,7 @@
 <div class="viewcode-block" id="CalculatorBase.fill_infile_templ"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.CalculatorBase.fill_infile_templ.html#pwtools.calculators.CalculatorBase.fill_infile_templ">[docs]</a>    <span class="k">def</span> <span class="nf">fill_infile_templ</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Replace all placeholders in ``self.infile_templ``. Use all keys in</span>
 <span class="sd">        ``self.infile_templ_keys`` as possible placeholders.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">infile_templ</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="nb">dict</span><span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">))</span> <span class="k">for</span> <span class="n">key</span> \
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">infile_templ</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="nb">dict</span><span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">))</span> <span class="k">for</span> <span class="n">key</span>
                                         <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">infile_templ_keys</span><span class="p">))</span></div></div>
 
 
@@ -201,7 +213,7 @@
         <span class="n">pseudo_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">smearing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">xc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;pw.x -input pw.in | tee pw.out&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;pw.x -input pw.in | tee pw.out&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="n">implemented_properties</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="s1">&#39;forces&#39;</span><span class="p">,</span> <span class="s1">&#39;stress&#39;</span><span class="p">]</span>
@@ -245,6 +257,7 @@
 <span class="s2">K_POINTS automatic</span>
 <span class="si">{kpoints}</span><span class="s2"> 0 0 0</span>
 <span class="s2">    &quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="Pwscf.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.Pwscf.html#pwtools.calculators.Pwscf.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -292,8 +305,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">infile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;.in&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">outfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;.out&#39;</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">infile_templ_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;natoms&#39;</span><span class="p">,</span> <span class="s1">&#39;ntyp&#39;</span><span class="p">,</span> <span class="s1">&#39;atpos&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;atspec&#39;</span><span class="p">,</span> <span class="s1">&#39;cell&#39;</span><span class="p">,</span> <span class="s1">&#39;kpoints&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">infile_templ_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> \
+            <span class="p">[</span><span class="s1">&#39;natoms&#39;</span><span class="p">,</span> <span class="s1">&#39;ntyp&#39;</span><span class="p">,</span> <span class="s1">&#39;atpos&#39;</span><span class="p">,</span> <span class="s1">&#39;atspec&#39;</span><span class="p">,</span> <span class="s1">&#39;cell&#39;</span><span class="p">,</span> <span class="s1">&#39;kpoints&#39;</span><span class="p">]</span>
 
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">pp</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;set pp&quot;</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">pseudo_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;set pseudo_dir&quot;</span>
@@ -366,7 +379,7 @@
         <span class="n">pair_coeff</span><span class="o">=</span><span class="s1">&#39;* * ./AlN.tersoff Al N&#39;</span><span class="p">,</span>
         <span class="n">pair_style</span><span class="o">=</span><span class="s1">&#39;tersoff&#39;</span><span class="p">,</span>
         <span class="n">backup</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;lammps &lt; lmp.in &gt; lmp.out&quot;</span><span class="p">,</span> <span class="c1"># also writes &#39;log.lammps&#39;</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;lammps &lt; lmp.in &gt; lmp.out&quot;</span><span class="p">,</span>  <span class="c1"># also writes &#39;log.lammps&#39;</span>
         <span class="p">)</span>
     <span class="n">implemented_properties</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="s1">&#39;forces&#39;</span><span class="p">,</span> <span class="s1">&#39;stress&#39;</span><span class="p">]</span>
 
@@ -422,7 +435,7 @@
         <span class="n">common</span><span class="o">.</span><span class="n">file_write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">infile</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fill_infile_templ</span><span class="p">())</span>
         <span class="n">io</span><span class="o">.</span><span class="n">write_lammps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">structfile</span><span class="p">,</span>
                         <span class="n">crys</span><span class="o">.</span><span class="n">atoms2struct</span><span class="p">(</span><span class="n">atoms</span><span class="p">),</span>
-                        <span class="n">symbolsbasename</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">structfile</span><span class="p">)</span> <span class="o">+</span> \
+                        <span class="n">symbolsbasename</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">structfile</span><span class="p">)</span> <span class="o">+</span>
                             <span class="s1">&#39;.symbols&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Lammps.read_results"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.Lammps.read_results.html#pwtools.calculators.Lammps.read_results">[docs]</a>    <span class="k">def</span> <span class="nf">read_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -441,7 +454,7 @@
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2019, Steve Schmerler.
+      &copy;2020, Steve Schmerler.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>

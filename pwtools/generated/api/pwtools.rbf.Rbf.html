@@ -94,7 +94,7 @@
 <h1>pwtools.rbf.Rbf<a class="headerlink" href="#pwtools-rbf-rbf" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pwtools.rbf.Rbf">
-<em class="property">class </em><code class="sig-prename descclassname">pwtools.rbf.</code><code class="sig-name descname">Rbf</code><span class="sig-paren">(</span><em class="sig-param">points</em>, <em class="sig-param">values</em>, <em class="sig-param">centers=None</em>, <em class="sig-param">rbf='inv_multi'</em>, <em class="sig-param">r=None</em>, <em class="sig-param">p='mean'</em>, <em class="sig-param">verbose=False</em>, <em class="sig-param">fit=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#Rbf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.Rbf" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.rbf.</code><code class="sig-name descname">Rbf</code><span class="sig-paren">(</span><em class="sig-param">points</em>, <em class="sig-param">values</em>, <em class="sig-param">rbf='inv_multi'</em>, <em class="sig-param">r=None</em>, <em class="sig-param">p='mean'</em>, <em class="sig-param">fit=True</em>, <em class="sig-param">lin_solver='dsysv'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#Rbf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.Rbf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Radial basis function network interpolation and fitting.</p>
 <p class="rubric">Methods</p>
@@ -114,16 +114,16 @@
 <td><p>Solve linear system for the weights.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.fit_error.html#pwtools.rbf.Rbf.fit_error" title="pwtools.rbf.Rbf.fit_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_error</span></code></a>(points, values)</p></td>
-<td><p>Sum of squared fit errors with penalty on negative p.</p></td>
+<td><p>Sum of squared fit errors with penalty on negative <cite>p</cite>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.get_distsq.html#pwtools.rbf.Rbf.get_distsq" title="pwtools.rbf.Rbf.get_distsq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_distsq</span></code></a>([points])</p></td>
 <td><p>Matrix of distance values <span class="math notranslate nohighlight">\(R_{ij} = |\mathbf x_i - \mathbf c_j|\)</span>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.get_params.html#pwtools.rbf.Rbf.get_params" title="pwtools.rbf.Rbf.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Return <code class="docutils literal notranslate"><span class="pre">(p,r)</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.interpolate.html#pwtools.rbf.Rbf.interpolate" title="pwtools.rbf.Rbf.interpolate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interpolate</span></code></a>(points)</p></td>
-<td><p>Actually do interpolation.</p></td>
+<td><p>Evaluate interpolant at <cite>points</cite>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -133,15 +133,13 @@
 <dd><p>Call <a class="reference internal" href="pwtools.rbf.Rbf.interpolate.html#pwtools.rbf.Rbf.interpolate" title="pwtools.rbf.Rbf.interpolate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">interpolate()</span></code></a> or <a class="reference internal" href="pwtools.rbf.Rbf.deriv.html#pwtools.rbf.Rbf.deriv" title="pwtools.rbf.Rbf.deriv"><code class="xref py py-meth docutils literal notranslate"><span class="pre">deriv()</span></code></a>.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>points</strong> : 2d array (L,N) or 1d array (N,) or None</p>
+<dd class="field-odd"><p><strong>points</strong> : 2d array (L,N)</p>
 <blockquote>
-<div><p>L data points in N-dim space. If None, then points = self.points, i.e. just
-evaluate the training set. If 1d, then this is just 1 point, which
-will be converted to shape (1,N) internally.</p>
+<div><p>L N-dim points to evaluate the interpolant on.</p>
 </div></blockquote>
 <p><strong>der</strong> : int</p>
 <blockquote>
-<div><p>If == 1 return matrix of partial derivatives (see :meth”<cite>deriv</cite>), else
+<div><p>If == 1 return matrix of partial derivatives (see <a class="reference internal" href="pwtools.rbf.Rbf.deriv.html#pwtools.rbf.Rbf.deriv" title="pwtools.rbf.Rbf.deriv"><code class="xref py py-meth docutils literal notranslate"><span class="pre">deriv()</span></code></a>), else
 interpolated values values (default).</p>
 </div></blockquote>
 </dd>
@@ -161,7 +159,7 @@ interpolated values values (default).</p>
 
 <dl class="method">
 <dt id="pwtools.rbf.Rbf.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">points</em>, <em class="sig-param">values</em>, <em class="sig-param">centers=None</em>, <em class="sig-param">rbf='inv_multi'</em>, <em class="sig-param">r=None</em>, <em class="sig-param">p='mean'</em>, <em class="sig-param">verbose=False</em>, <em class="sig-param">fit=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#Rbf.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.Rbf.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">points</em>, <em class="sig-param">values</em>, <em class="sig-param">rbf='inv_multi'</em>, <em class="sig-param">r=None</em>, <em class="sig-param">p='mean'</em>, <em class="sig-param">fit=True</em>, <em class="sig-param">lin_solver='dsysv'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#Rbf.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.Rbf.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>points</strong> : 2d array, (M,N)</p>
@@ -171,11 +169,6 @@ interpolated values values (default).</p>
 <p><strong>values</strong> : 1d array, (M,)</p>
 <blockquote>
 <div><p>function values at training points</p>
-</div></blockquote>
-<p><strong>centers</strong> : 2d array (K,N)</p>
-<blockquote>
-<div><p>K N-dim center vectors, for usual interpolation training points == centers
-(default)</p>
 </div></blockquote>
 <p><strong>rbf</strong> : str (see rbf_dct.keys()) or callable rbf(r**2, p)</p>
 <p><strong>r</strong> : float or None</p>
@@ -187,7 +180,15 @@ solver</p>
 <blockquote>
 <div><p>the RBF’s free parameter</p>
 </div></blockquote>
-<p><strong>verbose</strong> : bool</p>
+<p><strong>lin_solver</strong> : str</p>
+<blockquote>
+<div><p>Linear solver method in case <cite>r</cite> is given</p>
+<div class="line-block">
+<div class="line">solve : <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.solve.html#scipy.linalg.solve" title="(in SciPy v1.5.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve()</span></code></a></div>
+<div class="line">dsysv : <code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.lapack.dsysv()</span></code> (symmetric G)</div>
+<div class="line">dposv : <code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.lapack.dposv()</span></code> (positive definite G)</div>
+</div>
+</div></blockquote>
 <p><strong>fit</strong> : bool</p>
 <blockquote>
 <div><p>call self.fit() in __init__</p>
@@ -252,16 +253,21 @@ solver</p>
 <dd><p>Matrix of partial first derivatives.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>points</strong> : see <a class="reference internal" href="pwtools.rbf.Rbf.__call__.html#pwtools.rbf.Rbf.__call__" title="pwtools.rbf.Rbf.__call__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__call__()</span></code></a></p>
+<dd class="field-odd"><p><strong>points</strong> : 2d array (L,N)</p>
+<blockquote>
+<div><p>See also <a class="reference internal" href="pwtools.rbf.Rbf.__call__.html#pwtools.rbf.Rbf.__call__" title="pwtools.rbf.Rbf.__call__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__call__()</span></code></a></p>
+</div></blockquote>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>2d array (L,N)</p>
 <blockquote>
-<div><p>Each row holds the partial derivatives of one input point <code class="docutils literal notranslate"><span class="pre">points[i,:]</span> <span class="pre">=</span>
-<span class="pre">[x_0,</span> <span class="pre">...,</span> <span class="pre">x_N-1]</span></code>. For all points points: (L,N), we get the matrix:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="n">dz</span><span class="o">/</span><span class="n">dx0_0</span><span class="p">,</span>   <span class="n">dz</span><span class="o">/</span><span class="n">dx0_1</span><span class="p">,</span>   <span class="o">...</span><span class="p">,</span> <span class="n">dz</span><span class="o">/</span><span class="n">dx0_N</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+<div><p>Each row holds the gradient vector <span class="math notranslate nohighlight">\(\partial f/\partial\mathbf x_i\)</span>
+where <span class="math notranslate nohighlight">\(\mathbf x_i = \texttt{points[i,:]
+= [xi_0, ..., xi_N-1]}\)</span>. For all points points (L,N) we get the
+matrix:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="n">df</span><span class="o">/</span><span class="n">dx0_0</span><span class="p">,</span>   <span class="n">df</span><span class="o">/</span><span class="n">dx0_1</span><span class="p">,</span>   <span class="o">...</span><span class="p">,</span> <span class="n">df</span><span class="o">/</span><span class="n">dx0_N</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
  <span class="p">[</span><span class="o">...</span><span class="p">],</span>
- <span class="p">[</span><span class="n">dz</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1_0</span><span class="p">,</span> <span class="n">dz</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1_1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">dz</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1</span><span class="n">_N</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+ <span class="p">[</span><span class="n">df</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1_0</span><span class="p">,</span> <span class="n">df</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1_1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">df</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1</span><span class="n">_N</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -280,7 +286,7 @@ r\,\mathbf I)\,\mathbf w = \mathbf z\)</span>.</p>
 quadratic. Updates <code class="docutils literal notranslate"><span class="pre">self.w</span></code>.</p>
 <p class="rubric">Notes</p>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">self.r</span> <span class="pre">!=</span> <span class="pre">None</span></code><span class="classifier">linear system solver</span></dt><dd><p>Use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.solve.html#scipy.linalg.solve" title="(in SciPy v1.5.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve()</span></code></a>. For <span class="math notranslate nohighlight">\(r=0\)</span>, this always yields
+<dt><code class="docutils literal notranslate"><span class="pre">self.r</span> <span class="pre">!=</span> <span class="pre">None</span></code><span class="classifier">linear system solver</span></dt><dd><p>Use <cite>lin_solver</cite>. For <span class="math notranslate nohighlight">\(r=0\)</span>, this always yields
 perfect interpolation at the data points. May be numerically
 unstable in that case. Use <span class="math notranslate nohighlight">\(r&gt;0\)</span> to increase stability (try
 small values such as <code class="docutils literal notranslate"><span class="pre">1e-10</span></code> first) or create smooth fitting (generate
@@ -293,7 +299,7 @@ tuned.</p>
 direct solver w/o regularization. Will mostly be the same as
 the interpolation result, but will not go thru all points for
 very noisy data. May create small noise in solution (plot fit
-with high point density).</p>
+with high point density). Also slower that e.g. <code class="docutils literal notranslate"><span class="pre">dsysv</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -301,7 +307,7 @@ with high point density).</p>
 <dl class="method">
 <dt id="pwtools.rbf.Rbf.fit_error">
 <code class="sig-name descname">fit_error</code><span class="sig-paren">(</span><em class="sig-param">points</em>, <em class="sig-param">values</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#Rbf.fit_error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.Rbf.fit_error" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sum of squared fit errors with penalty on negative p.</p>
+<dd><p>Sum of squared fit errors with penalty on negative <cite>p</cite>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -311,41 +317,39 @@ with high point density).</p>
 c_j|\)</span>.</p>
 <blockquote>
 <div><div class="line-block">
-<div class="line"><span class="math notranslate nohighlight">\(\mathbf x_i\)</span> : points[i,:]</div>
-<div class="line"><span class="math notranslate nohighlight">\(\mathbf c_i\)</span> : centers[i,:]</div>
+<div class="line"><span class="math notranslate nohighlight">\(\mathbf x_i\)</span> : <code class="docutils literal notranslate"><span class="pre">points[i,:]</span></code>      (points)</div>
+<div class="line"><span class="math notranslate nohighlight">\(\mathbf c_j\)</span> : <code class="docutils literal notranslate"><span class="pre">self.points[j,:]</span></code> (centers)</div>
 </div>
 </div></blockquote>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>points</strong> : array (M,N) with N-dim points, optional</p>
+<dd class="field-odd"><p><strong>points</strong> : array (K,N) with N-dim points, optional</p>
 <blockquote>
 <div><p>If None then <code class="docutils literal notranslate"><span class="pre">self.points</span></code> is used (training points).</p>
 </div></blockquote>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>distsq</strong> : (M,K), where K = M usually for training</p>
+<dd class="field-even"><p><strong>distsq</strong> : (M,K), where K = M for training</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
+<dt id="pwtools.rbf.Rbf.get_params">
+<code class="sig-name descname">get_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#Rbf.get_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.Rbf.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="docutils literal notranslate"><span class="pre">(p,r)</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="pwtools.rbf.Rbf.interpolate">
 <code class="sig-name descname">interpolate</code><span class="sig-paren">(</span><em class="sig-param">points</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#Rbf.interpolate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.Rbf.interpolate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Actually do interpolation. Return interpolated values at each
-point in points.</p>
+<dd><p>Evaluate interpolant at <cite>points</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>points</strong> : see <a class="reference internal" href="pwtools.rbf.Rbf.__call__.html#pwtools.rbf.Rbf.__call__" title="pwtools.rbf.Rbf.__call__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__call__()</span></code></a></p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>vals</strong> : 1d array (points.shape[0],)</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<dl class="simple">
-<dt>Calculates</dt><dd><p>distsq = (points - centers)**2  # squared distance matrix
-G = rbf(distsq)                 # RBF values
-zi = dot(G, w)                  # interpolation z_i = Sum_j g_ij w_j</p>
 </dd>
 </dl>
 </dd></dl>
@@ -361,7 +365,7 @@ zi = dot(G, w)                  # interpolation z_i = Sum_j g_ij w_j</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2019, Steve Schmerler.
+      &copy;2020, Steve Schmerler.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
