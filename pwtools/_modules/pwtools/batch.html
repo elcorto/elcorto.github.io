@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.batch &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,7 +13,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -108,7 +109,7 @@
 
 <span class="sd">    Useful to predefine commonly used machines.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="Machine.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Machine.html#pwtools.batch.Machine.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">subcmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scratch</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">subcmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scratch</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -139,7 +140,7 @@
                          <span class="s1">&#39;home&#39;</span><span class="p">,</span>
                          <span class="p">]</span>
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">FileTemplate</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">FileTemplate</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Machine.get_jobfile_basename"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Machine.get_jobfile_basename.html#pwtools.batch.Machine.get_jobfile_basename">[docs]</a>    <span class="k">def</span> <span class="nf">get_jobfile_basename</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -210,7 +211,7 @@
 <span class="sd">        &gt;&gt;&gt; sct[&#39;ecutwfc&#39;] = SQLEntry(sqlval=23.0)</span>
 <span class="sd">        &gt;&gt;&gt; templ.writesql(dct, &#39;calc/0&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="FileTemplate.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.batch.FileTemplate.html#pwtools.batch.FileTemplate.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">txt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">templ_dir</span><span class="o">=</span><span class="s1">&#39;calc.templ&#39;</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">txt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">templ_dir</span><span class="o">=</span><span class="s1">&#39;calc.templ&#39;</span><span class="p">,</span>
                  <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="s1">&#39;XXX&#39;</span><span class="o">+</span><span class="n">x</span><span class="o">.</span><span class="n">upper</span><span class="p">()):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -269,7 +270,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">templ_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">basename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
 
 <div class="viewcode-block" id="FileTemplate.write"><a class="viewcode-back" href="../../generated/api/pwtools.batch.FileTemplate.write.html#pwtools.batch.FileTemplate.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dct</span><span class="p">,</span> <span class="n">calc_dir</span><span class="o">=</span><span class="s1">&#39;calc&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;dct&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Write file self.filename (e.g. calc/0/pw.in) by replacing</span>
@@ -364,7 +365,7 @@
     <span class="c1"># ParameterStudy. Maybe allow `params` to be either a dict or a list of</span>
     <span class="c1"># SQLEntry instances. In the dict case, let get_sql_record() raise a</span>
     <span class="c1"># warning.</span>
-<div class="viewcode-block" id="Calculation.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Calculation.html#pwtools.batch.Calculation.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">machine</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">templates</span><span class="o">=</span><span class="p">[],</span> <span class="n">params</span><span class="o">=</span><span class="p">[],</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">machine</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">templates</span><span class="o">=</span><span class="p">[],</span> <span class="n">params</span><span class="o">=</span><span class="p">[],</span>
                  <span class="n">calc_dir</span><span class="o">=</span><span class="s1">&#39;calc_dir&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -396,7 +397,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">sql_record_write</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">machine</span><span class="o">.</span><span class="n">get_sql_record</span><span class="p">())</span>
             <span class="c1"># use machine.template if it has one</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">machine</span><span class="o">.</span><span class="n">template</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">machine</span><span class="o">.</span><span class="n">template</span><span class="p">)</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">machine</span><span class="o">.</span><span class="n">template</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Calculation.get_sql_record"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Calculation.get_sql_record.html#pwtools.batch.Calculation.get_sql_record">[docs]</a>    <span class="k">def</span> <span class="nf">get_sql_record</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a dict of SQLEntry instances. Each key is a candidate</span>
@@ -513,7 +514,7 @@
     <span class="c1">#</span>
     <span class="c1"># Each row (or record in sqlite) will be one Calculation, getting</span>
     <span class="c1"># it&#39;s own dir.</span>
-<div class="viewcode-block" id="ParameterStudy.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.batch.ParameterStudy.html#pwtools.batch.ParameterStudy.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">machines</span><span class="o">=</span><span class="p">[],</span> <span class="n">templates</span><span class="o">=</span><span class="p">[],</span> <span class="n">params_lst</span><span class="o">=</span><span class="p">[],</span> <span class="n">study_name</span><span class="o">=</span><span class="s1">&#39;calc&#39;</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">machines</span><span class="o">=</span><span class="p">[],</span> <span class="n">templates</span><span class="o">=</span><span class="p">[],</span> <span class="n">params_lst</span><span class="o">=</span><span class="p">[],</span> <span class="n">study_name</span><span class="o">=</span><span class="s1">&#39;calc&#39;</span><span class="p">,</span>
                  <span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;calc.db&#39;</span><span class="p">,</span> <span class="n">db_table</span><span class="o">=</span><span class="s1">&#39;calc&#39;</span><span class="p">,</span> <span class="n">calc_root</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">curdir</span><span class="p">,</span>
                  <span class="n">calc_dir_prefix</span><span class="o">=</span><span class="s1">&#39;calc&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -564,7 +565,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">db_table</span> <span class="o">=</span> <span class="n">db_table</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">calc_root</span> <span class="o">=</span> <span class="n">calc_root</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">calc_dir_prefix</span> <span class="o">=</span> <span class="n">calc_dir_prefix</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dbfn</span> <span class="o">=</span> <span class="n">pj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calc_root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">db_name</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dbfn</span> <span class="o">=</span> <span class="n">pj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calc_root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">db_name</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ParameterStudy.write_input"><a class="viewcode-back" href="../../generated/api/pwtools.batch.ParameterStudy.write_input.html#pwtools.batch.ParameterStudy.write_input">[docs]</a>    <span class="k">def</span> <span class="nf">write_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">backup</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sleep</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">excl</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -848,12 +849,12 @@
 <span class="sd">    &gt;&gt;&gt; case2 = Case(x=11, y=22)</span>
 <span class="sd">    &gt;&gt;&gt; for case in [case1, case2]: print(case.x, case.y)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="Case.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.batch.Case.html#pwtools.batch.Case.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">kwds</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;init&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">,</span> <span class="n">Callable</span><span class="p">):</span>
-            <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;self.init()&#39;</span><span class="p">)</span></div></div>
+            <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;self.init()&#39;</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
@@ -865,7 +866,7 @@
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
     </div>

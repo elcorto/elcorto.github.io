@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.pydos.pdos &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.pydos.pyvacf" href="pwtools.pydos.pyvacf.html" />
-    <link rel="prev" title="pwtools.pydos.fvacf" href="pwtools.pydos.fvacf.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="pydos.html">pydos</a><ul>
-      <li>Previous: <a href="pwtools.pydos.fvacf.html" title="previous chapter">pwtools.pydos.fvacf</a></li>
-      <li>Next: <a href="pwtools.pydos.pyvacf.html" title="next chapter">pwtools.pydos.pyvacf</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,62 +82,47 @@
             
   <div class="section" id="pwtools-pydos-pdos">
 <h1>pwtools.pydos.pdos<a class="headerlink" href="#pwtools-pydos-pdos" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.pydos.pdos">
-<code class="sig-prename descclassname">pwtools.pydos.</code><code class="sig-name descname">pdos</code><span class="sig-paren">(</span><em class="sig-param">vel</em>, <em class="sig-param">dt=1.0</em>, <em class="sig-param">m=None</em>, <em class="sig-param">full_out=False</em>, <em class="sig-param">area=1.0</em>, <em class="sig-param">window=True</em>, <em class="sig-param">npad=None</em>, <em class="sig-param">tonext=False</em>, <em class="sig-param">mirr=False</em>, <em class="sig-param">method='direct'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pydos.html#pdos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pydos.pdos" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.pydos.</code><code class="sig-name descname">pdos</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vel</span></em>, <em class="sig-param"><span class="n">dt</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">m</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">full_out</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">area</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">window</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">npad</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tonext</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">mirr</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">method</span><span class="o">=</span><span class="default_value">'direct'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pydos.html#pdos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pydos.pdos" title="Permalink to this definition">¶</a></dt>
 <dd><p>Phonon DOS by FFT of the VACF or direct FFT of atomic velocities.</p>
 <p>Integral area is normalized to <cite>area</cite>. It is possible (and recommended) to
 zero-padd the velocities (see <cite>npad</cite>).</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>vel</strong> : 3d array (nstep, natoms, 3)</p>
-<blockquote>
-<div><p>atomic velocities</p>
-</div></blockquote>
-<p><strong>dt</strong> : time step</p>
-<p><strong>m</strong> : 1d array (natoms,),</p>
-<blockquote>
-<div><p>atomic mass array, if None then mass=1.0 for all atoms is used</p>
-</div></blockquote>
-<p><strong>full_out</strong> : bool</p>
-<p><strong>area</strong> : float</p>
-<blockquote>
-<div><p>normalize area under frequency-PDOS curve to this value</p>
-</div></blockquote>
-<p><strong>window</strong> : bool</p>
-<blockquote>
-<div><p>use Welch windowing on data before FFT (reduces leaking effect,
+<dd class="field-odd"><dl class="simple">
+<dt><strong>vel</strong><span class="classifier">3d array (nstep, natoms, 3)</span></dt><dd><p>atomic velocities</p>
+</dd>
+<dt><strong>dt</strong><span class="classifier">time step</span></dt><dd></dd>
+<dt><strong>m</strong><span class="classifier">1d array (natoms,),</span></dt><dd><p>atomic mass array, if None then mass=1.0 for all atoms is used</p>
+</dd>
+<dt><strong>full_out</strong><span class="classifier">bool</span></dt><dd></dd>
+<dt><strong>area</strong><span class="classifier">float</span></dt><dd><p>normalize area under frequency-PDOS curve to this value</p>
+</dd>
+<dt><strong>window</strong><span class="classifier">bool</span></dt><dd><p>use Welch windowing on data before FFT (reduces leaking effect,
 recommended)</p>
-</div></blockquote>
-<p><strong>npad</strong> : {None, int}</p>
-<blockquote>
-<div><p>method=’direct’ only: Length of zero padding along <cite>axis</cite>. <cite>npad=None</cite>
+</dd>
+<dt><strong>npad</strong><span class="classifier">{None, int}</span></dt><dd><p>method=’direct’ only: Length of zero padding along <cite>axis</cite>. <cite>npad=None</cite>
 = no padding, <cite>npad &gt; 0</cite> = pad by a length of <code class="docutils literal notranslate"><span class="pre">(nstep-1)*npad</span></code>. <cite>npad
 &gt; 5</cite> usually results in sufficient interpolation.</p>
-</div></blockquote>
-<p><strong>tonext</strong> : bool</p>
-<blockquote>
-<div><p>method=’direct’ only: Pad <cite>vel</cite> with zeros along <cite>axis</cite> up to the next
+</dd>
+<dt><strong>tonext</strong><span class="classifier">bool</span></dt><dd><p>method=’direct’ only: Pad <cite>vel</cite> with zeros along <cite>axis</cite> up to the next
 power of two after the array length determined by <cite>npad</cite>. This gives
 you speed, but variable (better) frequency resolution.</p>
-</div></blockquote>
-<p><strong>mirr</strong> : bool</p>
-<blockquote>
-<div><p>method=’vacf’ only: mirror one-sided VACF at t=0 before fft</p>
-</div></blockquote>
+</dd>
+<dt><strong>mirr</strong><span class="classifier">bool</span></dt><dd><p>method=’vacf’ only: mirror one-sided VACF at t=0 before fft</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>if full_out = False</p>
-<blockquote>
-<div><div class="line-block">
+<dd class="field-even"><dl>
+<dt>if full_out = False</dt><dd><div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">(faxis,</span> <span class="pre">pdos)</span></code></div>
 <div class="line">faxis : 1d array [1/unit(dt)]</div>
 <div class="line">pdos : 1d array, the phonon DOS, normalized to <cite>area</cite></div>
 </div>
-</div></blockquote>
-<p>if full_out = True</p>
-<blockquote>
-<div><div class="line-block">
+</dd>
+<dt>if full_out = True</dt><dd><div class="line-block">
 <div class="line">if method == ‘direct’:</div>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">(faxis,</span> <span class="pre">pdos,</span> <span class="pre">(full_faxis,</span> <span class="pre">full_pdos,</span> <span class="pre">split_idx))</span></code></div>
@@ -159,12 +134,18 @@ you speed, but variable (better) frequency resolution.</p>
 <div class="line">vacf : 1d array, the VACF</div>
 </div>
 </div>
-</div></blockquote>
+</dd>
+</dl>
 </dd>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="pwtools.signal.fftsample.html#pwtools.signal.fftsample" title="pwtools.signal.fftsample"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.signal.fftsample()</span></code></a>, <a class="reference internal" href="pwtools.signal.acorr.html#pwtools.signal.acorr" title="pwtools.signal.acorr"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.signal.acorr()</span></code></a>, <a class="reference internal" href="pwtools.pydos.direct_pdos.html#pwtools.pydos.direct_pdos" title="pwtools.pydos.direct_pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">direct_pdos()</span></code></a>, <a class="reference internal" href="pwtools.pydos.vacf_pdos.html#pwtools.pydos.vacf_pdos" title="pwtools.pydos.vacf_pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">vacf_pdos()</span></code></a></p>
+<dl class="simple">
+<dt><a class="reference internal" href="pwtools.signal.fftsample.html#pwtools.signal.fftsample" title="pwtools.signal.fftsample"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.signal.fftsample()</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="pwtools.signal.acorr.html#pwtools.signal.acorr" title="pwtools.signal.acorr"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.signal.acorr()</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="pwtools.pydos.direct_pdos.html#pwtools.pydos.direct_pdos" title="pwtools.pydos.direct_pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">direct_pdos()</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="pwtools.pydos.vacf_pdos.html#pwtools.pydos.vacf_pdos" title="pwtools.pydos.vacf_pdos"><code class="xref py py-func docutils literal notranslate"><span class="pre">vacf_pdos()</span></code></a></dt><dd></dd>
+</dl>
 </div>
 <p class="rubric">Notes</p>
 <p>padding (only method=’direct’): With <cite>npad</cite> we pad the velocities <cite>vel</cite>
@@ -205,7 +186,7 @@ resolution.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

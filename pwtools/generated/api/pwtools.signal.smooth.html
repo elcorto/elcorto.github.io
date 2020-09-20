@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.signal.smooth &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.signal.welch" href="pwtools.signal.welch.html" />
-    <link rel="prev" title="pwtools.signal.scale" href="pwtools.signal.scale.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="signal.html">signal</a><ul>
-      <li>Previous: <a href="pwtools.signal.scale.html" title="previous chapter">pwtools.signal.scale</a></li>
-      <li>Next: <a href="pwtools.signal.welch.html" title="next chapter">pwtools.signal.welch</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,9 +82,9 @@
             
   <div class="section" id="pwtools-signal-smooth">
 <h1>pwtools.signal.smooth<a class="headerlink" href="#pwtools-signal-smooth" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.signal.smooth">
-<code class="sig-prename descclassname">pwtools.signal.</code><code class="sig-name descname">smooth</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">kern</em>, <em class="sig-param">axis=0</em>, <em class="sig-param">edge='m'</em>, <em class="sig-param">norm=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#smooth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.smooth" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.signal.</code><code class="sig-name descname">smooth</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">kern</span></em>, <em class="sig-param"><span class="n">axis</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">edge</span><span class="o">=</span><span class="default_value">'m'</span></em>, <em class="sig-param"><span class="n">norm</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#smooth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.smooth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Smooth N-dim <cite>data</cite> by convolution with a kernel <cite>kern</cite>.</p>
 <p>Uses scipy.signal.fftconvolve().</p>
 <p>Note that due to edge effect handling (padding) and kernal normalization,
@@ -102,25 +92,18 @@ the convolution identity convolve(data,kern) == convolve(kern,data) doesn’t
 apply here. We always return an array of <code class="docutils literal notranslate"><span class="pre">data.shape</span></code>.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>data</strong> : nd array</p>
-<blockquote>
-<div><p>The data to smooth. Example: 1d (N,) or (N,K,3)
+<dd class="field-odd"><dl>
+<dt><strong>data</strong><span class="classifier">nd array</span></dt><dd><p>The data to smooth. Example: 1d (N,) or (N,K,3)
 for trajectory</p>
-</div></blockquote>
-<p><strong>kern</strong> : nd array</p>
-<blockquote>
-<div><p>Convolution kernel. Example: 1d (M,) or (M,1,1)
+</dd>
+<dt><strong>kern</strong><span class="classifier">nd array</span></dt><dd><p>Convolution kernel. Example: 1d (M,) or (M,1,1)
 for trajectory along axis=0 (data length N)</p>
-</div></blockquote>
-<p><strong>axis</strong> : int</p>
-<blockquote>
-<div><p>Axis along which to do the smoothing. That is actually not needed for
+</dd>
+<dt><strong>axis</strong><span class="classifier">int</span></dt><dd><p>Axis along which to do the smoothing. That is actually not needed for
 the convolution <code class="docutils literal notranslate"><span class="pre">fftconvolve(data,</span> <span class="pre">kern)</span></code> but is used for padding the
 data along <cite>axis</cite> to handle edge effects before convolution.</p>
-</div></blockquote>
-<p><strong>edge</strong> : str</p>
-<blockquote>
-<div><dl>
+</dd>
+<dt><strong>edge</strong><span class="classifier">str</span></dt><dd><dl>
 <dt>Method for edge effect handling.</dt><dd><div class="line-block">
 <div class="line">‘m’ : pad with mirror signal</div>
 <div class="line">‘c’ : pad with constant values (i.e. <code class="docutils literal notranslate"><span class="pre">data[0]</span></code> and</div>
@@ -130,25 +113,27 @@ data along <cite>axis</cite> to handle edge effects before convolution.</p>
 </div>
 </dd>
 </dl>
-</div></blockquote>
-<p><strong>norm</strong> : bool</p>
-<blockquote>
-<div><p>Normalize kernel. Default is True. This assures that the smoothed
+</dd>
+<dt><strong>norm</strong><span class="classifier">bool</span></dt><dd><p>Normalize kernel. Default is True. This assures that the smoothed
 signal lies within the data. Note that this is not True for kernels
 with very big spread (i.e. <code class="docutils literal notranslate"><span class="pre">hann(N*10)</span></code> or <code class="docutils literal notranslate"><span class="pre">gaussian(N/2,</span>
 <span class="pre">std=N*10)</span></code>. Then the kernel is effectively a constant.</p>
-</div></blockquote>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>ret</strong> : data.shape</p>
-<blockquote>
-<div><p>Convolved signal.</p>
-</div></blockquote>
+<dd class="field-even"><dl class="simple">
+<dt><strong>ret</strong><span class="classifier">data.shape</span></dt><dd><p>Convolved signal.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="pwtools.signal.welch.html#pwtools.signal.welch" title="pwtools.signal.welch"><code class="xref py py-func docutils literal notranslate"><span class="pre">welch()</span></code></a>, <a class="reference internal" href="pwtools.signal.lorentz.html#pwtools.signal.lorentz" title="pwtools.signal.lorentz"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorentz()</span></code></a></p>
+<dl class="simple">
+<dt><a class="reference internal" href="pwtools.signal.welch.html#pwtools.signal.welch" title="pwtools.signal.welch"><code class="xref py py-func docutils literal notranslate"><span class="pre">welch()</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="pwtools.signal.lorentz.html#pwtools.signal.lorentz" title="pwtools.signal.lorentz"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorentz()</span></code></a></dt><dd></dd>
+</dl>
 </div>
 <p class="rubric">Notes</p>
 <p>Kernels:</p>
@@ -266,7 +251,7 @@ of course. We do exactly this in <a class="reference internal" href="pwtools.cry
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

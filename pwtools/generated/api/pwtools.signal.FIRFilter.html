@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.signal.FIRFilter &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.signal.FIRFilter.__call__" href="pwtools.signal.FIRFilter.__call__.html" />
-    <link rel="prev" title="signal" href="signal.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="signal.html">signal</a><ul>
-      <li>Previous: <a href="signal.html" title="previous chapter">signal</a></li>
-      <li>Next: <a href="pwtools.signal.FIRFilter.__call__.html" title="next chapter">pwtools.signal.FIRFilter.__call__</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,11 +82,10 @@
             
   <div class="section" id="pwtools-signal-firfilter">
 <h1>pwtools.signal.FIRFilter<a class="headerlink" href="#pwtools-signal-firfilter" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="pwtools.signal.FIRFilter">
-<em class="property">class </em><code class="sig-prename descclassname">pwtools.signal.</code><code class="sig-name descname">FIRFilter</code><span class="sig-paren">(</span><em class="sig-param">cutoff</em>, <em class="sig-param">nyq</em>, <em class="sig-param">ntaps=None</em>, <em class="sig-param">ripple=None</em>, <em class="sig-param">width=None</em>, <em class="sig-param">window='hamming'</em>, <em class="sig-param">mode='lowpass'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#FIRFilter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.FIRFilter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Build and apply a digital FIR filter (low-, high-, band-pass,
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.signal.</code><code class="sig-name descname">FIRFilter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cutoff</span></em>, <em class="sig-param"><span class="n">nyq</span></em>, <em class="sig-param"><span class="n">ntaps</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ripple</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">width</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">window</span><span class="o">=</span><span class="default_value">'hamming'</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'lowpass'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#FIRFilter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.FIRFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build and apply a digital FIR filter (low-, high-, band-pass,
 band-stop). Uses firwin() and in some cases kaiserord().</p>
 <p>Doc strings stolen from scipy.signal.</p>
 <p class="rubric">Notes</p>
@@ -107,7 +96,7 @@ band-stop). Uses firwin() and in some cases kaiserord().</p>
 </div>
 <p class="rubric">References</p>
 <dl class="citation">
-<dt class="label" id="r16"><span class="brackets"><a class="fn-backref" href="#id1">R16</a></span></dt>
+<dt class="label" id="ra7a35d37fe92-1"><span class="brackets">1</span></dt>
 <dd><p><a class="reference external" href="http://www.scipy.org/Cookbook/FIRFilter">http://www.scipy.org/Cookbook/FIRFilter</a></p>
 </dd>
 </dl>
@@ -185,76 +174,6 @@ band-stop). Uses firwin() and in some cases kaiserord().</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="pwtools.signal.FIRFilter.__call__">
-<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">axis=-1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#FIRFilter.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.FIRFilter.__call__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Apply filter to signal.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>x</strong> : 1d array</p>
-<p><strong>axis</strong> : int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.signal.FIRFilter.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">cutoff</em>, <em class="sig-param">nyq</em>, <em class="sig-param">ntaps=None</em>, <em class="sig-param">ripple=None</em>, <em class="sig-param">width=None</em>, <em class="sig-param">window='hamming'</em>, <em class="sig-param">mode='lowpass'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#FIRFilter.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.FIRFilter.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cutoff</strong> : float or 1D array_like</p>
-<blockquote>
-<div><p>Cutoff frequency of filter (expressed in the same units as <cite>nyq</cite>)
-OR an array of cutoff frequencies (that is, band edges). In the
-latter case, the frequencies in <cite>cutoff</cite> should be positive and
-monotonically increasing between 0 and <cite>nyq</cite>.  The values 0 and
-<cite>nyq</cite> must not be included in <cite>cutoff</cite>.</p>
-</div></blockquote>
-<p><strong>nyq</strong> : float</p>
-<blockquote>
-<div><p>Nyquist frequency [Hz].  Each frequency in <cite>cutoff</cite> must be between 0
-and <cite>nyq</cite>.</p>
-</div></blockquote>
-<p><strong>ntaps</strong> : int</p>
-<blockquote>
-<div><p>Length of the filter (number of coefficients, i.e. the filter
-order + 1).  <cite>ntaps</cite> must be even if a passband includes the
-Nyquist frequency. Use either <cite>ntaps</cite> or <cite>ripple</cite> + <cite>width</cite> for a
-Kaiser window.</p>
-</div></blockquote>
-<p><strong>ripple</strong> : float</p>
-<blockquote>
-<div><p>Positive number specifying maximum ripple in passband (dB) and
-minimum ripple in stopband. Large values (like 1000) remove the
-“rippling” in the pass band almost completely and make frequency
-response almost “square” (if <cite>width</cite> is small) but also
-lead to a large number of filter coeffs (ntaps).</p>
-</div></blockquote>
-<p><strong>width</strong> : float</p>
-<blockquote>
-<div><p>Width of transition region (same unit as <cite>nyq</cite>, e.g. Hz).</p>
-</div></blockquote>
-<p><strong>window</strong> : string or tuple of string and parameter values</p>
-<blockquote>
-<div><p>Desired window to use. See <cite>scipy.signal.get_window</cite> for a list
-of windows and required parameters. Default is “hamming”. Ignored
-if <cite>width</cite> and <cite>ripple</cite> givem b/c then <code class="docutils literal notranslate"><span class="pre">kaiserord</span></code> is used to
-build a Kaiser window.</p>
-</div></blockquote>
-<p><strong>mode</strong> : str</p>
-<blockquote>
-<div><p>‘lowpass’, ‘highpass’, ‘bandpass’, ‘bandstop’</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pwtools.signal.FIRFilter.__weakref__">
-<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#pwtools.signal.FIRFilter.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -269,7 +188,7 @@ build a Kaiser window.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

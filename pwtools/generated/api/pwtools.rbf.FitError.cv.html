@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.rbf.FitError.cv &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.rbf.FitError.err_cv" href="pwtools.rbf.FitError.err_cv.html" />
-    <link rel="prev" title="pwtools.rbf.FitError.__call__" href="pwtools.rbf.FitError.__call__.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,14 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="rbf.html">rbf</a><ul>
-  <li><a href="pwtools.rbf.FitError.html">pwtools.rbf.FitError</a><ul>
-      <li>Previous: <a href="pwtools.rbf.FitError.__call__.html" title="previous chapter">pwtools.rbf.FitError.__call__</a></li>
-      <li>Next: <a href="pwtools.rbf.FitError.err_cv.html" title="next chapter">pwtools.rbf.FitError.err_cv</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -94,9 +82,9 @@
             
   <div class="section" id="pwtools-rbf-fiterror-cv">
 <h1>pwtools.rbf.FitError.cv<a class="headerlink" href="#pwtools-rbf-fiterror-cv" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
+<dl class="py method">
 <dt id="pwtools.rbf.FitError.cv">
-<code class="sig-prename descclassname">FitError.</code><code class="sig-name descname">cv</code><span class="sig-paren">(</span><em class="sig-param">params</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#FitError.cv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.FitError.cv" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">FitError.</code><code class="sig-name descname">cv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#FitError.cv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.FitError.cv" title="Permalink to this definition">¶</a></dt>
 <dd><p>K-fold repeated CV.</p>
 <p>Split data (points, values) randomly into K parts (“folds”, K =
 <code class="docutils literal notranslate"><span class="pre">n_splits</span></code> in <code class="docutils literal notranslate"><span class="pre">self.cv_kwds</span></code>) along axis 0 and use each part once
@@ -110,19 +98,19 @@ return the fit error (scalar sum of squares from
 <a class="reference internal" href="pwtools.rbf.Rbf.fit_error.html#pwtools.rbf.Rbf.fit_error" title="pwtools.rbf.Rbf.fit_error"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rbf.fit_error()</span></code></a>).</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>params</strong> : seq length 1 or 2</p>
-<blockquote>
-<div><div class="line-block">
+<dd class="field-odd"><dl>
+<dt><strong>params</strong><span class="classifier">seq length 1 or 2</span></dt><dd><div class="line-block">
 <div class="line">params[0] = p</div>
 <div class="line">params[1] = r (optional)</div>
 </div>
-</div></blockquote>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>errs</strong> : 1d array (n_repeats * n_splits,)</p>
-<blockquote>
-<div><p>direct fit error from each fold</p>
-</div></blockquote>
+<dd class="field-even"><dl class="simple">
+<dt><strong>errs</strong><span class="classifier">1d array (n_repeats * n_splits,)</span></dt><dd><p>direct fit error from each fold</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -139,7 +127,7 @@ return the fit error (scalar sum of squares from
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

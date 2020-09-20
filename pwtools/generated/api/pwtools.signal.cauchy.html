@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.signal.cauchy &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.signal.dft" href="pwtools.signal.dft.html" />
-    <link rel="prev" title="pwtools.signal.acorr" href="pwtools.signal.acorr.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="signal.html">signal</a><ul>
-      <li>Previous: <a href="pwtools.signal.acorr.html" title="previous chapter">pwtools.signal.acorr</a></li>
-      <li>Next: <a href="pwtools.signal.dft.html" title="next chapter">pwtools.signal.dft</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,9 +82,9 @@
             
   <div class="section" id="pwtools-signal-cauchy">
 <h1>pwtools.signal.cauchy<a class="headerlink" href="#pwtools-signal-cauchy" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.signal.cauchy">
-<code class="sig-prename descclassname">pwtools.signal.</code><code class="sig-name descname">cauchy</code><span class="sig-paren">(</span><em class="sig-param">M</em>, <em class="sig-param">std=1.0</em>, <em class="sig-param">sym=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pwtools.signal.cauchy" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.signal.</code><code class="sig-name descname">cauchy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">M</span></em>, <em class="sig-param"><span class="n">std</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">sym</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pwtools.signal.cauchy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Lorentz window (same as Cauchy function). Function skeleton stolen from
 scipy.signal.gaussian().</p>
 <p>The Lorentz function is</p>
@@ -105,20 +95,20 @@ Some definitions use <span class="math notranslate nohighlight">\(1/2\,\Gamma\)<
 without 1/2 we get comparable peak width to Gaussians when using this
 window in convolutions, thus <code class="docutils literal notranslate"><span class="pre">scipy.signal.gaussian(M,</span> <span class="pre">std=5)</span></code> is similar
 to <code class="docutils literal notranslate"><span class="pre">lorentz(M,</span> <span class="pre">std=5)</span></code>.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>M</strong> : int</p>
-<blockquote>
-<div><p>number of points</p>
-</div></blockquote>
-<p><strong>std</strong> : float</p>
-<blockquote>
-<div><p>spread parameter <span class="math notranslate nohighlight">\(\Gamma\)</span></p>
-</div></blockquote>
-<p><strong>sym</strong> : bool</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>M</strong><span class="classifier">int</span></dt><dd><p>number of points</p>
+</dd>
+<dt><strong>std</strong><span class="classifier">float</span></dt><dd><p>spread parameter <span class="math notranslate nohighlight">\(\Gamma\)</span></p>
+</dd>
+<dt><strong>sym</strong><span class="classifier">bool</span></dt><dd></dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>w</strong> : (M,)</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>w</strong><span class="classifier">(M,)</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -135,7 +125,7 @@ to <code class="docutils literal notranslate"><span class="pre">lorentz(M,</span
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

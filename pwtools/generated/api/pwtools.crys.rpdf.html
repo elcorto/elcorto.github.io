@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.crys.rpdf &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.crys.scell" href="pwtools.crys.scell.html" />
-    <link rel="prev" title="pwtools.crys.rmsd" href="pwtools.crys.rmsd.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="crys.html">crys</a><ul>
-      <li>Previous: <a href="pwtools.crys.rmsd.html" title="previous chapter">pwtools.crys.rmsd</a></li>
-      <li>Next: <a href="pwtools.crys.scell.html" title="next chapter">pwtools.crys.scell</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,32 +82,27 @@
             
   <div class="section" id="pwtools-crys-rpdf">
 <h1>pwtools.crys.rpdf<a class="headerlink" href="#pwtools-crys-rpdf" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.crys.rpdf">
-<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">rpdf</code><span class="sig-paren">(</span><em class="sig-param">trajs</em>, <em class="sig-param">dr=0.05</em>, <em class="sig-param">rmax='auto'</em>, <em class="sig-param">amask=None</em>, <em class="sig-param">tmask=None</em>, <em class="sig-param">dmask=None</em>, <em class="sig-param">pbc=True</em>, <em class="sig-param">norm_vmd=False</em>, <em class="sig-param">maxmem=2.0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#rpdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.rpdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">rpdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trajs</span></em>, <em class="sig-param"><span class="n">dr</span><span class="o">=</span><span class="default_value">0.05</span></em>, <em class="sig-param"><span class="n">rmax</span><span class="o">=</span><span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">amask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tmask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">dmask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pbc</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">norm_vmd</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">maxmem</span><span class="o">=</span><span class="default_value">2.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#rpdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.rpdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Radial pair distribution (pair correlation) function for Structures and
 Trajectories. In case of trajectories, the time-averaged RPDF is returned.
 Can also handle non-orthorhombic unit cells (simulation boxes).
 Only fixed-cell MD at the moment.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>trajs</strong> : Structure or Trajectory or list of one or two such objects</p>
-<blockquote>
-<div><p>The case <code class="docutils literal notranslate"><span class="pre">len(trajs)==1</span></code> is the same as providing the object directly
+<dd class="field-odd"><dl>
+<dt><strong>trajs</strong><span class="classifier">Structure or Trajectory or list of one or two such objects</span></dt><dd><p>The case <code class="docutils literal notranslate"><span class="pre">len(trajs)==1</span></code> is the same as providing the object directly
 (most common case). Internally we expand the input to <code class="docutils literal notranslate"><span class="pre">[trajs,</span>
 <span class="pre">trajs]</span></code>, i.e. the RPDF of the 2nd coord set w.r.t. to the first is
 calculated – the order matters! This is like selection 1 and 2 in VMD,
 but nornmally you would use <cite>amask</cite> instead. The option to provide a
 list of two Trajectory objects exists for cases where you don’t want to
 use <cite>amask</cite>, but create two different Trajectory objects outside.</p>
-</div></blockquote>
-<p><strong>dr</strong> : float, optional</p>
-<blockquote>
-<div><p>Radius spacing. Must have the same unit as <cite>cell</cite>, e.g. Angstrom.</p>
-</div></blockquote>
-<p><strong>rmax</strong> : {‘auto’, float}, optional</p>
-<blockquote>
-<div><p>Max. radius up to which minimum image nearest neighbors are counted.
+</dd>
+<dt><strong>dr</strong><span class="classifier">float, optional</span></dt><dd><p>Radius spacing. Must have the same unit as <cite>cell</cite>, e.g. Angstrom.</p>
+</dd>
+<dt><strong>rmax</strong><span class="classifier">{‘auto’, float}, optional</span></dt><dd><p>Max. radius up to which minimum image nearest neighbors are counted.
 For cubic boxes of side length L, this is L/2 [AT,MD].</p>
 <div class="line-block">
 <div class="line">‘auto’ : the method of [Smith] is used to calculate the max. sphere</div>
@@ -126,10 +111,8 @@ For cubic boxes of side length L, this is L/2 [AT,MD].</p>
 </div>
 <div class="line">float : set value yourself</div>
 </div>
-</div></blockquote>
-<p><strong>amask</strong> : None, list of one or two bool 1d arrays, list of one or two strings</p>
-<blockquote>
-<div><p>Optional atom mask. This is the complementary functionality to
+</dd>
+<dt><strong>amask</strong><span class="classifier">None, list of one or two bool 1d arrays, list of one or two strings</span></dt><dd><p>Optional atom mask. This is the complementary functionality to
 <cite>sel</cite> in <a class="reference internal" href="pwtools.crys.vmd_measure_gofr.html#pwtools.crys.vmd_measure_gofr" title="pwtools.crys.vmd_measure_gofr"><code class="xref py py-func docutils literal notranslate"><span class="pre">vmd_measure_gofr()</span></code></a>. If <code class="docutils literal notranslate"><span class="pre">len(amask)==1</span></code>, then we expand
 to <code class="docutils literal notranslate"><span class="pre">[amask,</span> <span class="pre">amask]</span></code> internally, which would calculate the RPDF
 between the same atom selection. If two masks are given, then the first
@@ -137,16 +120,12 @@ is applied to <code class="docutils literal notranslate"><span class="pre">trajs
 select only certain atoms in each Trajectory. The default is to provide
 bool arrays. If you provide strings, they are assumed to be atom names
 and we create a bool array <code class="docutils literal notranslate"><span class="pre">np.array(symbols)</span> <span class="pre">==</span> <span class="pre">amask[i]</span></code>.</p>
-</div></blockquote>
-<p><strong>tmask</strong> : None or slice object, optional</p>
-<blockquote>
-<div><p>Time mask. Slice for the time axis, e.g. to use only every 100th step,
+</dd>
+<dt><strong>tmask</strong><span class="classifier">None or slice object, optional</span></dt><dd><p>Time mask. Slice for the time axis, e.g. to use only every 100th step,
 starting from step 2000 to the end, use <code class="docutils literal notranslate"><span class="pre">tmask=slice(2000,None,100)</span></code>,
 which is the same as <code class="docutils literal notranslate"><span class="pre">np.s_[2000::100]</span></code>.</p>
-</div></blockquote>
-<p><strong>dmask</strong> : None or string, optional</p>
-<blockquote>
-<div><p>Distance mask. Restrict to certain distances using numpy syntax for
+</dd>
+<dt><strong>dmask</strong><span class="classifier">None or string, optional</span></dt><dd><p>Distance mask. Restrict to certain distances using numpy syntax for
 creating bool arrays:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;&gt;=1.0&#39;</span>
 <span class="s1">&#39;</span><span class="si">{d}</span><span class="s1"> &gt;=1.0&#39;</span> <span class="c1"># the same</span>
@@ -156,38 +135,29 @@ creating bool arrays:</p>
 <p>where <code class="docutils literal notranslate"><span class="pre">{d}</span></code> is a placeholder for the distance array (you really have to
 use <code class="docutils literal notranslate"><span class="pre">{d}</span></code>). The placeholder is optional in some pattern. This is similar
 to VMD’s “within” (<code class="docutils literal notranslate"><span class="pre">pbc=False</span></code>) or “pbwithin” (<code class="docutils literal notranslate"><span class="pre">pbc=True</span></code>) syntax.</p>
-</div></blockquote>
-<p><strong>pbc</strong> : bool, optional</p>
-<blockquote>
-<div><p>apply minimum image convention to distances</p>
-</div></blockquote>
-<p><strong>norm_vmd</strong> : bool, optional</p>
-<blockquote>
-<div><p>Normalize <cite>g(r)</cite> like in VMD by counting duplicate atoms and normalize to
+</dd>
+<dt><strong>pbc</strong><span class="classifier">bool, optional</span></dt><dd><p>apply minimum image convention to distances</p>
+</dd>
+<dt><strong>norm_vmd</strong><span class="classifier">bool, optional</span></dt><dd><p>Normalize <cite>g(r)</cite> like in VMD by counting duplicate atoms and normalize to
 <code class="docutils literal notranslate"><span class="pre">natoms0</span> <span class="pre">*</span> <span class="pre">natoms1</span> <span class="pre">-</span> <span class="pre">duplicates</span></code> instead of <code class="docutils literal notranslate"><span class="pre">natoms0*natoms1</span></code>. Affects
 all-all correlations only. <cite>num_int</cite> is not affected. Use this only for
 testing.</p>
-</div></blockquote>
-<p><strong>maxmem</strong> : float, optional</p>
-<blockquote>
-<div><p>Maximal allowed memory to use, in GB.</p>
-</div></blockquote>
+</dd>
+<dt><strong>maxmem</strong><span class="classifier">float, optional</span></dt><dd><p>Maximal allowed memory to use, in GB.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>array (len(rad), 3), the columns are</p>
-<p><strong>rad</strong> : 1d array</p>
-<blockquote>
-<div><p>radius (x-axis) with spacing <cite>dr</cite>, each value r[i] is the middle of a
+<dd class="field-even"><dl class="simple">
+<dt>array (len(rad), 3), the columns are</dt><dd></dd>
+<dt><strong>rad</strong><span class="classifier">1d array</span></dt><dd><p>radius (x-axis) with spacing <cite>dr</cite>, each value r[i] is the middle of a
 histogram bin</p>
-</div></blockquote>
-<p><strong>hist</strong> : 1d array, (len(rad),)</p>
-<blockquote>
-<div><p>the function values <cite>g(r)</cite></p>
-</div></blockquote>
-<p><strong>num_int</strong> : 1d array, (len(rad),)</p>
-<blockquote>
-<div><p>the (averaged) number integral <code class="docutils literal notranslate"><span class="pre">number_density*hist*4*pi*r**2.0*dr</span></code></p>
-</div></blockquote>
+</dd>
+<dt><strong>hist</strong><span class="classifier">1d array, (len(rad),)</span></dt><dd><p>the function values <cite>g(r)</cite></p>
+</dd>
+<dt><strong>num_int</strong><span class="classifier">1d array, (len(rad),)</span></dt><dd><p>the (averaged) number integral <code class="docutils literal notranslate"><span class="pre">number_density*hist*4*pi*r**2.0*dr</span></code></p>
+</dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -272,7 +242,7 @@ Friedrich Vieweg &amp; Sohn Verlagsgesellschaft 1995</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

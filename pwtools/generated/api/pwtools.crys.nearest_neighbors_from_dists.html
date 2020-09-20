@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.crys.nearest_neighbors_from_dists &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.crys.nearest_neighbors_struct" href="pwtools.crys.nearest_neighbors_struct.html" />
-    <link rel="prev" title="pwtools.crys.nearest_neighbors" href="pwtools.crys.nearest_neighbors.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="crys.html">crys</a><ul>
-      <li>Previous: <a href="pwtools.crys.nearest_neighbors.html" title="previous chapter">pwtools.crys.nearest_neighbors</a></li>
-      <li>Next: <a href="pwtools.crys.nearest_neighbors_struct.html" title="next chapter">pwtools.crys.nearest_neighbors_struct</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,24 +82,22 @@
             
   <div class="section" id="pwtools-crys-nearest-neighbors-from-dists">
 <h1>pwtools.crys.nearest_neighbors_from_dists<a class="headerlink" href="#pwtools-crys-nearest-neighbors-from-dists" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.crys.nearest_neighbors_from_dists">
-<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">nearest_neighbors_from_dists</code><span class="sig-paren">(</span><em class="sig-param">dists</em>, <em class="sig-param">symbols</em>, <em class="sig-param">idx=None</em>, <em class="sig-param">skip=None</em>, <em class="sig-param">cutoff=None</em>, <em class="sig-param">num=None</em>, <em class="sig-param">pbc=True</em>, <em class="sig-param">sort=True</em>, <em class="sig-param">fullout=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#nearest_neighbors_from_dists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.nearest_neighbors_from_dists" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">nearest_neighbors_from_dists</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dists</span></em>, <em class="sig-param"><span class="n">symbols</span></em>, <em class="sig-param"><span class="n">idx</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">skip</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cutoff</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pbc</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">sort</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">fullout</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#nearest_neighbors_from_dists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.nearest_neighbors_from_dists" title="Permalink to this definition">¶</a></dt>
 <dd><p>Core part of nearest_neighbors(), which accepts pre-calculated
 distances.</p>
 <p>Can be more efficient in loops where many different
 nearest neighbors should be calculated from the same distances.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>dists</strong> : 2d array (natoms,natoms)</p>
-<blockquote>
-<div><p>Cartesian distances (see distances()).</p>
-</div></blockquote>
-<p><strong>symbols</strong> : sequence of strings (natoms,)</p>
-<blockquote>
-<div><p>Atom symbols, i.e. struct.symbols</p>
-</div></blockquote>
-<p><strong>Rest see nearest_neighbors().</strong></p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>dists</strong><span class="classifier">2d array (natoms,natoms)</span></dt><dd><p>Cartesian distances (see distances()).</p>
+</dd>
+<dt><strong>symbols</strong><span class="classifier">sequence of strings (natoms,)</span></dt><dd><p>Atom symbols, i.e. struct.symbols</p>
+</dd>
+<dt><strong>Rest see nearest_neighbors().</strong></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -126,7 +114,7 @@ nearest neighbors should be calculated from the same distances.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

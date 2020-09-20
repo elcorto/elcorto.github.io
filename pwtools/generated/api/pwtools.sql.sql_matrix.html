@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.sql.sql_matrix &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="symmetry" href="symmetry.html" />
-    <link rel="prev" title="pwtools.sql.sql_column_old" href="pwtools.sql.sql_column_old.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="sql.html">sql</a><ul>
-      <li>Previous: <a href="pwtools.sql.sql_column_old.html" title="previous chapter">pwtools.sql.sql_column_old</a></li>
-      <li>Next: <a href="symmetry.html" title="next chapter">symmetry</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,9 +82,9 @@
             
   <div class="section" id="pwtools-sql-sql-matrix">
 <h1>pwtools.sql.sql_matrix<a class="headerlink" href="#pwtools-sql-sql-matrix" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.sql.sql_matrix">
-<code class="sig-prename descclassname">pwtools.sql.</code><code class="sig-name descname">sql_matrix</code><span class="sig-paren">(</span><em class="sig-param">lists</em>, <em class="sig-param">header=None</em>, <em class="sig-param">colnames=None</em>, <em class="sig-param">sqlval_funcs=None</em>, <em class="sig-param">fileval_funcs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#sql_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.sql_matrix" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.sql.</code><code class="sig-name descname">sql_matrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lists</span></em>, <em class="sig-param"><span class="n">header</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">colnames</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sqlval_funcs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fileval_funcs</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#sql_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.sql_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert each entry in a list of lists (“matrix” = sql table) to an
 SQLEntry based on <cite>header</cite>. This can be used to quickly convert the result
 of comb.nested_loops() (nested lists) to input <cite>params_lst</cite> for
@@ -106,28 +96,26 @@ an sql database, each column as input for sql_column().</p>
 <cite>colnames</cite> are used, then types are fetched (by find_sqltype()) from the
 first row. May not work for “incomplete” datasets, where some entries in
 the first row are None (NULL in sqlite).</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>lists</strong> : list of lists</p>
-<p><strong>header</strong> : sequence, optional</p>
-<blockquote>
-<div><p>[(‘foo’, ‘integer’), (‘bar’, ‘float’), …], see
+<dd class="field-odd"><dl class="simple">
+<dt><strong>lists</strong><span class="classifier">list of lists</span></dt><dd></dd>
+<dt><strong>header</strong><span class="classifier">sequence, optional</span></dt><dd><p>[(‘foo’, ‘integer’), (‘bar’, ‘float’), …], see
 sql.SQLiteDB</p>
-</div></blockquote>
-<p><strong>colnames</strong> : sequence os strings, optional</p>
-<blockquote>
-<div><p>Use either <cite>colnames</cite> or <cite>header</cite>.</p>
-</div></blockquote>
-<p><strong>sqlval_funcs, fileval_funcs: {None, dict}</strong></p>
-<blockquote>
-<div><p>For certain (or all) columns, you can specify a sqlval_func /
+</dd>
+<dt><strong>colnames</strong><span class="classifier">sequence os strings, optional</span></dt><dd><p>Use either <cite>colnames</cite> or <cite>header</cite>.</p>
+</dd>
+<dt><strong>sqlval_funcs, fileval_funcs: {None, dict}</strong></dt><dd><p>For certain (or all) columns, you can specify a sqlval_func /
 fileval_func. They have the same meaning as in sql_column().
 E.g. sql_matrix(…, fileval_funcs={‘foo’: lambda x: str(x)+’-value’})
 would set fileval_func for the whole column ‘foo’.</p>
-</div></blockquote>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>list of lists</p>
+<dd class="field-even"><dl class="simple">
+<dt>list of lists</dt><dd></dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -168,7 +156,7 @@ would set fileval_func for the whole column ‘foo’.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

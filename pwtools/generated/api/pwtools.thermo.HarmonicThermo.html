@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.thermo.HarmonicThermo &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.thermo.HarmonicThermo.cv" href="pwtools.thermo.HarmonicThermo.cv.html" />
-    <link rel="prev" title="pwtools.thermo.Gibbs.set_fitfunc" href="pwtools.thermo.Gibbs.set_fitfunc.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="thermo.html">thermo</a><ul>
-      <li>Previous: <a href="pwtools.thermo.Gibbs.set_fitfunc.html" title="previous chapter">pwtools.thermo.Gibbs.set_fitfunc</a></li>
-      <li>Next: <a href="pwtools.thermo.HarmonicThermo.cv.html" title="next chapter">pwtools.thermo.HarmonicThermo.cv</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,11 +82,10 @@
             
   <div class="section" id="pwtools-thermo-harmonicthermo">
 <h1>pwtools.thermo.HarmonicThermo<a class="headerlink" href="#pwtools-thermo-harmonicthermo" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="pwtools.thermo.HarmonicThermo">
 <em class="property">class </em><code class="sig-prename descclassname">pwtools.thermo.</code><code class="sig-name descname">HarmonicThermo</code><span class="sig-paren">(</span><em class="sig-param">freq</em>, <em class="sig-param">dos</em>, <em class="sig-param">temp=None</em>, <em class="sig-param">skipfreq=False</em>, <em class="sig-param">eps=3.3306690738754696e-16</em>, <em class="sig-param">fixnan=False</em>, <em class="sig-param">nanfill=0.0</em>, <em class="sig-param">dosarea=None</em>, <em class="sig-param">integrator=&lt;function trapz&gt;</em>, <em class="sig-param">verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Calculate vibrational internal energy (Evib [eV]), free energy (Fvib
+<dd><p>Calculate vibrational internal energy (Evib [eV]), free energy (Fvib
 [eV]), entropy (Svib [R,kb]) and isochoric heat capacity (Cv [R,kb]) in the
 harmonic approximation from a phonon density of states.</p>
 <p class="rubric">Methods</p>
@@ -132,133 +121,6 @@ harmonic approximation from a phonon density of states.</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="pwtools.thermo.HarmonicThermo.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">freq</em>, <em class="sig-param">dos</em>, <em class="sig-param">temp=None</em>, <em class="sig-param">skipfreq=False</em>, <em class="sig-param">eps=3.3306690738754696e-16</em>, <em class="sig-param">fixnan=False</em>, <em class="sig-param">nanfill=0.0</em>, <em class="sig-param">dosarea=None</em>, <em class="sig-param">integrator=&lt;function trapz&gt;</em>, <em class="sig-param">verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>freq</strong> : 1d array</p>
-<blockquote>
-<div><p>frequency f (NOT 2*pi*f) [cm^-1]</p>
-</div></blockquote>
-<p><strong>dos</strong> : 1d array</p>
-<blockquote>
-<div><p>phonon dos such that int(freq) dos = 3*natom</p>
-</div></blockquote>
-<p><strong>temp</strong> : 1d array, optional</p>
-<blockquote>
-<div><p>temperature range [K], if not given in the constructor then use
-<cite>temp</cite> in the calculation methods</p>
-</div></blockquote>
-<p><strong>skipfreq</strong> : bool, optional</p>
-<blockquote>
-<div><p>Ignore frequencies and DOS values where the frequencies are
-negative or close to zero, i.e. all DOS curve values where <cite>freq</cite> &lt;
-<cite>eps</cite>. The number and rms of the skipped values is printed if
-<cite>verbose=True</cite>.</p>
-</div></blockquote>
-<p><strong>eps</strong> : float, optional</p>
-<blockquote>
-<div><p>Threshold for <cite>skipfreq</cite>. Default is ~1.5*2.2e-16 .</p>
-</div></blockquote>
-<p><strong>fixnan</strong> : bool, optional</p>
-<blockquote>
-<div><p>Use if YKWYAD, test before using! Currently, set all NaNs occuring
-during integration to <cite>nanfill</cite>. This is a HACK b/c we must assume
-that these numbers should be <cite>nanfill</cite>.</p>
-</div></blockquote>
-<p><strong>nanfill</strong> : float, optional</p>
-<blockquote>
-<div><p>During integration over temperature, set NaNs to this value.</p>
-</div></blockquote>
-<p><strong>dosarea</strong> : float or None</p>
-<blockquote>
-<div><p>If not None, then re-normalize the area int(freq) dos to <cite>dosarea</cite>,
-after <cite>skipfreq</cite> was applied if used.</p>
-</div></blockquote>
-<p><strong>integrator</strong> : callable</p>
-<blockquote>
-<div><p>Function which integrates x-y data. Called as <code class="docutils literal notranslate"><span class="pre">integrator(y,x)</span></code>,
-like <code class="docutils literal notranslate"><span class="pre">scipy.integrate.{trapz,simps}</span></code>. Usually, <cite>trapz</cite> is
-numerically more stable for weird DOS data and accurate enough if
-the freqeuency axis resolution is good.</p>
-</div></blockquote>
-<p><strong>verbose</strong> : bool, optional</p>
-<blockquote>
-<div><p>Print warnings. Recommended for testing.</p>
-</div></blockquote>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p><cite>skipfreq</cite> and <cite>fixnan</cite>: Sometimes, a few frequencies (ususally the 1st
-few values only) are close to zero and negative, and the DOS is very
-small there. <cite>skipfreq</cite> can be used to ignore this region. The default
-is False b/c it may hide large negative frequencies (i.e. unstable
-structure), which is a perfectly valid result (but you shouldn’t do
-thermodynamics with that :) Even if there are no negative frequencies,
-you can have frequencies (usually the first) beeing exactly zero or
-close to that (order 1e-17). That can cause numerical problems (NaNs)
-in some calculations so we may skip them and their DOS values, which
-must be assumed to be small. If you still encounter NaNs during
-integration, you may use <cite>fixnan</cite> to set them to <cite>nanfill</cite>. But that is a
-hack. If you cannot get rid of NaNs by <cite>skipfreq</cite>, then your freq-dos
-data is probably fishy!</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pwtools.thermo.HarmonicThermo.__weakref__">
-<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.thermo.HarmonicThermo.cv">
-<code class="sig-name descname">cv</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.cv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.cv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Same as isochoric_heat_capacity().</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.thermo.HarmonicThermo.evib">
-<code class="sig-name descname">evib</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.evib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.evib" title="Permalink to this definition">¶</a></dt>
-<dd><p>Same as vibrational_internal_energy().</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.thermo.HarmonicThermo.fvib">
-<code class="sig-name descname">fvib</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.fvib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.fvib" title="Permalink to this definition">¶</a></dt>
-<dd><p>Same as vibrational_free_energy().</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.thermo.HarmonicThermo.isochoric_heat_capacity">
-<code class="sig-name descname">isochoric_heat_capacity</code><span class="sig-paren">(</span><em class="sig-param">temp=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.isochoric_heat_capacity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.isochoric_heat_capacity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Cv [R, kb]</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.thermo.HarmonicThermo.svib">
-<code class="sig-name descname">svib</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.svib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.svib" title="Permalink to this definition">¶</a></dt>
-<dd><p>Same as vibrational_entropy().</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.thermo.HarmonicThermo.vibrational_entropy">
-<code class="sig-name descname">vibrational_entropy</code><span class="sig-paren">(</span><em class="sig-param">temp=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.vibrational_entropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.vibrational_entropy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Svib [R, kb]</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.thermo.HarmonicThermo.vibrational_free_energy">
-<code class="sig-name descname">vibrational_free_energy</code><span class="sig-paren">(</span><em class="sig-param">temp=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.vibrational_free_energy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.vibrational_free_energy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fvib [eV]</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.thermo.HarmonicThermo.vibrational_internal_energy">
-<code class="sig-name descname">vibrational_internal_energy</code><span class="sig-paren">(</span><em class="sig-param">temp=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/thermo.html#HarmonicThermo.vibrational_internal_energy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.thermo.HarmonicThermo.vibrational_internal_energy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Evib [eV]</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -273,7 +135,7 @@ data is probably fishy!</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.num.euler_matrix &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.num.extend_array" href="pwtools.num.extend_array.html" />
-    <link rel="prev" title="pwtools.num.distsq" href="pwtools.num.distsq.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="num.html">num</a><ul>
-      <li>Previous: <a href="pwtools.num.distsq.html" title="previous chapter">pwtools.num.distsq</a></li>
-      <li>Next: <a href="pwtools.num.extend_array.html" title="next chapter">pwtools.num.extend_array</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,32 +82,30 @@
             
   <div class="section" id="pwtools-num-euler-matrix">
 <h1>pwtools.num.euler_matrix<a class="headerlink" href="#pwtools-num-euler-matrix" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.num.euler_matrix">
-<code class="sig-prename descclassname">pwtools.num.</code><code class="sig-name descname">euler_matrix</code><span class="sig-paren">(</span><em class="sig-param">phi</em>, <em class="sig-param">theta</em>, <em class="sig-param">psi</em>, <em class="sig-param">deg=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#euler_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.euler_matrix" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.num.</code><code class="sig-name descname">euler_matrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">phi</span></em>, <em class="sig-param"><span class="n">theta</span></em>, <em class="sig-param"><span class="n">psi</span></em>, <em class="sig-param"><span class="n">deg</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#euler_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.euler_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Euler’s rotation matrix.</p>
-<p>We use the x-convention, as in <a class="reference internal" href="#r2" id="id1"><span>[R2]</span></a>.</p>
+<p>We use the x-convention, as in <a class="reference internal" href="#r2252325850b4-1" id="id1">[1]</a>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}(\phi, \theta, \psi)        \\
 A = B\,C\,D                 \\
 D: \phi = 0,...,2\,\pi      \\
 C: \theta = 0,...,\pi       \\
 B: \psi = 0,...,2\,\pi      \\\end{split}\]</div>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>phi, theta, psi</strong> : float</p>
-<blockquote>
-<div><p>angles</p>
-</div></blockquote>
-<p><strong>deg</strong> : bool</p>
-<blockquote>
-<div><p>angles in degree (True) or radians (False, default)</p>
-</div></blockquote>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>phi, theta, psi</strong><span class="classifier">float</span></dt><dd><p>angles</p>
+</dd>
+<dt><strong>deg</strong><span class="classifier">bool</span></dt><dd><p>angles in degree (True) or radians (False, default)</p>
+</dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">References</p>
 <dl class="citation">
-<dt class="label" id="r2"><span class="brackets">R2</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>)</span></dt>
+<dt class="label" id="r2252325850b4-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p><a class="reference external" href="http://mathworld.wolfram.com/EulerAngles.html">http://mathworld.wolfram.com/EulerAngles.html</a></p>
 </dd>
 </dl>
@@ -135,7 +123,7 @@ B: \psi = 0,...,2\,\pi      \\\end{split}\]</div>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

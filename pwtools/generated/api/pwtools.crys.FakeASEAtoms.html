@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.crys.FakeASEAtoms &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.crys.FakeASEAtoms.apply_units" href="pwtools.crys.FakeASEAtoms.apply_units.html" />
-    <link rel="prev" title="pwtools.crys.Angstrom" href="pwtools.crys.Angstrom.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="crys.html">crys</a><ul>
-      <li>Previous: <a href="pwtools.crys.Angstrom.html" title="previous chapter">pwtools.crys.Angstrom</a></li>
-      <li>Next: <a href="pwtools.crys.FakeASEAtoms.apply_units.html" title="next chapter">pwtools.crys.FakeASEAtoms.apply_units</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,11 +82,10 @@
             
   <div class="section" id="pwtools-crys-fakeaseatoms">
 <h1>pwtools.crys.FakeASEAtoms<a class="headerlink" href="#pwtools-crys-fakeaseatoms" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="pwtools.crys.FakeASEAtoms">
-<em class="property">class </em><code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">FakeASEAtoms</code><span class="sig-paren">(</span><em class="sig-param">scaled_positions=None</em>, <em class="sig-param">cell=None</em>, <em class="sig-param">symbols=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#FakeASEAtoms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.FakeASEAtoms" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.crys.Structure</span></code></a></p>
-<p>Mimic the basic behavior of <code class="docutils literal notranslate"><span class="pre">ase.Atoms</span></code>.</p>
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">FakeASEAtoms</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scaled_positions</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cell</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">symbols</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#FakeASEAtoms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.FakeASEAtoms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mimic the basic behavior of <code class="docutils literal notranslate"><span class="pre">ase.Atoms</span></code>.</p>
 <p>Used to be used as input for <code class="docutils literal notranslate"><span class="pre">spglib</span></code> in symmetry.py, but not anymore as
 of spglib 1.9.x. Now, we use <a class="reference internal" href="pwtools.crys.Structure.get_spglib.html#pwtools.crys.Structure.get_spglib" title="pwtools.crys.Structure.get_spglib"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Structure.get_spglib()</span></code></a>.</p>
 <p class="rubric">Methods</p>
@@ -112,47 +101,23 @@ of spglib 1.9.x. Now, we use <a class="reference internal" href="pwtools.crys.St
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.assert_attr.html#pwtools.crys.FakeASEAtoms.assert_attr" title="pwtools.crys.FakeASEAtoms.assert_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_attr</span></code></a>(attr)</p></td>
 <td><p>Raise AssertionError if self.&lt;attr&gt; is not set (is_set_attr() returns False.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.assert_attr_lst.html#pwtools.crys.FakeASEAtoms.assert_attr_lst" title="pwtools.crys.FakeASEAtoms.assert_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_attr_lst</span></code></a>(attr_lst)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.assert_set_attr.html#pwtools.crys.FakeASEAtoms.assert_set_attr" title="pwtools.crys.FakeASEAtoms.assert_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_set_attr</span></code></a>(attr)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.assert_set_attr.html#pwtools.crys.FakeASEAtoms.assert_set_attr" title="pwtools.crys.FakeASEAtoms.assert_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_set_attr</span></code></a>(attr)</p></td>
 <td><p>Same as assert_attr(), but run try_set_attr() first.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.assert_set_attr_lst.html#pwtools.crys.FakeASEAtoms.assert_set_attr_lst" title="pwtools.crys.FakeASEAtoms.assert_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_set_attr_lst</span></code></a>(attr_lst)</p></td>
-<td><p></p></td>
-</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.check_set_attr.html#pwtools.crys.FakeASEAtoms.check_set_attr" title="pwtools.crys.FakeASEAtoms.check_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_set_attr</span></code></a>(attr)</p></td>
-<td><p>Run try_set_attr() and return the result of is_set_attr(), i.e.</p></td>
+<td><p>Run try_set_attr() and return the result of is_set_attr(), i.e. True or False.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.check_set_attr_lst.html#pwtools.crys.FakeASEAtoms.check_set_attr_lst" title="pwtools.crys.FakeASEAtoms.check_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_set_attr_lst</span></code></a>(attr_lst)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.compress.html#pwtools.crys.FakeASEAtoms.compress" title="pwtools.crys.FakeASEAtoms.compress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compress</span></code></a>([forget, dtype])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.compress.html#pwtools.crys.FakeASEAtoms.compress" title="pwtools.crys.FakeASEAtoms.compress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compress</span></code></a>([forget, dtype])</p></td>
 <td><p>Compress Trajectory by deleting unused or redundant attrs (see <cite>forget</cite>).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.copy.html#pwtools.crys.FakeASEAtoms.copy" title="pwtools.crys.FakeASEAtoms.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.copy.html#pwtools.crys.FakeASEAtoms.copy" title="pwtools.crys.FakeASEAtoms.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a>()</p></td>
 <td><p>Return a copy of the inctance.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.dump.html#pwtools.crys.FakeASEAtoms.dump" title="pwtools.crys.FakeASEAtoms.dump"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump</span></code></a>(dump_filename[, mkdir])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.dump.html#pwtools.crys.FakeASEAtoms.dump" title="pwtools.crys.FakeASEAtoms.dump"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump</span></code></a>(dump_filename[, mkdir])</p></td>
 <td><p>Write object to binary file using pickle.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_ase_atoms.html#pwtools.crys.FakeASEAtoms.get_ase_atoms" title="pwtools.crys.FakeASEAtoms.get_ase_atoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ase_atoms</span></code></a>(**kwds)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_ase_atoms.html#pwtools.crys.FakeASEAtoms.get_ase_atoms" title="pwtools.crys.FakeASEAtoms.get_ase_atoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ase_atoms</span></code></a>(**kwds)</p></td>
 <td><p>Return ASE Atoms object.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_atomic_numbers.html#pwtools.crys.FakeASEAtoms.get_atomic_numbers" title="pwtools.crys.FakeASEAtoms.get_atomic_numbers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_atomic_numbers</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_cell.html#pwtools.crys.FakeASEAtoms.get_cell" title="pwtools.crys.FakeASEAtoms.get_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cell</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_coords.html#pwtools.crys.FakeASEAtoms.get_coords" title="pwtools.crys.FakeASEAtoms.get_coords"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_coords</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_coords_frac.html#pwtools.crys.FakeASEAtoms.get_coords_frac" title="pwtools.crys.FakeASEAtoms.get_coords_frac"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_coords_frac</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_cryst_const.html#pwtools.crys.FakeASEAtoms.get_cryst_const" title="pwtools.crys.FakeASEAtoms.get_cryst_const"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cryst_const</span></code></a>()</p></td>
-<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_ekin.html#pwtools.crys.FakeASEAtoms.get_ekin" title="pwtools.crys.FakeASEAtoms.get_ekin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ekin</span></code></a>()</p></td>
 <td><p>ekin [eV]</p></td>
@@ -166,23 +131,11 @@ of spglib 1.9.x. Now, we use <a class="reference internal" href="pwtools.crys.St
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_forces.html#pwtools.crys.FakeASEAtoms.get_forces" title="pwtools.crys.FakeASEAtoms.get_forces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_forces</span></code></a>()</p></td>
 <td><p>Forces.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_magnetic_moments.html#pwtools.crys.FakeASEAtoms.get_magnetic_moments" title="pwtools.crys.FakeASEAtoms.get_magnetic_moments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_magnetic_moments</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_mass.html#pwtools.crys.FakeASEAtoms.get_mass" title="pwtools.crys.FakeASEAtoms.get_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_mass</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_mass.html#pwtools.crys.FakeASEAtoms.get_mass" title="pwtools.crys.FakeASEAtoms.get_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_mass</span></code></a>()</p></td>
 <td><p>1D array of atomic masses in amu (atomic mass unit 1.660538782e-27 kg as in periodic table).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_mass_unique.html#pwtools.crys.FakeASEAtoms.get_mass_unique" title="pwtools.crys.FakeASEAtoms.get_mass_unique"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_mass_unique</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_natoms.html#pwtools.crys.FakeASEAtoms.get_natoms" title="pwtools.crys.FakeASEAtoms.get_natoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_natoms</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_nspecies.html#pwtools.crys.FakeASEAtoms.get_nspecies" title="pwtools.crys.FakeASEAtoms.get_nspecies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_nspecies</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_nspecies.html#pwtools.crys.FakeASEAtoms.get_nspecies" title="pwtools.crys.FakeASEAtoms.get_nspecies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_nspecies</span></code></a>()</p></td>
 <td><p>Dict with number of atoms per species.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_nstep.html#pwtools.crys.FakeASEAtoms.get_nstep" title="pwtools.crys.FakeASEAtoms.get_nstep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_nstep</span></code></a>()</p></td>
-<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_ntypat.html#pwtools.crys.FakeASEAtoms.get_ntypat" title="pwtools.crys.FakeASEAtoms.get_ntypat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ntypat</span></code></a>()</p></td>
 <td><p>Number of atomic species.</p></td>
@@ -190,44 +143,32 @@ of spglib 1.9.x. Now, we use <a class="reference internal" href="pwtools.crys.St
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_order.html#pwtools.crys.FakeASEAtoms.get_order" title="pwtools.crys.FakeASEAtoms.get_order"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_order</span></code></a>()</p></td>
 <td><p>Dict which maps <code class="docutils literal notranslate"><span class="pre">symbols_unique</span></code> to numbers, starting at 1.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_pressure.html#pwtools.crys.FakeASEAtoms.get_pressure" title="pwtools.crys.FakeASEAtoms.get_pressure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_pressure</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_return_attr.html#pwtools.crys.FakeASEAtoms.get_return_attr" title="pwtools.crys.FakeASEAtoms.get_return_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_return_attr</span></code></a>(attr_name)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_return_attr.html#pwtools.crys.FakeASEAtoms.get_return_attr" title="pwtools.crys.FakeASEAtoms.get_return_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_return_attr</span></code></a>(attr_name)</p></td>
 <td><p>Call try_set_attr() are return self.&lt;attr_name&gt; if set.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_spglib.html#pwtools.crys.FakeASEAtoms.get_spglib" title="pwtools.crys.FakeASEAtoms.get_spglib"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_spglib</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_spglib.html#pwtools.crys.FakeASEAtoms.get_spglib" title="pwtools.crys.FakeASEAtoms.get_spglib"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_spglib</span></code></a>()</p></td>
 <td><p>Return spglib input tuple (cell, coords_frac, znucl).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_stress.html#pwtools.crys.FakeASEAtoms.get_stress" title="pwtools.crys.FakeASEAtoms.get_stress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_stress</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_stress.html#pwtools.crys.FakeASEAtoms.get_stress" title="pwtools.crys.FakeASEAtoms.get_stress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_stress</span></code></a>()</p></td>
 <td><p>Stress tensor</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_symbols.html#pwtools.crys.FakeASEAtoms.get_symbols" title="pwtools.crys.FakeASEAtoms.get_symbols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_symbols</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_symbols.html#pwtools.crys.FakeASEAtoms.get_symbols" title="pwtools.crys.FakeASEAtoms.get_symbols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_symbols</span></code></a>()</p></td>
 <td><p>List of atomic symbols.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_symbols_unique.html#pwtools.crys.FakeASEAtoms.get_symbols_unique" title="pwtools.crys.FakeASEAtoms.get_symbols_unique"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_symbols_unique</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_symbols_unique.html#pwtools.crys.FakeASEAtoms.get_symbols_unique" title="pwtools.crys.FakeASEAtoms.get_symbols_unique"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_symbols_unique</span></code></a>()</p></td>
 <td><p>List of unique atom symbols.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_temperature.html#pwtools.crys.FakeASEAtoms.get_temperature" title="pwtools.crys.FakeASEAtoms.get_temperature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_temperature</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_temperature.html#pwtools.crys.FakeASEAtoms.get_temperature" title="pwtools.crys.FakeASEAtoms.get_temperature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_temperature</span></code></a>()</p></td>
 <td><p>[K]</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_time.html#pwtools.crys.FakeASEAtoms.get_time" title="pwtools.crys.FakeASEAtoms.get_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_time</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_timestep.html#pwtools.crys.FakeASEAtoms.get_timestep" title="pwtools.crys.FakeASEAtoms.get_timestep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_timestep</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_traj.html#pwtools.crys.FakeASEAtoms.get_traj" title="pwtools.crys.FakeASEAtoms.get_traj"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_traj</span></code></a>(nstep)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_traj.html#pwtools.crys.FakeASEAtoms.get_traj" title="pwtools.crys.FakeASEAtoms.get_traj"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_traj</span></code></a>(nstep)</p></td>
 <td><p>Return a Trajectory object, where this Structure is copied <cite>nstep</cite> times.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_typat.html#pwtools.crys.FakeASEAtoms.get_typat" title="pwtools.crys.FakeASEAtoms.get_typat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_typat</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_typat.html#pwtools.crys.FakeASEAtoms.get_typat" title="pwtools.crys.FakeASEAtoms.get_typat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_typat</span></code></a>()</p></td>
 <td><p>List of atom type integers in <code class="docutils literal notranslate"><span class="pre">self.order</span></code>, same length as <cite>symbols</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_velocity.html#pwtools.crys.FakeASEAtoms.get_velocity" title="pwtools.crys.FakeASEAtoms.get_velocity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_velocity</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_velocity.html#pwtools.crys.FakeASEAtoms.get_velocity" title="pwtools.crys.FakeASEAtoms.get_velocity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_velocity</span></code></a>()</p></td>
 <td><p>Calculate <cite>velocity</cite> from <cite>coords</cite> and <cite>timestep</cite> if <cite>velocity=None</cite>.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_volume.html#pwtools.crys.FakeASEAtoms.get_volume" title="pwtools.crys.FakeASEAtoms.get_volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_volume</span></code></a>()</p></td>
-<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.get_znucl.html#pwtools.crys.FakeASEAtoms.get_znucl" title="pwtools.crys.FakeASEAtoms.get_znucl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_znucl</span></code></a>()</p></td>
 <td><p>All atomic numbers.</p></td>
@@ -241,130 +182,91 @@ of spglib 1.9.x. Now, we use <a class="reference internal" href="pwtools.crys.St
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.is_set_attr.html#pwtools.crys.FakeASEAtoms.is_set_attr" title="pwtools.crys.FakeASEAtoms.is_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr</span></code></a>(attr)</p></td>
 <td><p>Check if self has the attribute self.&lt;attr&gt; and if it is _not_ None.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.is_set_attr_lst.html#pwtools.crys.FakeASEAtoms.is_set_attr_lst" title="pwtools.crys.FakeASEAtoms.is_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr_lst</span></code></a>(attr_lst)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.load.html#pwtools.crys.FakeASEAtoms.load" title="pwtools.crys.FakeASEAtoms.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(dump_filename)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.load.html#pwtools.crys.FakeASEAtoms.load" title="pwtools.crys.FakeASEAtoms.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(dump_filename)</p></td>
 <td><p>Load pickled object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.raw_return.html#pwtools.crys.FakeASEAtoms.raw_return" title="pwtools.crys.FakeASEAtoms.raw_return"><code class="xref py py-obj docutils literal notranslate"><span class="pre">raw_return</span></code></a>(attr_name)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.raw_return.html#pwtools.crys.FakeASEAtoms.raw_return" title="pwtools.crys.FakeASEAtoms.raw_return"><code class="xref py py-obj docutils literal notranslate"><span class="pre">raw_return</span></code></a>(attr_name)</p></td>
 <td><p>Call <code class="docutils literal notranslate"><span class="pre">try_set_attr(_&lt;attr_name&gt;_raw)</span></code> and return it if set, else None.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.raw_slice_get.html#pwtools.crys.FakeASEAtoms.raw_slice_get" title="pwtools.crys.FakeASEAtoms.raw_slice_get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">raw_slice_get</span></code></a>(attr_name, sl, axis)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.raw_slice_get.html#pwtools.crys.FakeASEAtoms.raw_slice_get" title="pwtools.crys.FakeASEAtoms.raw_slice_get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">raw_slice_get</span></code></a>(attr_name, sl, axis)</p></td>
 <td><p>Shortcut method:</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.set_all.html#pwtools.crys.FakeASEAtoms.set_all" title="pwtools.crys.FakeASEAtoms.set_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_all</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.set_all.html#pwtools.crys.FakeASEAtoms.set_all" title="pwtools.crys.FakeASEAtoms.set_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_all</span></code></a>()</p></td>
 <td><p>Extend arrays, apply units, call all getters.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.set_attr_lst.html#pwtools.crys.FakeASEAtoms.set_attr_lst" title="pwtools.crys.FakeASEAtoms.set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_attr_lst</span></code></a>(attr_lst)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.set_attr_lst.html#pwtools.crys.FakeASEAtoms.set_attr_lst" title="pwtools.crys.FakeASEAtoms.set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_attr_lst</span></code></a>(attr_lst)</p></td>
 <td><p>Set self.attr_lst and init each attr to None.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.try_set_attr.html#pwtools.crys.FakeASEAtoms.try_set_attr" title="pwtools.crys.FakeASEAtoms.try_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_set_attr</span></code></a>(attr)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.try_set_attr.html#pwtools.crys.FakeASEAtoms.try_set_attr" title="pwtools.crys.FakeASEAtoms.try_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_set_attr</span></code></a>(attr)</p></td>
 <td><p>If self.&lt;attr&gt; does not exist or is None, then invoke an appropirately named getter as if this command would be executed.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.try_set_attr_lst.html#pwtools.crys.FakeASEAtoms.try_set_attr_lst" title="pwtools.crys.FakeASEAtoms.try_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_set_attr_lst</span></code></a>(attr_lst)</p></td>
-<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.FakeASEAtoms.update_units.html#pwtools.crys.FakeASEAtoms.update_units" title="pwtools.crys.FakeASEAtoms.update_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_units</span></code></a>(units)</p></td>
 <td><p>Update self.units dict from <cite>units</cite>.</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="pwtools.crys.FakeASEAtoms.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">scaled_positions=None</em>, <em class="sig-param">cell=None</em>, <em class="sig-param">symbols=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#FakeASEAtoms.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.FakeASEAtoms.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>coords</strong> : (natoms, 3) [Ang]</p>
-<blockquote>
-<div><p>Cartesian coords.
-Optional if <cite>coords_frac</cite> given.</p>
-</div></blockquote>
-<p><strong>coords_frac</strong> : (natoms, 3)</p>
-<blockquote>
-<div><p>Fractional coords w.r.t. <cite>cell</cite>.
-Optional if <cite>coords</cite> given.</p>
-</div></blockquote>
-<p><strong>symbols</strong> : sequence of strings (natoms,)</p>
-<blockquote>
-<div><p>atom symbols</p>
-</div></blockquote>
-<p><strong>cell</strong> : (3,3)</p>
-<blockquote>
-<div><p>Unit cell vectors as rows. [Ang]
-Optional if <cite>cryst_const</cite> given.</p>
-</div></blockquote>
-<p><strong>cryst_const</strong> : (6,)</p>
-<blockquote>
-<div><p>[a,b,c,alpha,beta,gamma]; a,b,c in [Ang]
-Optional if <cite>cell</cite> given.</p>
-</div></blockquote>
-<p><strong>forces</strong> : (natoms, 3), optional</p>
-<blockquote>
-<div><p>[eV/Ang]</p>
-</div></blockquote>
-<p><strong>stress</strong> : (3,3), optional</p>
-<blockquote>
-<div><p>stress tensor [GPa]</p>
-</div></blockquote>
-<p><strong>etot</strong> : float, optional</p>
-<blockquote>
-<div><p>total energy [eV]</p>
-</div></blockquote>
-<p><strong>units</strong> : optional, dict,</p>
-<blockquote>
-<div><p>see <a class="reference internal" href="pwtools.crys.UnitsHandler.html#pwtools.crys.UnitsHandler" title="pwtools.crys.UnitsHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnitsHandler</span></code></a></p>
-</div></blockquote>
-<p><strong>set_all_auto</strong> : optional, bool</p>
-<blockquote>
-<div><p>Call <a class="reference internal" href="pwtools.crys.FakeASEAtoms.set_all.html#pwtools.crys.FakeASEAtoms.set_all" title="pwtools.crys.FakeASEAtoms.set_all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_all()</span></code></a> in <a class="reference internal" href="#pwtools.crys.FakeASEAtoms.__init__" title="pwtools.crys.FakeASEAtoms.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>.</p>
-</div></blockquote>
-<p><strong>Only Trajectory</strong></p>
-<p><strong>ekin</strong> : (nstep,)</p>
-<blockquote>
-<div><p>[eV]</p>
-</div></blockquote>
-<p><strong>forces</strong> : (nstep,natoms,3)</p>
-<blockquote>
-<div><p>[eV/Ang]</p>
-</div></blockquote>
-<p><strong>pressure</strong> : (nstep,)</p>
-<blockquote>
-<div><p>[GPa]</p>
-</div></blockquote>
-<p><strong>stress</strong> : (nstep,3,3)</p>
-<blockquote>
-<div><p>[GPa]</p>
-</div></blockquote>
-<p><strong>temperature</strong> : (nstep,)</p>
-<blockquote>
-<div><p>[K]</p>
-</div></blockquote>
-<p><strong>timestep</strong> : float</p>
-<blockquote>
-<div><p>[fs]</p>
-</div></blockquote>
-<p><strong>velocity</strong> : (nstep, natoms, 3)</p>
-<blockquote>
-<div><p>[Ang/fs]</p>
-</div></blockquote>
-<p><strong>volume</strong> : (nstep,)</p>
-<blockquote>
-<div><p>[Ang^3]</p>
-</div></blockquote>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<dl>
-<dt>cell, cryst_const<span class="classifier">Provide either <cite>cell</cite> or <cite>cryst_const</cite>, or both</span></dt><dd><p>(which is redundant). If only one is given, the other is calculated
-from it. See {cell2cc,cc2cell}.</p>
-</dd>
-<dt>coords, coords_frac<span class="classifier">Provide either <cite>coords</cite> or <cite>coords_frac</cite>, or both</span></dt><dd><p>(which is redundant). If only one is given, the other is calculated
-from it. See coord_trans().</p>
-</dd>
-</dl>
-</dd></dl>
-
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 71%" />
+<col style="width: 29%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>assert_attr_lst</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>assert_set_attr_lst</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>check_set_attr_lst</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_atomic_numbers</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_cell</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_coords</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_coords_frac</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_cryst_const</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_magnetic_moments</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_mass_unique</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_natoms</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_nstep</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_pressure</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_time</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_timestep</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_volume</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>is_set_attr_lst</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>try_set_attr_lst</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -379,7 +281,7 @@ from it. See coord_trans().</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

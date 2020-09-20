@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.num.distsq &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.num.euler_matrix" href="pwtools.num.euler_matrix.html" />
-    <link rel="prev" title="pwtools.num.deriv_spl" href="pwtools.num.deriv_spl.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="num.html">num</a><ul>
-      <li>Previous: <a href="pwtools.num.deriv_spl.html" title="previous chapter">pwtools.num.deriv_spl</a></li>
-      <li>Next: <a href="pwtools.num.euler_matrix.html" title="next chapter">pwtools.num.euler_matrix</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,9 +82,9 @@
             
   <div class="section" id="pwtools-num-distsq">
 <h1>pwtools.num.distsq<a class="headerlink" href="#pwtools-num-distsq" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.num.distsq">
-<code class="sig-prename descclassname">pwtools.num.</code><code class="sig-name descname">distsq</code><span class="sig-paren">(</span><em class="sig-param">arrx</em>, <em class="sig-param">arry</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#distsq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.distsq" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.num.</code><code class="sig-name descname">distsq</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arrx</span></em>, <em class="sig-param"><span class="n">arry</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#distsq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.distsq" title="Permalink to this definition">¶</a></dt>
 <dd><p>Squared distances between all points in <cite>arrx</cite> and <cite>arry</cite>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}r_{ij}^2 = \sum_k (\texttt{arrx}[i,k] - \texttt{arry}[j,k])^2 \\
@@ -106,15 +96,17 @@ k = 1..N\end{split}\]</div>
 </dd>
 </dl>
 <p>This is a wrapper for <a class="reference internal" href="pwtools._flib.distsq.html#pwtools._flib.distsq" title="pwtools._flib.distsq"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools._flib.distsq()</span></code></a>.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>arrx, arry</strong> : ndarray (Mx,N), (My,N)</p>
-<blockquote>
-<div><p>Mx (My) points in N-dim space</p>
-</div></blockquote>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>arrx, arry</strong><span class="classifier">ndarray (Mx,N), (My,N)</span></dt><dd><p>Mx (My) points in N-dim space</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>2d array (Mx,My)</p>
+<dd class="field-even"><dl class="simple">
+<dt>2d array (Mx,My)</dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -131,7 +123,7 @@ k = 1..N\end{split}\]</div>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

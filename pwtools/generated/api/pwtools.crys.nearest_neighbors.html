@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.crys.nearest_neighbors &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.crys.nearest_neighbors_from_dists" href="pwtools.crys.nearest_neighbors_from_dists.html" />
-    <link rel="prev" title="pwtools.crys.mix" href="pwtools.crys.mix.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="crys.html">crys</a><ul>
-      <li>Previous: <a href="pwtools.crys.mix.html" title="previous chapter">pwtools.crys.mix</a></li>
-      <li>Next: <a href="pwtools.crys.nearest_neighbors_from_dists.html" title="next chapter">pwtools.crys.nearest_neighbors_from_dists</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,60 +82,48 @@
             
   <div class="section" id="pwtools-crys-nearest-neighbors">
 <h1>pwtools.crys.nearest_neighbors<a class="headerlink" href="#pwtools-crys-nearest-neighbors" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.crys.nearest_neighbors">
-<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">nearest_neighbors</code><span class="sig-paren">(</span><em class="sig-param">struct</em>, <em class="sig-param">idx=None</em>, <em class="sig-param">skip=None</em>, <em class="sig-param">cutoff=None</em>, <em class="sig-param">num=None</em>, <em class="sig-param">pbc=True</em>, <em class="sig-param">sort=True</em>, <em class="sig-param">fullout=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#nearest_neighbors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.nearest_neighbors" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">nearest_neighbors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">struct</span></em>, <em class="sig-param"><span class="n">idx</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">skip</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cutoff</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pbc</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">sort</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">fullout</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#nearest_neighbors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.nearest_neighbors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indices of the nearest neighbor atoms to atom <cite>idx</cite>, skipping atoms
 whose symbols are <cite>skip</cite>.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>struct</strong> : Structure</p>
-<p><strong>idx</strong> : int</p>
-<blockquote>
-<div><p>Atom index of the central atom.</p>
-</div></blockquote>
-<p><strong>skip</strong> : str or sequence of strings</p>
-<blockquote>
-<div><p>Symbol(s) of the atoms to skip.</p>
-</div></blockquote>
-<p><strong>num</strong> : int</p>
-<blockquote>
-<div><p>number of requested nearest neighbors</p>
-</div></blockquote>
-<p><strong>cutoff</strong> : float</p>
-<blockquote>
-<div><p>Cutoff radius in unit defined in <cite>struct</cite>, e.g. Angstrom. Return all
+<dd class="field-odd"><dl class="simple">
+<dt><strong>struct</strong><span class="classifier">Structure</span></dt><dd></dd>
+<dt><strong>idx</strong><span class="classifier">int</span></dt><dd><p>Atom index of the central atom.</p>
+</dd>
+<dt><strong>skip</strong><span class="classifier">str or sequence of strings</span></dt><dd><p>Symbol(s) of the atoms to skip.</p>
+</dd>
+<dt><strong>num</strong><span class="classifier">int</span></dt><dd><p>number of requested nearest neighbors</p>
+</dd>
+<dt><strong>cutoff</strong><span class="classifier">float</span></dt><dd><p>Cutoff radius in unit defined in <cite>struct</cite>, e.g. Angstrom. Return all
 neighbors within that radius. Use either <cite>num</cite> of <cite>cutoff</cite>.</p>
-</div></blockquote>
-<p><strong>pbc</strong> : bool</p>
-<blockquote>
-<div><p>Apply PBC to distances.</p>
-</div></blockquote>
-<p><strong>sort</strong> : bool</p>
-<blockquote>
-<div><p>Sort <cite>nn_idx</cite> and <cite>nn_dist</cite> by distance.</p>
-</div></blockquote>
-<p><strong>fullout</strong> : bool</p>
-<blockquote>
-<div><p>See below.</p>
-</div></blockquote>
+</dd>
+<dt><strong>pbc</strong><span class="classifier">bool</span></dt><dd><p>Apply PBC to distances.</p>
+</dd>
+<dt><strong>sort</strong><span class="classifier">bool</span></dt><dd><p>Sort <cite>nn_idx</cite> and <cite>nn_dist</cite> by distance.</p>
+</dd>
+<dt><strong>fullout</strong><span class="classifier">bool</span></dt><dd><p>See below.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>nn_idx</strong> : fullout=False</p>
-<p><strong>nn_idx,nn_dist</strong> : fullout=True</p>
-<p><strong>nn_idx</strong> : 1d array</p>
-<blockquote>
-<div><p>Indices into struct.symbols / coords.</p>
-</div></blockquote>
-<p><strong>nn_dist</strong> : 1d array</p>
-<blockquote>
-<div><p>Distances ordered as in <cite>nn_idx</cite>.</p>
-</div></blockquote>
+<dd class="field-even"><dl class="simple">
+<dt><strong>nn_idx</strong><span class="classifier">fullout=False</span></dt><dd></dd>
+<dt><strong>nn_idx,nn_dist</strong><span class="classifier">fullout=True</span></dt><dd></dd>
+<dt><strong>nn_idx</strong><span class="classifier">1d array</span></dt><dd><p>Indices into struct.symbols / coords.</p>
+</dd>
+<dt><strong>nn_dist</strong><span class="classifier">1d array</span></dt><dd><p>Distances ordered as in <cite>nn_idx</cite>.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">num.match_mask</span></code></p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">num.match_mask</span></code></dt><dd></dd>
+</dl>
 </div>
 <p class="rubric">Notes</p>
 <p><cite>num</cite> : Depending on <cite>struct</cite>, there may not be <cite>num</cite> nearest neighbors,
@@ -198,7 +176,7 @@ array.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

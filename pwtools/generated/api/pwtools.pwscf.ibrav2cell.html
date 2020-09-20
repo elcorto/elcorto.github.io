@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.pwscf.ibrav2cell &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.pwscf.kpoints_str" href="pwtools.pwscf.kpoints_str.html" />
-    <link rel="prev" title="pwtools.pwscf.bool2str" href="pwtools.pwscf.bool2str.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="pwscf.html">pwscf</a><ul>
-      <li>Previous: <a href="pwtools.pwscf.bool2str.html" title="previous chapter">pwtools.pwscf.bool2str</a></li>
-      <li>Next: <a href="pwtools.pwscf.kpoints_str.html" title="next chapter">pwtools.pwscf.kpoints_str</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,9 +82,9 @@
             
   <div class="section" id="pwtools-pwscf-ibrav2cell">
 <h1>pwtools.pwscf.ibrav2cell<a class="headerlink" href="#pwtools-pwscf-ibrav2cell" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.pwscf.ibrav2cell">
-<code class="sig-prename descclassname">pwtools.pwscf.</code><code class="sig-name descname">ibrav2cell</code><span class="sig-paren">(</span><em class="sig-param">ibrav</em>, <em class="sig-param">celldm</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#ibrav2cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.ibrav2cell" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.pwscf.</code><code class="sig-name descname">ibrav2cell</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ibrav</span></em>, <em class="sig-param"><span class="n">celldm</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#ibrav2cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.ibrav2cell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert PWscf’s ibrav + celldm to cell. All formulas are taken straight
 from the PWscf homepage. Don’t blame me for errors. Use after testing.</p>
 <p>This function generates <em>primitive</em> cells. Note that in crys.py (and
@@ -112,20 +102,20 @@ primitive == conventional cell.</p>
 <p>Note: There are some documentation &lt;-&gt; forluma errors / inconsistencies for
 ibrav=12,13. See test/test_ibrav.py. If you really need that, have a look
 at the PWscf source for how they do it there.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>ibrav</strong> : int</p>
-<blockquote>
-<div><p>1 … 14</p>
-</div></blockquote>
-<p><strong>celldm</strong> : sequence of length 6</p>
-<blockquote>
-<div><p>This not the isame length 6 array <cite>celldm</cite> in crys.py. Here, the
+<dd class="field-odd"><dl class="simple">
+<dt><strong>ibrav</strong><span class="classifier">int</span></dt><dd><p>1 … 14</p>
+</dd>
+<dt><strong>celldm</strong><span class="classifier">sequence of length 6</span></dt><dd><p>This not the isame length 6 array <cite>celldm</cite> in crys.py. Here, the
 entries which are not needed can be None.</p>
-</div></blockquote>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>array (3,3)</strong> : cell vectors as rows, unit is that of celldm[0], i.e. a</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>array (3,3)</strong><span class="classifier">cell vectors as rows, unit is that of celldm[0], i.e. a</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -149,7 +139,7 @@ returned from crys.cc2cell(): a along x, b in xy-plane.</p></li>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

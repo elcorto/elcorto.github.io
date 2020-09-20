@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools._flib.frac2cart_traj &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools._flib.solve" href="pwtools._flib.solve.html" />
-    <link rel="prev" title="pwtools._flib.frac2cart" href="pwtools._flib.frac2cart.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="_flib.html">_flib</a><ul>
-      <li>Previous: <a href="pwtools._flib.frac2cart.html" title="previous chapter">pwtools._flib.frac2cart</a></li>
-      <li>Next: <a href="pwtools._flib.solve.html" title="next chapter">pwtools._flib.solve</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,27 +82,29 @@
             
   <div class="section" id="pwtools-flib-frac2cart-traj">
 <h1>pwtools._flib.frac2cart_traj<a class="headerlink" href="#pwtools-flib-frac2cart-traj" title="Permalink to this headline">¶</a></h1>
-<dl class="data">
+<dl class="py data">
 <dt id="pwtools._flib.frac2cart_traj">
 <code class="sig-prename descclassname">pwtools._flib.</code><code class="sig-name descname">frac2cart_traj</code><span class="sig-paren">(</span><em class="sig-param">coords_frac</em>, <em class="sig-param">cell</em><span class="optional">[</span>, <em class="sig-param">nstep</em>, <em class="sig-param">natoms</em><span class="optional">]</span><span class="sig-paren">)</span><em class="property"> = &lt;fortran object&gt;</em><a class="headerlink" href="#pwtools._flib.frac2cart_traj" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper for <code class="docutils literal notranslate"><span class="pre">frac2cart_traj</span></code>.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>coords_frac</strong> : input rank-3 array(‘d’) with bounds (nstep,natoms,3)</p>
-<p><strong>cell</strong> : input rank-3 array(‘d’) with bounds (nstep,3,3)</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>coords_frac</strong><span class="classifier">input rank-3 array(‘d’) with bounds (nstep,natoms,3)</span></dt><dd></dd>
+<dt><strong>cell</strong><span class="classifier">input rank-3 array(‘d’) with bounds (nstep,3,3)</span></dt><dd></dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>coords</strong> : rank-3 array(‘d’) with bounds (nstep,natoms,3)</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>coords</strong><span class="classifier">rank-3 array(‘d’) with bounds (nstep,natoms,3)</span></dt><dd></dd>
+</dl>
 </dd>
 <dt class="field-odd">Other Parameters</dt>
-<dd class="field-odd"><p><strong>nstep</strong> : input int, optional</p>
-<blockquote>
-<div><p>Default: shape(coords_frac,0)</p>
-</div></blockquote>
-<p><strong>natoms</strong> : input int, optional</p>
-<blockquote>
-<div><p>Default: shape(coords_frac,1)</p>
-</div></blockquote>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>nstep</strong><span class="classifier">input int, optional</span></dt><dd><p>Default: shape(coords_frac,0)</p>
+</dd>
+<dt><strong>natoms</strong><span class="classifier">input int, optional</span></dt><dd><p>Default: shape(coords_frac,1)</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -129,7 +121,7 @@
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

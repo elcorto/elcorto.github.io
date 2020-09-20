@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.mpl.Plot.collect_legends &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.mpl.Plot.legend" href="pwtools.mpl.Plot.legend.html" />
-    <link rel="prev" title="pwtools.mpl.Plot" href="pwtools.mpl.Plot.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,14 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="mpl.html">mpl</a><ul>
-  <li><a href="pwtools.mpl.Plot.html">pwtools.mpl.Plot</a><ul>
-      <li>Previous: <a href="pwtools.mpl.Plot.html" title="previous chapter">pwtools.mpl.Plot</a></li>
-      <li>Next: <a href="pwtools.mpl.Plot.legend.html" title="next chapter">pwtools.mpl.Plot.legend</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -94,23 +82,25 @@
             
   <div class="section" id="pwtools-mpl-plot-collect-legends">
 <h1>pwtools.mpl.Plot.collect_legends<a class="headerlink" href="#pwtools-mpl-plot-collect-legends" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
+<dl class="py method">
 <dt id="pwtools.mpl.Plot.collect_legends">
-<code class="sig-prename descclassname">Plot.</code><code class="sig-name descname">collect_legends</code><span class="sig-paren">(</span><em class="sig-param">axnames=['ax']</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#Plot.collect_legends"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.Plot.collect_legends" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">Plot.</code><code class="sig-name descname">collect_legends</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axnames</span><span class="o">=</span><span class="default_value">['ax']</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#Plot.collect_legends"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.Plot.collect_legends" title="Permalink to this definition">¶</a></dt>
 <dd><p>If self has more then one axis object attached, then collect legends
 from all axes specified in axnames. Useful for handling legend entries
 of lines on differend axes (in case of twinx, for instance).</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axnames</strong> : sequence of strings</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>axnames</strong><span class="classifier">sequence of strings</span></dt><dd></dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>tuple of lines and labels</p>
-<blockquote>
-<div><p>([line1, line2, …], [‘foo’, ‘bar’, …])</p>
-</div></blockquote>
-<p>where lines and labels are taken from all axes. Use this as input for</p>
-<p>any axis’s legend() method.</p>
+<dd class="field-even"><dl class="simple">
+<dt>tuple of lines and labels</dt><dd><p>([line1, line2, …], [‘foo’, ‘bar’, …])</p>
+</dd>
+<dt>where lines and labels are taken from all axes. Use this as input for</dt><dd></dd>
+<dt>any axis’s legend() method.</dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -127,7 +117,7 @@ of lines on differend axes (in case of twinx, for instance).</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

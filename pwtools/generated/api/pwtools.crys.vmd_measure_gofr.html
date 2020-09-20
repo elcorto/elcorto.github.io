@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.crys.vmd_measure_gofr &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.crys.voigt2tensor" href="pwtools.crys.voigt2tensor.html" />
-    <link rel="prev" title="pwtools.crys.velocity_traj" href="pwtools.crys.velocity_traj.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="crys.html">crys</a><ul>
-      <li>Previous: <a href="pwtools.crys.velocity_traj.html" title="previous chapter">pwtools.crys.velocity_traj</a></li>
-      <li>Next: <a href="pwtools.crys.voigt2tensor.html" title="next chapter">pwtools.crys.voigt2tensor</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,23 +82,20 @@
             
   <div class="section" id="pwtools-crys-vmd-measure-gofr">
 <h1>pwtools.crys.vmd_measure_gofr<a class="headerlink" href="#pwtools-crys-vmd-measure-gofr" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.crys.vmd_measure_gofr">
-<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">vmd_measure_gofr</code><span class="sig-paren">(</span><em class="sig-param">traj, dr=0.05, rmax='auto', sel=['all', 'all'], first=0, last=-1, step=1, usepbc=1, slicefirst=True, verbose=False, tmpdir=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#vmd_measure_gofr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.vmd_measure_gofr" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">vmd_measure_gofr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">traj</span></em>, <em class="sig-param"><span class="n">dr</span><span class="o">=</span><span class="default_value">0.05</span></em>, <em class="sig-param"><span class="n">rmax</span><span class="o">=</span><span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">sel</span><span class="o">=</span><span class="default_value">['all', 'all']</span></em>, <em class="sig-param"><span class="n">first</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">last</span><span class="o">=</span><span class="default_value">- 1</span></em>, <em class="sig-param"><span class="n">step</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">usepbc</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">slicefirst</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">tmpdir</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#vmd_measure_gofr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.vmd_measure_gofr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call call_vmd_measure_gofr(), accept Structure / Trajectory as input.
 This is intended as a complementary function to rpdf() and should, of
 course, produce the “same” results.</p>
 <p>Only orthogonal boxes are allowed (like in VMD).</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>traj</strong> : Structure or Trajectory</p>
-<p><strong>dr</strong> : float</p>
-<blockquote>
-<div><p>dr in Angstrom</p>
-</div></blockquote>
-<p><strong>rmax</strong> : {‘auto’, float}, optional</p>
-<blockquote>
-<div><p>Max. radius up to which minimum image nearest neighbors are counted.
+<dd class="field-odd"><dl>
+<dt><strong>traj</strong><span class="classifier">Structure or Trajectory</span></dt><dd></dd>
+<dt><strong>dr</strong><span class="classifier">float</span></dt><dd><p>dr in Angstrom</p>
+</dd>
+<dt><strong>rmax</strong><span class="classifier">{‘auto’, float}, optional</span></dt><dd><p>Max. radius up to which minimum image nearest neighbors are counted.
 For cubic boxes of side length L, this is L/2 [AT,MD].</p>
 <div class="line-block">
 <div class="line">‘auto’ : the method of [Smith] is used to calculate the max. sphere</div>
@@ -117,51 +104,36 @@ For cubic boxes of side length L, this is L/2 [AT,MD].</p>
 </div>
 <div class="line">float : set value yourself</div>
 </div>
-</div></blockquote>
-<p><strong>sel</strong> : list of two strings, optional</p>
-<blockquote>
-<div><p>string to select atoms, [“name Ca”, “name O”], [“all”, “all”], …,
+</dd>
+<dt><strong>sel</strong><span class="classifier">list of two strings, optional</span></dt><dd><p>string to select atoms, [“name Ca”, “name O”], [“all”, “all”], …,
 where sel[0] is selection 1, sel[1] is selection 2 in VMD</p>
-</div></blockquote>
-<p><strong>first,last,step</strong> : int, optional</p>
-<blockquote>
-<div><p>Select which MD steps are averaged. Like Python, VMD starts counting at
+</dd>
+<dt><strong>first,last,step</strong><span class="classifier">int, optional</span></dt><dd><p>Select which MD steps are averaged. Like Python, VMD starts counting at
 zero. Last is -1, like in Python.</p>
-</div></blockquote>
-<p><strong>usepbc</strong> : int {1,0}, optional</p>
-<blockquote>
-<div><p>Whether to use the minimum image convention.</p>
-</div></blockquote>
-<p><strong>slicefirst</strong> : bool, optional</p>
-<blockquote>
-<div><p>Whether to slice coords here in the wrapper based on first,last,step.
+</dd>
+<dt><strong>usepbc</strong><span class="classifier">int {1,0}, optional</span></dt><dd><p>Whether to use the minimum image convention.</p>
+</dd>
+<dt><strong>slicefirst</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to slice coords here in the wrapper based on first,last,step.
 This will write a smaller XSF file, which can save time. In the VMD
 script, we always use first=0,last=-1,step=1 in that case.</p>
-</div></blockquote>
-<p><strong>verbose</strong> : bool, optional</p>
-<blockquote>
-<div><p>display VMD output</p>
-</div></blockquote>
-<p><strong>tmpdir</strong> : str, optional</p>
-<blockquote>
-<div><p>dir where auto-generated tmp files are written</p>
-</div></blockquote>
+</dd>
+<dt><strong>verbose</strong><span class="classifier">bool, optional</span></dt><dd><p>display VMD output</p>
+</dd>
+<dt><strong>tmpdir</strong><span class="classifier">str, optional</span></dt><dd><p>dir where auto-generated tmp files are written</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>array (len(rad), 3), colums 0,1,2:</p>
-<p><strong>rad</strong> : 1d array</p>
-<blockquote>
-<div><p>radius (x-axis) with spacing <cite>dr</cite>, each value r[i] is the middle of a
+<dd class="field-even"><dl class="simple">
+<dt>array (len(rad), 3), colums 0,1,2:</dt><dd></dd>
+<dt><strong>rad</strong><span class="classifier">1d array</span></dt><dd><p>radius (x-axis) with spacing <cite>dr</cite>, each value r[i] is the middle of a
 histogram bin</p>
-</div></blockquote>
-<p><strong>hist</strong> : 1d array, (len(rad),)</p>
-<blockquote>
-<div><p>the function values g(r)</p>
-</div></blockquote>
-<p><strong>num_int</strong> : 1d array, (len(rad),)</p>
-<blockquote>
-<div><p>the (averaged) number integral <code class="docutils literal notranslate"><span class="pre">number_density*hist*4*pi*r**2.0*dr</span></code></p>
-</div></blockquote>
+</dd>
+<dt><strong>hist</strong><span class="classifier">1d array, (len(rad),)</span></dt><dd><p>the function values g(r)</p>
+</dd>
+<dt><strong>num_int</strong><span class="classifier">1d array, (len(rad),)</span></dt><dd><p>the (averaged) number integral <code class="docutils literal notranslate"><span class="pre">number_density*hist*4*pi*r**2.0*dr</span></code></p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -178,7 +150,7 @@ histogram bin</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

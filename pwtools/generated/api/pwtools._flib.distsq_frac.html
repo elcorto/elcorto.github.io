@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools._flib.distsq_frac &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools._flib.frac2cart" href="pwtools._flib.frac2cart.html" />
-    <link rel="prev" title="pwtools._flib.distsq" href="pwtools._flib.distsq.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="_flib.html">_flib</a><ul>
-      <li>Previous: <a href="pwtools._flib.distsq.html" title="previous chapter">pwtools._flib.distsq</a></li>
-      <li>Next: <a href="pwtools._flib.frac2cart.html" title="next chapter">pwtools._flib.frac2cart</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,41 +82,39 @@
             
   <div class="section" id="pwtools-flib-distsq-frac">
 <h1>pwtools._flib.distsq_frac<a class="headerlink" href="#pwtools-flib-distsq-frac" title="Permalink to this headline">¶</a></h1>
-<dl class="data">
+<dl class="py data">
 <dt id="pwtools._flib.distsq_frac">
 <code class="sig-prename descclassname">pwtools._flib.</code><code class="sig-name descname">distsq_frac</code><span class="sig-paren">(</span><em class="sig-param">coords_frac</em>, <em class="sig-param">cell</em>, <em class="sig-param">pbc</em>, <em class="sig-param">distsq</em>, <em class="sig-param">distvecs</em>, <em class="sig-param">distvecs_frac</em><span class="optional">[</span>, <em class="sig-param">natoms</em>, <em class="sig-param">overwrite_distsq</em>, <em class="sig-param">overwrite_distvecs</em>, <em class="sig-param">overwrite_distvecs_frac</em><span class="optional">]</span><span class="sig-paren">)</span><em class="property"> = &lt;fortran object&gt;</em><a class="headerlink" href="#pwtools._flib.distsq_frac" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper for <code class="docutils literal notranslate"><span class="pre">distsq_frac</span></code>.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>coords_frac</strong> : input rank-2 array(‘d’) with bounds (natoms,3)</p>
-<p><strong>cell</strong> : input rank-2 array(‘d’) with bounds (3,3)</p>
-<p><strong>pbc</strong> : input int</p>
-<p><strong>distsq</strong> : input rank-2 array(‘d’) with bounds (natoms,natoms)</p>
-<p><strong>distvecs</strong> : input rank-3 array(‘d’) with bounds (natoms,natoms,3)</p>
-<p><strong>distvecs_frac</strong> : input rank-3 array(‘d’) with bounds (natoms,natoms,3)</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>coords_frac</strong><span class="classifier">input rank-2 array(‘d’) with bounds (natoms,3)</span></dt><dd></dd>
+<dt><strong>cell</strong><span class="classifier">input rank-2 array(‘d’) with bounds (3,3)</span></dt><dd></dd>
+<dt><strong>pbc</strong><span class="classifier">input int</span></dt><dd></dd>
+<dt><strong>distsq</strong><span class="classifier">input rank-2 array(‘d’) with bounds (natoms,natoms)</span></dt><dd></dd>
+<dt><strong>distvecs</strong><span class="classifier">input rank-3 array(‘d’) with bounds (natoms,natoms,3)</span></dt><dd></dd>
+<dt><strong>distvecs_frac</strong><span class="classifier">input rank-3 array(‘d’) with bounds (natoms,natoms,3)</span></dt><dd></dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>distsq</strong> : rank-2 array(‘d’) with bounds (natoms,natoms)</p>
-<p><strong>distvecs</strong> : rank-3 array(‘d’) with bounds (natoms,natoms,3)</p>
-<p><strong>distvecs_frac</strong> : rank-3 array(‘d’) with bounds (natoms,natoms,3)</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>distsq</strong><span class="classifier">rank-2 array(‘d’) with bounds (natoms,natoms)</span></dt><dd></dd>
+<dt><strong>distvecs</strong><span class="classifier">rank-3 array(‘d’) with bounds (natoms,natoms,3)</span></dt><dd></dd>
+<dt><strong>distvecs_frac</strong><span class="classifier">rank-3 array(‘d’) with bounds (natoms,natoms,3)</span></dt><dd></dd>
+</dl>
 </dd>
 <dt class="field-odd">Other Parameters</dt>
-<dd class="field-odd"><p><strong>overwrite_distsq</strong> : input int, optional</p>
-<blockquote>
-<div><p>Default: 1</p>
-</div></blockquote>
-<p><strong>overwrite_distvecs</strong> : input int, optional</p>
-<blockquote>
-<div><p>Default: 1</p>
-</div></blockquote>
-<p><strong>overwrite_distvecs_frac</strong> : input int, optional</p>
-<blockquote>
-<div><p>Default: 1</p>
-</div></blockquote>
-<p><strong>natoms</strong> : input int, optional</p>
-<blockquote>
-<div><p>Default: shape(coords_frac,0)</p>
-</div></blockquote>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>overwrite_distsq</strong><span class="classifier">input int, optional</span></dt><dd><p>Default: 1</p>
+</dd>
+<dt><strong>overwrite_distvecs</strong><span class="classifier">input int, optional</span></dt><dd><p>Default: 1</p>
+</dd>
+<dt><strong>overwrite_distvecs_frac</strong><span class="classifier">input int, optional</span></dt><dd><p>Default: 1</p>
+</dd>
+<dt><strong>natoms</strong><span class="classifier">input int, optional</span></dt><dd><p>Default: shape(coords_frac,0)</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -143,7 +131,7 @@
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

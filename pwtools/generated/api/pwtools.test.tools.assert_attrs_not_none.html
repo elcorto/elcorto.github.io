@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.test.tools.assert_attrs_not_none &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.test.tools.assert_dict_with_all_types_almost_equal" href="pwtools.test.tools.assert_dict_with_all_types_almost_equal.html" />
-    <link rel="prev" title="pwtools.test.tools.assert_array_equal" href="pwtools.test.tools.assert_array_equal.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="test.tools.html">test.tools</a><ul>
-      <li>Previous: <a href="pwtools.test.tools.assert_array_equal.html" title="previous chapter">pwtools.test.tools.assert_array_equal</a></li>
-      <li>Next: <a href="pwtools.test.tools.assert_dict_with_all_types_almost_equal.html" title="next chapter">pwtools.test.tools.assert_dict_with_all_types_almost_equal</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,23 +82,21 @@
             
   <div class="section" id="pwtools-test-tools-assert-attrs-not-none">
 <h1>pwtools.test.tools.assert_attrs_not_none<a class="headerlink" href="#pwtools-test-tools-assert-attrs-not-none" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.test.tools.assert_attrs_not_none">
-<code class="sig-prename descclassname">pwtools.test.tools.</code><code class="sig-name descname">assert_attrs_not_none</code><span class="sig-paren">(</span><em class="sig-param">pp</em>, <em class="sig-param">attr_lst=None</em>, <em class="sig-param">none_attrs=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/test/tools.html#assert_attrs_not_none"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.test.tools.assert_attrs_not_none" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.test.tools.</code><code class="sig-name descname">assert_attrs_not_none</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pp</span></em>, <em class="sig-param"><span class="n">attr_lst</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">none_attrs</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/test/tools.html#assert_attrs_not_none"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.test.tools.assert_attrs_not_none" title="Permalink to this definition">¶</a></dt>
 <dd><p>Assert that <code class="docutils literal notranslate"><span class="pre">pp.&lt;attr&gt;</span></code> is not None for all attribute names (strings)
 in <code class="docutils literal notranslate"><span class="pre">attr_lst</span></code>.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>pp</strong> : something to run getattr() on, may have the attribute “attr_lst”</p>
-<p><strong>attr_lst</strong> : sequence of strings, optional</p>
-<blockquote>
-<div><p>Attribute names to test. If None then we try <code class="docutils literal notranslate"><span class="pre">pp.attr_lst</span></code> if it
+<dd class="field-odd"><dl class="simple">
+<dt><strong>pp</strong><span class="classifier">something to run getattr() on, may have the attribute “attr_lst”</span></dt><dd></dd>
+<dt><strong>attr_lst</strong><span class="classifier">sequence of strings, optional</span></dt><dd><p>Attribute names to test. If None then we try <code class="docutils literal notranslate"><span class="pre">pp.attr_lst</span></code> if it
 exists.</p>
-</div></blockquote>
-<p><strong>none_attrs</strong> : sequence of strings, optional</p>
-<blockquote>
-<div><p>attr names which are allowed to be None</p>
-</div></blockquote>
+</dd>
+<dt><strong>none_attrs</strong><span class="classifier">sequence of strings, optional</span></dt><dd><p>attr names which are allowed to be None</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -125,7 +113,7 @@ exists.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

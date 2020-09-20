@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.test.tools.unpack_compressed &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="thermo" href="thermo.html" />
-    <link rel="prev" title="pwtools.test.tools.true_or_false" href="pwtools.test.tools.true_or_false.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="test.tools.html">test.tools</a><ul>
-      <li>Previous: <a href="pwtools.test.tools.true_or_false.html" title="previous chapter">pwtools.test.tools.true_or_false</a></li>
-      <li>Next: <a href="thermo.html" title="next chapter">thermo</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,9 +82,9 @@
             
   <div class="section" id="pwtools-test-tools-unpack-compressed">
 <h1>pwtools.test.tools.unpack_compressed<a class="headerlink" href="#pwtools-test-tools-unpack-compressed" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.test.tools.unpack_compressed">
-<code class="sig-prename descclassname">pwtools.test.tools.</code><code class="sig-name descname">unpack_compressed</code><span class="sig-paren">(</span><em class="sig-param">src</em>, <em class="sig-param">prefix='tmp'</em>, <em class="sig-param">testdir='/tmp'</em>, <em class="sig-param">ext=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/test/tools.html#unpack_compressed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.test.tools.unpack_compressed" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.test.tools.</code><code class="sig-name descname">unpack_compressed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">src</span></em>, <em class="sig-param"><span class="n">prefix</span><span class="o">=</span><span class="default_value">'tmp'</span></em>, <em class="sig-param"><span class="n">testdir</span><span class="o">=</span><span class="default_value">'/tmp'</span></em>, <em class="sig-param"><span class="n">ext</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/test/tools.html#unpack_compressed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.test.tools.unpack_compressed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convenience function to uncompress files/some_file.out.gz into a random
 location. Return the filename “path/to/random_location/some_file.out”
 without “.gz”, which can be used in subsequent commands.</p>
@@ -106,27 +96,21 @@ tar -C path/to/random_location -xzf path/to/random_location/some_file.out.tgz</p
 <p>Other compress formats may be implemented as needed.</p>
 <p>Can also be used for slightly more complex unpack business, see for
 example test_cpmd_md.py.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>src</strong> : str</p>
-<blockquote>
-<div><p>path to the compressed file, i.e. files/some_file.out.gz</p>
-</div></blockquote>
-<p><strong>prefix</strong> : str, optional</p>
-<blockquote>
-<div><p>prefix for mkdtemp(), usually __file__ of the test script
+<dd class="field-odd"><dl class="simple">
+<dt><strong>src</strong><span class="classifier">str</span></dt><dd><p>path to the compressed file, i.e. files/some_file.out.gz</p>
+</dd>
+<dt><strong>prefix</strong><span class="classifier">str, optional</span></dt><dd><p>prefix for mkdtemp(), usually __file__ of the test script
 to identify which test script created the random dir</p>
-</div></blockquote>
-<p><strong>testdir</strong> : str, optional</p>
-<blockquote>
-<div><p>‘path/to’ in the example above, usually
+</dd>
+<dt><strong>testdir</strong><span class="classifier">str, optional</span></dt><dd><p>‘path/to’ in the example above, usually
 <code class="docutils literal notranslate"><span class="pre">pwtools.test.testenv.testdir</span></code></p>
-</div></blockquote>
-<p><strong>ext</strong> : str, optional</p>
-<blockquote>
-<div><p>file extension of compressed file (‘gz’, ‘tgz’, ‘tar.gz’), if None then
+</dd>
+<dt><strong>ext</strong><span class="classifier">str, optional</span></dt><dd><p>file extension of compressed file (‘gz’, ‘tgz’, ‘tar.gz’), if None then
 it will be guessed from <cite>src</cite></p>
-</div></blockquote>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -143,7 +127,7 @@ it will be guessed from <cite>src</cite></p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

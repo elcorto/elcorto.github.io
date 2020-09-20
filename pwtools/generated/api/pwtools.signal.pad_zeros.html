@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.signal.pad_zeros &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.signal.scale" href="pwtools.signal.scale.html" />
-    <link rel="prev" title="pwtools.signal.odd" href="pwtools.signal.odd.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="signal.html">signal</a><ul>
-      <li>Previous: <a href="pwtools.signal.odd.html" title="previous chapter">pwtools.signal.odd</a></li>
-      <li>Next: <a href="pwtools.signal.scale.html" title="next chapter">pwtools.signal.scale</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,37 +82,33 @@
             
   <div class="section" id="pwtools-signal-pad-zeros">
 <h1>pwtools.signal.pad_zeros<a class="headerlink" href="#pwtools-signal-pad-zeros" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.signal.pad_zeros">
-<code class="sig-prename descclassname">pwtools.signal.</code><code class="sig-name descname">pad_zeros</code><span class="sig-paren">(</span><em class="sig-param">arr</em>, <em class="sig-param">axis=0</em>, <em class="sig-param">where='end'</em>, <em class="sig-param">nadd=None</em>, <em class="sig-param">upto=None</em>, <em class="sig-param">tonext=None</em>, <em class="sig-param">tonext_min=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#pad_zeros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.pad_zeros" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.signal.</code><code class="sig-name descname">pad_zeros</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arr</span></em>, <em class="sig-param"><span class="n">axis</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">where</span><span class="o">=</span><span class="default_value">'end'</span></em>, <em class="sig-param"><span class="n">nadd</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">upto</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tonext</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tonext_min</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#pad_zeros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.pad_zeros" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pad an nd-array with zeros. Default is to append an array of zeros of
 the same shape as <cite>arr</cite> to arr’s end along <cite>axis</cite>.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>arr</strong> :  nd array</p>
-<p><strong>axis</strong> : the axis along which to pad</p>
-<p><strong>where</strong> : string {‘end’, ‘start’}, pad at the end (“append to array”) or</p>
-<blockquote>
-<div><p>start (“prepend to array”) of <cite>axis</cite></p>
-</div></blockquote>
-<p><strong>nadd</strong> : number of items to padd (i.e. nadd=3 means padd w/ 3 zeros in case</p>
-<blockquote>
-<div><p>of an 1d array)</p>
-</div></blockquote>
-<p><strong>upto</strong> : pad until arr.shape[axis] == upto</p>
-<p><strong>tonext</strong> : bool, pad up to the next power of two (pad so that the padded</p>
-<blockquote>
-<div><p>array has a length of power of two)</p>
-</div></blockquote>
-<p><strong>tonext_min</strong> : int, when using <cite>tonext</cite>, pad the array to the next possible</p>
-<blockquote>
-<div><p>power of two for which the resulting array length along <cite>axis</cite> is at
+<dd class="field-odd"><dl>
+<dt><strong>arr</strong><span class="classifier">nd array</span></dt><dd></dd>
+<dt><strong>axis</strong><span class="classifier">the axis along which to pad</span></dt><dd></dd>
+<dt><strong>where</strong><span class="classifier">string {‘end’, ‘start’}, pad at the end (“append to array”) or</span></dt><dd><p>start (“prepend to array”) of <cite>axis</cite></p>
+</dd>
+<dt><strong>nadd</strong><span class="classifier">number of items to padd (i.e. nadd=3 means padd w/ 3 zeros in case</span></dt><dd><p>of an 1d array)</p>
+</dd>
+<dt><strong>upto</strong><span class="classifier">pad until arr.shape[axis] == upto</span></dt><dd></dd>
+<dt><strong>tonext</strong><span class="classifier">bool, pad up to the next power of two (pad so that the padded</span></dt><dd><p>array has a length of power of two)</p>
+</dd>
+<dt><strong>tonext_min</strong><span class="classifier">int, when using <cite>tonext</cite>, pad the array to the next possible</span></dt><dd><p>power of two for which the resulting array length along <cite>axis</cite> is at
 least <cite>tonext_min</cite>; the default is tonext_min = arr.shape[axis]</p>
-</div></blockquote>
-<p><strong>Use only one of nadd, upto, tonext.</strong></p>
+</dd>
+<dt><strong>Use only one of nadd, upto, tonext.</strong></dt><dd></dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>padded array</p>
+<dd class="field-even"><dl class="simple">
+<dt>padded array</dt><dd></dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -169,7 +155,7 @@ least <cite>tonext_min</cite>; the default is tonext_min = arr.shape[axis]</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

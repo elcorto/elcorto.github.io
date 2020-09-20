@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.crys.UnitsHandler &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.crys.UnitsHandler.apply_units" href="pwtools.crys.UnitsHandler.apply_units.html" />
-    <link rel="prev" title="pwtools.crys.Trajectory.update_units" href="pwtools.crys.Trajectory.update_units.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="crys.html">crys</a><ul>
-      <li>Previous: <a href="pwtools.crys.Trajectory.update_units.html" title="previous chapter">pwtools.crys.Trajectory.update_units</a></li>
-      <li>Next: <a href="pwtools.crys.UnitsHandler.apply_units.html" title="next chapter">pwtools.crys.UnitsHandler.apply_units</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,11 +82,10 @@
             
   <div class="section" id="pwtools-crys-unitshandler">
 <h1>pwtools.crys.UnitsHandler<a class="headerlink" href="#pwtools-crys-unitshandler" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="pwtools.crys.UnitsHandler">
 <em class="property">class </em><code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">UnitsHandler</code><a class="reference internal" href="../../_modules/pwtools/crys.html#UnitsHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.UnitsHandler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pwtools.base.FlexibleGetters.html#pwtools.base.FlexibleGetters" title="pwtools.base.FlexibleGetters"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.base.FlexibleGetters</span></code></a></p>
-<p>Base class for <a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a>, providing unit conversion methods.</p>
+<dd><p>Base class for <a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a>, providing unit conversion methods.</p>
 <p class="rubric">Methods</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -110,35 +99,23 @@
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.assert_attr.html#pwtools.crys.UnitsHandler.assert_attr" title="pwtools.crys.UnitsHandler.assert_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_attr</span></code></a>(attr)</p></td>
 <td><p>Raise AssertionError if self.&lt;attr&gt; is not set (is_set_attr() returns False.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.assert_attr_lst.html#pwtools.crys.UnitsHandler.assert_attr_lst" title="pwtools.crys.UnitsHandler.assert_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_attr_lst</span></code></a>(attr_lst)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.assert_set_attr.html#pwtools.crys.UnitsHandler.assert_set_attr" title="pwtools.crys.UnitsHandler.assert_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_set_attr</span></code></a>(attr)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.assert_set_attr.html#pwtools.crys.UnitsHandler.assert_set_attr" title="pwtools.crys.UnitsHandler.assert_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_set_attr</span></code></a>(attr)</p></td>
 <td><p>Same as assert_attr(), but run try_set_attr() first.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.assert_set_attr_lst.html#pwtools.crys.UnitsHandler.assert_set_attr_lst" title="pwtools.crys.UnitsHandler.assert_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_set_attr_lst</span></code></a>(attr_lst)</p></td>
-<td><p></p></td>
-</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.check_set_attr.html#pwtools.crys.UnitsHandler.check_set_attr" title="pwtools.crys.UnitsHandler.check_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_set_attr</span></code></a>(attr)</p></td>
-<td><p>Run try_set_attr() and return the result of is_set_attr(), i.e.</p></td>
+<td><p>Run try_set_attr() and return the result of is_set_attr(), i.e. True or False.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.check_set_attr_lst.html#pwtools.crys.UnitsHandler.check_set_attr_lst" title="pwtools.crys.UnitsHandler.check_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_set_attr_lst</span></code></a>(attr_lst)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.dump.html#pwtools.crys.UnitsHandler.dump" title="pwtools.crys.UnitsHandler.dump"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump</span></code></a>(dump_filename[, mkdir])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.dump.html#pwtools.crys.UnitsHandler.dump" title="pwtools.crys.UnitsHandler.dump"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump</span></code></a>(dump_filename[, mkdir])</p></td>
 <td><p>Write object to binary file using pickle.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.get_return_attr.html#pwtools.crys.UnitsHandler.get_return_attr" title="pwtools.crys.UnitsHandler.get_return_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_return_attr</span></code></a>(attr_name)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.get_return_attr.html#pwtools.crys.UnitsHandler.get_return_attr" title="pwtools.crys.UnitsHandler.get_return_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_return_attr</span></code></a>(attr_name)</p></td>
 <td><p>Call try_set_attr() are return self.&lt;attr_name&gt; if set.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.init_attr_lst.html#pwtools.crys.UnitsHandler.init_attr_lst" title="pwtools.crys.UnitsHandler.init_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_attr_lst</span></code></a>([attr_lst])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.init_attr_lst.html#pwtools.crys.UnitsHandler.init_attr_lst" title="pwtools.crys.UnitsHandler.init_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_attr_lst</span></code></a>([attr_lst])</p></td>
 <td><p>Set each self.&lt;attr&gt; in <cite>attr_lst</cite> to None.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.is_set_attr.html#pwtools.crys.UnitsHandler.is_set_attr" title="pwtools.crys.UnitsHandler.is_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr</span></code></a>(attr)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.is_set_attr.html#pwtools.crys.UnitsHandler.is_set_attr" title="pwtools.crys.UnitsHandler.is_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr</span></code></a>(attr)</p></td>
 <td><p>Check if self has the attribute self.&lt;attr&gt; and if it is _not_ None.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.is_set_attr_lst.html#pwtools.crys.UnitsHandler.is_set_attr_lst" title="pwtools.crys.UnitsHandler.is_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr_lst</span></code></a>(attr_lst)</p></td>
-<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.load.html#pwtools.crys.UnitsHandler.load" title="pwtools.crys.UnitsHandler.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(dump_filename)</p></td>
 <td><p>Load pickled object.</p></td>
@@ -158,38 +135,34 @@
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.try_set_attr.html#pwtools.crys.UnitsHandler.try_set_attr" title="pwtools.crys.UnitsHandler.try_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_set_attr</span></code></a>(attr)</p></td>
 <td><p>If self.&lt;attr&gt; does not exist or is None, then invoke an appropirately named getter as if this command would be executed.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.try_set_attr_lst.html#pwtools.crys.UnitsHandler.try_set_attr_lst" title="pwtools.crys.UnitsHandler.try_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_set_attr_lst</span></code></a>(attr_lst)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.update_units.html#pwtools.crys.UnitsHandler.update_units" title="pwtools.crys.UnitsHandler.update_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_units</span></code></a>(units)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.UnitsHandler.update_units.html#pwtools.crys.UnitsHandler.update_units" title="pwtools.crys.UnitsHandler.update_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_units</span></code></a>(units)</p></td>
 <td><p>Update self.units dict from <cite>units</cite>.</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="pwtools.crys.UnitsHandler.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#UnitsHandler.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.UnitsHandler.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.crys.UnitsHandler.apply_units">
-<code class="sig-name descname">apply_units</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#UnitsHandler.apply_units"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.UnitsHandler.apply_units" title="Permalink to this definition">¶</a></dt>
-<dd><p>Like _apply_units_raw(), make sure that units are only applied once.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.crys.UnitsHandler.update_units">
-<code class="sig-name descname">update_units</code><span class="sig-paren">(</span><em class="sig-param">units</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#UnitsHandler.update_units"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.UnitsHandler.update_units" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update self.units dict from <cite>units</cite>. All units not contained in
-<cite>units</cite> remain at the default (1.0), see self._default_units.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>units</strong> : dict, {‘length’: 5, ‘energy’: 30, …}</p>
-</dd>
-</dl>
-</dd></dl>
-
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 70%" />
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>assert_attr_lst</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>assert_set_attr_lst</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>check_set_attr_lst</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>is_set_attr_lst</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>try_set_attr_lst</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -204,7 +177,7 @@
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

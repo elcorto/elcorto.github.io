@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.crys.align_cart &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.crys.angle" href="pwtools.crys.angle.html" />
-    <link rel="prev" title="pwtools.crys._trans" href="pwtools.crys._trans.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="crys.html">crys</a><ul>
-      <li>Previous: <a href="pwtools.crys._trans.html" title="previous chapter">pwtools.crys._trans</a></li>
-      <li>Next: <a href="pwtools.crys.angle.html" title="next chapter">pwtools.crys.angle</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,28 +82,23 @@
             
   <div class="section" id="pwtools-crys-align-cart">
 <h1>pwtools.crys.align_cart<a class="headerlink" href="#pwtools-crys-align-cart" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.crys.align_cart">
-<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">align_cart</code><span class="sig-paren">(</span><em class="sig-param">obj</em>, <em class="sig-param">x=None</em>, <em class="sig-param">y=None</em>, <em class="sig-param">vecs=None</em>, <em class="sig-param">indices=None</em>, <em class="sig-param">cart=None</em>, <em class="sig-param">eps=1e-05</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#align_cart"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.align_cart" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">align_cart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em>, <em class="sig-param"><span class="n">x</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">vecs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">indices</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cart</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">eps</span><span class="o">=</span><span class="default_value">1e-05</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#align_cart"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.align_cart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Align obj w.r.t. a new cartesian coord sys defined by x,y and
 z=cross(x,y).</p>
 <p>The new coord sys can be defined either by <cite>x</cite> + <cite>y</cite> or <cite>vecs</cite> or
 <cite>indices</cite> or <cite>cart</cite>. Vectors need not be normalized.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>obj</strong> : Structure or Trajectory</p>
-<p><strong>x, y</strong> : (3,)</p>
-<blockquote>
-<div><p>The two vectors spanning the x-y plane.</p>
-</div></blockquote>
-<p><strong>vecs</strong> : (3,3)</p>
-<blockquote>
-<div><p>Array with 3 vectors as rows <cite>[v0, v1, v2]</cite> and <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">v1</span> <span class="pre">-</span> <span class="pre">v0</span></code>,
+<dd class="field-odd"><dl>
+<dt><strong>obj</strong><span class="classifier">Structure or Trajectory</span></dt><dd></dd>
+<dt><strong>x, y</strong><span class="classifier">(3,)</span></dt><dd><p>The two vectors spanning the x-y plane.</p>
+</dd>
+<dt><strong>vecs</strong><span class="classifier">(3,3)</span></dt><dd><p>Array with 3 vectors as rows <cite>[v0, v1, v2]</cite> and <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">v1</span> <span class="pre">-</span> <span class="pre">v0</span></code>,
 <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">v2</span> <span class="pre">-</span> <span class="pre">v0</span></code></p>
-</div></blockquote>
-<p><strong>indices</strong> : sequence (4,) or (3,)</p>
-<blockquote>
-<div><p>Indices of atoms in <cite>obj</cite> with positions <cite>v0,v1,v2</cite>. Length 4 for
+</dd>
+<dt><strong>indices</strong><span class="classifier">sequence (4,) or (3,)</span></dt><dd><p>Indices of atoms in <cite>obj</cite> with positions <cite>v0,v1,v2</cite>. Length 4 for
 obj=Trajectory: <code class="docutils literal notranslate"><span class="pre">indices=[time_step,</span> <span class="pre">idx0,</span> <span class="pre">idx1,</span> <span class="pre">idx2]</span></code> and length 3
 for obj=Structure: <code class="docutils literal notranslate"><span class="pre">[idx0,</span> <span class="pre">idx1,</span> <span class="pre">idx2]</span></code> with</p>
 <blockquote>
@@ -131,18 +116,17 @@ for obj=Structure: <code class="docutils literal notranslate"><span class="pre">
 </div>
 </dd>
 </dl>
-</div></blockquote>
-<p><strong>cart</strong> : (3,3)</p>
-<blockquote>
-<div><p>new cartesian coord sys <code class="docutils literal notranslate"><span class="pre">[x,y,z]</span></code>, matrix must be orthogonal</p>
-</div></blockquote>
-<p><strong>eps</strong> : float</p>
-<blockquote>
-<div><p>Threshold for orthogonality check. Use <cite>eps &lt;= 0</cite> to disable the check.</p>
-</div></blockquote>
+</dd>
+<dt><strong>cart</strong><span class="classifier">(3,3)</span></dt><dd><p>new cartesian coord sys <code class="docutils literal notranslate"><span class="pre">[x,y,z]</span></code>, matrix must be orthogonal</p>
+</dd>
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Threshold for orthogonality check. Use <cite>eps &lt;= 0</cite> to disable the check.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>out</strong> : Structure or Trajectory</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>out</strong><span class="classifier">Structure or Trajectory</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -169,7 +153,7 @@ to loop over the Trajectory like:</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

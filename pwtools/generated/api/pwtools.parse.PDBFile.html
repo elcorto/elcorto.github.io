@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.parse.PDBFile &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.parse.PDBFile.apply_units" href="pwtools.parse.PDBFile.apply_units.html" />
-    <link rel="prev" title="pwtools.parse.LammpsTextMDOutputFile.update_units" href="pwtools.parse.LammpsTextMDOutputFile.update_units.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="parse.html">parse</a><ul>
-      <li>Previous: <a href="pwtools.parse.LammpsTextMDOutputFile.update_units.html" title="previous chapter">pwtools.parse.LammpsTextMDOutputFile.update_units</a></li>
-      <li>Next: <a href="pwtools.parse.PDBFile.apply_units.html" title="next chapter">pwtools.parse.PDBFile.apply_units</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,11 +82,10 @@
             
   <div class="section" id="pwtools-parse-pdbfile">
 <h1>pwtools.parse.PDBFile<a class="headerlink" href="#pwtools-parse-pdbfile" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="pwtools.parse.PDBFile">
-<em class="property">class </em><code class="sig-prename descclassname">pwtools.parse.</code><code class="sig-name descname">PDBFile</code><span class="sig-paren">(</span><em class="sig-param">filename=None</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#PDBFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.PDBFile" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pwtools.parse.StructureFileParser.html#pwtools.parse.StructureFileParser" title="pwtools.parse.StructureFileParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.parse.StructureFileParser</span></code></a></p>
-<p>Very very simple pdb file parser.</p>
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.parse.</code><code class="sig-name descname">PDBFile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#PDBFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.PDBFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Very very simple pdb file parser.</p>
 <p>Extract only ATOM/HETATM and CRYST1 (if present) records. If you want smth
 serious, check biopython or openbabel.</p>
 <p class="rubric">Notes</p>
@@ -124,86 +113,88 @@ spec.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.assert_attr.html#pwtools.parse.PDBFile.assert_attr" title="pwtools.parse.PDBFile.assert_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_attr</span></code></a>(attr)</p></td>
 <td><p>Raise AssertionError if self.&lt;attr&gt; is not set (is_set_attr() returns False.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.assert_attr_lst.html#pwtools.parse.PDBFile.assert_attr_lst" title="pwtools.parse.PDBFile.assert_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_attr_lst</span></code></a>(attr_lst)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.assert_set_attr.html#pwtools.parse.PDBFile.assert_set_attr" title="pwtools.parse.PDBFile.assert_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_set_attr</span></code></a>(attr)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.assert_set_attr.html#pwtools.parse.PDBFile.assert_set_attr" title="pwtools.parse.PDBFile.assert_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_set_attr</span></code></a>(attr)</p></td>
 <td><p>Same as assert_attr(), but run try_set_attr() first.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.assert_set_attr_lst.html#pwtools.parse.PDBFile.assert_set_attr_lst" title="pwtools.parse.PDBFile.assert_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_set_attr_lst</span></code></a>(attr_lst)</p></td>
-<td><p></p></td>
-</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.check_set_attr.html#pwtools.parse.PDBFile.check_set_attr" title="pwtools.parse.PDBFile.check_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_set_attr</span></code></a>(attr)</p></td>
-<td><p>Run try_set_attr() and return the result of is_set_attr(), i.e.</p></td>
+<td><p>Run try_set_attr() and return the result of is_set_attr(), i.e. True or False.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.check_set_attr_lst.html#pwtools.parse.PDBFile.check_set_attr_lst" title="pwtools.parse.PDBFile.check_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_set_attr_lst</span></code></a>(attr_lst)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.dump.html#pwtools.parse.PDBFile.dump" title="pwtools.parse.PDBFile.dump"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump</span></code></a>(dump_filename[, mkdir])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.dump.html#pwtools.parse.PDBFile.dump" title="pwtools.parse.PDBFile.dump"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump</span></code></a>(dump_filename[, mkdir])</p></td>
 <td><p>Write object to binary file using pickle.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.get_cont.html#pwtools.parse.PDBFile.get_cont" title="pwtools.parse.PDBFile.get_cont"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cont</span></code></a>([auto_calc])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.get_cont.html#pwtools.parse.PDBFile.get_cont" title="pwtools.parse.PDBFile.get_cont"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cont</span></code></a>([auto_calc])</p></td>
 <td><p>Populate and return a Container object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.get_coords.html#pwtools.parse.PDBFile.get_coords" title="pwtools.parse.PDBFile.get_coords"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_coords</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.get_cryst_const.html#pwtools.parse.PDBFile.get_cryst_const" title="pwtools.parse.PDBFile.get_cryst_const"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cryst_const</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.get_return_attr.html#pwtools.parse.PDBFile.get_return_attr" title="pwtools.parse.PDBFile.get_return_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_return_attr</span></code></a>(attr_name)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.get_return_attr.html#pwtools.parse.PDBFile.get_return_attr" title="pwtools.parse.PDBFile.get_return_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_return_attr</span></code></a>(attr_name)</p></td>
 <td><p>Call try_set_attr() are return self.&lt;attr_name&gt; if set.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.get_struct.html#pwtools.parse.PDBFile.get_struct" title="pwtools.parse.PDBFile.get_struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_struct</span></code></a>(**kwds)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.get_symbols.html#pwtools.parse.PDBFile.get_symbols" title="pwtools.parse.PDBFile.get_symbols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_symbols</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.init_attr_lst.html#pwtools.parse.PDBFile.init_attr_lst" title="pwtools.parse.PDBFile.init_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_attr_lst</span></code></a>([attr_lst])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.init_attr_lst.html#pwtools.parse.PDBFile.init_attr_lst" title="pwtools.parse.PDBFile.init_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_attr_lst</span></code></a>([attr_lst])</p></td>
 <td><p>Set each self.&lt;attr&gt; in <cite>attr_lst</cite> to None.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.is_set_attr.html#pwtools.parse.PDBFile.is_set_attr" title="pwtools.parse.PDBFile.is_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr</span></code></a>(attr)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.is_set_attr.html#pwtools.parse.PDBFile.is_set_attr" title="pwtools.parse.PDBFile.is_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr</span></code></a>(attr)</p></td>
 <td><p>Check if self has the attribute self.&lt;attr&gt; and if it is _not_ None.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.is_set_attr_lst.html#pwtools.parse.PDBFile.is_set_attr_lst" title="pwtools.parse.PDBFile.is_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr_lst</span></code></a>(attr_lst)</p></td>
-<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.load.html#pwtools.parse.PDBFile.load" title="pwtools.parse.PDBFile.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(dump_filename)</p></td>
 <td><p>Load pickled object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.parse.html#pwtools.parse.PDBFile.parse" title="pwtools.parse.PDBFile.parse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.raw_return.html#pwtools.parse.PDBFile.raw_return" title="pwtools.parse.PDBFile.raw_return"><code class="xref py py-obj docutils literal notranslate"><span class="pre">raw_return</span></code></a>(attr_name)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.raw_return.html#pwtools.parse.PDBFile.raw_return" title="pwtools.parse.PDBFile.raw_return"><code class="xref py py-obj docutils literal notranslate"><span class="pre">raw_return</span></code></a>(attr_name)</p></td>
 <td><p>Call <code class="docutils literal notranslate"><span class="pre">try_set_attr(_&lt;attr_name&gt;_raw)</span></code> and return it if set, else None.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.raw_slice_get.html#pwtools.parse.PDBFile.raw_slice_get" title="pwtools.parse.PDBFile.raw_slice_get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">raw_slice_get</span></code></a>(attr_name, sl, axis)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.raw_slice_get.html#pwtools.parse.PDBFile.raw_slice_get" title="pwtools.parse.PDBFile.raw_slice_get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">raw_slice_get</span></code></a>(attr_name, sl, axis)</p></td>
 <td><p>Shortcut method:</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.set_all.html#pwtools.parse.PDBFile.set_all" title="pwtools.parse.PDBFile.set_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_all</span></code></a>([attr_lst])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.set_all.html#pwtools.parse.PDBFile.set_all" title="pwtools.parse.PDBFile.set_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_all</span></code></a>([attr_lst])</p></td>
 <td><p>Call getter for each attr name in <cite>attr_lst</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.set_attr_lst.html#pwtools.parse.PDBFile.set_attr_lst" title="pwtools.parse.PDBFile.set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_attr_lst</span></code></a>(attr_lst)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.set_attr_lst.html#pwtools.parse.PDBFile.set_attr_lst" title="pwtools.parse.PDBFile.set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_attr_lst</span></code></a>(attr_lst)</p></td>
 <td><p>Set self.attr_lst and init each attr to None.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.try_set_attr.html#pwtools.parse.PDBFile.try_set_attr" title="pwtools.parse.PDBFile.try_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_set_attr</span></code></a>(attr)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.try_set_attr.html#pwtools.parse.PDBFile.try_set_attr" title="pwtools.parse.PDBFile.try_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_set_attr</span></code></a>(attr)</p></td>
 <td><p>If self.&lt;attr&gt; does not exist or is None, then invoke an appropirately named getter as if this command would be executed.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.try_set_attr_lst.html#pwtools.parse.PDBFile.try_set_attr_lst" title="pwtools.parse.PDBFile.try_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_set_attr_lst</span></code></a>(attr_lst)</p></td>
-<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.PDBFile.update_units.html#pwtools.parse.PDBFile.update_units" title="pwtools.parse.PDBFile.update_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_units</span></code></a>(units)</p></td>
 <td><p>Update self.units dict from <cite>units</cite>.</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="pwtools.parse.PDBFile.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">filename=None</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#PDBFile.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.PDBFile.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 70%" />
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>assert_attr_lst</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>assert_set_attr_lst</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>check_set_attr_lst</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_coords</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_cryst_const</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_struct</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_symbols</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>is_set_attr_lst</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>parse</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>try_set_attr_lst</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -218,7 +209,7 @@ spec.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.crys.smooth &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.crys.struct2atoms" href="pwtools.crys.struct2atoms.html" />
-    <link rel="prev" title="pwtools.crys.scell_mask" href="pwtools.crys.scell_mask.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="crys.html">crys</a><ul>
-      <li>Previous: <a href="pwtools.crys.scell_mask.html" title="previous chapter">pwtools.crys.scell_mask</a></li>
-      <li>Next: <a href="pwtools.crys.struct2atoms.html" title="next chapter">pwtools.crys.struct2atoms</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,9 +82,9 @@
             
   <div class="section" id="pwtools-crys-smooth">
 <h1>pwtools.crys.smooth<a class="headerlink" href="#pwtools-crys-smooth" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.crys.smooth">
-<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">smooth</code><span class="sig-paren">(</span><em class="sig-param">traj</em>, <em class="sig-param">kern</em>, <em class="sig-param">method=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#smooth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.smooth" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">smooth</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">traj</span></em>, <em class="sig-param"><span class="n">kern</span></em>, <em class="sig-param"><span class="n">method</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#smooth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.smooth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Smooth Trajectory along <cite>timeaxis</cite>.</p>
 <p>Each array in <cite>traj.attrs_nstep</cite> is smoothed by convolution with <cite>kern</cite>
 along <cite>timeaxis</cite>, i.e. coords, coords_frac, etot, … The kernel is only
@@ -103,14 +93,11 @@ each array. A similar feature can be found in VMD -&gt; Representations -&gt;
 Trajectory.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>traj</strong> : Trajectory</p>
-<p><strong>kern</strong> : 1d array</p>
-<blockquote>
-<div><p>Convolution kernel (smoothing window, see <a class="reference internal" href="pwtools.signal.smooth.html#pwtools.signal.smooth" title="pwtools.signal.smooth"><code class="xref py py-func docutils literal notranslate"><span class="pre">smooth()</span></code></a>).</p>
-</div></blockquote>
-<p><strong>method</strong> : int</p>
-<blockquote>
-<div><p>Choose how to do the convolution:</p>
+<dd class="field-odd"><dl>
+<dt><strong>traj</strong><span class="classifier">Trajectory</span></dt><dd></dd>
+<dt><strong>kern</strong><span class="classifier">1d array</span></dt><dd><p>Convolution kernel (smoothing window, see <a class="reference internal" href="pwtools.signal.smooth.html#pwtools.signal.smooth" title="pwtools.signal.smooth"><code class="xref py py-func docutils literal notranslate"><span class="pre">smooth()</span></code></a>).</p>
+</dd>
+<dt><strong>method</strong><span class="classifier">int</span></dt><dd><p>Choose how to do the convolution:</p>
 <blockquote>
 <div><div class="line-block">
 <div class="line">1 : loops over 1d convolutions, easy on memory, sometimes faster
@@ -119,13 +106,14 @@ than method=2 (default)</div>
 big <cite>traj</cite> (i.e. 1e5 timesteps, 128 atoms)</div>
 </div>
 </div></blockquote>
-</div></blockquote>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>tr</strong> : Trajectory</p>
-<blockquote>
-<div><p>Has the same <cite>nstep</cite> and <cite>timestep</cite> as the input Trajectory.</p>
-</div></blockquote>
+<dd class="field-even"><dl class="simple">
+<dt><strong>tr</strong><span class="classifier">Trajectory</span></dt><dd><p>Has the same <cite>nstep</cite> and <cite>timestep</cite> as the input Trajectory.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -147,7 +135,7 @@ big <cite>traj</cite> (i.e. 1e5 timesteps, 128 atoms)</div>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

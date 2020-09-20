@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.signal.acorr &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.signal.cauchy" href="pwtools.signal.cauchy.html" />
-    <link rel="prev" title="pwtools.signal.FIRFilter.__call__" href="pwtools.signal.FIRFilter.__call__.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="signal.html">signal</a><ul>
-      <li>Previous: <a href="pwtools.signal.FIRFilter.__call__.html" title="previous chapter">pwtools.signal.FIRFilter.__call__</a></li>
-      <li>Next: <a href="pwtools.signal.cauchy.html" title="next chapter">pwtools.signal.cauchy</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,9 +82,9 @@
             
   <div class="section" id="pwtools-signal-acorr">
 <h1>pwtools.signal.acorr<a class="headerlink" href="#pwtools-signal-acorr" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.signal.acorr">
-<code class="sig-prename descclassname">pwtools.signal.</code><code class="sig-name descname">acorr</code><span class="sig-paren">(</span><em class="sig-param">v</em>, <em class="sig-param">method=7</em>, <em class="sig-param">norm=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#acorr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.acorr" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.signal.</code><code class="sig-name descname">acorr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">v</span></em>, <em class="sig-param"><span class="n">method</span><span class="o">=</span><span class="default_value">7</span></em>, <em class="sig-param"><span class="n">norm</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#acorr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.acorr" title="Permalink to this definition">¶</a></dt>
 <dd><p>(Normalized) autocorrelation function (ACF) for 1d arrays.</p>
 <dl class="simple">
 <dt>Without normalization</dt><dd><p>c(t) = &lt;v(0) v(t)&gt;</p>
@@ -109,10 +99,9 @@ for reference and are slow, except for fft-based, which is by far the
 fastet.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>v</strong> : 1d array</p>
-<p><strong>method</strong> : int</p>
-<blockquote>
-<div><div class="line-block">
+<dd class="field-odd"><dl>
+<dt><strong>v</strong><span class="classifier">1d array</span></dt><dd></dd>
+<dt><strong>method</strong><span class="classifier">int</span></dt><dd><div class="line-block">
 <div class="line">1: Python loops</div>
 <div class="line">2: Python loops, zero-padded</div>
 <div class="line">3: method 1, numpy vectorized</div>
@@ -121,20 +110,19 @@ fastet.</p>
 <div class="line">6: Fortran version of 3</div>
 <div class="line">7: fft, Wiener-Khinchin Theorem</div>
 </div>
-</div></blockquote>
-<p><strong>norm</strong> : bool</p>
-<blockquote>
-<div><p>normalize or not</p>
-</div></blockquote>
+</dd>
+<dt><strong>norm</strong><span class="classifier">bool</span></dt><dd><p>normalize or not</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>c</strong> : numpy 1d array</p>
-<blockquote>
-<div><div class="line-block">
+<dd class="field-even"><dl>
+<dt><strong>c</strong><span class="classifier">numpy 1d array</span></dt><dd><div class="line-block">
 <div class="line">c[0]  &lt;=&gt; lag = 0</div>
 <div class="line">c[-1] &lt;=&gt; lag = len(v)</div>
 </div>
-</div></blockquote>
+</dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -164,19 +152,19 @@ acorr(v,4)) = O(1e-16) or so.</p>
 </div>
 <p class="rubric">References</p>
 <dl class="citation">
-<dt class="label" id="r17"><span class="brackets"><a class="fn-backref" href="#id1">R17</a></span></dt>
+<dt class="label" id="r69f66fc4f566-1"><span class="brackets">1</span></dt>
 <dd><p>Numerical Recipes in Fortran, 2nd ed., ch. 13.2</p>
 </dd>
-<dt class="label" id="r18"><span class="brackets"><a class="fn-backref" href="#id2">R18</a></span></dt>
+<dt class="label" id="r69f66fc4f566-2"><span class="brackets">2</span></dt>
 <dd><p><a class="reference external" href="http://mathworld.wolfram.com/FourierTransform.html">http://mathworld.wolfram.com/FourierTransform.html</a></p>
 </dd>
-<dt class="label" id="r19"><span class="brackets"><a class="fn-backref" href="#id3">R19</a></span></dt>
+<dt class="label" id="r69f66fc4f566-3"><span class="brackets">3</span></dt>
 <dd><p><a class="reference external" href="http://mathworld.wolfram.com/Cross-CorrelationTheorem.html">http://mathworld.wolfram.com/Cross-CorrelationTheorem.html</a></p>
 </dd>
-<dt class="label" id="r20"><span class="brackets"><a class="fn-backref" href="#id4">R20</a></span></dt>
+<dt class="label" id="r69f66fc4f566-4"><span class="brackets">4</span></dt>
 <dd><p><a class="reference external" href="http://mathworld.wolfram.com/Wiener-KhinchinTheorem.html">http://mathworld.wolfram.com/Wiener-KhinchinTheorem.html</a></p>
 </dd>
-<dt class="label" id="r21"><span class="brackets"><a class="fn-backref" href="#id5">R21</a></span></dt>
+<dt class="label" id="r69f66fc4f566-5"><span class="brackets">5</span></dt>
 <dd><p><a class="reference external" href="http://mathworld.wolfram.com/Autocorrelation.html">http://mathworld.wolfram.com/Autocorrelation.html</a></p>
 </dd>
 </dl>
@@ -194,7 +182,7 @@ acorr(v,4)) = O(1e-16) or so.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

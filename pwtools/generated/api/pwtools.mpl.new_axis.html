@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.mpl.new_axis &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.mpl.plotlines3d" href="pwtools.mpl.plotlines3d.html" />
-    <link rel="prev" title="pwtools.mpl.meshgridt" href="pwtools.mpl.meshgridt.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="mpl.html">mpl</a><ul>
-      <li>Previous: <a href="pwtools.mpl.meshgridt.html" title="previous chapter">pwtools.mpl.meshgridt</a></li>
-      <li>Next: <a href="pwtools.mpl.plotlines3d.html" title="next chapter">pwtools.mpl.plotlines3d</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,40 +82,38 @@
             
   <div class="section" id="pwtools-mpl-new-axis">
 <h1>pwtools.mpl.new_axis<a class="headerlink" href="#pwtools-mpl-new-axis" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.mpl.new_axis">
-<code class="sig-prename descclassname">pwtools.mpl.</code><code class="sig-name descname">new_axis</code><span class="sig-paren">(</span><em class="sig-param">fig</em>, <em class="sig-param">hostax</em>, <em class="sig-param">off=50</em>, <em class="sig-param">loc='bottom'</em>, <em class="sig-param">ticks=None</em>, <em class="sig-param">wsadd=0.1</em>, <em class="sig-param">label=''</em>, <em class="sig-param">sharex=False</em>, <em class="sig-param">sharey=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#new_axis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.new_axis" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.mpl.</code><code class="sig-name descname">new_axis</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fig</span></em>, <em class="sig-param"><span class="n">hostax</span></em>, <em class="sig-param"><span class="n">off</span><span class="o">=</span><span class="default_value">50</span></em>, <em class="sig-param"><span class="n">loc</span><span class="o">=</span><span class="default_value">'bottom'</span></em>, <em class="sig-param"><span class="n">ticks</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">wsadd</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">label</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">sharex</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">sharey</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#new_axis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.new_axis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a new axis line using mpl_toolkits.axes_grid’s SubplotHost and
 ParasiteAxes. The new axis line will be an instance of ParasiteAxes
 attached to <cite>hostax</cite>. You can do twinx()/twiny() type axis (off=0) or
 completely free-standing axis lines (off &gt; 0).</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>fig</strong> : mpl Figure</p>
-<p><strong>hostax</strong> : Instance of matplotlib.axes.HostAxesSubplot. This is the subplot</p>
-<blockquote>
-<div><p>of the figure <cite>fig</cite> w.r.t which all new axis lines are placed. See
+<dd class="field-odd"><dl>
+<dt><strong>fig</strong><span class="classifier">mpl Figure</span></dt><dd></dd>
+<dt><strong>hostax</strong><span class="classifier">Instance of matplotlib.axes.HostAxesSubplot. This is the subplot</span></dt><dd><p>of the figure <cite>fig</cite> w.r.t which all new axis lines are placed. See
 make_axes_grid_fig().</p>
-</div></blockquote>
-<p><strong>off</strong> : offset in points, used with parax.get_grid_helper().new_fixed_axis</p>
-<p><strong>loc</strong> : one of ‘left’, ‘right’, ‘top’, ‘bottom’, where to place the new axis</p>
-<blockquote>
-<div><p>line</p>
-</div></blockquote>
-<p><strong>ticks</strong> : sequence of ticks (numbers)</p>
-<p><strong>wsadd</strong> : Whitespace to add at the location <cite>loc</cite> to make space for the new</p>
-<blockquote>
-<div><p>axis line (only useful if off &gt; 0). The number is a relative unit
+</dd>
+<dt><strong>off</strong><span class="classifier">offset in points, used with parax.get_grid_helper().new_fixed_axis</span></dt><dd></dd>
+<dt><strong>loc</strong><span class="classifier">one of ‘left’, ‘right’, ‘top’, ‘bottom’, where to place the new axis</span></dt><dd><p>line</p>
+</dd>
+<dt><strong>ticks</strong><span class="classifier">sequence of ticks (numbers)</span></dt><dd></dd>
+<dt><strong>wsadd</strong><span class="classifier">Whitespace to add at the location <cite>loc</cite> to make space for the new</span></dt><dd><p>axis line (only useful if off &gt; 0). The number is a relative unit
 and is used to change the bounding box: hostax.get_position().</p>
-</div></blockquote>
-<p><strong>label</strong> : str, xlabel (ylabel) for ‘top’,’bottom’ (‘left’, ‘right’)</p>
-<p><strong>sharex, sharey</strong> : bool, share xaxis (yaxis) with <cite>hostax</cite></p>
+</dd>
+<dt><strong>label</strong><span class="classifier">str, xlabel (ylabel) for ‘top’,’bottom’ (‘left’, ‘right’)</span></dt><dd></dd>
+<dt><strong>sharex, sharey</strong><span class="classifier">bool, share xaxis (yaxis) with <cite>hostax</cite></span></dt><dd></dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>(fig, hostax, parax)</p>
-<p><strong>fig</strong> : the Figure</p>
-<p><strong>hostax</strong> : the hostax</p>
-<p><strong>parax</strong> : the new ParasiteAxes instance</p>
+<dd class="field-even"><dl class="simple">
+<dt>(fig, hostax, parax)</dt><dd></dd>
+<dt><strong>fig</strong><span class="classifier">the Figure</span></dt><dd></dd>
+<dt><strong>hostax</strong><span class="classifier">the hostax</span></dt><dd></dd>
+<dt><strong>parax</strong><span class="classifier">the new ParasiteAxes instance</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -146,7 +134,7 @@ and is used to change the bounding box: hostax.get_position().</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

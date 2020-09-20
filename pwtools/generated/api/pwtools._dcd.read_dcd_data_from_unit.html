@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools._dcd.read_dcd_data_from_unit &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools._dcd.read_dcd_header_from_unit" href="pwtools._dcd.read_dcd_header_from_unit.html" />
-    <link rel="prev" title="pwtools._dcd.read_dcd_data" href="pwtools._dcd.read_dcd_data.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="_dcd.html">_dcd</a><ul>
-      <li>Previous: <a href="pwtools._dcd.read_dcd_data.html" title="previous chapter">pwtools._dcd.read_dcd_data</a></li>
-      <li>Next: <a href="pwtools._dcd.read_dcd_header_from_unit.html" title="next chapter">pwtools._dcd.read_dcd_header_from_unit</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,20 +82,24 @@
             
   <div class="section" id="pwtools-dcd-read-dcd-data-from-unit">
 <h1>pwtools._dcd.read_dcd_data_from_unit<a class="headerlink" href="#pwtools-dcd-read-dcd-data-from-unit" title="Permalink to this headline">¶</a></h1>
-<dl class="data">
+<dl class="py data">
 <dt id="pwtools._dcd.read_dcd_data_from_unit">
-<code class="sig-prename descclassname">pwtools._dcd.</code><code class="sig-name descname">read_dcd_data_from_unit</code><span class="sig-paren">(</span><em class="sig-param">unt</em>, <em class="sig-param">nstep</em>, <em class="sig-param">natoms</em>, <em class="sig-param">convang</em><span class="sig-paren">)</span><em class="property"> = &lt;fortran object&gt;</em><a class="headerlink" href="#pwtools._dcd.read_dcd_data_from_unit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools._dcd.</code><code class="sig-name descname">read_dcd_data_from_unit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">unt</span></em>, <em class="sig-param"><span class="n">nstep</span></em>, <em class="sig-param"><span class="n">natoms</span></em>, <em class="sig-param"><span class="n">convang</span></em><span class="sig-paren">)</span><em class="property"> = &lt;fortran object&gt;</em><a class="headerlink" href="#pwtools._dcd.read_dcd_data_from_unit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper for <code class="docutils literal notranslate"><span class="pre">read_dcd_data_from_unit</span></code>.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>unt</strong> : input int</p>
-<p><strong>nstep</strong> : input int</p>
-<p><strong>natoms</strong> : input int</p>
-<p><strong>convang</strong> : input int</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>unt</strong><span class="classifier">input int</span></dt><dd></dd>
+<dt><strong>nstep</strong><span class="classifier">input int</span></dt><dd></dd>
+<dt><strong>natoms</strong><span class="classifier">input int</span></dt><dd></dd>
+<dt><strong>convang</strong><span class="classifier">input int</span></dt><dd></dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>cryst_const</strong> : rank-2 array(‘d’) with bounds (nstep,6)</p>
-<p><strong>coords</strong> : rank-3 array(‘f’) with bounds (nstep,natoms,3)</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>cryst_const</strong><span class="classifier">rank-2 array(‘d’) with bounds (nstep,6)</span></dt><dd></dd>
+<dt><strong>coords</strong><span class="classifier">rank-3 array(‘f’) with bounds (nstep,natoms,3)</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -122,7 +116,7 @@
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

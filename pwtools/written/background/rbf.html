@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Radial Basis Function Networks for interpolation or fitting of N-dim data &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,7 +13,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="prev" title="Pwscf" href="pwscf.html" />
@@ -50,9 +51,6 @@
 
 
 <h3>Navigation</h3>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../generated/api/index.html">API Reference</a></li>
-</ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
@@ -150,7 +148,7 @@ the behavior of the interpolation between points is determined by <span class="m
 For instance, too narrow functions <span class="math notranslate nohighlight">\(\phi\)</span> can lead to oscillations
 between points. Therefore <span class="math notranslate nohighlight">\(p\)</span> must be tuned for the specific data set.
 The scipy implementation <span class="math notranslate nohighlight">\(p_{\text{scipy}}\)</span> in
-<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.Rbf.html#scipy.interpolate.Rbf" title="(in SciPy v1.5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.interpolate.Rbf</span></code></a> uses something like the mean nearest neighbor
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.Rbf.html#scipy.interpolate.Rbf" title="(in SciPy v1.5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.interpolate.Rbf</span></code></a> uses something like the mean nearest neighbor
 distance. We provide this as <code class="docutils literal notranslate"><span class="pre">Rbf(points,</span> <span class="pre">values,</span> <span class="pre">p='scipy')</span></code> or
 <code class="docutils literal notranslate"><span class="pre">rbf.estimate_p(points,</span> <span class="pre">'scipy')</span></code>. The default in <a class="reference internal" href="../../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.rbf.Rbf</span></code></a>
 however is the mean distance of all points</p>
@@ -170,8 +168,8 @@ will often still interpolate all points. See below for more on this.</p>
 data, we do not want interpolation. Interpolating noisy data (<span class="math notranslate nohighlight">\(f(\mathbf
 x)\)</span> goes though all points <span class="math notranslate nohighlight">\((\mathbf x_i, z_i)\)</span> exactly) is the limit
 case of what is called overfitting in ML. In this case, we would like to do a
-fit instead, similar to the <cite>s</cite> parameter of <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.bisplrep.html#scipy.interpolate.bisplrep" title="(in SciPy v1.5.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.interpolate.bisplrep()</span></code></a>
-or the <cite>smooth</cite> parameter for regularization in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.Rbf.html#scipy.interpolate.Rbf" title="(in SciPy v1.5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.interpolate.Rbf</span></code></a>
+fit instead, similar to the <cite>s</cite> parameter of <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.bisplrep.html#scipy.interpolate.bisplrep" title="(in SciPy v1.5.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.interpolate.bisplrep()</span></code></a>
+or the <cite>smooth</cite> parameter for regularization in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.Rbf.html#scipy.interpolate.Rbf" title="(in SciPy v1.5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.interpolate.Rbf</span></code></a>
 . Here we can do the same and solve a regularized version of the linear system</p>
 <div class="math notranslate nohighlight">
 \[(\mathbf G + r\,\mathbf I)\,\mathbf w = \mathbf z\]</div>
@@ -182,10 +180,10 @@ fitting by regularization, the method is also often termed Kernel Ridge
 Regression (KRR).</p>
 <p>Apart from smoothing, the regularization also deals with another problem: the
 numerical instability of <span class="math notranslate nohighlight">\(\mathbf G\,\mathbf w = \mathbf z\)</span>, which
-results in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.solve.html#scipy.linalg.solve" title="(in SciPy v1.5.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve()</span></code></a> returning bogus if <span class="math notranslate nohighlight">\(\mathbf G\)</span> is
+results in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.solve.html#scipy.linalg.solve" title="(in SciPy v1.5.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve()</span></code></a> returning bogus if <span class="math notranslate nohighlight">\(\mathbf G\)</span> is
 ill-conditioned.</p>
-<p>One can also switch from <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.solve.html#scipy.linalg.solve" title="(in SciPy v1.5.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve()</span></code></a> to
-<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lstsq.html#scipy.linalg.lstsq" title="(in SciPy v1.5.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.lstsq()</span></code></a> and solve the system in a least squares sense
+<p>One can also switch from <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.solve.html#scipy.linalg.solve" title="(in SciPy v1.5.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve()</span></code></a> to
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lstsq.html#scipy.linalg.lstsq" title="(in SciPy v1.5.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.lstsq()</span></code></a> and solve the system in a least squares sense
 without regularization. In that case we also get much more stable solutions.
 The advantage [*] of using least squares is that we have the smoothness by
 construction no smoothness parameter <span class="math notranslate nohighlight">\(r\)</span> needs to be tuned. If the noise
@@ -258,7 +256,7 @@ manually.</p>
 <div class="section" id="other-implementations">
 <h2>Other implementations<a class="headerlink" href="#other-implementations" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.Rbf.html#scipy.interpolate.Rbf" title="(in SciPy v1.5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.interpolate.Rbf</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.Rbf.html#scipy.interpolate.Rbf" title="(in SciPy v1.5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.interpolate.Rbf</span></code></a></p></li>
 <li><p><a class="reference external" href="http://pypi.python.org/pypi/PyRadbas/0.1.0">http://pypi.python.org/pypi/PyRadbas/0.1.0</a></p></li>
 <li><p><a class="reference external" href="http://code.google.com/p/pyrbf/">http://code.google.com/p/pyrbf/</a></p></li>
 </ul>
@@ -275,7 +273,7 @@ manually.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

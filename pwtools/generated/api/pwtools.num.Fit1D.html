@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.num.Fit1D &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.num.Fit1D.get_max" href="pwtools.num.Fit1D.get_max.html" />
-    <link rel="prev" title="pwtools.num.EPS" href="pwtools.num.EPS.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="num.html">num</a><ul>
-      <li>Previous: <a href="pwtools.num.EPS.html" title="previous chapter">pwtools.num.EPS</a></li>
-      <li>Next: <a href="pwtools.num.Fit1D.get_max.html" title="next chapter">pwtools.num.Fit1D.get_max</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,11 +82,10 @@
             
   <div class="section" id="pwtools-num-fit1d">
 <h1>pwtools.num.Fit1D<a class="headerlink" href="#pwtools-num-fit1d" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="pwtools.num.Fit1D">
-<em class="property">class </em><code class="sig-prename descclassname">pwtools.num.</code><code class="sig-name descname">Fit1D</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Fit1D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Fit1D" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Base class for 1D data fit/interpolation classes (<a class="reference internal" href="pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Spline</span></code></a>,
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.num.</code><code class="sig-name descname">Fit1D</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">y</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Fit1D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Fit1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for 1D data fit/interpolation classes (<a class="reference internal" href="pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Spline</span></code></a>,
 <a class="reference internal" href="pwtools.num.PolyFit1D.html#pwtools.num.PolyFit1D" title="pwtools.num.PolyFit1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolyFit1D</span></code></a>). It provides <a class="reference internal" href="pwtools.num.Fit1D.get_min.html#pwtools.num.Fit1D.get_min" title="pwtools.num.Fit1D.get_min"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_min()</span></code></a>, <a class="reference internal" href="pwtools.num.Fit1D.get_max.html#pwtools.num.Fit1D.get_max" title="pwtools.num.Fit1D.get_max"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_max()</span></code></a>,
 <a class="reference internal" href="pwtools.num.Fit1D.get_root.html#pwtools.num.Fit1D.get_root" title="pwtools.num.Fit1D.get_root"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_root()</span></code></a>, <a class="reference internal" href="pwtools.num.Fit1D.is_mono.html#pwtools.num.Fit1D.is_mono" title="pwtools.num.Fit1D.is_mono"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_mono()</span></code></a>.</p>
 <p>The assumed API is that the <code class="docutils literal notranslate"><span class="pre">__call__</span></code> method has a kwd <cite>der</cite> which
@@ -123,83 +112,6 @@ first deriv.</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="pwtools.num.Fit1D.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Fit1D.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Fit1D.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pwtools.num.Fit1D.__weakref__">
-<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#pwtools.num.Fit1D.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.num.Fit1D.get_max">
-<code class="sig-name descname">get_max</code><span class="sig-paren">(</span><em class="sig-param">x0=None</em>, <em class="sig-param">xab=None</em>, <em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Fit1D.get_max"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Fit1D.get_max" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convenience method. Same as <a class="reference internal" href="pwtools.num.Fit1D.get_min.html#pwtools.num.Fit1D.get_min" title="pwtools.num.Fit1D.get_min"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_min()</span></code></a>, just for local maxima,
-simply using <code class="docutils literal notranslate"><span class="pre">-self(x,</span> <span class="pre">der=1)</span></code>.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.num.Fit1D.get_min">
-<code class="sig-name descname">get_min</code><span class="sig-paren">(</span><em class="sig-param">x0=None</em>, <em class="sig-param">xab=None</em>, <em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Fit1D.get_min"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Fit1D.get_min" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return x where y(x) = min(y) by calculating the root of the
-fit’s 1st derivative (by calling <code class="docutils literal notranslate"><span class="pre">self(x,</span> <span class="pre">der=1)</span></code>).</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>x0 or xab :</strong></p>
-<blockquote>
-<div><p>see <code class="xref py py-meth docutils literal notranslate"><span class="pre">_findroot()</span></code></p>
-</div></blockquote>
-<p><strong>**kwds :</strong></p>
-<blockquote>
-<div><p>passed to <code class="xref py py-meth docutils literal notranslate"><span class="pre">_findroot()</span></code></p>
-</div></blockquote>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>xx</strong> : scalar</p>
-<blockquote>
-<div><p>min(y) = y(xx)</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.num.Fit1D.get_root">
-<code class="sig-name descname">get_root</code><span class="sig-paren">(</span><em class="sig-param">x0=None</em>, <em class="sig-param">xab=None</em>, <em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Fit1D.get_root"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Fit1D.get_root" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return x where y(x) = 0 by calculating the root of the fit function.</p>
-<p>In <a class="reference internal" href="pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Spline</span></code></a>, this is the same as <code class="docutils literal notranslate"><span class="pre">Spline.invsplev(0.0,</span> <span class="pre">...)</span></code>,
-i.e. lookup x where y=0, which is exactly the root.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>x0 or xab :</strong></p>
-<blockquote>
-<div><p>see <code class="xref py py-meth docutils literal notranslate"><span class="pre">_findroot()</span></code></p>
-</div></blockquote>
-<p><strong>**kwds :</strong></p>
-<blockquote>
-<div><p>passed to <code class="xref py py-meth docutils literal notranslate"><span class="pre">_findroot()</span></code></p>
-</div></blockquote>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>xx</strong> : scalar</p>
-<blockquote>
-<div><p>y(xx) = 0</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.num.Fit1D.is_mono">
-<code class="sig-name descname">is_mono</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Fit1D.is_mono"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Fit1D.is_mono" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return True if the curve described by the fit function f(x) is
-monotonic.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -214,7 +126,7 @@ monotonic.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

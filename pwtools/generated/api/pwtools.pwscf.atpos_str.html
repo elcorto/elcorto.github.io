@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.pwscf.atpos_str &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.pwscf.atpos_str_fast" href="pwtools.pwscf.atpos_str_fast.html" />
-    <link rel="prev" title="pwtools.pwscf.EPS" href="pwtools.pwscf.EPS.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="pwscf.html">pwscf</a><ul>
-      <li>Previous: <a href="pwtools.pwscf.EPS.html" title="previous chapter">pwtools.pwscf.EPS</a></li>
-      <li>Next: <a href="pwtools.pwscf.atpos_str_fast.html" title="next chapter">pwtools.pwscf.atpos_str_fast</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,35 +82,31 @@
             
   <div class="section" id="pwtools-pwscf-atpos-str">
 <h1>pwtools.pwscf.atpos_str<a class="headerlink" href="#pwtools-pwscf-atpos-str" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.pwscf.atpos_str">
-<code class="sig-prename descclassname">pwtools.pwscf.</code><code class="sig-name descname">atpos_str</code><span class="sig-paren">(</span><em class="sig-param">symbols</em>, <em class="sig-param">coords</em>, <em class="sig-param">fmt='%.16e'</em>, <em class="sig-param">zero_eps=None</em>, <em class="sig-param">eps=2.220446049250313e-16</em>, <em class="sig-param">delim='    '</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#atpos_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.atpos_str" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.pwscf.</code><code class="sig-name descname">atpos_str</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">symbols</span></em>, <em class="sig-param"><span class="n">coords</span></em>, <em class="sig-param"><span class="n">fmt</span><span class="o">=</span><span class="default_value">'%.16e'</span></em>, <em class="sig-param"><span class="n">zero_eps</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">eps</span><span class="o">=</span><span class="default_value">2.220446049250313e-16</span></em>, <em class="sig-param"><span class="n">delim</span><span class="o">=</span><span class="default_value">'    '</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#atpos_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.atpos_str" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convenience function to make a string for the ATOMIC_POSITIONS section
 of a pw.x input file.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>symbols</strong> : sequence</p>
-<blockquote>
-<div><p>strings with atom symbols, (natoms,), must match with the
+<dd class="field-odd"><dl class="simple">
+<dt><strong>symbols</strong><span class="classifier">sequence</span></dt><dd><p>strings with atom symbols, (natoms,), must match with the
 rows of coords</p>
-</div></blockquote>
-<p><strong>coords</strong> : array (natoms, 3)</p>
-<blockquote>
-<div><p>with atomic coords, can also be (natoms, &gt;3) to add constraints on
+</dd>
+<dt><strong>coords</strong><span class="classifier">array (natoms, 3)</span></dt><dd><p>with atomic coords, can also be (natoms, &gt;3) to add constraints on
 atomic forces in PWscf</p>
-</div></blockquote>
-<p><strong>eps</strong> : float</p>
-<blockquote>
-<div><p>Print values as 0.0 where abs(coords[i,j]) &lt; eps. If eps &lt; 0.0, then
+</dd>
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Print values as 0.0 where abs(coords[i,j]) &lt; eps. If eps &lt; 0.0, then
 disable this.</p>
-</div></blockquote>
-<p><strong>delim</strong> : str</p>
-<blockquote>
-<div><p>delimiter between columns</p>
-</div></blockquote>
+</dd>
+<dt><strong>delim</strong><span class="classifier">str</span></dt><dd><p>delimiter between columns</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>string</p>
+<dd class="field-even"><dl class="simple">
+<dt>string</dt><dd></dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -143,7 +129,7 @@ disable this.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

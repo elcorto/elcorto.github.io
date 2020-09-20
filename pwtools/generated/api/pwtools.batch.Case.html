@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.batch.Case &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.batch.FileTemplate" href="pwtools.batch.FileTemplate.html" />
-    <link rel="prev" title="pwtools.batch.Calculation.write_input" href="pwtools.batch.Calculation.write_input.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="batch.html">batch</a><ul>
-      <li>Previous: <a href="pwtools.batch.Calculation.write_input.html" title="previous chapter">pwtools.batch.Calculation.write_input</a></li>
-      <li>Next: <a href="pwtools.batch.FileTemplate.html" title="next chapter">pwtools.batch.FileTemplate</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,11 +82,10 @@
             
   <div class="section" id="pwtools-batch-case">
 <h1>pwtools.batch.Case<a class="headerlink" href="#pwtools-batch-case" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="pwtools.batch.Case">
-<em class="property">class </em><code class="sig-prename descclassname">pwtools.batch.</code><code class="sig-name descname">Case</code><span class="sig-paren">(</span><em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Case"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Case" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>General purpose container class, supporting only keywords in the
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.batch.</code><code class="sig-name descname">Case</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Case"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Case" title="Permalink to this definition">¶</a></dt>
+<dd><p>General purpose container class, supporting only keywords in the
 constructor. This is essentially the same as a dictionary, just with
 another syntax for attribute access, i.e. <code class="docutils literal notranslate"><span class="pre">case.foo</span></code> instead of
 <code class="docutils literal notranslate"><span class="pre">case['foo']</span></code>.</p>
@@ -123,18 +112,6 @@ it exists.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">case</span> <span class="ow">in</span> <span class="p">[</span><span class="n">case1</span><span class="p">,</span> <span class="n">case2</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">case</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">case</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="method">
-<dt id="pwtools.batch.Case.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Case.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Case.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pwtools.batch.Case.__weakref__">
-<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#pwtools.batch.Case.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -149,7 +126,7 @@ it exists.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

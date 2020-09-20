@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.num.Spline &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.num.Spline.__call__" href="pwtools.num.Spline.__call__.html" />
-    <link rel="prev" title="pwtools.num.PolyFit1D.is_mono" href="pwtools.num.PolyFit1D.is_mono.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="num.html">num</a><ul>
-      <li>Previous: <a href="pwtools.num.PolyFit1D.is_mono.html" title="previous chapter">pwtools.num.PolyFit1D.is_mono</a></li>
-      <li>Next: <a href="pwtools.num.Spline.__call__.html" title="next chapter">pwtools.num.Spline.__call__</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,11 +82,10 @@
             
   <div class="section" id="pwtools-num-spline">
 <h1>pwtools.num.Spline<a class="headerlink" href="#pwtools-num-spline" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="pwtools.num.Spline">
-<em class="property">class </em><code class="sig-prename descclassname">pwtools.num.</code><code class="sig-name descname">Spline</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em>, <em class="sig-param">eps=1e-10</em>, <em class="sig-param">checkeps=True</em>, <em class="sig-param">**splrep_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Spline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Spline" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pwtools.num.Fit1D.html#pwtools.num.Fit1D" title="pwtools.num.Fit1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.num.Fit1D</span></code></a></p>
-<p><a class="reference internal" href="pwtools.num.Fit1D.html#pwtools.num.Fit1D" title="pwtools.num.Fit1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fit1D</span></code></a>-based spline interpolator.</p>
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.num.</code><code class="sig-name descname">Spline</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">y</span></em>, <em class="sig-param"><span class="n">eps</span><span class="o">=</span><span class="default_value">1e-10</span></em>, <em class="sig-param"><span class="n">checkeps</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">splrep_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Spline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Spline" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="pwtools.num.Fit1D.html#pwtools.num.Fit1D" title="pwtools.num.Fit1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fit1D</span></code></a>-based spline interpolator.</p>
 <p>Like <code class="docutils literal notranslate"><span class="pre">scipy.interpolate.UnivariateSpline</span></code>, this is a wrapper around
 <code class="docutils literal notranslate"><span class="pre">scipy.interpolate.splrep/splev</span></code> with some nice features like y-&gt;x lookup
 and interpolation accuracy check etc. It basically simplifies setting up a
@@ -143,77 +132,24 @@ but you can also use the normal tck (<code class="docutils literal notranslate">
 <td><p>Return x where y(x) = 0 by calculating the root of the fit function.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.num.Spline.invsplev.html#pwtools.num.Spline.invsplev" title="pwtools.num.Spline.invsplev"><code class="xref py py-obj docutils literal notranslate"><span class="pre">invsplev</span></code></a>(y0[, x0, xab])</p></td>
-<td><p>Lookup x for a given y, i.e.</p></td>
+<td><p>Lookup x for a given y, i.e. “inverse spline evaluation”, hence the name.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.num.Spline.is_mono.html#pwtools.num.Spline.is_mono" title="pwtools.num.Spline.is_mono"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_mono</span></code></a>()</p></td>
 <td><p>Return True if the curve described by the fit function f(x) is monotonic.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.num.Spline.splev.html#pwtools.num.Spline.splev" title="pwtools.num.Spline.splev"><code class="xref py py-obj docutils literal notranslate"><span class="pre">splev</span></code></a>(x, *args, **kwds)</p></td>
-<td><p></p></td>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 53%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>splev</strong></p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="pwtools.num.Spline.__call__">
-<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Spline.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Spline.__call__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.num.Spline.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em>, <em class="sig-param">eps=1e-10</em>, <em class="sig-param">checkeps=True</em>, <em class="sig-param">**splrep_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Spline.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Spline.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>x, y</strong> : numpy 1d arrays</p>
-<p><strong>eps</strong> : float</p>
-<blockquote>
-<div><p>Accuracy threshold. Spline must interpolate points with an error
-less then eps. Useless if you use splrep(…,s=..) with “s” (the
-smoothing factor) much bigger than 0. See <cite>ckeckeps</cite>.</p>
-</div></blockquote>
-<p><strong>checkeps</strong> : bool</p>
-<blockquote>
-<div><p>Whether to use <cite>eps</cite> to ckeck interpolation accuracy.</p>
-</div></blockquote>
-<p><strong>**splrep_kwargs</strong> : keywords args to splrep(), default: k=3, s=0</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.num.Spline.invsplev">
-<code class="sig-name descname">invsplev</code><span class="sig-paren">(</span><em class="sig-param">y0</em>, <em class="sig-param">x0=None</em>, <em class="sig-param">xab=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Spline.invsplev"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Spline.invsplev" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lookup x for a given y, i.e. “inverse spline evaluation”, hence
-the name. Find x where y(x) == y0 by calculating the root of y(x) -
-y0. We can use Newton’s (x0) or Brent’s (xab) methods. Use only one of
-them. If neither is given, we use xab=[x[0], x[-1]] and Brent.</p>
-<p>There are a few caveats. The result depends the nature of the
-underlying x-y curve (is it strictly monotinic -&gt; hopefully one root or
-oscillating -&gt; possibly several roots) and on how good x0 or xab are.
-For instance, a bad x0 will cause the Newton method to converge to a
-different root (if there is one) or to converge not at all. Or an
-interval xab which contains no (or several) root(s) will cause the
-Brent method to error out or give wrong/unexpected results. Always plot
-you data before using.</p>
-<p>Works only for scalar input (one point lookup). For many points, try to
-construct an inverse spline: Spline(y,x).</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>x0</strong> : float</p>
-<blockquote>
-<div><p>start guess for Newton’s secant method</p>
-</div></blockquote>
-<p><strong>xab</strong> : sequence of length 2</p>
-<blockquote>
-<div><p>start bracket for Brent’s method, root must lie in between</p>
-</div></blockquote>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>xx</strong> : scalar</p>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -228,7 +164,7 @@ construct an inverse spline: Spline(y,x).</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

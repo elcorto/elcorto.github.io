@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.sql.SQLiteDB &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.sql.SQLiteDB.add_column" href="pwtools.sql.SQLiteDB.add_column.html" />
-    <link rel="prev" title="pwtools.sql.SQLEntry" href="pwtools.sql.SQLEntry.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="sql.html">sql</a><ul>
-      <li>Previous: <a href="pwtools.sql.SQLEntry.html" title="previous chapter">pwtools.sql.SQLEntry</a></li>
-      <li>Next: <a href="pwtools.sql.SQLiteDB.add_column.html" title="next chapter">pwtools.sql.SQLiteDB.add_column</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,11 +82,10 @@
             
   <div class="section" id="pwtools-sql-sqlitedb">
 <h1>pwtools.sql.SQLiteDB<a class="headerlink" href="#pwtools-sql-sqlitedb" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="pwtools.sql.SQLiteDB">
-<em class="property">class </em><code class="sig-prename descclassname">pwtools.sql.</code><code class="sig-name descname">SQLiteDB</code><span class="sig-paren">(</span><em class="sig-param">db_fn</em>, <em class="sig-param">table=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Interface class which wraps the sqlite3 module. It abstacts away the
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.sql.</code><code class="sig-name descname">SQLiteDB</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db_fn</span></em>, <em class="sig-param"><span class="n">table</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface class which wraps the sqlite3 module. It abstacts away the
 connecting to the database and cursor setup and adds some convenience
 methods.</p>
 <p class="rubric">Notes</p>
@@ -227,305 +216,6 @@ less precision!</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">db_fn</em>, <em class="sig-param">table=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>db_fn</strong> : str</p>
-<blockquote>
-<div><p>database filename</p>
-</div></blockquote>
-<p><strong>table</strong> : str, optional</p>
-<blockquote>
-<div><p>name of the database table, you can also use <a class="reference internal" href="pwtools.sql.SQLiteDB.set_table.html#pwtools.sql.SQLiteDB.set_table" title="pwtools.sql.SQLiteDB.set_table"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_table()</span></code></a>
-later or the <cite>table</cite> keyword in all methods which need to know to
-which database table you’re talking</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pwtools.sql.SQLiteDB.__weakref__">
-<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#pwtools.sql.SQLiteDB.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.add_column">
-<code class="sig-name descname">add_column</code><span class="sig-paren">(</span><em class="sig-param">col</em>, <em class="sig-param">sqltype</em>, <em class="sig-param">table=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.add_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.add_column" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add column <cite>col</cite> with type <cite>sqltype</cite> to the header. To actually put
-data into that, use <a class="reference internal" href="pwtools.sql.SQLiteDB.execute.html#pwtools.sql.SQLiteDB.execute" title="pwtools.sql.SQLiteDB.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code></a> and standard sql statements or see
-<a class="reference internal" href="pwtools.sql.SQLiteDB.attach_column.html#pwtools.sql.SQLiteDB.attach_column" title="pwtools.sql.SQLiteDB.attach_column"><code class="xref py py-meth docutils literal notranslate"><span class="pre">attach_column()</span></code></a> or <a class="reference internal" href="pwtools.sql.SQLiteDB.fill_column.html#pwtools.sql.SQLiteDB.fill_column" title="pwtools.sql.SQLiteDB.fill_column"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fill_column()</span></code></a>.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>col</strong> : str</p>
-<blockquote>
-<div><p>column name</p>
-</div></blockquote>
-<p><strong>sqltype</strong> : str</p>
-<blockquote>
-<div><p>sqlite data type (see <a class="reference internal" href="pwtools.sql.SQLEntry.html#pwtools.sql.SQLEntry" title="pwtools.sql.SQLEntry"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLEntry</span></code></a>)</p>
-</div></blockquote>
-<p><strong>table</strong> : str, optional</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.add_columns">
-<code class="sig-name descname">add_columns</code><span class="sig-paren">(</span><em class="sig-param">header</em>, <em class="sig-param">table=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.add_columns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.add_columns" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convenience function to add multiple columns from <cite>header</cite>. See
-<a class="reference internal" href="pwtools.sql.SQLiteDB.get_header.html#pwtools.sql.SQLiteDB.get_header" title="pwtools.sql.SQLiteDB.get_header"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_header()</span></code></a>.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>header</strong> : sequence</p>
-<blockquote>
-<div><p>see <a class="reference internal" href="pwtools.sql.SQLiteDB.get_header.html#pwtools.sql.SQLiteDB.get_header" title="pwtools.sql.SQLiteDB.get_header"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_header()</span></code></a></p>
-</div></blockquote>
-<p><strong>table</strong> : str, optional</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">add_columns</span><span class="p">([(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;real&#39;</span><span class="p">)])</span>
-<span class="go"># is the same as</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;real&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.attach_column">
-<code class="sig-name descname">attach_column</code><span class="sig-paren">(</span><em class="sig-param">col</em>, <em class="sig-param">values</em>, <em class="sig-param">sqltype=None</em>, <em class="sig-param">table=None</em>, <em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.attach_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.attach_column" title="Permalink to this definition">¶</a></dt>
-<dd><p>Attach (add) a new column named <cite>col</cite> of <cite>sqltype</cite> and fill it with
-<cite>values</cite>. With overwrite=True, allow writing into existing columns,
-i.e. behave like <a class="reference internal" href="pwtools.sql.SQLiteDB.fill_column.html#pwtools.sql.SQLiteDB.fill_column" title="pwtools.sql.SQLiteDB.fill_column"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fill_column()</span></code></a>.</p>
-<p>This is a short-cut method which essentially does
-<code class="docutils literal notranslate"><span class="pre">add_column(...);</span> <span class="pre">fill_column(...)</span></code></p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>col</strong> : str</p>
-<blockquote>
-<div><p>Column name.</p>
-</div></blockquote>
-<p><strong>values</strong> : sequence</p>
-<blockquote>
-<div><p>Values to be inserted.</p>
-</div></blockquote>
-<p><strong>sqltype</strong> : str, optional</p>
-<blockquote>
-<div><p>sqlite type of values in <cite>values</cite>, obtained from values[0] if None</p>
-</div></blockquote>
-<p><strong>table</strong> : str, optional</p>
-<p><strong>**kwds :</strong></p>
-<blockquote>
-<div><p>additional keywords passed to <a class="reference internal" href="pwtools.sql.SQLiteDB.fill_column.html#pwtools.sql.SQLiteDB.fill_column" title="pwtools.sql.SQLiteDB.fill_column"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fill_column()</span></code></a>,
-default: <cite>start=1, extend=True, overwrite=False</cite></p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.commit">
-<code class="sig-name descname">commit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.commit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.commit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Commit changes to connection.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.create_table">
-<code class="sig-name descname">create_table</code><span class="sig-paren">(</span><em class="sig-param">header</em>, <em class="sig-param">table=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.create_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.create_table" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a <cite>table</cite> from <cite>header</cite>. <cite>header</cite> is in the
-same format which <a class="reference internal" href="pwtools.sql.SQLiteDB.get_header.html#pwtools.sql.SQLiteDB.get_header" title="pwtools.sql.SQLiteDB.get_header"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_header()</span></code></a> returns.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>header</strong> : list of lists/tuples</p>
-<blockquote>
-<div><p>[(colname1, sqltype1), (colname2, sqltype2), …]</p>
-</div></blockquote>
-<p><strong>table</strong> : str, optional</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.execute">
-<code class="sig-name descname">execute</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.execute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.execute" title="Permalink to this definition">¶</a></dt>
-<dd><p>This calls self.cur.execute().</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.executemany">
-<code class="sig-name descname">executemany</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.executemany"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.executemany" title="Permalink to this definition">¶</a></dt>
-<dd><p>This calls self.cur.executemany().</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.executescript">
-<code class="sig-name descname">executescript</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.executescript"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.executescript" title="Permalink to this definition">¶</a></dt>
-<dd><p>This calls self.cur.executescript().</p>
-<p>Returns what <cite>executescript</cite> returns. Calling
-<code class="docutils literal notranslate"><span class="pre">executescript().fetchall()</span></code> returns [].</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.fill_column">
-<code class="sig-name descname">fill_column</code><span class="sig-paren">(</span><em class="sig-param">col</em>, <em class="sig-param">values</em>, <em class="sig-param">start=1</em>, <em class="sig-param">extend=True</em>, <em class="sig-param">overwrite=False</em>, <em class="sig-param">table=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.fill_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.fill_column" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fill existing column <cite>col</cite> with values from <cite>values</cite>, starting from
-rowid <cite>start</cite>. “rowid” is a special sqlite column which is always
-present and which numbers all rows.</p>
-<p>The column must already exist. To add a new column and fill it, see
-<a class="reference internal" href="pwtools.sql.SQLiteDB.attach_column.html#pwtools.sql.SQLiteDB.attach_column" title="pwtools.sql.SQLiteDB.attach_column"><code class="xref py py-meth docutils literal notranslate"><span class="pre">attach_column()</span></code></a>.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>col</strong> : str</p>
-<blockquote>
-<div><p>Column name.</p>
-</div></blockquote>
-<p><strong>values</strong> : sequence</p>
-<blockquote>
-<div><p>Values to be inserted.</p>
-</div></blockquote>
-<p><strong>start</strong> : int</p>
-<blockquote>
-<div><p>sqlite rowid value to start at (first row: start=1)</p>
-</div></blockquote>
-<p><strong>extend</strong> : bool</p>
-<blockquote>
-<div><p>If <cite>extend=True</cite> and <cite>len(values)</cite> extends the last row, then
-continue to add values. All other column entries will be NULL. If
-False, then we silently stop inserting at the last row.</p>
-</div></blockquote>
-<p><strong>overwrite</strong> : bool</p>
-<blockquote>
-<div><p>Whether to overwrite entries which are not NULL (None in Python).</p>
-</div></blockquote>
-<p><strong>table</strong> : str, optional</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.finish">
-<code class="sig-name descname">finish</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.finish"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.finish" title="Permalink to this definition">¶</a></dt>
-<dd><p>Commit and close cursor.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.get_array">
-<code class="sig-name descname">get_array</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.get_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.get_array" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return result of <code class="docutils literal notranslate"><span class="pre">self.execute().fetchall()</span></code> as numpy array.</p>
-<p>Usful for 2d arrays, i.e. convert result of extracting &gt;1 columns to
-numpy 2d array. The result depends on the data types of the columns.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.get_array1d">
-<code class="sig-name descname">get_array1d</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.get_array1d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.get_array1d" title="Permalink to this definition">¶</a></dt>
-<dd><p>Same as <a class="reference internal" href="pwtools.sql.SQLiteDB.get_list1d.html#pwtools.sql.SQLiteDB.get_list1d" title="pwtools.sql.SQLiteDB.get_list1d"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_list1d()</span></code></a>, but return numpy array.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.get_dict">
-<code class="sig-name descname">get_dict</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.get_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.get_dict" title="Permalink to this definition">¶</a></dt>
-<dd><p>For the provided select statement, return a dict where each key is
-the column name and the column is a list. Column names are obtained
-from the <code class="docutils literal notranslate"><span class="pre">Cursor.description</span></code> attribute.</p>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_dict</span><span class="p">(</span><span class="s2">&quot;select foo,bar from calc&quot;</span><span class="p">)</span>
-<span class="go">{&#39;foo&#39;: [1,2,3],</span>
-<span class="go"> &#39;bar&#39;: [&#39;x&#39;, &#39;y&#39;, &#39;z&#39;]}</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.get_header">
-<code class="sig-name descname">get_header</code><span class="sig-paren">(</span><em class="sig-param">table=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.get_header"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.get_header" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the header of the <cite>table</cite>:</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>table</strong> : str, optional</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="n">SQLiteDB</span><span class="p">(</span><span class="s1">&#39;test.db&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;create table foo (a text, b real)&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span><span class="o">.</span><span class="n">get_header</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
-<span class="go">[(&#39;a&#39;, &#39;text&#39;), (&#39;b&#39;, &#39;real&#39;)]</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.get_list1d">
-<code class="sig-name descname">get_list1d</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.get_list1d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.get_list1d" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shortcut for commonly used functionality. If one extracts a single
-column, then <code class="docutils literal notranslate"><span class="pre">self.cur.fetchall()</span></code> returns a list of tuples like
-<code class="docutils literal notranslate"><span class="pre">[(1,),</span> <span class="pre">(2,)]</span></code> We call <code class="docutils literal notranslate"><span class="pre">fetchall()</span></code> and return the flattened list.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.get_max_rowid">
-<code class="sig-name descname">get_max_rowid</code><span class="sig-paren">(</span><em class="sig-param">table=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.get_max_rowid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.get_max_rowid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return max(rowid), which is equal to the number of rows in
-<cite>table</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>table</strong> : str, optional</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.get_single">
-<code class="sig-name descname">get_single</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.get_single"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.get_single" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return single entry from the table.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.get_table">
-<code class="sig-name descname">get_table</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.get_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.get_table" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return string self.table.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.has_column">
-<code class="sig-name descname">has_column</code><span class="sig-paren">(</span><em class="sig-param">col</em>, <em class="sig-param">table=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.has_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.has_column" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check if <cite>table</cite>  already has the column <cite>col</cite>.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>col</strong> : str</p>
-<blockquote>
-<div><p>column name in the database</p>
-</div></blockquote>
-<p><strong>table</strong> : str, optional</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.has_table">
-<code class="sig-name descname">has_table</code><span class="sig-paren">(</span><em class="sig-param">table</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.has_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.has_table" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check if a table named <cite>table</cite> already extists.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.sql.SQLiteDB.set_table">
-<code class="sig-name descname">set_table</code><span class="sig-paren">(</span><em class="sig-param">table</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.set_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.set_table" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the table name (aka switch to another table).</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>table</strong> : str</p>
-<blockquote>
-<div><p>table name</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -540,7 +230,7 @@ column, then <code class="docutils literal notranslate"><span class="pre">self.c
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

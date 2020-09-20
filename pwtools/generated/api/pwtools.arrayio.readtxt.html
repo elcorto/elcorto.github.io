@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.arrayio.readtxt &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.arrayio.writetxt" href="pwtools.arrayio.writetxt.html" />
-    <link rel="prev" title="pwtools.arrayio.arr2d_to_3d" href="pwtools.arrayio.arr2d_to_3d.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="arrayio.html">arrayio</a><ul>
-      <li>Previous: <a href="pwtools.arrayio.arr2d_to_3d.html" title="previous chapter">pwtools.arrayio.arr2d_to_3d</a></li>
-      <li>Next: <a href="pwtools.arrayio.writetxt.html" title="next chapter">pwtools.arrayio.writetxt</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,9 +82,9 @@
             
   <div class="section" id="pwtools-arrayio-readtxt">
 <h1>pwtools.arrayio.readtxt<a class="headerlink" href="#pwtools-arrayio-readtxt" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.arrayio.readtxt">
-<code class="sig-prename descclassname">pwtools.arrayio.</code><code class="sig-name descname">readtxt</code><span class="sig-paren">(</span><em class="sig-param">fh</em>, <em class="sig-param">axis=None</em>, <em class="sig-param">shape=None</em>, <em class="sig-param">header_maxlines=20</em>, <em class="sig-param">header_comment='#'</em>, <em class="sig-param">maxdim=3</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/arrayio.html#readtxt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.arrayio.readtxt" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.arrayio.</code><code class="sig-name descname">readtxt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fh</span></em>, <em class="sig-param"><span class="n">axis</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">shape</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">header_maxlines</span><span class="o">=</span><span class="default_value">20</span></em>, <em class="sig-param"><span class="n">header_comment</span><span class="o">=</span><span class="default_value">'#'</span></em>, <em class="sig-param"><span class="n">maxdim</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/arrayio.html#readtxt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.arrayio.readtxt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read arrays from .txt file using np.loadtxt().</p>
 <p>If the file stores a 3d array as consecutive 2d arrays (e.g. output from
 molecular dynamics code) the file header (see writetxt()) is used to
@@ -106,18 +96,20 @@ yourself in the foot. Use with care.</p>
 <p>If <cite>axis</cite> and <cite>shape</cite> are None, then this function does not work with
 normal text files which have no special header. Use np.loadtxt() in this
 case.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>fh</strong> : file_like</p>
-<p><strong>axis</strong> : int</p>
-<p><strong>shape</strong> : tuple</p>
-<p><strong>**kwargs</strong> : keyword args passed to numpy.loadtxt(), e.g. comments=’&#64;&#64;’ to</p>
-<blockquote>
-<div><p>ignore weird lines etc.</p>
-</div></blockquote>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>fh</strong><span class="classifier">file_like</span></dt><dd></dd>
+<dt><strong>axis</strong><span class="classifier">int</span></dt><dd></dd>
+<dt><strong>shape</strong><span class="classifier">tuple</span></dt><dd></dd>
+<dt><strong>**kwargs</strong><span class="classifier">keyword args passed to numpy.loadtxt(), e.g. comments=’&#64;&#64;’ to</span></dt><dd><p>ignore weird lines etc.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>nd array</p>
+<dd class="field-even"><dl class="simple">
+<dt>nd array</dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -134,7 +126,7 @@ case.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

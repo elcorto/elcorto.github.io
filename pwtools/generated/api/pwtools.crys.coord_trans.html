@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.crys.coord_trans &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.crys.coord_trans3d" href="pwtools.crys.coord_trans3d.html" />
-    <link rel="prev" title="pwtools.crys.concatenate" href="pwtools.crys.concatenate.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="crys.html">crys</a><ul>
-      <li>Previous: <a href="pwtools.crys.concatenate.html" title="previous chapter">pwtools.crys.concatenate</a></li>
-      <li>Next: <a href="pwtools.crys.coord_trans3d.html" title="next chapter">pwtools.crys.coord_trans3d</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,9 +82,9 @@
             
   <div class="section" id="pwtools-crys-coord-trans">
 <h1>pwtools.crys.coord_trans<a class="headerlink" href="#pwtools-crys-coord-trans" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.crys.coord_trans">
-<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">coord_trans</code><span class="sig-paren">(</span><em class="sig-param">coords</em>, <em class="sig-param">old=None</em>, <em class="sig-param">new=None</em>, <em class="sig-param">copy=True</em>, <em class="sig-param">axis=-1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#coord_trans"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.coord_trans" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">coord_trans</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">coords</span></em>, <em class="sig-param"><span class="n">old</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">new</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">copy</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">axis</span><span class="o">=</span><span class="default_value">- 1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#coord_trans"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.coord_trans" title="Permalink to this definition">¶</a></dt>
 <dd><p>General-purpose n-dimensional coordinate transformation. <cite>coords</cite> can
 have arbitrary dimension, i.e. it can contain many vectors to be
 transformed at once. But <cite>old</cite> and <cite>new</cite> must have ndim=2, i.e. only one
@@ -112,9 +102,8 @@ Then, use a loop over all time steps and call this function nstep times.
 See also coord_trans3d().</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>coords</strong> : array (d0, d1, …, M)</p>
-<blockquote>
-<div><p>Array of arbitrary rank with coordinates (length M vectors) in old
+<dd class="field-odd"><dl>
+<dt><strong>coords</strong><span class="classifier">array (d0, d1, …, M)</span></dt><dd><p>Array of arbitrary rank with coordinates (length M vectors) in old
 coord sys <cite>old</cite>. The only shape resiriction is that the last dim must
 equal the number of coordinates (coords.shape[-1] == M == 3 for normal
 3-dim x,y,z).</p>
@@ -127,39 +116,38 @@ equal the number of coordinates (coords.shape[-1] == M == 3 for normal
 <div class="line">3d : coords must have shape (…, M)</div>
 </div>
 <p>If <cite>coords</cite> has a different shape, use <cite>axis</cite> to define the M-axis.</p>
-</div></blockquote>
-<p><strong>old, new</strong> : 2d arrays (M,M)</p>
-<blockquote>
-<div><p>Matrices with the old and new basis vectors as <em>rows</em>. Note that in the
+</dd>
+<dt><strong>old, new</strong><span class="classifier">2d arrays (M,M)</span></dt><dd><p>Matrices with the old and new basis vectors as <em>rows</em>. Note that in the
 usual math literature, columns are used. In that case, use <code class="docutils literal notranslate"><span class="pre">old.T</span></code> and/or
 <code class="docutils literal notranslate"><span class="pre">new.T</span></code>.</p>
-</div></blockquote>
-<p><strong>copy</strong> : bool, optional</p>
-<blockquote>
-<div><p>True: overwrite <cite>coords</cite>
+</dd>
+<dt><strong>copy</strong><span class="classifier">bool, optional</span></dt><dd><p>True: overwrite <cite>coords</cite>
 False: return new array</p>
-</div></blockquote>
-<p><strong>axis</strong> : the axis along which the length-M vectors are placed in <cite>coords</cite>,</p>
-<blockquote>
-<div><p>default is -1, i.e. coords.shape = (…,M)</p>
-</div></blockquote>
+</dd>
+<dt><strong>axis</strong><span class="classifier">the axis along which the length-M vectors are placed in <cite>coords</cite>,</span></dt><dd><p>default is -1, i.e. coords.shape = (…,M)</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>array of shape = coords.shape, coordinates in system <cite>new</cite></p>
+<dd class="field-even"><dl class="simple">
+<dt>array of shape = coords.shape, coordinates in system <cite>new</cite></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="pwtools.crys.coord_trans3d.html#pwtools.crys.coord_trans3d" title="pwtools.crys.coord_trans3d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coord_trans3d</span></code></a></p>
+<dl class="simple">
+<dt><a class="reference internal" href="pwtools.crys.coord_trans3d.html#pwtools.crys.coord_trans3d" title="pwtools.crys.coord_trans3d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coord_trans3d</span></code></a></dt><dd></dd>
+</dl>
 </div>
 <p class="rubric">References</p>
 <dl class="citation">
-<dt class="label" id="r11"><span class="brackets"><a class="fn-backref" href="#id1">R11</a></span></dt>
+<dt class="label" id="rf4f6b1f0da08-1"><span class="brackets">1</span></dt>
 <dd><p><a class="reference external" href="http://www.mathe.tu-freiberg.de/~eiermann/Vorlesungen/HM/index_HM2.htm">http://www.mathe.tu-freiberg.de/~eiermann/Vorlesungen/HM/index_HM2.htm</a>, Ch.6</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Taken from [R11]_.</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Taken from [Rf4f6b1f0da08-1]_.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v_I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">])</span>
@@ -205,7 +193,7 @@ False: return new array</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.symmetry.spglib2struct &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.symmetry.spglib_get_primitive" href="pwtools.symmetry.spglib_get_primitive.html" />
-    <link rel="prev" title="pwtools.symmetry.is_same_struct" href="pwtools.symmetry.is_same_struct.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="symmetry.html">symmetry</a><ul>
-      <li>Previous: <a href="pwtools.symmetry.is_same_struct.html" title="previous chapter">pwtools.symmetry.is_same_struct</a></li>
-      <li>Next: <a href="pwtools.symmetry.spglib_get_primitive.html" title="next chapter">pwtools.symmetry.spglib_get_primitive</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,24 +82,26 @@
             
   <div class="section" id="pwtools-symmetry-spglib2struct">
 <h1>pwtools.symmetry.spglib2struct<a class="headerlink" href="#pwtools-symmetry-spglib2struct" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.symmetry.spglib2struct">
-<code class="sig-prename descclassname">pwtools.symmetry.</code><code class="sig-name descname">spglib2struct</code><span class="sig-paren">(</span><em class="sig-param">tup</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/symmetry.html#spglib2struct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.symmetry.spglib2struct" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.symmetry.</code><code class="sig-name descname">spglib2struct</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tup</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/symmetry.html#spglib2struct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.symmetry.spglib2struct" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform returned tuple from various spglib functions to
 <a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a>.</p>
 <p>This applies to <code class="docutils literal notranslate"><span class="pre">spglib.find_primitive()</span></code> and probably some more. They
 return a tuple <cite>(cell,coords_frac,znucl)</cite>. <cite>znucl</cite> is a list of integers
 with atomic core charge (e.g. 1 for H), see
 <a class="reference internal" href="pwtools.atomic_data.numbers.html#pwtools.atomic_data.numbers" title="pwtools.atomic_data.numbers"><code class="xref py py-data docutils literal notranslate"><span class="pre">pwtools.atomic_data.numbers</span></code></a>.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>tup</strong> : tuple (3,)</p>
-<blockquote>
-<div><p>Return value from <code class="docutils literal notranslate"><span class="pre">spglib.find_primitive()</span></code> and maybe others.</p>
-</div></blockquote>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>tup</strong><span class="classifier">tuple (3,)</span></dt><dd><p>Return value from <code class="docutils literal notranslate"><span class="pre">spglib.find_primitive()</span></code> and maybe others.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a></p>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -126,7 +118,7 @@ with atomic core charge (e.g. 1 for H), see
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.rbf &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,7 +13,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -155,7 +156,7 @@
 
 <div class="viewcode-block" id="Rbf"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf">[docs]</a><span class="k">class</span> <span class="nc">Rbf</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Radial basis function network interpolation and fitting.&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="Rbf.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">rbf</span><span class="o">=</span><span class="s1">&#39;inv_multi&#39;</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">rbf</span><span class="o">=</span><span class="s1">&#39;inv_multi&#39;</span><span class="p">,</span>
                  <span class="n">r</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">lin_solver</span><span class="o">=</span><span class="s1">&#39;dsysv&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -250,7 +251,7 @@
                 <span class="n">lstsq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_solve_lstsq</span><span class="p">,</span>
                 <span class="p">)</span>
         <span class="k">if</span> <span class="n">fit</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_assert_ndim_points</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
@@ -539,7 +540,7 @@
 <span class="sd">    use :meth:`__call__` which will call one or the other, depending on</span>
 <span class="sd">    `params`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="FitError.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.FitError.html#pwtools.rbf.FitError.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">rbf_kwds</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">rbf_kwds</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span>
                  <span class="n">cv_kwds</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">1</span><span class="p">)):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -555,7 +556,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">points</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">values</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rbf_kwds</span> <span class="o">=</span> <span class="n">rbf_kwds</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cv_kwds</span> <span class="o">=</span> <span class="n">cv_kwds</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cv_kwds</span> <span class="o">=</span> <span class="n">cv_kwds</span>
 
 <div class="viewcode-block" id="FitError.__call__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.FitError.__call__.html#pwtools.rbf.FitError.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cv_kwds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -701,7 +702,7 @@
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
     </div>

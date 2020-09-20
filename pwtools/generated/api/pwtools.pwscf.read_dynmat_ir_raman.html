@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.pwscf.read_dynmat_ir_raman &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.pwscf.read_dynmat_out" href="pwtools.pwscf.read_dynmat_out.html" />
-    <link rel="prev" title="pwtools.pwscf.read_dynmat" href="pwtools.pwscf.read_dynmat.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="pwscf.html">pwscf</a><ul>
-      <li>Previous: <a href="pwtools.pwscf.read_dynmat.html" title="previous chapter">pwtools.pwscf.read_dynmat</a></li>
-      <li>Next: <a href="pwtools.pwscf.read_dynmat_out.html" title="next chapter">pwtools.pwscf.read_dynmat_out</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,38 +82,32 @@
             
   <div class="section" id="pwtools-pwscf-read-dynmat-ir-raman">
 <h1>pwtools.pwscf.read_dynmat_ir_raman<a class="headerlink" href="#pwtools-pwscf-read-dynmat-ir-raman" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.pwscf.read_dynmat_ir_raman">
-<code class="sig-prename descclassname">pwtools.pwscf.</code><code class="sig-name descname">read_dynmat_ir_raman</code><span class="sig-paren">(</span><em class="sig-param">filename='dynmat.out'</em>, <em class="sig-param">natoms=None</em>, <em class="sig-param">cols={1: 'freqs'</em>, <em class="sig-param">3: 'ir'</em>, <em class="sig-param">4: 'raman'</em>, <em class="sig-param">5: 'depol'}</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#read_dynmat_ir_raman"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.read_dynmat_ir_raman" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.pwscf.</code><code class="sig-name descname">read_dynmat_ir_raman</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">'dynmat.out'</span></em>, <em class="sig-param"><span class="n">natoms</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cols</span><span class="o">=</span><span class="default_value">{1: 'freqs', 3: 'ir', 4: 'raman', 5: 'depol'}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/pwscf.html#read_dynmat_ir_raman"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.pwscf.read_dynmat_ir_raman" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read <code class="docutils literal notranslate"><span class="pre">dynmat.x</span></code> text output file and extract IR and Raman
 intensities.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filename</strong> : str</p>
-<blockquote>
-<div><p>dynmat.x text output file (e.g. from <code class="docutils literal notranslate"><span class="pre">dynmat.x</span> <span class="pre">&lt;</span> <span class="pre">dynmat.in</span> <span class="pre">&gt;</span>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>dynmat.x text output file (e.g. from <code class="docutils literal notranslate"><span class="pre">dynmat.x</span> <span class="pre">&lt;</span> <span class="pre">dynmat.in</span> <span class="pre">&gt;</span>
 <span class="pre">dynmat.out</span></code>)</p>
-</div></blockquote>
-<p><strong>natoms</strong> : int</p>
-<blockquote>
-<div><p>number of atoms in the cell</p>
-</div></blockquote>
-<p><strong>cols</strong> : dict</p>
-<blockquote>
-<div><p>column numbers of the text block</p>
-</div></blockquote>
+</dd>
+<dt><strong>natoms</strong><span class="classifier">int</span></dt><dd><p>number of atoms in the cell</p>
+</dd>
+<dt><strong>cols</strong><span class="classifier">dict</span></dt><dd><p>column numbers of the text block</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>cols = None</p>
-<blockquote>
-<div><p>Return the parsed array as found in the file</p>
-</div></blockquote>
-<p>cols = dict</p>
-<blockquote>
-<div><p>Return dict with keys from <cite>cols</cite> and 1d arrays <code class="docutils literal notranslate"><span class="pre">{'freqs':</span> <span class="pre">&lt;array&gt;,</span>
+<dd class="field-even"><dl class="simple">
+<dt>cols = None</dt><dd><p>Return the parsed array as found in the file</p>
+</dd>
+<dt>cols = dict</dt><dd><p>Return dict with keys from <cite>cols</cite> and 1d arrays <code class="docutils literal notranslate"><span class="pre">{'freqs':</span> <span class="pre">&lt;array&gt;,</span>
 <span class="pre">'ir':</span> <span class="pre">&lt;array&gt;,</span> <span class="pre">'raman':</span> <span class="pre">&lt;array&gt;,</span> <span class="pre">'depol':</span> <span class="pre">&lt;array&gt;}</span></code>. If a column is
 not present, the array is None.</p>
-</div></blockquote>
+</dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -158,7 +142,7 @@ not present, the array is None.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.batch.conv_table &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.batch.default_repl_keys" href="pwtools.batch.default_repl_keys.html" />
-    <link rel="prev" title="pwtools.batch.ParameterStudy.write_input" href="pwtools.batch.ParameterStudy.write_input.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="batch.html">batch</a><ul>
-      <li>Previous: <a href="pwtools.batch.ParameterStudy.write_input.html" title="previous chapter">pwtools.batch.ParameterStudy.write_input</a></li>
-      <li>Next: <a href="pwtools.batch.default_repl_keys.html" title="next chapter">pwtools.batch.default_repl_keys</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,9 +82,9 @@
             
   <div class="section" id="pwtools-batch-conv-table">
 <h1>pwtools.batch.conv_table<a class="headerlink" href="#pwtools-batch-conv-table" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.batch.conv_table">
-<code class="sig-prename descclassname">pwtools.batch.</code><code class="sig-name descname">conv_table</code><span class="sig-paren">(</span><em class="sig-param">xx</em>, <em class="sig-param">yy</em>, <em class="sig-param">ffmt='%15.4f'</em>, <em class="sig-param">sfmt='%15s'</em>, <em class="sig-param">mode='last'</em>, <em class="sig-param">orig=False</em>, <em class="sig-param">absdiff=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#conv_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.conv_table" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.batch.</code><code class="sig-name descname">conv_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">xx</span></em>, <em class="sig-param"><span class="n">yy</span></em>, <em class="sig-param"><span class="n">ffmt</span><span class="o">=</span><span class="default_value">'%15.4f'</span></em>, <em class="sig-param"><span class="n">sfmt</span><span class="o">=</span><span class="default_value">'%15s'</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'last'</span></em>, <em class="sig-param"><span class="n">orig</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">absdiff</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#conv_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.conv_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convergence table. Assume that quantity <cite>xx</cite> was varied, resulting in
 <cite>yy</cite> values. Return a string (table) listing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">dy1</span><span class="p">,</span> <span class="n">dy2</span><span class="p">,</span> <span class="o">...</span>
@@ -102,30 +92,22 @@
 </div>
 <p>Useful for quickly viewing the results of a convergence study, where we
 assume that the sequence of <cite>yy</cite> values converges to a constant value.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>xx</strong> : 1d sequence</p>
-<p><strong>yy</strong> : 1d sequence, nested 1d sequences, 2d array</p>
-<blockquote>
-<div><p>Values varied with <cite>xx</cite>. Each row is one parameter.</p>
-</div></blockquote>
-<p><strong>ffmt, sfmt</strong> : str</p>
-<blockquote>
-<div><p>Format strings for floats (<cite>ffmt</cite>) and strings (<cite>sfmt</cite>)</p>
-</div></blockquote>
-<p><strong>mode</strong> : str</p>
-<blockquote>
-<div><p>‘next’ or ‘last’. Difference to the next value <code class="docutils literal notranslate"><span class="pre">y[i+1]</span> <span class="pre">-</span> <span class="pre">y[i]</span></code> or to
+<dd class="field-odd"><dl class="simple">
+<dt><strong>xx</strong><span class="classifier">1d sequence</span></dt><dd></dd>
+<dt><strong>yy</strong><span class="classifier">1d sequence, nested 1d sequences, 2d array</span></dt><dd><p>Values varied with <cite>xx</cite>. Each row is one parameter.</p>
+</dd>
+<dt><strong>ffmt, sfmt</strong><span class="classifier">str</span></dt><dd><p>Format strings for floats (<cite>ffmt</cite>) and strings (<cite>sfmt</cite>)</p>
+</dd>
+<dt><strong>mode</strong><span class="classifier">str</span></dt><dd><p>‘next’ or ‘last’. Difference to the next value <code class="docutils literal notranslate"><span class="pre">y[i+1]</span> <span class="pre">-</span> <span class="pre">y[i]</span></code> or to
 the last <code class="docutils literal notranslate"><span class="pre">y[-1]</span> <span class="pre">-</span> <span class="pre">y[i]</span></code>.</p>
-</div></blockquote>
-<p><strong>orig</strong> : bool</p>
-<blockquote>
-<div><p>Print original <cite>yy</cite> data as well.</p>
-</div></blockquote>
-<p><strong>absdiff</strong> : bool</p>
-<blockquote>
-<div><p>absolute values of differences</p>
-</div></blockquote>
+</dd>
+<dt><strong>orig</strong><span class="classifier">bool</span></dt><dd><p>Print original <cite>yy</cite> data as well.</p>
+</dd>
+<dt><strong>absdiff</strong><span class="classifier">bool</span></dt><dd><p>absolute values of differences</p>
+</dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -164,7 +146,7 @@ the last <code class="docutils literal notranslate"><span class="pre">y[-1]</spa
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

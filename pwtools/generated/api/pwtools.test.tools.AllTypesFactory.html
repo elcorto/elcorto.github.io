@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.test.tools.AllTypesFactory &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.test.tools.AllTypesFactory.__call__" href="pwtools.test.tools.AllTypesFactory.__call__.html" />
-    <link rel="prev" title="test.tools" href="test.tools.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="test.tools.html">test.tools</a><ul>
-      <li>Previous: <a href="test.tools.html" title="previous chapter">test.tools</a></li>
-      <li>Next: <a href="pwtools.test.tools.AllTypesFactory.__call__.html" title="next chapter">pwtools.test.tools.AllTypesFactory.__call__</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,11 +82,10 @@
             
   <div class="section" id="pwtools-test-tools-alltypesfactory">
 <h1>pwtools.test.tools.AllTypesFactory<a class="headerlink" href="#pwtools-test-tools-alltypesfactory" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="pwtools.test.tools.AllTypesFactory">
-<em class="property">class </em><code class="sig-prename descclassname">pwtools.test.tools.</code><code class="sig-name descname">AllTypesFactory</code><span class="sig-paren">(</span><em class="sig-param">comp_map={}</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/test/tools.html#AllTypesFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.test.tools.AllTypesFactory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Factory for creating functions which compare “any” type.</p>
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.test.tools.</code><code class="sig-name descname">AllTypesFactory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">comp_map</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/test/tools.html#AllTypesFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.test.tools.AllTypesFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory for creating functions which compare “any” type.</p>
 <p>We need a dict <cite>comp_map</cite> which maps types (result of <code class="docutils literal notranslate"><span class="pre">type(foo)</span></code>) to a
 comparison function for that type which returns True or False and is called
 like <code class="docutils literal notranslate"><span class="pre">comp_map[&lt;type&gt;](a,b)</span></code>. Also a <code class="docutils literal notranslate"><span class="pre">comp_map['default']</span></code> entry is
@@ -118,53 +107,6 @@ a given type can be found.</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="pwtools.test.tools.AllTypesFactory.__call__">
-<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">d1</em>, <em class="sig-param">d2</em>, <em class="sig-param">strict=False</em>, <em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/test/tools.html#AllTypesFactory.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.test.tools.AllTypesFactory.__call__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>d1, d2</strong> : any type</p>
-<blockquote>
-<div><p>Things to compare.</p>
-</div></blockquote>
-<p><strong>strict</strong> : bool</p>
-<blockquote>
-<div><p>Force equal types. Then 1.0 and 1 are not equal.</p>
-</div></blockquote>
-<p><strong>kwds :</strong></p>
-<blockquote>
-<div><p>keywords passed directly to comp func, only useful if you know that
-the used comp func(s) will accept these, else you need to re-define
-the comp func</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.test.tools.AllTypesFactory.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">comp_map={}</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/test/tools.html#AllTypesFactory.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.test.tools.AllTypesFactory.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>comp_map</strong> : dict</p>
-<blockquote>
-<div><p>Dict with types and comparison fucntions.
-Example: <a href="#id1"><span class="problematic" id="id2">``</span></a>{type(np.array([1.0])): np.allclose,</p>
-<blockquote>
-<div><p>type(1): lambda x,y: x==y,
-‘default’: lambda x,y: x==y}``</p>
-</div></blockquote>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pwtools.test.tools.AllTypesFactory.__weakref__">
-<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#pwtools.test.tools.AllTypesFactory.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -179,7 +121,7 @@ Example: <a href="#id1"><span class="problematic" id="id2">``</span></a>{type(np
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

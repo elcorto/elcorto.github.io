@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.batch.FileTemplate &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.batch.FileTemplate.write" href="pwtools.batch.FileTemplate.write.html" />
-    <link rel="prev" title="pwtools.batch.Case" href="pwtools.batch.Case.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="batch.html">batch</a><ul>
-      <li>Previous: <a href="pwtools.batch.Case.html" title="previous chapter">pwtools.batch.Case</a></li>
-      <li>Next: <a href="pwtools.batch.FileTemplate.write.html" title="next chapter">pwtools.batch.FileTemplate.write</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,11 +82,10 @@
             
   <div class="section" id="pwtools-batch-filetemplate">
 <h1>pwtools.batch.FileTemplate<a class="headerlink" href="#pwtools-batch-filetemplate" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="pwtools.batch.FileTemplate">
 <em class="property">class </em><code class="sig-prename descclassname">pwtools.batch.</code><code class="sig-name descname">FileTemplate</code><span class="sig-paren">(</span><em class="sig-param">basename=None</em>, <em class="sig-param">txt=None</em>, <em class="sig-param">keys=None</em>, <em class="sig-param">templ_dir='calc.templ'</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">func=&lt;function FileTemplate.&lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#FileTemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.FileTemplate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Class to represent a template file in parameter studies.</p>
+<dd><p>Class to represent a template file in parameter studies.</p>
 <p>Each template file is supposed to contain a number of placeholder strings
 (e.g. XXXFOO or &#64;foo&#64; or whatever other form). The <cite>dct</cite> passed to
 self.write() is a dict which contains key-value pairs for replacement (e.g.
@@ -152,112 +141,19 @@ dictionary keys with <cite>func</cite>. In the example, this will be:</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.batch.FileTemplate.write.html#pwtools.batch.FileTemplate.write" title="pwtools.batch.FileTemplate.write"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write</span></code></a>(dct[, calc_dir, mode])</p></td>
 <td><p>Write file self.filename (e.g.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.batch.FileTemplate.writesql.html#pwtools.batch.FileTemplate.writesql" title="pwtools.batch.FileTemplate.writesql"><code class="xref py py-obj docutils literal notranslate"><span class="pre">writesql</span></code></a>(sql_record[, calc_dir])</p></td>
-<td><p></p></td>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 45%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>writesql</strong></p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="pwtools.batch.FileTemplate.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">basename=None</em>, <em class="sig-param">txt=None</em>, <em class="sig-param">keys=None</em>, <em class="sig-param">templ_dir='calc.templ'</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">func=&lt;function FileTemplate.&lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#FileTemplate.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.FileTemplate.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>basename</strong> : string</p>
-<blockquote>
-<div><div class="line-block">
-<div class="line">The name of the template file and target file.</div>
-<div class="line">example: basename = pw.in</div>
-<div class="line-block">
-<div class="line">template = calc.templ/pw.in</div>
-<div class="line">target   = calc/0/pw.in</div>
-</div>
-</div>
-</div></blockquote>
-<p><strong>txt</strong> : string, optional</p>
-<blockquote>
-<div><p>Text of the template file. If None, then we assume a file
-<code class="docutils literal notranslate"><span class="pre">templ_dir/basename</span></code> and read that.</p>
-</div></blockquote>
-<p><strong>keys</strong> : {None, list of strings, []}</p>
-<blockquote>
-<div><div class="line-block">
-<div class="line">keys=None: All keys dct.keys() in self.write() are used. This is</div>
-<div class="line-block">
-<div class="line">useful if you have a dict holding many keys, whose placeholders</div>
-<div class="line">are spread across files. Then this will just replace every</div>
-<div class="line">match in each file. This is what most people want.</div>
-</div>
-<div class="line">keys=[&lt;key1&gt;, &lt;key2&gt;, …] : Each string is a key. Each key is</div>
-<div class="line-block">
-<div class="line">connected to a placeholder in the template. See func. This is</div>
-<div class="line">for binding keys to template files, i.e. replace only these</div>
-<div class="line">keys.</div>
-</div>
-<div class="line">keys=[]: The template file is simply copied to <cite>calc_dir</cite> (see</div>
-<div class="line-block">
-<div class="line">self.write()).</div>
-</div>
-</div>
-</div></blockquote>
-<p><strong>templ_dir</strong> : dir where the template lives (e.g. ‘calc.templ’)</p>
-<p><strong>filename</strong> : str</p>
-<blockquote>
-<div><p>full file name of the template, then templ_dir=os.path.dirname(filename)
-and basename=os.path.basename(filename)</p>
-</div></blockquote>
-<p><strong>func</strong> : callable</p>
-<blockquote>
-<div><div class="line-block">
-<div class="line">A function which takes a string (key) and returns a string, which</div>
-<div class="line">is the placeholder corresponding to that key.</div>
-<div class="line">example: (this is actually default)</div>
-<div class="line-block">
-<div class="line">key = “lala”</div>
-<div class="line">placeholder = “XXXLALA”</div>
-<div class="line">func = lambda x: “XXX” + x.upper()</div>
-</div>
-</div>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pwtools.batch.FileTemplate.__weakref__">
-<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#pwtools.batch.FileTemplate.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.batch.FileTemplate.write">
-<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param">dct</em>, <em class="sig-param">calc_dir='calc'</em>, <em class="sig-param">mode='dct'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#FileTemplate.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.FileTemplate.write" title="Permalink to this definition">¶</a></dt>
-<dd><p>Write file self.filename (e.g. calc/0/pw.in) by replacing
-placeholders in the template (e.g. calc.templ/pw.in).</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>dct</strong> : dict</p>
-<blockquote>
-<div><p>key-value pairs, dct.keys() are converted to placeholders with
-self.func()</p>
-</div></blockquote>
-<p><strong>calc_dir</strong> : str</p>
-<blockquote>
-<div><p>the dir where to write the target file to</p>
-</div></blockquote>
-<p><strong>mode</strong> : str, {‘dct’, ‘sql’}</p>
-<blockquote>
-<div><div class="line-block">
-<div class="line">mode=’dct’: replacement values are dct[&lt;key&gt;]</div>
-<div class="line">mode=’sql’: replacement values are dct[&lt;key&gt;].fileval and every</div>
-<div class="line-block">
-<div class="line">dct[&lt;key&gt;] is an SQLEntry instance</div>
-</div>
-</div>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -272,7 +168,7 @@ self.func()</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

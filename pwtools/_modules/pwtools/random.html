@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.random &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,7 +13,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -93,10 +94,10 @@
 <span class="kn">from</span> <span class="nn">pwtools.num</span> <span class="k">import</span> <span class="n">fempty</span>
 
 <div class="viewcode-block" id="RandomStructureFail"><a class="viewcode-back" href="../../generated/api/pwtools.random.RandomStructureFail.html#pwtools.random.RandomStructureFail">[docs]</a><span class="k">class</span> <span class="nc">RandomStructureFail</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-<div class="viewcode-block" id="RandomStructureFail.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.random.RandomStructureFail.html#pwtools.random.RandomStructureFail.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span></div>
-<div class="viewcode-block" id="RandomStructureFail.__str__"><a class="viewcode-back" href="../../generated/api/pwtools.random.RandomStructureFail.html#pwtools.random.RandomStructureFail.__str__">[docs]</a>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">msg</span></div></div>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">msg</span></div>
 
 
 <div class="viewcode-block" id="RandomStructure"><a class="viewcode-back" href="../../generated/api/pwtools.random.RandomStructure.html#pwtools.random.RandomStructure">[docs]</a><span class="k">class</span> <span class="nc">RandomStructure</span><span class="p">:</span>
@@ -124,7 +125,7 @@
     <span class="c1">#   warning / let user decide -- add arg error={True,False}.</span>
     <span class="c1"># * The bottleneck is get_random_struct() -- the loop over</span>
     <span class="c1">#   _atoms_too_close().</span>
-<div class="viewcode-block" id="RandomStructure.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.random.RandomStructure.html#pwtools.random.RandomStructure.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">symbols</span><span class="p">,</span>
                  <span class="n">vol_scale</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
                  <span class="n">angle_range</span> <span class="o">=</span> <span class="p">[</span><span class="mf">60.0</span><span class="p">,</span> <span class="mf">120.0</span><span class="p">],</span>
@@ -179,7 +180,7 @@
                           <span class="bp">self</span><span class="o">.</span><span class="n">vol_mean</span><span class="o">*</span><span class="n">vol_range_scale</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">length_range</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">length_mean</span> <span class="o">*</span> <span class="n">length_range_scale</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                              <span class="bp">self</span><span class="o">.</span><span class="n">length_mean</span> <span class="o">*</span> <span class="n">length_range_scale</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">counters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cryst_const&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;coords&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cryst_const&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;coords&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 
 <div class="viewcode-block" id="RandomStructure.get_random_cryst_const"><a class="viewcode-back" href="../../generated/api/pwtools.random.RandomStructure.get_random_cryst_const.html#pwtools.random.RandomStructure.get_random_cryst_const">[docs]</a>    <span class="k">def</span> <span class="nf">get_random_cryst_const</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create random cryst_const.</span>
@@ -364,7 +365,7 @@
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
     </div>

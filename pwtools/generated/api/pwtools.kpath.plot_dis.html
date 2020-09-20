@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.kpath.plot_dis &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="lammps" href="lammps.html" />
-    <link rel="prev" title="pwtools.kpath.kpath" href="pwtools.kpath.kpath.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="kpath.html">kpath</a><ul>
-      <li>Previous: <a href="pwtools.kpath.kpath.html" title="previous chapter">pwtools.kpath.kpath</a></li>
-      <li>Next: <a href="lammps.html" title="next chapter">lammps</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,9 +82,9 @@
             
   <div class="section" id="pwtools-kpath-plot-dis">
 <h1>pwtools.kpath.plot_dis<a class="headerlink" href="#pwtools-kpath-plot-dis" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.kpath.plot_dis">
-<code class="sig-prename descclassname">pwtools.kpath.</code><code class="sig-name descname">plot_dis</code><span class="sig-paren">(</span><em class="sig-param">path_norm</em>, <em class="sig-param">freqs</em>, <em class="sig-param">special_points_path=None</em>, <em class="sig-param">show_coords=None</em>, <em class="sig-param">dos=None</em>, <em class="sig-param">ax=None</em>, <em class="sig-param">ylim=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/kpath.html#plot_dis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.kpath.plot_dis" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.kpath.</code><code class="sig-name descname">plot_dis</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path_norm</span></em>, <em class="sig-param"><span class="n">freqs</span></em>, <em class="sig-param"><span class="n">special_points_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">show_coords</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">dos</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ylim</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/kpath.html#plot_dis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.kpath.plot_dis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot dispersion.</p>
 <p>See <code class="docutils literal notranslate"><span class="pre">bin/plot_dispersion.py</span></code> for a usage example. This lives here (and not in
 <a class="reference internal" href="pwscf.html#module-pwtools.pwscf" title="pwtools.pwscf"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pwscf</span></code></a>) b/c it is not PWscf-specific. It can be used for any
@@ -108,51 +98,43 @@ your plot much, then operate on the returned <cite>fig</cite>, <cite>ax</cite> (
 way.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>path_norm</strong> : array (nks,)</p>
-<blockquote>
-<div><p>x-axis with cumulative norms of points along the k-path, see
+<dd class="field-odd"><dl>
+<dt><strong>path_norm</strong><span class="classifier">array (nks,)</span></dt><dd><p>x-axis with cumulative norms of points along the k-path, see
 <a class="reference internal" href="pwtools.kpath.get_path_norm.html#pwtools.kpath.get_path_norm" title="pwtools.kpath.get_path_norm"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_path_norm()</span></code></a></p>
-</div></blockquote>
-<p><strong>freqs</strong> : array (nks, nbnd)</p>
-<blockquote>
-<div><p><cite>nbnd</cite> frequencies for each band at each k-point</p>
-</div></blockquote>
-<p><strong>special_points_path</strong> : optional, <a class="reference internal" href="pwtools.kpath.SpecialPointsPath.html#pwtools.kpath.SpecialPointsPath" title="pwtools.kpath.SpecialPointsPath"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpecialPointsPath</span></code></a> instance</p>
-<blockquote>
-<div><p>used for pretty-printing the x-axis (set special point labels)</p>
-</div></blockquote>
-<p><strong>show_coords</strong> : ‘cart’, ‘frac’, None</p>
-<blockquote>
-<div><p>Show the cartesian or fractional coordinates of special points in the
+</dd>
+<dt><strong>freqs</strong><span class="classifier">array (nks, nbnd)</span></dt><dd><p><cite>nbnd</cite> frequencies for each band at each k-point</p>
+</dd>
+<dt><strong>special_points_path</strong><span class="classifier">optional, <a class="reference internal" href="pwtools.kpath.SpecialPointsPath.html#pwtools.kpath.SpecialPointsPath" title="pwtools.kpath.SpecialPointsPath"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpecialPointsPath</span></code></a> instance</span></dt><dd><p>used for pretty-printing the x-axis (set special point labels)</p>
+</dd>
+<dt><strong>show_coords</strong><span class="classifier">‘cart’, ‘frac’, None</span></dt><dd><p>Show the cartesian or fractional coordinates of special points in the
 x-axis label, on neither if None.</p>
-</div></blockquote>
-<p><strong>dos</strong> : array (N,2) or None</p>
-<blockquote>
-<div><p>array with phonon dos to plot: <code class="docutils literal notranslate"><span class="pre">dos[:,0]=freq</span></code>, <code class="docutils literal notranslate"><span class="pre">dos[:,1]=phdos</span></code></p>
-</div></blockquote>
-<p><strong>ax</strong> : matplotlib AxesSubplot (e.g. from <code class="docutils literal notranslate"><span class="pre">fig,ax=pwtools.mpl.fig_ax()</span></code>)</p>
-<blockquote>
-<div><p>automatically created if None</p>
-</div></blockquote>
-<p><strong>ylim</strong> : tuple (2,)</p>
-<blockquote>
-<div><p>frequency axis limits</p>
-</div></blockquote>
-<p><strong>**kwargs</strong> : keywords</p>
-<blockquote>
-<div><p>passed to plot()</p>
-</div></blockquote>
+</dd>
+<dt><strong>dos</strong><span class="classifier">array (N,2) or None</span></dt><dd><p>array with phonon dos to plot: <code class="docutils literal notranslate"><span class="pre">dos[:,0]=freq</span></code>, <code class="docutils literal notranslate"><span class="pre">dos[:,1]=phdos</span></code></p>
+</dd>
+<dt><strong>ax</strong><span class="classifier">matplotlib AxesSubplot (e.g. from <code class="docutils literal notranslate"><span class="pre">fig,ax=pwtools.mpl.fig_ax()</span></code>)</span></dt><dd><p>automatically created if None</p>
+</dd>
+<dt><strong>ylim</strong><span class="classifier">tuple (2,)</span></dt><dd><p>frequency axis limits</p>
+</dd>
+<dt><strong>**kwargs</strong><span class="classifier">keywords</span></dt><dd><p>passed to plot()</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>fig, ax, axdos</p>
-<p><strong>fig</strong> : matplotlib Figure to ax</p>
-<p><strong>ax</strong> : matplotlib AxesSubplot with dispersion</p>
-<p><strong>axdos</strong> : matplotlib AxesSubplot with dos, or None if <cite>dos=None</cite></p>
+<dd class="field-even"><dl>
+<dt>fig, ax, axdos</dt><dd></dd>
+<dt><strong>fig</strong><span class="classifier">matplotlib Figure to ax</span></dt><dd></dd>
+<dt><strong>ax</strong><span class="classifier">matplotlib AxesSubplot with dispersion</span></dt><dd></dd>
+<dt><strong>axdos</strong><span class="classifier">matplotlib AxesSubplot with dos, or None if <cite>dos=None</cite></span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="pwtools.kpath.get_path_norm.html#pwtools.kpath.get_path_norm" title="pwtools.kpath.get_path_norm"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_path_norm()</span></code></a>, <a class="reference internal" href="pwtools.pwscf.read_matdyn_freq.html#pwtools.pwscf.read_matdyn_freq" title="pwtools.pwscf.read_matdyn_freq"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.pwscf.read_matdyn_freq()</span></code></a>, <a class="reference internal" href="../../written/dispersion_example.html#dispersion-example"><span class="std std-ref">Phonon dispersion calculation and plotting</span></a></p>
+<dl class="simple">
+<dt><a class="reference internal" href="pwtools.kpath.get_path_norm.html#pwtools.kpath.get_path_norm" title="pwtools.kpath.get_path_norm"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_path_norm()</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="pwtools.pwscf.read_matdyn_freq.html#pwtools.pwscf.read_matdyn_freq" title="pwtools.pwscf.read_matdyn_freq"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.pwscf.read_matdyn_freq()</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="../../written/dispersion_example.html#dispersion-example"><span class="std std-ref">Phonon dispersion calculation and plotting</span></a></dt><dd></dd>
+</dl>
 </div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">spp</span> <span class="o">=</span> <span class="n">kpath</span><span class="o">.</span><span class="n">SpecialPointsPath</span><span class="p">(</span><span class="n">ks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]]),</span>
@@ -184,7 +166,7 @@ x-axis label, on neither if None.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

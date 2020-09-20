@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.mpl.plotlines3d &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.mpl.prepare_plots" href="pwtools.mpl.prepare_plots.html" />
-    <link rel="prev" title="pwtools.mpl.new_axis" href="pwtools.mpl.new_axis.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="mpl.html">mpl</a><ul>
-      <li>Previous: <a href="pwtools.mpl.new_axis.html" title="previous chapter">pwtools.mpl.new_axis</a></li>
-      <li>Next: <a href="pwtools.mpl.prepare_plots.html" title="next chapter">pwtools.mpl.prepare_plots</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,31 +82,31 @@
             
   <div class="section" id="pwtools-mpl-plotlines3d">
 <h1>pwtools.mpl.plotlines3d<a class="headerlink" href="#pwtools-mpl-plotlines3d" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.mpl.plotlines3d">
-<code class="sig-prename descclassname">pwtools.mpl.</code><code class="sig-name descname">plotlines3d</code><span class="sig-paren">(</span><em class="sig-param">ax3d</em>, <em class="sig-param">x</em>, <em class="sig-param">y</em>, <em class="sig-param">z</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#plotlines3d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.plotlines3d" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.mpl.</code><code class="sig-name descname">plotlines3d</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ax3d</span></em>, <em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">y</span></em>, <em class="sig-param"><span class="n">z</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#plotlines3d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.plotlines3d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot x-z curves stacked along y.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>ax3d</strong> : Axes3D instance</p>
-<p><strong>x</strong> : nd array</p>
-<blockquote>
-<div><p>1d (x-axis) or 2d (x-axes are the columns)</p>
-</div></blockquote>
-<p><strong>y</strong> : 1d array</p>
-<p><strong>z</strong> : nd array with “y”-values</p>
-<blockquote>
-<div><dl class="simple">
+<dd class="field-odd"><dl class="simple">
+<dt><strong>ax3d</strong><span class="classifier">Axes3D instance</span></dt><dd></dd>
+<dt><strong>x</strong><span class="classifier">nd array</span></dt><dd><p>1d (x-axis) or 2d (x-axes are the columns)</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">1d array</span></dt><dd></dd>
+<dt><strong>z</strong><span class="classifier">nd array with “y”-values</span></dt><dd><dl class="simple">
 <dt>1d<span class="classifier">the same curve will be plotted len(y) times against x (1d) or</span></dt><dd><p>x[:,i] (2d)</p>
 </dd>
 <dt>2d<span class="classifier">each column z[:,i] will be plotted against x (1d) or each x[:,i]</span></dt><dd><p>(2d)</p>
 </dd>
 </dl>
-</div></blockquote>
-<p><strong>*args, **kwargs</strong> : additional args and keywords args passed to ax3d.plot()</p>
+</dd>
+<dt><strong>*args, **kwargs</strong><span class="classifier">additional args and keywords args passed to ax3d.plot()</span></dt><dd></dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>ax3d</p>
+<dd class="field-even"><dl class="simple">
+<dt>ax3d</dt><dd></dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -142,7 +132,7 @@
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

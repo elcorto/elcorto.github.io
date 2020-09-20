@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.calculators &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,7 +13,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -85,7 +86,53 @@
           <div class="body" role="main">
             
   <h1>Source code for pwtools.calculators</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Notes on ASE&#39;s FileIOCalculator base class. tl;dr: use the `directory` keyword</span>
+<span class="sd">and avoid paths in the `label` keyword.</span>
+
+<span class="sd">&gt;&gt;&gt; from ase.calculators.calculator import FileIOCalculator</span>
+
+
+<span class="sd">The label, directory and prefix situation is convoluted.</span>
+
+<span class="sd">&gt;&gt;&gt; c=FileIOCalculator(label=&#39;label&#39;, directory=&#39;/path/to/dir&#39;)</span>
+
+<span class="sd">&gt;&gt;&gt; c.label</span>
+<span class="sd">&#39;/path/to/dir/label&#39;</span>
+
+<span class="sd">&gt;&gt;&gt; c.prefix</span>
+<span class="sd">&#39;label&#39;</span>
+
+<span class="sd">&gt;&gt;&gt; c.directory</span>
+<span class="sd">&#39;/path/to/dir&#39;</span>
+
+
+<span class="sd">prefix is allowed as input, but it is ignored!</span>
+
+<span class="sd">&gt;&gt;&gt; c=FileIOCalculator(label=&#39;label&#39;, directory=&#39;/path/to/dir&#39;, prefix=&#39;foo&#39;)</span>
+
+<span class="sd">&gt;&gt;&gt; c.prefix</span>
+<span class="sd">&#39;label&#39;</span>
+
+
+<span class="sd">A path in label used to work and we used (ASE 3.9 probably) to rely on</span>
+<span class="sd">directory=dirname(label), prefix=basename(label). Now (ASE 3.20) there is a bug</span>
+<span class="sd">with absolute paths: the leading / is dropped.</span>
+
+<span class="sd">&gt;&gt;&gt; c=FileIOCalculator(label=&#39;/path/to/dir/label&#39;)</span>
+
+<span class="sd">&gt;&gt;&gt; c.label</span>
+<span class="sd">&#39;path/to/dir/label&#39;</span>
+
+<span class="sd">&gt;&gt;&gt; c.prefix</span>
+<span class="sd">&#39;label&#39;</span>
+
+<span class="sd">&gt;&gt;&gt; c.directory</span>
+<span class="sd">&#39;path/to/dir&#39;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
 
 <span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">common</span><span class="p">,</span> <span class="n">pwscf</span><span class="p">,</span> <span class="n">crys</span><span class="p">,</span> <span class="n">io</span><span class="p">,</span> <span class="n">constants</span>
 
@@ -105,6 +152,17 @@
     <span class="k">class</span> <span class="nc">FileIOCalculator</span><span class="p">:</span>
         <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
             <span class="n">_ase_missing</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="find_exe"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.find_exe.html#pwtools.calculators.find_exe">[docs]</a><span class="k">def</span> <span class="nf">find_exe</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">names</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_names</span> <span class="o">=</span> <span class="n">names</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">_names</span><span class="p">:</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">shutil</span><span class="o">.</span><span class="n">which</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">path</span></div>
 
 
 <div class="viewcode-block" id="stress_pwtools2ase"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.stress_pwtools2ase.html#pwtools.calculators.stress_pwtools2ase">[docs]</a><span class="k">def</span> <span class="nf">stress_pwtools2ase</span><span class="p">(</span><span class="n">pwstress</span><span class="p">):</span>
@@ -163,7 +221,8 @@
 <span class="sd">    --------</span>
 <span class="sd">    Define a calculator object::</span>
 
-<span class="sd">        &gt;&gt;&gt; calc=Pwscf(label=&#39;/path/to/calculation/dir/pw&#39;,</span>
+<span class="sd">        &gt;&gt;&gt; calc=Pwscf(label=&#39;pw&#39;,</span>
+<span class="sd">        ...            directory=&#39;/path/to/calculation/dir&#39;,</span>
 <span class="sd">        ...            kpts=1/0.35,</span>
 <span class="sd">        ...            ecutwfc=80,</span>
 <span class="sd">        ...            conv_thr=1e-8,</span>
@@ -214,6 +273,7 @@
         <span class="n">smearing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">xc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">command</span><span class="o">=</span><span class="s2">&quot;pw.x -input pw.in | tee pw.out&quot;</span><span class="p">,</span>
+        <span class="n">directory</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="n">implemented_properties</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="s1">&#39;forces&#39;</span><span class="p">,</span> <span class="s1">&#39;stress&#39;</span><span class="p">]</span>
@@ -258,23 +318,27 @@
 <span class="si">{kpoints}</span><span class="s2"> 0 0 0</span>
 <span class="s2">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Pwscf.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.Pwscf.html#pwtools.calculators.Pwscf.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        All parameters: ``self.parameters.keys()``</span>
 <span class="sd">        label : str</span>
-<span class="sd">            Basename of input and output files (e.g. &#39;pw&#39;) or a path to the</span>
-<span class="sd">            calculation dir *including* the basename (&#39;/path/to/pw&#39;, where</span>
-<span class="sd">            directory=&#39;/path/to&#39; and prefix=&#39;pw&#39;). In ``self.command``,</span>
-<span class="sd">            &#39;&lt;prefix&gt;.in&#39; and &#39;&lt;prefix&gt;.out&#39; are used.</span>
+<span class="sd">            Basename of input and output files (e.g. &#39;pw&#39;). ASE&#39;s</span>
+<span class="sd">            FileIOCalculator will then set: ``self.prefix=label``, while</span>
+<span class="sd">            ``self.label`` will become ``{self.directory}/{self.prefix}``.</span>
+<span class="sd">            Don&#39;t ask :) In ``self.command``, we use &#39;{self.prefix}.in&#39; and</span>
+<span class="sd">            &#39;{self.prefix}.out&#39; as file names.</span>
+<span class="sd">        directory : str</span>
+<span class="sd">            Path to a calculation dir where input and output files shall be</span>
+<span class="sd">            written, e.g. ``pw.in`` and ``pw.out``.</span>
 <span class="sd">        kpts : ASE k-points description</span>
 <span class="sd">            Examples: ``3.5``, ``[6,6,4]``.</span>
 <span class="sd">            If a float ``x`` is used, then it is the inverse of the</span>
 <span class="sd">            k-grid spacing `h` per reciprocal axis</span>
 <span class="sd">            as in ``kpts=pwtools.crys.kgrid(struct.cell, h=1/x)``</span>
 <span class="sd">        calc_name : str</span>
-<span class="sd">            &#39;prefix&#39; in PWscf</span>
+<span class="sd">            &#39;prefix&#39; in PWscf input files</span>
 <span class="sd">        pp : str or sequence</span>
 <span class="sd">            Definition of the pseudopotential file and thus `xc`. If `pp` is a</span>
 <span class="sd">            string (e.g. &#39;pbe-n-kjpaw_psl.0.1.UPF&#39;), then the atom symbols are</span>
@@ -311,7 +375,7 @@
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">pp</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;set pp&quot;</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">pseudo_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;set pseudo_dir&quot;</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">outdir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;set outdir&quot;</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">kpts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;set kpts&quot;</span></div>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">kpts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;set kpts&quot;</span>
 
 <div class="viewcode-block" id="Pwscf.write_input"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.Pwscf.write_input.html#pwtools.calculators.Pwscf.write_input">[docs]</a>    <span class="k">def</span> <span class="nf">write_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">properties</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">system_changes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">FileIOCalculator</span><span class="o">.</span><span class="n">write_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">properties</span><span class="p">,</span>
@@ -319,7 +383,7 @@
         <span class="n">struct</span> <span class="o">=</span> <span class="n">crys</span><span class="o">.</span><span class="n">atoms2struct</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cell</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">str_arr</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">cell</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kpoints</span> <span class="o">=</span> <span class="n">pwscf</span><span class="o">.</span><span class="n">kpoints_str_pwin</span><span class="p">(</span><span class="n">kpts2mp</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kpts</span><span class="p">))</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pp</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pp</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">pseudos</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pp</span><span class="p">)</span> <span class="k">for</span> <span class="n">sym</span> <span class="ow">in</span> <span class="n">struct</span><span class="o">.</span><span class="n">symbols_unique</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pp</span><span class="p">)</span> <span class="o">==</span> <span class="n">struct</span><span class="o">.</span><span class="n">ntypat</span>
@@ -357,14 +421,18 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    LAMMPS calculator.</span>
 
+<span class="sd">    Only for single-point calculations, no MD, i.e. run a single energy+force</span>
+<span class="sd">    calculation for the input structure.</span>
+
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    Define a calculator object::</span>
 
-<span class="sd">        &gt;&gt;&gt; calc = Lammps(label=&#39;/path/to/calculation/dir/lmp&#39;,</span>
+<span class="sd">        &gt;&gt;&gt; calc = Lammps(label=&#39;lmp&#39;,</span>
+<span class="sd">        &gt;&gt;&gt;               directory=&#39;/path/to/calculation/dir&#39;,</span>
 <span class="sd">        ...               pair_style=&#39;tersoff&#39;,</span>
 <span class="sd">        ...               pair_coeff=&#39;* * /path/to/potential/dir/AlN.tersoff Al N&#39;,</span>
-<span class="sd">        ...               command=&#39;lammps &lt; lmp.in &gt; lmp.out 2&gt;&amp;1&#39;,</span>
+<span class="sd">        ...               command=&#39;lmp &lt; lmp.in &gt; lmp.out 2&gt;&amp;1&#39;,</span>
 <span class="sd">        ...               )</span>
 <span class="sd">        &gt;&gt;&gt; at=crys.Structure(...).get_ase_atoms(pbc=True)</span>
 <span class="sd">        &gt;&gt;&gt; at.set_calculator(calc)</span>
@@ -379,7 +447,8 @@
         <span class="n">pair_coeff</span><span class="o">=</span><span class="s1">&#39;* * ./AlN.tersoff Al N&#39;</span><span class="p">,</span>
         <span class="n">pair_style</span><span class="o">=</span><span class="s1">&#39;tersoff&#39;</span><span class="p">,</span>
         <span class="n">backup</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;lammps &lt; lmp.in &gt; lmp.out&quot;</span><span class="p">,</span>  <span class="c1"># also writes &#39;log.lammps&#39;</span>
+        <span class="n">command</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;lmp &lt; lmp.in &gt; lmp.out&quot;</span><span class="p">,</span>  <span class="c1"># also writes &#39;log.lammps&#39;</span>
+        <span class="n">directory</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="n">implemented_properties</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="s1">&#39;forces&#39;</span><span class="p">,</span> <span class="s1">&#39;stress&#39;</span><span class="p">]</span>
 
@@ -405,7 +474,7 @@
 <span class="s2">run 0</span>
 <span class="s2">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Lammps.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.Lammps.html#pwtools.calculators.Lammps.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -421,7 +490,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">outfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;.out&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dumpfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;.out.dump&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">structfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;.struct&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;log.lammps&#39;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;log.lammps&#39;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="Lammps.write_input"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.Lammps.write_input.html#pwtools.calculators.Lammps.write_input">[docs]</a>    <span class="k">def</span> <span class="nf">write_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">properties</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">system_changes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -445,7 +514,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">etot</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;forces&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">forces</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;stress&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stress_pwtools2ase</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">stress</span><span class="p">)</span></div></div>
-
 </pre></div>
 
           </div>
@@ -457,7 +525,7 @@
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
     </div>

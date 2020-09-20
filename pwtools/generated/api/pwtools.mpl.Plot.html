@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.mpl.Plot &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.mpl.Plot.collect_legends" href="pwtools.mpl.Plot.collect_legends.html" />
-    <link rel="prev" title="pwtools.mpl.Data3D" href="pwtools.mpl.Data3D.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="mpl.html">mpl</a><ul>
-      <li>Previous: <a href="pwtools.mpl.Data3D.html" title="previous chapter">pwtools.mpl.Data3D</a></li>
-      <li>Next: <a href="pwtools.mpl.Plot.collect_legends.html" title="next chapter">pwtools.mpl.Plot.collect_legends</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,11 +82,10 @@
             
   <div class="section" id="pwtools-mpl-plot">
 <h1>pwtools.mpl.Plot<a class="headerlink" href="#pwtools-mpl-plot" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="pwtools.mpl.Plot">
-<em class="property">class </em><code class="sig-prename descclassname">pwtools.mpl.</code><code class="sig-name descname">Plot</code><span class="sig-paren">(</span><em class="sig-param">fig=None</em>, <em class="sig-param">ax=None</em>, <em class="sig-param">projection='2d'</em>, <em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#Plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.Plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Container for a plot figure with (by default one) axis <cite>ax</cite>.</p>
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.mpl.</code><code class="sig-name descname">Plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fig</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">projection</span><span class="o">=</span><span class="default_value">'2d'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#Plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.Plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Container for a plot figure with (by default one) axis <cite>ax</cite>.</p>
 <p>You can add more axes with twinx() etc and operate on them.</p>
 <p class="rubric">Examples</p>
 <p># same as Plot(<a href="#id1"><span class="problematic" id="id2">*</span></a>mpl.fig_ax()), i.e. default is 2d plot
@@ -124,99 +113,19 @@
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.mpl.Plot.legend.html#pwtools.mpl.Plot.legend" title="pwtools.mpl.Plot.legend"><code class="xref py py-obj docutils literal notranslate"><span class="pre">legend</span></code></a>([axnames, legaxname])</p></td>
 <td><p>Collect legend entries from all axes in <cite>axnames</cite> and place legend on the axis named with <cite>legaxname</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.mpl.Plot.savefig.html#pwtools.mpl.Plot.savefig" title="pwtools.mpl.Plot.savefig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">savefig</span></code></a>(base[, ext])</p></td>
-<td><p></p></td>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 52%" />
+<col style="width: 48%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>savefig</strong></p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="pwtools.mpl.Plot.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">fig=None</em>, <em class="sig-param">ax=None</em>, <em class="sig-param">projection='2d'</em>, <em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#Plot.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.Plot.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>fig, ax</strong> : Figure + Axis instance (e.g. from fig_ax())</p>
-<p><strong>projection</strong> : str, optional</p>
-<blockquote>
-<div><p>If fig+ax not given, use this to call fig_ax() or fig_ax3d(), else
-ignored.</p>
-</div></blockquote>
-<p><strong>kwds</strong> : keywords passed to fig_ax() or fig_ax3d() if <cite>fig=None</cite> and</p>
-<blockquote>
-<div><p><cite>ax=None</cite></p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pwtools.mpl.Plot.__weakref__">
-<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#pwtools.mpl.Plot.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.mpl.Plot.collect_legends">
-<code class="sig-name descname">collect_legends</code><span class="sig-paren">(</span><em class="sig-param">axnames=['ax']</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#Plot.collect_legends"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.Plot.collect_legends" title="Permalink to this definition">¶</a></dt>
-<dd><p>If self has more then one axis object attached, then collect legends
-from all axes specified in axnames. Useful for handling legend entries
-of lines on differend axes (in case of twinx, for instance).</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axnames</strong> : sequence of strings</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>tuple of lines and labels</p>
-<blockquote>
-<div><p>([line1, line2, …], [‘foo’, ‘bar’, …])</p>
-</div></blockquote>
-<p>where lines and labels are taken from all axes. Use this as input for</p>
-<p>any axis’s legend() method.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.mpl.Plot.legend">
-<code class="sig-name descname">legend</code><span class="sig-paren">(</span><em class="sig-param">axnames=None</em>, <em class="sig-param">legaxname='ax'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/mpl.html#Plot.legend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.mpl.Plot.legend" title="Permalink to this definition">¶</a></dt>
-<dd><p>Collect legend entries from all axes in <cite>axnames</cite> and place legend on
-the axis named with <cite>legaxname</cite>.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axnames</strong> : None or list of axes names, optional</p>
-<blockquote>
-<div><p>e.g. [‘ax’] or [‘ax’, ‘ax2’]. If None (default) then ax.legend() is
-called directly (if legaxname=’ax’).</p>
-</div></blockquote>
-<p><strong>legaxname</strong> : string, optional</p>
-<blockquote>
-<div><p>The name of the axis where the legend is placed on. If you use
-things like twinx(), then you may want to choose top most the axis,
-i.e. the one in the foreground. For example:
-&gt;&gt;&gt; pp = Plot(…)
-&gt;&gt;&gt; pp.ax.plot(…)
-&gt;&gt;&gt; pp.ax2 = pp.ax.twinx()
-&gt;&gt;&gt; pp.ax2.plot(…)
-&gt;&gt;&gt; pp.legend(axnames=[‘ax’, ‘ax2’], legaxname=’ax2’)</p>
-</div></blockquote>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<dl>
-<dt>This is not completly transparent. This:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span> <span class="o">=</span> <span class="n">Plot</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-<p>does only behave as ax.legend() if only kwargs are used. For anything
-else, use</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>directly.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -231,7 +140,7 @@ else, use</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

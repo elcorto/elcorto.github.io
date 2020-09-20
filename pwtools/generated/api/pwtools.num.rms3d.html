@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.num.rms3d &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.num.round_up_next_multiple" href="pwtools.num.round_up_next_multiple.html" />
-    <link rel="prev" title="pwtools.num.rms" href="pwtools.num.rms.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="num.html">num</a><ul>
-      <li>Previous: <a href="pwtools.num.rms.html" title="previous chapter">pwtools.num.rms</a></li>
-      <li>Next: <a href="pwtools.num.round_up_next_multiple.html" title="next chapter">pwtools.num.round_up_next_multiple</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,27 +82,27 @@
             
   <div class="section" id="pwtools-num-rms3d">
 <h1>pwtools.num.rms3d<a class="headerlink" href="#pwtools-num-rms3d" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.num.rms3d">
-<code class="sig-prename descclassname">pwtools.num.</code><code class="sig-name descname">rms3d</code><span class="sig-paren">(</span><em class="sig-param">arr</em>, <em class="sig-param">axis=0</em>, <em class="sig-param">nitems='all'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#rms3d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.rms3d" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.num.</code><code class="sig-name descname">rms3d</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arr</span></em>, <em class="sig-param"><span class="n">axis</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">nitems</span><span class="o">=</span><span class="default_value">'all'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#rms3d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.rms3d" title="Permalink to this definition">¶</a></dt>
 <dd><p>RMS of 3d array along <cite>axis</cite>. Sum all elements of all axes != axis.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>arr</strong> : 3d array</p>
-<p><strong>axis</strong> : int</p>
-<blockquote>
-<div><p>The axis along which the RMS of all sub-arrays is to be computed
+<dd class="field-odd"><dl class="simple">
+<dt><strong>arr</strong><span class="classifier">3d array</span></dt><dd></dd>
+<dt><strong>axis</strong><span class="classifier">int</span></dt><dd><p>The axis along which the RMS of all sub-arrays is to be computed
 (usually time axis in MD).</p>
-</div></blockquote>
-<p><strong>nitems</strong> : {‘all’, float}</p>
-<blockquote>
-<div><p>normalization constant, the sum of squares is divided by this number,
+</dd>
+<dt><strong>nitems</strong><span class="classifier">{‘all’, float}</span></dt><dd><p>normalization constant, the sum of squares is divided by this number,
 set to unity for no normalization, if ‘all’ then use nitems = number of
 elements in each sub-array along <cite>axis</cite></p>
-</div></blockquote>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>rms</strong> : 1d array, (arr.shape[axis],)</p>
+<dd class="field-even"><dl class="simple">
+<dt><strong>rms</strong><span class="classifier">1d array, (arr.shape[axis],)</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -129,7 +119,7 @@ elements in each sub-array along <cite>axis</cite></p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

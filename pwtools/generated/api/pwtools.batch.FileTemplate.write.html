@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.batch.FileTemplate.write &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.batch.FileTemplate.writesql" href="pwtools.batch.FileTemplate.writesql.html" />
-    <link rel="prev" title="pwtools.batch.FileTemplate" href="pwtools.batch.FileTemplate.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,14 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="batch.html">batch</a><ul>
-  <li><a href="pwtools.batch.FileTemplate.html">pwtools.batch.FileTemplate</a><ul>
-      <li>Previous: <a href="pwtools.batch.FileTemplate.html" title="previous chapter">pwtools.batch.FileTemplate</a></li>
-      <li>Next: <a href="pwtools.batch.FileTemplate.writesql.html" title="next chapter">pwtools.batch.FileTemplate.writesql</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -94,32 +82,28 @@
             
   <div class="section" id="pwtools-batch-filetemplate-write">
 <h1>pwtools.batch.FileTemplate.write<a class="headerlink" href="#pwtools-batch-filetemplate-write" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
+<dl class="py method">
 <dt id="pwtools.batch.FileTemplate.write">
-<code class="sig-prename descclassname">FileTemplate.</code><code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param">dct</em>, <em class="sig-param">calc_dir='calc'</em>, <em class="sig-param">mode='dct'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#FileTemplate.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.FileTemplate.write" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">FileTemplate.</code><code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dct</span></em>, <em class="sig-param"><span class="n">calc_dir</span><span class="o">=</span><span class="default_value">'calc'</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'dct'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#FileTemplate.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.FileTemplate.write" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write file self.filename (e.g. calc/0/pw.in) by replacing
 placeholders in the template (e.g. calc.templ/pw.in).</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>dct</strong> : dict</p>
-<blockquote>
-<div><p>key-value pairs, dct.keys() are converted to placeholders with
+<dd class="field-odd"><dl>
+<dt><strong>dct</strong><span class="classifier">dict</span></dt><dd><p>key-value pairs, dct.keys() are converted to placeholders with
 self.func()</p>
-</div></blockquote>
-<p><strong>calc_dir</strong> : str</p>
-<blockquote>
-<div><p>the dir where to write the target file to</p>
-</div></blockquote>
-<p><strong>mode</strong> : str, {‘dct’, ‘sql’}</p>
-<blockquote>
-<div><div class="line-block">
+</dd>
+<dt><strong>calc_dir</strong><span class="classifier">str</span></dt><dd><p>the dir where to write the target file to</p>
+</dd>
+<dt><strong>mode</strong><span class="classifier">str, {‘dct’, ‘sql’}</span></dt><dd><div class="line-block">
 <div class="line">mode=’dct’: replacement values are dct[&lt;key&gt;]</div>
 <div class="line">mode=’sql’: replacement values are dct[&lt;key&gt;].fileval and every</div>
 <div class="line-block">
 <div class="line">dct[&lt;key&gt;] is an SQLEntry instance</div>
 </div>
 </div>
-</div></blockquote>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -136,7 +120,7 @@ self.func()</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

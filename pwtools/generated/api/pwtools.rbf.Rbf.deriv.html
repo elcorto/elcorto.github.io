@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.rbf.Rbf.deriv &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.rbf.Rbf.fit" href="pwtools.rbf.Rbf.fit.html" />
-    <link rel="prev" title="pwtools.rbf.Rbf.__call__" href="pwtools.rbf.Rbf.__call__.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,14 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="rbf.html">rbf</a><ul>
-  <li><a href="pwtools.rbf.Rbf.html">pwtools.rbf.Rbf</a><ul>
-      <li>Previous: <a href="pwtools.rbf.Rbf.__call__.html" title="previous chapter">pwtools.rbf.Rbf.__call__</a></li>
-      <li>Next: <a href="pwtools.rbf.Rbf.fit.html" title="next chapter">pwtools.rbf.Rbf.fit</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -94,21 +82,20 @@
             
   <div class="section" id="pwtools-rbf-rbf-deriv">
 <h1>pwtools.rbf.Rbf.deriv<a class="headerlink" href="#pwtools-rbf-rbf-deriv" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
+<dl class="py method">
 <dt id="pwtools.rbf.Rbf.deriv">
-<code class="sig-prename descclassname">Rbf.</code><code class="sig-name descname">deriv</code><span class="sig-paren">(</span><em class="sig-param">points</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#Rbf.deriv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.Rbf.deriv" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">Rbf.</code><code class="sig-name descname">deriv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">points</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#Rbf.deriv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.Rbf.deriv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Matrix of partial first derivatives.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>points</strong> : 2d array (L,N)</p>
-<blockquote>
-<div><p>See also <a class="reference internal" href="pwtools.rbf.Rbf.__call__.html#pwtools.rbf.Rbf.__call__" title="pwtools.rbf.Rbf.__call__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__call__()</span></code></a></p>
-</div></blockquote>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>points</strong><span class="classifier">2d array (L,N)</span></dt><dd><p>See also <a class="reference internal" href="pwtools.rbf.Rbf.__call__.html#pwtools.rbf.Rbf.__call__" title="pwtools.rbf.Rbf.__call__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__call__()</span></code></a></p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>2d array (L,N)</p>
-<blockquote>
-<div><p>Each row holds the gradient vector <span class="math notranslate nohighlight">\(\partial f/\partial\mathbf x_i\)</span>
+<dd class="field-even"><dl>
+<dt>2d array (L,N)</dt><dd><p>Each row holds the gradient vector <span class="math notranslate nohighlight">\(\partial f/\partial\mathbf x_i\)</span>
 where <span class="math notranslate nohighlight">\(\mathbf x_i = \texttt{points[i,:]
 = [xi_0, ..., xi_N-1]}\)</span>. For all points points (L,N) we get the
 matrix:</p>
@@ -117,7 +104,8 @@ matrix:</p>
  <span class="p">[</span><span class="n">df</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1_0</span><span class="p">,</span> <span class="n">df</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1_1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">df</span><span class="o">/</span><span class="n">dxL</span><span class="o">-</span><span class="mi">1</span><span class="n">_N</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
 </pre></div>
 </div>
-</div></blockquote>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -134,7 +122,7 @@ matrix:</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

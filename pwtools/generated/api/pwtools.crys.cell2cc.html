@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.crys.cell2cc &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.crys.cell2cc3d" href="pwtools.crys.cell2cc3d.html" />
-    <link rel="prev" title="pwtools.crys.cc2celldm" href="pwtools.crys.cc2celldm.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="crys.html">crys</a><ul>
-      <li>Previous: <a href="pwtools.crys.cc2celldm.html" title="previous chapter">pwtools.crys.cc2celldm</a></li>
-      <li>Next: <a href="pwtools.crys.cell2cc3d.html" title="next chapter">pwtools.crys.cell2cc3d</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,29 +82,29 @@
             
   <div class="section" id="pwtools-crys-cell2cc">
 <h1>pwtools.crys.cell2cc<a class="headerlink" href="#pwtools-crys-cell2cc" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.crys.cell2cc">
-<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">cell2cc</code><span class="sig-paren">(</span><em class="sig-param">cell</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#cell2cc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.cell2cc" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">cell2cc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cell</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#cell2cc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.cell2cc" title="Permalink to this definition">¶</a></dt>
 <dd><p>From <cite>cell</cite> to crystallographic constants a, b, c, alpha, beta,
 gamma.
 This mapping is unique in the sense that multiple cells will have
 the same <cite>cryst_const</cite>, i.e. the representation of the cell in
 <cite>cryst_const</cite> is independent from the spacial orientation of the cell
 w.r.t. a cartesian coord sys.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cell</strong> : array, shape (3,3)</p>
-<blockquote>
-<div><p>Matrix with basis vectors as rows.</p>
-</div></blockquote>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>cell</strong><span class="classifier">array, shape (3,3)</span></dt><dd><p>Matrix with basis vectors as rows.</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>cryst_const</strong> : array_like, shape (6,)</p>
-<blockquote>
-<div><p>[a, b, c, alpha, beta, gamma], where alpha=angle(b,c), beta=angle(a,c),
+<dd class="field-even"><dl class="simple">
+<dt><strong>cryst_const</strong><span class="classifier">array_like, shape (6,)</span></dt><dd><p>[a, b, c, alpha, beta, gamma], where alpha=angle(b,c), beta=angle(a,c),
 gamma=angle(a,b),
 unit: [a]**3</p>
-</div></blockquote>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -131,7 +121,7 @@ unit: [a]**3</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

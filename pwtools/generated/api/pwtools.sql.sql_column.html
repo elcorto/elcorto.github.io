@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.sql.sql_column &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.sql.sql_column_old" href="pwtools.sql.sql_column_old.html" />
-    <link rel="prev" title="pwtools.sql.makedb" href="pwtools.sql.makedb.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="sql.html">sql</a><ul>
-      <li>Previous: <a href="pwtools.sql.makedb.html" title="previous chapter">pwtools.sql.makedb</a></li>
-      <li>Next: <a href="pwtools.sql.sql_column_old.html" title="next chapter">pwtools.sql.sql_column_old</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,7 +82,7 @@
             
   <div class="section" id="pwtools-sql-sql-column">
 <h1>pwtools.sql.sql_column<a class="headerlink" href="#pwtools-sql-sql-column" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.sql.sql_column">
 <code class="sig-prename descclassname">pwtools.sql.</code><code class="sig-name descname">sql_column</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">lst</em>, <em class="sig-param">sqltype=None</em>, <em class="sig-param">sqlval_func=&lt;function &lt;lambda&gt;&gt;</em>, <em class="sig-param">fileval_func=&lt;function &lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#sql_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.sql_column" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a list <cite>lst</cite> of values of the same type (i.e. all floats) to a
@@ -101,24 +91,17 @@ list of SQLEntry instances of the same column name <cite>key</cite> and <cite>sq
 <p>See ParameterStudy for applications.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> : str</p>
-<blockquote>
-<div><p>sql column name</p>
-</div></blockquote>
-<p><strong>lst</strong> : sequence of arbitrary values, these will be SQLEntry.sqlval</p>
-<p><strong>sqltype</strong> : str, optional</p>
-<blockquote>
-<div><p>sqlite type, if None then it is determined from the first entry in
+<dd class="field-odd"><dl>
+<dt><strong>key</strong><span class="classifier">str</span></dt><dd><p>sql column name</p>
+</dd>
+<dt><strong>lst</strong><span class="classifier">sequence of arbitrary values, these will be SQLEntry.sqlval</span></dt><dd></dd>
+<dt><strong>sqltype</strong><span class="classifier">str, optional</span></dt><dd><p>sqlite type, if None then it is determined from the first entry in
 <cite>lst</cite> (possibly modified by sqlval_func)</p>
-</div></blockquote>
-<p><strong>sqlval_func</strong> : callable, optional</p>
-<blockquote>
-<div><p>Function to transform each entry lst[i] to SQLEntry.sqlval
+</dd>
+<dt><strong>sqlval_func</strong><span class="classifier">callable, optional</span></dt><dd><p>Function to transform each entry lst[i] to SQLEntry.sqlval
 Default is sqlval = lst[i].</p>
-</div></blockquote>
-<p><strong>fileval_func</strong> : callable, optional</p>
-<blockquote>
-<div><p>Function to transform each entry lst[i] to SQLEntry.fileval
+</dd>
+<dt><strong>fileval_func</strong><span class="classifier">callable, optional</span></dt><dd><p>Function to transform each entry lst[i] to SQLEntry.fileval
 Default is fileval = lst[i].
 example:</p>
 <blockquote>
@@ -126,7 +109,8 @@ example:</p>
 fileval = ‘value = 23’
 fileval_func = lambda x: “value = %s” %str(x)</p>
 </div></blockquote>
-</div></blockquote>
+</dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -153,7 +137,7 @@ fileval_func = lambda x: “value = %s” %str(x)</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

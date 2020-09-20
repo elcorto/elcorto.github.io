@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.random.RandomStructure &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.random.RandomStructure.get_random_cryst_const" href="pwtools.random.RandomStructure.get_random_cryst_const.html" />
-    <link rel="prev" title="random" href="random.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="random.html">random</a><ul>
-      <li>Previous: <a href="random.html" title="previous chapter">random</a></li>
-      <li>Next: <a href="pwtools.random.RandomStructure.get_random_cryst_const.html" title="next chapter">pwtools.random.RandomStructure.get_random_cryst_const</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,11 +82,10 @@
             
   <div class="section" id="pwtools-random-randomstructure">
 <h1>pwtools.random.RandomStructure<a class="headerlink" href="#pwtools-random-randomstructure" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="pwtools.random.RandomStructure">
-<em class="property">class </em><code class="sig-prename descclassname">pwtools.random.</code><code class="sig-name descname">RandomStructure</code><span class="sig-paren">(</span><em class="sig-param">symbols, vol_scale=4, angle_range=[60.0, 120.0], vol_range_scale=[0.7, 1.3], length_range_scale=[0.7, 1.3], close_scale=1, cell_maxtry=100, atom_maxtry=1000, verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/random.html#RandomStructure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.random.RandomStructure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Create a random structure, based on atom number and composition alone
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.random.</code><code class="sig-name descname">RandomStructure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">symbols</span></em>, <em class="sig-param"><span class="n">vol_scale</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">angle_range</span><span class="o">=</span><span class="default_value">[60.0, 120.0]</span></em>, <em class="sig-param"><span class="n">vol_range_scale</span><span class="o">=</span><span class="default_value">[0.7, 1.3]</span></em>, <em class="sig-param"><span class="n">length_range_scale</span><span class="o">=</span><span class="default_value">[0.7, 1.3]</span></em>, <em class="sig-param"><span class="n">close_scale</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">cell_maxtry</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">atom_maxtry</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/random.html#RandomStructure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.random.RandomStructure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a random structure, based on atom number and composition alone
 (<cite>symbols</cite>).</p>
 <p>The mean target cell volume and cell side lengths are determined from covalent
 radii of all atoms (see pwtools.atomic_data.covalent_radii).</p>
@@ -124,99 +113,6 @@ bottleneck. Hint: <code class="docutils literal notranslate"><span class="pre">p
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="pwtools.random.RandomStructure.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">symbols, vol_scale=4, angle_range=[60.0, 120.0], vol_range_scale=[0.7, 1.3], length_range_scale=[0.7, 1.3], close_scale=1, cell_maxtry=100, atom_maxtry=1000, verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/random.html#RandomStructure.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.random.RandomStructure.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>symbols</strong> : list of strings</p>
-<blockquote>
-<div><p>Atom symbols. Defines number of atoms and composition.</p>
-</div></blockquote>
-<p><strong>vol_scale</strong> : float</p>
-<blockquote>
-<div><p>Scale volume estimated from sum of covalent spheres (lower bound
-for volume). Only values &gt; 1 make sense. This is used
-to get the mean target volume (increase “the holes” between spheres).
-Large values will create large cells with much space between atoms.</p>
-</div></blockquote>
-<p><strong>angle_range</strong> : sequence of 2 floats [min, max]</p>
-<blockquote>
-<div><p>Range of allowed random cell angles.</p>
-</div></blockquote>
-<p><strong>vol_range_scale</strong> : sequence of 2 floats [min, max]</p>
-<blockquote>
-<div><p>Scale estimated mean volume by <cite>min</cite> and <cite>max</cite> to get allowed
-volume range.</p>
-</div></blockquote>
-<p><strong>length_range_scale</strong> : sequence of 2 floats [min, max]</p>
-<blockquote>
-<div><p>Scale estimated mean cell side length (3rd root of mean volume)
-by <cite>min</cite> and <cite>max</cite> to get allowed cell side range.</p>
-</div></blockquote>
-<p><strong>close_scale</strong> : float</p>
-<blockquote>
-<div><p>Scale allowed distance between atoms (from sum of covalent radii).
-Use &lt; 1.0 to make tightly packed structures, i.e. small values will
-allow close atoms, large values make big spaces but will also
-make the structure generation more likely to fail.</p>
-</div></blockquote>
-<p><strong>cell_maxtry / atom_maxtry</strong> : integer, optional</p>
-<blockquote>
-<div><p>Maximal attempts to create a random cell / insert random atom into
-cell before RandomStructureFail is raised.</p>
-</div></blockquote>
-<p><strong>verbose</strong> : bool, optional</p>
-<blockquote>
-<div><p>Print stuff while trying to generate structs.</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pwtools.random.RandomStructure.__weakref__">
-<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#pwtools.random.RandomStructure.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.random.RandomStructure.get_random_cryst_const">
-<code class="sig-name descname">get_random_cryst_const</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/random.html#RandomStructure.get_random_cryst_const"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.random.RandomStructure.get_random_cryst_const" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create random cryst_const.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>cryst_const</strong> : 1d array (6,)</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>RandomStructureFail</strong></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.random.RandomStructure.get_random_struct">
-<code class="sig-name descname">get_random_struct</code><span class="sig-paren">(</span><em class="sig-param">fail=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/random.html#RandomStructure.get_random_struct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.random.RandomStructure.get_random_struct" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generate random cryst_const and atom coords.</p>
-<p>If <cite>fail=True</cite>, then RandomStructureFail may be raised if structure
-generation fails (<cite>cell_maxtry</cite> or  <cite>atom_maxtry</cite> exceeded).</p>
-<p>If <cite>fail=False</cite>, then the process is repeated over and over (may run
-forever). Use this if you know that your settings (all <cite>*_scale</cite>
-inputs) are sensible + struct generation fails “sometimes” and you
-absolutely want to create a struct.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>fail</strong> : bool, optional</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Structure</p>
-</dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><strong>RandomStructureFail (if `fail=True`).</strong></p>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -231,7 +127,7 @@ absolutely want to create a struct.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

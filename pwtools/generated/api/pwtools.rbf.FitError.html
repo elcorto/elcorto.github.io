@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.rbf.FitError &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.rbf.FitError.__call__" href="pwtools.rbf.FitError.__call__.html" />
-    <link rel="prev" title="rbf" href="rbf.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="rbf.html">rbf</a><ul>
-      <li>Previous: <a href="rbf.html" title="previous chapter">rbf</a></li>
-      <li>Next: <a href="pwtools.rbf.FitError.__call__.html" title="next chapter">pwtools.rbf.FitError.__call__</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,11 +82,10 @@
             
   <div class="section" id="pwtools-rbf-fiterror">
 <h1>pwtools.rbf.FitError<a class="headerlink" href="#pwtools-rbf-fiterror" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="pwtools.rbf.FitError">
-<em class="property">class </em><code class="sig-prename descclassname">pwtools.rbf.</code><code class="sig-name descname">FitError</code><span class="sig-paren">(</span><em class="sig-param">points</em>, <em class="sig-param">values</em>, <em class="sig-param">rbf_kwds={}</em>, <em class="sig-param">cv_kwds={'n_repeats': 1</em>, <em class="sig-param">'n_splits': 5}</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#FitError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.FitError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Direct or cross-validation (CV) fit error of <a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a> for a
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.rbf.</code><code class="sig-name descname">FitError</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">points</span></em>, <em class="sig-param"><span class="n">values</span></em>, <em class="sig-param"><span class="n">rbf_kwds</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">cv_kwds</span><span class="o">=</span><span class="default_value">{'n_repeats': 1, 'n_splits': 5}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#FitError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.FitError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Direct or cross-validation (CV) fit error of <a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a> for a
 parameter set <code class="docutils literal notranslate"><span class="pre">[p,r]</span></code> or just <code class="docutils literal notranslate"><span class="pre">[p]</span></code>.</p>
 <p>All methods accept a sequence <cite>params</cite> with either only <cite>p</cite> (length 1) or
 <cite>p</cite> and <cite>r</cite> (length 2) to build a <a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a> model and fit it.</p>
@@ -141,86 +130,6 @@ use <a class="reference internal" href="pwtools.rbf.FitError.__call__.html#pwtoo
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="pwtools.rbf.FitError.__call__">
-<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">params</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#FitError.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.FitError.__call__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.rbf.FitError.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">points</em>, <em class="sig-param">values</em>, <em class="sig-param">rbf_kwds={}</em>, <em class="sig-param">cv_kwds={'n_repeats': 1</em>, <em class="sig-param">'n_splits': 5}</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#FitError.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.FitError.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>points, values</strong> : see <a class="reference internal" href="pwtools.rbf.Rbf.html#pwtools.rbf.Rbf" title="pwtools.rbf.Rbf"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rbf</span></code></a></p>
-<p><strong>rbf_kwds</strong> : dict</p>
-<blockquote>
-<div><p>for <code class="docutils literal notranslate"><span class="pre">Rbf(points,</span> <span class="pre">values,</span> <span class="pre">**rbf_kwds)</span></code></p>
-</div></blockquote>
-<p><strong>cv_kwds</strong> : {dict, None}, optional</p>
-<blockquote>
-<div><p>cross-validation parameters for
-<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RepeatedKFold.html#sklearn.model_selection.RepeatedKFold" title="(in scikit-learn v0.23)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.model_selection.RepeatedKFold</span></code></a>), if None then
-<a class="reference internal" href="pwtools.rbf.FitError.__call__.html#pwtools.rbf.FitError.__call__" title="pwtools.rbf.FitError.__call__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__call__()</span></code></a> will use <a class="reference internal" href="pwtools.rbf.FitError.err_direct.html#pwtools.rbf.FitError.err_direct" title="pwtools.rbf.FitError.err_direct"><code class="xref py py-meth docutils literal notranslate"><span class="pre">err_direct()</span></code></a>, else <a class="reference internal" href="pwtools.rbf.FitError.err_cv.html#pwtools.rbf.FitError.err_cv" title="pwtools.rbf.FitError.err_cv"><code class="xref py py-meth docutils literal notranslate"><span class="pre">err_cv()</span></code></a></p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pwtools.rbf.FitError.__weakref__">
-<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#pwtools.rbf.FitError.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.rbf.FitError.cv">
-<code class="sig-name descname">cv</code><span class="sig-paren">(</span><em class="sig-param">params</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#FitError.cv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.FitError.cv" title="Permalink to this definition">¶</a></dt>
-<dd><p>K-fold repeated CV.</p>
-<p>Split data (points, values) randomly into K parts (“folds”, K =
-<code class="docutils literal notranslate"><span class="pre">n_splits</span></code> in <code class="docutils literal notranslate"><span class="pre">self.cv_kwds</span></code>) along axis 0 and use each part once
-as test set, the rest as training set. For example <cite>ns=5</cite>: split in 5
-parts at random indices, use 5 times 4/5 data for train, 1/5 for test
-(each of the folds), so 5 fits total -&gt; 5 fit errors. Optionally repeat
-<code class="docutils literal notranslate"><span class="pre">n_repeats</span></code> times with different random splits. So, <cite>n_repeats</cite> *
-<cite>n_splits</cite> fit errors total.</p>
-<p>Each time, build an Rbf interpolator with <code class="docutils literal notranslate"><span class="pre">self.rbf_kwds</span></code>, fit,
-return the fit error (scalar sum of squares from
-<a class="reference internal" href="pwtools.rbf.Rbf.fit_error.html#pwtools.rbf.Rbf.fit_error" title="pwtools.rbf.Rbf.fit_error"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rbf.fit_error()</span></code></a>).</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>params</strong> : seq length 1 or 2</p>
-<blockquote>
-<div><div class="line-block">
-<div class="line">params[0] = p</div>
-<div class="line">params[1] = r (optional)</div>
-</div>
-</div></blockquote>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>errs</strong> : 1d array (n_repeats * n_splits,)</p>
-<blockquote>
-<div><p>direct fit error from each fold</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.rbf.FitError.err_cv">
-<code class="sig-name descname">err_cv</code><span class="sig-paren">(</span><em class="sig-param">params</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#FitError.err_cv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.FitError.err_cv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Median of <a class="reference internal" href="pwtools.rbf.FitError.cv.html#pwtools.rbf.FitError.cv" title="pwtools.rbf.FitError.cv"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cv()</span></code></a>.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.rbf.FitError.err_direct">
-<code class="sig-name descname">err_direct</code><span class="sig-paren">(</span><em class="sig-param">params</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#FitError.err_direct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.FitError.err_direct" title="Permalink to this definition">¶</a></dt>
-<dd><p>Normal fit error w/o CV. Uses <a class="reference internal" href="pwtools.rbf.Rbf.fit_error.html#pwtools.rbf.Rbf.fit_error" title="pwtools.rbf.Rbf.fit_error"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rbf.fit_error()</span></code></a>.</p>
-<p>Build and Rbf interpolator with <code class="docutils literal notranslate"><span class="pre">self.rbf_kwds</span></code>, fit, return the fit
-error (scalar, sum of squares). Should be zero for interpolation, i.e. no
-regularization <code class="docutils literal notranslate"><span class="pre">r=0</span></code>.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -235,7 +144,7 @@ regularization <code class="docutils literal notranslate"><span class="pre">r=0<
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

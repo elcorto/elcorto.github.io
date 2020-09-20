@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.num.norm_int &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.num.normalize" href="pwtools.num.normalize.html" />
-    <link rel="prev" title="pwtools.num.norm" href="pwtools.num.norm.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="num.html">num</a><ul>
-      <li>Previous: <a href="pwtools.num.norm.html" title="previous chapter">pwtools.num.norm</a></li>
-      <li>Next: <a href="pwtools.num.normalize.html" title="next chapter">pwtools.num.normalize</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,28 +82,28 @@
             
   <div class="section" id="pwtools-num-norm-int">
 <h1>pwtools.num.norm_int<a class="headerlink" href="#pwtools-num-norm-int" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.num.norm_int">
 <code class="sig-prename descclassname">pwtools.num.</code><code class="sig-name descname">norm_int</code><span class="sig-paren">(</span><em class="sig-param">y</em>, <em class="sig-param">x</em>, <em class="sig-param">area=1.0</em>, <em class="sig-param">scale=True</em>, <em class="sig-param">func=&lt;function simps&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#norm_int"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.norm_int" title="Permalink to this definition">¶</a></dt>
 <dd><p>Normalize integral area of y(x) to <cite>area</cite>.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>x,y</strong> : numpy 1d arrays</p>
-<p><strong>area</strong> : float</p>
-<p><strong>scale</strong> : bool, optional</p>
-<blockquote>
-<div><p>Scale x and y to the same order of magnitude before integration.
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x,y</strong><span class="classifier">numpy 1d arrays</span></dt><dd></dd>
+<dt><strong>area</strong><span class="classifier">float</span></dt><dd></dd>
+<dt><strong>scale</strong><span class="classifier">bool, optional</span></dt><dd><p>Scale x and y to the same order of magnitude before integration.
 This may be necessary to avoid numerical trouble if x and y have very
 different scales.</p>
-</div></blockquote>
-<p><strong>func</strong> : callable</p>
-<blockquote>
-<div><p>Function to do integration (like scipy.integrate.{simps,trapz,…}
+</dd>
+<dt><strong>func</strong><span class="classifier">callable</span></dt><dd><p>Function to do integration (like scipy.integrate.{simps,trapz,…}
 Called as <code class="docutils literal notranslate"><span class="pre">func(y,x)</span></code>. Default: simps</p>
-</div></blockquote>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>scaled y</p>
+<dd class="field-even"><dl class="simple">
+<dt>scaled y</dt><dd></dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -133,7 +123,7 @@ stick to the order used in the scipy.integrate routines.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

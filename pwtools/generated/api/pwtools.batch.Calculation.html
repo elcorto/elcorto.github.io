@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.batch.Calculation &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.batch.Calculation.get_sql_record" href="pwtools.batch.Calculation.get_sql_record.html" />
-    <link rel="prev" title="batch" href="batch.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="batch.html">batch</a><ul>
-      <li>Previous: <a href="batch.html" title="previous chapter">batch</a></li>
-      <li>Next: <a href="pwtools.batch.Calculation.get_sql_record.html" title="next chapter">pwtools.batch.Calculation.get_sql_record</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,11 +82,10 @@
             
   <div class="section" id="pwtools-batch-calculation">
 <h1>pwtools.batch.Calculation<a class="headerlink" href="#pwtools-batch-calculation" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="pwtools.batch.Calculation">
-<em class="property">class </em><code class="sig-prename descclassname">pwtools.batch.</code><code class="sig-name descname">Calculation</code><span class="sig-paren">(</span><em class="sig-param">machine=None</em>, <em class="sig-param">templates=[]</em>, <em class="sig-param">params=[]</em>, <em class="sig-param">calc_dir='calc_dir'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Calculation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Calculation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Represent a single calculation.</p>
+<em class="property">class </em><code class="sig-prename descclassname">pwtools.batch.</code><code class="sig-name descname">Calculation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">machine</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">templates</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">calc_dir</span><span class="o">=</span><span class="default_value">'calc_dir'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Calculation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent a single calculation.</p>
 <p>The calculation data will be placed, e.g., in dir calc_foo/0/. A
 Calculation is bound to one Machine. This class is usually not used on it’s
 own, but only by ParameterStudy.</p>
@@ -117,56 +106,6 @@ own, but only by ParameterStudy.</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="pwtools.batch.Calculation.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">machine=None</em>, <em class="sig-param">templates=[]</em>, <em class="sig-param">params=[]</em>, <em class="sig-param">calc_dir='calc_dir'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Calculation.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Calculation.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>machine</strong> : Machine, optional</p>
-<blockquote>
-<div><p>Used to add machine specific attributes. Pulled from
-Machine.get_sql_record(). Used for FileTemplate replacement.</p>
-</div></blockquote>
-<p><strong>templates</strong> : sequence</p>
-<blockquote>
-<div><p>Sequence of FileTemplate instances.</p>
-</div></blockquote>
-<p><strong>params</strong> : sequence of SQLEntry instances</p>
-<blockquote>
-<div><p>A single “parameter set”. The <cite>key</cite> attribute (=sql column name) of
-each SQLEntry will be converted to a placeholder in each
-FileTemplate and an attempt to replacement in the template files is
-made.</p>
-</div></blockquote>
-<p><strong>calc_dir</strong> : str, optional</p>
-<blockquote>
-<div><p>Calculation directory to which input files are written (e.g.
-‘calc_foo/0/’)</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pwtools.batch.Calculation.__weakref__">
-<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#pwtools.batch.Calculation.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.batch.Calculation.get_sql_record">
-<code class="sig-name descname">get_sql_record</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Calculation.get_sql_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Calculation.get_sql_record" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a dict of SQLEntry instances. Each key is a candidate
-placeholder for the FileTemplates.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pwtools.batch.Calculation.write_input">
-<code class="sig-name descname">write_input</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Calculation.write_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Calculation.write_input" title="Permalink to this definition">¶</a></dt>
-<dd><p>For each template in <code class="docutils literal notranslate"><span class="pre">self.templates</span></code>, write an input file to
-<code class="docutils literal notranslate"><span class="pre">self.calc_dir</span></code>.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -181,7 +120,7 @@ placeholder for the FileTemplates.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

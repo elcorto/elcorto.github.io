@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.sql.SQLiteDB.fill_column &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.sql.SQLiteDB.finish" href="pwtools.sql.SQLiteDB.finish.html" />
-    <link rel="prev" title="pwtools.sql.SQLiteDB.executescript" href="pwtools.sql.SQLiteDB.executescript.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,14 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="sql.html">sql</a><ul>
-  <li><a href="pwtools.sql.SQLiteDB.html">pwtools.sql.SQLiteDB</a><ul>
-      <li>Previous: <a href="pwtools.sql.SQLiteDB.executescript.html" title="previous chapter">pwtools.sql.SQLiteDB.executescript</a></li>
-      <li>Next: <a href="pwtools.sql.SQLiteDB.finish.html" title="next chapter">pwtools.sql.SQLiteDB.finish</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -94,39 +82,31 @@
             
   <div class="section" id="pwtools-sql-sqlitedb-fill-column">
 <h1>pwtools.sql.SQLiteDB.fill_column<a class="headerlink" href="#pwtools-sql-sqlitedb-fill-column" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
+<dl class="py method">
 <dt id="pwtools.sql.SQLiteDB.fill_column">
-<code class="sig-prename descclassname">SQLiteDB.</code><code class="sig-name descname">fill_column</code><span class="sig-paren">(</span><em class="sig-param">col</em>, <em class="sig-param">values</em>, <em class="sig-param">start=1</em>, <em class="sig-param">extend=True</em>, <em class="sig-param">overwrite=False</em>, <em class="sig-param">table=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.fill_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.fill_column" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">SQLiteDB.</code><code class="sig-name descname">fill_column</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">col</span></em>, <em class="sig-param"><span class="n">values</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">extend</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">overwrite</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">table</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLiteDB.fill_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLiteDB.fill_column" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fill existing column <cite>col</cite> with values from <cite>values</cite>, starting from
 rowid <cite>start</cite>. “rowid” is a special sqlite column which is always
 present and which numbers all rows.</p>
 <p>The column must already exist. To add a new column and fill it, see
 <a class="reference internal" href="pwtools.sql.SQLiteDB.attach_column.html#pwtools.sql.SQLiteDB.attach_column" title="pwtools.sql.SQLiteDB.attach_column"><code class="xref py py-meth docutils literal notranslate"><span class="pre">attach_column()</span></code></a>.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>col</strong> : str</p>
-<blockquote>
-<div><p>Column name.</p>
-</div></blockquote>
-<p><strong>values</strong> : sequence</p>
-<blockquote>
-<div><p>Values to be inserted.</p>
-</div></blockquote>
-<p><strong>start</strong> : int</p>
-<blockquote>
-<div><p>sqlite rowid value to start at (first row: start=1)</p>
-</div></blockquote>
-<p><strong>extend</strong> : bool</p>
-<blockquote>
-<div><p>If <cite>extend=True</cite> and <cite>len(values)</cite> extends the last row, then
+<dd class="field-odd"><dl class="simple">
+<dt><strong>col</strong><span class="classifier">str</span></dt><dd><p>Column name.</p>
+</dd>
+<dt><strong>values</strong><span class="classifier">sequence</span></dt><dd><p>Values to be inserted.</p>
+</dd>
+<dt><strong>start</strong><span class="classifier">int</span></dt><dd><p>sqlite rowid value to start at (first row: start=1)</p>
+</dd>
+<dt><strong>extend</strong><span class="classifier">bool</span></dt><dd><p>If <cite>extend=True</cite> and <cite>len(values)</cite> extends the last row, then
 continue to add values. All other column entries will be NULL. If
 False, then we silently stop inserting at the last row.</p>
-</div></blockquote>
-<p><strong>overwrite</strong> : bool</p>
-<blockquote>
-<div><p>Whether to overwrite entries which are not NULL (None in Python).</p>
-</div></blockquote>
-<p><strong>table</strong> : str, optional</p>
+</dd>
+<dt><strong>overwrite</strong><span class="classifier">bool</span></dt><dd><p>Whether to overwrite entries which are not NULL (None in Python).</p>
+</dd>
+<dt><strong>table</strong><span class="classifier">str, optional</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -143,7 +123,7 @@ False, then we silently stop inserting at the last row.</p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

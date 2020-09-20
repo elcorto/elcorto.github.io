@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.crys.coord_trans3d &#8212; pwtools  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -12,11 +13,9 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pwtools.crys.distances" href="pwtools.crys.distances.html" />
-    <link rel="prev" title="pwtools.crys.coord_trans" href="pwtools.crys.coord_trans.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -51,9 +50,6 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
-</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -65,12 +61,6 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">API Reference</a><ul>
-  <li><a href="crys.html">crys</a><ul>
-      <li>Previous: <a href="pwtools.crys.coord_trans.html" title="previous chapter">pwtools.crys.coord_trans</a></li>
-      <li>Next: <a href="pwtools.crys.distances.html" title="next chapter">pwtools.crys.distances</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,9 +82,9 @@
             
   <div class="section" id="pwtools-crys-coord-trans3d">
 <h1>pwtools.crys.coord_trans3d<a class="headerlink" href="#pwtools-crys-coord-trans3d" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="pwtools.crys.coord_trans3d">
-<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">coord_trans3d</code><span class="sig-paren">(</span><em class="sig-param">coords</em>, <em class="sig-param">old=None</em>, <em class="sig-param">new=None</em>, <em class="sig-param">copy=True</em>, <em class="sig-param">axis=-1</em>, <em class="sig-param">timeaxis=0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#coord_trans3d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.coord_trans3d" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">coord_trans3d</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">coords</span></em>, <em class="sig-param"><span class="n">old</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">new</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">copy</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">axis</span><span class="o">=</span><span class="default_value">- 1</span></em>, <em class="sig-param"><span class="n">timeaxis</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#coord_trans3d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.coord_trans3d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Special case version for debugging mostly. It does the loop for the
 general case where coords+old+new are 3d arrays (e.g. variable cell MD
 trajectory).</p>
@@ -102,17 +92,17 @@ trajectory).</p>
 arbitrary many dimensions, i.e. ndarray + old/new are fixed) are covered
 by coord_trans(). Also some special cases may be possible to solve with
 np.dot() alone if the transformation simplifes. Check your math.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>coords</strong> : 3d array</p>
-<blockquote>
-<div><p>one axis (<cite>axis</cite>) must have length-M vectors, another (<cite>timeaxis</cite>) must
+<dd class="field-odd"><dl class="simple">
+<dt><strong>coords</strong><span class="classifier">3d array</span></dt><dd><p>one axis (<cite>axis</cite>) must have length-M vectors, another (<cite>timeaxis</cite>) must
 be length <cite>nstep</cite></p>
-</div></blockquote>
-<p><strong>old,new</strong> : 2d arrays, two axes must be of equal length</p>
-<p><strong>copy</strong> : see coord_trans()</p>
-<p><strong>axis</strong> : axis where length-M vecs are placed if the timeaxis is removed</p>
-<p><strong>timeaxis</strong> : time axis along which 2d arrays are aligned</p>
+</dd>
+<dt><strong>old,new</strong><span class="classifier">2d arrays, two axes must be of equal length</span></dt><dd></dd>
+<dt><strong>copy</strong><span class="classifier">see coord_trans()</span></dt><dd></dd>
+<dt><strong>axis</strong><span class="classifier">axis where length-M vecs are placed if the timeaxis is removed</span></dt><dd></dd>
+<dt><strong>timeaxis</strong><span class="classifier">time axis along which 2d arrays are aligned</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -137,7 +127,7 @@ be length <cite>nstep</cite></p>
       &copy;2020, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
