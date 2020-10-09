@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.rbf.Rbf.deriv" href="pwtools.rbf.Rbf.deriv.html" />
+    <link rel="prev" title="pwtools.rbf.FitError.err_direct" href="pwtools.rbf.FitError.err_direct.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="rbf.html">rbf</a><ul>
+      <li>Previous: <a href="pwtools.rbf.FitError.err_direct.html" title="previous chapter">pwtools.rbf.FitError.err_direct</a></li>
+      <li>Next: <a href="pwtools.rbf.Rbf.deriv.html" title="next chapter">pwtools.rbf.Rbf.deriv</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -85,7 +96,100 @@
 <dl class="py class">
 <dt id="pwtools.rbf.Rbf">
 <em class="property">class </em><code class="sig-prename descclassname">pwtools.rbf.</code><code class="sig-name descname">Rbf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">points</span></em>, <em class="sig-param"><span class="n">values</span></em>, <em class="sig-param"><span class="n">rbf</span><span class="o">=</span><span class="default_value">'inv_multi'</span></em>, <em class="sig-param"><span class="n">r</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">p</span><span class="o">=</span><span class="default_value">'mean'</span></em>, <em class="sig-param"><span class="n">fit</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">lin_solver</span><span class="o">=</span><span class="default_value">'dsysv'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#Rbf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.Rbf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Radial basis function network interpolation and fitting.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Radial basis function network interpolation and fitting.</p>
+<dl class="py method">
+<dt id="pwtools.rbf.Rbf.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">points</span></em>, <em class="sig-param"><span class="n">values</span></em>, <em class="sig-param"><span class="n">rbf</span><span class="o">=</span><span class="default_value">'inv_multi'</span></em>, <em class="sig-param"><span class="n">r</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">p</span><span class="o">=</span><span class="default_value">'mean'</span></em>, <em class="sig-param"><span class="n">fit</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">lin_solver</span><span class="o">=</span><span class="default_value">'dsysv'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#Rbf.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.Rbf.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>2d array</em><em>, </em><em>(</em><em>M</em><em>,</em><em>N</em><em>)</em>) – data points : M points in N-dim space, training set points</p></li>
+<li><p><strong>values</strong> (<em>1d array</em><em>, </em><em>(</em><em>M</em><em>,</em><em>)</em>) – function values at training points</p></li>
+<li><p><strong>rbf</strong> (<em>str</em><em> (</em><em>see rbf_dct.keys</em><em>(</em><em>)</em><em>) or </em><em>callable rbf</em><em>(</em><em>r**2</em><em>, </em><em>p</em><em>)</em>) – </p></li>
+<li><p><strong>r</strong> (<em>float</em><em> or </em><em>None</em>) – regularization parameter, if None then we use a least squares
+solver</p></li>
+<li><p><strong>p</strong> (‘mean’ or ‘scipy’ (see <a class="reference internal" href="pwtools.rbf.estimate_p.html#pwtools.rbf.estimate_p" title="pwtools.rbf.estimate_p"><code class="xref py py-func docutils literal notranslate"><span class="pre">estimate_p()</span></code></a>) or float) – the RBF’s free parameter</p></li>
+<li><p><strong>lin_solver</strong> (<em>str</em>) – <p>Linear solver method in case <cite>r</cite> is given</p>
+<div class="line-block">
+<div class="line">solve : <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.solve.html#scipy.linalg.solve" title="(in SciPy v1.5.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.solve()</span></code></a></div>
+<div class="line">dsysv : <code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.lapack.dsysv()</span></code> (symmetric G)</div>
+<div class="line">dposv : <code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.linalg.lapack.dposv()</span></code> (positive definite G)</div>
+</div>
+</p></li>
+<li><p><strong>fit</strong> (<em>bool</em>) – call self.fit() in __init__</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">mpl</span><span class="p">,</span> <span class="n">rbf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 1D example w/ derivatives. For 1d, we need to use points[:,None]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># input array containing training (dd.DY) and interpolation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># (ddi.XY) points must be 2d.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">fig_ax</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>     <span class="c1"># shape (M,), M=20 points</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span><span class="o">=</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>                <span class="c1"># shape (M,)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rbfi</span><span class="o">=</span><span class="n">rbf</span><span class="o">.</span><span class="n">Rbf</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="kc">None</span><span class="p">],</span><span class="n">z</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xi</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>   <span class="c1"># shape (M,), M=100 points</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">sin</span><span class="p">(</span><span class="n">xi</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;sin(x)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">rbfi</span><span class="p">(</span><span class="n">xi</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">cos</span><span class="p">(</span><span class="n">xi</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;cos(x)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">rbfi</span><span class="p">(</span><span class="n">xi</span><span class="p">[:,</span><span class="kc">None</span><span class="p">],</span><span class="n">der</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;d(rbf)/dx&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 2D example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dd</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">Data2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dd</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">Z</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">X</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">Y</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rbfi</span><span class="o">=</span><span class="n">rbf</span><span class="o">.</span><span class="n">Rbf</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">XY</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">zz</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xi</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ddi</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">Data2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">xi</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig1</span><span class="p">,</span><span class="n">ax1</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">fig_ax3d</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">xx</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">yy</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">zz</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax1</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">ddi</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">ddi</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">rbfi</span><span class="p">(</span><span class="n">ddi</span><span class="o">.</span><span class="n">XY</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span>
+<span class="gp">... </span>                   <span class="n">label</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">);</span> <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig2</span><span class="p">,</span><span class="n">ax2</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">fig_ax3d</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">offset</span><span class="o">=</span><span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">ddi</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">ddi</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">rbfi</span><span class="p">(</span><span class="n">ddi</span><span class="o">.</span><span class="n">XY</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span>
+<span class="gp">... </span>                   <span class="n">label</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">ddi</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">ddi</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span>
+<span class="gp">... </span>                   <span class="n">rbfi</span><span class="p">(</span><span class="n">ddi</span><span class="o">.</span><span class="n">XY</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span><span class="o">+</span><span class="n">offset</span><span class="p">,</span>
+<span class="gp">... </span>                   <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;d(rbf)/dx&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">ddi</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">ddi</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span>
+<span class="gp">... </span>                   <span class="n">rbfi</span><span class="p">(</span><span class="n">ddi</span><span class="o">.</span><span class="n">XY</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">offset</span><span class="p">,</span>
+<span class="gp">... </span>                   <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;d(rbf)/dy&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">);</span> <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pwtools.rbf.Rbf.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/rbf.html#Rbf.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.rbf.Rbf.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call <a class="reference internal" href="pwtools.rbf.Rbf.interpolate.html#pwtools.rbf.Rbf.interpolate" title="pwtools.rbf.Rbf.interpolate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">interpolate()</span></code></a> or <a class="reference internal" href="pwtools.rbf.Rbf.deriv.html#pwtools.rbf.Rbf.deriv" title="pwtools.rbf.Rbf.deriv"><code class="xref py py-meth docutils literal notranslate"><span class="pre">deriv()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>2d array</em><em> (</em><em>L</em><em>,</em><em>N</em><em>)</em>) – L N-dim points to evaluate the interpolant on.</p></li>
+<li><p><strong>der</strong> (<em>int</em>) – If == 1 return matrix of partial derivatives (see <a class="reference internal" href="pwtools.rbf.Rbf.deriv.html#pwtools.rbf.Rbf.deriv" title="pwtools.rbf.Rbf.deriv"><code class="xref py py-meth docutils literal notranslate"><span class="pre">deriv()</span></code></a>), else
+interpolated values values (default).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>vals</strong> (<em>1d array (L,)</em>) – Interpolated values.</p></li>
+<li><p><em>or</em></p></li>
+<li><p><strong>derivs</strong> (<em>2d array (L,N)</em>) – 1st partial derivatives.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
 <p class="rubric">Methods</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -93,25 +197,22 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.__call__.html#pwtools.rbf.Rbf.__call__" title="pwtools.rbf.Rbf.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Call <a class="reference internal" href="pwtools.rbf.Rbf.interpolate.html#pwtools.rbf.Rbf.interpolate" title="pwtools.rbf.Rbf.interpolate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">interpolate()</span></code></a> or <a class="reference internal" href="pwtools.rbf.Rbf.deriv.html#pwtools.rbf.Rbf.deriv" title="pwtools.rbf.Rbf.deriv"><code class="xref py py-meth docutils literal notranslate"><span class="pre">deriv()</span></code></a>.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.deriv.html#pwtools.rbf.Rbf.deriv" title="pwtools.rbf.Rbf.deriv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deriv</span></code></a>(points)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.deriv.html#pwtools.rbf.Rbf.deriv" title="pwtools.rbf.Rbf.deriv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deriv</span></code></a>(points)</p></td>
 <td><p>Matrix of partial first derivatives.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.fit.html#pwtools.rbf.Rbf.fit" title="pwtools.rbf.Rbf.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.fit.html#pwtools.rbf.Rbf.fit" title="pwtools.rbf.Rbf.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>()</p></td>
 <td><p>Solve linear system for the weights.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.fit_error.html#pwtools.rbf.Rbf.fit_error" title="pwtools.rbf.Rbf.fit_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_error</span></code></a>(points, values)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.fit_error.html#pwtools.rbf.Rbf.fit_error" title="pwtools.rbf.Rbf.fit_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_error</span></code></a>(points, values)</p></td>
 <td><p>Sum of squared fit errors with penalty on negative <cite>p</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.get_distsq.html#pwtools.rbf.Rbf.get_distsq" title="pwtools.rbf.Rbf.get_distsq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_distsq</span></code></a>([points])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.get_distsq.html#pwtools.rbf.Rbf.get_distsq" title="pwtools.rbf.Rbf.get_distsq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_distsq</span></code></a>([points])</p></td>
 <td><p>Matrix of distance values <span class="math notranslate nohighlight">\(R_{ij} = |\mathbf x_i - \mathbf c_j|\)</span>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.get_params.html#pwtools.rbf.Rbf.get_params" title="pwtools.rbf.Rbf.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.get_params.html#pwtools.rbf.Rbf.get_params" title="pwtools.rbf.Rbf.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>()</p></td>
 <td><p>Return <code class="docutils literal notranslate"><span class="pre">(p,r)</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.interpolate.html#pwtools.rbf.Rbf.interpolate" title="pwtools.rbf.Rbf.interpolate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interpolate</span></code></a>(points)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.rbf.Rbf.interpolate.html#pwtools.rbf.Rbf.interpolate" title="pwtools.rbf.Rbf.interpolate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interpolate</span></code></a>(points)</p></td>
 <td><p>Evaluate interpolant at <cite>points</cite>.</p></td>
 </tr>
 </tbody>

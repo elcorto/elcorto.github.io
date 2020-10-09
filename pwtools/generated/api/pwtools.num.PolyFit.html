@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.num.PolyFit.get_min" href="pwtools.num.PolyFit.get_min.html" />
+    <link rel="prev" title="pwtools.num.Interpol2D.get_min" href="pwtools.num.Interpol2D.get_min.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="num.html">num</a><ul>
+      <li>Previous: <a href="pwtools.num.Interpol2D.get_min.html" title="previous chapter">pwtools.num.Interpol2D.get_min</a></li>
+      <li>Next: <a href="pwtools.num.PolyFit.get_min.html" title="next chapter">pwtools.num.PolyFit.get_min</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -85,23 +96,21 @@
 <dl class="py class">
 <dt id="pwtools.num.PolyFit">
 <em class="property">class </em><code class="sig-prename descclassname">pwtools.num.</code><code class="sig-name descname">PolyFit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">points</span></em>, <em class="sig-param"><span class="n">values</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#PolyFit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.PolyFit" title="Permalink to this definition">¶</a></dt>
-<dd><p>High level interface to poly{fit,val}, similar to <a class="reference internal" href="pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Spline</span></code></a>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>High level interface to poly{fit,val}, similar to <a class="reference internal" href="pwtools.num.Spline.html#pwtools.num.Spline" title="pwtools.num.Spline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Spline</span></code></a>
 and <a class="reference internal" href="pwtools.num.Interpol2D.html#pwtools.num.Interpol2D" title="pwtools.num.Interpol2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interpol2D</span></code></a>.</p>
-<p>Arguments and keywords to <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code> are the same as for
-<a class="reference internal" href="pwtools.num.polyfit.html#pwtools.num.polyfit" title="pwtools.num.polyfit"><code class="xref py py-func docutils literal notranslate"><span class="pre">polyfit()</span></code></a>. Keywords to <a class="reference internal" href="pwtools.num.PolyFit.__call__.html#pwtools.num.PolyFit.__call__" title="pwtools.num.PolyFit.__call__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__call__()</span></code></a> are same as for
+<p>Arguments and keywords to <a class="reference internal" href="#pwtools.num.PolyFit.__init__" title="pwtools.num.PolyFit.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a> are the same as for
+<a class="reference internal" href="pwtools.num.polyfit.html#pwtools.num.polyfit" title="pwtools.num.polyfit"><code class="xref py py-func docutils literal notranslate"><span class="pre">polyfit()</span></code></a>. Keywords to <a class="reference internal" href="#pwtools.num.PolyFit.__call__" title="pwtools.num.PolyFit.__call__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__call__()</span></code></a> are same as for
 <a class="reference internal" href="pwtools.num.polyval.html#pwtools.num.polyval" title="pwtools.num.polyval"><code class="xref py py-func docutils literal notranslate"><span class="pre">polyval()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>points</strong><span class="classifier">nd array (npoints,ndim)</span></dt><dd><p><cite>npoints</cite> points in <cite>ndim</cite>-space, to be fitted by a <cite>ndim</cite> polynomial
-f(x0,x1,…,x{ndim-1}).</p>
-</dd>
-<dt><strong>values</strong><span class="classifier">1d array</span></dt><dd></dd>
-<dt><strong>deg</strong><span class="classifier">int</span></dt><dd><p>Degree of the poly (e.g. 3 for cubic).</p>
-</dd>
-<dt><strong>scale: bool, optional</strong></dt><dd><p>Scale <cite>points</cite> and <cite>values</cite> to unity internally before fitting.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>nd array</em><em> (</em><em>npoints</em><em>,</em><em>ndim</em><em>)</em>) – <cite>npoints</cite> points in <cite>ndim</cite>-space, to be fitted by a <cite>ndim</cite> polynomial
+f(x0,x1,…,x{ndim-1}).</p></li>
+<li><p><strong>values</strong> (<em>1d array</em>) – </p></li>
+<li><p><strong>deg</strong> (<em>int</em>) – Degree of the poly (e.g. 3 for cubic).</p></li>
+<li><p><strong>scale</strong> (<em>bool</em><em>, </em><em>optional</em>) – Scale <cite>points</cite> and <cite>values</cite> to unity internally before fitting.</p></li>
+</ul>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -116,6 +125,26 @@ fmin()</div>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f1</span><span class="o">=</span><span class="n">PolyFit</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="n">f1</span><span class="p">(</span><span class="n">new_points</span><span class="p">)</span>
 </pre></div>
 </div>
+<dl class="py method">
+<dt id="pwtools.num.PolyFit.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">points</span></em>, <em class="sig-param"><span class="n">values</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#PolyFit.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.PolyFit.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>nd array</em><em> (</em><em>npoints</em><em>, </em><em>ndim</em><em>)</em>) – </p></li>
+<li><p><strong>values</strong> (<em>1d array</em><em> (</em><em>npoints</em><em>,</em><em>)</em>) – </p></li>
+<li><p><strong>**kwds</strong> (<em>keywords to polyfit</em><em>(</em><em>)</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pwtools.num.PolyFit.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">points</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#PolyFit.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.PolyFit.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
 <p class="rubric">Methods</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -123,10 +152,7 @@ fmin()</div>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.num.PolyFit.__call__.html#pwtools.num.PolyFit.__call__" title="pwtools.num.PolyFit.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(points, **kwds)</p></td>
-<td><p>Call self as a function.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.num.PolyFit.get_min.html#pwtools.num.PolyFit.get_min" title="pwtools.num.PolyFit.get_min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_min</span></code></a>([x0])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.num.PolyFit.get_min.html#pwtools.num.PolyFit.get_min" title="pwtools.num.PolyFit.get_min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_min</span></code></a>([x0])</p></td>
 <td><p>Minimize fit function by <cite>scipy.optimize.fmin()</cite>.</p></td>
 </tr>
 </tbody>

@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.signal.ezfft" href="pwtools.signal.ezfft.html" />
+    <link rel="prev" title="pwtools.signal.cauchy" href="pwtools.signal.cauchy.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="signal.html">signal</a><ul>
+      <li>Previous: <a href="pwtools.signal.cauchy.html" title="previous chapter">pwtools.signal.cauchy</a></li>
+      <li>Next: <a href="pwtools.signal.ezfft.html" title="next chapter">pwtools.signal.ezfft</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -88,49 +99,16 @@
 <dd><p>Simple straightforward complex DFT algo.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>a</strong><span class="classifier">numpy 1d array</span></dt><dd></dd>
-<dt><strong>method</strong><span class="classifier">string, {‘matmul’, ‘loop’}</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>numpy 1d array</em>) – </p></li>
+<li><p><strong>method</strong> (<em>string</em><em>, </em><em>{'matmul'</em><em>, </em><em>'loop'}</em>) – </p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>(len(a),) array</dt><dd></dd>
-</dl>
+<dd class="field-even"><p></p>
 </dd>
-</dl>
-<p class="rubric">Notes</p>
-<dl>
-<dt>This is only a reference implementation and has it’s limitations.</dt><dd><div class="line-block">
-<div class="line">‘loop’: runs looong</div>
-<div class="line">‘matmul’: memory limit</div>
-<div class="line">=&gt; use only with medium size arrays</div>
-</div>
-</dd>
-</dl>
-<p>N = len(a)
-sqrt(complex(-1)) = np.sqrt(-1 + 0*j) = 1j</p>
-<dl class="simple">
-<dt>Forward DFT, see <a class="reference internal" href="#rc1cd9c71689f-2" id="id1">[2]</a> and <a class="reference internal" href="#rc1cd9c71689f-3" id="id2">[3]</a> , scipy.fftpack.fft():</dt><dd><p>y[k] = sum(n=0…N-1) a[n] * exp(-2*pi*n*k*j/N)
-k = 0 … N-1</p>
-</dd>
-<dt>Backward DFT, see <a class="reference internal" href="#rc1cd9c71689f-1" id="id3">[1]</a> eq. 12.1.6, 12.2.2:</dt><dd><p>y[k] = sum(n=0…N-1) a[n] * exp(2*pi*n*k*j/N)
-k = 0 … N-1</p>
-</dd>
-</dl>
-<p>The algo for method==’matmul’ is the matrix mult from <a class="reference internal" href="#rc1cd9c71689f-1" id="id4">[1]</a>, but as Forward
-DFT for comparison with scipy. The difference between FW and BW DFT is that
-the imaginary parts are mirrored at y=0.</p>
-<p class="rubric">References</p>
-<dl class="citation">
-<dt class="label" id="rc1cd9c71689f-1"><span class="brackets">1</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id4">2</a>)</span></dt>
-<dd><p>Numerical Recipes in Fortran, Second Edition, 1992</p>
-</dd>
-<dt class="label" id="rc1cd9c71689f-2"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
-<dd><p><a class="reference external" href="http://www.fftw.org/doc/The-1d-Real_002ddata-DFT.html">http://www.fftw.org/doc/The-1d-Real_002ddata-DFT.html</a></p>
-</dd>
-<dt class="label" id="rc1cd9c71689f-3"><span class="brackets"><a class="fn-backref" href="#id2">3</a></span></dt>
-<dd><p><a class="reference external" href="http://mathworld.wolfram.com/FourierTransform.html">http://mathworld.wolfram.com/FourierTransform.html</a></p>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(len(a),) array</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -143,6 +121,40 @@ the imaginary parts are mirrored at y=0.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_array_almost_equal</span><span class="p">(</span><span class="n">sfft</span><span class="p">,</span> <span class="n">dfft2</span><span class="p">)</span>
 </pre></div>
 </div>
+<p class="rubric">Notes</p>
+<dl>
+<dt>This is only a reference implementation and has it’s limitations.</dt><dd><div class="line-block">
+<div class="line">‘loop’: runs looong</div>
+<div class="line">‘matmul’: memory limit</div>
+<div class="line">=&gt; use only with medium size arrays</div>
+</div>
+</dd>
+</dl>
+<p>N = len(a)
+sqrt(complex(-1)) = np.sqrt(-1 + 0*j) = 1j</p>
+<dl class="simple">
+<dt>Forward DFT, see <a class="footnote-reference brackets" href="#id6" id="id1">2</a> and <a class="footnote-reference brackets" href="#id7" id="id2">3</a> , scipy.fftpack.fft():</dt><dd><p>y[k] = sum(n=0…N-1) a[n] * exp(-2*pi*n*k*j/N)
+k = 0 … N-1</p>
+</dd>
+<dt>Backward DFT, see <a class="footnote-reference brackets" href="#id5" id="id3">1</a> eq. 12.1.6, 12.2.2:</dt><dd><p>y[k] = sum(n=0…N-1) a[n] * exp(2*pi*n*k*j/N)
+k = 0 … N-1</p>
+</dd>
+</dl>
+<p>The algo for method==’matmul’ is the matrix mult from <a class="footnote-reference brackets" href="#id5" id="id4">1</a>, but as Forward
+DFT for comparison with scipy. The difference between FW and BW DFT is that
+the imaginary parts are mirrored at y=0.</p>
+<p class="rubric">References</p>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets">1</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id4">2</a>)</span></dt>
+<dd><p>Numerical Recipes in Fortran, Second Edition, 1992</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
+<dd><p><a class="reference external" href="http://www.fftw.org/doc/The-1d-Real_002ddata-DFT.html">http://www.fftw.org/doc/The-1d-Real_002ddata-DFT.html</a></p>
+</dd>
+<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id2">3</a></span></dt>
+<dd><p><a class="reference external" href="http://mathworld.wolfram.com/FourierTransform.html">http://mathworld.wolfram.com/FourierTransform.html</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

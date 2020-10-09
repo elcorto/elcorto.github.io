@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.pwscf.read_dynmat_ir_raman" href="pwtools.pwscf.read_dynmat_ir_raman.html" />
+    <link rel="prev" title="pwtools.pwscf.read_dyn" href="pwtools.pwscf.read_dyn.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="pwscf.html">pwscf</a><ul>
+      <li>Previous: <a href="pwtools.pwscf.read_dyn.html" title="previous chapter">pwtools.pwscf.read_dyn</a></li>
+      <li>Next: <a href="pwtools.pwscf.read_dynmat_ir_raman.html" title="next chapter">pwtools.pwscf.read_dynmat_ir_raman</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -91,28 +102,23 @@ alawys Gamma, i.e. [0,0,0].</p>
 <p>Output format is the same as in <a class="reference internal" href="pwtools.pwscf.read_dyn.html#pwtools.pwscf.read_dyn" title="pwtools.pwscf.read_dyn"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_dyn()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>path where output files are</p>
-</dd>
-<dt><strong>natoms</strong><span class="classifier">int</span></dt><dd></dd>
-<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Text output from dynmat.x, where the frequencies are printed, relative
-to <cite>path</cite>.</p>
-</dd>
-<dt><strong>axsf</strong><span class="classifier">str</span></dt><dd><p>AXSF file (<code class="docutils literal notranslate"><span class="pre">filxsf</span></code> in input) with mode vectors as forces.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – path where output files are</p></li>
+<li><p><strong>natoms</strong> (<em>int</em>) – </p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – Text output from dynmat.x, where the frequencies are printed, relative
+to <cite>path</cite>.</p></li>
+<li><p><strong>axsf</strong> (<em>str</em>) – AXSF file (<code class="docutils literal notranslate"><span class="pre">filxsf</span></code> in input) with mode vectors as forces.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>qpoints, freqs, vecs</dt><dd></dd>
-<dt><strong>qpoints</strong><span class="classifier">1d array (3,)</span></dt><dd><p>The qpoint, which is Gamma, i.e. [0,0,0]</p>
-</dd>
-<dt><strong>freqs</strong><span class="classifier">1d array, (nmodes,) where nmodes = 3*natoms</span></dt><dd><p>3*natoms phonon frequencies in [cm^-1] at the q-point.</p>
-</dd>
-<dt><strong>vecs</strong><span class="classifier">3d real array (nmodes, natoms, 3)</span></dt><dd><p>Real parts (???) if the eigenvectors of the dynamical matrix for the
-q-point.</p>
-</dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>qpoints, freqs, vecs</em></p></li>
+<li><p><strong>qpoints</strong> (<em>1d array (3,)</em>) – The qpoint, which is Gamma, i.e. [0,0,0]</p></li>
+<li><p><strong>freqs</strong> (<em>1d array, (nmodes,) where nmodes = 3*natoms</em>) – 3*natoms phonon frequencies in [cm^-1] at the q-point.</p></li>
+<li><p><strong>vecs</strong> (<em>3d real array (nmodes, natoms, 3)</em>) – Real parts (???) if the eigenvectors of the dynamical matrix for the
+q-point.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>

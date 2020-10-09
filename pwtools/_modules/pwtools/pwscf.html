@@ -180,7 +180,7 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    symbols : sequence of strings with atom symbols, (natoms,)</span>
-<span class="sd">    masses : sequence if floats (natoms,) w/ atom masses</span>
+<span class="sd">    masses : sequence of floats (natoms,) w/ atom masses</span>
 <span class="sd">    pseudos : sequence of strings (natoms,) w/ pseudopotential file names</span>
 
 <span class="sd">    Returns</span>
@@ -532,12 +532,13 @@
 
 <span class="sd">    In QE 5.x, a file with suffix &quot;.gp&quot; (e.g. &quot;matdyn.freq.gp&quot;) is now written,</span>
 <span class="sd">    where::</span>
+
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">    &gt;&gt;&gt; from pwtools import kpath, pwscf</span>
 <span class="sd">    &gt;&gt;&gt; d = np.loadtxt(&quot;matdyn.freq.gp&quot;)</span>
 <span class="sd">    &gt;&gt;&gt; kpoints,freqs = pwscf.read_matdyn_freq(&quot;matdyn.freq&quot;)</span>
-<span class="sd">    &gt;&gt;&gt; allclose(d[:,0], kpath.get_path_norm(kpoints))</span>
-<span class="sd">    &gt;&gt;&gt; allclose(d[:,1:], freqs)</span>
+<span class="sd">    &gt;&gt;&gt; np.allclose(d[:,0], kpath.get_path_norm(kpoints))</span>
+<span class="sd">    &gt;&gt;&gt; np.allclose(d[:,1:], freqs)</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>

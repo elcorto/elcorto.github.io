@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.io.eV" href="pwtools.io.eV.html" />
+    <link rel="prev" title="pwtools.io.Ha" href="pwtools.io.Ha.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="io.html">io</a><ul>
+      <li>Previous: <a href="pwtools.io.Ha.html" title="previous chapter">pwtools.io.Ha</a></li>
+      <li>Next: <a href="pwtools.io.eV.html" title="next chapter">pwtools.io.eV</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -85,7 +96,37 @@
 <dl class="py class">
 <dt id="pwtools.io.ReadFactory">
 <em class="property">class </em><code class="sig-prename descclassname">pwtools.io.</code><code class="sig-name descname">ReadFactory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parser</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">struct_or_traj</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">doc</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/io.html#ReadFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.io.ReadFactory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Factory class to construct callables to parse files.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Factory class to construct callables to parse files.</p>
+<dl class="py method">
+<dt id="pwtools.io.ReadFactory.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parser</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">struct_or_traj</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">doc</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/io.html#ReadFactory.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.io.ReadFactory.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parser</strong> (<em>one of parse.*File parsing classes</em>) – </p></li>
+<li><p><strong>struct_or_traj</strong> (<em>str</em>) – {‘struct’,’traj’}
+Whether the callables should return parser.get_{struct,traj}()’s
+return value.</p></li>
+<li><p><strong>doc</strong> (<em>str</em>) – docstring header</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pwtools.io.ReadFactory.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/io.html#ReadFactory.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.io.ReadFactory.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Name of the file to parse.</p></li>
+<li><p><strong>**kwds</strong> (<em>keywords args</em>) – passed to the parser class (e.g. units=…)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <p class="rubric">Methods</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -93,13 +134,6 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.io.ReadFactory.__call__.html#pwtools.io.ReadFactory.__call__" title="pwtools.io.ReadFactory.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(filename, **kwds)</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-</p></td>
-</tr>
 </tbody>
 </table>
 </dd></dl>

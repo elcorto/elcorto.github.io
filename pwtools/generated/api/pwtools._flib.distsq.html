@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools._flib.distsq_frac" href="pwtools._flib.distsq_frac.html" />
+    <link rel="prev" title="pwtools._flib.distances_traj" href="pwtools._flib.distances_traj.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="_flib.html">_flib</a><ul>
+      <li>Previous: <a href="pwtools._flib.distances_traj.html" title="previous chapter">pwtools._flib.distances_traj</a></li>
+      <li>Next: <a href="pwtools._flib.distsq_frac.html" title="next chapter">pwtools._flib.distsq_frac</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -84,30 +95,29 @@
 <h1>pwtools._flib.distsq<a class="headerlink" href="#pwtools-flib-distsq" title="Permalink to this headline">¶</a></h1>
 <dl class="py data">
 <dt id="pwtools._flib.distsq">
-<code class="sig-prename descclassname">pwtools._flib.</code><code class="sig-name descname">distsq</code><span class="sig-paren">(</span><em class="sig-param">arrx</em>, <em class="sig-param">arry</em>, <em class="sig-param">dsq</em><span class="optional">[</span>, <em class="sig-param">nx</em>, <em class="sig-param">ny</em>, <em class="sig-param">ndim</em><span class="optional">]</span><span class="sig-paren">)</span><em class="property"> = &lt;fortran object&gt;</em><a class="headerlink" href="#pwtools._flib.distsq" title="Permalink to this definition">¶</a></dt>
-<dd><p>Wrapper for <code class="docutils literal notranslate"><span class="pre">distsq</span></code>.</p>
+<code class="sig-prename descclassname">pwtools._flib.</code><code class="sig-name descname">distsq</code><em class="property"> = &lt;fortran object&gt;</em><a class="headerlink" href="#pwtools._flib.distsq" title="Permalink to this definition">¶</a></dt>
+<dd><p>dsq = distsq(arrx,arry,dsq,[nx,ny,ndim])</p>
+<p>Wrapper for <code class="docutils literal notranslate"><span class="pre">distsq</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>arrx</strong><span class="classifier">input rank-2 array(‘d’) with bounds (nx,ndim)</span></dt><dd></dd>
-<dt><strong>arry</strong><span class="classifier">input rank-2 array(‘d’) with bounds (ny,ndim)</span></dt><dd></dd>
-<dt><strong>dsq</strong><span class="classifier">input rank-2 array(‘d’) with bounds (nx,ny)</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arrx</strong> (<em>input rank-2 array</em><em>(</em><em>'d'</em><em>) </em><em>with bounds</em><em> (</em><em>nx</em><em>,</em><em>ndim</em><em>)</em>) – </p></li>
+<li><p><strong>arry</strong> (<em>input rank-2 array</em><em>(</em><em>'d'</em><em>) </em><em>with bounds</em><em> (</em><em>ny</em><em>,</em><em>ndim</em><em>)</em>) – </p></li>
+<li><p><strong>dsq</strong> (<em>input rank-2 array</em><em>(</em><em>'d'</em><em>) </em><em>with bounds</em><em> (</em><em>nx</em><em>,</em><em>ny</em><em>)</em>) – </p></li>
+</ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>dsq</strong><span class="classifier">rank-2 array(‘d’) with bounds (nx,ny)</span></dt><dd></dd>
-</dl>
+<dt class="field-even">Other Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>nx</strong> (<em>input int, optional</em>) – Default: shape(arrx,0)</p></li>
+<li><p><strong>ny</strong> (<em>input int, optional</em>) – Default: shape(arry,0)</p></li>
+<li><p><strong>ndim</strong> (<em>input int, optional</em>) – Default: shape(arrx,1)</p></li>
+</ul>
 </dd>
-<dt class="field-odd">Other Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>nx</strong><span class="classifier">input int, optional</span></dt><dd><p>Default: shape(arrx,0)</p>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>dsq</strong></p>
 </dd>
-<dt><strong>ny</strong><span class="classifier">input int, optional</span></dt><dd><p>Default: shape(arry,0)</p>
-</dd>
-<dt><strong>ndim</strong><span class="classifier">input int, optional</span></dt><dd><p>Default: shape(arrx,1)</p>
-</dd>
-</dl>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>rank-2 array(‘d’) with bounds (nx,ny)</p>
 </dd>
 </dl>
 </dd></dl>

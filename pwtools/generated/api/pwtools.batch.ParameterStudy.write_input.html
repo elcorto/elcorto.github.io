@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.batch.conv_table" href="pwtools.batch.conv_table.html" />
+    <link rel="prev" title="pwtools.batch.ParameterStudy" href="pwtools.batch.ParameterStudy.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,14 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="batch.html">batch</a><ul>
+  <li><a href="pwtools.batch.ParameterStudy.html">pwtools.batch.ParameterStudy</a><ul>
+      <li>Previous: <a href="pwtools.batch.ParameterStudy.html" title="previous chapter">pwtools.batch.ParameterStudy</a></li>
+      <li>Next: <a href="pwtools.batch.conv_table.html" title="next chapter">pwtools.batch.conv_table</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -89,15 +102,15 @@
 based on <code class="docutils literal notranslate"><span class="pre">templates</span></code>. Write sqlite database storing all relevant
 parameters. Write (bash) shell script to start all calculations (run
 locally or submitt batch job file, depending on <code class="docutils literal notranslate"><span class="pre">machine.subcmd</span></code>).</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>mode</strong><span class="classifier">str, optional</span></dt><dd><p>Fine tune how to write input files (based on <code class="docutils literal notranslate"><span class="pre">templates</span></code>) to calc
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mode</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>Fine tune how to write input files (based on <code class="docutils literal notranslate"><span class="pre">templates</span></code>) to calc
 dirs calc_foo/0/, calc_foo/1/, … . Note that this doesn’t change
 the base dir calc_foo at all, only the subdirs for each calc.
 {‘a’, ‘w’}</p>
 <div class="line-block">
-<div class="line">‘a’: Append mode (default). If a previous database is found, then</div>
+<div class="line">’a’: Append mode (default). If a previous database is found, then</div>
 <div class="line-block">
 <div class="line">subsequent calculations are numbered based on the last ‘idx’.</div>
 <div class="line">calc_foo/0 # old</div>
@@ -105,7 +118,7 @@ the base dir calc_foo at all, only the subdirs for each calc.
 <div class="line">calc_foo/2 # new</div>
 <div class="line">calc_foo/3 # new</div>
 </div>
-<div class="line">‘w’: Write mode. The target dirs are purged and overwritten. Also,</div>
+<div class="line">’w’: Write mode. The target dirs are purged and overwritten. Also,</div>
 <div class="line-block">
 <div class="line">the database (self.dbfn) is overwritten. Use this to</div>
 <div class="line">iteratively tune your inputs, NOT for working on already</div>
@@ -114,19 +127,16 @@ the base dir calc_foo at all, only the subdirs for each calc.
 <div class="line">calc_foo/1 # new</div>
 </div>
 </div>
-</dd>
-<dt><strong>backup</strong><span class="classifier">bool, optional</span></dt><dd><p>Before writing anything, do a backup of self.calc_dir if it already
-exists.</p>
-</dd>
-<dt><strong>sleep</strong><span class="classifier">int, optional</span></dt><dd><p>For the script to start (submitt) all jobs: time in seconds for the
-shell sleep(1) commmand.</p>
-</dd>
-<dt><strong>excl</strong><span class="classifier">bool</span></dt><dd><p>If in append mode, a file &lt;calc_root&gt;/excl_push with all indices of
+</p></li>
+<li><p><strong>backup</strong> (<em>bool</em><em>, </em><em>optional</em>) – Before writing anything, do a backup of self.calc_dir if it already
+exists.</p></li>
+<li><p><strong>sleep</strong> (<em>int</em><em>, </em><em>optional</em>) – For the script to start (submitt) all jobs: time in seconds for the
+shell sleep(1) commmand.</p></li>
+<li><p><strong>excl</strong> (<em>bool</em>) – If in append mode, a file &lt;calc_root&gt;/excl_push with all indices of
 calculations from old revisions is written. Can be used with
 <code class="docutils literal notranslate"><span class="pre">rsync</span> <span class="pre">--exclude-from=excl_push</span></code> when pushing appended new
-calculations to a cluster.</p>
-</dd>
-</dl>
+calculations to a cluster.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

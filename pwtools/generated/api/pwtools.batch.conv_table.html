@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.batch.default_repl_keys" href="pwtools.batch.default_repl_keys.html" />
+    <link rel="prev" title="pwtools.batch.ParameterStudy.write_input" href="pwtools.batch.ParameterStudy.write_input.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="batch.html">batch</a><ul>
+      <li>Previous: <a href="pwtools.batch.ParameterStudy.write_input.html" title="previous chapter">pwtools.batch.ParameterStudy.write_input</a></li>
+      <li>Next: <a href="pwtools.batch.default_repl_keys.html" title="next chapter">pwtools.batch.default_repl_keys</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -94,20 +105,16 @@
 assume that the sequence of <cite>yy</cite> values converges to a constant value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>xx</strong><span class="classifier">1d sequence</span></dt><dd></dd>
-<dt><strong>yy</strong><span class="classifier">1d sequence, nested 1d sequences, 2d array</span></dt><dd><p>Values varied with <cite>xx</cite>. Each row is one parameter.</p>
-</dd>
-<dt><strong>ffmt, sfmt</strong><span class="classifier">str</span></dt><dd><p>Format strings for floats (<cite>ffmt</cite>) and strings (<cite>sfmt</cite>)</p>
-</dd>
-<dt><strong>mode</strong><span class="classifier">str</span></dt><dd><p>‘next’ or ‘last’. Difference to the next value <code class="docutils literal notranslate"><span class="pre">y[i+1]</span> <span class="pre">-</span> <span class="pre">y[i]</span></code> or to
-the last <code class="docutils literal notranslate"><span class="pre">y[-1]</span> <span class="pre">-</span> <span class="pre">y[i]</span></code>.</p>
-</dd>
-<dt><strong>orig</strong><span class="classifier">bool</span></dt><dd><p>Print original <cite>yy</cite> data as well.</p>
-</dd>
-<dt><strong>absdiff</strong><span class="classifier">bool</span></dt><dd><p>absolute values of differences</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xx</strong> (<em>1d sequence</em>) – </p></li>
+<li><p><strong>yy</strong> (<em>1d sequence</em><em>, </em><em>nested 1d sequences</em><em>, </em><em>2d array</em>) – Values varied with <cite>xx</cite>. Each row is one parameter.</p></li>
+<li><p><strong>ffmt</strong> (<em>str</em>) – Format strings for floats (<cite>ffmt</cite>) and strings (<cite>sfmt</cite>)</p></li>
+<li><p><strong>sfmt</strong> (<em>str</em>) – Format strings for floats (<cite>ffmt</cite>) and strings (<cite>sfmt</cite>)</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – ‘next’ or ‘last’. Difference to the next value <code class="docutils literal notranslate"><span class="pre">y[i+1]</span> <span class="pre">-</span> <span class="pre">y[i]</span></code> or to
+the last <code class="docutils literal notranslate"><span class="pre">y[-1]</span> <span class="pre">-</span> <span class="pre">y[i]</span></code>.</p></li>
+<li><p><strong>orig</strong> (<em>bool</em>) – Print original <cite>yy</cite> data as well.</p></li>
+<li><p><strong>absdiff</strong> (<em>bool</em>) – absolute values of differences</p></li>
+</ul>
 </dd>
 </dl>
 <p class="rubric">Examples</p>

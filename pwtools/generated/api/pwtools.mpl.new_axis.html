@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.mpl.plotlines3d" href="pwtools.mpl.plotlines3d.html" />
+    <link rel="prev" title="pwtools.mpl.meshgridt" href="pwtools.mpl.meshgridt.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="mpl.html">mpl</a><ul>
+      <li>Previous: <a href="pwtools.mpl.meshgridt.html" title="previous chapter">pwtools.mpl.meshgridt</a></li>
+      <li>Next: <a href="pwtools.mpl.plotlines3d.html" title="next chapter">pwtools.mpl.plotlines3d</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -89,31 +100,30 @@
 ParasiteAxes. The new axis line will be an instance of ParasiteAxes
 attached to <cite>hostax</cite>. You can do twinx()/twiny() type axis (off=0) or
 completely free-standing axis lines (off &gt; 0).</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>fig</strong><span class="classifier">mpl Figure</span></dt><dd></dd>
-<dt><strong>hostax</strong><span class="classifier">Instance of matplotlib.axes.HostAxesSubplot. This is the subplot</span></dt><dd><p>of the figure <cite>fig</cite> w.r.t which all new axis lines are placed. See
-make_axes_grid_fig().</p>
-</dd>
-<dt><strong>off</strong><span class="classifier">offset in points, used with parax.get_grid_helper().new_fixed_axis</span></dt><dd></dd>
-<dt><strong>loc</strong><span class="classifier">one of ‘left’, ‘right’, ‘top’, ‘bottom’, where to place the new axis</span></dt><dd><p>line</p>
-</dd>
-<dt><strong>ticks</strong><span class="classifier">sequence of ticks (numbers)</span></dt><dd></dd>
-<dt><strong>wsadd</strong><span class="classifier">Whitespace to add at the location <cite>loc</cite> to make space for the new</span></dt><dd><p>axis line (only useful if off &gt; 0). The number is a relative unit
-and is used to change the bounding box: hostax.get_position().</p>
-</dd>
-<dt><strong>label</strong><span class="classifier">str, xlabel (ylabel) for ‘top’,’bottom’ (‘left’, ‘right’)</span></dt><dd></dd>
-<dt><strong>sharex, sharey</strong><span class="classifier">bool, share xaxis (yaxis) with <cite>hostax</cite></span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fig</strong> (<em>mpl Figure</em>) – </p></li>
+<li><p><strong>hostax</strong> (<em>Instance of matplotlib.axes.HostAxesSubplot. This is the subplot</em>) – of the figure <cite>fig</cite> w.r.t which all new axis lines are placed. See
+make_axes_grid_fig().</p></li>
+<li><p><strong>off</strong> (<em>offset in points</em><em>, </em><em>used with parax.get_grid_helper</em><em>(</em><em>)</em><em>new_fixed_axis</em>) – </p></li>
+<li><p><strong>loc</strong> (<em>one of 'left'</em><em>, </em><em>'right'</em><em>, </em><em>'top'</em><em>, </em><em>'bottom'</em><em>, </em><em>where to place the new axis</em>) – line</p></li>
+<li><p><strong>ticks</strong> (<em>sequence of ticks</em><em> (</em><em>numbers</em><em>)</em>) – </p></li>
+<li><p><strong>wsadd</strong> (Whitespace to add at the location <cite>loc</cite> to make space for the new) – axis line (only useful if off &gt; 0). The number is a relative unit
+and is used to change the bounding box: hostax.get_position().</p></li>
+<li><p><strong>label</strong> (<em>str</em><em>, </em><em>xlabel</em><em> (</em><em>ylabel</em><em>) </em><em>for 'top'</em><em>,</em><em>'bottom'</em><em> (</em><em>'left'</em><em>, </em><em>'right'</em><em>)</em>) – </p></li>
+<li><p><strong>sharex</strong> (bool, share xaxis (yaxis) with <cite>hostax</cite>) – </p></li>
+<li><p><strong>sharey</strong> (bool, share xaxis (yaxis) with <cite>hostax</cite>) – </p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>(fig, hostax, parax)</dt><dd></dd>
-<dt><strong>fig</strong><span class="classifier">the Figure</span></dt><dd></dd>
-<dt><strong>hostax</strong><span class="classifier">the hostax</span></dt><dd></dd>
-<dt><strong>parax</strong><span class="classifier">the new ParasiteAxes instance</span></dt><dd></dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>(fig, hostax, parax)</em></p></li>
+<li><p><strong>fig</strong> (<em>the Figure</em>)</p></li>
+<li><p><strong>hostax</strong> (<em>the hostax</em>)</p></li>
+<li><p><strong>parax</strong> (<em>the new ParasiteAxes instance</em>)</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>

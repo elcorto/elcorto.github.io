@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.thermo.Gibbs.calc_H" href="pwtools.thermo.Gibbs.calc_H.html" />
+    <link rel="prev" title="pwtools.thermo.Gibbs.calc_F" href="pwtools.thermo.Gibbs.calc_F.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,14 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="thermo.html">thermo</a><ul>
+  <li><a href="pwtools.thermo.Gibbs.html">pwtools.thermo.Gibbs</a><ul>
+      <li>Previous: <a href="pwtools.thermo.Gibbs.calc_F.html" title="previous chapter">pwtools.thermo.Gibbs.calc_F</a></li>
+      <li>Next: <a href="pwtools.thermo.Gibbs.calc_H.html" title="next chapter">pwtools.thermo.Gibbs.calc_H</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -92,22 +105,20 @@ Also calls <a class="reference internal" href="pwtools.thermo.Gibbs.calc_H.html#
 you-get-it-all method and the only one you sould really use.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>ret</strong><span class="classifier">dict, optional</span></dt><dd><p>Result from calc_F(). If None then calc_F() is called here. Can be
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ret</strong> (<em>dict</em><em>, </em><em>optional</em>) – Result from calc_F(). If None then calc_F() is called here. Can be
 used to add additional contributions to F, such as electronic
-entropy.</p>
-</dd>
-<dt><strong>calc_all</strong><span class="classifier">bool</span></dt><dd><p>Calcluate thermal properties from G(ax0,ax1,ax2,T,P): Cp,
-alpha_x, B. If False, then calculate and store only G.</p>
-</dd>
-</dl>
+entropy.</p></li>
+<li><p><strong>calc_all</strong> (<em>bool</em>) – Calcluate thermal properties from G(ax0,ax1,ax2,T,P): Cp,
+alpha_x, B. If False, then calculate and store only G.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>ret</strong><span class="classifier">dict</span></dt><dd><p>All keys starting with the <code class="docutils literal notranslate"><span class="pre">/#opt</span></code> prefix are values obtained
+<dd class="field-even"><p><strong>ret</strong> – All keys starting with the <code class="docutils literal notranslate"><span class="pre">/#opt</span></code> prefix are values obtained
 from minimizing G(ax0,ax1,ax2,T,P) w.r.t. (ax0,ax1,ax2).</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>

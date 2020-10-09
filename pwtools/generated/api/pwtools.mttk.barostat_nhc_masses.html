@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.mttk.kb" href="pwtools.mttk.kb.html" />
+    <link rel="prev" title="pwtools.mttk.barostat_mass_wg" href="pwtools.mttk.barostat_mass_wg.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="mttk.html">mttk</a><ul>
+      <li>Previous: <a href="pwtools.mttk.barostat_mass_wg.html" title="previous chapter">pwtools.mttk.barostat_mass_wg</a></li>
+      <li>Next: <a href="pwtools.mttk.kb.html" title="next chapter">pwtools.mttk.kb</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -88,25 +99,22 @@
 <dd><p>Fictitious masses Q_b for the barostat NHC to thermostat the barostat.</p>
 <p>There is NO equivalent in Abinit. I think they use the particle NHC also
 for the barostat.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>freq</strong><span class="classifier">scalar</span></dt><dd><p>Typical phonon frequency [Hz].</p>
-</dd>
-<dt><strong>temp</strong><span class="classifier">scalar</span></dt><dd><p>Temperature [K].</p>
-</dd>
-<dt><strong>ndim</strong><span class="classifier">scalar</span></dt><dd><p>Number of dimensions. Usually ndim==3 (x,y,z).</p>
-</dd>
-<dt><strong>nnos</strong><span class="classifier">scalar</span></dt><dd><p>Length of the NH chain.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>freq</strong> (<em>scalar</em>) – Typical phonon frequency [Hz].</p></li>
+<li><p><strong>temp</strong> (<em>scalar</em>) – Temperature [K].</p></li>
+<li><p><strong>ndim</strong> (<em>scalar</em>) – Number of dimensions. Usually ndim==3 (x,y,z).</p></li>
+<li><p><strong>nnos</strong> (<em>scalar</em>) – Length of the NH chain.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl>
-<dt><strong>[qb1, qbi …]</strong><span class="classifier">list of length <cite>nnos</cite></span></dt><dd></dd>
-<dt><strong>qb1</strong><span class="classifier">mass for the 1st thermostat in the chain</span></dt><dd></dd>
-<dt><strong>qbi</strong><span class="classifier">masses for the 2nd, 3rd, … thermostat</span></dt><dd></dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>[qb1, qbi …]</strong> (list of length <cite>nnos</cite>)</p></li>
+<li><p><strong>qb1</strong> (<em>mass for the 1st thermostat in the chain</em>)</p></li>
+<li><p><strong>qbi</strong> (<em>masses for the 2nd, 3rd, … thermostat</em>)</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>

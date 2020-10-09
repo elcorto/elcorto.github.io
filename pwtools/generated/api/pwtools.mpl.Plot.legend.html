@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.mpl.Plot.savefig" href="pwtools.mpl.Plot.savefig.html" />
+    <link rel="prev" title="pwtools.mpl.Plot.collect_legends" href="pwtools.mpl.Plot.collect_legends.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,14 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="mpl.html">mpl</a><ul>
+  <li><a href="pwtools.mpl.Plot.html">pwtools.mpl.Plot</a><ul>
+      <li>Previous: <a href="pwtools.mpl.Plot.collect_legends.html" title="previous chapter">pwtools.mpl.Plot.collect_legends</a></li>
+      <li>Next: <a href="pwtools.mpl.Plot.savefig.html" title="next chapter">pwtools.mpl.Plot.savefig</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -89,20 +102,18 @@
 the axis named with <cite>legaxname</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>axnames</strong><span class="classifier">None or list of axes names, optional</span></dt><dd><p>e.g. [‘ax’] or [‘ax’, ‘ax2’]. If None (default) then ax.legend() is
-called directly (if legaxname=’ax’).</p>
-</dd>
-<dt><strong>legaxname</strong><span class="classifier">string, optional</span></dt><dd><p>The name of the axis where the legend is placed on. If you use
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axnames</strong> (<em>None</em><em> or </em><em>list of axes names</em><em>, </em><em>optional</em>) – e.g. [‘ax’] or [‘ax’, ‘ax2’]. If None (default) then ax.legend() is
+called directly (if legaxname=’ax’).</p></li>
+<li><p><strong>legaxname</strong> (<em>string</em><em>, </em><em>optional</em>) – The name of the axis where the legend is placed on. If you use
 things like twinx(), then you may want to choose top most the axis,
 i.e. the one in the foreground. For example:
 &gt;&gt;&gt; pp = Plot(…)
 &gt;&gt;&gt; pp.ax.plot(…)
 &gt;&gt;&gt; pp.ax2 = pp.ax.twinx()
 &gt;&gt;&gt; pp.ax2.plot(…)
-&gt;&gt;&gt; pp.legend(axnames=[‘ax’, ‘ax2’], legaxname=’ax2’)</p>
-</dd>
-</dl>
+&gt;&gt;&gt; pp.legend(axnames=[‘ax’, ‘ax2’], legaxname=’ax2’)</p></li>
+</ul>
 </dd>
 </dl>
 <p class="rubric">Notes</p>

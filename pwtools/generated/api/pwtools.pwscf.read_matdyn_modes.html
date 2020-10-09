@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pydos" href="pydos.html" />
+    <link rel="prev" title="pwtools.pwscf.read_matdyn_freq" href="pwtools.pwscf.read_matdyn_freq.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="pwscf.html">pwscf</a><ul>
+      <li>Previous: <a href="pwtools.pwscf.read_matdyn_freq.html" title="previous chapter">pwtools.pwscf.read_matdyn_freq</a></li>
+      <li>Next: <a href="pydos.html" title="next chapter">pydos</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -88,25 +99,36 @@
 <dd><p>Parse modes file produced by QE’s matdyn.x.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>File to parse (usually “matdyn.modes”)</p>
-</dd>
-<dt><strong>natoms</strong><span class="classifier">int</span></dt><dd><p>Number of atoms.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – File to parse (usually “matdyn.modes”)</p></li>
+<li><p><strong>natoms</strong> (<em>int</em>) – Number of atoms.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>qpoints, freqs, vecs</dt><dd></dd>
-<dt><strong>qpoints</strong><span class="classifier">2d array (nqpoints, 3)</span></dt><dd><p>All qpoints on the grid.</p>
-</dd>
-<dt><strong>freqs</strong><span class="classifier">2d array, (nqpoints, nmodes) where nmodes = 3*natoms</span></dt><dd><p>Each row: 3*natoms phonon frequencies in [cm^-1] at each q-point.</p>
-</dd>
-<dt><strong>vecs</strong><span class="classifier">4d complex array (nqpoints, nmodes, natoms, 3)</span></dt><dd><p>Complex eigenvectors of the dynamical matrix for each q-point.</p>
-</dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>qpoints, freqs, vecs</em></p></li>
+<li><p><strong>qpoints</strong> (<em>2d array (nqpoints, 3)</em>) – All qpoints on the grid.</p></li>
+<li><p><strong>freqs</strong> (<em>2d array, (nqpoints, nmodes) where nmodes = 3*natoms</em>) – Each row: 3*natoms phonon frequencies in [cm^-1] at each q-point.</p></li>
+<li><p><strong>vecs</strong> (<em>4d complex array (nqpoints, nmodes, natoms, 3)</em>) – Complex eigenvectors of the dynamical matrix for each q-point.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">qpoints</span><span class="p">,</span><span class="n">freqs</span><span class="p">,</span><span class="n">vecs</span><span class="o">=</span><span class="n">read_matdyn_modes</span><span class="p">(</span><span class="s1">&#39;matdyn.modes&#39;</span><span class="p">,</span><span class="n">natoms</span><span class="o">=</span><span class="mi">27</span><span class="p">)</span>
+<span class="go"># how many q-points? -&gt; 8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qpoints</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(8,3)</span>
+<span class="go"># 1st q-point in file, mode #3 (out of 3*27) -&gt; vectors on all 27 atoms</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vecs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">...</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(27,3)</span>
+<span class="go"># 1st q-point in file, mode #3, vector on atom #15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vecs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">14</span><span class="p">,:]</span><span class="o">.</span><span class="n">real</span>
+<span class="go">array([-0.010832,  0.026063, -0.089511])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vecs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">14</span><span class="p">,:]</span><span class="o">.</span><span class="n">imag</span>
+<span class="go">array([ 0.,  0.,  0.])</span>
+</pre></div>
+</div>
 <p class="rubric">Notes</p>
 <p>The file to be parsed looks like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="n">diagonalizing</span> <span class="n">the</span> <span class="n">dynamical</span> <span class="n">matrix</span> <span class="o">...</span>
@@ -133,21 +155,6 @@
  <span class="p">(</span> <span class="o">-</span><span class="mf">0.085499</span>   <span class="mf">0.000180</span>     <span class="mf">0.107383</span>  <span class="o">-</span><span class="mf">0.000238</span>    <span class="o">-</span><span class="mf">0.086854</span>   <span class="mf">0.000096</span>   <span class="p">)</span>
 <span class="p">[</span><span class="o">...</span><span class="p">]</span>
  <span class="o">**************************************************************************</span>
-</pre></div>
-</div>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">qpoints</span><span class="p">,</span><span class="n">freqs</span><span class="p">,</span><span class="n">vecs</span><span class="o">=</span><span class="n">read_matdyn_modes</span><span class="p">(</span><span class="s1">&#39;matdyn.modes&#39;</span><span class="p">,</span><span class="n">natoms</span><span class="o">=</span><span class="mi">27</span><span class="p">)</span>
-<span class="go"># how many q-points? -&gt; 8</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qpoints</span><span class="o">.</span><span class="n">shape</span>
-<span class="go">(8,3)</span>
-<span class="go"># 1st q-point in file, mode #3 (out of 3*27) -&gt; vectors on all 27 atoms</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vecs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">...</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
-<span class="go">(27,3)</span>
-<span class="go"># 1st q-point in file, mode #3, vector on atom #15</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vecs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">14</span><span class="p">,:]</span><span class="o">.</span><span class="n">real</span>
-<span class="go">array([-0.010832,  0.026063, -0.089511])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vecs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">14</span><span class="p">,:]</span><span class="o">.</span><span class="n">imag</span>
-<span class="go">array([ 0.,  0.,  0.])</span>
 </pre></div>
 </div>
 </dd></dl>

@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.num.round_up_next_multiple" href="pwtools.num.round_up_next_multiple.html" />
+    <link rel="prev" title="pwtools.num.rms" href="pwtools.num.rms.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="num.html">num</a><ul>
+      <li>Previous: <a href="pwtools.num.rms.html" title="previous chapter">pwtools.num.rms</a></li>
+      <li>Next: <a href="pwtools.num.round_up_next_multiple.html" title="next chapter">pwtools.num.round_up_next_multiple</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -88,21 +99,20 @@
 <dd><p>RMS of 3d array along <cite>axis</cite>. Sum all elements of all axes != axis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>arr</strong><span class="classifier">3d array</span></dt><dd></dd>
-<dt><strong>axis</strong><span class="classifier">int</span></dt><dd><p>The axis along which the RMS of all sub-arrays is to be computed
-(usually time axis in MD).</p>
-</dd>
-<dt><strong>nitems</strong><span class="classifier">{‘all’, float}</span></dt><dd><p>normalization constant, the sum of squares is divided by this number,
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arr</strong> (<em>3d array</em>) – </p></li>
+<li><p><strong>axis</strong> (<em>int</em>) – The axis along which the RMS of all sub-arrays is to be computed
+(usually time axis in MD).</p></li>
+<li><p><strong>nitems</strong> (<em>{'all'</em><em>, </em><em>float}</em>) – normalization constant, the sum of squares is divided by this number,
 set to unity for no normalization, if ‘all’ then use nitems = number of
-elements in each sub-array along <cite>axis</cite></p>
-</dd>
-</dl>
+elements in each sub-array along <cite>axis</cite></p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>rms</strong><span class="classifier">1d array, (arr.shape[axis],)</span></dt><dd></dd>
-</dl>
+<dd class="field-even"><p><strong>rms</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>1d array, (arr.shape[axis],)</p>
 </dd>
 </dl>
 </dd></dl>

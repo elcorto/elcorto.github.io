@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.batch.Calculation.get_sql_record" href="pwtools.batch.Calculation.get_sql_record.html" />
+    <link rel="prev" title="batch" href="batch.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="batch.html">batch</a><ul>
+      <li>Previous: <a href="batch.html" title="previous chapter">batch</a></li>
+      <li>Next: <a href="pwtools.batch.Calculation.get_sql_record.html" title="next chapter">pwtools.batch.Calculation.get_sql_record</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -85,12 +96,33 @@
 <dl class="py class">
 <dt id="pwtools.batch.Calculation">
 <em class="property">class </em><code class="sig-prename descclassname">pwtools.batch.</code><code class="sig-name descname">Calculation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">machine</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">templates</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">calc_dir</span><span class="o">=</span><span class="default_value">'calc_dir'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Calculation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Calculation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represent a single calculation.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represent a single calculation.</p>
 <p>The calculation data will be placed, e.g., in dir calc_foo/0/. A
 Calculation is bound to one Machine. This class is usually not used on it’s
 own, but only by ParameterStudy.</p>
 <p>The dir where file templates live is defined in the FileTemplates (usually
 ‘calc.templ’).</p>
+<dl class="py method">
+<dt id="pwtools.batch.Calculation.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">machine</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">templates</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">calc_dir</span><span class="o">=</span><span class="default_value">'calc_dir'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#Calculation.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.Calculation.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>machine</strong> (<a class="reference internal" href="pwtools.batch.Machine.html#pwtools.batch.Machine" title="pwtools.batch.Machine"><em>Machine</em></a><em>, </em><em>optional</em>) – Used to add machine specific attributes. Pulled from
+Machine.get_sql_record(). Used for FileTemplate replacement.</p></li>
+<li><p><strong>templates</strong> (<em>sequence</em>) – Sequence of FileTemplate instances.</p></li>
+<li><p><strong>params</strong> (<em>sequence of SQLEntry instances</em>) – A single “parameter set”. The <cite>key</cite> attribute (=sql column name) of
+each SQLEntry will be converted to a placeholder in each
+FileTemplate and an attempt to replacement in the template files is
+made.</p></li>
+<li><p><strong>calc_dir</strong> (<em>str</em><em>, </em><em>optional</em>) – Calculation directory to which input files are written (e.g.
+‘calc_foo/0/’)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <p class="rubric">Methods</p>
 <table class="longtable docutils align-default">
 <colgroup>

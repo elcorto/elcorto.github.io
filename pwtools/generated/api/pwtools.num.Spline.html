@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.num.Spline.get_max" href="pwtools.num.Spline.get_max.html" />
+    <link rel="prev" title="pwtools.num.PolyFit1D.is_mono" href="pwtools.num.PolyFit1D.is_mono.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="num.html">num</a><ul>
+      <li>Previous: <a href="pwtools.num.PolyFit1D.is_mono.html" title="previous chapter">pwtools.num.PolyFit1D.is_mono</a></li>
+      <li>Next: <a href="pwtools.num.Spline.get_max.html" title="next chapter">pwtools.num.Spline.get_max</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -85,7 +96,8 @@
 <dl class="py class">
 <dt id="pwtools.num.Spline">
 <em class="property">class </em><code class="sig-prename descclassname">pwtools.num.</code><code class="sig-name descname">Spline</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">y</span></em>, <em class="sig-param"><span class="n">eps</span><span class="o">=</span><span class="default_value">1e-10</span></em>, <em class="sig-param"><span class="n">checkeps</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">splrep_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Spline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Spline" title="Permalink to this definition">¶</a></dt>
-<dd><p><a class="reference internal" href="pwtools.num.Fit1D.html#pwtools.num.Fit1D" title="pwtools.num.Fit1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fit1D</span></code></a>-based spline interpolator.</p>
+<dd><p>Bases: <a class="reference internal" href="pwtools.num.Fit1D.html#pwtools.num.Fit1D" title="pwtools.num.Fit1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.num.Fit1D</span></code></a></p>
+<p><a class="reference internal" href="pwtools.num.Fit1D.html#pwtools.num.Fit1D" title="pwtools.num.Fit1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fit1D</span></code></a>-based spline interpolator.</p>
 <p>Like <code class="docutils literal notranslate"><span class="pre">scipy.interpolate.UnivariateSpline</span></code>, this is a wrapper around
 <code class="docutils literal notranslate"><span class="pre">scipy.interpolate.splrep/splev</span></code> with some nice features like y-&gt;x lookup
 and interpolation accuracy check etc. It basically simplifies setting up a
@@ -112,6 +124,30 @@ but you can also use the normal tck (<code class="docutils literal notranslate">
 <span class="gp">&gt;&gt;&gt; </span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
+<dl class="py method">
+<dt id="pwtools.num.Spline.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">y</span></em>, <em class="sig-param"><span class="n">eps</span><span class="o">=</span><span class="default_value">1e-10</span></em>, <em class="sig-param"><span class="n">checkeps</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">splrep_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Spline.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Spline.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>numpy 1d arrays</em>) – </p></li>
+<li><p><strong>y</strong> (<em>numpy 1d arrays</em>) – </p></li>
+<li><p><strong>eps</strong> (<em>float</em>) – Accuracy threshold. Spline must interpolate points with an error
+less then eps. Useless if you use splrep(…,s=..) with “s” (the
+smoothing factor) much bigger than 0. See <cite>ckeckeps</cite>.</p></li>
+<li><p><strong>checkeps</strong> (<em>bool</em>) – Whether to use <cite>eps</cite> to ckeck interpolation accuracy.</p></li>
+<li><p><strong>**splrep_kwargs</strong> (<em>keywords args to splrep</em><em>(</em><em>)</em><em>, </em><em>default: k=3</em><em>, </em><em>s=0</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pwtools.num.Spline.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#Spline.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.Spline.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
 <p class="rubric">Methods</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -119,34 +155,23 @@ but you can also use the normal tck (<code class="docutils literal notranslate">
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.num.Spline.__call__.html#pwtools.num.Spline.__call__" title="pwtools.num.Spline.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(x, *args, **kwargs)</p></td>
-<td><p>Call self as a function.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.num.Spline.get_max.html#pwtools.num.Spline.get_max" title="pwtools.num.Spline.get_max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_max</span></code></a>([x0, xab])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.num.Spline.get_max.html#pwtools.num.Spline.get_max" title="pwtools.num.Spline.get_max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_max</span></code></a>([x0, xab])</p></td>
 <td><p>Convenience method.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.num.Spline.get_min.html#pwtools.num.Spline.get_min" title="pwtools.num.Spline.get_min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_min</span></code></a>([x0, xab])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.num.Spline.get_min.html#pwtools.num.Spline.get_min" title="pwtools.num.Spline.get_min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_min</span></code></a>([x0, xab])</p></td>
 <td><p>Return x where y(x) = min(y) by calculating the root of the fit’s 1st derivative (by calling <code class="docutils literal notranslate"><span class="pre">self(x,</span> <span class="pre">der=1)</span></code>).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.num.Spline.get_root.html#pwtools.num.Spline.get_root" title="pwtools.num.Spline.get_root"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_root</span></code></a>([x0, xab])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.num.Spline.get_root.html#pwtools.num.Spline.get_root" title="pwtools.num.Spline.get_root"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_root</span></code></a>([x0, xab])</p></td>
 <td><p>Return x where y(x) = 0 by calculating the root of the fit function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.num.Spline.invsplev.html#pwtools.num.Spline.invsplev" title="pwtools.num.Spline.invsplev"><code class="xref py py-obj docutils literal notranslate"><span class="pre">invsplev</span></code></a>(y0[, x0, xab])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.num.Spline.invsplev.html#pwtools.num.Spline.invsplev" title="pwtools.num.Spline.invsplev"><code class="xref py py-obj docutils literal notranslate"><span class="pre">invsplev</span></code></a>(y0[, x0, xab])</p></td>
 <td><p>Lookup x for a given y, i.e. “inverse spline evaluation”, hence the name.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.num.Spline.is_mono.html#pwtools.num.Spline.is_mono" title="pwtools.num.Spline.is_mono"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_mono</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.num.Spline.is_mono.html#pwtools.num.Spline.is_mono" title="pwtools.num.Spline.is_mono"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_mono</span></code></a>()</p></td>
 <td><p>Return True if the curve described by the fit function f(x) is monotonic.</p></td>
 </tr>
-</tbody>
-</table>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 47%" />
-<col style="width: 53%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><strong>splev</strong></p></td>
-<td></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.num.Spline.splev.html#pwtools.num.Spline.splev" title="pwtools.num.Spline.splev"><code class="xref py py-obj docutils literal notranslate"><span class="pre">splev</span></code></a>(x, *args, **kwds)</p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>

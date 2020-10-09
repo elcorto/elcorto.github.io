@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.visualize.assert_struct" href="pwtools.visualize.assert_struct.html" />
+    <link rel="prev" title="visualize" href="visualize.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="visualize.html">visualize</a><ul>
+      <li>Previous: <a href="visualize.html" title="previous chapter">visualize</a></li>
+      <li>Next: <a href="pwtools.visualize.assert_struct.html" title="next chapter">pwtools.visualize.assert_struct</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -85,8 +96,64 @@
 <dl class="py class">
 <dt id="pwtools.visualize.ViewFactory">
 <em class="property">class </em><code class="sig-prename descclassname">pwtools.visualize.</code><code class="sig-name descname">ViewFactory</code><span class="sig-paren">(</span><em class="sig-param">cmd=None</em>, <em class="sig-param">assert_cmd=None</em>, <em class="sig-param">suffix='.axsf'</em>, <em class="sig-param">writer=&lt;function write_axsf&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/visualize.html#ViewFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.visualize.ViewFactory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Factory for creating interface functions to external molecular
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Factory for creating interface functions to external molecular
 viewers.</p>
+<dl class="py method">
+<dt id="pwtools.visualize.ViewFactory.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">cmd=None</em>, <em class="sig-param">assert_cmd=None</em>, <em class="sig-param">suffix='.axsf'</em>, <em class="sig-param">writer=&lt;function write_axsf&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/visualize.html#ViewFactory.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.visualize.ViewFactory.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cmd</strong> (<em>str</em>) – Shell command to call the viewer. Used as <code class="docutils literal notranslate"><span class="pre">&lt;cmd&gt;</span>
+<span class="pre">&lt;structfile&gt;</span></code>. Example: ‘jmol’, ‘xcrysden –axsf’.</p></li>
+<li><p><strong>assert_cmd</strong> (<em>callable</em>) – Function which accepts a single arg. Called as <code class="docutils literal notranslate"><span class="pre">assert_cmd(obj)</span></code>
+where <cite>obj</cite> = Structure or Trajectory instance usually). Will be
+called early. Use to make additional tests on <cite>obj</cite>.</p></li>
+<li><p><strong>suffix</strong> (<em>str</em>) – File end for written structure file.</p></li>
+<li><p><strong>writer</strong> (<em>callable</em>) – Called as <code class="docutils literal notranslate"><span class="pre">writer(obj,</span> <span class="pre">structfile)</span></code>. Write struct file to read by
+viewer.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">ViewFactory</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span><span class="p">(</span><span class="n">struct</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># To start more than one viewer, use bg=True to send the spawned</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># process to the background. Will leave temp files on disk.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span><span class="p">(</span><span class="n">struct1</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span><span class="p">(</span><span class="n">struct2</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pwtools.visualize.ViewFactory.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em>, <em class="sig-param"><span class="n">logfile</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">structfile</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">disp</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">keepfiles</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">tmpdir</span><span class="o">=</span><span class="default_value">'/tmp'</span></em>, <em class="sig-param"><span class="n">wait</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">bg</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">options</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/visualize.html#ViewFactory.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.visualize.ViewFactory.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call viewer.</p>
+<p>The executed shell command is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">cmd</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">options</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">structfile</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">logfile</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> (<a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><em>Structure</em></a><em> or </em><a class="reference internal" href="pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><em>Trajectory</em></a>) – </p></li>
+<li><p><strong>logfile</strong> (<em>str</em><em>, </em><em>optional</em>) – Filename of a logfile for the viewer’s text output.</p></li>
+<li><p><strong>structfile</strong> (<em>str</em><em>, </em><em>optional</em>) – Filename of a file to write the structure to.</p></li>
+<li><p><strong>disp</strong> (<em>bool</em>) – Display text output (i.e. <cite>logfile</cite>’s content).</p></li>
+<li><p><strong>keepfiles</strong> (<em>bool</em>) – Keep <cite>structfile</cite> and <cite>logfile</cite> on disk.</p></li>
+<li><p><strong>tmpdir</strong> (<em>str</em><em>, </em><em>optional</em>) – Directory where temp files are written to.</p></li>
+<li><p><strong>wait</strong> (<em>bool</em><em>, </em><em>optional</em>) – <cite>wait</cite> passed to common.system(), wait (or not) for command to exit</p></li>
+<li><p><strong>bg</strong> (<em>bool</em>) – Background mode. If True then this is an alias for <cite>wait=False</cite> +
+<cite>keepfiles=True</cite>. The latter is needed b/c with just <cite>wait=False</cite>,
+temp files will be deleted right after the shell call and the
+viewer program may complain.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <p class="rubric">Methods</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -94,9 +161,6 @@ viewers.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="visualize.html#pwtools.visualize.ViewFactory.__call__" title="pwtools.visualize.ViewFactory.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(obj[, logfile, structfile, disp, …])</p></td>
-<td><p>Call viewer.</p></td>
-</tr>
 </tbody>
 </table>
 </dd></dl>

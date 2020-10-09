@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.crys.cell2cc" href="pwtools.crys.cell2cc.html" />
+    <link rel="prev" title="pwtools.crys.cc2cell3d" href="pwtools.crys.cc2cell3d.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="crys.html">crys</a><ul>
+      <li>Previous: <a href="pwtools.crys.cc2cell3d.html" title="previous chapter">pwtools.crys.cc2cell3d</a></li>
+      <li>Next: <a href="pwtools.crys.cell2cc.html" title="next chapter">pwtools.crys.cell2cc</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -88,20 +99,18 @@
 <dd><p>Convert cryst_const to PWscf <cite>celldm</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>cryst_const</strong><span class="classifier">array_like, shape (6,)</span></dt><dd><p>[a, b, c, alpha, beta, gamma], where alpha=angle(b,c), beta=angle(a,c),
-gamma=angle(a,b)</p>
-</dd>
-<dt><strong>fac</strong><span class="classifier">float, optional</span></dt><dd><p>conversion a[any unit] -&gt; a[Bohr]</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cryst_const</strong> (<em>array_like</em><em>, </em><em>shape</em><em> (</em><em>6</em><em>,</em><em>)</em>) – [a, b, c, alpha, beta, gamma], where alpha=angle(b,c), beta=angle(a,c),
+gamma=angle(a,b)</p></li>
+<li><p><strong>fac</strong> (<em>float</em><em>, </em><em>optional</em>) – conversion a[any unit] -&gt; a[Bohr]</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>celldm</strong><span class="classifier">array_like, shape (6,)</span></dt><dd><p>[a, b/a, c/a, cos(alpha), cos(beta), cos(gamma)]
+<dd class="field-even"><p><strong>celldm</strong> – [a, b/a, c/a, cos(alpha), cos(beta), cos(gamma)]
 <cite>a</cite> is supposed to be in Bohr</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array_like, shape (6,)</p>
 </dd>
 </dl>
 </dd></dl>

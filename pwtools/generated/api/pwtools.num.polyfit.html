@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.num.polyval" href="pwtools.num.polyval.html" />
+    <link rel="prev" title="pwtools.num.poly_str" href="pwtools.num.poly_str.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="num.html">num</a><ul>
+      <li>Previous: <a href="pwtools.num.poly_str.html" title="previous chapter">pwtools.num.poly_str</a></li>
+      <li>Next: <a href="pwtools.num.polyval.html" title="next chapter">pwtools.num.polyval</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -88,37 +99,27 @@
 <dd><p>Fit nd polynomial of dregree <cite>deg</cite>. The dimension is <code class="docutils literal notranslate"><span class="pre">points.shape[1]</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>points</strong><span class="classifier">nd array (npoints,ndim)</span></dt><dd><p><cite>npoints</cite> points in <cite>ndim</cite>-space, to be fitted by a <cite>ndim</cite> polynomial
-f(x0,x1,…,x{ndim-1}).</p>
-</dd>
-<dt><strong>values</strong><span class="classifier">1d array</span></dt><dd></dd>
-<dt><strong>deg</strong><span class="classifier">int</span></dt><dd><p>Degree of the poly (e.g. 3 for cubic).</p>
-</dd>
-<dt><strong>scale: bool, optional</strong></dt><dd><p>Scale <cite>points</cite> and <cite>values</cite> to unity internally before fitting.
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>nd array</em><em> (</em><em>npoints</em><em>,</em><em>ndim</em><em>)</em>) – <cite>npoints</cite> points in <cite>ndim</cite>-space, to be fitted by a <cite>ndim</cite> polynomial
+f(x0,x1,…,x{ndim-1}).</p></li>
+<li><p><strong>values</strong> (<em>1d array</em>) – </p></li>
+<li><p><strong>deg</strong> (<em>int</em>) – Degree of the poly (e.g. 3 for cubic).</p></li>
+<li><p><strong>scale</strong> (<em>bool</em><em>, </em><em>optional</em>) – Scale <cite>points</cite> and <cite>values</cite> to unity internally before fitting.
 <code class="docutils literal notranslate"><span class="pre">fit['coeffs']</span></code> are for scaled data. <code class="docutils literal notranslate"><span class="pre">polyval</span></code> handles that
-transparently.</p>
-</dd>
-<dt><strong>scale_vand</strong><span class="classifier">bool, optional</span></dt><dd><p>scale Vandermonde matrix as in numpy.polyfit (devide by column norms to
-improve condition number)</p>
-</dd>
-</dl>
+transparently.</p></li>
+<li><p><strong>scale_vand</strong> (<em>bool</em><em>, </em><em>optional</em>) – scale Vandermonde matrix as in numpy.polyfit (devide by column norms to
+improve condition number)</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>fit</strong><span class="classifier">dict</span></dt><dd><p>{coeffs, deg, pscale, vscale, pmin, vmin} where coeffs = 1d array
+<dd class="field-even"><p><strong>fit</strong> – {coeffs, deg, pscale, vscale, pmin, vmin} where coeffs = 1d array
 ((deg+1)**ndim,) with poly coefficients and <cite>*min</cite> and <cite>*scale</cite> are for
 data scaling. Input for polyval().</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolyFit</span></code></a>, <a class="reference internal" href="pwtools.num.PolyFit1D.html#pwtools.num.PolyFit1D" title="pwtools.num.PolyFit1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolyFit1D</span></code></a>, <a class="reference internal" href="pwtools.num.polyval.html#pwtools.num.polyval" title="pwtools.num.polyval"><code class="xref py py-func docutils literal notranslate"><span class="pre">polyval()</span></code></a></dt><dd></dd>
-</dl>
-</div>
 <p class="rubric">Notes</p>
 <p><cite>scale</cite>: <cite>numpy.polyfit</cite> does only <cite>scale_vand</cite> by default, which seems to be
 enough for most real world data. The new <cite>np.polynomial.Polynomial.fit</cite>
@@ -131,6 +132,10 @@ to the result of <cite>np.polyfit</cite> directly. Only with <cite>scale=False</
 compare the coeffs, which should be the same up to numerical noise.
 However, you may simply compare the resulting fits, evaluated at the same
 points.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolyFit</span></code></a>, <a class="reference internal" href="pwtools.num.PolyFit1D.html#pwtools.num.PolyFit1D" title="pwtools.num.PolyFit1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolyFit1D</span></code></a>, <a class="reference internal" href="pwtools.num.polyval.html#pwtools.num.polyval" title="pwtools.num.polyval"><code class="xref py py-func docutils literal notranslate"><span class="pre">polyval()</span></code></a></p>
+</div>
 </dd></dl>
 
 </div>

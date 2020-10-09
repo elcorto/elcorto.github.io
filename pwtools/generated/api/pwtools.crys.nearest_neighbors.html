@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.crys.nearest_neighbors_from_dists" href="pwtools.crys.nearest_neighbors_from_dists.html" />
+    <link rel="prev" title="pwtools.crys.mix" href="pwtools.crys.mix.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="crys.html">crys</a><ul>
+      <li>Previous: <a href="pwtools.crys.mix.html" title="previous chapter">pwtools.crys.mix</a></li>
+      <li>Next: <a href="pwtools.crys.nearest_neighbors_from_dists.html" title="next chapter">pwtools.crys.nearest_neighbors_from_dists</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -89,41 +100,31 @@
 whose symbols are <cite>skip</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>struct</strong><span class="classifier">Structure</span></dt><dd></dd>
-<dt><strong>idx</strong><span class="classifier">int</span></dt><dd><p>Atom index of the central atom.</p>
-</dd>
-<dt><strong>skip</strong><span class="classifier">str or sequence of strings</span></dt><dd><p>Symbol(s) of the atoms to skip.</p>
-</dd>
-<dt><strong>num</strong><span class="classifier">int</span></dt><dd><p>number of requested nearest neighbors</p>
-</dd>
-<dt><strong>cutoff</strong><span class="classifier">float</span></dt><dd><p>Cutoff radius in unit defined in <cite>struct</cite>, e.g. Angstrom. Return all
-neighbors within that radius. Use either <cite>num</cite> of <cite>cutoff</cite>.</p>
-</dd>
-<dt><strong>pbc</strong><span class="classifier">bool</span></dt><dd><p>Apply PBC to distances.</p>
-</dd>
-<dt><strong>sort</strong><span class="classifier">bool</span></dt><dd><p>Sort <cite>nn_idx</cite> and <cite>nn_dist</cite> by distance.</p>
-</dd>
-<dt><strong>fullout</strong><span class="classifier">bool</span></dt><dd><p>See below.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>struct</strong> (<a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><em>Structure</em></a>) – </p></li>
+<li><p><strong>idx</strong> (<em>int</em>) – Atom index of the central atom.</p></li>
+<li><p><strong>skip</strong> (<em>str</em><em> or </em><em>sequence of strings</em>) – Symbol(s) of the atoms to skip.</p></li>
+<li><p><strong>num</strong> (<em>int</em>) – number of requested nearest neighbors</p></li>
+<li><p><strong>cutoff</strong> (<em>float</em>) – Cutoff radius in unit defined in <cite>struct</cite>, e.g. Angstrom. Return all
+neighbors within that radius. Use either <cite>num</cite> of <cite>cutoff</cite>.</p></li>
+<li><p><strong>pbc</strong> (<em>bool</em>) – Apply PBC to distances.</p></li>
+<li><p><strong>sort</strong> (<em>bool</em>) – Sort <cite>nn_idx</cite> and <cite>nn_dist</cite> by distance.</p></li>
+<li><p><strong>fullout</strong> (<em>bool</em>) – See below.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>nn_idx</strong><span class="classifier">fullout=False</span></dt><dd></dd>
-<dt><strong>nn_idx,nn_dist</strong><span class="classifier">fullout=True</span></dt><dd></dd>
-<dt><strong>nn_idx</strong><span class="classifier">1d array</span></dt><dd><p>Indices into struct.symbols / coords.</p>
-</dd>
-<dt><strong>nn_dist</strong><span class="classifier">1d array</span></dt><dd><p>Distances ordered as in <cite>nn_idx</cite>.</p>
-</dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>nn_idx</strong> (<em>fullout=False</em>)</p></li>
+<li><p><strong>nn_idx,nn_dist</strong> (<em>fullout=True</em>)</p></li>
+<li><p><strong>nn_idx</strong> (<em>1d array</em>) – Indices into struct.symbols / coords.</p></li>
+<li><p><strong>nn_dist</strong> (<em>1d array</em>) – Distances ordered as in <cite>nn_idx</cite>.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">num.match_mask</span></code></dt><dd></dd>
-</dl>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">num.match_mask()</span></code></p>
 </div>
 <p class="rubric">Notes</p>
 <p><cite>num</cite> : Depending on <cite>struct</cite>, there may not be <cite>num</cite> nearest neighbors,

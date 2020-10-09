@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.num.meshgridt" href="pwtools.num.meshgridt.html" />
+    <link rel="prev" title="pwtools.num.inner_points_mask" href="pwtools.num.inner_points_mask.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="num.html">num</a><ul>
+      <li>Previous: <a href="pwtools.num.inner_points_mask.html" title="previous chapter">pwtools.num.inner_points_mask</a></li>
+      <li>Next: <a href="pwtools.num.meshgridt.html" title="next chapter">pwtools.num.meshgridt</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -93,33 +104,24 @@ scalar). By default we assume integer arrays, unless <cite>eps</cite> is used.</
 <p>With <cite>eps=None</cite> and <cite>fullout=False</cite>, it behaves like <code class="docutils literal notranslate"><span class="pre">numpy.in1d</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>arr</strong><span class="classifier">1d array</span></dt><dd></dd>
-<dt><strong>values</strong><span class="classifier">1d array</span></dt><dd><p>Values to be found in <cite>arr</cite>.</p>
-</dd>
-<dt><strong>fullout</strong><span class="classifier">bool</span></dt><dd></dd>
-<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Use this threshold to compare array values.</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arr</strong> (<em>1d array</em>) – </p></li>
+<li><p><strong>values</strong> (<em>1d array</em>) – Values to be found in <cite>arr</cite>.</p></li>
+<li><p><strong>fullout</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>eps</strong> (<em>float</em>) – Use this threshold to compare array values.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>ret</strong><span class="classifier">fullout = False</span></dt><dd></dd>
-<dt><strong>ret, idx_lst</strong><span class="classifier">fullout = True</span></dt><dd></dd>
-<dt><strong>ret</strong><span class="classifier">1d array, bool, len(arr)</span></dt><dd><p>Bool mask array for indexing <cite>arr</cite>. <code class="docutils literal notranslate"><span class="pre">arr[ret]</span></code> pulls out all values
-which are also in <cite>values</cite>.</p>
-</dd>
-<dt><strong>idx_lst</strong><span class="classifier">1d array</span></dt><dd><p>Indices for which <code class="docutils literal notranslate"><span class="pre">arr[idx_lst[i]]</span></code> equals some value in <cite>values</cite>.</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>ret</strong> (<em>fullout = False</em>)</p></li>
+<li><p><strong>ret, idx_lst</strong> (<em>fullout = True</em>)</p></li>
+<li><p><strong>ret</strong> (<em>1d array, bool, len(arr)</em>) – Bool mask array for indexing <cite>arr</cite>. <code class="docutils literal notranslate"><span class="pre">arr[ret]</span></code> pulls out all values
+which are also in <cite>values</cite>.</p></li>
+<li><p><strong>idx_lst</strong> (<em>1d array</em>) – Indices for which <code class="docutils literal notranslate"><span class="pre">arr[idx_lst[i]]</span></code> equals some value in <cite>values</cite>.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.in1d.html#numpy.in1d" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.in1d</span></code></a></dt><dd></dd>
-</dl>
-</div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span><span class="o">=</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]);</span> <span class="n">values</span><span class="o">=</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">num</span><span class="o">.</span><span class="n">match_mask</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
@@ -136,6 +138,10 @@ which are also in <cite>values</cite>.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">num</span><span class="o">.</span><span class="n">match_mask</span><span class="p">(</span><span class="n">arr</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">fullout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 <span class="go">(array([ True, False,  True, False, False], dtype=bool), array([0, 2]))</span>
 </pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.in1d.html#numpy.in1d" title="(in NumPy v1.19)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.in1d()</span></code></a></p>
 </div>
 </dd></dl>
 

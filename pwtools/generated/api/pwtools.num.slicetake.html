@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.num.sum" href="pwtools.num.sum.html" />
+    <link rel="prev" title="pwtools.num.sliceput" href="pwtools.num.sliceput.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="num.html">num</a><ul>
+      <li>Previous: <a href="pwtools.num.sliceput.html" title="previous chapter">pwtools.num.sliceput</a></li>
+      <li>Next: <a href="pwtools.num.sum.html" title="next chapter">pwtools.num.sum</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -90,24 +101,25 @@ objects instead of an index array. Also by default, it returns a <em>view</em> a
 no copy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>a</strong><span class="classifier">numpy ndarray</span></dt><dd></dd>
-<dt><strong>sl</strong><span class="classifier">slice object, list or tuple of slice objects</span></dt><dd><dl class="simple">
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>numpy ndarray</em>) – </p></li>
+<li><p><strong>sl</strong> (<em>slice object</em><em>, </em><em>list</em><em> or </em><em>tuple of slice objects</em>) – <dl class="simple">
 <dt>axis=&lt;int&gt;</dt><dd><p>one slice object for <em>that</em> axis</p>
 </dd>
 <dt>axis=None</dt><dd><p><cite>sl</cite> is a list or tuple of slice objects, one for each axis.
 It must index the whole array, i.e. len(sl) == len(a.shape).</p>
 </dd>
 </dl>
-</dd>
-<dt><strong>axis</strong><span class="classifier">{None, int}</span></dt><dd></dd>
-<dt><strong>copy</strong><span class="classifier">bool, return a copy instead of a view</span></dt><dd></dd>
-</dl>
+</p></li>
+<li><p><strong>axis</strong> (<em>{None</em><em>, </em><em>int}</em>) – </p></li>
+<li><p><strong>copy</strong> (<em>bool</em><em>, </em><em>return a copy instead of a view</em>) – </p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>A view into <cite>a</cite> or copy of a slice of <cite>a</cite>.</dt><dd></dd>
-</dl>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>A view into <cite>a</cite> or copy of a slice of <cite>a</cite>.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>

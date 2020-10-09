@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.sql.SQLiteDB" href="pwtools.sql.SQLiteDB.html" />
+    <link rel="prev" title="sql" href="sql.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="sql.html">sql</a><ul>
+      <li>Previous: <a href="sql.html" title="previous chapter">sql</a></li>
+      <li>Next: <a href="pwtools.sql.SQLiteDB.html" title="next chapter">pwtools.sql.SQLiteDB</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -85,13 +96,75 @@
 <dl class="py class">
 <dt id="pwtools.sql.SQLEntry">
 <em class="property">class </em><code class="sig-prename descclassname">pwtools.sql.</code><code class="sig-name descname">SQLEntry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sqlval</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sqltype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fileval</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">key</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLEntry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLEntry" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represent an entry in a SQLite database. An entry is one single
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represent an entry in a SQLite database. An entry is one single
 value of one column and record (record = row).</p>
 <p>This class is ment to be used in parameter studies where a lot of
 parameters are vaired (e.g. in pw.x input files) and entered in a
 SQLite database.</p>
 <p>There is the possibility that the entry has a slightly different value
 in the db and in the actual input file. See fileval.</p>
+<dl class="py method">
+<dt id="pwtools.sql.SQLEntry.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sqlval</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sqltype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fileval</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">key</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/sql.html#SQLEntry.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.sql.SQLEntry.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sqlval</strong> (<em>Any Python type</em><em> (</em><em>str</em><em>, </em><em>unicode</em><em>, </em><em>float</em><em>, </em><em>integer</em><em>, </em><em>..</em><em>)</em>) – The value of the entry which is entered into the database.</p></li>
+<li><p><strong>sqltype</strong> (<em>{str</em><em>, </em><em>None}</em><em>, </em><em>optional</em>) – <p>A string (not case sentitive) which determines the sqlite type of the
+entry: ‘integer’, ‘real’, ‘null’, … If None then automatic type
+detection will be attempted. Only default types are supported, see
+notes below. This is needed to create a sqlite table like in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">create</span> <span class="n">table</span> <span class="n">calc</span> <span class="p">(</span><span class="n">foo</span> <span class="n">integer</span><span class="p">,</span> <span class="n">bar</span> <span class="n">real</span><span class="p">)</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>fileval</strong> (<em>{None</em><em>, </em><em>&lt;anything&gt;}</em><em>, </em><em>optional</em>) – <p>If not None, then this is the value of the entry that it has in
+another context (actually used in the input file). If None, then
+fileval = val.
+Example: K_POINTS in pw.x input file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sqlval</span><span class="p">:</span> <span class="s1">&#39;2 2 2 0 0 0&#39;</span>
+<span class="n">fileval</span><span class="p">:</span> <span class="s1">&#39;K_POINTS automatic</span><span class="se">\n</span><span class="s1">2 2 2 0 0 0&#39;</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>key</strong> (<em>optional</em><em>, </em><em>{None</em><em>, </em><em>str}</em><em>, </em><em>optional</em>) – <p>An optional key. This key should refer to the column name in the
+database table, as in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">create</span> <span class="n">table</span> <span class="n">calc</span> <span class="p">(</span><span class="n">key1</span> <span class="n">sqltype1</span><span class="p">,</span> <span class="n">key2</span> <span class="n">sqltype2</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">create</span> <span class="n">table</span> <span class="n">calc</span> <span class="p">(</span><span class="n">idx</span> <span class="n">integer</span><span class="p">,</span> <span class="n">ecutwfc</span> <span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>SQLite types from the Python docs of sqlite3:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="nb">type</span>     <span class="n">SQLite</span> <span class="nb">type</span>
+<span class="o">-----------</span>     <span class="o">-----------</span>
+<span class="kc">None</span>            <span class="n">NULL</span>
+<span class="nb">int</span>             <span class="n">INTEGER</span>
+<span class="n">long</span>            <span class="n">INTEGER</span>
+<span class="nb">float</span>           <span class="n">REAL</span>
+<span class="nb">str</span> <span class="p">(</span><span class="n">UTF8</span><span class="o">-</span><span class="n">encoded</span><span class="p">)</span>  <span class="n">TEXT</span>
+<span class="n">unicode</span>         <span class="n">TEXT</span>
+<span class="n">buffer</span>          <span class="n">BLOB</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+</tbody>
+</table>
 </dd></dl>
 
 </div>

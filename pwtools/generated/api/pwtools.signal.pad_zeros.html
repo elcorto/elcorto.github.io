@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.signal.scale" href="pwtools.signal.scale.html" />
+    <link rel="prev" title="pwtools.signal.odd" href="pwtools.signal.odd.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="signal.html">signal</a><ul>
+      <li>Previous: <a href="pwtools.signal.odd.html" title="previous chapter">pwtools.signal.odd</a></li>
+      <li>Next: <a href="pwtools.signal.scale.html" title="next chapter">pwtools.signal.scale</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -87,28 +98,27 @@
 <code class="sig-prename descclassname">pwtools.signal.</code><code class="sig-name descname">pad_zeros</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arr</span></em>, <em class="sig-param"><span class="n">axis</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">where</span><span class="o">=</span><span class="default_value">'end'</span></em>, <em class="sig-param"><span class="n">nadd</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">upto</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tonext</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tonext_min</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/signal.html#pad_zeros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.signal.pad_zeros" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pad an nd-array with zeros. Default is to append an array of zeros of
 the same shape as <cite>arr</cite> to arr’s end along <cite>axis</cite>.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>arr</strong><span class="classifier">nd array</span></dt><dd></dd>
-<dt><strong>axis</strong><span class="classifier">the axis along which to pad</span></dt><dd></dd>
-<dt><strong>where</strong><span class="classifier">string {‘end’, ‘start’}, pad at the end (“append to array”) or</span></dt><dd><p>start (“prepend to array”) of <cite>axis</cite></p>
-</dd>
-<dt><strong>nadd</strong><span class="classifier">number of items to padd (i.e. nadd=3 means padd w/ 3 zeros in case</span></dt><dd><p>of an 1d array)</p>
-</dd>
-<dt><strong>upto</strong><span class="classifier">pad until arr.shape[axis] == upto</span></dt><dd></dd>
-<dt><strong>tonext</strong><span class="classifier">bool, pad up to the next power of two (pad so that the padded</span></dt><dd><p>array has a length of power of two)</p>
-</dd>
-<dt><strong>tonext_min</strong><span class="classifier">int, when using <cite>tonext</cite>, pad the array to the next possible</span></dt><dd><p>power of two for which the resulting array length along <cite>axis</cite> is at
-least <cite>tonext_min</cite>; the default is tonext_min = arr.shape[axis]</p>
-</dd>
-<dt><strong>Use only one of nadd, upto, tonext.</strong></dt><dd></dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arr</strong> (<em>nd array</em>) – </p></li>
+<li><p><strong>axis</strong> (<em>the axis along which to pad</em>) – </p></li>
+<li><p><strong>where</strong> (<em>string {'end'</em><em>, </em><em>'start'}</em><em>, </em><em>pad at the end</em><em> (</em><em>&quot;append to array&quot;</em><em>) </em><em>or</em>) – start (“prepend to array”) of <cite>axis</cite></p></li>
+<li><p><strong>nadd</strong> (<em>number of items to padd</em><em> (</em><em>i.e. nadd=3 means padd w/ 3 zeros in case</em>) – of an 1d array)</p></li>
+<li><p><strong>upto</strong> (<em>pad until arr.shape</em><em>[</em><em>axis</em><em>] </em><em>== upto</em>) – </p></li>
+<li><p><strong>tonext</strong> (<em>bool</em><em>, </em><em>pad up to the next power of two</em><em> (</em><em>pad so that the padded</em>) – array has a length of power of two)</p></li>
+<li><p><strong>tonext_min</strong> (int, when using <cite>tonext</cite>, pad the array to the next possible) – power of two for which the resulting array length along <cite>axis</cite> is at
+least <cite>tonext_min</cite>; the default is tonext_min = arr.shape[axis]</p></li>
+<li><p><strong>only one of nadd</strong> (<em>Use</em>) – </p></li>
+<li><p><strong>upto</strong> – </p></li>
+<li><p><strong>tonext.</strong> – </p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>padded array</dt><dd></dd>
-</dl>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>padded array</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>

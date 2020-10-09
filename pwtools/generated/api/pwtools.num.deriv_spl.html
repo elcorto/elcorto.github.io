@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.num.distsq" href="pwtools.num.distsq.html" />
+    <link rel="prev" title="pwtools.num.Spline.splev" href="pwtools.num.Spline.splev.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="num.html">num</a><ul>
+      <li>Previous: <a href="pwtools.num.Spline.splev.html" title="previous chapter">pwtools.num.Spline.splev</a></li>
+      <li>Next: <a href="pwtools.num.distsq.html" title="next chapter">pwtools.num.distsq</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -89,28 +100,23 @@
 Returns matching x-axis for plotting. Splines are used.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>x,y</strong><span class="classifier">1d arrays of same length</span></dt><dd><p>if x=None, then x=arange(len(y)) is used</p>
-</dd>
-<dt><strong>xnew</strong><span class="classifier">{None, 1d array)</span></dt><dd><p>x-axis to evaluate the derivative, if None then xnew=x</p>
-</dd>
-<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>order of the derivative, can only be &lt;= k</p>
-</dd>
-<dt><strong>fullout</strong><span class="classifier">bool</span></dt><dd><p>return xd, yd or just yd</p>
-</dd>
-<dt><strong>splrep_kwargs</strong><span class="classifier">keyword args to scipy.interpolate.splrep, default: k=3, s=0</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>1d arrays of same length</em>) – if x=None, then x=arange(len(y)) is used</p></li>
+<li><p><strong>y</strong> (<em>1d arrays of same length</em>) – if x=None, then x=arange(len(y)) is used</p></li>
+<li><p><strong>xnew</strong> (<em>{None</em><em>, </em><em>1d array</em><em>)</em>) – x-axis to evaluate the derivative, if None then xnew=x</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – order of the derivative, can only be &lt;= k</p></li>
+<li><p><strong>fullout</strong> (<em>bool</em>) – return xd, yd or just yd</p></li>
+<li><p><strong>splrep_kwargs</strong> (<em>keyword args to scipy.interpolate.splrep</em><em>, </em><em>default: k=3</em><em>, </em><em>s=0</em>) – </p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>if fullout:</dt><dd><p>xd, yd</p>
-</dd>
-<dt>else:</dt><dd><p>yd</p>
-</dd>
-<dt><strong>xd</strong><span class="classifier">1d array, (len(x) or len(xnew),)</span></dt><dd></dd>
-<dt><strong>yd</strong><span class="classifier">1d array, (len(x) or len(xnew),)</span></dt><dd><p>n-th derivative of y at points xd</p>
-</dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>if fullout</em> – xd, yd</p></li>
+<li><p><em>else</em> – yd</p></li>
+<li><p><strong>xd</strong> (<em>1d array, (len(x) or len(xnew),)</em>)</p></li>
+<li><p><strong>yd</strong> (<em>1d array, (len(x) or len(xnew),)</em>) – n-th derivative of y at points xd</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>

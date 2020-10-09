@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.dcd.read_dcd_data_f" href="pwtools.dcd.read_dcd_data_f.html" />
+    <link rel="prev" title="pwtools.dcd.HEADER_TYPES" href="pwtools.dcd.HEADER_TYPES.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="dcd.html">dcd</a><ul>
+      <li>Previous: <a href="pwtools.dcd.HEADER_TYPES.html" title="previous chapter">pwtools.dcd.HEADER_TYPES</a></li>
+      <li>Next: <a href="pwtools.dcd.read_dcd_data_f.html" title="next chapter">pwtools.dcd.read_dcd_data_f</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -87,27 +98,21 @@
 <code class="sig-prename descclassname">pwtools.dcd.</code><code class="sig-name descname">read_dcd_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fn</span></em>, <em class="sig-param"><span class="n">convang</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/dcd.html#read_dcd_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.dcd.read_dcd_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read dcd file. Fastest version. Calculates nstep from bytes between
 end-of-header and EOF.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>fn</strong><span class="classifier">str</span></dt><dd><p>filename</p>
-</dd>
-<dt><strong>convang</strong><span class="classifier">bool</span></dt><dd><p>convert angles from cosine to degree (only useful for lammps style dcd
-files)</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn</strong> (<em>str</em>) – filename</p></li>
+<li><p><strong>convang</strong> (<em>bool</em>) – convert angles from cosine to degree (only useful for lammps style dcd
+files)</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl>
-<dt><strong>ret</strong><span class="classifier">(cryst_const, coords)</span></dt><dd><div class="line-block">
-<div class="line">cryst_const : (nstep,6) float64 array, (a,b,c,alpha,beta,gamma),</div>
-<div class="line-block">
-<div class="line">Angstrom, degrees</div>
-</div>
-<div class="line">coords : (nstep, natoms, 3) float32 array, cartesian coords Angstrom</div>
-</div>
+<dd class="field-even"><p><strong>ret</strong> – | cryst_const : (nstep,6) float64 array, (a,b,c,alpha,beta,gamma),
+|               Angstrom, degrees
+| coords : (nstep, natoms, 3) float32 array, cartesian coords Angstrom</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(cryst_const, coords)</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>

@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.sql.sql_column" href="pwtools.sql.sql_column.html" />
+    <link rel="prev" title="pwtools.sql.get_test_db" href="pwtools.sql.get_test_db.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="sql.html">sql</a><ul>
+      <li>Previous: <a href="pwtools.sql.get_test_db.html" title="previous chapter">pwtools.sql.get_test_db</a></li>
+      <li>Next: <a href="pwtools.sql.sql_column.html" title="next chapter">pwtools.sql.sql_column</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -98,23 +109,21 @@ For interactive use, <cite>close=False</cite> is what you want. That gives you a
 which can be used right away.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>lists</strong><span class="classifier">list of lists, see sql_matrix()</span></dt><dd></dd>
-<dt><strong>colnames</strong><span class="classifier">list of column names, see sql_matrix()</span></dt><dd></dd>
-<dt><strong>table</strong><span class="classifier">str, optional</span></dt><dd><p>String with table name. If None then we try to set a default name based
-on <cite>filename</cite>.</p>
-</dd>
-<dt><strong>mode</strong><span class="classifier">str</span></dt><dd><p>‘w’: write new db, ‘a’: append</p>
-</dd>
-<dt><strong>close</strong><span class="classifier">bool, optional</span></dt><dd><p>Close cursor after db has been filled with values.</p>
-</dd>
-<dt><strong>**kwds</strong><span class="classifier">passed to sql_matrix()</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lists</strong> (<em>list of lists</em><em>, </em><em>see sql_matrix</em><em>(</em><em>)</em>) – </p></li>
+<li><p><strong>colnames</strong> (<em>list of column names</em><em>, </em><em>see sql_matrix</em><em>(</em><em>)</em>) – </p></li>
+<li><p><strong>table</strong> (<em>str</em><em>, </em><em>optional</em>) – String with table name. If None then we try to set a default name based
+on <cite>filename</cite>.</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – ‘w’: write new db, ‘a’: append</p></li>
+<li><p><strong>close</strong> (<em>bool</em><em>, </em><em>optional</em>) – Close cursor after db has been filled with values.</p></li>
+<li><p><strong>**kwds</strong> (<em>passed to sql_matrix</em><em>(</em><em>)</em>) – </p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>db</strong><span class="classifier">SQLiteDB instance</span></dt><dd></dd>
-</dl>
+<dd class="field-even"><p><strong>db</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>SQLiteDB instance</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>

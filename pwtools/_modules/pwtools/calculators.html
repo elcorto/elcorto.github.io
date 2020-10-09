@@ -87,46 +87,38 @@
             
   <h1>Source code for pwtools.calculators</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Notes on ASE&#39;s FileIOCalculator base class. tl;dr: use the `directory` keyword</span>
+<span class="sd">Notes on ASE&#39;s ``FileIOCalculator`` base class. tl;dr: use the `directory` keyword</span>
 <span class="sd">and avoid paths in the `label` keyword.</span>
 
 <span class="sd">&gt;&gt;&gt; from ase.calculators.calculator import FileIOCalculator</span>
 
-
-<span class="sd">The label, directory and prefix situation is convoluted.</span>
+<span class="sd">The `label`, `directory` and `prefix` situation is convoluted.</span>
 
 <span class="sd">&gt;&gt;&gt; c=FileIOCalculator(label=&#39;label&#39;, directory=&#39;/path/to/dir&#39;)</span>
-
 <span class="sd">&gt;&gt;&gt; c.label</span>
 <span class="sd">&#39;/path/to/dir/label&#39;</span>
-
 <span class="sd">&gt;&gt;&gt; c.prefix</span>
 <span class="sd">&#39;label&#39;</span>
-
 <span class="sd">&gt;&gt;&gt; c.directory</span>
 <span class="sd">&#39;/path/to/dir&#39;</span>
 
 
-<span class="sd">prefix is allowed as input, but it is ignored!</span>
+<span class="sd">`prefix` is allowed as input, but it is ignored!</span>
 
 <span class="sd">&gt;&gt;&gt; c=FileIOCalculator(label=&#39;label&#39;, directory=&#39;/path/to/dir&#39;, prefix=&#39;foo&#39;)</span>
-
 <span class="sd">&gt;&gt;&gt; c.prefix</span>
 <span class="sd">&#39;label&#39;</span>
 
-
-<span class="sd">A path in label used to work and we used (ASE 3.9 probably) to rely on</span>
-<span class="sd">directory=dirname(label), prefix=basename(label). Now (ASE 3.20) there is a bug</span>
-<span class="sd">with absolute paths: the leading / is dropped.</span>
+<span class="sd">A path in `label` used to work and we used (ASE 3.9 probably) to rely on</span>
+<span class="sd">``directory=os.path.dirname(label)``, ``prefix=os.path.basename(label)``. Now</span>
+<span class="sd">(ASE 3.20) there seems to be a bug with absolute paths: the leading ``/`` is</span>
+<span class="sd">dropped.</span>
 
 <span class="sd">&gt;&gt;&gt; c=FileIOCalculator(label=&#39;/path/to/dir/label&#39;)</span>
-
 <span class="sd">&gt;&gt;&gt; c.label</span>
 <span class="sd">&#39;path/to/dir/label&#39;</span>
-
 <span class="sd">&gt;&gt;&gt; c.prefix</span>
 <span class="sd">&#39;label&#39;</span>
-
 <span class="sd">&gt;&gt;&gt; c.directory</span>
 <span class="sd">&#39;path/to/dir&#39;</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -318,7 +310,7 @@
 <span class="si">{kpoints}</span><span class="s2"> 0 0 0</span>
 <span class="s2">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<div class="viewcode-block" id="Pwscf.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.Pwscf.html#pwtools.calculators.Pwscf.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -375,7 +367,7 @@
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">pp</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;set pp&quot;</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">pseudo_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;set pseudo_dir&quot;</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">outdir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;set outdir&quot;</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">kpts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;set kpts&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">kpts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;set kpts&quot;</span></div>
 
 <div class="viewcode-block" id="Pwscf.write_input"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.Pwscf.write_input.html#pwtools.calculators.Pwscf.write_input">[docs]</a>    <span class="k">def</span> <span class="nf">write_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">properties</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">system_changes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">FileIOCalculator</span><span class="o">.</span><span class="n">write_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">properties</span><span class="p">,</span>
@@ -474,7 +466,7 @@
 <span class="s2">run 0</span>
 <span class="s2">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<div class="viewcode-block" id="Lammps.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.Lammps.html#pwtools.calculators.Lammps.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -490,7 +482,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">outfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;.out&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dumpfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;.out.dump&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">structfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;.struct&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;log.lammps&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;log.lammps&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Lammps.write_input"><a class="viewcode-back" href="../../generated/api/pwtools.calculators.Lammps.write_input.html#pwtools.calculators.Lammps.write_input">[docs]</a>    <span class="k">def</span> <span class="nf">write_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">properties</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">system_changes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>

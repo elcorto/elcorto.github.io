@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.pydos.vacf_pdos" href="pwtools.pydos.vacf_pdos.html" />
+    <link rel="prev" title="pwtools.pydos.pdos" href="pwtools.pydos.pdos.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="pydos.html">pydos</a><ul>
+      <li>Previous: <a href="pwtools.pydos.pdos.html" title="previous chapter">pwtools.pydos.pdos</a></li>
+      <li>Next: <a href="pwtools.pydos.vacf_pdos.html" title="next chapter">pwtools.pydos.vacf_pdos</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -88,26 +99,24 @@
 <dd><p>Reference implementation for calculating the VACF of velocities in 3d
 array <cite>vel</cite>. This is slow. Use for debugging only. For production, use
 fvacf().</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>vel</strong><span class="classifier">3d array, (nstep, natoms, 3)</span></dt><dd><p>Atomic velocities.</p>
-</dd>
-<dt><strong>m</strong><span class="classifier">1d array (natoms,)</span></dt><dd><p>Atomic masses.</p>
-</dd>
-<dt><strong>method</strong><span class="classifier">int</span></dt><dd><div class="line-block">
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vel</strong> (<em>3d array</em><em>, </em><em>(</em><em>nstep</em><em>, </em><em>natoms</em><em>, </em><em>3</em><em>)</em>) – Atomic velocities.</p></li>
+<li><p><strong>m</strong> (<em>1d array</em><em> (</em><em>natoms</em><em>,</em><em>)</em>) – Atomic masses.</p></li>
+<li><p><strong>method</strong> (<em>int</em>) – <div class="line-block">
 <div class="line">1 : 3 loops</div>
 <div class="line">2 : replace 1 inner loop</div>
 <div class="line">3 : replace 2 inner loops</div>
 </div>
-</dd>
-</dl>
+</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>c</strong><span class="classifier">1d array (nstep,)</span></dt><dd><p>VACF</p>
+<dd class="field-even"><p><strong>c</strong> – VACF</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>1d array (nstep,)</p>
 </dd>
 </dl>
 </dd></dl>

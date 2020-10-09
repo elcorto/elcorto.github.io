@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.num.PolyFit1D.get_max" href="pwtools.num.PolyFit1D.get_max.html" />
+    <link rel="prev" title="pwtools.num.PolyFit.get_min" href="pwtools.num.PolyFit.get_min.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="num.html">num</a><ul>
+      <li>Previous: <a href="pwtools.num.PolyFit.get_min.html" title="previous chapter">pwtools.num.PolyFit.get_min</a></li>
+      <li>Next: <a href="pwtools.num.PolyFit1D.get_max.html" title="next chapter">pwtools.num.PolyFit1D.get_max</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -85,7 +96,8 @@
 <dl class="py class">
 <dt id="pwtools.num.PolyFit1D">
 <em class="property">class </em><code class="sig-prename descclassname">pwtools.num.</code><code class="sig-name descname">PolyFit1D</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#PolyFit1D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.PolyFit1D" title="Permalink to this definition">¶</a></dt>
-<dd><p>1D special case version of <a class="reference internal" href="pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolyFit</span></code></a> which handles 1d and scalar
+<dd><p>Bases: <a class="reference internal" href="pwtools.num.Fit1D.html#pwtools.num.Fit1D" title="pwtools.num.Fit1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.num.Fit1D</span></code></a>, <a class="reference internal" href="pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.num.PolyFit</span></code></a></p>
+<p>1D special case version of <a class="reference internal" href="pwtools.num.PolyFit.html#pwtools.num.PolyFit" title="pwtools.num.PolyFit"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolyFit</span></code></a> which handles 1d and scalar
 <cite>points</cite> Also <a class="reference internal" href="pwtools.num.PolyFit1D.get_min.html#pwtools.num.PolyFit1D.get_min" title="pwtools.num.PolyFit1D.get_min"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_min()</span></code></a> uses the root of the poly’s 1st derivative
 instead of <code class="docutils literal notranslate"><span class="pre">fmin()</span></code>.</p>
 <div class="line-block">
@@ -106,6 +118,22 @@ instead of <code class="docutils literal notranslate"><span class="pre">fmin()</
 <span class="gp">&gt;&gt;&gt; </span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
+<dl class="py method">
+<dt id="pwtools.num.PolyFit1D.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/num.html#PolyFit1D.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.num.PolyFit1D.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>PolyFit</strong> (<em>See</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pwtools.num.PolyFit1D.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">points</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pwtools.num.PolyFit1D.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
 <p class="rubric">Methods</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -113,19 +141,16 @@ instead of <code class="docutils literal notranslate"><span class="pre">fmin()</
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.num.PolyFit1D.__call__.html#pwtools.num.PolyFit1D.__call__" title="pwtools.num.PolyFit1D.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(points, **kwds)</p></td>
-<td><p>Call self as a function.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.num.PolyFit1D.get_max.html#pwtools.num.PolyFit1D.get_max" title="pwtools.num.PolyFit1D.get_max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_max</span></code></a>([x0, xab])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.num.PolyFit1D.get_max.html#pwtools.num.PolyFit1D.get_max" title="pwtools.num.PolyFit1D.get_max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_max</span></code></a>([x0, xab])</p></td>
 <td><p>Convenience method.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.num.PolyFit1D.get_min.html#pwtools.num.PolyFit1D.get_min" title="pwtools.num.PolyFit1D.get_min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_min</span></code></a>([x0, xab])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.num.PolyFit1D.get_min.html#pwtools.num.PolyFit1D.get_min" title="pwtools.num.PolyFit1D.get_min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_min</span></code></a>([x0, xab])</p></td>
 <td><p>Return x where y(x) = min(y) by calculating the root of the fit’s 1st derivative (by calling <code class="docutils literal notranslate"><span class="pre">self(x,</span> <span class="pre">der=1)</span></code>).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.num.PolyFit1D.get_root.html#pwtools.num.PolyFit1D.get_root" title="pwtools.num.PolyFit1D.get_root"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_root</span></code></a>([x0, xab])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.num.PolyFit1D.get_root.html#pwtools.num.PolyFit1D.get_root" title="pwtools.num.PolyFit1D.get_root"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_root</span></code></a>([x0, xab])</p></td>
 <td><p>Return x where y(x) = 0 by calculating the root of the fit function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.num.PolyFit1D.is_mono.html#pwtools.num.PolyFit1D.is_mono" title="pwtools.num.PolyFit1D.is_mono"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_mono</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.num.PolyFit1D.is_mono.html#pwtools.num.PolyFit1D.is_mono" title="pwtools.num.PolyFit1D.is_mono"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_mono</span></code></a>()</p></td>
 <td><p>Return True if the curve described by the fit function f(x) is monotonic.</p></td>
 </tr>
 </tbody>

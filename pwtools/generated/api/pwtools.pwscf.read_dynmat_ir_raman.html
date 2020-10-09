@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.pwscf.read_dynmat_out" href="pwtools.pwscf.read_dynmat_out.html" />
+    <link rel="prev" title="pwtools.pwscf.read_dynmat" href="pwtools.pwscf.read_dynmat.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="pwscf.html">pwscf</a><ul>
+      <li>Previous: <a href="pwtools.pwscf.read_dynmat.html" title="previous chapter">pwtools.pwscf.read_dynmat</a></li>
+      <li>Next: <a href="pwtools.pwscf.read_dynmat_out.html" title="next chapter">pwtools.pwscf.read_dynmat_out</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -89,25 +100,21 @@
 intensities.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>dynmat.x text output file (e.g. from <code class="docutils literal notranslate"><span class="pre">dynmat.x</span> <span class="pre">&lt;</span> <span class="pre">dynmat.in</span> <span class="pre">&gt;</span>
-<span class="pre">dynmat.out</span></code>)</p>
-</dd>
-<dt><strong>natoms</strong><span class="classifier">int</span></dt><dd><p>number of atoms in the cell</p>
-</dd>
-<dt><strong>cols</strong><span class="classifier">dict</span></dt><dd><p>column numbers of the text block</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – dynmat.x text output file (e.g. from <code class="docutils literal notranslate"><span class="pre">dynmat.x</span> <span class="pre">&lt;</span> <span class="pre">dynmat.in</span> <span class="pre">&gt;</span>
+<span class="pre">dynmat.out</span></code>)</p></li>
+<li><p><strong>natoms</strong> (<em>int</em>) – number of atoms in the cell</p></li>
+<li><p><strong>cols</strong> (<em>dict</em>) – column numbers of the text block</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>cols = None</dt><dd><p>Return the parsed array as found in the file</p>
-</dd>
-<dt>cols = dict</dt><dd><p>Return dict with keys from <cite>cols</cite> and 1d arrays <code class="docutils literal notranslate"><span class="pre">{'freqs':</span> <span class="pre">&lt;array&gt;,</span>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>cols = None</em> – Return the parsed array as found in the file</p></li>
+<li><p><em>cols = dict</em> – Return dict with keys from <cite>cols</cite> and 1d arrays <code class="docutils literal notranslate"><span class="pre">{'freqs':</span> <span class="pre">&lt;array&gt;,</span>
 <span class="pre">'ir':</span> <span class="pre">&lt;array&gt;,</span> <span class="pre">'raman':</span> <span class="pre">&lt;array&gt;,</span> <span class="pre">'depol':</span> <span class="pre">&lt;array&gt;}</span></code>. If a column is
-not present, the array is None.</p>
-</dd>
-</dl>
+not present, the array is None.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>

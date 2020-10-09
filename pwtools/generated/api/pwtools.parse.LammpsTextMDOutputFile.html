@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.parse.LammpsTextMDOutputFile.apply_units" href="pwtools.parse.LammpsTextMDOutputFile.apply_units.html" />
+    <link rel="prev" title="pwtools.parse.LammpsDcdMDOutputFile.timeaxis" href="pwtools.parse.LammpsDcdMDOutputFile.timeaxis.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="parse.html">parse</a><ul>
+      <li>Previous: <a href="pwtools.parse.LammpsDcdMDOutputFile.timeaxis.html" title="previous chapter">pwtools.parse.LammpsDcdMDOutputFile.timeaxis</a></li>
+      <li>Next: <a href="pwtools.parse.LammpsTextMDOutputFile.apply_units.html" title="next chapter">pwtools.parse.LammpsTextMDOutputFile.apply_units</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -85,7 +96,8 @@
 <dl class="py class">
 <dt id="pwtools.parse.LammpsTextMDOutputFile">
 <em class="property">class </em><code class="sig-prename descclassname">pwtools.parse.</code><code class="sig-name descname">LammpsTextMDOutputFile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">'log.lammps'</span></em>, <em class="sig-param"><span class="n">order</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#LammpsTextMDOutputFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.LammpsTextMDOutputFile" title="Permalink to this definition">¶</a></dt>
-<dd><p>Parse LAMMPS text output.</p>
+<dd><p>Bases: <a class="reference internal" href="pwtools.parse.TrajectoryFileParser.html#pwtools.parse.TrajectoryFileParser" title="pwtools.parse.TrajectoryFileParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.parse.TrajectoryFileParser</span></code></a></p>
+<p>Parse LAMMPS text output.</p>
 <p>We parse the default <code class="docutils literal notranslate"><span class="pre">log.lammps</span></code> file (<cite>filename</cite>) with <code class="docutils literal notranslate"><span class="pre">thermo</span></code>
 output and, if present, a custom dump file <code class="docutils literal notranslate"><span class="pre">lmp.out.dump</span></code> created by
 something like <code class="docutils literal notranslate"><span class="pre">dump</span> <span class="pre">2</span> <span class="pre">all</span> <span class="pre">custom</span> <span class="pre">1</span> <span class="pre">lmp.out.dump</span> <span class="pre">...</span></code> Tested with MD and
@@ -99,31 +111,6 @@ structure optimization (<code class="docutils literal notranslate"><span class="
 </dl>
 <p>where <cite>basedir</cite> is the dir where <cite>filename</cite> (i.e. <code class="docutils literal notranslate"><span class="pre">log.lammps</span></code>) lives.</p>
 <p>default_units are for lammps metal units.</p>
-<p class="rubric">Notes</p>
-<ul class="simple">
-<li><p>columns in <cite>filename</cite> and <cite>dumpfilename</cite>: We automagically extract
-the “header” (e.g. “Step Temp Volume Cella …” in <cite>filename</cite> or
-“ITEM: ATOMS id type xsu ysu zsu fx fy fz vx vy vz” in
-<cite>dumpfilename</cite>) and map data to these symbols. See <cite>_thermo_dct</cite> and
-<cite>_dump_dct</cite>. Currently, “xsu ysu zsu” is parsed to get
-coords_frac. “xu yu zu” is parsed to get coords. Wrapped coordinates
-(e.g. “xs ys zs” and “x y z”) are ignored.</p></li>
-<li><p>multiple runs from one input script (i.e. 2 or more <code class="docutils literal notranslate"><span class="pre">run</span></code>
-commands): it seems that the last step of the preceeding run is
-printed again by the new run by <code class="docutils literal notranslate"><span class="pre">thermo_style</span></code>, which results in
-more <cite>nstep</cite> in <cite>filename</cite> as there really are in <cite>dumpfilename</cite>. We
-parse all important stuff (coords, cell, velocity) from
-<cite>dumpfilename</cite>, but <cite>temperature</cite> and <cite>stress</cite> etc. is from
-<cite>filename</cite>. Watch out when plotting.</p></li>
-<li><p>cell: We parse cell from “ITEM: BOX BOUNDS” in <cite>dumpfilename</cite> and the
-cell is always [[x,0,0],[xy,y,0],[xz,yz,z]], i.e. it is aligned in the
-same way in each timestep.</p></li>
-<li><p>atom symbols: First we try to read <cite>symbolsfilename</cite>, which may have been
-written by <a class="reference internal" href="pwtools.io.write_lammps.html#pwtools.io.write_lammps" title="pwtools.io.write_lammps"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.io.write_lammps()</span></code></a>. If that is not found, we try
-to use the <code class="docutils literal notranslate"><span class="pre">type</span></code> column in <cite>dumpfilename</cite> together with a type number
--&gt; atom symbol mapping either from the <cite>order</cite> input keyword or a
-<code class="docutils literal notranslate"><span class="pre">dump_modify</span> <span class="pre">...</span> <span class="pre">element</span></code> line in <cite>filename</cite> if found.</p></li>
-</ul>
 <p class="rubric">Examples</p>
 <p>Example lammps input:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clear</span>
@@ -160,6 +147,49 @@ to use the <code class="docutils literal notranslate"><span class="pre">type</sp
 <span class="n">run</span> <span class="mi">1000</span>
 </pre></div>
 </div>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>columns in <cite>filename</cite> and <cite>dumpfilename</cite>: We automagically extract
+the “header” (e.g. “Step Temp Volume Cella …” in <cite>filename</cite> or
+“ITEM: ATOMS id type xsu ysu zsu fx fy fz vx vy vz” in
+<cite>dumpfilename</cite>) and map data to these symbols. See <cite>_thermo_dct</cite> and
+<cite>_dump_dct</cite>. Currently, “xsu ysu zsu” is parsed to get
+coords_frac. “xu yu zu” is parsed to get coords. Wrapped coordinates
+(e.g. “xs ys zs” and “x y z”) are ignored.</p></li>
+<li><p>multiple runs from one input script (i.e. 2 or more <code class="docutils literal notranslate"><span class="pre">run</span></code>
+commands): it seems that the last step of the preceeding run is
+printed again by the new run by <code class="docutils literal notranslate"><span class="pre">thermo_style</span></code>, which results in
+more <cite>nstep</cite> in <cite>filename</cite> as there really are in <cite>dumpfilename</cite>. We
+parse all important stuff (coords, cell, velocity) from
+<cite>dumpfilename</cite>, but <cite>temperature</cite> and <cite>stress</cite> etc. is from
+<cite>filename</cite>. Watch out when plotting.</p></li>
+<li><p>cell: We parse cell from “ITEM: BOX BOUNDS” in <cite>dumpfilename</cite> and the
+cell is always [[x,0,0],[xy,y,0],[xz,yz,z]], i.e. it is aligned in the
+same way in each timestep.</p></li>
+<li><p>atom symbols: First we try to read <cite>symbolsfilename</cite>, which may have been
+written by <a class="reference internal" href="pwtools.io.write_lammps.html#pwtools.io.write_lammps" title="pwtools.io.write_lammps"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.io.write_lammps()</span></code></a>. If that is not found, we try
+to use the <code class="docutils literal notranslate"><span class="pre">type</span></code> column in <cite>dumpfilename</cite> together with a type number
+-&gt; atom symbol mapping either from the <cite>order</cite> input keyword or a
+<code class="docutils literal notranslate"><span class="pre">dump_modify</span> <span class="pre">...</span> <span class="pre">element</span></code> line in <cite>filename</cite> if found.</p></li>
+</ul>
+<dl class="py method">
+<dt id="pwtools.parse.LammpsTextMDOutputFile.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">'log.lammps'</span></em>, <em class="sig-param"><span class="n">order</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/parse.html#LammpsTextMDOutputFile.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.parse.LammpsTextMDOutputFile.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Text output file, where <code class="docutils literal notranslate"><span class="pre">thermo_style</span> <span class="pre">[custom]</span></code>
+output is written to. The lammps default is <code class="docutils literal notranslate"><span class="pre">log.lammps</span></code>.</p></li>
+<li><p><strong>order</strong> (<em>dict</em><em>, </em><em>optional</em>) – See <a class="reference internal" href="pwtools.crys.Structure.get_order.html#pwtools.crys.Structure.get_order" title="pwtools.crys.Structure.get_order"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pwtools.crys.Structure.get_order()</span></code></a>. Mapping of atom
+symbols to <code class="docutils literal notranslate"><span class="pre">type</span></code> in lammps, i.e. {‘Al’: 1, ‘N’: 2}. If None then
+we try to use <code class="docutils literal notranslate"><span class="pre">dump_modify</span> <span class="pre">...</span> <span class="pre">element</span></code> if present in <cite>filename</cite>,
+where lammps echos the input script. <cite>symbols</cite> is build from the
+<code class="docutils literal notranslate"><span class="pre">type</span></code> column in <cite>dumpfilename</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <p class="rubric">Methods</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -167,130 +197,134 @@ to use the <code class="docutils literal notranslate"><span class="pre">type</sp
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Container</span></code></p></td>
-<td><p>alias of <a class="reference internal" href="pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.crys.Trajectory</span></code></a></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.apply_units.html#pwtools.parse.LammpsTextMDOutputFile.apply_units" title="pwtools.parse.LammpsTextMDOutputFile.apply_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_units</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.apply_units.html#pwtools.parse.LammpsTextMDOutputFile.apply_units" title="pwtools.parse.LammpsTextMDOutputFile.apply_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_units</span></code></a>()</p></td>
 <td><p>Like _apply_units_raw(), make sure that units are only applied once.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.assert_attr.html#pwtools.parse.LammpsTextMDOutputFile.assert_attr" title="pwtools.parse.LammpsTextMDOutputFile.assert_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_attr</span></code></a>(attr)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.assert_attr.html#pwtools.parse.LammpsTextMDOutputFile.assert_attr" title="pwtools.parse.LammpsTextMDOutputFile.assert_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_attr</span></code></a>(attr)</p></td>
 <td><p>Raise AssertionError if self.&lt;attr&gt; is not set (is_set_attr() returns False.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.assert_attr_lst.html#pwtools.parse.LammpsTextMDOutputFile.assert_attr_lst" title="pwtools.parse.LammpsTextMDOutputFile.assert_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_attr_lst</span></code></a>(attr_lst)</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.assert_set_attr.html#pwtools.parse.LammpsTextMDOutputFile.assert_set_attr" title="pwtools.parse.LammpsTextMDOutputFile.assert_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_set_attr</span></code></a>(attr)</p></td>
 <td><p>Same as assert_attr(), but run try_set_attr() first.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.check_set_attr.html#pwtools.parse.LammpsTextMDOutputFile.check_set_attr" title="pwtools.parse.LammpsTextMDOutputFile.check_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_set_attr</span></code></a>(attr)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.assert_set_attr_lst.html#pwtools.parse.LammpsTextMDOutputFile.assert_set_attr_lst" title="pwtools.parse.LammpsTextMDOutputFile.assert_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_set_attr_lst</span></code></a>(attr_lst)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.check_set_attr.html#pwtools.parse.LammpsTextMDOutputFile.check_set_attr" title="pwtools.parse.LammpsTextMDOutputFile.check_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_set_attr</span></code></a>(attr)</p></td>
 <td><p>Run try_set_attr() and return the result of is_set_attr(), i.e. True or False.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.check_set_attr_lst.html#pwtools.parse.LammpsTextMDOutputFile.check_set_attr_lst" title="pwtools.parse.LammpsTextMDOutputFile.check_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_set_attr_lst</span></code></a>(attr_lst)</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.dump.html#pwtools.parse.LammpsTextMDOutputFile.dump" title="pwtools.parse.LammpsTextMDOutputFile.dump"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump</span></code></a>(dump_filename[, mkdir])</p></td>
 <td><p>Write object to binary file using pickle.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_cont.html#pwtools.parse.LammpsTextMDOutputFile.get_cont" title="pwtools.parse.LammpsTextMDOutputFile.get_cont"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cont</span></code></a>([auto_calc])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_cell.html#pwtools.parse.LammpsTextMDOutputFile.get_cell" title="pwtools.parse.LammpsTextMDOutputFile.get_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cell</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_cont.html#pwtools.parse.LammpsTextMDOutputFile.get_cont" title="pwtools.parse.LammpsTextMDOutputFile.get_cont"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cont</span></code></a>([auto_calc])</p></td>
 <td><p>Populate and return a Container object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_etot.html#pwtools.parse.LammpsTextMDOutputFile.get_etot" title="pwtools.parse.LammpsTextMDOutputFile.get_etot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_etot</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_coords.html#pwtools.parse.LammpsTextMDOutputFile.get_coords" title="pwtools.parse.LammpsTextMDOutputFile.get_coords"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_coords</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_coords_frac.html#pwtools.parse.LammpsTextMDOutputFile.get_coords_frac" title="pwtools.parse.LammpsTextMDOutputFile.get_coords_frac"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_coords_frac</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_cryst_const.html#pwtools.parse.LammpsTextMDOutputFile.get_cryst_const" title="pwtools.parse.LammpsTextMDOutputFile.get_cryst_const"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cryst_const</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_ekin.html#pwtools.parse.LammpsTextMDOutputFile.get_ekin" title="pwtools.parse.LammpsTextMDOutputFile.get_ekin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ekin</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_etot.html#pwtools.parse.LammpsTextMDOutputFile.get_etot" title="pwtools.parse.LammpsTextMDOutputFile.get_etot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_etot</span></code></a>()</p></td>
 <td><p>Potetntial energy PotEng [eV].</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_return_attr.html#pwtools.parse.LammpsTextMDOutputFile.get_return_attr" title="pwtools.parse.LammpsTextMDOutputFile.get_return_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_return_attr</span></code></a>(attr_name)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_forces.html#pwtools.parse.LammpsTextMDOutputFile.get_forces" title="pwtools.parse.LammpsTextMDOutputFile.get_forces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_forces</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_natoms.html#pwtools.parse.LammpsTextMDOutputFile.get_natoms" title="pwtools.parse.LammpsTextMDOutputFile.get_natoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_natoms</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_return_attr.html#pwtools.parse.LammpsTextMDOutputFile.get_return_attr" title="pwtools.parse.LammpsTextMDOutputFile.get_return_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_return_attr</span></code></a>(attr_name)</p></td>
 <td><p>Call try_set_attr() are return self.&lt;attr_name&gt; if set.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.init_attr_lst.html#pwtools.parse.LammpsTextMDOutputFile.init_attr_lst" title="pwtools.parse.LammpsTextMDOutputFile.init_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_attr_lst</span></code></a>([attr_lst])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_stress.html#pwtools.parse.LammpsTextMDOutputFile.get_stress" title="pwtools.parse.LammpsTextMDOutputFile.get_stress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_stress</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_struct.html#pwtools.parse.LammpsTextMDOutputFile.get_struct" title="pwtools.parse.LammpsTextMDOutputFile.get_struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_struct</span></code></a>(**kwds)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_symbols.html#pwtools.parse.LammpsTextMDOutputFile.get_symbols" title="pwtools.parse.LammpsTextMDOutputFile.get_symbols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_symbols</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_temperature.html#pwtools.parse.LammpsTextMDOutputFile.get_temperature" title="pwtools.parse.LammpsTextMDOutputFile.get_temperature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_temperature</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_timestep.html#pwtools.parse.LammpsTextMDOutputFile.get_timestep" title="pwtools.parse.LammpsTextMDOutputFile.get_timestep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_timestep</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_traj.html#pwtools.parse.LammpsTextMDOutputFile.get_traj" title="pwtools.parse.LammpsTextMDOutputFile.get_traj"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_traj</span></code></a>(**kwds)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_velocity.html#pwtools.parse.LammpsTextMDOutputFile.get_velocity" title="pwtools.parse.LammpsTextMDOutputFile.get_velocity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_velocity</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.get_volume.html#pwtools.parse.LammpsTextMDOutputFile.get_volume" title="pwtools.parse.LammpsTextMDOutputFile.get_volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_volume</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.init_attr_lst.html#pwtools.parse.LammpsTextMDOutputFile.init_attr_lst" title="pwtools.parse.LammpsTextMDOutputFile.init_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_attr_lst</span></code></a>([attr_lst])</p></td>
 <td><p>Set each self.&lt;attr&gt; in <cite>attr_lst</cite> to None.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.is_set_attr.html#pwtools.parse.LammpsTextMDOutputFile.is_set_attr" title="pwtools.parse.LammpsTextMDOutputFile.is_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr</span></code></a>(attr)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.is_set_attr.html#pwtools.parse.LammpsTextMDOutputFile.is_set_attr" title="pwtools.parse.LammpsTextMDOutputFile.is_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr</span></code></a>(attr)</p></td>
 <td><p>Check if self has the attribute self.&lt;attr&gt; and if it is _not_ None.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.is_set_attr_lst.html#pwtools.parse.LammpsTextMDOutputFile.is_set_attr_lst" title="pwtools.parse.LammpsTextMDOutputFile.is_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr_lst</span></code></a>(attr_lst)</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.load.html#pwtools.parse.LammpsTextMDOutputFile.load" title="pwtools.parse.LammpsTextMDOutputFile.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(dump_filename)</p></td>
 <td><p>Load pickled object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.raw_return.html#pwtools.parse.LammpsTextMDOutputFile.raw_return" title="pwtools.parse.LammpsTextMDOutputFile.raw_return"><code class="xref py py-obj docutils literal notranslate"><span class="pre">raw_return</span></code></a>(attr_name)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.parse.html#pwtools.parse.LammpsTextMDOutputFile.parse" title="pwtools.parse.LammpsTextMDOutputFile.parse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.raw_return.html#pwtools.parse.LammpsTextMDOutputFile.raw_return" title="pwtools.parse.LammpsTextMDOutputFile.raw_return"><code class="xref py py-obj docutils literal notranslate"><span class="pre">raw_return</span></code></a>(attr_name)</p></td>
 <td><p>Call <code class="docutils literal notranslate"><span class="pre">try_set_attr(_&lt;attr_name&gt;_raw)</span></code> and return it if set, else None.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.raw_slice_get.html#pwtools.parse.LammpsTextMDOutputFile.raw_slice_get" title="pwtools.parse.LammpsTextMDOutputFile.raw_slice_get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">raw_slice_get</span></code></a>(attr_name, sl, axis)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.raw_slice_get.html#pwtools.parse.LammpsTextMDOutputFile.raw_slice_get" title="pwtools.parse.LammpsTextMDOutputFile.raw_slice_get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">raw_slice_get</span></code></a>(attr_name, sl, axis)</p></td>
 <td><p>Shortcut method:</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.set_all.html#pwtools.parse.LammpsTextMDOutputFile.set_all" title="pwtools.parse.LammpsTextMDOutputFile.set_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_all</span></code></a>([attr_lst])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.set_all.html#pwtools.parse.LammpsTextMDOutputFile.set_all" title="pwtools.parse.LammpsTextMDOutputFile.set_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_all</span></code></a>([attr_lst])</p></td>
 <td><p>Call getter for each attr name in <cite>attr_lst</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.set_attr_lst.html#pwtools.parse.LammpsTextMDOutputFile.set_attr_lst" title="pwtools.parse.LammpsTextMDOutputFile.set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_attr_lst</span></code></a>(attr_lst)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.set_attr_lst.html#pwtools.parse.LammpsTextMDOutputFile.set_attr_lst" title="pwtools.parse.LammpsTextMDOutputFile.set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_attr_lst</span></code></a>(attr_lst)</p></td>
 <td><p>Set self.attr_lst and init each attr to None.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.try_set_attr.html#pwtools.parse.LammpsTextMDOutputFile.try_set_attr" title="pwtools.parse.LammpsTextMDOutputFile.try_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_set_attr</span></code></a>(attr)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.try_set_attr.html#pwtools.parse.LammpsTextMDOutputFile.try_set_attr" title="pwtools.parse.LammpsTextMDOutputFile.try_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_set_attr</span></code></a>(attr)</p></td>
 <td><p>If self.&lt;attr&gt; does not exist or is None, then invoke an appropirately named getter as if this command would be executed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.try_set_attr_lst.html#pwtools.parse.LammpsTextMDOutputFile.try_set_attr_lst" title="pwtools.parse.LammpsTextMDOutputFile.try_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_set_attr_lst</span></code></a>(attr_lst)</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.update_units.html#pwtools.parse.LammpsTextMDOutputFile.update_units" title="pwtools.parse.LammpsTextMDOutputFile.update_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_units</span></code></a>(units)</p></td>
 <td><p>Update self.units dict from <cite>units</cite>.</p></td>
 </tr>
 </tbody>
 </table>
-<table class="docutils align-default">
+<p class="rubric">Attributes</p>
+<table class="longtable docutils align-default">
 <colgroup>
-<col style="width: 70%" />
-<col style="width: 30%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><strong>assert_attr_lst</strong></p></td>
-<td></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.default_units.html#pwtools.parse.LammpsTextMDOutputFile.default_units" title="pwtools.parse.LammpsTextMDOutputFile.default_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_units</span></code></a></p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><strong>assert_set_attr_lst</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>check_set_attr_lst</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>get_cell</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>get_coords</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>get_coords_frac</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>get_cryst_const</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>get_ekin</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>get_forces</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>get_natoms</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>get_stress</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>get_struct</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>get_symbols</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>get_temperature</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>get_timestep</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>get_traj</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>get_velocity</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>get_volume</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>is_set_attr_lst</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>parse</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>try_set_attr_lst</strong></p></td>
-<td></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.parse.LammpsTextMDOutputFile.timeaxis.html#pwtools.parse.LammpsTextMDOutputFile.timeaxis" title="pwtools.parse.LammpsTextMDOutputFile.timeaxis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">timeaxis</span></code></a></p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>

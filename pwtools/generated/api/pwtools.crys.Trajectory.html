@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.crys.Trajectory.__getitem__" href="pwtools.crys.Trajectory.__getitem__.html" />
+    <link rel="prev" title="pwtools.crys.Structure.timeaxis" href="pwtools.crys.Structure.timeaxis.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="crys.html">crys</a><ul>
+      <li>Previous: <a href="pwtools.crys.Structure.timeaxis.html" title="previous chapter">pwtools.crys.Structure.timeaxis</a></li>
+      <li>Next: <a href="pwtools.crys.Trajectory.__getitem__.html" title="next chapter">pwtools.crys.Trajectory.__getitem__</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -85,7 +96,8 @@
 <dl class="py class">
 <dt id="pwtools.crys.Trajectory">
 <em class="property">class </em><code class="sig-prename descclassname">pwtools.crys.</code><code class="sig-name descname">Trajectory</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Trajectory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Trajectory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Like <a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a>, but all attrs in <cite>attrs_nstep</cite> have a timeaxis
+<dd><p>Bases: <a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">pwtools.crys.Structure</span></code></a></p>
+<p>Like <a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></a>, but all attrs in <cite>attrs_nstep</cite> have a timeaxis
 along axis=0 and length <cite>nstep</cite>:</p>
 <table class="docutils align-default">
 <colgroup>
@@ -164,6 +176,49 @@ along axis=0 and length <cite>nstep</cite>:</p>
 <div class="line">velocity</div>
 <div class="line">temperature</div>
 </div>
+<dl class="py method">
+<dt id="pwtools.crys.Trajectory.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/crys.html#Trajectory.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.crys.Trajectory.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coords</strong> (<em>(</em><em>natoms</em><em>, </em><em>3</em><em>) </em><em>[</em><em>Ang</em><em>]</em>) – Cartesian coords.
+Optional if <cite>coords_frac</cite> given.</p></li>
+<li><p><strong>coords_frac</strong> (<em>(</em><em>natoms</em><em>, </em><em>3</em><em>)</em>) – Fractional coords w.r.t. <cite>cell</cite>.
+Optional if <cite>coords</cite> given.</p></li>
+<li><p><strong>symbols</strong> (<em>sequence of strings</em><em> (</em><em>natoms</em><em>,</em><em>)</em>) – atom symbols</p></li>
+<li><p><strong>cell</strong> (<em>(</em><em>3</em><em>,</em><em>3</em><em>)</em>) – Unit cell vectors as rows. [Ang]
+Optional if <cite>cryst_const</cite> given.</p></li>
+<li><p><strong>cryst_const</strong> (<em>(</em><em>6</em><em>,</em><em>)</em>) – [a,b,c,alpha,beta,gamma]; a,b,c in [Ang]
+Optional if <cite>cell</cite> given.</p></li>
+<li><p><strong>forces</strong> (<em>(</em><em>nstep</em><em>,</em><em>natoms</em><em>,</em><em>3</em><em>)</em>) – [eV/Ang]</p></li>
+<li><p><strong>stress</strong> (<em>(</em><em>nstep</em><em>,</em><em>3</em><em>,</em><em>3</em><em>)</em>) – stress tensor [GPa]</p></li>
+<li><p><strong>etot</strong> (<em>float</em><em>, </em><em>optional</em>) – total energy [eV]</p></li>
+<li><p><strong>units</strong> (<em>optional</em><em>, </em><em>dict</em><em>,</em>) – see <a class="reference internal" href="pwtools.crys.UnitsHandler.html#pwtools.crys.UnitsHandler" title="pwtools.crys.UnitsHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnitsHandler</span></code></a></p></li>
+<li><p><strong>set_all_auto</strong> (<em>optional</em><em>, </em><em>bool</em>) – Call <a class="reference internal" href="pwtools.crys.Trajectory.set_all.html#pwtools.crys.Trajectory.set_all" title="pwtools.crys.Trajectory.set_all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_all()</span></code></a> in <a class="reference internal" href="#pwtools.crys.Trajectory.__init__" title="pwtools.crys.Trajectory.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>.</p></li>
+<li><p><strong>Trajectory</strong> (<em>Only</em>) – </p></li>
+<li><p><strong>ekin</strong> (<em>(</em><em>nstep</em><em>,</em><em>)</em>) – [eV]</p></li>
+<li><p><strong>forces</strong> – [eV/Ang]</p></li>
+<li><p><strong>pressure</strong> (<em>(</em><em>nstep</em><em>,</em><em>)</em>) – [GPa]</p></li>
+<li><p><strong>stress</strong> – [GPa]</p></li>
+<li><p><strong>temperature</strong> (<em>(</em><em>nstep</em><em>,</em><em>)</em>) – [K]</p></li>
+<li><p><strong>timestep</strong> (<em>float</em>) – [fs]</p></li>
+<li><p><strong>velocity</strong> (<em>(</em><em>nstep</em><em>, </em><em>natoms</em><em>, </em><em>3</em><em>)</em>) – [Ang/fs]</p></li>
+<li><p><strong>volume</strong> (<em>(</em><em>nstep</em><em>,</em><em>)</em>) – [Ang^3]</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<dl>
+<dt>cell, cryst_const<span class="classifier">Provide either <cite>cell</cite> or <cite>cryst_const</cite>, or both</span></dt><dd><p>(which is redundant). If only one is given, the other is calculated
+from it. See {cell2cc,cc2cell}.</p>
+</dd>
+<dt>coords, coords_frac<span class="classifier">Provide either <cite>coords</cite> or <cite>coords_frac</cite>, or both</span></dt><dd><p>(which is redundant). If only one is given, the other is calculated
+from it. See coord_trans().</p>
+</dd>
+</dl>
+</dd></dl>
+
 <p class="rubric">Methods</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -171,17 +226,29 @@ along axis=0 and length <cite>nstep</cite>:</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.apply_units.html#pwtools.crys.Trajectory.apply_units" title="pwtools.crys.Trajectory.apply_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_units</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.__getitem__.html#pwtools.crys.Trajectory.__getitem__" title="pwtools.crys.Trajectory.__getitem__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__getitem__</span></code></a>(idx)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.apply_units.html#pwtools.crys.Trajectory.apply_units" title="pwtools.crys.Trajectory.apply_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_units</span></code></a>()</p></td>
 <td><p>Like _apply_units_raw(), make sure that units are only applied once.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.assert_attr.html#pwtools.crys.Trajectory.assert_attr" title="pwtools.crys.Trajectory.assert_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_attr</span></code></a>(attr)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.assert_attr.html#pwtools.crys.Trajectory.assert_attr" title="pwtools.crys.Trajectory.assert_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_attr</span></code></a>(attr)</p></td>
 <td><p>Raise AssertionError if self.&lt;attr&gt; is not set (is_set_attr() returns False.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.assert_attr_lst.html#pwtools.crys.Trajectory.assert_attr_lst" title="pwtools.crys.Trajectory.assert_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_attr_lst</span></code></a>(attr_lst)</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.assert_set_attr.html#pwtools.crys.Trajectory.assert_set_attr" title="pwtools.crys.Trajectory.assert_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_set_attr</span></code></a>(attr)</p></td>
 <td><p>Same as assert_attr(), but run try_set_attr() first.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.check_set_attr.html#pwtools.crys.Trajectory.check_set_attr" title="pwtools.crys.Trajectory.check_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_set_attr</span></code></a>(attr)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.assert_set_attr_lst.html#pwtools.crys.Trajectory.assert_set_attr_lst" title="pwtools.crys.Trajectory.assert_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_set_attr_lst</span></code></a>(attr_lst)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.check_set_attr.html#pwtools.crys.Trajectory.check_set_attr" title="pwtools.crys.Trajectory.check_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_set_attr</span></code></a>(attr)</p></td>
 <td><p>Run try_set_attr() and return the result of is_set_attr(), i.e. True or False.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.check_set_attr_lst.html#pwtools.crys.Trajectory.check_set_attr_lst" title="pwtools.crys.Trajectory.check_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_set_attr_lst</span></code></a>(attr_lst)</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.compress.html#pwtools.crys.Trajectory.compress" title="pwtools.crys.Trajectory.compress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compress</span></code></a>([forget, dtype])</p></td>
 <td><p>Compress Trajectory by deleting unused or redundant attrs (see <cite>forget</cite>).</p></td>
@@ -194,6 +261,18 @@ along axis=0 and length <cite>nstep</cite>:</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_ase_atoms.html#pwtools.crys.Trajectory.get_ase_atoms" title="pwtools.crys.Trajectory.get_ase_atoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ase_atoms</span></code></a>()</p></td>
 <td><p>Return ASE Atoms object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_cell.html#pwtools.crys.Trajectory.get_cell" title="pwtools.crys.Trajectory.get_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cell</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_coords.html#pwtools.crys.Trajectory.get_coords" title="pwtools.crys.Trajectory.get_coords"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_coords</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_coords_frac.html#pwtools.crys.Trajectory.get_coords_frac" title="pwtools.crys.Trajectory.get_coords_frac"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_coords_frac</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_cryst_const.html#pwtools.crys.Trajectory.get_cryst_const" title="pwtools.crys.Trajectory.get_cryst_const"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cryst_const</span></code></a>()</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_ekin.html#pwtools.crys.Trajectory.get_ekin" title="pwtools.crys.Trajectory.get_ekin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ekin</span></code></a>()</p></td>
 <td><p>ekin [eV]</p></td>
@@ -210,14 +289,26 @@ along axis=0 and length <cite>nstep</cite>:</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_mass.html#pwtools.crys.Trajectory.get_mass" title="pwtools.crys.Trajectory.get_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_mass</span></code></a>()</p></td>
 <td><p>1D array of atomic masses in amu (atomic mass unit 1.660538782e-27 kg as in periodic table).</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_mass_unique.html#pwtools.crys.Trajectory.get_mass_unique" title="pwtools.crys.Trajectory.get_mass_unique"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_mass_unique</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_natoms.html#pwtools.crys.Trajectory.get_natoms" title="pwtools.crys.Trajectory.get_natoms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_natoms</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_nspecies.html#pwtools.crys.Trajectory.get_nspecies" title="pwtools.crys.Trajectory.get_nspecies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_nspecies</span></code></a>()</p></td>
 <td><p>Dict with number of atoms per species.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_ntypat.html#pwtools.crys.Trajectory.get_ntypat" title="pwtools.crys.Trajectory.get_ntypat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ntypat</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_nstep.html#pwtools.crys.Trajectory.get_nstep" title="pwtools.crys.Trajectory.get_nstep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_nstep</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_ntypat.html#pwtools.crys.Trajectory.get_ntypat" title="pwtools.crys.Trajectory.get_ntypat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ntypat</span></code></a>()</p></td>
 <td><p>Number of atomic species.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_order.html#pwtools.crys.Trajectory.get_order" title="pwtools.crys.Trajectory.get_order"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_order</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_order.html#pwtools.crys.Trajectory.get_order" title="pwtools.crys.Trajectory.get_order"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_order</span></code></a>()</p></td>
 <td><p>Dict which maps <code class="docutils literal notranslate"><span class="pre">symbols_unique</span></code> to numbers, starting at 1.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_pressure.html#pwtools.crys.Trajectory.get_pressure" title="pwtools.crys.Trajectory.get_pressure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_pressure</span></code></a>()</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_return_attr.html#pwtools.crys.Trajectory.get_return_attr" title="pwtools.crys.Trajectory.get_return_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_return_attr</span></code></a>(attr_name)</p></td>
 <td><p>Call try_set_attr() are return self.&lt;attr_name&gt; if set.</p></td>
@@ -237,6 +328,12 @@ along axis=0 and length <cite>nstep</cite>:</p>
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_temperature.html#pwtools.crys.Trajectory.get_temperature" title="pwtools.crys.Trajectory.get_temperature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_temperature</span></code></a>()</p></td>
 <td><p>[K]</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_time.html#pwtools.crys.Trajectory.get_time" title="pwtools.crys.Trajectory.get_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_time</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_timestep.html#pwtools.crys.Trajectory.get_timestep" title="pwtools.crys.Trajectory.get_timestep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_timestep</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_traj.html#pwtools.crys.Trajectory.get_traj" title="pwtools.crys.Trajectory.get_traj"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_traj</span></code></a>()</p></td>
 <td><p>Return a Trajectory object, where this Structure is copied <cite>nstep</cite> times.</p></td>
 </tr>
@@ -246,17 +343,23 @@ along axis=0 and length <cite>nstep</cite>:</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_velocity.html#pwtools.crys.Trajectory.get_velocity" title="pwtools.crys.Trajectory.get_velocity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_velocity</span></code></a>()</p></td>
 <td><p>Calculate <cite>velocity</cite> from <cite>coords</cite> and <cite>timestep</cite> if <cite>velocity=None</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_znucl.html#pwtools.crys.Trajectory.get_znucl" title="pwtools.crys.Trajectory.get_znucl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_znucl</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_volume.html#pwtools.crys.Trajectory.get_volume" title="pwtools.crys.Trajectory.get_volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_volume</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_znucl.html#pwtools.crys.Trajectory.get_znucl" title="pwtools.crys.Trajectory.get_znucl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_znucl</span></code></a>()</p></td>
 <td><p>All atomic numbers.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_znucl_unique.html#pwtools.crys.Trajectory.get_znucl_unique" title="pwtools.crys.Trajectory.get_znucl_unique"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_znucl_unique</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.get_znucl_unique.html#pwtools.crys.Trajectory.get_znucl_unique" title="pwtools.crys.Trajectory.get_znucl_unique"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_znucl_unique</span></code></a>()</p></td>
 <td><p>Unique atomic numbers.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.init_attr_lst.html#pwtools.crys.Trajectory.init_attr_lst" title="pwtools.crys.Trajectory.init_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_attr_lst</span></code></a>([attr_lst])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.init_attr_lst.html#pwtools.crys.Trajectory.init_attr_lst" title="pwtools.crys.Trajectory.init_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_attr_lst</span></code></a>([attr_lst])</p></td>
 <td><p>Set each self.&lt;attr&gt; in <cite>attr_lst</cite> to None.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.is_set_attr.html#pwtools.crys.Trajectory.is_set_attr" title="pwtools.crys.Trajectory.is_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr</span></code></a>(attr)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.is_set_attr.html#pwtools.crys.Trajectory.is_set_attr" title="pwtools.crys.Trajectory.is_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr</span></code></a>(attr)</p></td>
 <td><p>Check if self has the attribute self.&lt;attr&gt; and if it is _not_ None.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.is_set_attr_lst.html#pwtools.crys.Trajectory.is_set_attr_lst" title="pwtools.crys.Trajectory.is_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_set_attr_lst</span></code></a>(attr_lst)</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.load.html#pwtools.crys.Trajectory.load" title="pwtools.crys.Trajectory.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(dump_filename)</p></td>
 <td><p>Load pickled object.</p></td>
@@ -276,64 +379,29 @@ along axis=0 and length <cite>nstep</cite>:</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.try_set_attr.html#pwtools.crys.Trajectory.try_set_attr" title="pwtools.crys.Trajectory.try_set_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_set_attr</span></code></a>(attr)</p></td>
 <td><p>If self.&lt;attr&gt; does not exist or is None, then invoke an appropirately named getter as if this command would be executed.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.update_units.html#pwtools.crys.Trajectory.update_units" title="pwtools.crys.Trajectory.update_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_units</span></code></a>(units)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.try_set_attr_lst.html#pwtools.crys.Trajectory.try_set_attr_lst" title="pwtools.crys.Trajectory.try_set_attr_lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_set_attr_lst</span></code></a>(attr_lst)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.update_units.html#pwtools.crys.Trajectory.update_units" title="pwtools.crys.Trajectory.update_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_units</span></code></a>(units)</p></td>
 <td><p>Update self.units dict from <cite>units</cite>.</p></td>
 </tr>
 </tbody>
 </table>
-<table class="docutils align-default">
+<p class="rubric">Attributes</p>
+<table class="longtable docutils align-default">
 <colgroup>
-<col style="width: 70%" />
-<col style="width: 30%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><strong>assert_attr_lst</strong></p></td>
-<td></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.is_struct.html#pwtools.crys.Trajectory.is_struct" title="pwtools.crys.Trajectory.is_struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_struct</span></code></a></p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><strong>assert_set_attr_lst</strong></p></td>
-<td></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.is_traj.html#pwtools.crys.Trajectory.is_traj" title="pwtools.crys.Trajectory.is_traj"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_traj</span></code></a></p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>check_set_attr_lst</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>get_cell</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>get_coords</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>get_coords_frac</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>get_cryst_const</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>get_mass_unique</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>get_natoms</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>get_nstep</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>get_pressure</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>get_time</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>get_timestep</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>get_volume</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>is_set_attr_lst</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>try_set_attr_lst</strong></p></td>
-<td></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pwtools.crys.Trajectory.timeaxis.html#pwtools.crys.Trajectory.timeaxis" title="pwtools.crys.Trajectory.timeaxis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">timeaxis</span></code></a></p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>

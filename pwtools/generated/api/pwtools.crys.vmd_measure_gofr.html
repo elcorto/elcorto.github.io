@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.crys.voigt2tensor" href="pwtools.crys.voigt2tensor.html" />
+    <link rel="prev" title="pwtools.crys.velocity_traj" href="pwtools.crys.velocity_traj.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="crys.html">crys</a><ul>
+      <li>Previous: <a href="pwtools.crys.velocity_traj.html" title="previous chapter">pwtools.crys.velocity_traj</a></li>
+      <li>Next: <a href="pwtools.crys.voigt2tensor.html" title="next chapter">pwtools.crys.voigt2tensor</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -89,51 +100,46 @@
 This is intended as a complementary function to rpdf() and should, of
 course, produce the “same” results.</p>
 <p>Only orthogonal boxes are allowed (like in VMD).</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>traj</strong><span class="classifier">Structure or Trajectory</span></dt><dd></dd>
-<dt><strong>dr</strong><span class="classifier">float</span></dt><dd><p>dr in Angstrom</p>
-</dd>
-<dt><strong>rmax</strong><span class="classifier">{‘auto’, float}, optional</span></dt><dd><p>Max. radius up to which minimum image nearest neighbors are counted.
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>traj</strong> (<a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><em>Structure</em></a><em> or </em><a class="reference internal" href="pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><em>Trajectory</em></a>) – </p></li>
+<li><p><strong>dr</strong> (<em>float</em>) – dr in Angstrom</p></li>
+<li><p><strong>rmax</strong> (<em>{'auto'</em><em>, </em><em>float}</em><em>, </em><em>optional</em>) – <p>Max. radius up to which minimum image nearest neighbors are counted.
 For cubic boxes of side length L, this is L/2 [AT,MD].</p>
 <div class="line-block">
-<div class="line">‘auto’ : the method of [Smith] is used to calculate the max. sphere</div>
+<div class="line">’auto’ : the method of [Smith] is used to calculate the max. sphere</div>
 <div class="line-block">
 <div class="line">raduis for any cell shape</div>
 </div>
 <div class="line">float : set value yourself</div>
 </div>
-</dd>
-<dt><strong>sel</strong><span class="classifier">list of two strings, optional</span></dt><dd><p>string to select atoms, [“name Ca”, “name O”], [“all”, “all”], …,
-where sel[0] is selection 1, sel[1] is selection 2 in VMD</p>
-</dd>
-<dt><strong>first,last,step</strong><span class="classifier">int, optional</span></dt><dd><p>Select which MD steps are averaged. Like Python, VMD starts counting at
-zero. Last is -1, like in Python.</p>
-</dd>
-<dt><strong>usepbc</strong><span class="classifier">int {1,0}, optional</span></dt><dd><p>Whether to use the minimum image convention.</p>
-</dd>
-<dt><strong>slicefirst</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to slice coords here in the wrapper based on first,last,step.
+</p></li>
+<li><p><strong>sel</strong> (<em>list of two strings</em><em>, </em><em>optional</em>) – string to select atoms, [“name Ca”, “name O”], [“all”, “all”], …,
+where sel[0] is selection 1, sel[1] is selection 2 in VMD</p></li>
+<li><p><strong>first</strong> (<em>int</em><em>, </em><em>optional</em>) – Select which MD steps are averaged. Like Python, VMD starts counting at
+zero. Last is -1, like in Python.</p></li>
+<li><p><strong>last</strong> (<em>int</em><em>, </em><em>optional</em>) – Select which MD steps are averaged. Like Python, VMD starts counting at
+zero. Last is -1, like in Python.</p></li>
+<li><p><strong>step</strong> (<em>int</em><em>, </em><em>optional</em>) – Select which MD steps are averaged. Like Python, VMD starts counting at
+zero. Last is -1, like in Python.</p></li>
+<li><p><strong>usepbc</strong> (<em>int {1</em><em>,</em><em>0}</em><em>, </em><em>optional</em>) – Whether to use the minimum image convention.</p></li>
+<li><p><strong>slicefirst</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to slice coords here in the wrapper based on first,last,step.
 This will write a smaller XSF file, which can save time. In the VMD
-script, we always use first=0,last=-1,step=1 in that case.</p>
-</dd>
-<dt><strong>verbose</strong><span class="classifier">bool, optional</span></dt><dd><p>display VMD output</p>
-</dd>
-<dt><strong>tmpdir</strong><span class="classifier">str, optional</span></dt><dd><p>dir where auto-generated tmp files are written</p>
-</dd>
-</dl>
+script, we always use first=0,last=-1,step=1 in that case.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – display VMD output</p></li>
+<li><p><strong>tmpdir</strong> (<em>str</em><em>, </em><em>optional</em>) – dir where auto-generated tmp files are written</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>array (len(rad), 3), colums 0,1,2:</dt><dd></dd>
-<dt><strong>rad</strong><span class="classifier">1d array</span></dt><dd><p>radius (x-axis) with spacing <cite>dr</cite>, each value r[i] is the middle of a
-histogram bin</p>
-</dd>
-<dt><strong>hist</strong><span class="classifier">1d array, (len(rad),)</span></dt><dd><p>the function values g(r)</p>
-</dd>
-<dt><strong>num_int</strong><span class="classifier">1d array, (len(rad),)</span></dt><dd><p>the (averaged) number integral <code class="docutils literal notranslate"><span class="pre">number_density*hist*4*pi*r**2.0*dr</span></code></p>
-</dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>array (len(rad), 3), colums 0,1,2</em></p></li>
+<li><p><strong>rad</strong> (<em>1d array</em>) – radius (x-axis) with spacing <cite>dr</cite>, each value r[i] is the middle of a
+histogram bin</p></li>
+<li><p><strong>hist</strong> (<em>1d array, (len(rad),)</em>) – the function values g(r)</p></li>
+<li><p><strong>num_int</strong> (<em>1d array, (len(rad),)</em>) – the (averaged) number integral <code class="docutils literal notranslate"><span class="pre">number_density*hist*4*pi*r**2.0*dr</span></code></p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>

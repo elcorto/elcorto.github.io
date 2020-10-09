@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.crys.angle" href="pwtools.crys.angle.html" />
+    <link rel="prev" title="pwtools.crys._trans" href="pwtools.crys._trans.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="crys.html">crys</a><ul>
+      <li>Previous: <a href="pwtools.crys._trans.html" title="previous chapter">pwtools.crys._trans</a></li>
+      <li>Next: <a href="pwtools.crys.angle.html" title="next chapter">pwtools.crys.angle</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -89,16 +100,15 @@
 z=cross(x,y).</p>
 <p>The new coord sys can be defined either by <cite>x</cite> + <cite>y</cite> or <cite>vecs</cite> or
 <cite>indices</cite> or <cite>cart</cite>. Vectors need not be normalized.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>obj</strong><span class="classifier">Structure or Trajectory</span></dt><dd></dd>
-<dt><strong>x, y</strong><span class="classifier">(3,)</span></dt><dd><p>The two vectors spanning the x-y plane.</p>
-</dd>
-<dt><strong>vecs</strong><span class="classifier">(3,3)</span></dt><dd><p>Array with 3 vectors as rows <cite>[v0, v1, v2]</cite> and <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">v1</span> <span class="pre">-</span> <span class="pre">v0</span></code>,
-<code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">v2</span> <span class="pre">-</span> <span class="pre">v0</span></code></p>
-</dd>
-<dt><strong>indices</strong><span class="classifier">sequence (4,) or (3,)</span></dt><dd><p>Indices of atoms in <cite>obj</cite> with positions <cite>v0,v1,v2</cite>. Length 4 for
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> (<a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><em>Structure</em></a><em> or </em><a class="reference internal" href="pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><em>Trajectory</em></a>) – </p></li>
+<li><p><strong>x</strong> (<em>(</em><em>3</em><em>,</em><em>)</em>) – The two vectors spanning the x-y plane.</p></li>
+<li><p><strong>y</strong> (<em>(</em><em>3</em><em>,</em><em>)</em>) – The two vectors spanning the x-y plane.</p></li>
+<li><p><strong>vecs</strong> (<em>(</em><em>3</em><em>,</em><em>3</em><em>)</em>) – Array with 3 vectors as rows <cite>[v0, v1, v2]</cite> and <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">v1</span> <span class="pre">-</span> <span class="pre">v0</span></code>,
+<code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">v2</span> <span class="pre">-</span> <span class="pre">v0</span></code></p></li>
+<li><p><strong>indices</strong> (<em>sequence</em><em> (</em><em>4</em><em>,</em><em>) or </em><em>(</em><em>3</em><em>,</em><em>)</em>) – <p>Indices of atoms in <cite>obj</cite> with positions <cite>v0,v1,v2</cite>. Length 4 for
 obj=Trajectory: <code class="docutils literal notranslate"><span class="pre">indices=[time_step,</span> <span class="pre">idx0,</span> <span class="pre">idx1,</span> <span class="pre">idx2]</span></code> and length 3
 for obj=Structure: <code class="docutils literal notranslate"><span class="pre">[idx0,</span> <span class="pre">idx1,</span> <span class="pre">idx2]</span></code> with</p>
 <blockquote>
@@ -116,17 +126,16 @@ for obj=Structure: <code class="docutils literal notranslate"><span class="pre">
 </div>
 </dd>
 </dl>
-</dd>
-<dt><strong>cart</strong><span class="classifier">(3,3)</span></dt><dd><p>new cartesian coord sys <code class="docutils literal notranslate"><span class="pre">[x,y,z]</span></code>, matrix must be orthogonal</p>
-</dd>
-<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Threshold for orthogonality check. Use <cite>eps &lt;= 0</cite> to disable the check.</p>
-</dd>
-</dl>
+</p></li>
+<li><p><strong>cart</strong> (<em>(</em><em>3</em><em>,</em><em>3</em><em>)</em>) – new cartesian coord sys <code class="docutils literal notranslate"><span class="pre">[x,y,z]</span></code>, matrix must be orthogonal</p></li>
+<li><p><strong>eps</strong> (<em>float</em>) – Threshold for orthogonality check. Use <cite>eps &lt;= 0</cite> to disable the check.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>out</strong><span class="classifier">Structure or Trajectory</span></dt><dd></dd>
-</dl>
+<dd class="field-even"><p><strong>out</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure">Structure</a> or <a class="reference internal" href="pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory">Trajectory</a></p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>

@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.signal.find_peaks" href="pwtools.signal.find_peaks.html" />
+    <link rel="prev" title="pwtools.signal.fft_1d_loop" href="pwtools.signal.fft_1d_loop.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="signal.html">signal</a><ul>
+      <li>Previous: <a href="pwtools.signal.fft_1d_loop.html" title="previous chapter">pwtools.signal.fft_1d_loop</a></li>
+      <li>Next: <a href="pwtools.signal.find_peaks.html" title="next chapter">pwtools.signal.find_peaks</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -91,30 +102,46 @@ resolution (df) and the needed number of sample points (N) + time
 step (dt).</p>
 <p>The maximal frequency is also called the Nyquist frequency and is
 1/2*samplerate.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>a, b: float</strong></dt><dd><div class="line-block">
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>float</em>) – <div class="line-block">
 <div class="line">mode=’f’: a=fmax  b=df</div>
 <div class="line">mode=’t’: a=dt    b=N</div>
 </div>
-</dd>
-<dt><strong>mode</strong><span class="classifier">string, {‘f’, ‘t’}</span></dt><dd><div class="line-block">
+</p></li>
+<li><p><strong>b</strong> (<em>float</em>) – <div class="line-block">
+<div class="line">mode=’f’: a=fmax  b=df</div>
+<div class="line">mode=’t’: a=dt    b=N</div>
+</div>
+</p></li>
+<li><p><strong>mode</strong> (<em>string</em><em>, </em><em>{'f'</em><em>, </em><em>'t'}</em>) – <div class="line-block">
 <div class="line">f : frequency mode</div>
 <div class="line">t : time mode</div>
 </div>
-</dd>
-<dt><strong>mirr: bool</strong></dt><dd><p>consider mirroring of the signal at t=0 before Fourier transform</p>
-</dd>
-</dl>
+</p></li>
+<li><p><strong>mirr</strong> (<em>bool</em>) – consider mirroring of the signal at t=0 before Fourier transform</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>mode=’f’: array([dt,   N])</dt><dd></dd>
-<dt>mode=’t’: array([fmax, df])</dt><dd></dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>mode=’f’</strong> (<em>array([dt,   N])</em>)</p></li>
+<li><p><strong>mode=’t’</strong> (<em>array([fmax, df])</em>)</p></li>
+</ul>
+</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># fmax = 100 Hz, df = 1 Hz -&gt; you need 200 steps with dt=0.005 sec</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fftsample</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+<span class="go">array([  5.00000000e-03,   2.00000000e+03])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fftsample</span><span class="p">(</span><span class="mf">5e-3</span><span class="p">,</span> <span class="mf">2e3</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="go">array([ 100. ,    1.])</span>
+<span class="go"># If you mirror, you only need 100 steps</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fftsample</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="n">mirr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">array([  5.00000000e-03,   1.00000000e+02])</span>
+</pre></div>
+</div>
 <p class="rubric">Notes</p>
 <p>These relations hold:</p>
 <table class="docutils align-default">
@@ -141,17 +168,6 @@ step (dt).</p>
 sufficient to get the desired df.</p>
 <p>Units:
 In general frequency_unit = 1/time_unit, need not be Hz and s.</p>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># fmax = 100 Hz, df = 1 Hz -&gt; you need 200 steps with dt=0.005 sec</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fftsample</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
-<span class="go">array([  5.00000000e-03,   2.00000000e+03])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fftsample</span><span class="p">(</span><span class="mf">5e-3</span><span class="p">,</span> <span class="mf">2e3</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
-<span class="go">array([ 100. ,    1.])</span>
-<span class="go"># If you mirror, you only need 100 steps</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fftsample</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="n">mirr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="go">array([  5.00000000e-03,   1.00000000e+02])</span>
-</pre></div>
-</div>
 </dd></dl>
 
 </div>

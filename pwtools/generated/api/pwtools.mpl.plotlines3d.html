@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.mpl.prepare_plots" href="pwtools.mpl.prepare_plots.html" />
+    <link rel="prev" title="pwtools.mpl.new_axis" href="pwtools.mpl.new_axis.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="mpl.html">mpl</a><ul>
+      <li>Previous: <a href="pwtools.mpl.new_axis.html" title="previous chapter">pwtools.mpl.new_axis</a></li>
+      <li>Next: <a href="pwtools.mpl.prepare_plots.html" title="next chapter">pwtools.mpl.prepare_plots</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -88,25 +99,26 @@
 <dd><p>Plot x-z curves stacked along y.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>ax3d</strong><span class="classifier">Axes3D instance</span></dt><dd></dd>
-<dt><strong>x</strong><span class="classifier">nd array</span></dt><dd><p>1d (x-axis) or 2d (x-axes are the columns)</p>
-</dd>
-<dt><strong>y</strong><span class="classifier">1d array</span></dt><dd></dd>
-<dt><strong>z</strong><span class="classifier">nd array with “y”-values</span></dt><dd><dl class="simple">
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax3d</strong> (<em>Axes3D instance</em>) – </p></li>
+<li><p><strong>x</strong> (<em>nd array</em>) – 1d (x-axis) or 2d (x-axes are the columns)</p></li>
+<li><p><strong>y</strong> (<em>1d array</em>) – </p></li>
+<li><p><strong>z</strong> (<em>nd array with &quot;y&quot;-values</em>) – <dl class="simple">
 <dt>1d<span class="classifier">the same curve will be plotted len(y) times against x (1d) or</span></dt><dd><p>x[:,i] (2d)</p>
 </dd>
 <dt>2d<span class="classifier">each column z[:,i] will be plotted against x (1d) or each x[:,i]</span></dt><dd><p>(2d)</p>
 </dd>
 </dl>
-</dd>
-<dt><strong>*args, **kwargs</strong><span class="classifier">additional args and keywords args passed to ax3d.plot()</span></dt><dd></dd>
-</dl>
+</p></li>
+<li><p><strong>*args</strong> (<em>additional args and keywords args passed to ax3d.plot</em><em>(</em><em>)</em>) – </p></li>
+<li><p><strong>**kwargs</strong> (<em>additional args and keywords args passed to ax3d.plot</em><em>(</em><em>)</em>) – </p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>ax3d</dt><dd></dd>
-</dl>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ax3d</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>

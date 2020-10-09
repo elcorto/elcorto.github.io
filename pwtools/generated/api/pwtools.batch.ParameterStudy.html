@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.batch.ParameterStudy.write_input" href="pwtools.batch.ParameterStudy.write_input.html" />
+    <link rel="prev" title="pwtools.batch.Machine.get_sql_record" href="pwtools.batch.Machine.get_sql_record.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="batch.html">batch</a><ul>
+      <li>Previous: <a href="pwtools.batch.Machine.get_sql_record.html" title="previous chapter">pwtools.batch.Machine.get_sql_record</a></li>
+      <li>Next: <a href="pwtools.batch.ParameterStudy.write_input.html" title="next chapter">pwtools.batch.ParameterStudy.write_input</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -85,7 +96,8 @@
 <dl class="py class">
 <dt id="pwtools.batch.ParameterStudy">
 <em class="property">class </em><code class="sig-prename descclassname">pwtools.batch.</code><code class="sig-name descname">ParameterStudy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">machines</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">templates</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">params_lst</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">study_name</span><span class="o">=</span><span class="default_value">'calc'</span></em>, <em class="sig-param"><span class="n">db_name</span><span class="o">=</span><span class="default_value">'calc.db'</span></em>, <em class="sig-param"><span class="n">db_table</span><span class="o">=</span><span class="default_value">'calc'</span></em>, <em class="sig-param"><span class="n">calc_root</span><span class="o">=</span><span class="default_value">'.'</span></em>, <em class="sig-param"><span class="n">calc_dir_prefix</span><span class="o">=</span><span class="default_value">'calc'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#ParameterStudy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.ParameterStudy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Class to represent a parameter study (a number of Calculations,
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to represent a parameter study (a number of Calculations,
 based on template files).</p>
 <p>The basic idea is to assemble all to-be-varied parameters in a script
 outside (<cite>params_lst</cite>) and pass these to this class along with a list of
@@ -111,14 +123,6 @@ the default is to append new calculations. The numbering of calc dirs
 continues at the end. This can be changed with the <cite>mode</cite> kwarg of
 <a class="reference internal" href="pwtools.batch.ParameterStudy.write_input.html#pwtools.batch.ParameterStudy.write_input" title="pwtools.batch.ParameterStudy.write_input"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write_input()</span></code></a>. By default, a sql column “revision” is
 added which numbers each addition.</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">itertools.product</span></code></dt><dd></dd>
-<dt><a class="reference internal" href="pwtools.comb.nested_loops.html#pwtools.comb.nested_loops" title="pwtools.comb.nested_loops"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.comb.nested_loops()</span></code></a></dt><dd></dd>
-<dt><a class="reference internal" href="pwtools.sql.sql_column.html#pwtools.sql.sql_column" title="pwtools.sql.sql_column"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.sql.sql_column()</span></code></a></dt><dd></dd>
-</dl>
-</div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Here are some examples for constructing `params_lst`.</span>
 <span class="go">&gt;&gt;&gt;</span>
@@ -147,6 +151,51 @@ added which numbers each addition.</p>
 </div>
 <p>See <code class="docutils literal notranslate"><span class="pre">examples/parameter_study/</span></code> for complete examples, as well as
 <code class="docutils literal notranslate"><span class="pre">test/test_parameter_study.py</span></code>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">itertools.product</span></code>, <a class="reference internal" href="pwtools.comb.nested_loops.html#pwtools.comb.nested_loops" title="pwtools.comb.nested_loops"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.comb.nested_loops()</span></code></a>, <a class="reference internal" href="pwtools.sql.sql_column.html#pwtools.sql.sql_column" title="pwtools.sql.sql_column"><code class="xref py py-func docutils literal notranslate"><span class="pre">pwtools.sql.sql_column()</span></code></a></p>
+</div>
+<dl class="py method">
+<dt id="pwtools.batch.ParameterStudy.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">machines</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">templates</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">params_lst</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">study_name</span><span class="o">=</span><span class="default_value">'calc'</span></em>, <em class="sig-param"><span class="n">db_name</span><span class="o">=</span><span class="default_value">'calc.db'</span></em>, <em class="sig-param"><span class="n">db_table</span><span class="o">=</span><span class="default_value">'calc'</span></em>, <em class="sig-param"><span class="n">calc_root</span><span class="o">=</span><span class="default_value">'.'</span></em>, <em class="sig-param"><span class="n">calc_dir_prefix</span><span class="o">=</span><span class="default_value">'calc'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pwtools/batch.html#ParameterStudy.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pwtools.batch.ParameterStudy.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>machines</strong> (<em>sequence</em><em> or </em><a class="reference internal" href="pwtools.batch.Machine.html#pwtools.batch.Machine" title="pwtools.batch.Machine"><em>Machine</em></a>) – List of Machine instances or a single Machine</p></li>
+<li><p><strong>templates</strong> (<em>see Calculation</em>) – </p></li>
+<li><p><strong>params_lst</strong> (<em>list of lists</em>) – <p>The “parameter sets”. Each sublist is a set of calculation
+parameters as SQLEntry instances:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="n">SQLEntry</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="n">SQLEntry</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="o">...</span><span class="p">],</span> <span class="c1"># calc_foo/0</span>
+ <span class="p">[</span><span class="n">SQLEntry</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="n">SQLEntry</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="o">...</span><span class="p">],</span> <span class="c1"># calc_foo/1</span>
+ <span class="o">...</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>For each sublist, a separate calculation dir is created and
+populated with files based on <cite>templates</cite>. The <cite>key</cite> attribute of
+each SQLEntry will be converted to a placeholder in each
+FileTemplate and an attempt to replacement in the template files is
+made. Thus, the way placeholders are created is defined in
+FileTemplate, not here!
+Note: Each sublist (parameter set) is flattened, so that it
+can in fact be a nested list, e.g. params_lst = the result of a
+complex comb.nested_loops() call. Also, sublists need not have the
+same length or <cite>key</cite> attributes per entry (“incomplete parameter
+sets”). The sqlite table header is compiled from all distinct
+<a href="#id1"><span class="problematic" id="id2">`</span></a>key`s found.</p>
+</p></li>
+<li><p><strong>study_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name for the parameter study. From this, the <cite>calc_name</cite> for input
+files and job name etc. will be built. By default, a string
+“_run&lt;idx&gt;” is appended to create a unique name.</p></li>
+<li><p><strong>db_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Basename of the sqlite database.</p></li>
+<li><p><strong>db_table</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the sqlite database table.</p></li>
+<li><p><strong>calc_root</strong> (<em>str</em><em>, </em><em>optional</em>) – Root of all calc dirs.</p></li>
+<li><p><strong>calc_dir_prefix</strong> (<em>str</em><em>, </em><em>optional</em>) – Prefix for the top calculation dir (e.g. ‘calc’ for ‘calc_foo’).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <p class="rubric">Methods</p>
 <table class="longtable docutils align-default">
 <colgroup>

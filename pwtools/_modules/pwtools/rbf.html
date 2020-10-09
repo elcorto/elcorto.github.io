@@ -156,7 +156,7 @@
 
 <div class="viewcode-block" id="Rbf"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf">[docs]</a><span class="k">class</span> <span class="nc">Rbf</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Radial basis function network interpolation and fitting.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">rbf</span><span class="o">=</span><span class="s1">&#39;inv_multi&#39;</span><span class="p">,</span>
+<div class="viewcode-block" id="Rbf.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">rbf</span><span class="o">=</span><span class="s1">&#39;inv_multi&#39;</span><span class="p">,</span>
                  <span class="n">r</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">lin_solver</span><span class="o">=</span><span class="s1">&#39;dsysv&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -251,7 +251,7 @@
                 <span class="n">lstsq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_solve_lstsq</span><span class="p">,</span>
                 <span class="p">)</span>
         <span class="k">if</span> <span class="n">fit</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span></div>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_assert_ndim_points</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
@@ -468,7 +468,7 @@
         <span class="n">err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="n">res</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">err</span><span class="p">))</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">err</span></div>
 
-<div class="viewcode-block" id="Rbf.__call__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.Rbf.__call__.html#pwtools.rbf.Rbf.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Rbf.__call__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.Rbf.html#pwtools.rbf.Rbf.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call :meth:`interpolate` or :meth:`deriv`.</span>
 
@@ -540,7 +540,7 @@
 <span class="sd">    use :meth:`__call__` which will call one or the other, depending on</span>
 <span class="sd">    `params`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">rbf_kwds</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span>
+<div class="viewcode-block" id="FitError.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.FitError.html#pwtools.rbf.FitError.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">rbf_kwds</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span>
                  <span class="n">cv_kwds</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">1</span><span class="p">)):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -556,9 +556,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">points</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">values</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rbf_kwds</span> <span class="o">=</span> <span class="n">rbf_kwds</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cv_kwds</span> <span class="o">=</span> <span class="n">cv_kwds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cv_kwds</span> <span class="o">=</span> <span class="n">cv_kwds</span></div>
 
-<div class="viewcode-block" id="FitError.__call__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.FitError.__call__.html#pwtools.rbf.FitError.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+<div class="viewcode-block" id="FitError.__call__"><a class="viewcode-back" href="../../generated/api/pwtools.rbf.FitError.html#pwtools.rbf.FitError.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cv_kwds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">err_direct</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>

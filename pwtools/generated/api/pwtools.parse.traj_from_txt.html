@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwscf" href="pwscf.html" />
+    <link rel="prev" title="pwtools.parse.thart" href="pwtools.parse.thart.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="parse.html">parse</a><ul>
+      <li>Previous: <a href="pwtools.parse.thart.html" title="previous chapter">pwtools.parse.thart</a></li>
+      <li>Next: <a href="pwscf.html" title="next chapter">pwscf</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -93,20 +104,18 @@ separators (white space), no comments (like “# this is the header”), which
 numpy.loadtxt() would handle.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>txt</strong><span class="classifier">string</span></dt><dd><p>Text containing numbers (e.g. from <code class="docutils literal notranslate"><span class="pre">common.backtick(&quot;grep</span> <span class="pre">...&quot;)</span></code>)</p>
-</dd>
-<dt><strong>shape</strong><span class="classifier">tuple</span></dt><dd><p>The 3d shape of the array when written along <cite>axis</cite> (see also
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>txt</strong> (<em>string</em>) – Text containing numbers (e.g. from <code class="docutils literal notranslate"><span class="pre">common.backtick(&quot;grep</span> <span class="pre">...&quot;)</span></code>)</p></li>
+<li><p><strong>shape</strong> (<em>tuple</em>) – The 3d shape of the array when written along <cite>axis</cite> (see also
 arrayio.writetxt()) to text as 2d chunks and read back in as 3d array.
-Used to reconstruct the array.</p>
-</dd>
-<dt><strong>axis</strong><span class="classifier">int</span></dt><dd><p>Axis along which the array was written in 2d chunks to text. (see
+Used to reconstruct the array.</p></li>
+<li><p><strong>axis</strong> (<em>int</em>) – Axis along which the array was written in 2d chunks to text. (see
 also <cite>axis</cite> in arrayio.writetxt()).
 Used to reconstruct the array.
-Only axis=0 implemented.</p>
-</dd>
-<dt><strong>dtype, sep</strong><span class="classifier">passed to np.fromstring</span></dt><dd></dd>
-</dl>
+Only axis=0 implemented.</p></li>
+<li><p><strong>dtype</strong> (<em>passed to np.fromstring</em>) – </p></li>
+<li><p><strong>sep</strong> (<em>passed to np.fromstring</em>) – </p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

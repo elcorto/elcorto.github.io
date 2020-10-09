@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.crys.struct2atoms" href="pwtools.crys.struct2atoms.html" />
+    <link rel="prev" title="pwtools.crys.scell_mask" href="pwtools.crys.scell_mask.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="crys.html">crys</a><ul>
+      <li>Previous: <a href="pwtools.crys.scell_mask.html" title="previous chapter">pwtools.crys.scell_mask</a></li>
+      <li>Next: <a href="pwtools.crys.struct2atoms.html" title="next chapter">pwtools.crys.struct2atoms</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -91,13 +102,12 @@ along <cite>timeaxis</cite>, i.e. coords, coords_frac, etot, … The kernel is o
 required to be a 1d array and is automatically broadcast to the shape of
 each array. A similar feature can be found in VMD -&gt; Representations -&gt;
 Trajectory.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>traj</strong><span class="classifier">Trajectory</span></dt><dd></dd>
-<dt><strong>kern</strong><span class="classifier">1d array</span></dt><dd><p>Convolution kernel (smoothing window, see <a class="reference internal" href="pwtools.signal.smooth.html#pwtools.signal.smooth" title="pwtools.signal.smooth"><code class="xref py py-func docutils literal notranslate"><span class="pre">smooth()</span></code></a>).</p>
-</dd>
-<dt><strong>method</strong><span class="classifier">int</span></dt><dd><p>Choose how to do the convolution:</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>traj</strong> (<a class="reference internal" href="pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><em>Trajectory</em></a>) – </p></li>
+<li><p><strong>kern</strong> (<em>1d array</em>) – Convolution kernel (smoothing window, see <a class="reference internal" href="pwtools.signal.smooth.html#pwtools.signal.smooth" title="pwtools.signal.smooth"><code class="xref py py-func docutils literal notranslate"><span class="pre">smooth()</span></code></a>).</p></li>
+<li><p><strong>method</strong> (<em>int</em>) – <p>Choose how to do the convolution:</p>
 <blockquote>
 <div><div class="line-block">
 <div class="line">1 : loops over 1d convolutions, easy on memory, sometimes faster
@@ -106,14 +116,14 @@ than method=2 (default)</div>
 big <cite>traj</cite> (i.e. 1e5 timesteps, 128 atoms)</div>
 </div>
 </div></blockquote>
-</dd>
-</dl>
+</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>tr</strong><span class="classifier">Trajectory</span></dt><dd><p>Has the same <cite>nstep</cite> and <cite>timestep</cite> as the input Trajectory.</p>
+<dd class="field-even"><p><strong>tr</strong> – Has the same <cite>nstep</cite> and <cite>timestep</cite> as the input Trajectory.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory">Trajectory</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>

@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.common.tobool" href="pwtools.common.tobool.html" />
+    <link rel="prev" title="pwtools.common.system" href="pwtools.common.system.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="common.html">common</a><ul>
+      <li>Previous: <a href="pwtools.common.system.html" title="previous chapter">pwtools.common.system</a></li>
+      <li>Next: <a href="pwtools.common.tobool.html" title="next chapter">pwtools.common.tobool</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -88,16 +99,16 @@
 <dd><p>Replace placeholders dct.keys() with string values dct.values() in a
 text string. This function adds some bells and whistles such as warnings
 in case of not-found placeholders and whatnot.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>txt</strong><span class="classifier">string with placeholders</span></dt><dd></dd>
-<dt><strong>dct</strong><span class="classifier">dictionary with placeholders (keys) and values to replace them</span></dt><dd></dd>
-<dt><strong>conv</strong><span class="classifier">bool, convert values dct.values() to strings with frepr()</span></dt><dd></dd>
-<dt><strong>warn_mult_found</strong><span class="classifier">bool, warning if a key is found multiple times in <cite>txt</cite></span></dt><dd></dd>
-<dt><strong>warn_not_found</strong><span class="classifier">bool, warning if a key is NOT found in <cite>txt</cite></span></dt><dd></dd>
-<dt><strong>disp</strong><span class="classifier">tell which keys have been replaced</span></dt><dd></dd>
-<dt><strong>mode: str, {‘dct’, ‘txt’}, placeholder mode</strong></dt><dd><dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>txt</strong> (<em>string with placeholders</em>) – </p></li>
+<li><p><strong>dct</strong> (<em>dictionary with placeholders</em><em> (</em><em>keys</em><em>) </em><em>and values to replace them</em>) – </p></li>
+<li><p><strong>conv</strong> (<em>bool</em><em>, </em><em>convert values dct.values</em><em>(</em><em>) </em><em>to strings with frepr</em><em>(</em><em>)</em>) – </p></li>
+<li><p><strong>warn_mult_found</strong> (bool, warning if a key is found multiple times in <cite>txt</cite>) – </p></li>
+<li><p><strong>warn_not_found</strong> (bool, warning if a key is NOT found in <cite>txt</cite>) – </p></li>
+<li><p><strong>disp</strong> (<em>tell which keys have been replaced</em>) – </p></li>
+<li><p><strong>mode</strong> (<em>str</em><em>, </em><em>{'dct'</em><em>, </em><em>'txt'}</em><em>, </em><em>placeholder mode</em>) – <dl>
 <dt>‘dct’<span class="classifier">Dictionary mode. Placeholders are of special Python dictionary</span></dt><dd><p>string replacement form: ‘%(&lt;name&gt;)&lt;format_str&gt;’, e.g. ‘%(foo)s’
 and dct.keys() must be normal strings, e.g. ‘foo’.
 dct.values() can be anything. The conversion to a string is done at
@@ -105,19 +116,20 @@ replacement time and determined by the &lt;format_str&gt;. This
 effectively does <cite>txt % dct</cite>. This method is faster, uses Python
 standard syntax and is therefore default.</p>
 </dd>
-<dt>‘txt’<span class="classifier">Text mode. Placeholders in <cite>txt</cite> and keys in <cite>dct</cite> are the</span></dt><dd><p>exact same arbitrary string (e.g. ‘XXXFOO’ in both). Here,
+<dt>’txt’<span class="classifier">Text mode. Placeholders in <cite>txt</cite> and keys in <cite>dct</cite> are the</span></dt><dd><p>exact same arbitrary string (e.g. ‘XXXFOO’ in both). Here,
 dct.values() must be strings. If not, use conv=True to
 automatically convert them to strings, but note that this is
 limited since only frepr(&lt;val&gt;) is used.</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>new string</dt><dd></dd>
-</dl>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>new string</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>

@@ -16,6 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pwtools.crys.scell" href="pwtools.crys.scell.html" />
+    <link rel="prev" title="pwtools.crys.rmsd" href="pwtools.crys.rmsd.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -50,6 +52,9 @@
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../written/features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../written/install.html">Installation</a></li>
@@ -61,6 +66,12 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">API Reference</a><ul>
+  <li><a href="crys.html">crys</a><ul>
+      <li>Previous: <a href="pwtools.crys.rmsd.html" title="previous chapter">pwtools.crys.rmsd</a></li>
+      <li>Next: <a href="pwtools.crys.scell.html" title="next chapter">pwtools.crys.scell</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -89,43 +100,39 @@
 Trajectories. In case of trajectories, the time-averaged RPDF is returned.
 Can also handle non-orthorhombic unit cells (simulation boxes).
 Only fixed-cell MD at the moment.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>trajs</strong><span class="classifier">Structure or Trajectory or list of one or two such objects</span></dt><dd><p>The case <code class="docutils literal notranslate"><span class="pre">len(trajs)==1</span></code> is the same as providing the object directly
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trajs</strong> (<a class="reference internal" href="pwtools.crys.Structure.html#pwtools.crys.Structure" title="pwtools.crys.Structure"><em>Structure</em></a><em> or </em><a class="reference internal" href="pwtools.crys.Trajectory.html#pwtools.crys.Trajectory" title="pwtools.crys.Trajectory"><em>Trajectory</em></a><em> or </em><em>list of one</em><em> or </em><em>two such objects</em>) – The case <code class="docutils literal notranslate"><span class="pre">len(trajs)==1</span></code> is the same as providing the object directly
 (most common case). Internally we expand the input to <code class="docutils literal notranslate"><span class="pre">[trajs,</span>
 <span class="pre">trajs]</span></code>, i.e. the RPDF of the 2nd coord set w.r.t. to the first is
 calculated – the order matters! This is like selection 1 and 2 in VMD,
 but nornmally you would use <cite>amask</cite> instead. The option to provide a
 list of two Trajectory objects exists for cases where you don’t want to
-use <cite>amask</cite>, but create two different Trajectory objects outside.</p>
-</dd>
-<dt><strong>dr</strong><span class="classifier">float, optional</span></dt><dd><p>Radius spacing. Must have the same unit as <cite>cell</cite>, e.g. Angstrom.</p>
-</dd>
-<dt><strong>rmax</strong><span class="classifier">{‘auto’, float}, optional</span></dt><dd><p>Max. radius up to which minimum image nearest neighbors are counted.
+use <cite>amask</cite>, but create two different Trajectory objects outside.</p></li>
+<li><p><strong>dr</strong> (<em>float</em><em>, </em><em>optional</em>) – Radius spacing. Must have the same unit as <cite>cell</cite>, e.g. Angstrom.</p></li>
+<li><p><strong>rmax</strong> (<em>{'auto'</em><em>, </em><em>float}</em><em>, </em><em>optional</em>) – <p>Max. radius up to which minimum image nearest neighbors are counted.
 For cubic boxes of side length L, this is L/2 [AT,MD].</p>
 <div class="line-block">
-<div class="line">‘auto’ : the method of [Smith] is used to calculate the max. sphere</div>
+<div class="line">’auto’ : the method of [Smith] is used to calculate the max. sphere</div>
 <div class="line-block">
 <div class="line">raduis for any cell shape</div>
 </div>
 <div class="line">float : set value yourself</div>
 </div>
-</dd>
-<dt><strong>amask</strong><span class="classifier">None, list of one or two bool 1d arrays, list of one or two strings</span></dt><dd><p>Optional atom mask. This is the complementary functionality to
+</p></li>
+<li><p><strong>amask</strong> (<em>None</em><em>, </em><em>list of one</em><em> or </em><em>two bool 1d arrays</em><em>, </em><em>list of one</em><em> or </em><em>two strings</em>) – Optional atom mask. This is the complementary functionality to
 <cite>sel</cite> in <a class="reference internal" href="pwtools.crys.vmd_measure_gofr.html#pwtools.crys.vmd_measure_gofr" title="pwtools.crys.vmd_measure_gofr"><code class="xref py py-func docutils literal notranslate"><span class="pre">vmd_measure_gofr()</span></code></a>. If <code class="docutils literal notranslate"><span class="pre">len(amask)==1</span></code>, then we expand
 to <code class="docutils literal notranslate"><span class="pre">[amask,</span> <span class="pre">amask]</span></code> internally, which would calculate the RPDF
 between the same atom selection. If two masks are given, then the first
 is applied to <code class="docutils literal notranslate"><span class="pre">trajs[0]</span></code> and the second to <code class="docutils literal notranslate"><span class="pre">trajs[1]</span></code>. Use this to
 select only certain atoms in each Trajectory. The default is to provide
 bool arrays. If you provide strings, they are assumed to be atom names
-and we create a bool array <code class="docutils literal notranslate"><span class="pre">np.array(symbols)</span> <span class="pre">==</span> <span class="pre">amask[i]</span></code>.</p>
-</dd>
-<dt><strong>tmask</strong><span class="classifier">None or slice object, optional</span></dt><dd><p>Time mask. Slice for the time axis, e.g. to use only every 100th step,
+and we create a bool array <code class="docutils literal notranslate"><span class="pre">np.array(symbols)</span> <span class="pre">==</span> <span class="pre">amask[i]</span></code>.</p></li>
+<li><p><strong>tmask</strong> (<em>None</em><em> or </em><em>slice object</em><em>, </em><em>optional</em>) – Time mask. Slice for the time axis, e.g. to use only every 100th step,
 starting from step 2000 to the end, use <code class="docutils literal notranslate"><span class="pre">tmask=slice(2000,None,100)</span></code>,
-which is the same as <code class="docutils literal notranslate"><span class="pre">np.s_[2000::100]</span></code>.</p>
-</dd>
-<dt><strong>dmask</strong><span class="classifier">None or string, optional</span></dt><dd><p>Distance mask. Restrict to certain distances using numpy syntax for
+which is the same as <code class="docutils literal notranslate"><span class="pre">np.s_[2000::100]</span></code>.</p></li>
+<li><p><strong>dmask</strong> (<em>None</em><em> or </em><em>string</em><em>, </em><em>optional</em>) – <p>Distance mask. Restrict to certain distances using numpy syntax for
 creating bool arrays:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;&gt;=1.0&#39;</span>
 <span class="s1">&#39;</span><span class="si">{d}</span><span class="s1"> &gt;=1.0&#39;</span> <span class="c1"># the same</span>
@@ -135,29 +142,24 @@ creating bool arrays:</p>
 <p>where <code class="docutils literal notranslate"><span class="pre">{d}</span></code> is a placeholder for the distance array (you really have to
 use <code class="docutils literal notranslate"><span class="pre">{d}</span></code>). The placeholder is optional in some pattern. This is similar
 to VMD’s “within” (<code class="docutils literal notranslate"><span class="pre">pbc=False</span></code>) or “pbwithin” (<code class="docutils literal notranslate"><span class="pre">pbc=True</span></code>) syntax.</p>
-</dd>
-<dt><strong>pbc</strong><span class="classifier">bool, optional</span></dt><dd><p>apply minimum image convention to distances</p>
-</dd>
-<dt><strong>norm_vmd</strong><span class="classifier">bool, optional</span></dt><dd><p>Normalize <cite>g(r)</cite> like in VMD by counting duplicate atoms and normalize to
+</p></li>
+<li><p><strong>pbc</strong> (<em>bool</em><em>, </em><em>optional</em>) – apply minimum image convention to distances</p></li>
+<li><p><strong>norm_vmd</strong> (<em>bool</em><em>, </em><em>optional</em>) – Normalize <cite>g(r)</cite> like in VMD by counting duplicate atoms and normalize to
 <code class="docutils literal notranslate"><span class="pre">natoms0</span> <span class="pre">*</span> <span class="pre">natoms1</span> <span class="pre">-</span> <span class="pre">duplicates</span></code> instead of <code class="docutils literal notranslate"><span class="pre">natoms0*natoms1</span></code>. Affects
 all-all correlations only. <cite>num_int</cite> is not affected. Use this only for
-testing.</p>
-</dd>
-<dt><strong>maxmem</strong><span class="classifier">float, optional</span></dt><dd><p>Maximal allowed memory to use, in GB.</p>
-</dd>
-</dl>
+testing.</p></li>
+<li><p><strong>maxmem</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximal allowed memory to use, in GB.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>array (len(rad), 3), the columns are</dt><dd></dd>
-<dt><strong>rad</strong><span class="classifier">1d array</span></dt><dd><p>radius (x-axis) with spacing <cite>dr</cite>, each value r[i] is the middle of a
-histogram bin</p>
-</dd>
-<dt><strong>hist</strong><span class="classifier">1d array, (len(rad),)</span></dt><dd><p>the function values <cite>g(r)</cite></p>
-</dd>
-<dt><strong>num_int</strong><span class="classifier">1d array, (len(rad),)</span></dt><dd><p>the (averaged) number integral <code class="docutils literal notranslate"><span class="pre">number_density*hist*4*pi*r**2.0*dr</span></code></p>
-</dd>
-</dl>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>array (len(rad), 3), the columns are</em></p></li>
+<li><p><strong>rad</strong> (<em>1d array</em>) – radius (x-axis) with spacing <cite>dr</cite>, each value r[i] is the middle of a
+histogram bin</p></li>
+<li><p><strong>hist</strong> (<em>1d array, (len(rad),)</em>) – the function values <cite>g(r)</cite></p></li>
+<li><p><strong>num_int</strong> (<em>1d array, (len(rad),)</em>) – the (averaged) number integral <code class="docutils literal notranslate"><span class="pre">number_density*hist*4*pi*r**2.0*dr</span></code></p></li>
+</ul>
+</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -184,17 +186,6 @@ so (use <code class="docutils literal notranslate"><span class="pre">tmask=slice
 take more and more points into account (every 100th, 50th step, …).
 Especially for Car Parrinello, where time steps are small and the structure
 doesn’t change much, there is no need to use every step. See also <cite>maxmem</cite>.</p>
-<p class="rubric">References</p>
-<dl class="simple">
-<dt>[AT] M. P. Allen, D. J. Tildesley, Computer Simulation of Liquids,</dt><dd><p>Clarendon Press, 1989</p>
-</dd>
-<dt>[MD] R. Haberlandt, S. Fritzsche, G. Peinel, K. Heinzinger,</dt><dd><p>Molekulardynamik - Grundlagen und Anwendungen,
-Friedrich Vieweg &amp; Sohn Verlagsgesellschaft 1995</p>
-</dd>
-<dt>[Smith] W. Smith, The Minimum Image Convention in Non-Cubic MD Cells,</dt><dd><p><a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.57.1696">http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.57.1696</a>
-1989</p>
-</dd>
-</dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># simple all-all RPDF, time-averaged over all MD steps</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">rpdf</span><span class="p">(</span><span class="n">traj</span><span class="p">)</span>
@@ -228,6 +219,17 @@ Friedrich Vieweg &amp; Sohn Verlagsgesellschaft 1995</p>
 <span class="gp">... </span>         <span class="n">dmask</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{d}</span><span class="s1">&gt;1.0&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p class="rubric">References</p>
+<dl class="simple">
+<dt>[AT] M. P. Allen, D. J. Tildesley, Computer Simulation of Liquids,</dt><dd><p>Clarendon Press, 1989</p>
+</dd>
+<dt>[MD] R. Haberlandt, S. Fritzsche, G. Peinel, K. Heinzinger,</dt><dd><p>Molekulardynamik - Grundlagen und Anwendungen,
+Friedrich Vieweg &amp; Sohn Verlagsgesellschaft 1995</p>
+</dd>
+<dt>[Smith] W. Smith, The Minimum Image Convention in Non-Cubic MD Cells,</dt><dd><p><a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.57.1696">http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.57.1696</a>
+1989</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
