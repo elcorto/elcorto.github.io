@@ -6,8 +6,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.batch.Case &#8212; pwtools  documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
@@ -20,6 +20,7 @@
     <link rel="prev" title="pwtools.batch.Calculation.write_input" href="pwtools.batch.Calculation.write_input.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -67,7 +68,7 @@
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
   <li><a href="index.html">API Reference</a><ul>
-  <li><a href="batch.html">batch</a><ul>
+  <li><a href="__sphinx_autodoc_module__pwtools.batch.html">batch</a><ul>
       <li>Previous: <a href="pwtools.batch.Calculation.write_input.html" title="previous chapter">pwtools.batch.Calculation.write_input</a></li>
       <li>Next: <a href="pwtools.batch.FileTemplate.html" title="next chapter">pwtools.batch.FileTemplate</a></li>
   </ul></li>
@@ -89,6 +90,8 @@
       </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="pwtools-batch-case">
@@ -105,7 +108,7 @@ another syntax for attribute access, i.e. <code class="docutils literal notransl
 subclass Case and do stuff in <code class="docutils literal notranslate"><span class="pre">__init__</span></code>. But don’t call
 <code class="docutils literal notranslate"><span class="pre">Case.__init__</span></code> as in</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyCase</span><span class="p">(</span><span class="n">Case</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Case</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span>
 </pre></div>
@@ -118,7 +121,7 @@ it exists.</p>
 </pre></div>
 </div>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.batch</span> <span class="k">import</span> <span class="n">Case</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pwtools.batch</span> <span class="kn">import</span> <span class="n">Case</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">case1</span> <span class="o">=</span> <span class="n">Case</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">case2</span> <span class="o">=</span> <span class="n">Case</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">case</span> <span class="ow">in</span> <span class="p">[</span><span class="n">case1</span><span class="p">,</span> <span class="n">case2</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">case</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">case</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
@@ -145,16 +148,17 @@ it exists.</p>
 
 
           </div>
+          
         </div>
       </div>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2020, Steve Schmerler.
+      &copy;2021, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="../../_sources/generated/api/pwtools.batch.Case.rst.txt"

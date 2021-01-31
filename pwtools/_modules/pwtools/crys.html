@@ -6,8 +6,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.crys &#8212; pwtools  documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
@@ -18,6 +18,7 @@
     <link rel="search" title="Search" href="../../search.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -83,10 +84,12 @@
       </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <h1>Source code for pwtools.crys</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">acos</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sqrt</span>
+<span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">acos</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sqrt</span>
 <span class="kn">import</span> <span class="nn">textwrap</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
@@ -94,14 +97,14 @@
 <span class="kn">import</span> <span class="nn">itertools</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="k">import</span> <span class="n">inv</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
 
-<span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">common</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">atomic_data</span><span class="p">,</span> <span class="n">constants</span><span class="p">,</span> <span class="n">_flib</span>
-<span class="kn">from</span> <span class="nn">pwtools.common</span> <span class="k">import</span> <span class="n">assert_cond</span>
-<span class="kn">from</span> <span class="nn">pwtools.decorators</span> <span class="k">import</span> <span class="n">crys_add_doc</span>
-<span class="kn">from</span> <span class="nn">pwtools.base</span> <span class="k">import</span> <span class="n">FlexibleGetters</span>
-<span class="kn">from</span> <span class="nn">pwtools.constants</span> <span class="k">import</span> <span class="n">Angstrom</span>
-<span class="kn">from</span> <span class="nn">pwtools.num</span> <span class="k">import</span> <span class="n">fempty</span><span class="p">,</span> <span class="n">rms3d</span><span class="p">,</span> <span class="n">match_mask</span><span class="p">,</span> <span class="n">norm</span>
+<span class="kn">from</span> <span class="nn">pwtools</span> <span class="kn">import</span> <span class="n">common</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">atomic_data</span><span class="p">,</span> <span class="n">constants</span><span class="p">,</span> <span class="n">_flib</span>
+<span class="kn">from</span> <span class="nn">pwtools.common</span> <span class="kn">import</span> <span class="n">assert_cond</span>
+<span class="kn">from</span> <span class="nn">pwtools.decorators</span> <span class="kn">import</span> <span class="n">crys_add_doc</span>
+<span class="kn">from</span> <span class="nn">pwtools.base</span> <span class="kn">import</span> <span class="n">FlexibleGetters</span>
+<span class="kn">from</span> <span class="nn">pwtools.constants</span> <span class="kn">import</span> <span class="n">Angstrom</span>
+<span class="kn">from</span> <span class="nn">pwtools.num</span> <span class="kn">import</span> <span class="n">fempty</span><span class="p">,</span> <span class="n">rms3d</span><span class="p">,</span> <span class="n">match_mask</span><span class="p">,</span> <span class="n">norm</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="c1">##warnings.simplefilter(&#39;always&#39;)</span>
 
@@ -1847,7 +1850,7 @@
 <span class="sd">        the (averaged) number integral ``number_density*hist*4*pi*r**2.0*dr``</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Need to import here b/c of cyclic dependency crys -&gt; io -&gt; crys ...</span>
-    <span class="kn">from</span> <span class="nn">pwtools</span> <span class="k">import</span> <span class="n">io</span>
+    <span class="kn">from</span> <span class="nn">pwtools</span> <span class="kn">import</span> <span class="n">io</span>
     <span class="n">traj</span> <span class="o">=</span> <span class="n">struct2traj</span><span class="p">(</span><span class="n">traj</span><span class="p">)</span>
     <span class="c1"># Speed: The VMD command &quot;measure gofr&quot; is multithreaded and written in C.</span>
     <span class="c1"># That&#39;s why it is faster than the pure Python rpdf() above when we have to</span>
@@ -2210,7 +2213,7 @@
 
 <div class="viewcode-block" id="UnitsHandler"><a class="viewcode-back" href="../../generated/api/pwtools.crys.UnitsHandler.html#pwtools.crys.UnitsHandler">[docs]</a><span class="k">class</span> <span class="nc">UnitsHandler</span><span class="p">(</span><span class="n">FlexibleGetters</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for :class:`Structure`, providing unit conversion methods.&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="UnitsHandler.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.crys.UnitsHandler.html#pwtools.crys.UnitsHandler.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="UnitsHandler.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.crys.UnitsHandler.html#pwtools.crys.UnitsHandler.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># XXX cryst_const is not in &#39;length&#39; and needs to be treated specially,</span>
         <span class="c1"># see _apply_units_raw()</span>
 
@@ -2362,7 +2365,7 @@
     <span class="n">is_traj</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">is_struct</span> <span class="o">=</span> <span class="kc">True</span>
 
-<div class="viewcode-block" id="Structure.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_all_auto</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<div class="viewcode-block" id="Structure.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.crys.Structure.html#pwtools.crys.Structure.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_all_auto</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2934,7 +2937,7 @@
         <span class="n">req</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;coords_frac&#39;</span><span class="p">,</span> <span class="s1">&#39;cell&#39;</span><span class="p">,</span> <span class="s1">&#39;symbols&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_set_attr_lst</span><span class="p">(</span><span class="n">req</span><span class="p">):</span>
             <span class="c1"># We don&#39;t wanna make ase a dependency. Import only when needed.</span>
-            <span class="kn">from</span> <span class="nn">ase</span> <span class="k">import</span> <span class="n">Atoms</span>
+            <span class="kn">from</span> <span class="nn">ase</span> <span class="kn">import</span> <span class="n">Atoms</span>
             <span class="n">_kwds</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pbc&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
             <span class="n">_kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds</span><span class="p">)</span>
             <span class="n">at</span> <span class="o">=</span> <span class="n">Atoms</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">symbols</span><span class="p">,</span>
@@ -3013,13 +3016,13 @@
     <span class="n">is_traj</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">is_struct</span> <span class="o">=</span> <span class="kc">False</span>
 
-<div class="viewcode-block" id="Trajectory.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<div class="viewcode-block" id="Trajectory.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.crys.Trajectory.html#pwtools.crys.Trajectory.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Trajectory</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="Trajectory.__getitem__"><a class="viewcode-back" href="../../generated/api/pwtools.crys.Trajectory.__getitem__.html#pwtools.crys.Trajectory.__getitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+<div class="viewcode-block" id="Trajectory.__getitem__"><a class="viewcode-back" href="../../generated/api/pwtools.crys.Trajectory.__getitem__.html#pwtools.crys.Trajectory.__getitem__">[docs]</a>    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
         <span class="n">want_traj</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
             <span class="n">obj</span> <span class="o">=</span> <span class="n">Trajectory</span><span class="p">(</span><span class="n">set_all_auto</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -3057,7 +3060,7 @@
                 <span class="n">obj</span><span class="o">.</span><span class="n">timestep</span> <span class="o">*=</span> <span class="n">timestep_fac</span>
         <span class="k">return</span> <span class="n">obj</span></div>
 
-    <span class="k">def</span> <span class="nf">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">nstep</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
@@ -3127,7 +3130,7 @@
 <span class="sd">    Used to be used as input for ``spglib`` in symmetry.py, but not anymore as</span>
 <span class="sd">    of spglib 1.9.x. Now, we use :meth:`Structure.get_spglib`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="FakeASEAtoms.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.crys.FakeASEAtoms.html#pwtools.crys.FakeASEAtoms.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scaled_positions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cell</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="FakeASEAtoms.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.crys.FakeASEAtoms.html#pwtools.crys.FakeASEAtoms.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scaled_positions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cell</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">FakeASEAtoms</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">coords_frac</span><span class="o">=</span><span class="n">scaled_positions</span><span class="p">,</span>
                                            <span class="n">cell</span><span class="o">=</span><span class="n">cell</span><span class="p">,</span>
                                            <span class="n">symbols</span><span class="o">=</span><span class="n">symbols</span><span class="p">)</span>
@@ -3534,16 +3537,17 @@
 </pre></div>
 
           </div>
+          
         </div>
       </div>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2020, Steve Schmerler.
+      &copy;2021, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>
 

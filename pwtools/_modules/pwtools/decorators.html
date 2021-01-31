@@ -6,8 +6,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pwtools.decorators &#8212; pwtools  documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
@@ -18,6 +18,7 @@
     <link rel="search" title="Search" href="../../search.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -83,6 +84,8 @@
       </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <h1>Source code for pwtools.decorators</h1><div class="highlight"><pre>
@@ -90,7 +93,7 @@
 <span class="kn">import</span> <span class="nn">gzip</span>
 <span class="kn">import</span> <span class="nn">textwrap</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">wraps</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
 
 <div class="viewcode-block" id="open_and_close"><a class="viewcode-back" href="../../generated/api/pwtools.decorators.open_and_close.html#pwtools.decorators.open_and_close">[docs]</a><span class="k">def</span> <span class="nf">open_and_close</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Decorator for all parsing functions that originally got a file name and</span>
@@ -182,6 +185,7 @@
     <span class="k">return</span> <span class="n">func</span></div>
 
 
+<span class="c1"># NOTE: can be drop-in replaced by functools.cached_property() as of Python 3.8</span>
 <div class="viewcode-block" id="lazyprop"><a class="viewcode-back" href="../../generated/api/pwtools.decorators.lazyprop.html#pwtools.decorators.lazyprop">[docs]</a><span class="k">class</span> <span class="nc">lazyprop</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Decorator for creating lazy evaluated properties.</span>
 <span class="sd">    The property should represent non-mutable data, as it replaces itself.</span>
@@ -189,11 +193,11 @@
 <span class="sd">    kudos: Cyclone over at stackoverflow!</span>
 <span class="sd">    http://stackoverflow.com/questions/3012421/python-lazy-property-decorator</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="lazyprop.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.decorators.lazyprop.html#pwtools.decorators.lazyprop.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">fget</span><span class="p">):</span>
+<div class="viewcode-block" id="lazyprop.__init__"><a class="viewcode-back" href="../../generated/api/pwtools.decorators.lazyprop.html#pwtools.decorators.lazyprop.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">fget</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fget</span> <span class="o">=</span> <span class="n">fget</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">fget</span><span class="o">.</span><span class="vm">__name__</span></div>
 
-    <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">obj</span><span class="p">,</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">obj</span><span class="p">,</span><span class="bp">cls</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
         <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fget</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
@@ -209,22 +213,20 @@
 <span class="c1">##            setattr(self, attr_name, fn(self))</span>
 <span class="c1">##        return getattr(self, attr_name)</span>
 <span class="c1">##    return _lazyprop</span>
-
-
-
 </pre></div>
 
           </div>
+          
         </div>
       </div>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2020, Steve Schmerler.
+      &copy;2021, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>
 
