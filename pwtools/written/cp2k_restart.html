@@ -4,16 +4,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>How to do a restart in cp2k &#8212; pwtools  documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
    
@@ -72,7 +71,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -86,9 +85,9 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="how-to-do-a-restart-in-cp2k">
+  <section id="how-to-do-a-restart-in-cp2k">
 <span id="cp2k-restart"></span><h1>How to do a restart in cp2k<a class="headerlink" href="#how-to-do-a-restart-in-cp2k" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="some-comments">
+<section id="some-comments">
 <h2>Some comments<a class="headerlink" href="#some-comments" title="Permalink to this headline">¶</a></h2>
 <p>Suggested naming convention for runs:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">calc</span><span class="o">/</span><span class="mf">0.0</span> <span class="c1"># equilibration run</span>
@@ -105,8 +104,8 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span><span class="o">/</span><span class="n">md</span><span class="o">/</span><span class="n">thermostat</span><span class="o">/</span><span class="n">csvr</span><span class="o">/</span><span class="n">timecon</span><span class="o">=</span><span class="mi">1000</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="restart">
+</section>
+<section id="restart">
 <h2>Restart<a class="headerlink" href="#restart" title="Permalink to this headline">¶</a></h2>
 <p>Each run <code class="docutils literal notranslate"><span class="pre">calc/0.0</span></code>, <code class="docutils literal notranslate"><span class="pre">calc/0.1</span></code> etc will by default write files like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp2k</span><span class="o">.</span><span class="ow">in</span>
@@ -160,8 +159,8 @@ $ cd 0.2
 $ qsub job.script
 </pre></div>
 </div>
-</div>
-<div class="section" id="analysis-of-runs-with-pwtools">
+</section>
+<section id="analysis-of-runs-with-pwtools">
 <h2>Analysis of runs with pwtools<a class="headerlink" href="#analysis-of-runs-with-pwtools" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> files and the <code class="docutils literal notranslate"><span class="pre">*{cell,ener,stress}</span></code> files are written at each
 step. However, for efficiency, the restart file <code class="docutils literal notranslate"><span class="pre">PROJECT-1.restart</span></code> is
@@ -196,8 +195,8 @@ files before parsing by using the script <code class="docutils literal notransla
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">=</span><span class="n">crys</span><span class="o">.</span><span class="n">rpdf</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">amask</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;O&#39;</span><span class="p">,</span><span class="s1">&#39;H&#39;</span><span class="p">]);</span> <span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -210,7 +209,7 @@ files before parsing by using the script <code class="docutils literal notransla
       &copy;2021, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

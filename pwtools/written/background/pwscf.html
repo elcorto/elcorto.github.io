@@ -4,16 +4,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Pwscf &#8212; pwtools  documentation</title>
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Radial Basis Function Networks for interpolation or fitting of N-dim data" href="rbf.html" />
@@ -89,7 +88,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -103,9 +102,9 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="pwscf">
+  <section id="pwscf">
 <h1>Pwscf<a class="headerlink" href="#pwscf" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="units">
+<section id="units">
 <h2>Units<a class="headerlink" href="#units" title="Permalink to this headline">¶</a></h2>
 <p>From <a class="reference external" href="http://www.quantum-espresso.org/input-syntax/INPUT_PW.html">http://www.quantum-espresso.org/input-syntax/INPUT_PW.html</a>:
 “All quantities whose dimensions are not explicitly specified are in
@@ -117,8 +116,8 @@ ANGULAR FREQUENCY omega = 2*pi*f!!! Therefore, if you calculate with this
 frequency as in “hbar*omega”, then use f*2*pi!</p>
 </dd>
 </dl>
-</div>
-<div class="section" id="atomic-coordinates">
+</section>
+<section id="atomic-coordinates">
 <h2>Atomic coordinates<a class="headerlink" href="#atomic-coordinates" title="Permalink to this headline">¶</a></h2>
 <p>In PWscf terms, alat = celldm(1) = lattice constant “a” in a.u. . A length in
 a.u. means a unit or Bohr = a0 = 0.52917720859 Angstrom.</p>
@@ -164,8 +163,8 @@ files).</p>
     <span class="o">=&gt;</span> <span class="n">CELL_PARAMETERS</span> <span class="n">are</span> <span class="ow">in</span> <span class="n">Rydberg</span> <span class="n">atomic</span> <span class="n">units</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">e</span><span class="o">.</span> <span class="ow">in</span> <span class="n">Bohr</span><span class="o">.</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="total-force-on-atoms">
+</section>
+<section id="total-force-on-atoms">
 <h2>Total force on atoms<a class="headerlink" href="#total-force-on-atoms" title="Permalink to this headline">¶</a></h2>
 <p>Pwscf writes a “Total Force” after the “Forces acting on atoms” section . This
 value is kind of an RMS of the force matrix (f_ij, i=1,natoms j=1,2,3) printed.
@@ -179,8 +178,8 @@ crys.rms3d() for MD runs where the RMS of each (f_ij) is:</p>
 </pre></div>
 </div>
 <p>with N = 3*natoms or N=natoms.</p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -193,7 +192,7 @@ crys.rms3d() for MD runs where the RMS of each (f_ij) is:</p>
       &copy;2021, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

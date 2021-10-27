@@ -4,16 +4,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Phonon dispersion calculation and plotting &#8212; pwtools  documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
    
@@ -72,7 +71,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -86,10 +85,10 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="phonon-dispersion-calculation-and-plotting">
+  <section id="phonon-dispersion-calculation-and-plotting">
 <span id="dispersion-example"></span><h1>Phonon dispersion calculation and plotting<a class="headerlink" href="#phonon-dispersion-calculation-and-plotting" title="Permalink to this headline">¶</a></h1>
 <p>File: <code class="file docutils literal notranslate"><span class="pre">examples/dispersion/dispersion.py</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Calculate phonon dispersion with QE&#39;s matdyn and plot: example from wz-AlN.</span>
@@ -171,11 +170,11 @@
 
 <span class="c1"># QE 4.x, 5.x</span>
 <span class="n">ks</span><span class="p">,</span> <span class="n">freqs</span> <span class="o">=</span> <span class="n">pwscf</span><span class="o">.</span><span class="n">read_matdyn_freq</span><span class="p">(</span><span class="n">matdyn_freq_fn</span><span class="p">)</span>
-<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">kpath</span><span class="o">.</span><span class="n">plot_dis</span><span class="p">(</span><span class="n">kpath</span><span class="o">.</span><span class="n">get_path_norm</span><span class="p">(</span><span class="n">ks_path</span><span class="p">),</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">sp</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="p">,</span><span class="n">axdos</span> <span class="o">=</span> <span class="n">kpath</span><span class="o">.</span><span class="n">plot_dis</span><span class="p">(</span><span class="n">kpath</span><span class="o">.</span><span class="n">get_path_norm</span><span class="p">(</span><span class="n">ks_path</span><span class="p">),</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">sp</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 
 <span class="c1"># QE 5.x</span>
 <span class="c1">##d = np.loadtxt(matdyn_freq_fn + &#39;.gp&#39;)</span>
-<span class="c1">##fig,ax = kpath.plot_dis(d[:,0], d[:,1:], sp, marker=&#39;&#39;, ls=&#39;-&#39;, color=&#39;k&#39;)</span>
+<span class="c1">##fig,ax,axdos = kpath.plot_dis(d[:,0], d[:,1:], sp, marker=&#39;&#39;, ls=&#39;-&#39;, color=&#39;k&#39;)</span>
 
 <span class="c1"># if needed</span>
 <span class="c1">#ax.set_ylim(...)</span>
@@ -190,7 +189,7 @@
 <span class="c1"># plot both dispersions (for sp_points_1 and sp_points_2) into one plot.</span>
 </pre></div>
 </div>
-</div>
+</section>
 
 
           </div>
@@ -203,7 +202,7 @@
       &copy;2021, Steve Schmerler.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
